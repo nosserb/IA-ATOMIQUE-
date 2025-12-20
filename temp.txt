@@ -1,0 +1,8 @@
+4:1:windows
+4:1:vais
+1:1:execute
+4:1:mon
+1:1:bonjour
+1:1:debogagego
+4:1:marcher
+4:1:foretgo

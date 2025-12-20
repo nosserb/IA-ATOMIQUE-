@@ -1,104 +1,187 @@
 package database
 
-// Word représente un mot avec sa catégorie et son numéro
+import (
+	"bufio"
+	"fmt"
+	"math/rand"
+	"os"
+	"strconv"
+	"strings"
+	"unicode"
+)
+
 type Word struct {
 	Mot       string
-	Categorie string
-	Numero    int
+	Categorie int
+	Poids     float64
 }
 
-// Liste enrichie de mots
-var Words = []Word{
-	// Ingénierie
-	{"voiture", "Ingénierie", 1},
-	{"moteur", "Ingénierie", 1},
-	{"robot", "Ingénierie", 1},
-	{"fusée", "Ingénierie", 1},
-	{"pont", "Ingénierie", 1},
-	{"camion", "Ingénierie", 1},
-	{"train", "Ingénierie", 1},
-	{"vélo", "Ingénierie", 1},
-	{"voilier", "Ingénierie", 1},
-	{"drone", "Ingénierie", 1},
-	{"réacteur", "Ingénierie", 1},
-	{"turbine", "Ingénierie", 1},
-	{"machine", "Ingénierie", 1},
-	{"engin", "Ingénierie", 1},
-	{"grue", "Ingénierie", 1},
-	{"ascenseur", "Ingénierie", 1},
+type Neurone struct {
+	ID, CategorieID int
+	Valeur          float64
+}
 
-	// Science
-	{"physique", "Science", 2},
-	{"chimie", "Science", 2},
-	{"biologie", "Science", 2},
-	{"astronomie", "Science", 2},
-	{"géologie", "Science", 2},
-	{"mathématique", "Science", 2},
-	{"écologie", "Science", 2},
-	{"astrophysique", "Science", 2},
-	{"biologiste", "Science", 2},
-	{"chimiste", "Science", 2},
-	{"physicien", "Science", 2},
-	{"microbiologie", "Science", 2},
-	{"neurosciences", "Science", 2},
-	{"médicament", "Science", 2},
-	{"médicaments", "Science", 2},
-	{"pharmacie", "Science", 2},
-	{"médecin", "Science", 2},
-	{"hôpital", "Science", 2},
-	{"infirmier", "Science", 2},
-	{"soin", "Science", 2},
+type MotEnAttente struct {
+	Categorie int
+	Compteur  int
+}
 
-	// Nature
-	{"arbre", "Nature", 3},
-	{"arbres", "Nature", 3},
-	{"forêt", "Nature", 3},
-	{"plante", "Nature", 3},
-	{"plantes", "Nature", 3},
-	{"montagne", "Nature", 3},
-	{"rivière", "Nature", 3},
-	{"lac", "Nature", 3},
-	{"plage", "Nature", 3},
-	{"jardin", "Nature", 3},
-	{"forêt tropicale", "Nature", 3},
-	{"plante carnivore", "Nature", 3},
-	{"fleur", "Nature", 3},
-	{"herbe", "Nature", 3},
+var Neurones []Neurone
+var Words map[string]Word
+var LexiqueTemp = make(map[string]*MotEnAttente)
+var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
 
-	// Art
-	{"peinture", "Art", 4},
-	{"peintre", "Art", 4},
-	{"dessin", "Art", 4},
-	{"sculpture", "Art", 4},
-	{"musique", "Art", 4},
-	{"orchestre", "Art", 4},
-	{"cinéma", "Art", 4},
-	{"danse", "Art", 4},
-	{"théâtre", "Art", 4},
-	{"théâtre classique", "Art", 4},
-	{"art numérique", "Art", 4},
-	{"chorégraphie", "Art", 4},
-	{"orchestration", "Art", 4},
+func init() {
+	for i := 0; i < 1000; i++ {
+		Neurones = append(Neurones, Neurone{ID: i, CategorieID: rand.Intn(60) + 1})
+	}
+	Words = make(map[string]Word)
 
-	// Programmation
-	{"ordinateur", "Programmation", 5},
-	{"code", "Programmation", 5},
-	{"algorithme", "Programmation", 5},
-	{"langage", "Programmation", 5},
-	{"script", "Programmation", 5},
-	{"serveur", "Programmation", 5},
-	{"microprocesseur", "Programmation", 5},
-	{"application", "Programmation", 5},
-	{"intelligence artificielle", "Programmation", 5},
-	{"réseau", "Programmation", 5},
-	{"programmation", "Programmation", 5},
-	{"API", "Programmation", 5},
-	{"base de données", "Programmation", 5},
-	{"framework", "Programmation", 5},
-	{"compilateur", "Programmation", 5},
-	{"interface", "Programmation", 5},
-	{"debugger", "Programmation", 5},
-	{"fonction", "Programmation", 5},
-	{"variable", "Programmation", 5},
-	{"boucle", "Programmation", 5},
+	// Catégorie 0 : NEUTRE
+	Injecter(0, 0.1, "bonjour", "salut", "merci", "svp", "donc", "alors", "mais", "avec", "que", "qui", "est")
+
+	Injecter(1, 5.0, "ia", "robot", "ordinateur", "technologie", "code")
+	Injecter(4, 5.0, "vendre", "entreprise", "projet", "business", "argent")
+	Injecter(50, 5.0, "manger", "faim", "nourriture", "pizza", "pates")
+	Injecter(6, 5.0, "mal", "santé", "douleur", "hopital")
+
+	ChargerLexique("lexique.txt")
+	ChargerProbation("temp.txt")
+}
+
+func Injecter(cat int, poids float64, mots ...string) {
+	for _, m := range mots {
+		Words[strings.ToLower(m)] = Word{Mot: m, Categorie: cat, Poids: poids}
+	}
+}
+
+func Apprendre(mot string, catID int) {
+	mot = strings.ToLower(mot)
+	if StopWords[mot] || len(mot) <= 2 {
+		return
+	}
+
+	// --- LOGIQUE DE MIGRATION ---
+	if w, ok := Words[mot]; ok {
+		if w.Categorie != catID && w.Categorie != 0 {
+			fmt.Printf("[MIGRATION] '%s' quitte %s pour %s\n", mot, NumeroVersCategorie(w.Categorie), NumeroVersCategorie(catID))
+			Words[mot] = Word{Mot: mot, Categorie: catID, Poids: 3.0}
+			MajLexiqueFichier(mot, catID)
+			return
+		}
+		return
+	}
+
+	// --- APPRENTISSAGE CLASSIQUE ---
+	if val, ok := LexiqueTemp[mot]; ok {
+		if val.Categorie == catID {
+			val.Compteur++
+			if val.Compteur >= 3 {
+				Words[mot] = Word{Mot: mot, Categorie: catID, Poids: 3.0}
+				delete(LexiqueTemp, mot)
+				SauvegarderDefinitif(mot, catID)
+				fmt.Printf("[ADOPTION] '%s' gravé dans %s !\n", mot, NumeroVersCategorie(catID))
+			}
+		} else {
+			val.Compteur--
+			if val.Compteur <= 0 {
+				delete(LexiqueTemp, mot)
+			}
+		}
+	} else {
+		LexiqueTemp[mot] = &MotEnAttente{Categorie: catID, Compteur: 1}
+		fmt.Printf("[NOUVEAU] '%s' (1/3)\n", mot)
+	}
+	SauvegarderProbation()
+}
+
+func MajLexiqueFichier(mot string, nouvelleCat int) {
+	input, _ := os.ReadFile("lexique.txt")
+	lignes := strings.Split(string(input), "\n")
+	trouve := false
+	for i, ligne := range lignes {
+		if strings.Contains(ligne, ":"+mot) {
+			lignes[i] = fmt.Sprintf("%d:%s", nouvelleCat, mot)
+			trouve = true
+			break
+		}
+	}
+	if trouve {
+		output := strings.Join(lignes, "\n")
+		os.WriteFile("lexique.txt", []byte(output), 0644)
+	}
+}
+
+func SauvegarderDefinitif(mot string, catID int) {
+	f, _ := os.OpenFile("lexique.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	defer f.Close()
+	f.WriteString(fmt.Sprintf("%d:%s\n", catID, mot))
+}
+
+func ChargerLexique(nomFichier string) {
+	file, err := os.Open(nomFichier)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		parts := strings.Split(scanner.Text(), ":")
+		if len(parts) == 2 {
+			cat, _ := strconv.Atoi(parts[0])
+			Injecter(cat, 3.0, strings.TrimSpace(parts[1]))
+		}
+	}
+}
+
+func ChargerProbation(nomFichier string) {
+	file, err := os.Open(nomFichier)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		parts := strings.Split(scanner.Text(), ":")
+		if len(parts) == 3 {
+			cat, _ := strconv.Atoi(parts[0])
+			count, _ := strconv.Atoi(parts[1])
+			LexiqueTemp[parts[2]] = &MotEnAttente{Categorie: cat, Compteur: count}
+		}
+	}
+}
+
+func SauvegarderProbation() {
+	f, _ := os.Create("temp.txt")
+	defer f.Close()
+	for mot, data := range LexiqueTemp {
+		f.WriteString(fmt.Sprintf("%d:%d:%s\n", data.Categorie, data.Compteur, mot))
+	}
+}
+
+func MotProche(token string) (Word, string) {
+	clean := strings.Map(func(r rune) rune {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			return r
+		}
+		return -1
+	}, strings.ToLower(token))
+	if w, ok := Words[clean]; ok {
+		return w, clean
+	}
+	return Word{}, clean
+}
+
+func NumeroVersCategorie(num int) string {
+	categories := map[int]string{0: "NEUTRE", 1: "TECH", 4: "BUSINESS", 6: "SANTE", 50: "BESOIN"}
+	if v, ok := categories[num]; ok {
+		return v
+	}
+	return "AUTRE"
+}
+
+func RegenererNeurones() {
+	for i := range Neurones {
+		Neurones[i].Valeur *= 0.01
+	}
 }
