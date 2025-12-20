@@ -72,15 +72,17 @@ func Apprendre(mot string, catID int) {
 		return
 	}
 
-	// --- APPRENTISSAGE CLASSIQUE ---
+	// --- APPRENTISSAGE RAPIDE (2 fois au lieu de 3) ---
 	if val, ok := LexiqueTemp[mot]; ok {
 		if val.Categorie == catID {
 			val.Compteur++
-			if val.Compteur >= 3 {
+			if val.Compteur >= 2 {
 				Words[mot] = Word{Mot: mot, Categorie: catID, Poids: 3.0}
 				delete(LexiqueTemp, mot)
 				SauvegarderDefinitif(mot, catID)
 				fmt.Printf("[ADOPTION] '%s' gravé dans %s !\n", mot, NumeroVersCategorie(catID))
+			} else {
+				fmt.Printf("[APPRENTISSAGE] '%s' (%d/2) dans %s\n", mot, val.Compteur, NumeroVersCategorie(catID))
 			}
 		} else {
 			val.Compteur--
@@ -90,7 +92,7 @@ func Apprendre(mot string, catID int) {
 		}
 	} else {
 		LexiqueTemp[mot] = &MotEnAttente{Categorie: catID, Compteur: 1}
-		fmt.Printf("[NOUVEAU] '%s' (1/3)\n", mot)
+		fmt.Printf("[NOUVEAU] '%s' (1/2) dans %s\n", mot, NumeroVersCategorie(catID))
 	}
 	SauvegarderProbation()
 }
@@ -184,4 +186,90 @@ func RegenererNeurones() {
 	for i := range Neurones {
 		Neurones[i].Valeur *= 0.01
 	}
+}
+
+func GenererReponse(catID int, motsPoses []string) string {
+	// Récupère les mots connus de cette catégorie
+	motsConnus := []string{}
+	for mot, word := range Words {
+		if word.Categorie == catID && mot != "" && len(mot) > 2 {
+			motsConnus = append(motsConnus, word.Mot)
+		}
+	}
+
+	sujets := map[int][]string{
+		1:  {"Je", "L'IA", "Le robot", "L'ordinateur", "Cela", "Je peux"},
+		4:  {"L'entreprise", "Le business", "Ce projet", "On", "C'est", "Nous"},
+		6:  {"Le corps", "La santé", "On", "C'est", "La vie", "Cela"},
+		50: {"Je", "On", "Tu", "Je voudrais", "Personnellement", "C'est bon"},
+	}
+
+	verbes := map[int][]string{
+		1:  {"traite", "analyse", "utilise", "comprend", "exécute", "calcule", "gère"},
+		4:  {"génère", "crée", "produit", "réalise", "livre", "développe", "fournit"},
+		6:  {"améliore", "renforce", "maintient", "aide", "protège", "préserve", "favorise"},
+		50: {"aime", "préfère", "mange", "consomme", "apprécie", "recommande", "adore"},
+	}
+
+	sujetsListe := sujets[catID]
+	verbesListe := verbes[catID]
+
+	if len(sujetsListe) == 0 || len(verbesListe) == 0 {
+		return "Je comprends cette catégorie."
+	}
+
+	sujet := sujetsListe[rand.Intn(len(sujetsListe))]
+	verbe := verbesListe[rand.Intn(len(verbesListe))]
+
+	// Utilise les mots qu'elle connaît
+	var complements []string
+	if len(motsConnus) > 0 {
+		// Cherche d'abord un mot qui matche la question
+		for _, mp := range motsPoses {
+			for _, mk := range motsConnus {
+				if len(mp) > 2 && (strings.Contains(strings.ToLower(mk), mp) || strings.Contains(mp, strings.ToLower(mk))) {
+					complements = append(complements, mk)
+				}
+			}
+		}
+
+		// Complète avec d'autres mots aléatoires
+		for len(complements) < 2 && len(complements) < len(motsConnus) {
+			idx := rand.Intn(len(motsConnus))
+			m := motsConnus[idx]
+			found := false
+			for _, c := range complements {
+				if c == m {
+					found = true
+					break
+				}
+			}
+			if !found {
+				complements = append(complements, m)
+			}
+		}
+	}
+
+	// Fallback si pas assez de mots
+	if len(complements) == 0 {
+		defaultComplements := map[int][]string{
+			1:  {"l'information", "les données", "les processus"},
+			4:  {"de la valeur", "des solutions", "des stratégies"},
+			6:  {"le bien-être", "la vitalité", "l'équilibre"},
+			50: {"sainement", "qualitativement", "régulièrement"},
+		}
+		complements = defaultComplements[catID]
+	}
+
+	// Construire la phrase
+	var reponse string
+	if len(complements) >= 2 {
+		reponse = fmt.Sprintf("%s %s %s et %s.", sujet, verbe, complements[0], complements[1])
+	} else if len(complements) == 1 {
+		reponse = fmt.Sprintf("%s %s %s.", sujet, verbe, complements[0])
+	} else {
+		reponse = fmt.Sprintf("%s %s bien les concepts de cette catégorie.", sujet, verbe)
+	}
+
+	return reponse
 }

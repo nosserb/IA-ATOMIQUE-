@@ -13,7 +13,7 @@
 6:hopital
 6:medecin
 6:remede
-6:sante
+1:sante
 6:sport
 6:vitamines
 6:dormir
@@ -105,7 +105,7 @@
 6:casser
 4:bourse
 1:lintelligence
-1:sur
+4:sur
 1:artificielle
 1:processus
 1:dimitation
@@ -194,3 +194,7 @@
 6:pathologie
 6:guérison
 6:rémission
+1:quest
+1:sais
+50:parle
+50:moi
