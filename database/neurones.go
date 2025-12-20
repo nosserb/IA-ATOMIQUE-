@@ -1,6 +1,7 @@
 package database
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -22,7 +23,7 @@ func init() {
 	// Crée 40 neurones avec valeurs et connexions aléatoires
 	for i := 1; i <= 40; i++ {
 		n := Neurone{
-			ID:         "N" + string(i),
+			ID:         fmt.Sprintf("N%d", i),
 			Valeur:     rand.Float64(), // valeur entre 0 et 1
 			Connexions: make(map[string]float64),
 			Fige:       false,
@@ -31,7 +32,7 @@ func init() {
 		// Ajouter 2 à 5 connexions aléatoires vers d'autres neurones
 		nbConnexions := rand.Intn(4) + 2
 		for j := 0; j < nbConnexions; j++ {
-			target := "N" + string(rand.Intn(40)+1)
+			target := fmt.Sprintf("N%d", rand.Intn(40)+1)
 			if target != n.ID {
 				n.Connexions[target] = rand.Float64()
 			}
@@ -59,7 +60,7 @@ func RegenererNeurones() {
 			Neurones[i].Connexions = make(map[string]float64)
 			nbConnexions := rand.Intn(4) + 2
 			for j := 0; j < nbConnexions; j++ {
-				target := "N" + string(rand.Intn(40)+1)
+				target := fmt.Sprintf("N%d", rand.Intn(40)+1)
 				if target != Neurones[i].ID {
 					Neurones[i].Connexions[target] = rand.Float64()
 				}
