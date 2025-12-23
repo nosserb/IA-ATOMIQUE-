@@ -38,13 +38,33 @@ func init() {
 	Words = make(map[string]Word)
 
 	// Catégorie 0 : NEUTRE
-	Injecter(0, 0.1, "bonjour", "salut", "merci", "svp", "donc", "alors", "mais", "avec", "que", "qui", "est")
+	Injecter(0, 0.1, "bonjour", "salut", "merci", "svp", "donc", "alors", "mais", "avec", "que", "qui")
 
-	Injecter(1, 5.0, "ia", "robot", "ordinateur", "technologie", "code")
-	Injecter(4, 5.0, "vendre", "entreprise", "projet", "business", "argent")
-	Injecter(50, 5.0, "manger", "faim", "nourriture", "pizza", "pates")
-	Injecter(6, 5.0, "mal", "santé", "douleur", "hopital")
+	// Catégorie 1 : TECH - Très spécifique + technologie générale
+	Injecter(1, 6.0, "ia", "robot", "ordinateur", "code", "logiciel", "programme", "serveur", "python", "javascript", "golang",
+		"api", "base de données", "algorithme", "machine learning", "deep learning", "neural network", "cpu", "gpu", "cloud",
+		"database", "application", "software", "hardware", "processor", "memory", "cache", "encryption", "cybersecurity",
+		"technologie", "technique", "outils", "digital", "numérique", "informatique", "électronique", "automatisation",
+		"innovation", "système", "méthode", "processus", "développement", "engineering", "computeur", "données", "internet")
 
+	// Catégorie 2 : HISTOIRE - Châteaux, monuments, politique
+	Injecter(2, 6.0, "château", "donjon", "fortification", "tour", "enceinte", "monument", "médiéval", "siècle", "construction",
+		"historique", "ancien", "ruine", "rempart", "muraille", "forteresse", "citadelle", "pièce", "seigneur", "roi", "reine",
+		"cour", "courtyard", "france", "période", "époque", "gouvernement", "politique", "parlement", "parlementaire", "dissolution",
+		"législature", "éléctions", "anticipées", "constitution", "loi", "légal", "légalité", "régime", "démocratique", "mandat",
+		"députés", "assemblée", "sénat", "vote", "suffrage", "assemblée nationale", "maire", "commune", "département", "région")
+
+	// Catégorie 3 : BUSINESS - Commerce, affaires
+	Injecter(3, 6.0, "vendre", "entreprise", "business", "argent", "profit", "commerce", "client", "marché", "stratégie",
+		"vente", "achat", "prix", "revenue", "startup", "compagnie", "négociant", "transaction", "contrat", "accord")
+
+	// Catégorie 4 : ALIMENTATION - Nourriture
+	Injecter(4, 6.0, "manger", "nourriture", "pizza", "pates", "pâtes", "aliment", "cuisine", "restaurant", "recette", "faim",
+		"cuire", "sauce", "fromage", "pain", "viande", "légume", "fruit", "boisson", "café", "thé", "vin", "plat", "assiette")
+
+	// Catégorie 5 : SANTÉ - Médecine
+	Injecter(5, 6.0, "santé", "maladie", "médecin", "hôpital", "patient", "traitement", "douleur", "mal", "symptôme",
+		"cure", "remède", "médecine", "pharmacie", "allergie", "virus", "infection", "diagnostic", "test", "vaccin")
 	ChargerLexique("lexique.txt")
 	ChargerProbation("temp.txt")
 }
@@ -175,7 +195,14 @@ func MotProche(token string) (Word, string) {
 }
 
 func NumeroVersCategorie(num int) string {
-	categories := map[int]string{0: "NEUTRE", 1: "TECH", 4: "BUSINESS", 6: "SANTE", 50: "BESOIN"}
+	categories := map[int]string{
+		0: "NEUTRE",
+		1: "TECH",
+		2: "HISTOIRE",
+		3: "BUSINESS",
+		4: "ALIMENTATION",
+		5: "SANTE",
+	}
 	if v, ok := categories[num]; ok {
 		return v
 	}
