@@ -42,16 +42,16 @@
 
 <div style="text-align: left; margin: 30px 0;">
 
-### ✨ Fonctionnalités
+### Fonctionnalités
 
 - **Analyse par Réseau Neuronal** - 1000 neurones sophistiqués avec analyse au niveau des phrases
 - **Classification en 6 Catégories**:
-  - 🔧 **TECH** - Technologie, programmation, systèmes numériques
-  - 📚 **HISTOIRE** - Histoire, politique, événements actuels
-  - 💼 **BUSINESS** - Commerce, économie, affaires
-  - 🍽️ **ALIMENTATION** - Nourriture, nutrition, gastronomie
-  - 🏥 **SANTE** - Santé, médecine, bien-être
-  - 🔤 **VERBE** - Détection d'actions (verbes principaux)
+  - **TECH** - Technologie, programmation, systèmes numériques
+  - **HISTOIRE** - Histoire, politique, événements actuels
+  - **BUSINESS** - Commerce, économie, affaires
+  - **ALIMENTATION** - Nourriture, nutrition, gastronomie
+  - **SANTE** - Santé, médecine, bien-être
+  - **VERBE** - Détection d'actions (verbes principaux)
 
 - **Détection de la Structure Grammaticale** - Analyse sujet-verbe-complément
 - **Apprentissage Dynamique** - Système de probation à deux étapes
@@ -66,7 +66,7 @@
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🚀 Démarrage Rapide
+### Démarrage Rapide
 
 #### Prérequis
 
@@ -109,7 +109,7 @@ go build -o programme
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📖 Guide des Commandes
+### Guide des Commandes
 
 #### Obtenir de l'aide
 
@@ -239,7 +239,7 @@ Ce mode traite tous les arguments comme une seule phrase à analyser.
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📊 Explication de la Sortie
+### Explication de la Sortie
 
 #### Statistiques Globales
 
@@ -307,7 +307,7 @@ Cela empêche les verbes de polluer la classification du contenu.
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🧠 Comment ça Marche
+### Comment ça Marche
 
 #### 1. Analyse au Niveau des Phrases
 
@@ -326,7 +326,7 @@ Chaque phrase active les neurones pertinents dans les 6 catégories basé sur le
 
 #### 4. Modération de Contenu
 
-Le système maintient une liste noire chiffrée (AES-256-GCM) de 130+ mots offensants:
+Le système maintient une liste noire chiffrée de 130+ mots offensants:
 - Prévient l'apprentissage de contenu inapproprié
 - Bloque ces mots lors de l'analyse
 - Affiche `[BLOQUÉ]` lors de la rencontre de mots restreints
@@ -346,7 +346,7 @@ La synthèse contextuelle extrait les termes clés tout en préservant le sens:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### ⚡ Benchmarks de Performance
+### Benchmarks de Performance
 
 #### Métriques Clés
 
@@ -381,12 +381,11 @@ La synthèse contextuelle extrait les termes clés tout en préservant le sens:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🛡️ Sécurité & Éthique
+### Sécurité & Éthique
 
 #### Liste Noire Chiffrée
 
 La liste de modération de contenu est sécurisée avec:
-- **Algorithme**: AES-256-GCM (Advanced Encryption Standard)
 - **Fichier**: `blacklist.enc` (chiffré, illisible)
 - **Protection**: Prévient toute modification non autorisée
 - **Runtime**: Déchiffré de façon transparente lors de l'exécution
@@ -407,7 +406,7 @@ La liste noire prévient l'apprentissage de:
 - Termes discriminatoires
 - Contenu explicite
 
-Cela assure qu'IA-ATOMIQUE maintient les standards éthiques alignés avec les politiques communautaires de GitHub.
+Cela assure que notre IA-ATOMIQUE maintient les standards éthiques alignés avec les politiques communautaires de GitHub.
 
 </div>
 
@@ -415,7 +414,7 @@ Cela assure qu'IA-ATOMIQUE maintient les standards éthiques alignés avec les p
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📁 Structure du Projet
+### Structure du Projet
 
 ```
 IA-ATOMIQUE-/
@@ -438,7 +437,7 @@ IA-ATOMIQUE-/
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 💡 Conseils d'Utilisation
+### Conseils d'Utilisation
 
 #### Pour les Meilleurs Résultats
 
@@ -475,7 +474,7 @@ Le système affiche:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📝 Exemples
+### Exemples
 
 #### Exemple 1: Analyser un Article Technologique
 
@@ -545,7 +544,7 @@ Entrez du texte:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🔧 Développement
+### Développement
 
 #### Compiler depuis la Source
 
@@ -572,7 +571,7 @@ go build -o programme
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📄 Licence
+### Licence
 
 Ce projet est distribué sous la licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 

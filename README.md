@@ -42,16 +42,16 @@
 
 <div style="text-align: left; margin: 30px 0;">
 
-### ✨ Features
+### Features
 
 - **Neural Network Analysis** - 1000 sophisticated neurons with phrase-level analysis
 - **6-Category Classification**:
-  - 🔧 **TECH** - Technology, programming, digital systems
-  - 📚 **HISTOIRE** - History, politics, current events
-  - 💼 **BUSINESS** - Commerce, economy, trade
-  - 🍽️ **ALIMENTATION** - Food, nutrition, gastronomy
-  - 🏥 **SANTE** - Health, medicine, wellness
-  - 🔤 **VERBE** - Action detection (principal verbs)
+  - **TECH** - Technology, programming, digital systems
+  - **HISTOIRE** - History, politics, current events
+  - **BUSINESS** - Commerce, economy, trade
+  - **ALIMENTATION** - Food, nutrition, gastronomy
+  - **SANTE** - Health, medicine, wellness
+  - **VERBE** - Action detection (principal verbs)
 
 - **Grammatical Structure Detection** - Subject-Verb-Complement analysis
 - **Dynamic Learning** - Two-stage probation system for new words
@@ -66,7 +66,7 @@
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🚀 Quick Start
+### Quick Start
 
 #### Requirements
 
@@ -109,7 +109,7 @@ go build -o programme
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📖 Command Reference
+### Command Reference
 
 #### Get Help
 
@@ -239,7 +239,7 @@ This mode treats all arguments as a single phrase for analysis.
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📊 Output Explanation
+### Output Explanation
 
 #### Global Statistics
 
@@ -307,7 +307,7 @@ This prevents action words from polluting the content classification.
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🧠 How It Works
+### How It Works
 
 #### 1. Phrase-Level Analysis
 
@@ -326,7 +326,7 @@ Each phrase activates relevant neurons across the 6 categories based on keyword 
 
 #### 4. Content Moderation
 
-The system maintains an encrypted blacklist (AES-256-GCM) of 130+ offensive words:
+The system maintains an encrypted blacklist of 130+ offensive words:
 - Prevents learning inappropriate content
 - Blocks these words during analysis
 - Logs `[BLOQUÉ]` when encounter restricted words
@@ -346,7 +346,7 @@ Context-aware synthesis extracts key terms while preserving meaning:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### ⚡ Performance Benchmarks
+### Performance Benchmarks
 
 #### Core Metrics
 
@@ -381,12 +381,11 @@ Context-aware synthesis extracts key terms while preserving meaning:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🛡️ Security & Ethics
+### Security & Ethics
 
 #### Encrypted Blacklist
 
 The content moderation blacklist is secured with:
-- **Algorithm**: AES-256-GCM (Advanced Encryption Standard)
 - **File**: `blacklist.enc` (encrypted, unreadable)
 - **Protection**: Prevents unauthorized modification
 - **Runtime**: Transparently decrypted during execution
@@ -415,7 +414,7 @@ This ensures IA-ATOMIQUE maintains ethical standards aligned with GitHub's commu
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📁 Project Structure
+### Project Structure
 
 ```
 IA-ATOMIQUE-/
@@ -438,7 +437,7 @@ IA-ATOMIQUE-/
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 💡 Usage Tips
+### Usage Tips
 
 #### For Best Results
 
@@ -475,7 +474,7 @@ The system logs:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📝 Examples
+### Examples
 
 #### Example 1: Analyze Technology Article
 
@@ -545,7 +544,7 @@ Entrez du texte:
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 🔧 Development
+### Development
 
 #### Build from Source
 
@@ -572,7 +571,7 @@ go build -o programme
 
 <div style="text-align: left; margin: 30px 0;">
 
-### 📄 License
+### License
 
 This project is distributed under the **MIT** license. See the [LICENSE](LICENSE) file for more details.
 
