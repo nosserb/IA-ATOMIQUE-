@@ -1,0 +1,37 @@
+# Binaires compilés
+programme
+*.exe
+*.so
+*.dylib
+
+# Fichiers générés
+dashboard
+*.enc.bak
+blacklist_backup.enc
+
+# Fichiers temporaires
+temp.txt
+*.tmp
+*.log
+*.swp
+*~
+
+# Fichiers de test/données
+wikipedia.txt
+test*.txt
+sample*.txt
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+vendor/
+*.prof
