@@ -13,12 +13,13 @@ type AnalysePhrases struct {
 }
 
 type AnalysePhrase struct {
-	Texte       string
-	CategorieID int
-	Categorie   string
-	Confiance   float64
-	MotsClés    []string
-	Score       float64
+	Texte          string
+	CategorieID    int
+	Categorie      string
+	Confiance      float64
+	MotsClés       []string
+	Score          float64
+	VerbePrincipal string // Le verbe détecté (séparé)
 }
 
 type ResumeCategorie struct {
@@ -48,16 +49,26 @@ func AnalyserParPhrases(texte string) AnalysePhrases {
 		// Tokeniser
 		tokens := TokeniserTexte(phrase)
 
-		// Trouver la catégorie
+		// Détecter le verbe principal (à part)
+		verbePrincipal := ""
+		for _, token := range tokens {
+			if word, ok := Words[token]; ok && word.Categorie == 6 {
+				verbePrincipal = token
+				break
+			}
+		}
+
+		// Trouver la catégorie (en ignorant les verbes)
 		catActivation := make(map[int]int)
 		for _, token := range tokens {
 			// Chercher le mot exact
-			if word, ok := Words[token]; ok && word.Categorie > 0 {
+			if word, ok := Words[token]; ok && word.Categorie > 0 && word.Categorie != 6 {
+				// Ignorer les verbes (cat 6) pour la classification principale
 				catActivation[word.Categorie]++
 			} else if len(token) > 2 && strings.HasSuffix(token, "s") {
 				// Essayer singulier (retirer le 's' final)
 				singulier := token[:len(token)-1]
-				if word, ok := Words[singulier]; ok && word.Categorie > 0 {
+				if word, ok := Words[singulier]; ok && word.Categorie > 0 && word.Categorie != 6 {
 					catActivation[word.Categorie]++
 				}
 			}
@@ -70,6 +81,18 @@ func AnalyserParPhrases(texte string) AnalysePhrases {
 			if count > scoreMain {
 				scoreMain = count
 				catMain = cat
+			}
+		}
+
+		// Si aucune catégorie trouvée, chercher un verbe
+		if catMain == 0 {
+			for _, token := range tokens {
+				if word, ok := Words[token]; ok && word.Categorie == 6 {
+					// C'est un verbe, on classe selon le contexte
+					catMain = 6
+					scoreMain = 1
+					break
+				}
 			}
 		}
 
@@ -86,12 +109,13 @@ func AnalyserParPhrases(texte string) AnalysePhrases {
 		score := ScorerPhrase(phrase)
 
 		analysePhrase := AnalysePhrase{
-			Texte:       phrase,
-			CategorieID: catMain,
-			Categorie:   NumeroVersCategorie(catMain),
-			Confiance:   confiance,
-			MotsClés:    motsCles,
-			Score:       score,
+			Texte:          phrase,
+			CategorieID:    catMain,
+			Categorie:      NumeroVersCategorie(catMain),
+			Confiance:      confiance,
+			MotsClés:       motsCles,
+			Score:          score,
+			VerbePrincipal: verbePrincipal, // Ajouter le verbe détecté
 		}
 
 		analyse.Phrases = append(analyse.Phrases, analysePhrase)
@@ -157,7 +181,7 @@ func AfficherAnalyseDetaillee(analyse AnalysePhrases) string {
 	output += fmt.Sprintf("\n[ANALYSE PAR PHRASE]\nTotal phrases: %d\n\n", totalPhrases)
 
 	// Afficher les phrases par catégorie
-	for catID := 1; catID <= 5; catID++ {
+	for catID := 1; catID <= 6; catID++ {
 		if resume, ok := analyse.Resume[catID]; ok && resume.NbPhrases > 0 {
 			output += fmt.Sprintf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
 			output += fmt.Sprintf("[%s] - %d phrases (énergie: %.2f)\n",
@@ -173,14 +197,22 @@ func AfficherAnalyseDetaillee(analyse AnalysePhrases) string {
 				output += fmt.Sprintf("Mots clés: %s\n", strings.Join(motsClesListe, " | "))
 			}
 
-			// Phrases
+			// Phrases avec verbes détectés
 			if len(resume.Phrases) > 0 {
 				output += fmt.Sprintf("\nPhrases clés:\n")
 				for i, phrase := range resume.Phrases {
 					if i >= 3 { // Max 3 phrases par catégorie
 						break
 					}
-					output += fmt.Sprintf("  • %s\n", phrase)
+					// Chercher le verbe pour cette phrase
+					verbe := ""
+					for _, p := range analyse.Phrases {
+						if p.Texte == phrase && p.VerbePrincipal != "" {
+							verbe = " [verbe: " + p.VerbePrincipal + "]"
+							break
+						}
+					}
+					output += fmt.Sprintf("  • %s%s\n", phrase, verbe)
 				}
 			}
 			output += "\n"
