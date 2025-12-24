@@ -140,6 +140,102 @@ func AutoIntrospection() {
 	}
 }
 
+func afficherAide() {
+	fmt.Println(`
+╔═══════════════════════════════════════════════════════════════╗
+║          IA-ATOMIQUE v4.1 - Neural Text Analysis             ║
+║    Analyse de texte, Apprentissage & Génération de résumés   ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📖 UTILISATION:
+
+  1. MODE INTERACTIF (par défaut)
+     $ ./programme
+     ou
+     $ ./programme interactive
+
+  2. ANALYSER UN FICHIER
+     $ ./programme file <chemin_fichier>
+     
+     Exemples:
+       $ ./programme file wikipedia.txt
+       $ ./programme file document.md
+       $ ./programme file /home/user/texte.txt
+
+  3. ANALYSER UN TEXTE DIRECT
+     $ ./programme text <votre texte>
+     
+     Exemples:
+       $ ./programme text "L'IA est la technologie du futur"
+       $ ./programme text "Einstein a découvert la relativité en 1905"
+
+  4. MODE CLASSIQUE (hérité)
+     $ ./programme <texte quelconque>
+     
+     Exemples:
+       $ ./programme bonjour
+       $ ./programme l'informatique progresse rapidement
+
+═══════════════════════════════════════════════════════════════
+
+⚙️  FONCTIONNALITÉS:
+
+  ✓ Analyse phrase par phrase
+  ✓ Classification en 6 catégories:
+    - TECH: Technologie, informatique, numérique
+    - HISTOIRE: Politique, histoire, événements
+    - BUSINESS: Commerce, économie, affaires
+    - ALIMENTATION: Nutrition, gastronomie
+    - SANTE: Santé, médecine, bien-être
+    - VERBE: Détection d'actions (verbes principaux)
+
+  ✓ Détection de la structure grammaticale
+  ✓ Génération de résumés synthétiques
+  ✓ Système de modération (blacklist chiffrée AES-256)
+  ✓ Apprentissage dynamique des mots
+
+═══════════════════════════════════════════════════════════════
+
+📊 SORTIE STANDARD:
+
+  [STATISTIQUES GLOBALES]
+    • Phrases analysées
+    • Catégories détectées
+    • Énergie totale
+    • Confiance moyenne
+
+  [DISTRIBUTION]
+    • Répartition en pourcentages
+    • Graphiques visuels
+
+  [ANALYSE PAR PHRASE]
+    • Catégorie détectée
+    • Mots clés identifiés
+    • Verbes principaux
+    • Résumé synthétique
+
+═══════════════════════════════════════════════════════════════
+
+💡 CONSEILS D'UTILISATION:
+
+  • Pour les meilleurs résultats, utilisez des textes français
+  • Les fichiers volumineux seront traités progressivement
+  • La modération empêche l'apprentissage de contenu offensant
+  • Les neurones se régénèrent automatiquement après chaque exécution
+
+═══════════════════════════════════════════════════════════════
+
+❓ AIDE:
+  $ ./programme help
+  ou
+  $ ./programme -h
+  ou
+  $ ./programme --help
+
+═══════════════════════════════════════════════════════════════
+`)
+}
+
 func main() {
 	go AutoIntrospection()
 
@@ -154,6 +250,9 @@ func main() {
 	commande := os.Args[1]
 
 	switch commande {
+	case "help", "-h", "--help":
+		afficherAide()
+
 	case "file":
 		if len(os.Args) > 2 {
 			TraiterFichier(os.Args[2])

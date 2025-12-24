@@ -2,8 +2,14 @@ package database
 
 import (
 	"bufio"
+	"crypto/aes"
+	"crypto/cipher"
+	cryptorand "crypto/rand"
+	"encoding/base64"
 	"fmt"
+	"io"
 	"math/rand"
+	mathrand "math/rand"
 	"os"
 	"strconv"
 	"strings"
@@ -30,10 +36,11 @@ var Neurones []Neurone
 var Words map[string]Word
 var LexiqueTemp = make(map[string]*MotEnAttente)
 var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
+var Blacklist = make(map[string]bool) // Mots interdits
 
 func init() {
 	for i := 0; i < 1000; i++ {
-		Neurones = append(Neurones, Neurone{ID: i, CategorieID: rand.Intn(60) + 1})
+		Neurones = append(Neurones, Neurone{ID: i, CategorieID: mathrand.Intn(60) + 1})
 	}
 	Words = make(map[string]Word)
 
@@ -52,21 +59,42 @@ func init() {
 		"historique", "ancien", "ruine", "rempart", "muraille", "forteresse", "citadelle", "pièce", "seigneur", "roi", "reine",
 		"cour", "courtyard", "france", "période", "époque", "gouvernement", "politique", "parlement", "parlementaire", "dissolution",
 		"législature", "éléctions", "anticipées", "constitution", "loi", "légal", "légalité", "régime", "démocratique", "mandat",
-		"députés", "assemblée", "sénat", "vote", "suffrage", "assemblée nationale", "maire", "commune", "département", "région")
+		"députés", "assemblée", "sénat", "vote", "suffrage", "maire", "commune", "département", "région",
+		"histoire", "culture", "établissement", "géographie", "sculpture", "art", "ancienne", "conservation", "longévité",
+		"antique", "calligraphie", "accessoire", "locomotive", "écriture", "observation", "animal", "zoologie",
+		"époque", "construction", "fruit", "boisson", "pain", "cuisine", "époque")
 
 	// Catégorie 3 : BUSINESS - Commerce, affaires
 	Injecter(3, 6.0, "vendre", "entreprise", "business", "argent", "profit", "commerce", "client", "marché", "stratégie",
-		"vente", "achat", "prix", "revenue", "startup", "compagnie", "négociant", "transaction", "contrat", "accord")
+		"vente", "achat", "prix", "revenue", "startup", "compagnie", "négociant", "transaction", "contrat", "accord",
+		"affaires", "transport", "industrie", "mode", "cosmétique", "voyage", "manufacturier")
 
 	// Catégorie 4 : ALIMENTATION - Nourriture
 	Injecter(4, 6.0, "manger", "nourriture", "pizza", "pates", "pâtes", "aliment", "cuisine", "restaurant", "recette", "faim",
-		"cuire", "sauce", "fromage", "pain", "viande", "légume", "fruit", "boisson", "café", "thé", "vin", "plat", "assiette")
+		"cuire", "sauce", "fromage", "pain", "viande", "légume", "fruit", "boisson", "café", "thé", "vin", "plat", "assiette",
+		"récolte", "saveur", "farine", "blé", "alimentation", "herbivore", "écologie",
+		"cuisine", "boulanger", "aliments", "repas", "épices", "goût", "recettes")
 
 	// Catégorie 5 : SANTÉ - Médecine
 	Injecter(5, 6.0, "santé", "maladie", "médecin", "hôpital", "patient", "traitement", "douleur", "mal", "symptôme",
 		"cure", "remède", "médecine", "pharmacie", "allergie", "virus", "infection", "diagnostic", "test", "vaccin")
+
+	// Catégorie 6 : VERBE - Actions et verbes purs (infinitif + conjugaisons)
+	Injecter(6, 5.0, "faire", "aller", "venir", "courir", "sauter", "parler", "écouter", "regarder", "voir", "dire",
+		"penser", "croire", "savoir", "pouvoir", "vouloir", "devoir", "aimer", "détester", "rire", "pleurer",
+		"boire", "dormir", "travailler", "jouer", "danser", "chanter", "construire", "détruire", "créer",
+		"ouvrir", "fermer", "entrer", "sortir", "monter", "descendre", "tomber", "lever", "baisser", "tourner",
+		"respirer", "marcher", "coucher", "asseoir", "tenir", "prendre", "donner", "recevoir", "envoyer", "chercher",
+		// Formes conjuguées courantes du texte
+		"aboie", "fleurit", "traite", "traverse", "enregistre", "affiche", "joue", "raconte", "survole", "brille",
+		"vole", "ouvre", "livre", "dessine", "chauffe", "descend", "saute", "réchauffe", "flotte", "attire",
+		"nage", "rebondit", "prépare", "organise", "balaie", "protègent", "indique", "glisse", "relie",
+		"se", "pose", "contient", "part", "sent", "corrige", "sonne", "restaurée", "roule", "garde", "dort",
+		"allume", "aide", "pédaler", "dresse", "décolle", "calcule", "mange", "fume", "recharge")
+
 	ChargerLexique("lexique.txt")
 	ChargerProbation("temp.txt")
+	ChargerBlacklistChiffrée("blacklist.enc") // Charger la blacklist chiffrée
 }
 
 func Injecter(cat int, poids float64, mots ...string) {
@@ -78,6 +106,12 @@ func Injecter(cat int, poids float64, mots ...string) {
 func Apprendre(mot string, catID int) {
 	mot = strings.ToLower(mot)
 	if StopWords[mot] || len(mot) <= 2 {
+		return
+	}
+
+	// Vérifier la blacklist
+	if Blacklist[mot] {
+		fmt.Printf("[BLOQUÉ] '%s' est dans la blacklist et ne sera pas appris\n", mot)
 		return
 	}
 
@@ -202,6 +236,7 @@ func NumeroVersCategorie(num int) string {
 		3: "BUSINESS",
 		4: "ALIMENTATION",
 		5: "SANTE",
+		6: "VERBE",
 	}
 	if v, ok := categories[num]; ok {
 		return v
@@ -299,4 +334,134 @@ func GenererReponse(catID int, motsPoses []string) string {
 	}
 
 	return reponse
+}
+
+// ChargerBlacklist charge les mots interdits depuis un fichier
+func ChargerBlacklist(nomFichier string) {
+	file, err := os.Open(nomFichier)
+	if err != nil {
+		fmt.Printf("[AVERTISSEMENT] Impossible de charger %s : %v\n", nomFichier, err)
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	compteur := 0
+
+	for scanner.Scan() {
+		ligne := strings.TrimSpace(scanner.Text())
+		// Ignorer les lignes vides et les commentaires
+		if ligne == "" || strings.HasPrefix(ligne, "#") {
+			continue
+		}
+
+		mot := strings.ToLower(ligne)
+		Blacklist[mot] = true
+		compteur++
+	}
+
+	fmt.Printf("[BLACKLIST] %d mots interdits chargés\n", compteur)
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FONCTIONS DE CHIFFREMENT - Blacklist sécurisée AES-256
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Clé de chiffrement (32 bytes pour AES-256) - À garder secrète
+var encryptionKey = []byte{
+	0x4e, 0x4f, 0x53, 0x53, 0x45, 0x52, 0x42, 0x2d, // NOSSERB-
+	0x49, 0x41, 0x2d, 0x41, 0x54, 0x4f, 0x4d, 0x49, // IA-ATOMI
+	0x51, 0x55, 0x45, 0x2d, 0x42, 0x4c, 0x41, 0x43, // QUE-BLAC
+	0x4b, 0x4c, 0x49, 0x53, 0x54, 0x2d, 0x53, 0x31, // KLIS-S1
+}
+
+// ChiffrerBlacklist chiffre le contenu de la blacklist avec AES-256
+func ChiffrerBlacklist(texteOriginal string) (string, error) {
+	block, err := aes.NewCipher(encryptionKey)
+	if err != nil {
+		return "", err
+	}
+
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		return "", err
+	}
+
+	nonce := make([]byte, gcm.NonceSize())
+	if _, err = io.ReadFull(cryptorand.Reader, nonce); err != nil {
+		return "", err
+	}
+
+	ciphertext := gcm.Seal(nonce, nonce, []byte(texteOriginal), nil)
+	return base64.StdEncoding.EncodeToString(ciphertext), nil
+}
+
+// DéchiffrerBlacklist déchiffre le contenu de la blacklist
+func DéchiffrerBlacklist(texteChiffré string) (string, error) {
+	block, err := aes.NewCipher(encryptionKey)
+	if err != nil {
+		return "", err
+	}
+
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		return "", err
+	}
+
+	ciphertext, err := base64.StdEncoding.DecodeString(texteChiffré)
+	if err != nil {
+		return "", err
+	}
+
+	nonceSize := gcm.NonceSize()
+	if len(ciphertext) < nonceSize {
+		return "", fmt.Errorf("ciphertext trop court")
+	}
+
+	nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
+	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
+	if err != nil {
+		return "", err
+	}
+
+	return string(plaintext), nil
+}
+
+// ChargerBlacklistChiffrée charge et déchiffre la blacklist depuis un fichier .enc
+func ChargerBlacklistChiffrée(nomFichier string) {
+	// Essayer d'abord le fichier chiffré
+	file, err := os.Open(nomFichier)
+	if err == nil {
+		defer file.Close()
+
+		scanner := bufio.NewScanner(file)
+		if scanner.Scan() {
+			texteChiffré := scanner.Text()
+			texteOriginal, err := DéchiffrerBlacklist(texteChiffré)
+			if err != nil {
+				fmt.Printf("[ERREUR] Impossible de déchiffrer la blacklist: %v\n", err)
+				return
+			}
+
+			// Charger depuis le texte déchiffré
+			compteur := 0
+			for _, ligne := range strings.Split(texteOriginal, "\n") {
+				ligne = strings.TrimSpace(ligne)
+				if ligne == "" || strings.HasPrefix(ligne, "#") {
+					continue
+				}
+
+				mot := strings.ToLower(ligne)
+				Blacklist[mot] = true
+				compteur++
+			}
+
+			fmt.Printf("[BLACKLIST] ✓ %d mots interdits chargés (chiffrement AES-256)\n", compteur)
+			return
+		}
+	}
+
+	// Sinon charger depuis le fichier texte
+	fmt.Printf("[BLACKLIST] Fichier chiffré introuvable, chargement depuis texte clair...\n")
+	ChargerBlacklist("blacklist.txt")
 }
