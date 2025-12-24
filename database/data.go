@@ -5,7 +5,9 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	cryptorand "crypto/rand"
+	"crypto/sha256"
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"math/rand"
@@ -37,6 +39,9 @@ var Words map[string]Word
 var LexiqueTemp = make(map[string]*MotEnAttente)
 var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
 var Blacklist = make(map[string]bool) // Mots interdits
+
+// Sécurité: Hash SHA256 du fichier blacklist.enc pour détection de déplacement/modification
+const expectedBlacklistHash = "f2a21cd9b30c05caf4c5dce9e087dbeee72eb482b38bf0711cbc6c174bf7c421"
 
 func init() {
 	for i := 0; i < 1000; i++ {
@@ -427,8 +432,48 @@ func DéchiffrerBlacklist(texteChiffré string) (string, error) {
 	return string(plaintext), nil
 }
 
+// VérifierIntéritéBlacklist() - Vérifie que le fichier n'a pas été déplacé, renommé ou modifié
+func VérifierIntéritéBlacklist(nomFichier string) bool {
+	file, err := os.Open(nomFichier)
+	if err != nil {
+		fmt.Printf("❌ [SÉCURITÉ] Fichier blacklist.enc introuvable ou inaccessible\n")
+		fmt.Printf("   Le fichier doit rester dans le répertoire racine du projet\n")
+		fmt.Printf("   ⚠️  NE DOIT PAS être déplacé, renommé ou supprimé\n")
+		return false
+	}
+	defer file.Close()
+
+	// Lire le fichier et calculer le hash SHA256
+	hash := sha256.New()
+	if _, err := io.Copy(hash, file); err != nil {
+		fmt.Printf("❌ [SÉCURITÉ] Impossible de vérifier l'intégrité du fichier\n")
+		return false
+	}
+
+	fichierHash := hex.EncodeToString(hash.Sum(nil))
+
+	// Vérifier que le hash correspond
+	if fichierHash != expectedBlacklistHash {
+		fmt.Printf("❌ [SÉCURITÉ] ALERTE - Fichier blacklist.enc modifié ou corrompu!\n")
+		fmt.Printf("   Hash attendu:  %s\n", expectedBlacklistHash)
+		fmt.Printf("   Hash détecté:  %s\n", fichierHash)
+		fmt.Printf("   ⚠️  Le fichier a peut-être été déplacé, renommé ou modifié\n")
+		fmt.Printf("   ✓ Restaurez le fichier original depuis git\n")
+		return false
+	}
+
+	return true
+}
+
 // ChargerBlacklistChiffrée charge et déchiffre la blacklist depuis un fichier .enc
 func ChargerBlacklistChiffrée(nomFichier string) {
+	// Vérifier d'abord l'intégrité du fichier
+	if !VérifierIntéritéBlacklist(nomFichier) {
+		fmt.Printf("❌ Impossible de charger la blacklist - vérification de sécurité échouée\n")
+		fmt.Printf("❌ LE PROGRAMME S'ARRÊTE - Restore le fichier blacklist.enc\n")
+		os.Exit(1)
+	}
+
 	// Essayer d'abord le fichier chiffré
 	file, err := os.Open(nomFichier)
 	if err == nil {
