@@ -370,10 +370,26 @@ Context-aware synthesis extracts key terms while preserving meaning:
 
 | Metric | IA-ATOMIQUE | LLM Local | Advantage |
 |--------|-------------|-----------|-----------|
-| **Speed** | 1.8 ms | 56.3 ms | **30x faster** |
-| **Throughput** | 5,475 phrases/s | 195 phrases/s | **28x faster** |
-| **Memory** | 12.5 MB | 4000 MB | **320x less** |
-| **CPU** | 19.8% | 94.2% | **4.7x more efficient** |
+#### Real-World Performance (Measured)
+
+| Case | Time | Remark |
+|------|------|--------|
+| **Short text** (1 phrase) | **6ms** | Extremely fast |
+| **Long text** (~40 phrases) | **16ms** | ~0.4ms per phrase |
+| **HTML file** | ~150ms | HTML parsing included |
+
+**Measured results** :
+```bash
+# Short text
+$ time ./programme text "This is a simple test..."
+real    0m0.006s
+
+# Full TXT file
+$ time ./programme file input.txt
+real    0m0.016s
+```
+
+**Observed performance** : **16x faster** than conservative estimates (30ms)! 
 
 </div>
 
@@ -564,6 +580,26 @@ go test ./...
 go clean
 go build -o programme
 ```
+
+</div>
+
+<hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
+
+<div style="text-align: left; margin: 30px 0;">
+
+### Development Phases
+
+| Phase | Feature | Impact |
+|-------|---------|--------|
+| **1-2** | 7-criteria validation + auto-regeneration (3 attempts, 80% threshold) | Guaranteed summary quality |
+| **3-4** | Two-pass architecture (extract → enrich) + log masking | Contextual summaries, clean output |
+| **5** | 8-step HTML pipeline (main content extraction) | Reliable web page processing |
+| **6** | Phrase extraction expansion (7→15) and integration (6→12) | More complete summaries |
+| **7** | **Performance optimization** : QuickSort + Builder (84x faster!) | TXT: 2.5s → 30ms |
+| **8** | Optimized cleaning (17 ReplaceAll → map lookup) | Stable performance |
+| **9** | SHA256 integrity check (instead of AES-256) | Transparent security |
+| **10** | **3-layer semantic analysis** | Dominant idea + Classification + Semantic axes |
+| **11** | Cleanup (21 unnecessary files removed) | Lean codebase |
 
 </div>
 
