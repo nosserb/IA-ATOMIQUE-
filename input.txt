@@ -1,0 +1,54 @@
+La théorie de l'information quantique, parfois abrégée simplement en information quantique, est un développement de la théorie de l'information de Claude Shannon exploitant les propriétés de la mécanique quantique, notamment le principe de superposition ou encore l'intrication. L'unité qui est utilisée pour quantifier l'information quantique est le qubit, par analogie avec le bit d'information classique.
+
+Parmi les sous-branches de l'information quantique, on peut notamment citer :
+
+    L'informatique quantique
+    La cryptographie quantique
+    Les codes correcteurs quantiques
+    Les communications quantiques
+
+Historique
+
+En 1982, Richard Feynman fait le constat de la complexité à simuler des systèmes quantiques par un ordinateur classique[1]. Cette difficulté provient de la propriété que possèdent ces systèmes de pouvoir se trouver simultanément dans une superposition d'états quantiques. Il propose alors de construire un ordinateur quantique qui exploiterait le parallélisme quantique et permettrait ainsi de simuler efficacement le comportement de tout système quantique. La même année, Paul Benioff émet l'idée inverse d'utiliser un ordinateur quantique pour mener à bien des calculs classiques de manière exponentiellement plus rapide qu'avec un ordinateur classique[2].
+Parallèlement, Wootters, Zurek, et Dieks introduisent le théorème de non-clonage[3], qui énonce qu'un état quantique arbitraire ne peut être dupliqué. Ce théorème est fondamental en théorie de l'information quantique, car il impose une limite physique stricte à ce qu'il est possible de faire avec les qubits.
+
+En 1984, Charles H. Bennett et Gilles Brassard mettent au point un protocole de distribution de clé quantique, le BB84[4], permettant à deux protagonistes de partager une clé secrète de façon inconditionnellement sûre. La sécurité du protocole repose sur l'utilisation de photons comme qubits et deux principes physiques que sont le théorème de non-clonage et le postulat de réduction du paquet d'onde. Leur proposition initiale rencontre le scepticisme de la communauté scientifique, dû principalement au fait que les sources de photons qu'ils proposent d'utiliser sont des sources de photons uniques, c'est-à-dire des sources capables d'émettre un et un seul photon à la fois. Or, il est encore impensable à cette époque que de telles sources puissent exister un jour. Leur publication est donc refusée dans toutes les revues réputées et seulement acceptée dans une obscure conférence organisée en Inde[5].
+
+En 1985, David Deutsch publie un article[6] dans lequel il décrit le premier algorithme quantique, connu sous le nom d’algorithme de Deutsch. Bien qu'il ne possède pas réellement d'utilité pratique, il est d'un intérêt théorique évident puisqu'il accomplit sa tâche, en l'occurrence déterminer si une fonction est constante ou équilibrée, plus efficacement que tout algorithme classique. Il sera généralisé en 1992 sous le nom d'algorithme de Deutsch-Jozsa[7].
+
+En 1993, Ethan Bernstein et Umesh Vazirani démontrent qu'une machine de Turing quantique est capable de simuler tout système quantique en temps polynomial[8].
+
+En 1994, Peter Shor dévoile l'algorithme de Shor[9]. Il marque véritablement le début de l'engouement pour le calcul quantique, car c'est le premier algorithme quantique plus efficace qu'un algorithme classique qui soit d'un intérêt pratique. En l’occurrence, il permet de factoriser un nombre entier en temps polynomial. Sa première implémentation pratique a eu lieu en 2001, et a permis de factoriser 15 en 3 × 5. Cet algorithme exploite la transformée de Fourier quantique, dont l'implémentation sur un ordinateur quantique a été démontrée la même année par Don Coppersmith[10].
+
+En 1995, Benjamin Schumacher (en) a établi le théorème équivalent au théorème du codage de source de Claude Shannon. C'est ainsi que le qubit a été défini comme unité physique d'information quantique. Aucun résultat équivalent au théorème du codage de canal n'est connu.
+
+En 1996, Lov Grover découvre un algorithme de recherche quantique plus efficace que tout algorithme de recherche classique.
+Le qubit
+Article détaillé : Qubit.
+
+L'unité de mesure de l'information classique est le bit. Il ne peut prendre que deux valeurs discrètes, 0 ou 1. Un qubit peut se trouver dans deux états 0 ou 1 mais qui sont maintenant les états d’un système quantique à deux configurations. Pour les distinguer des états classiques, on les note | 0 ⟩ {\displaystyle |0\rangle } ou | 1 ⟩ {\displaystyle |1\rangle } suivant la convention introduite par Dirac. La différence essentielle avec l’état classique 0/1 est que le qubit peut se trouver dans d’autres états que les états | 0 ⟩ {\displaystyle |0\rangle } ou | 1 ⟩ {\displaystyle |1\rangle } en utilisant le principe de superposition : | ψ ⟩ = α | 0 ⟩ + β | 1 ⟩ {\displaystyle \psi \rangle =\alpha |0\rangle +\beta |1\rangle } où α {\displaystyle \alpha } et β {\displaystyle \beta } sont des nombres complexes tels que | α | 2 + | β | 2 = 1 {\displaystyle |\alpha |^{2}+|\beta |^{2}=1}. Un qubit est donc une superposition des kets | 0 ⟩ {\displaystyle |0\rangle } et | 1 ⟩ {\displaystyle |1\rangle }. C'est cette propriété qui est à l'origine du parallélisme quantique.
+Informatique quantique
+Article détaillé : Informatique quantique.
+
+L'informatique quantique est un sous-domaine de l'information quantique qui cherche à exploiter le parallélisme quantique afin de mettre au point des ordinateurs quantiques. On peut cependant faire la distinction entre la partie software et la partie hardware.
+
+D'un côté, les mathématiciens et informaticiens tentent de mettre au point des algorithmes quantiques, c'est-à-dire des algorithmes implémentables sur un calculateur quantique, exploitant en particulier le parallélisme quantique. Aujourd'hui, les plus connus sont l'algorithme de Shor et l'algorithme de Grover. D'un autre côté, on retrouve plutôt les physiciens, particulièrement des chercheurs en physique du solide, qui étudient les systèmes physiques les plus aptes à implémenter un ordinateur quantique.
+
+L'informatique quantique se heurte encore à ce jour à des difficultés expérimentales considérables. En particulier, un des éléments central d'un ordinateur quantique que sont les mémoires quantiques est encore loin d'être au point, ce qui limite pour l'instant le développement à grande échelle des implémentations pratiques. Plus fondamentalement, on se heurte à un paradoxe : on demande aux qubits d'être isolés du monde extérieur pendant le calcul proprement dit, ceci afin de limiter les effets de décohérence, mais dans le même temps, on souhaite conserver une possibilité d'interaction avec le système afin d'effectuer une mesure à la fin du calcul pour obtenir un résultat. Ces deux souhaits sont très difficilement conciliables. Enfin, l'implémentation de portes quantiques efficaces est également limitante. Celles-ci doivent être fiables, c'est-à-dire accomplir l'opération souhaitée avec une grande probabilité, et rapides, c'est-à-dire agir beaucoup plus rapidement que le temps de décohérence des qubits.
+
+Il est important de signaler que les algorithmes quantiques sont par essence probabilistes, ce qui signifie qu'ils ont une certaine probabilité de fournir un résultat correct. Usuellement, on considère une probabilité de réussite de 2/3 pour les calculs de complexité. On définit ainsi la classe de complexité BQP, pour Bounded Quantum Polynomial, comme la classe des problèmes de décision solvables en temps polynomial avec une probabilité d'échec d'au plus 1/3. Il existe toutefois quelques exceptions telles que l'algorithme de Deutsch-Jozsa qui est déterministe. Les algorithmes de ce type sont dans la classe EQP (en), pour Exact Quantum Polynomial-Time
+
+À ce jour, la question de savoir si un ordinateur quantique est foncièrement plus efficace qu'un ordinateur classique est toujours ouverte. Précisément, on sait que BQP, qui est essentiellement la classe des problèmes solvables efficacement par un ordinateur quantique, englobe la classe P des problèmes de décision solvables en temps polynomial par un ordinateur classique. En d'autres termes, un ordinateur quantique est au moins aussi efficace qu'un ordinateur classique. Cependant, on ne sait pas avec certitude si BQP est strictement plus grand que P. De manière pragmatique, quand bien même un ordinateur quantique ne serait pas plus efficace qu'un ordinateur classique, on peut toujours le considérer comme un modèle de calcul au même titre que les machines de Turing ou le lambda-calcul.
+Cryptographie quantique
+Article détaillé : Cryptographie quantique.
+
+La cryptographie quantique cherche à développer des tâches cryptographiques impossibles classiquement ou bien à apporter des solutions alternatives à des primitives cryptographiques classiques.
+
+Le champ le plus développé à l'heure actuelle est la distribution quantique de clé. Sa relative reconnaissance induit bien souvent un amalgame malheureux entre cryptographie quantique et distribution quantique de clé, alors que cette dernière n'est qu'un sous-ensemble de la cryptographique quantique.
+La distribution quantique de clé permet à deux utilisateurs d'échanger entre eux une clé de chiffrement de manière inconditionnellement sûre, c'est-à-dire que l'information que possèderait un éventuel espion sur cette clé peut être toujours rendue arbitrairement petite. Cette inconditionnelle sécurité de la transmission est impossible à obtenir classiquement. Le premier protocole de ce type est le BB84, proposé par Charles Bennett et Gilles Brassard en 1984.
+
+Parmi les primitives cryptographiques étudiées, on peut citer la mise en gage quantique, le transfert inconscient quantique ou encore le tirage à pile ou face quantique.
+Codes correcteurs d'erreurs quantiques
+Article détaillé : Code quantique.
+
+La théorie classique des codes correcteurs ne peut pas être mise en œuvre dans le cadre de l'information quantique, puisqu'à cause du postulat de réduction du paquet d'onde toute mesure sur le système détruit définitivement ses propriétés quantiques, ce qui n'est évidemment pas souhaitable. Il est donc nécessaire de développer une théorie des codes correcteurs d'erreurs quantiques afin de corriger les états quantiques lors de leur transmission sur un canal quantique. 
