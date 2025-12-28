@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation | NEUROPULSE A.R.T.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --cyber-neon: #00f3ff; --cyber-black: #050505; }
+        body { background-color: var(--cyber-black); color: #d1d5db; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-blur: 10px; }
+        
+        /* Neon Border Button Style */
+        .neon-border-btn {
+            position: relative;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .neon-border-btn:hover { border-color: var(--cyber-neon); box-shadow: 0 0 15px rgba(0, 243, 255, 0.2); }
+
+        /* Flowchart Components */
+        .connector { width: 2px; height: 30px; background: linear-gradient(to bottom, var(--cyber-neon), transparent); margin: 0 auto; }
+        .flow-box { border: 1px solid rgba(0, 243, 255, 0.3); padding: 10px; font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: center; background: rgba(0, 243, 255, 0.05); }
+        
+        pre { background: #000 !important; border-left: 3px solid var(--cyber-neon); padding: 20px; font-size: 0.8rem; margin: 15px 0; overflow-x: auto; }
+        .code-key { color: #c678dd; } .code-str { color: #98c379; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { text-align: left; color: var(--cyber-neon); font-size: 0.7rem; text-transform: uppercase; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-[1000] border-b border-white/5 backdrop-blur-xl px-10 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-6">
+            <span class="font-bold tracking-[0.3em] text-lg text-white">NEUROPULSE <span class="text-cyan-400 font-light">A.R.T.</span></span>
+            <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-sm">
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+                <span class="text-[9px] font-mono uppercase text-green-500 tracking-tighter">Core Active: 0.4ms/phrase</span>
+            </div>
+        </div>
+        <div class="flex gap-8 items-center">
+            <a href="index.html" class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-cyan-400 transition-colors">Main Site</a>
+            <button class="neon-border-btn px-6 py-2">
+                <span class="relative z-10 text-[10px] font-mono uppercase tracking-[0.3em] text-white">Launch Node</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex pt-20">
+        <aside class="hidden lg:block w-80 h-[calc(100vh-80px)] sticky top-20 border-r border-white/5 p-8 overflow-y-auto bg-black">
+            <nav class="space-y-8 text-sm text-gray-400">
+                <div>
+                    <h3 class="text-[10px] uppercase text-cyan-500 font-bold mb-4 tracking-widest">System Overview</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#intro" class="hover:text-white transition-all">Introduction</a></li>
+                        <li><a href="#system-map" class="hover:text-white transition-all">System Map</a></li>
+                        <li><a href="#neural-engine" class="hover:text-white transition-all">Atomic Neurons</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-[10px] uppercase text-gray-500 font-bold mb-4 tracking-widest">Logic Modules</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#language" class="hover:text-white transition-all">Language Motor</a></li>
+                        <li><a href="#semantic" class="hover:text-white transition-all">Semantic Analysis</a></li>
+                        <li><a href="#security" class="hover:text-white transition-all">Security & Learning</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 px-8 md:px-16 py-16 max-w-6xl">
+
+            <section id="intro" class="mb-32">
+                <span class="text-cyan-400 font-mono text-xs tracking-widest uppercase">Technical Manifest</span>
+                <h1 class="text-5xl font-bold text-white mt-8 mb-6 tracking-tighter uppercase">IA-ATOMIC ENGINE</h1>
+                <p class="text-xl text-gray-400 font-light leading-relaxed max-w-3xl">
+                    High-performance text analysis engine featuring advanced 3-layer semantic intelligence and a distributed atomic neural network.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                    <div class="glass-panel p-6 border-t-2 border-cyan-500">
+                        <h4 class="text-white font-bold mb-2">Neural Core</h4>
+                        <p class="text-xs text-gray-500">1000 distributed neurons across 6 semantic categories.</p>
+                    </div>
+                    <div class="glass-panel p-6 border-t-2 border-purple-500">
+                        <h4 class="text-white font-bold mb-2">Performance</h4>
+                        <p class="text-xs text-gray-500">Sub-millisecond latency (0.4ms per sentence avg).</p>
+                    </div>
+                    <div class="glass-panel p-6 border-t-2 border-green-500">
+                        <h4 class="text-white font-bold mb-2">Optimization</h4>
+                        <p class="text-xs text-gray-500">84x faster processing using QuickSort and string pre-allocation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="system-map" class="mb-32 pt-16 border-t border-white/5">
+                <h2 class="text-3xl font-bold text-white mb-12 tracking-tight">System Map Architecture</h2>
+                <div class="glass-panel p-10 overflow-x-auto mb-12">
+                    <div class="min-w-[700px] flex flex-col items-center">
+                        <div class="flow-box w-64 border-white/20 text-white">INPUT (HTML / TXT / CLI)</div>
+                        <div class="connector"></div>
+                        <div class="flow-box w-48 text-white">PRE-PROCESSOR</div>
+                        <div class="connector"></div>
+                        <div class="flex gap-4">
+                            <div class="flow-box w-32 border-cyan-500/50 text-white">HTML EXTRACTOR</div>
+                            <div class="flow-box w-32 border-cyan-500/50 text-white">SPLITTER</div>
+                        </div>
+                        <div class="connector"></div>
+                        <div class="flow-box w-64 bg-cyan-500/10 border-cyan-500 text-white">NEURAL ENGINE (1000 NEURONS)</div>
+                        <div class="connector"></div>
+                        <div class="flow-box w-48 text-white">TWO-PASS ARCHITECTURE</div>
+                        <div class="connector"></div>
+                        <div class="flex gap-4">
+                            <div class="flow-box w-32 border-purple-500/50 text-white">SEMANTIC AXES</div>
+                            <div class="flow-box w-32 border-purple-500/50 text-white">LEARNING SYSTEM</div>
+                        </div>
+                        <div class="connector"></div>
+                        <div class="flow-box w-64 border-white/20 text-white">OUTPUT FORMATTER</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel p-6">
+                        <h4 class="text-cyan-400 mono text-[10px] mb-4 uppercase tracking-widest">Benchmarks</h4>
+                        <table>
+                            <thead>
+                                <tr><th>Input Type</th><th>Latency</th></tr>
+                            </thead>
+                            <tbody class="text-xs mono">
+                                <tr><td>Short Text (1 sentence)</td><td class="text-cyan-400">6ms</td></tr>
+                                <tr><td>Long Text (40 sentences)</td><td class="text-cyan-400">16ms</td></tr>
+                                <tr><td>HTML Content</td><td class="text-cyan-400">150ms</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-panel p-6">
+                        <h4 class="text-cyan-400 mono text-[10px] mb-4 uppercase tracking-widest">Processing Params</h4>
+                        <ul class="text-xs space-y-3 text-gray-500 italic">
+                            <li>- Neurons: 1000 ID-mapped</li>
+                            <li>- Categories: 6 primary domains</li>
+                            <li>- Adaptive Extraction: 10-15 phrases</li>
+                            <li>- Blacklist: 130 words (SHA256 integrity)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="neural-engine" class="mb-32 pt-16 border-t border-white/5">
+                <h2 class="text-3xl font-bold text-white mb-8 tracking-tight">Atomic Neurons Internal Logic</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <div class="space-y-6 text-gray-400 text-sm leading-relaxed">
+                        <p>The system utilizes 1000 virtual neurons distributed across 6 semantic categories. Each neuron acts as an independent data structure with its own activation level.</p>
+                        <div class="glass-panel p-4 mono text-[11px]">
+                            <p class="text-white mb-2 uppercase">Category Weight Distribution:</p>
+                            <p>TECH: 7.0 | HISTORY: 6.5 | BUSINESS: 6.0 | HEALTH: 5.5 | ALIMENTATION: 6.0 | VERB: 5.0</p>
+                        </div>
+                        <p>Activation relies on energy propagation. When keywords are tokenized, corresponding neural categories receive energy increments. Final confidence levels are determined by the ratio between primary category energy and total network activation.</p>
+                    </div>
+                    <div class="glass-panel p-6">
+                        <pre class="m-0"><code class="text-white"><span class="code-key">type</span> Neurone <span class="code-key">struct</span> {
+    ID           <span class="code-key">int</span>
+    CategorieID  <span class="code-key">int</span>
+    Valeur       <span class="code-key">float64</span>
+}
+
+<span class="code-key">func</span> <span class="code-key">ActiverCategories</span>(tokens []<span class="code-key">string</span>) {
+    <span class="code-comment">// Energy propagation cycle</span>
+    <span class="code-comment">// Decay: Valeur *= 0.9 post-analysis</span>
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="language" class="mb-32 pt-16 border-t border-white/5">
+                <h2 class="text-3xl font-bold text-white mb-12 tracking-tight">Language Motor & Semantic Layers</h2>
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-widest">HTML Content Extraction</h3>
+                        <p class="text-sm text-gray-400 mb-6">A specialized 8-step pipeline sanitizes incoming web data. It performs script removal, main content isolation (main, article, div priority), and whitespace normalization for reliable NLP processing.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-panel p-6 border-l border-cyan-500">
+                            <h4 class="text-white font-bold text-xs mb-3 uppercase">Layer 1: Concept Extraction</h4>
+                            <p class="text-[11px] text-gray-500">Distills the dominant idea by identifying core thematic clusters and keyword density.</p>
+                        </div>
+                        <div class="glass-panel p-6 border-l border-purple-500">
+                            <h4 class="text-white font-bold text-xs mb-3 uppercase">Layer 2: Structural Logic</h4>
+                            <p class="text-[11px] text-gray-500">Classifies sentences into objective Facts, Subjective Interpretations, or Consequences.</p>
+                        </div>
+                        <div class="glass-panel p-6 border-l border-green-500">
+                            <h4 class="text-white font-bold text-xs mb-3 uppercase">Layer 3: Axis Mapping</h4>
+                            <p class="text-[11px] text-gray-500">Categorizes content across 7 semantic dimensions including Pragmatic, Cognitive, and Moral.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="security" class="mb-32 pt-16 border-t border-white/5">
+                <h2 class="text-3xl font-bold text-white mb-12 tracking-tight">Security Protocol & Learning Loop</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel p-8">
+                        <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-widest">Word Probation System</h3>
+                        <p class="text-sm text-gray-400 mb-6">New vocabulary is held in temporary storage. A three-usage verification threshold must be met before permanent integration into the primary lexicon to ensure training integrity.</p>
+                        <div class="mono text-[10px] text-gray-500 space-y-2 uppercase">
+                            <p>Initial State: Temporary Probation</p>
+                            <p>Target: 3 Valid Iterations</p>
+                            <p>Final State: Lexicon Integration</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-8">
+                        <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-widest">Integrity Verification</h3>
+                        <p class="text-sm text-gray-400 mb-6">Blacklist word security is enforced via SHA256 hashing. At runtime, the system validates the file signature to prevent unauthorized modifications to the filtration layer.</p>
+                        <div class="bg-black p-4 border border-white/5 mono text-[10px]">
+                            <p class="text-green-500 font-bold uppercase tracking-widest">SHA256_Status: Signature_Verified</p>
+                            <p class="text-gray-600 uppercase">Protection: 130 Filter_Nodes_Active</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="py-20 border-t border-white/5 text-center">
+                <p class="text-[10px] mono text-gray-600 uppercase tracking-[0.4em]">
+                    Internal Document - Neuropulse A.R.T. - 2025 - Restricted Access
+                </p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>

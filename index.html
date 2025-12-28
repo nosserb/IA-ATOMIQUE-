@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEUROPULSE A.R.T.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-neon: #00f3ff;
+            --cyber-black: #050505;
+            --cyber-dark: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--cyber-black);
+            color: #e0e0e0;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* --- Scanline Effect --- */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 100;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* --- Glows --- */
+        .neon-glow {
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        /* --- Animated Border Button --- */
+        .btn-art {
+            position: relative;
+            padding: 12px 28px;
+            background: transparent;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: 0.3s;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+        }
+
+        .btn-art:hover {
+            border-color: var(--cyber-neon);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            color: var(--cyber-neon);
+        }
+
+        /* --- Data Grid Background --- */
+        .data-grid {
+            background-image: radial-gradient(circle, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* --- Progress Bar --- */
+        .progress-bar {
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            background: var(--cyber-neon);
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+        .glitch-hover:hover { animation: glitch 0.3s linear infinite; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-[1000] border-b border-white/5 backdrop-blur-xl px-10 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-6">
+            <span class="font-bold tracking-[0.3em] text-lg neon-glow">NEUROPULSE <span class="text-cyan-400 font-light">A.R.T.</span></span>
+            <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-sm">
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+                <span class="text-[9px] font-mono uppercase text-green-500 tracking-tighter">Core Active: 0.4ms/phrase</span>
+            </div>
+        </div>
+        <div class="flex gap-8 items-center">
+            <a href="documentation.html" class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-cyan-400 transition-colors">Documentation</a>
+            <button class="btn-art font-mono">Launch Node</button>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden data-grid">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cyber-black"></div>
+        
+        <div class="absolute w-[500px] h-[500px] border border-cyan-500/10 rounded-full animate-[spin_60s_linear_infinite]"></div>
+        <div class="absolute w-[800px] h-[800px] border border-cyan-500/5 rounded-full animate-[spin_100s_linear_reverse_infinite]"></div>
+
+        <div class="text-center z-10 px-6">
+            <p class="font-mono text-cyan-500 text-xs tracking-[0.5em] mb-6 uppercase opacity-70">Atomique Reasoning Technology</p>
+            <h1 id="main-title" class="text-6xl md:text-[10rem] font-bold tracking-tighter leading-none mb-8">
+                A.R.T.
+            </h1>
+            <div class="max-w-xl mx-auto">
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed tracking-wide font-light">
+                    Processing data at the speed of thought.
+                    Unleashing intelligence in every microsecond.
+                </p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-10 hidden md:block">
+            <p class="font-mono text-[10px] text-gray-600">STABLE_VERSION: 4.0.2<br>LATENCY_TARGET: < 1.0MS</p>
+        </div>
+    </section>
+
+    <section class="relative py-32 bg-cyber-dark border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-10">
+            <div class="mb-20">
+                <h2 class="text-xs font-mono text-cyan-500 tracking-[0.3em] uppercase mb-2">Benchmarks // 01</h2>
+                <div class="h-px w-20 bg-cyan-500"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                
+                <div class="stat-card" data-aos="fade-up">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold tracking-tight">Texte Court</h3>
+                            <p class="text-xs text-gray-500 font-mono italic">1 phrase standard</p>
+                        </div>
+                        <span class="text-4xl font-mono text-cyan-400">6ms</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
+                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Status: Extrêmement rapide</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold tracking-tight">Analyse Longue</h3>
+                            <p class="text-xs text-gray-500 font-mono italic">~40 phrases complexes</p>
+                        </div>
+                        <span class="text-4xl font-mono text-cyan-400">16ms</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Avg: ~0.4ms par phrase</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold tracking-tight">Parsing HTML</h3>
+                            <p class="text-xs text-gray-500 font-mono italic">Full DOM Structure</p>
+                        </div>
+                        <span class="text-4xl font-mono text-cyan-400">150ms</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Inclus: Rendering & Metadata extraction</p>
+                </div>
+
+                <div class="flex items-center justify-center border border-dashed border-white/10 p-8 group cursor-pointer">
+                    <div class="text-center group-hover:scale-110 transition-transform">
+                        <p class="text-xs font-mono text-gray-500 mb-2">PRÊT POUR L'EXASCALE ?</p>
+                        <span class="text-cyan-400 font-bold border-b border-cyan-400 pb-1">COMMANDER UN TEST</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-10 border-t border-white/5 text-center">
+        <p class="text-[10px] font-mono text-gray-600 tracking-[0.5em] uppercase">
+            © 2025 NEUROPULSE A.R.T. — Recursive Intelligence Systems
+        </p>
+    </footer>
+
+    <script>
+        // Effet de remplissage des barres au scroll
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.progress-fill').forEach(fill => {
+                        const targetWidth = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => { fill.style.width = targetWidth; }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
+
+        // Scramble Title
+        const title = document.getElementById('main-title');
+        const original = "A.R.T.".split("");
+        const chars = "$%&/()=?*#";
+        
+        let interval = null;
+        title.onmouseover = event => {  
+          let iteration = 0;
+          clearInterval(interval);
+          interval = setInterval(() => {
+            event.target.innerText = event.target.innerText
+              .split("")
+              .map((letter, index) => {
+                if(index < iteration) return original[index];
+                return chars[Math.floor(Math.random() * 10)]
+              })
+              .join("");
+            if(iteration >= original.length) clearInterval(interval);
+            iteration += 1/3;
+          }, 30);
+        };
+    </script>
+</body>
+</html>
