@@ -32,6 +32,8 @@ type MotEnAttente struct {
 
 var Neurones []Neurone
 var Words map[string]Word
+var Categories map[int]string
+var Phrases []string
 var LexiqueTemp = make(map[string]*MotEnAttente)
 var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
 var Blacklist = make(map[string]bool) // Mots interdits
@@ -466,4 +468,25 @@ func VérifierIntéritéBlacklist(nomFichier string) bool {
 	}
 
 	return true
+}
+
+// InitDatabase initialise la base de données
+func InitDatabase() {
+	if len(Categories) == 0 {
+		Categories = make(map[int]string)
+		Categories[0] = "Neutre"
+		Categories[1] = "Positif"
+		Categories[2] = "Négatif"
+		Categories[3] = "Question"
+		Categories[4] = "Commande"
+		Categories[5] = "Information"
+		Categories[6] = "Feedback"
+		Categories[7] = "Autre"
+		Categories[8] = "Général"
+		Categories[9] = "Spécifique"
+	}
+
+	if len(Phrases) == 0 {
+		Phrases = make([]string, 0)
+	}
 }
