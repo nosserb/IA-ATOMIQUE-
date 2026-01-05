@@ -1,1 +1,1 @@
-web: ./programme web
+web: programme web
