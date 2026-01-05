@@ -103,6 +103,17 @@ go build -o programme
 ./programme text "L'intelligence artificielle progresse rapidement"
 ```
 
+#### Windows Installation
+
+For **Windows users**, installation is simplified:
+
+1. **Download Go** from https://golang.org/dl/
+2. **Run `install.bat`** - Automatic setup!
+3. **Run `run-web.bat`** - Launch the web interface
+4. **Open** http://localhost:8080 in your browser
+
+See [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) for detailed Windows guide.
+
 </div>
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
@@ -563,6 +574,66 @@ go test ./...
 ```bash
 go clean
 go build -o programme
+```
+
+</div>
+
+<hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
+
+<div style="text-align: left; margin: 30px 0;">
+
+### 🌐 Web Interface
+
+**NEW!** IA-ATOMIQUE now includes a modern web interface for text summarization.
+
+#### Quick Start
+
+```bash
+# Build and run the web server
+./programme web
+
+# Or use the convenience script
+./start-web.sh
+
+# Or with Docker
+docker run -p 8080:8080 ia-atomique
+```
+
+Then open: **http://localhost:8080**
+
+#### Features
+
+✨ **Modern UI** - Responsive design with gradient styling  
+⚡ **Real-time Analysis** - Instant text summarization  
+📊 **Statistics** - Confidence scores, category breakdown  
+🎯 **Key Phrases** - Extract important sentences automatically  
+
+#### Documentation
+
+- 📖 [Web Setup Guide](INSTALL.md) - Installation and troubleshooting
+- 🔧 [Web Configuration](WEB_README.md) - Advanced customization
+- 🐳 [Docker Support](Dockerfile) - Container deployment
+
+#### API Reference
+
+**POST** `/api/summarize`
+
+```json
+{
+  "text": "Your text to summarize..."
+}
+```
+
+Response:
+```json
+{
+  "summary": "Generated summary with key information",
+  "stats": {
+    "phrases": 5,
+    "confidence": "85.3",
+    "categories": 3
+  }
+}
 ```
 
 </div>
