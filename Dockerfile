@@ -27,6 +27,10 @@ COPY --from=builder /build/programme /app/programme
 # Copier les fichiers web
 COPY --from=builder /build/web /app/web
 
+# Copier les fichiers de données critiques
+COPY --from=builder /build/blacklist.enc /app/blacklist.enc
+COPY --from=builder /build/lexique.txt /app/lexique.txt
+
 # Exposer le port du serveur web
 EXPOSE 8080
 
