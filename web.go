@@ -135,8 +135,14 @@ func InitWebInterface() {
 		os.MkdirAll(webDir, 0755)
 	}
 
-	// Démarrer le serveur sur le port 8080
-	go StartWebServer("8080")
+	// Récupérer le port depuis les variables d'environnement (pour Railway, Heroku, etc.)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Port par défaut pour développement local
+	}
+
+	// Démarrer le serveur
+	go StartWebServer(port)
 
 	// Garder le programme actif
 	select {}
