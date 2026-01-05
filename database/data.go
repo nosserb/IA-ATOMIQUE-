@@ -1,3 +1,40 @@
+// Met à jour tous les poids synaptiques et états des neurones selon les équations demandées
+func UpdateReseau(gamma, delta, alpha, beta float64, rewardFunc func(i int) float64) {
+	// 1. Mise à jour des poids synaptiques (Hebb)
+	for i := range Neurones {
+		ni := &Neurones[i]
+		for j, w := range ni.Connexions {
+			sj := 0.0
+			if j >= 0 && j < len(Neurones) {
+				sj = Neurones[j].Valeur
+			}
+			deltaW := gamma * ni.Valeur * sj - delta * w
+			ni.Connexions[j] += deltaW
+			PoidsSynaptiques[[2]int{ni.ID, j}] = ni.Connexions[j]
+		}
+	}
+
+	// 2. Mise à jour des états (diffusion + récompense)
+	newValeurs := make([]float64, len(Neurones))
+	for i, ni := range Neurones {
+		sumDiff := 0.0
+		for j, w := range ni.Connexions {
+			sj := 0.0
+			if j >= 0 && j < len(Neurones) {
+				sj = Neurones[j].Valeur
+			}
+			sumDiff += w * (sj - ni.Valeur)
+		}
+		reward := 0.0
+		if rewardFunc != nil {
+			reward = rewardFunc(i)
+		}
+		newValeurs[i] = ni.Valeur + alpha*sumDiff + beta*reward
+	}
+	for i := range Neurones {
+		Neurones[i].Valeur = newValeurs[i]
+	}
+}
 package database
 
 import (
@@ -23,6 +60,7 @@ type Word struct {
 type Neurone struct {
 	ID, CategorieID int
 	Valeur          float64
+	Connexions      map[int]float64 // Connexions vers d'autres neurones: voisinID -> poids synaptique
 }
 
 type MotEnAttente struct {
@@ -31,6 +69,9 @@ type MotEnAttente struct {
 }
 
 var Neurones []Neurone
+
+// Matrice globale des poids synaptiques (optionnel, pour accès rapide)
+var PoidsSynaptiques = make(map[[2]int]float64) // [i,j] -> poids entre neurone i et j
 var Words map[string]Word
 var Categories map[int]string
 var Phrases []string

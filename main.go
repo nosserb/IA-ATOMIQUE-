@@ -6,7 +6,6 @@ import (
 	"math/rand"
 	"os"
 	"strings"
-	"syscall/js"
 	"time"
 )
 
@@ -163,14 +162,33 @@ func afficherAide() {
        $ ./programme file document.md
        $ ./programme file /home/user/texte.txt
 
-  3. ANALYSER UN TEXTE DIRECT
+  3. HUMANISER UN TEXTE
+     $ ./programme humanize [file|-s|-p|-a] <chemin_fichier>
+     
+     Styles disponibles:
+       -s : Standard (naturel et fluide) - défaut
+       -p : Professionnel (formel et technique)
+       -a : Avancé (analyse de style + paraphrase intelligente)
+     
+     Exemples (tous les formats sont supportés):
+       $ ./programme humanize file document.txt
+       $ ./programme humanize file -s document.txt
+       $ ./programme humanize file -p document.txt
+       $ ./programme humanize file -a document.txt
+       $ ./programme humanize -s file document.txt
+       $ ./programme humanize -p file document.txt
+       $ ./programme humanize -a file document.txt
+     
+     Résultat: Crée un fichier "_humanized.txt", "_humanized_prof.txt" ou "_humanized_avance.txt"
+
+  4. ANALYSER UN TEXTE DIRECT
      $ ./programme text <votre texte>
      
      Exemples:
        $ ./programme text "L'IA est la technologie du futur"
        $ ./programme text "Einstein a découvert la relativité en 1905"
 
-  4. MODE CLASSIQUE (hérité)
+  5. MODE CLASSIQUE (hérité)
      $ ./programme <texte quelconque>
      
      Exemples:
@@ -194,6 +212,11 @@ func afficherAide() {
   ✓ Génération de résumés synthétiques
   ✓ Système de modération (blacklist chiffrée AES-256)
   ✓ Apprentissage dynamique des mots
+  ✓ Humanisation de texte
+    - Améliore la fluidité des phrases
+    - Remplace les formulations maladroites
+    - Ajoute des connecteurs naturels
+    - Optimise la structure et la longueur
 
 ═══════════════════════════════════════════════════════════════
 
@@ -237,79 +260,7 @@ func afficherAide() {
 `)
 }
 
-// Détecte si on est en WASM (navigateur) ou en CLI (terminal)
-// NOTE: En WASM, os.Args est vide, donc on peut utiliser ça
-
-func setupWebAssembly() {
-	// Expose analyserTexte à JavaScript
-	js.Global().Set("analyserTexte", js.FuncOf(func(this js.Value, args []js.Value) any {
-		if len(args) < 1 {
-			return map[string]interface{}{
-				"erreur": "Pas de texte fourni",
-			}
-		}
-
-		texte := args[0].String()
-
-		// Appelle la fonction d'analyse existante
-		TraiterTexte(texte, "WebAssembly")
-
-		// Retourne les stats
-		actifs := 0
-		totalEnergie := 0.0
-		for _, n := range database.Neurones {
-			if n.Valeur > 0 {
-				actifs++
-				totalEnergie += n.Valeur
-			}
-		}
-
-		return map[string]interface{}{
-			"message":   "Analyse complétée",
-			"texte":     texte,
-			"neurones":  len(database.Neurones),
-			"actifs":    actifs,
-			"energie":   totalEnergie,
-			"timestamp": time.Now().String(),
-		}
-	}))
-
-	// Expose getStats pour consulter l'état du réseau neural
-	js.Global().Set("getStats", js.FuncOf(func(this js.Value, args []js.Value) any {
-		actifs := 0
-		totalEnergie := 0.0
-		maxValeur := 0.0
-		for _, n := range database.Neurones {
-			if n.Valeur > 0 {
-				actifs++
-				totalEnergie += n.Valeur
-			}
-			if n.Valeur > maxValeur {
-				maxValeur = n.Valeur
-			}
-		}
-
-		return map[string]interface{}{
-			"total_neurones":  len(database.Neurones),
-			"neurones_actifs": actifs,
-			"pourcentage":     float64(actifs) * 100 / float64(len(database.Neurones)),
-			"energie_totale":  totalEnergie,
-			"energie_max":     maxValeur,
-			"timestamp":       time.Now().String(),
-		}
-	}))
-}
-
 func main() {
-	// En WASM, os.Args est vide et on peut pas faire grand chose en CLI
-	// Si os.Args est vide, on est forcément en WASM
-	if len(os.Args) == 0 {
-		// Mode WebAssembly (navigateur Firefox)
-		// NOTE: Pas d'AutoIntrospection en WASM, c'est trop lourd
-		setupWebAssembly()
-		return
-	}
-
 	// Mode CLI (terminal)
 	go AutoIntrospection()
 	go AutoIntrospection()
@@ -333,6 +284,73 @@ func main() {
 			TraiterFichier(os.Args[2])
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme file <chemin>")
+		}
+
+	case "humanize":
+		style := "standard" // Style par défaut
+		filepath := ""
+
+		// Vérifier les différentes syntaxes possibles
+		if len(os.Args) > 3 {
+			// Cas 1: humanize file <chemin>
+			// Cas 2: humanize file -s <chemin>
+			// Cas 3: humanize file -p <chemin>
+			// Cas 4: humanize file -a <chemin>
+			// Cas 5: humanize file <chemin> -s
+			// Cas 6: humanize file <chemin> -p
+			// Cas 7: humanize file <chemin> -a
+			// Cas 8: humanize -s file <chemin>
+			// Cas 9: humanize -p file <chemin>
+			// Cas 10: humanize -a file <chemin>
+
+			if os.Args[2] == "file" {
+				// Cas 1-7: "file" est le second argument
+				if len(os.Args) > 3 {
+					if os.Args[3] == "-s" || os.Args[3] == "-p" || os.Args[3] == "-a" {
+						// Cas 2-4: flag avant le chemin
+						if len(os.Args) > 4 {
+							if os.Args[3] == "-p" {
+								style = "professionnel"
+							} else if os.Args[3] == "-a" {
+								style = "avance"
+							}
+							filepath = os.Args[4]
+						}
+					} else {
+						// Cas 1 ou 5-7: chemin avant le flag
+						filepath = os.Args[3]
+						if len(os.Args) > 4 && (os.Args[4] == "-s" || os.Args[4] == "-p" || os.Args[4] == "-a") {
+							if os.Args[4] == "-p" {
+								style = "professionnel"
+							} else if os.Args[4] == "-a" {
+								style = "avance"
+							}
+						}
+					}
+				}
+			} else if (os.Args[2] == "-s" || os.Args[2] == "-p" || os.Args[2] == "-a") && os.Args[3] == "file" {
+				// Cas 8-10: flag avant "file"
+				if os.Args[2] == "-p" {
+					style = "professionnel"
+				} else if os.Args[2] == "-a" {
+					style = "avance"
+				}
+				if len(os.Args) > 4 {
+					filepath = os.Args[4]
+				}
+			}
+		}
+
+		if filepath != "" {
+			TraiterFichierHumanize(filepath, style)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme humanize [file|-s|-p] <chemin>")
+			fmt.Println("  Formats supportés:")
+			fmt.Println("    ./programme humanize file <chemin>")
+			fmt.Println("    ./programme humanize file -s <chemin>")
+			fmt.Println("    ./programme humanize file -p <chemin>")
+			fmt.Println("    ./programme humanize -s file <chemin>")
+			fmt.Println("    ./programme humanize -p file <chemin>")
 		}
 
 	case "text":
