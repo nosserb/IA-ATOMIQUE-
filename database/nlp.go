@@ -257,3 +257,159 @@ func GenererResumeDetaille(texte string, catMain int, motsClés []string) string
 
 	return resumeDetaille
 }
+
+// ============================================================================
+// DÉCOUPAGE ULTRA-RAPIDE O(n) - Pour traitement instantané de grands textes
+// ============================================================================
+
+// BlocTexte représente un bloc de texte découpé
+type BlocTexte struct {
+	Contenu    string
+	Mots       []string
+	NumeroBloc int
+	Taille     int // Nombre de mots
+}
+
+// DecouperTexteRapide divise un texte en blocs optimisés (O(n))
+// Stratégie:
+// 1. Découpe par paragraphes (sauts de ligne doubles)
+// 2. Puis chaque paragraphe en blocs de ~100 mots
+// 3. Complexité: O(n) où n = nombre de mots
+func DecouperTexteRapide(texte string, motsParBloc int) []BlocTexte {
+	if motsParBloc <= 0 {
+		motsParBloc = 100 // Défaut: 100 mots par bloc
+	}
+
+	var blocs []BlocTexte
+	numeroBloc := 0
+
+	// Étape 1: Découper par paragraphes (sauts de ligne doubles)
+	paragraphes := strings.Split(texte, "\n\n")
+
+	for _, paragraphe := range paragraphes {
+		// Ignorer les paragraphes vides
+		paragraphe = strings.TrimSpace(paragraphe)
+		if paragraphe == "" {
+			continue
+		}
+
+		// Étape 2: Découper le paragraphe en mots
+		mots := strings.Fields(paragraphe) // O(n) - split ultra rapide
+
+		// Étape 3: Créer des blocs de taille fixe
+		for i := 0; i < len(mots); i += motsParBloc {
+			fin := i + motsParBloc
+			if fin > len(mots) {
+				fin = len(mots)
+			}
+
+			blocMots := mots[i:fin]
+			contenu := strings.Join(blocMots, " ")
+
+			blocs = append(blocs, BlocTexte{
+				Contenu:    contenu,
+				Mots:       blocMots,
+				NumeroBloc: numeroBloc,
+				Taille:     len(blocMots),
+			})
+			numeroBloc++
+		}
+	}
+
+	return blocs
+}
+
+// DecouperAdaptatif ajuste la taille des blocs selon la longueur totale
+// Pour très grands textes: augmenter motsParBloc pour limiter le nombre de blocs
+func DecouperAdaptatif(texte string, maxBlocs int) []BlocTexte {
+	// Compter le nombre de mots total
+	mots := strings.Fields(texte)
+	totalMots := len(mots)
+
+	if totalMots == 0 {
+		return []BlocTexte{}
+	}
+
+	// Calculer la taille adaptée: assurer au max maxBlocs blocs
+	motsParBloc := totalMots / maxBlocs
+	if motsParBloc < 50 {
+		motsParBloc = 50 // Minimum 50 mots par bloc
+	}
+	if motsParBloc > 200 {
+		motsParBloc = 200 // Maximum 200 mots par bloc
+	}
+
+	return DecouperTexteRapide(texte, motsParBloc)
+}
+
+// AnalyserBloc traite un bloc texte indépendamment
+// Retourne: catégories, mots-clés, confiance
+func AnalyserBloc(bloc BlocTexte) (map[int]int, []string, float64) {
+	// Réutiliser la pipeline existante
+	return ProcesserTexte(bloc.Contenu)
+}
+
+// FusionnerResultatsBlocs combine les résultats de tous les blocs
+// Stratégie: moyenne pondérée par taille de bloc
+func FusionnerResultatsBlocs(blocs []BlocTexte, resultats []map[int]int, confiances []float64) map[int]int {
+	catGlobale := make(map[int]int)
+
+	totalMots := 0
+	for _, bloc := range blocs {
+		totalMots += bloc.Taille
+	}
+
+	if totalMots == 0 {
+		return catGlobale
+	}
+
+	// Fusionner avec poids proportionnel à la taille
+	for i, resultat := range resultats {
+		poids := float64(blocs[i].Taille) / float64(totalMots)
+
+		for cat, val := range resultat {
+			// Moyenne pondérée
+			catGlobale[cat] += int(float64(val) * poids)
+		}
+	}
+
+	return catGlobale
+}
+
+// StatistiquesBlocs retourne des stats rapides sur les blocs
+func StatistiquesBlocs(blocs []BlocTexte) map[string]interface{} {
+	totalMots := 0
+	minTaille := 0
+	maxTaille := 0
+
+	if len(blocs) == 0 {
+		return map[string]interface{}{
+			"nombre_blocs":   0,
+			"total_mots":     0,
+			"taille_moyenne": 0,
+		}
+	}
+
+	minTaille = blocs[0].Taille
+	maxTaille = blocs[0].Taille
+
+	for _, bloc := range blocs {
+		totalMots += bloc.Taille
+		if bloc.Taille < minTaille {
+			minTaille = bloc.Taille
+		}
+		if bloc.Taille > maxTaille {
+			maxTaille = bloc.Taille
+		}
+	}
+
+	moyenneSize := totalMots / len(blocs)
+
+	return map[string]interface{}{
+		"nombre_blocs":   len(blocs),
+		"total_mots":     totalMots,
+		"taille_min":     minTaille,
+		"taille_max":     maxTaille,
+		"taille_moyenne": moyenneSize,
+	}
+}
