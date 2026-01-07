@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop, chore/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.22
+    
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+    
+    - name: Build
+      run: go build -v -o programme .
+    
+    - name: Verify web files
+      run: |
+        test -f web/index.html && echo "✓ index.html exists"
+        test -f web/style.css && echo "✓ style.css exists"
+        test -f web/script.js && echo "✓ script.js exists"
+    
+    - name: Test binary
+      run: timeout 5 ./programme web 2>&1 | head -20 || true

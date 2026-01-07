@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA-ATOMIQUE - Résumeur de Texte</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="neural-bg"></div>
+            <h1>NEUROPULSE</h1>
+            <p>Analyse Neuronale Avancée</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Texte à Analyser</h2>
+                <textarea id="inputText" placeholder="Collez votre texte ici..."></textarea>
+                <button id="summarizeBtn" onclick="summarizeText()">Analyser</button>
+            </div>
+
+            <div class="output-section">
+                <div class="results-grid">
+                    <div class="result-box">
+                        <h3>Phrases Clés</h3>
+                        <div id="keyPhrases" class="content-box">
+                            <p class="placeholder">Les phrases clés apparaîtront ici...</p>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Idées Clés</h3>
+                        <div id="keyIdeas" class="content-box">
+                            <p class="placeholder">Les idées clés apparaîtront ici...</p>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Résumé Analytique</h3>
+                        <div id="summary" class="content-box">
+                            <p class="placeholder">Le résumé apparaîtra ici...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="stats" class="stats"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>NEUROPULSE v1.0 - Moteur d'Analyse Neuronale</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
