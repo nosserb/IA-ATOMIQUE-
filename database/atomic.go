@@ -82,10 +82,10 @@ func NewAtomicNetwork(numAtoms int) *AtomicNetwork {
 		LocalRulesCoefficient: 0.3,  // β - Lower weight for local rules
 		ReinforcementFactor:   0.15, // γ - Moderate reinforcement
 		DecayFactor:           0.05, // δ - Gradual decay of weak connections
-		ResonanceSensitivity:  0.8,  // σ - Moderate sensitivity threshold
-		FreezeThreshold:       0.01, // ϵ - Resonance threshold for freeze (extremely isolated)
-		FreezeIterations:      3,    // T - Iterations before freeze (reduced)
-		WakeThreshold:         0.20, // σ_wake - Resonance to wake up
+		ResonanceSensitivity:  0.1,  // σ - ULTRA-REDUCED for freeze activation (was 0.8, then 0.3)
+		FreezeThreshold:       0.3,  // ϵ - Resonance threshold for freeze (ADJUSTED for new sigma)
+		FreezeIterations:      2,    // T - Iterations before freeze (minimal)
+		WakeThreshold:         0.40, // σ_wake - Resonance to wake up
 		GlobalIteration:       0,
 		TotalEnergy:           0.0,
 		FrozenAtomsCount:      0,

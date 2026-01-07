@@ -164,29 +164,42 @@ L'IA atomique démontre la viabilité de générer de l'intelligence globale
 	saveSimulationResults(network, coherenceHistory, activationHistory, energyHistory)
 }
 
-// initializeNetworkTopology crée une topologie de grille 2D
-// Adapte la taille de grille au nombre d'atomes
+// initializeNetworkTopology crée une topologie clustered (îles d'atomes isolées)
+// Permet de tester le système de freeze avec des atomes vraiment orphelins
 func initializeNetworkTopology(network *database.AtomicNetwork) {
-	// Calculer une taille de grille appropriée
-	gridSize := int(math.Sqrt(float64(len(network.Atoms))))
-	if gridSize == 0 {
-		gridSize = 1
-	}
+	numAtoms := len(network.Atoms)
 
-	for i := 0; i < len(network.Atoms); i++ {
-		row := i / gridSize
-		col := i % gridSize
+	// Créer des clusters : 10 clusters de ~100 atomes chacun (pour 1000 atomes)
+	clusterSize := 10 // Atomes par cluster
 
-		// Ajouter voisins dans une grille (topologie toroïdale)
+	for i := 0; i < numAtoms; i++ {
+		// Déterminer le cluster de cet atome
+		clusterID := i / clusterSize
+		posInCluster := i % clusterSize
+
+		// Créer une grille 2D locale dans le cluster (10x10)
+		localGridSize := int(math.Sqrt(float64(clusterSize)))
+		if localGridSize == 0 {
+			localGridSize = 1
+		}
+
+		localRow := posInCluster / localGridSize
+		localCol := posInCluster % localGridSize
+
+		// Ajouter voisins DANS le même cluster uniquement
 		neighbors := []int{
-			((row-1+gridSize)%gridSize)*gridSize + col,
-			((row+1)%gridSize)*gridSize + col,
-			row*gridSize + ((col - 1 + gridSize) % gridSize),
-			row*gridSize + ((col + 1) % gridSize),
+			// Voisin haut
+			clusterID*clusterSize + ((localRow-1+localGridSize)%localGridSize)*localGridSize + localCol,
+			// Voisin bas
+			clusterID*clusterSize + ((localRow+1)%localGridSize)*localGridSize + localCol,
+			// Voisin gauche
+			clusterID*clusterSize + localRow*localGridSize + ((localCol - 1 + localGridSize) % localGridSize),
+			// Voisin droit
+			clusterID*clusterSize + localRow*localGridSize + ((localCol + 1) % localGridSize),
 		}
 
 		for _, neighborID := range neighbors {
-			if neighborID >= 0 && neighborID < len(network.Atoms) {
+			if neighborID >= 0 && neighborID < numAtoms {
 				network.Atoms[i].AddNeighbor(neighborID)
 			}
 		}

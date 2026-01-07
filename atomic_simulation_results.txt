@@ -2,16 +2,48 @@ RÉSULTATS SIMULATION - IA ATOMIQUE
 ==================================
 
 Nombre d'atomes: 1000
-Itérations: 200
+Itérations: 1000
 
 Cohérence par itération:
-Iter    0: 0.8536
-Iter   50: 0.6816
-Iter  100: 0.6760
-Iter  150: 0.6741
+Iter    0: 0.8283
+Iter   50: 0.8988
+Iter  100: 0.9029
+Iter  150: 0.9052
+Iter  200: 0.9071
+Iter  250: 0.9071
+Iter  300: 0.9072
+Iter  350: 0.9074
+Iter  400: 0.9077
+Iter  450: 0.9082
+Iter  500: 0.9090
+Iter  550: 0.9102
+Iter  600: 0.9096
+Iter  650: 0.9096
+Iter  700: 0.9096
+Iter  750: 0.9096
+Iter  800: 0.9097
+Iter  850: 0.9098
+Iter  900: 0.9098
+Iter  950: 0.9098
 
 Activation par itération:
-Iter    0: 0.2577
-Iter   50: 0.3140
-Iter  100: 0.3268
-Iter  150: 0.3278
+Iter    0: 0.2539
+Iter   50: 0.1920
+Iter  100: 0.1759
+Iter  150: 0.1692
+Iter  200: 0.1639
+Iter  250: 0.1638
+Iter  300: 0.1637
+Iter  350: 0.1636
+Iter  400: 0.1634
+Iter  450: 0.1631
+Iter  500: 0.1610
+Iter  550: 0.1602
+Iter  600: 0.1591
+Iter  650: 0.1591
+Iter  700: 0.1591
+Iter  750: 0.1591
+Iter  800: 0.1592
+Iter  850: 0.1592
+Iter  900: 0.1592
+Iter  950: 0.1592
