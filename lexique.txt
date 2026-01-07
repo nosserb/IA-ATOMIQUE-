@@ -8815,3 +8815,10 @@
 1:déclin
 1:d'europe
 1:afrique
+1:mixe
+1:limitant
+1:seulement
+1:comment
+1:fonctionnais
+1:rendais
+1:resultats

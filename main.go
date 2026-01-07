@@ -266,15 +266,23 @@ func main() {
 	go AutoIntrospection()
 
 	if len(os.Args) < 2 {
-		fmt.Println("[IA-ATOMIQUE v4.1] Interface Interactive")
-		fmt.Println("Compréhension + Apprentissage + Résumé")
-		InteractionInteractive()
+		fmt.Println("[IA-ATOMIQUE v1.0] - Technologie de Résonance Atomique")
+		fmt.Println("Interface Interactive - Réseau Atomique Distribué")
+		RunAtomicDemo()
 		return
 	}
 
-	// Vérifier les commandes
+	// Vérifier les commandes atomiques en priorité
 	commande := os.Args[1]
 
+	// Commandes du réseau atomique
+	if commande == "simulate" || commande == "network-stats" || commande == "benchmark" ||
+		(commande == "help" && len(os.Args) == 2) {
+		ParseSimulationArgs(os.Args)
+		return
+	}
+
+	// Vérifier les autres commandes
 	switch commande {
 	case "help", "-h", "--help":
 		afficherAide()
