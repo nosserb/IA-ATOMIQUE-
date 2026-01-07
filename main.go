@@ -2,8 +2,10 @@ package main
 
 import (
 	"IA-ATOMIQUE/database"
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"math/rand"
 	"net/http"
@@ -292,14 +294,28 @@ func ProcessRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Capturer la sortie stdout
+	oldStdout := os.Stdout
+	readPipe, writePipe, _ := os.Pipe()
+	os.Stdout = writePipe
+
 	// Process the text
 	TraiterTexte(req.Text, "API request")
 
+	// Restaurer stdout et lire la sortie
+	writePipe.Close()
+	os.Stdout = oldStdout
+
+	var buf bytes.Buffer
+	io.Copy(&buf, readPipe)
+	output := buf.String()
+
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(APIResponse{
 		Status:  "success",
 		Message: "Text processed successfully",
-		Result:  "Analysis complete",
+		Result:  output,
 	})
 }
 

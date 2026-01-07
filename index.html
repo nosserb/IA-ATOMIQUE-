@@ -271,7 +271,7 @@
                 loadingIndicator.classList.add('hidden');
 
                 if (data.status === 'success') {
-                    showResult('success', data.message);
+                    showResult('success', data.result || data.message);
                     inputText.value = '';
                 } else {
                     showResult('error', data.message);
@@ -288,15 +288,27 @@
             
             if (status === 'success') {
                 resultMessage.classList.add('border-green-500/50', 'bg-green-500/10', 'text-green-400');
-                resultMessage.innerHTML = '✓ ' + message;
+                // Si c'est du texte long, afficher dans une zone scrollable
+                if (message.length > 500) {
+                    resultMessage.innerHTML = '<div style="max-height: 400px; overflow-y: auto; white-space: pre-wrap; word-break: break-word;">✓ ' + escapeHtml(message) + '</div>';
+                } else {
+                    resultMessage.innerHTML = '✓ ' + escapeHtml(message);
+                }
             } else {
                 resultMessage.classList.add('border-red-500/50', 'bg-red-500/10', 'text-red-400');
                 resultMessage.innerHTML = '✗ ' + message;
             }
+        }
 
-            setTimeout(() => {
-                resultMessage.classList.add('hidden');
-            }, 5000);
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
         }
     </script>
 </body>
