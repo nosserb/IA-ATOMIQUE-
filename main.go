@@ -478,6 +478,9 @@ func main() {
 	case "help", "-h", "--help":
 		afficherAide()
 
+	case "web":
+		InitWebInterface()
+
 	case "file":
 		if len(os.Args) > 2 {
 			TraiterFichier(os.Args[2])

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo - IA-ATOMIQUE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        .demo-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #667eea; }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #5568d3; }
+    </style>
+</head>
+<body>
+    <h1>🤖 IA-ATOMIQUE - Interface Web</h1>
+    
+    <div class="demo-box">
+        <h2>✅ Configuration Complète!</h2>
+        <p>Votre interface web de résumé de texte est prête à l'emploi.</p>
+        <p><a href="/" style="font-size: 1.2em; color: #667eea;"><strong>→ Aller à l'interface →</strong></a></p>
+    </div>
+
+    <div class="demo-box">
+        <h2>📖 Texte d'exemple</h2>
+        <p>Testez l'interface avec ce texte:</p>
+        <p><em>"L'intelligence artificielle révolutionne le monde moderne. Les réseaux de neurones permettent aux machines d'apprendre et d'évoluer. La technologie progresse rapidement. Les applications pratiques se multiplient chaque jour. Le machine learning transforme les industries."</em></p>
+        <button onclick="copyAndGo()">Copier et Tester</button>
+    </div>
+
+    <div class="demo-box">
+        <h2>🚀 Comment ça marche?</h2>
+        <ol>
+            <li><strong>Saisissez un texte</strong> dans la zone de gauche</li>
+            <li><strong>Cliquez sur "Résumer"</strong> pour analyser</li>
+            <li><strong>Consultez le résumé</strong> généré par votre IA</li>
+            <li><strong>Voyez les statistiques</strong> d'analyse</li>
+        </ol>
+    </div>
+
+    <div class="demo-box">
+        <h2>⚡ Raccourcis</h2>
+        <ul>
+            <li><code>Ctrl + Entrée</code> - Soumettre directement</li>
+            <li><code>Ctrl + A</code> - Sélectionner tout le texte</li>
+        </ul>
+    </div>
+
+    <script>
+        function copyAndGo() {
+            const text = "L'intelligence artificielle révolutionne le monde moderne. Les réseaux de neurones permettent aux machines d'apprendre et d'évoluer. La technologie progresse rapidement. Les applications pratiques se multiplient chaque jour. Le machine learning transforme les industries.";
+            window.location.href = '/?text=' + encodeURIComponent(text);
+        }
+    </script>
+</body>
+</html>

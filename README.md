@@ -103,6 +103,17 @@ go build -o programme
 ./programme text "L'intelligence artificielle progresse rapidement"
 ```
 
+#### Windows Installation
+
+For **Windows users**, installation is simplified:
+
+1. **Download Go** from https://golang.org/dl/
+2. **Run `install.bat`** - Automatic setup!
+3. **Run `run-web.bat`** - Launch the web interface
+4. **Open** http://localhost:8080 in your browser
+
+See [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) for detailed Windows guide.
+
 </div>
 
 <hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
@@ -587,19 +598,7 @@ go build -o programme
 
 <div style="text-align: left; margin: 30px 0;">
 
-### Development Phases
 
-| Phase | Feature | Impact |
-|-------|---------|--------|
-| **1-2** | 7-criteria validation + auto-regeneration (3 attempts, 80% threshold) | Guaranteed summary quality |
-| **3-4** | Two-pass architecture (extract → enrich) + log masking | Contextual summaries, clean output |
-| **5** | 8-step HTML pipeline (main content extraction) | Reliable web page processing |
-| **6** | Phrase extraction expansion (7→15) and integration (6→12) | More complete summaries |
-| **7** | **Performance optimization** : QuickSort + Builder (84x faster!) | TXT: 2.5s → 30ms |
-| **8** | Optimized cleaning (17 ReplaceAll → map lookup) | Stable performance |
-| **9** | SHA256 integrity check (instead of AES-256) | Transparent security |
-| **10** | **3-layer semantic analysis** | Dominant idea + Classification + Semantic axes |
-| **11** | Cleanup (21 unnecessary files removed) | Lean codebase |
 
 </div>
 
