@@ -3,6 +3,7 @@ package main
 import (
 	"IA-ATOMIQUE/database"
 	"fmt"
+	"math"
 	"math/rand"
 	"os"
 	"strconv"
@@ -10,15 +11,15 @@ import (
 	"time"
 )
 
-// SimulateAtomicNetwork simule l'exécution du réseau atomique pour N itérations
-func SimulateAtomicNetwork(iterations int) {
+// SimulateAtomicNetwork simule l'exécution du réseau atomique pour N itérations avec M atomes
+func SimulateAtomicNetwork(iterations int, numAtoms int) {
 	sep := strings.Repeat("=", 60)
 	fmt.Println("\n" + sep)
 	fmt.Println("  SIMULATION DU RÉSEAU ATOMIQUE - TECHNOLOGIE DE RÉSONANCE")
 	fmt.Println(sep)
 
-	// Créer un réseau atomique avec 500 atomes
-	network := database.NewAtomicNetwork(500)
+	// Créer un réseau atomique avec le nombre d'atomes spécifié
+	network := database.NewAtomicNetwork(numAtoms)
 
 	// Initialiser les connexions voisins (topologie grille 2D approximative)
 	initializeNetworkTopology(network)
@@ -109,6 +110,21 @@ func SimulateAtomicNetwork(iterations int) {
 	fmt.Printf("  • Énergie totale: %.4f\n", finalEnergy)
 	fmt.Printf("  • Énergie par atome (moyenne): %.6f\n", finalEnergy/float64(len(network.Atoms)))
 
+	// Statistiques de freeze
+	frozenAtoms := network.FrozenAtomsCount
+	freezeRate := float64(frozenAtoms) * 100 / float64(len(network.Atoms))
+
+	fmt.Printf("\n[SYSTÈME DE FREEZE (SOBRIÉTÉ ÉNERGÉTIQUE)]\n")
+	fmt.Printf("  • Atomes en freeze: %d (%.1f%%)\n", frozenAtoms, freezeRate)
+	fmt.Printf("  • Seuil de freeze (ϵ): %.4f\n", network.FreezeThreshold)
+	fmt.Printf("  • Itérations avant freeze (T): %d\n", network.FreezeIterations)
+	fmt.Printf("  • Seuil de réveil (σ_wake): %.4f\n", network.WakeThreshold)
+
+	// Calcul d'économies énergétiques estimées
+	baslineEnergyWithoutFreeze := finalEnergy / (1.0 - freezeRate/100.0) // Approximation
+	estimatedSavings := (baslineEnergyWithoutFreeze - finalEnergy) / baslineEnergyWithoutFreeze * 100
+	fmt.Printf("  • Économies estimées: %.1f%%\n", estimatedSavings)
+
 	// Comportement émergent
 	emergent := network.ExtractEmergentBehavior()
 	activeAtoms, ok := emergent["active_atoms"].([]int)
@@ -149,8 +165,13 @@ L'IA atomique démontre la viabilité de générer de l'intelligence globale
 }
 
 // initializeNetworkTopology crée une topologie de grille 2D
+// Adapte la taille de grille au nombre d'atomes
 func initializeNetworkTopology(network *database.AtomicNetwork) {
-	gridSize := 22 // Approximativement sqrt(500)
+	// Calculer une taille de grille appropriée
+	gridSize := int(math.Sqrt(float64(len(network.Atoms))))
+	if gridSize == 0 {
+		gridSize = 1
+	}
 
 	for i := 0; i < len(network.Atoms); i++ {
 		row := i / gridSize
@@ -341,16 +362,21 @@ func ParseSimulationArgs(args []string) {
 
 	switch command {
 	case "simulate":
+		iterations := 1000
+		numAtoms := 500
 		if len(args) > 2 {
-			iterations, err := strconv.Atoi(args[2])
-			if err != nil || iterations <= 0 {
-				fmt.Println("Usage: ./programme simulate <nombre_itérations>")
-				return
+			n, err := strconv.Atoi(args[2])
+			if err == nil && n > 0 {
+				iterations = n
 			}
-			SimulateAtomicNetwork(iterations)
-		} else {
-			SimulateAtomicNetwork(1000)
 		}
+		if len(args) > 3 {
+			n, err := strconv.Atoi(args[3])
+			if err == nil && n > 0 {
+				numAtoms = n
+			}
+		}
+		SimulateAtomicNetwork(iterations, numAtoms)
 
 	case "network-stats":
 		DisplayNetworkStats()
