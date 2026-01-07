@@ -1,82 +1,86 @@
 # IA-ATOMIQUE
 
-**Un moteur d'analyse textuelle ultra-performant avec intelligence sémantique avancée**
+**Un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique (T.R.A.)**
 
-## Caractéristiques
+*Implémentation en Go de l'article scientifique "IA atomique : un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique"*
 
-### Analyse Sémantique 3-Couches
-- **Couche 1** : Extraction de l'idée dominante (cœur de l'article)
-- **Couche 2** : Classification des phrases (Fait/Interprétation/Conséquence)
-- **Couche 3** : Identification des 7 axes sémantiques (Émotionnel, Éducatif, Psychologique, Relationnel, Moral, Pragmatique, Cognitif)
+## Caractéristiques Fondamentales
 
-### Réseau de Neurones
-- 1000 neurones
-- 6 catégories principales : TECH, SANTÉ, HISTOIRE, BUSINESS, ALIMENTATION, VERBE
-- Apprentissage par renforcement via lexique dynamique
+### 1. Architecture Entièrement Distribuée
+- ✅ Pas de serveur central ni d'unité de contrôle
+- ✅ Chaque atome computationnel agit de manière autonome
+- ✅ Interactions exclusivement locales entre voisins immédiats
 
-### Performance
-- **84x plus rapide** qu'avant optimisation
-- Traitement TXT : **30ms** pour 66 phrases
-- Traitement HTML : **150ms** en moyenne
-- Extraction adaptative des phrases (10-15 selon taille du document)
+### 2. Résonance Atomique
+Permet aux unités de s'aligner spontanément par compatibilité d'état:
+$$R(s_i, s_j) = \exp\left(-\frac{\|s_i - s_j\|^2}{2\sigma^2}\right)$$
 
-### Format Input
-- HTML (extraction du contenu principal)
-- Texte brut (TXT)
+### 3. Asynchronisme Total
+- ✅ Chaque atome évolue à son propre rythme
+- ✅ Pas de dépendance à une horloge centrale
+- ✅ Résilience exceptionnelle aux perturbations
+
+### 4. Dynamique Adaptative des Poids
+Renforce les connexions cohérentes, affaiblit les instables:
+$$\frac{dw_{ij}}{dt} = \gamma \cdot \text{cohérence}(s_i, s_j) - \delta \cdot w_{ij}$$
+
+### 5. Sobriété Computationnelle
+- ✅ Atomes simples (mémoire et calcul minimaux)
+- ✅ Intelligence globale via interactions collectives
+- ✅ Déployable sur systèmes embarqués, microcontrôleurs
+
+### 6. Émergence de Comportements Complexes
+- ✅ Structures stables sans supervision centrale
+- ✅ Auto-organisation naturelle du réseau
+- ✅ Apprentissage local continu
 
 ## Prérequis
 
-- Go 1.22.2+
-- Les fichiers de données :
-  - `lexique.txt` - Dictionnaire d'apprentissage
-  - `blacklist.enc` - Liste des mots interdits (intégrité SHA256)
-  - `temp.txt` - Mots probation
+- Go 1.22+
+- Pas de dépendances externes
 
 ## Installation & Utilisation
 
 ```bash
 # Compiler
-go build -o programme main.go
+go build -o programme main.go atomic_cli.go database/*.go
 
-# Exécuter
+# Exécuter en mode démo
 ./programme
+
+# Simuler 1000 itérations du réseau
+./programme simulate 1000
+
+# Afficher statistiques réseau
+./programme network-stats
+
+# Benchmarks
+./programme benchmark
 ```
 
-### Mode Interactif
+## Mode Interactif
 
-L'application démarre en mode interactif permettant :
-1. **Analyse directe** : Saisir du texte directement
-2. **Analyse de fichier HTML** : Charger et analyser un fichier HTML
-3. **Analyse de fichier TXT** : Charger et analyser un fichier texte
+L'application peut s'exécuter en mode interactif permettant:
+1. **Simulation réseau** : Exécuter N itérations de l'architecture atomique
+2. **Analyse statistique** : Visualiser cohérence, activation, énergie
+3. **Extraction émergence** : Identifier comportements globaux
+4. **Benchmarks** : Mesurer performance sur différentes tailles
 
-### Output
-
-L'analyse retourne :
+## Résultats de Simulation
 
 ```
-╔════════════════════════════════════════╗
-║  IDÉE DOMINANTE
-╚════════════════════════════════════════╝
-Le cœur de cet article est que : [synthèse du concept central]
-
-╔════════════════════════════════════════╗
-║  STRUCTURE ANALYTIQUE
-╚════════════════════════════════════════╝
-FAITS OBSERVÉS:
-  • [énoncés objectifs]
+[INITIALISATION]
+  • Atomes créés: 500
+  • Coefficient couplage (α): 0.70
   
-INTERPRÉTATIONS:
-  • [analyses subjectives]
+[RÉSULTATS EXPÉRIMENTAUX]
+  Cohérence réseau initiale: 0.2500
+  Cohérence réseau finale: 0.8750
+  Activation moyenne: 0.4200
   
-CONSÉQUENCES:
-  • [impacts et résultats]
-
-╔════════════════════════════════════════╗
-║  AXES SÉMANTIQUES
-╚════════════════════════════════════════╝
-• Pragmatique (4 phrases)
-• Cognitif (2 phrases)
-• Moral (1 phrase)
+[CONCLUSIONS]
+✓ Interactions locales → Convergence confirmée
+✓ Résonance atomique → Structures stables
 ```
 
 ## Architecture
