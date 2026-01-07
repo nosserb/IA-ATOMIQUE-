@@ -257,6 +257,53 @@ func afficherAide() {
   $ ./programme --help
 
 ═══════════════════════════════════════════════════════════════
+
+🧪 SIMULATION RÉSEAU ATOMIQUE (T.R.A.):
+
+  1. LANCER UNE SIMULATION ATOMIQUE
+     $ ./programme simulate <itérations> [nombre_atomes]
+     
+     Exemples:
+       $ ./programme simulate 100           (100 itérations, 500 atomes)
+       $ ./programme simulate 500 1000      (500 itérations, 1000 atomes)
+       $ ./programme simulate 1000 2000     (1000 itérations, 2000 atomes)
+     
+     Affiche:
+       ✓ Cohérence du réseau (initiale/finale/moyenne)
+       ✓ Activation moyenne des atomes
+       ✓ Consommation énergétique
+       ✓ Système de freeze (atomes en hibernation)
+       ✓ Comportements émergents
+       ✓ Performance (itérations/seconde)
+
+  2. STATISTIQUES RÉSEAU
+     $ ./programme network-stats
+     
+     Affiche les métriques détaillées du dernier réseau simulé
+
+  3. BENCHMARK DE PERFORMANCE
+     $ ./programme benchmark
+     
+     Teste les performances avec différentes tailles de réseau
+
+═══════════════════════════════════════════════════════════════
+
+⚛️  TECHNOLOGIE DE RÉSONANCE ATOMIQUE (T.R.A.):
+
+  • Réseau décentralisé asynchrone
+  • Chaque atome opère indépendamment
+  • Résonance entre atomes voisins
+  • Dynamique adaptative des poids (apprentissage)
+  • Système de freeze pour sobriété énergétique
+  • Émergence de comportements globaux
+
+  Équations principales:
+    - Résonance: R(si,sj) = exp(-||si-sj||²/2σ²)
+    - État: si(t+1) = si(t) + α·Σ(wij·Rij) + β·(Ri+pi)
+    - Poids: dwij/dt = γ·cohérence(si,sj) - δ·wij
+    - Freeze: Alocal = wa|Δa| + wc|Δc| + wR·R + wE|ΔE|
+
+═══════════════════════════════════════════════════════════════
 `)
 }
 
