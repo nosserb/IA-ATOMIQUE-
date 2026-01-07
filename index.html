@@ -134,55 +134,58 @@
     <section class="relative py-32 bg-cyber-dark border-y border-white/5">
         <div class="max-w-7xl mx-auto px-10">
             <div class="mb-20">
-                <h2 class="text-xs font-mono text-cyan-500 tracking-[0.3em] uppercase mb-2">Benchmarks // 01</h2>
+                <h2 class="text-xs font-mono text-cyan-500 tracking-[0.3em] uppercase mb-2">Interaction // 01</h2>
                 <div class="h-px w-20 bg-cyan-500"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-                
-                <div class="stat-card" data-aos="fade-up">
-                    <div class="flex justify-between items-end mb-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="border border-cyan-500/20 rounded-lg p-8 bg-gradient-to-br from-cyan-500/5 to-transparent">
+                    <form id="processingForm" class="space-y-6">
                         <div>
-                            <h3 class="text-2xl font-bold tracking-tight">Texte Court</h3>
-                            <p class="text-xs text-gray-500 font-mono italic">1 phrase standard</p>
+                            <label for="inputText" class="block text-sm font-mono text-cyan-400 mb-3 uppercase tracking-wider">Entrez votre texte</label>
+                            <textarea 
+                                id="inputText" 
+                                name="text" 
+                                placeholder="Entrez le texte à analyser..."
+                                rows="6"
+                                class="w-full bg-black border border-cyan-500/30 rounded text-white placeholder-gray-600 p-4 font-mono text-sm focus:border-cyan-500 focus:outline-none transition-colors"
+                            ></textarea>
                         </div>
-                        <span class="text-4xl font-mono text-cyan-400">6ms</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
-                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Status: Extrêmement rapide</p>
-                </div>
 
-                <div class="stat-card">
-                    <div class="flex justify-between items-end mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold tracking-tight">Analyse Longue</h3>
-                            <p class="text-xs text-gray-500 font-mono italic">~40 phrases complexes</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="processType" class="block text-sm font-mono text-cyan-400 mb-2 uppercase tracking-wider">Type</label>
+                                <select 
+                                    id="processType"
+                                    name="type"
+                                    class="w-full bg-black border border-cyan-500/30 rounded text-white p-3 font-mono text-sm focus:border-cyan-500 focus:outline-none transition-colors"
+                                >
+                                    <option value="text">Analyse texte</option>
+                                    <option value="resume">Résumé</option>
+                                    <option value="analyse">Analyse détaillée</option>
+                                </select>
+                            </div>
+
+                            <div class="flex items-end">
+                                <button 
+                                    type="submit"
+                                    class="w-full btn-art font-mono bg-cyan-500/10 hover:bg-cyan-500/20"
+                                >
+                                    Traiter
+                                </button>
+                            </div>
                         </div>
-                        <span class="text-4xl font-mono text-cyan-400">16ms</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
-                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Avg: ~0.4ms par phrase</p>
-                </div>
 
-                <div class="stat-card">
-                    <div class="flex justify-between items-end mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold tracking-tight">Parsing HTML</h3>
-                            <p class="text-xs text-gray-500 font-mono italic">Full DOM Structure</p>
+                        <div id="loadingIndicator" class="hidden flex items-center justify-center space-x-2">
+                            <div class="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+                            <span class="text-xs font-mono text-cyan-400">Traitement en cours...</span>
                         </div>
-                        <span class="text-4xl font-mono text-cyan-400">150ms</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
-                    <p class="mt-4 text-[10px] text-cyan-500/50 uppercase font-mono tracking-widest">Inclus: Rendering & Metadata extraction</p>
-                </div>
 
-                <div class="flex items-center justify-center border border-dashed border-white/10 p-8 group cursor-pointer">
-                    <div class="text-center group-hover:scale-110 transition-transform">
-                        <p class="text-xs font-mono text-gray-500 mb-2">PRÊT POUR L'EXASCALE ?</p>
-                        <span class="text-cyan-400 font-bold border-b border-cyan-400 pb-1">COMMANDER UN TEST</span>
-                    </div>
+                        <div id="resultMessage" class="hidden p-4 rounded border text-sm font-mono">
+                            <!-- Result will be inserted here -->
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </section>
@@ -231,6 +234,70 @@
             iteration += 1/3;
           }, 30);
         };
+
+        // Form Processing
+        const form = document.getElementById('processingForm');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const resultMessage = document.getElementById('resultMessage');
+        const inputText = document.getElementById('inputText');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const text = inputText.value.trim();
+            const type = document.getElementById('processType').value;
+
+            if (!text) {
+                showResult('error', 'Veuillez entrer un texte');
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            resultMessage.classList.add('hidden');
+
+            try {
+                const response = await fetch(window.location.origin + '/api/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        type: type
+                    })
+                });
+
+                const data = await response.json();
+                loadingIndicator.classList.add('hidden');
+
+                if (data.status === 'success') {
+                    showResult('success', data.message);
+                    inputText.value = '';
+                } else {
+                    showResult('error', data.message);
+                }
+            } catch (error) {
+                loadingIndicator.classList.add('hidden');
+                showResult('error', 'Erreur de communication: ' + error.message);
+            }
+        });
+
+        function showResult(status, message) {
+            resultMessage.classList.remove('hidden');
+            resultMessage.className = 'p-4 rounded border text-sm font-mono ';
+            
+            if (status === 'success') {
+                resultMessage.classList.add('border-green-500/50', 'bg-green-500/10', 'text-green-400');
+                resultMessage.innerHTML = '✓ ' + message;
+            } else {
+                resultMessage.classList.add('border-red-500/50', 'bg-red-500/10', 'text-red-400');
+                resultMessage.innerHTML = '✗ ' + message;
+            }
+
+            setTimeout(() => {
+                resultMessage.classList.add('hidden');
+            }, 5000);
+        }
     </script>
 </body>
 </html>

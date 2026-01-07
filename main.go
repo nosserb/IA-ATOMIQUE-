@@ -2,8 +2,11 @@ package main
 
 import (
 	"IA-ATOMIQUE/database"
+	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"strings"
 	"time"
@@ -236,13 +239,79 @@ func afficherAide() {
 `)
 }
 
+// API Response structure
+type APIResponse struct {
+	Status  string `json:"status"`
+	Message string `json:"message"`
+	Result  string `json:"result"`
+}
+
+// ProcessRequest handles API requests for text processing
+func ProcessRequest(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	if r.Method != "POST" {
+		json.NewEncoder(w).Encode(APIResponse{
+			Status:  "error",
+			Message: "Method not allowed",
+			Result:  "",
+		})
+		return
+	}
+
+	var req struct {
+		Text string `json:"text"`
+		Type string `json:"type"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(APIResponse{
+			Status:  "error",
+			Message: "Invalid request",
+			Result:  "",
+		})
+		return
+	}
+
+	if req.Text == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(APIResponse{
+			Status:  "error",
+			Message: "Empty text",
+			Result:  "",
+		})
+		return
+	}
+
+	// Process the text
+	TraiterTexte(req.Text, "API request")
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(APIResponse{
+		Status:  "success",
+		Message: "Text processed successfully",
+		Result:  "Analysis complete",
+	})
+}
+
 func main() {
 	go AutoIntrospection()
 
 	if len(os.Args) < 2 {
-		fmt.Println("[IA-ATOMIQUE v4.1] Interface Interactive")
+		fmt.Println("[IA-ATOMIQUE v4.1] Interface Interactive + Web Server")
 		fmt.Println("Compréhension + Apprentissage + Résumé")
-		InteractionInteractive()
+
+		// Lancer le serveur web
+		StartWebServer()
 		return
 	}
 
@@ -271,6 +340,12 @@ func main() {
 	case "interactive", "inter":
 		InteractionInteractive()
 
+	case "web":
+		fmt.Println("[IA-ATOMIQUE v4.1] Web Server Mode")
+		fmt.Println("API disponible sur http://localhost:8080")
+		StartWebServer()
+		select {} // Keep the server running
+
 	default:
 		// Mode hérité - traiter comme phrase simple
 		phrase := strings.Join(os.Args[1:], " ")
@@ -278,4 +353,27 @@ func main() {
 	}
 
 	database.RegenererNeurones()
+}
+
+// StartWebServer starts the HTTP server
+func StartWebServer() {
+	// Get port from environment variable or default to 8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.HandleFunc("/api/process", ProcessRequest)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "index.html")
+	})
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("."))))
+
+	addr := ":" + port
+	fmt.Println("Serveur lancé sur http://localhost:" + port)
+
+	err := http.ListenAndServe(addr, nil)
+	if err != nil {
+		log.Fatal("Erreur serveur:", err)
+	}
 }
