@@ -39,7 +39,7 @@ var Words map[string]Word
 var Categories map[int]string
 var Phrases []string
 var LexiqueTemp = make(map[string]*MotEnAttente)
-var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
+var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true, "en": true, "outre": true, "lors": true, "donc": true, "cependant": true, "ailleurs": true}
 var Blacklist = make(map[string]bool) // Mots interdits
 
 // Sécurité: Hash SHA256 du fichier blacklist.enc pour détection de déplacement/modification

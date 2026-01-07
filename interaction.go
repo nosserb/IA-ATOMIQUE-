@@ -662,18 +662,52 @@ func TraiterFichier(cheminFichier string) {
 			TraiterTexte(articleTexte, fmt.Sprintf("Article #%d", i+1))
 		}
 	} else {
-		// Pour les fichiers texte, aussi filtrer par langue
-		texteFiltré, languesDetectees := FiltrerParLangue(texte)
+		// Pour les fichiers texte: appliquer le pipeline complet avec traduction
+		// Découpage simple par points
+		phrases := strings.Split(texte, ".")
+		var phrasesObj []database.Phrase
+		languesDetectees := make(map[string][]string)
+
+		for i, p := range phrases {
+			p = strings.TrimSpace(p)
+			if len(p) < 5 {
+				continue
+			}
+
+			phrase := database.Phrase{
+				Contenu: p,
+				Mots:    strings.Fields(p),
+				Index:   i,
+			}
+			phrasesObj = append(phrasesObj, phrase)
+
+			// Détecter la langue avec la nouvelle fonction
+			langue := database.DetecterLanguePhrase(p)
+			languesDetectees[langue] = append(languesDetectees[langue], p)
+		}
+
+		// Afficher les langues détectées
 		if len(languesDetectees) > 0 {
 			fmt.Printf("🌐 Langues détectées dans le document:\n")
-			for lang, phrases := range languesDetectees {
-				if lang != "fr" {
+			for _, lang := range []string{"en", "de", "es", "fr", "unknown", "mixed"} {
+				if phrases, ok := languesDetectees[lang]; ok && len(phrases) > 0 {
 					fmt.Printf("  • %s: %d phrase(s)\n", strings.ToUpper(lang), len(phrases))
 				}
 			}
-			fmt.Printf("  • FR: %d phrase(s) conservées pour analyse\n\n", len(languesDetectees["fr"]))
+			fmt.Printf("\n")
 		}
-		TraiterTexte(texteFiltré, cheminFichier)
+
+		// Appliquer la traduction pour normaliser en FR
+		phrasesObj = database.DetecterEtTraduirePhrases(phrasesObj)
+
+		// Reconstruire le texte traduit
+		var texteTradu strings.Builder
+		for _, phrase := range phrasesObj {
+			texteTradu.WriteString(phrase.Contenu)
+			texteTradu.WriteString(". ")
+		}
+
+		TraiterTexte(texteTradu.String(), cheminFichier)
 	}
 }
 

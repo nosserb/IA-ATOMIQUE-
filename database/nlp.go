@@ -413,3 +413,359 @@ func StatistiquesBlocs(blocs []BlocTexte) map[string]interface{} {
 		"taille_moyenne": moyenneSize,
 	}
 }
+
+// ============================================================================
+// EXTRACTION DE PHRASES CLÉS - Pipeline d'énergie atomique
+// ============================================================================
+
+// Phrase représente une phrase avec son analyse énergétique et linguistique
+type Phrase struct {
+	Contenu          string
+	Mots             []string
+	Index            int
+	Energie          float64 // E(Pi) - énergie intrinsèque
+	EnergieTotal     float64 // Etotal(Pi) - énergie + cohérence + traduction
+	Score            float64 // Score de sélection final
+	MotsClés         []string
+	EstFiltrée       bool
+	Langue           string  // Langue détectée (FR, EN, DE, ES)
+	EstTraduire      bool    // True si la phrase a été traduite
+	FacteurConfiance float64 // γi ∈ [0.7, 1.0] - confiance traduction
+}
+
+// ExtrairePhrasesClés extrait les phrases les plus importantes d'un texte
+// Pipeline: Découpage → Traduction → Énergie → Cohérence → Filtrage → Fusion
+func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
+	// Étape 1: Découper en phrases
+	phrases := DécouperEnPhrases(texte)
+	if len(phrases) == 0 {
+		return []Phrase{}
+	}
+
+	// Étape 1.5: Détecter langue et traduire en FR si nécessaire
+	phrases = DetecterEtTraduirePhrases(phrases)
+
+	// Étape 2: Calculer l'énergie intrinsèque de chaque phrase
+	for i := range phrases {
+		phrases[i].Energie = CalculerEnergiePrhase(&phrases[i])
+	}
+
+	// Étape 3: Ajouter la cohérence inter-phrases
+	for i := range phrases {
+		phrases[i].EnergieTotal = AjouterCoherence(&phrases[i], phrases)
+	}
+
+	// Étape 4: Filtrer les phrases de faible énergie (seuil adaptatif)
+	// Accepter toutes les phrases avec au moins 2 mots pour test
+	phrasesFiltrées := []Phrase{}
+	for i := range phrases {
+		if len(phrases[i].Mots) >= 2 {
+			phrasesFiltrées = append(phrasesFiltrées, phrases[i])
+		}
+	}
+
+	// Si vide après filtrage, retourner au moins quelque chose
+	if len(phrasesFiltrées) == 0 {
+		return []Phrase{}
+	}
+
+	// Étape 5: Déterminer le nombre de phrases à conserver
+	// Toujours utiliser au minimum le ratio demandé
+	ratio := ratioConservation
+	if len(phrasesFiltrées) > 0 {
+		// Adapter le ratio si possible
+		ratioAdaptatif := CalculerRatioAdaptatif(phrasesFiltrées)
+		if ratioAdaptatif > ratioConservation {
+			ratio = ratioAdaptatif
+		}
+	}
+	nombreAConserver := int(float64(len(phrasesFiltrées)) * ratio)
+	if nombreAConserver < 1 && len(phrasesFiltrées) > 0 {
+		nombreAConserver = 1 // Conserver au minimum 1 phrase
+	}
+	if nombreAConserver > len(phrasesFiltrées) {
+		nombreAConserver = len(phrasesFiltrées)
+	}
+
+	// Étape 6: Trier par énergie et sélectionner les top phrases
+	sort.Slice(phrasesFiltrées, func(i, j int) bool {
+		return phrasesFiltrées[i].EnergieTotal > phrasesFiltrées[j].EnergieTotal
+	})
+
+	// Retourner dans l'ordre original pour préserver la cohérence textuelle
+	resultat := phrasesFiltrées[:nombreAConserver]
+	sort.Slice(resultat, func(i, j int) bool {
+		return resultat[i].Index < resultat[j].Index
+	})
+
+	return resultat
+}
+
+// DécouperEnPhrases divise un texte en phrases
+func DécouperEnPhrases(texte string) []Phrase {
+	var phrases []Phrase
+
+	// Découper par points, points-virgules, points d'exclamation
+	delimiteurs := []string{".", "!", "?"}
+	texte = strings.TrimSpace(texte)
+
+	// Découpage simple mais efficace
+	for _, delim := range delimiteurs {
+		parts := strings.Split(texte, delim)
+		texte = strings.Join(parts[:len(parts)-1], delim+"\n") // Garder le délimiteur
+		if len(parts) > 1 && strings.TrimSpace(parts[len(parts)-1]) != "" {
+			texte += delim + "\n" + strings.TrimSpace(parts[len(parts)-1])
+		}
+	}
+
+	// Découper par sauts de ligne
+	lignes := strings.Split(texte, "\n")
+	index := 0
+
+	for _, ligne := range lignes {
+		ligne = strings.TrimSpace(ligne)
+		if ligne == "" {
+			continue
+		}
+
+		mots := strings.Fields(ligne)
+		if len(mots) > 0 {
+			phrases = append(phrases, Phrase{
+				Contenu:  ligne,
+				Mots:     mots,
+				Index:    index,
+				MotsClés: ExtraireMotsClés(mots),
+			})
+			index++
+		}
+	}
+
+	return phrases
+}
+
+// CalculerEnergiePrhase calcule l'énergie intrinsèque E(Pi) d'une phrase
+// E(Pi) = Σ αk * f(wk) où αk dépend du rôle syntaxique
+func CalculerEnergiePrhase(phrase *Phrase) float64 {
+	if len(phrase.Mots) == 0 {
+		return 0.0
+	}
+
+	// Pénalité sévère pour les très courtes phrases (bruits de séparation)
+	if len(phrase.Mots) == 1 && len(phrase.Contenu) <= 3 {
+		return 0.0 // "." "/" "-" etc sont ignorées
+	}
+
+	if len(phrase.Mots) <= 2 && len(strings.FieldsFunc(phrase.Contenu, func(r rune) bool { return r == '.' || r == ',' })) == 0 {
+		return 0.1 // Très courtes phrases: pénalité sérieuse
+	}
+
+	energie := 0.0
+	motUtilsCount := 0
+
+	// Mots avec poids syntaxique
+	rolesLourds := map[int]float64{
+		0: 1.5, // Premier mot (sujet probable)
+		1: 1.3, // Deuxième mot (verbe probable)
+	}
+
+	for i, mot := range phrase.Mots {
+		// Ignorer les mots entièrement vides
+		if estMotVide(mot) {
+			continue
+		}
+
+		motUtilsCount++
+
+		// Score du mot: présent dans les mots-clés?
+		motScore := 0.6 // Score réduit (pas 0.5)
+		for _, motClé := range phrase.MotsClés {
+			if strings.EqualFold(mot, motClé) {
+				motScore = 1.0 // Boost si mot-clé
+				break
+			}
+		}
+
+		// Pondération selon position (rôle syntaxique approx)
+		alpha := 1.0
+		if poids, ok := rolesLourds[i]; ok {
+			alpha = poids
+		}
+
+		energie += alpha * motScore
+	}
+
+	// Si phrase entièrement composée de mots vides
+	if motUtilsCount == 0 {
+		return 0.0
+	}
+
+	// Normaliser par mots utiles seulement
+	return energie / float64(motUtilsCount)
+}
+
+// AjouterCoherence ajoute un terme d'influence inter-phrases avec facteur de confiance
+// Etotal(Pi) = E(Pi) * γi + β * Σ sim(Pi, Pj)
+// où γi ∈ [0.7, 1.0] est le facteur de confiance de traduction
+func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
+	const beta = 0.2 // Coefficient de propagation
+	coherence := 0.0
+
+	// Calculer la similarité avec les autres phrases
+	for j, autre := range toutesLesPhotrases {
+		if j == phrase.Index {
+			continue
+		}
+
+		// Similarité = nombre de mots-clés partagés
+		sim := CalculerSimilarite(phrase.MotsClés, autre.MotsClés)
+		coherence += sim
+	}
+
+	// Appliquer le facteur de confiance: γi (défaut 1.0 si pas traduite)
+	facteur := phrase.FacteurConfiance
+	if facteur == 0 {
+		facteur = 1.0 // Défaut: confiance totale si pas traduite
+	}
+
+	// Etotal(Pi) = E(Pi) * γi + β * Σ sim(Pi, Pj)
+	return phrase.Energie*facteur + beta*coherence
+}
+
+// CalculerSimilarite mesure la similarité entre deux ensembles de mots-clés
+func CalculerSimilarite(cles1, cles2 []string) float64 {
+	if len(cles1) == 0 || len(cles2) == 0 {
+		return 0.0
+	}
+
+	intersection := 0
+	for _, c1 := range cles1 {
+		for _, c2 := range cles2 {
+			if strings.EqualFold(c1, c2) {
+				intersection++
+				break
+			}
+		}
+	}
+
+	// Indice de Jaccard
+	union := len(cles1) + len(cles2) - intersection
+	if union == 0 {
+		return 0.0
+	}
+
+	return float64(intersection) / float64(union)
+}
+
+// CalculerSeuilFiltering détermine le seuil énergétique pour filtrer le bruit
+func CalculerSeuilFiltering(phrases []Phrase) float64 {
+	if len(phrases) == 0 {
+		return 0.0
+	}
+
+	// Seuil = moyenne - 0.5*écart-type (plus strict)
+	var sum, sumSq float64
+	for _, p := range phrases {
+		sum += p.Energie
+		sumSq += p.Energie * p.Energie
+	}
+
+	moyenne := sum / float64(len(phrases))
+	variance := (sumSq / float64(len(phrases))) - (moyenne * moyenne)
+	if variance < 0 {
+		variance = 0
+	}
+
+	ecartType := 0.0
+	if variance > 0 {
+		ecartType = 0.5 * (moyenne * 0.3) // Écart-type approximé
+	}
+
+	// Seuil = moyenne - 0.5*écart-type (élimine bruits)
+	seuil := moyenne - ecartType
+	if seuil < 0.15 {
+		seuil = 0.15 // Seuil minimum plus élevé
+	}
+
+	return seuil
+}
+
+// CalculerRatioAdaptatif ajuste le ratio de conservation selon la densité d'information
+func CalculerRatioAdaptatif(phrases []Phrase) float64 {
+	if len(phrases) == 0 {
+		return 0.3
+	}
+
+	// Densité d'énergie moyenne
+	var totalEnergie, countNonZero float64
+	for _, p := range phrases {
+		if p.EnergieTotal > 0.1 {
+			totalEnergie += p.EnergieTotal
+			countNonZero++
+		}
+	}
+
+	if countNonZero == 0 {
+		return 0.25
+	}
+
+	densité := totalEnergie / countNonZero
+
+	// Ratio adaptatif: plus l'énergie est élevée, plus on conserve
+	ratio := 0.2 + (densité * 0.15) // Entre 0.2 et 0.35
+	if ratio > 0.35 {
+		ratio = 0.35 // Maximum 35%
+	}
+
+	return ratio
+}
+
+// estMotVide vérifie si un mot est un mot vide (peu informatif)
+func estMotVide(mot string) bool {
+	motsVides := []string{
+		"le", "la", "les", "un", "une", "des",
+		"et", "ou", "mais", "donc", "car",
+		"de", "à", "en", "par", "pour", "avec",
+		"être", "avoir", "aller", "faire", "dire",
+		"que", "qui", "où", "quand", "comment",
+		"très", "plus", "moins", "bien", "mal",
+		"ce", "celui", "cela", "ça", "il", "elle", "on",
+	}
+
+	motLower := strings.ToLower(mot)
+	for _, vide := range motsVides {
+		if motLower == vide {
+			return true
+		}
+	}
+	return false
+}
+
+// RéécrireSimplifiée simplifie une phrase tout en conservant l'énergie
+// Retourne la phrase avec un score de lisibilité
+func RéécrireSimplifiée(phrase *Phrase) (string, float64) {
+	// Stratégie simple: garder les mots-clés et réorganiser
+	motsClesTrouves := []string{}
+	for _, mot := range phrase.Mots {
+		for _, cleé := range phrase.MotsClés {
+			if strings.EqualFold(mot, cleé) {
+				motsClesTrouves = append(motsClesTrouves, mot)
+				break
+			}
+		}
+	}
+
+	// Score de lisibilité: ratio mots-clés / longueur
+	lisibilité := float64(len(motsClesTrouves)) / float64(len(phrase.Mots))
+	if lisibilité > 1.0 {
+		lisibilité = 1.0
+	}
+
+	// Phrase simplifiée = mots-clés + connecteurs
+	phraseSimplifée := strings.Join(motsClesTrouves, " ")
+	if phraseSimplifée == "" {
+		phraseSimplifée = phrase.Contenu
+		lisibilité = 0.5
+	}
+
+	return phraseSimplifée, lisibilité
+}

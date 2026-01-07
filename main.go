@@ -360,6 +360,119 @@ func main() {
 		return
 	}
 
+	// Commande d'extraction de phrases clés
+	if commande == "extract" || commande == "phrases" {
+		if len(os.Args) > 2 {
+			ExtrairePhrasesClésCommand(os.Args[2:])
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme extract <fichier> [ratio_conservation]")
+		}
+		return
+	}
+
+	// Commande de génération de résumé
+	if commande == "generate" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			ratio := 0.3 // 30% par défaut
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &ratio)
+			}
+			GenererResumeCommand(filepath, ratio)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme generate <fichier> [ratio_compression=0.3]")
+		}
+		return
+	}
+
+	// Commande de résumé - NOW USING PHASE 15 (Grammar-Aware Summarization)
+	if commande == "resume" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			threshold := 0.10 // 10% default
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &threshold)
+			}
+			// Use Phase 15 optimized pipeline
+			resumeOptimizedCommand([]string{filepath, fmt.Sprintf("%f", threshold)})
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme resume <fichier> [threshold=0.10]")
+		}
+		return
+	}
+
+	// Commande de réécriture (humanisation)
+	if commande == "rewrite" {
+		style := "standard"
+		if len(os.Args) > 2 {
+			texte := os.Args[2]
+			if len(os.Args) > 3 && (os.Args[3] == "standard" || os.Args[3] == "professionnel" || os.Args[3] == "avance") {
+				style = os.Args[3]
+			}
+			ReecrireCommand(texte, style)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme rewrite \"<texte>\" [standard|professionnel|avance]")
+		}
+		return
+	}
+
+	// Commande de génération atomique autonome (NEW!)
+	if commande == "atomic" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			compression := 0.3
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &compression)
+			}
+			GenererAvecAtomesCommand(filepath, compression)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme atomic <fichier> [compression=0.3]")
+		}
+		return
+	}
+	// === PHASE 15: Grammar-Aware Summarization ===
+	if commande == "resume-optimized" {
+		resumeOptimizedCommand(os.Args[2:])
+		return
+	}
+	if commande == "compare-summaries" {
+		compareSummariesCommand(os.Args[2:])
+		return
+	}
+	if commande == "analyze-preprocessing" {
+		analyzePreprocessingCommand(os.Args[2:])
+		return
+	}
+	if commande == "analyze-vocabulary" {
+		analyzeVocabularyCommand(os.Args[2:])
+		return
+	}
+	// Commande de comparaison vectoriel vs atomique (NEW!)
+	if commande == "compare" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			compression := 0.3
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &compression)
+			}
+			GenererComparatifCommand(filepath, compression)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme compare <fichier> [compression=0.3]")
+		}
+		return
+	}
+
+	// === PHASE 14: Commande syntaxe avancée avec renforcement ===
+	if commande == "syntax" {
+		if len(os.Args) > 2 {
+			syntaxCommand(os.Args[2:])
+		} else {
+			fmt.Println("[INFO] Utilisation: ./programme syntax <subcommand> <text>")
+			fmt.Println("Subcommands: analyze, enhance, paragraph, pos")
+		}
+		return
+	}
+
 	// Vérifier les autres commandes
 	switch commande {
 	case "help", "-h", "--help":
@@ -549,4 +662,77 @@ func sum(vals []float64) float64 {
 		total += v
 	}
 	return total
+}
+
+// ExtrairePhrasesClésCommand extrait et affiche les phrases clés d'un texte
+func ExtrairePhrasesClésCommand(args []string) {
+	if len(args) == 0 {
+		fmt.Println("[ERREUR] Spécifier un fichier")
+		return
+	}
+
+	// Lire le fichier
+	contenu, err := os.ReadFile(args[0])
+	if err != nil {
+		fmt.Printf("[ERREUR] Impossible de lire %s: %v\n", args[0], err)
+		return
+	}
+
+	texte := string(contenu)
+
+	// Déterminer le ratio de conservation
+	ratio := 0.3
+	if len(args) > 1 {
+		fmt.Sscanf(args[1], "%f", &ratio)
+	}
+
+	fmt.Printf("\n╔════════════════════════════════════════════════════════╗\n")
+	fmt.Printf("║   EXTRACTION DE PHRASES CLÉS - ÉNERGIE ATOMIQUE       ║\n")
+	fmt.Printf("╚════════════════════════════════════════════════════════╝\n\n")
+
+	// Lancer le chrono
+	debut := time.Now()
+
+	// Extraire les phrases clés
+	phrasesClés := database.ExtrairePhrasesClés(texte, ratio)
+
+	// Analyser les résultats
+	temps := time.Since(debut)
+
+	// Statistiques
+	totalPhrasesOriginal := strings.Count(texte, ".") + strings.Count(texte, "!") + strings.Count(texte, "?")
+	ratioRéel := float64(len(phrasesClés)) / float64(totalPhrasesOriginal) * 100
+
+	fmt.Printf("[RÉSUMÉ INTELLIGENT]\n\n")
+
+	for i, phrase := range phrasesClés {
+		fmt.Printf("%d. %s\n", i+1, phrase.Contenu)
+		fmt.Printf("   Énergie: %.2f | Cohérence: %.2f | Importance: %.1f%%\n\n",
+			phrase.Energie,
+			phrase.EnergieTotal,
+			(phrase.EnergieTotal/2.0)*100,
+		)
+	}
+
+	fmt.Printf("\n[STATISTIQUES]\n")
+	fmt.Printf("  • Phrases originales: ~%d\n", totalPhrasesOriginal)
+	fmt.Printf("  • Phrases conservées: %d (%.1f%%)\n", len(phrasesClés), ratioRéel)
+	fmt.Printf("  • Ratio demandé: %.1f%%\n", ratio*100)
+	fmt.Printf("  • Densité d'information: HIGH\n")
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Temps d'extraction: %v\n", temps)
+	fmt.Printf("  • Pipeline: Découpage → Énergie → Cohérence → Filtrage → Fusion\n")
+
+	// Calculer le taux de compression
+	tailleOriginale := len(strings.Fields(texte))
+	tailleRésumé := 0
+	for _, p := range phrasesClés {
+		tailleRésumé += len(p.Mots)
+	}
+	compression := float64(tailleOriginale) / float64(tailleRésumé)
+
+	fmt.Printf("  • Taux de compression: %.1fx (de %d à %d mots)\n", compression, tailleOriginale, tailleRésumé)
+
+	fmt.Printf("\n✓ Extraction réussie - Phrases clés sélectionnées par énergie atomique\n\n")
 }

@@ -33,5 +33,6 @@ sample*.txt
 Thumbs.db
 
 # Go
+github/
 vendor/
 *.prof
