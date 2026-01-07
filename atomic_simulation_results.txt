@@ -1,11 +1,17 @@
 RÉSULTATS SIMULATION - IA ATOMIQUE
 ==================================
 
-Nombre d'atomes: 500
-Itérations: 50
+Nombre d'atomes: 1000
+Itérations: 200
 
 Cohérence par itération:
-Iter    0: 0.8449
+Iter    0: 0.8536
+Iter   50: 0.6816
+Iter  100: 0.6760
+Iter  150: 0.6741
 
 Activation par itération:
-Iter    0: 0.2591
+Iter    0: 0.2577
+Iter   50: 0.3140
+Iter  100: 0.3268
+Iter  150: 0.3278
