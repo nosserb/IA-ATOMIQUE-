@@ -29,6 +29,55 @@ const (
 
 type AxeSemantique string
 
+// ============= NOUVEAU: Système des 5 piliers scientifiques =============
+
+// FonctionScientifique catégorise chaque phrase selon sa fonction logique
+type FonctionScientifique int
+
+const (
+	CONTEXTE FonctionScientifique = iota
+	PROBLEME
+	OBJECTIF
+	APPROCHE
+	APPORT
+	NON_CLASSE
+)
+
+func (f FonctionScientifique) String() string {
+	switch f {
+	case CONTEXTE:
+		return "CONTEXTE"
+	case PROBLEME:
+		return "PROBLÈME"
+	case OBJECTIF:
+		return "OBJECTIF"
+	case APPROCHE:
+		return "APPROCHE"
+	case APPORT:
+		return "APPORT"
+	default:
+		return "NON_CLASSÉ"
+	}
+}
+
+// PhraseFonctionnelle représente une phrase avec sa fonction scientifique
+type PhraseFonctionnelle struct {
+	Texte    string
+	Fonction FonctionScientifique
+	Score    float64
+	Source   string // Phrase originale
+}
+
+// ResumePiliers structure le résumé selon les 5 piliers
+type ResumePiliers struct {
+	Contexte []PhraseFonctionnelle
+	Probleme []PhraseFonctionnelle
+	Objectif []PhraseFonctionnelle
+	Approche []PhraseFonctionnelle
+	Apport   []PhraseFonctionnelle
+	ScoreSc  float64 // Score de résumabilité scientifique
+}
+
 const (
 	EMOTIONNEL    AxeSemantique = "Émotionnel"
 	EDUCATIF      AxeSemantique = "Éducatif"
@@ -184,13 +233,280 @@ func IdentifierConceptsClésHTML(contenuHTML string) []string {
 	return result
 }
 
-// GenererResumeSynthetique crée un résumé unique en propres mots avec vérification (deux passes)
+// ClassifierPhraseScientiifque assigne une fonction scientifique à une phrase
+func ClassifierPhraseScientiifque(texte string, motsCles []string) FonctionScientifique {
+	texte = strings.ToLower(texte)
+
+	// Mots-clés pour CONTEXTE
+	contexteKeywords := []string{
+		"domaine", "champ", "sujet", "topic", "étude", "research",
+		"actuellement", "currently", "traditionnellement", "typically",
+		"existant", "existing", "connu", "known", "établi", "established",
+		"dans", "in the context", "au fil des années", "depuis",
+	}
+
+	// Mots-clés pour PROBLÈME
+	problemeKeywords := []string{
+		"cependant", "however", "mais", "but", "limite", "limitation",
+		"problème", "problem", "défi", "challenge", "insuffisant", "insufficient",
+		"nécessaire", "required", "manque", "lacking", "difficile", "difficult",
+		"obstacle", "bottleneck", "critique", "critical", "reste", "remains",
+		"n'", "ne ", "sans", "without", "absence", "lack",
+	}
+
+	// Mots-clés pour OBJECTIF
+	objectifKeywords := []string{
+		"proposer", "propose", "objectif", "objective", "but", "goal",
+		"visée", "aim", "intention", "intent", "cherche", "seek", "cherche",
+		"visant", "aiming", "pour", "to", "dans le but", "in order to",
+		"développer", "develop", "créer", "create", "concevoir", "design",
+		"améliorer", "improve", "résoudre", "solve", "aborder", "address",
+		"permettre", "enable", "faciliter", "facilitate", "établir", "establish",
+	}
+
+	// Mots-clés pour APPROCHE
+	approacheKeywords := []string{
+		"méthode", "method", "approche", "approach", "technique", "technique",
+		"utiliser", "use", "basé", "based", "fondé", "founded",
+		"architecture", "architecture", "algorithme", "algorithm", "processus", "process",
+		"étapes", "steps", "procédure", "procedure", "implémentation", "implementation",
+		"framework", "framework", "système", "system", "stratégie", "strategy",
+		"analyse", "analyze", "examiner", "examine", "évaluer", "evaluate",
+		"tester", "test", "valider", "validate", "mesurer", "measure",
+	}
+
+	// Mots-clés pour APPORT
+	apportKeywords := []string{
+		"résultat", "result", "contribution", "contribution", "apport", "contribution",
+		"nouveau", "novel", "original", "original", "unique", "unique",
+		"amélioration", "improvement", "avantage", "advantage", "bénéfice", "benefit",
+		"efficacité", "efficiency", "rapidité", "speed", "performance", "performance",
+		"permet", "enables", "facilite", "facilitates", "montre", "shows",
+		"démontre", "demonstrates", "prouves", "proves", "révèle", "reveals",
+		"supérieur", "superior", "meilleur", "better", "remarquable", "remarkable",
+		"significatif", "significant", "important", "important", "majeur", "major",
+	}
+
+	// Compter les correspondances
+	scoreContexte := float64(0)
+	scoreProbleme := float64(0)
+	scoreObjectif := float64(0)
+	scoreApproche := float64(0)
+	scoreApport := float64(0)
+
+	for _, keyword := range contexteKeywords {
+		if strings.Contains(texte, keyword) {
+			scoreContexte += 1.0
+		}
+	}
+
+	for _, keyword := range problemeKeywords {
+		if strings.Contains(texte, keyword) {
+			scoreProbleme += 1.5 // Poids plus élevé
+		}
+	}
+
+	for _, keyword := range objectifKeywords {
+		if strings.Contains(texte, keyword) {
+			scoreObjectif += 1.3
+		}
+	}
+
+	for _, keyword := range approacheKeywords {
+		if strings.Contains(texte, keyword) {
+			scoreApproche += 1.2
+		}
+	}
+
+	for _, keyword := range apportKeywords {
+		if strings.Contains(texte, keyword) {
+			scoreApport += 1.3
+		}
+	}
+
+	// Trouver le score maximal
+	maxScore := scoreContexte
+	fonction := CONTEXTE
+
+	if scoreProbleme > maxScore {
+		maxScore = scoreProbleme
+		fonction = PROBLEME
+	}
+	if scoreObjectif > maxScore {
+		maxScore = scoreObjectif
+		fonction = OBJECTIF
+	}
+	if scoreApproche > maxScore {
+		maxScore = scoreApproche
+		fonction = APPROCHE
+	}
+	if scoreApport > maxScore {
+		maxScore = scoreApport
+		fonction = APPORT
+	}
+
+	// Si aucun score significatif, retourner NON_CLASSE
+	if maxScore < 0.5 {
+		return NON_CLASSE
+	}
+
+	return fonction
+}
+
+// ClassifierPhrasesDuResume assigne une fonction à chaque phrase importante
+func ClassifierPhrasesDuResume(phrases []string, analyse AnalysePhrases) []PhraseFonctionnelle {
+	resultat := make([]PhraseFonctionnelle, 0, len(phrases))
+
+	for _, phrase := range phrases {
+		// Trouver la phrase source pour obtenir ses mots-clés
+		var motsCles []string
+		for _, p := range analyse.Phrases {
+			if strings.Contains(p.Texte, phrase) || strings.Contains(phrase, p.Texte) {
+				motsCles = p.MotsClés
+				break
+			}
+		}
+
+		fonction := ClassifierPhraseScientiifque(phrase, motsCles)
+		if fonction != NON_CLASSE {
+			resultat = append(resultat, PhraseFonctionnelle{
+				Texte:    phrase,
+				Fonction: fonction,
+				Score:    1.0,
+				Source:   phrase,
+			})
+		}
+	}
+
+	return resultat
+}
+
+// StructurerParPiliers organise les phrases selon les 5 piliers
+func StructurerParPiliers(phrasesClassifiees []PhraseFonctionnelle) ResumePiliers {
+	resume := ResumePiliers{
+		Contexte: make([]PhraseFonctionnelle, 0),
+		Probleme: make([]PhraseFonctionnelle, 0),
+		Objectif: make([]PhraseFonctionnelle, 0),
+		Approche: make([]PhraseFonctionnelle, 0),
+		Apport:   make([]PhraseFonctionnelle, 0),
+		ScoreSc:  0.0,
+	}
+
+	for _, pf := range phrasesClassifiees {
+		switch pf.Fonction {
+		case CONTEXTE:
+			resume.Contexte = append(resume.Contexte, pf)
+		case PROBLEME:
+			resume.Probleme = append(resume.Probleme, pf)
+		case OBJECTIF:
+			resume.Objectif = append(resume.Objectif, pf)
+		case APPROCHE:
+			resume.Approche = append(resume.Approche, pf)
+		case APPORT:
+			resume.Apport = append(resume.Apport, pf)
+		}
+	}
+
+	// Calculer le score de résumabilité scientifique
+	// Bonus si tous les 5 piliers sont présents
+	piliersPrésents := 0
+	if len(resume.Contexte) > 0 {
+		piliersPrésents++
+	}
+	if len(resume.Probleme) > 0 {
+		piliersPrésents++
+	}
+	if len(resume.Objectif) > 0 {
+		piliersPrésents++
+	}
+	if len(resume.Approche) > 0 {
+		piliersPrésents++
+	}
+	if len(resume.Apport) > 0 {
+		piliersPrésents++
+	}
+
+	resume.ScoreSc = float64(piliersPrésents) / 5.0 * 100.0
+
+	return resume
+}
+
+// FormaterResumePiliers génère le texte final structuré
+func FormaterResumePiliers(piliers ResumePiliers) string {
+	output := ""
+
+	output += fmt.Sprintf("╔════════════════════════════════════════════════════════════╗\n")
+	output += fmt.Sprintf("║  RÉSUMÉ SCIENTIFIQUE (%.1f%% complet)                       ║\n", piliers.ScoreSc)
+	output += fmt.Sprintf("╚════════════════════════════════════════════════════════════╝\n\n")
+
+	// CONTEXTE
+	if len(piliers.Contexte) > 0 {
+		output += fmt.Sprintf("[CONTEXTE]\n")
+		for i, pf := range piliers.Contexte {
+			if i >= 2 {
+				break
+			}
+			output += fmt.Sprintf("  • %s\n", pf.Texte)
+		}
+		output += "\n"
+	}
+
+	// PROBLÈME
+	if len(piliers.Probleme) > 0 {
+		output += fmt.Sprintf("[PROBLÈME IDENTIFIÉ]\n")
+		for i, pf := range piliers.Probleme {
+			if i >= 2 {
+				break
+			}
+			output += fmt.Sprintf("  • %s\n", pf.Texte)
+		}
+		output += "\n"
+	}
+
+	// OBJECTIF
+	if len(piliers.Objectif) > 0 {
+		output += fmt.Sprintf("[OBJECTIF / BUT]\n")
+		for i, pf := range piliers.Objectif {
+			if i >= 2 {
+				break
+			}
+			output += fmt.Sprintf("  • %s\n", pf.Texte)
+		}
+		output += "\n"
+	}
+
+	// APPROCHE
+	if len(piliers.Approche) > 0 {
+		output += fmt.Sprintf("[APPROCHE MÉTHODOLOGIQUE]\n")
+		for i, pf := range piliers.Approche {
+			if i >= 2 {
+				break
+			}
+			output += fmt.Sprintf("  • %s\n", pf.Texte)
+		}
+		output += "\n"
+	}
+
+	// APPORT
+	if len(piliers.Apport) > 0 {
+		output += fmt.Sprintf("[APPORT / RÉSULTATS]\n")
+		for i, pf := range piliers.Apport {
+			if i >= 2 {
+				break
+			}
+			output += fmt.Sprintf("  • %s\n", pf.Texte)
+		}
+		output += "\n"
+	}
+
+	return output
+}
 func GenererResumeSynthetique(analyse AnalysePhrases) string {
 	if len(analyse.Phrases) == 0 {
 		return "Aucun contenu à résumer."
 	}
 
-	// Trouver la catégorie dominante
+	// ÉTAPE 1: Extraire les phrases principales
 	var catMain int
 	var maxPhrases int
 	for catID, resume := range analyse.Resume {
@@ -204,22 +520,80 @@ func GenererResumeSynthetique(analyse AnalysePhrases) string {
 		return "Impossible de générer un résumé."
 	}
 
-	// PASSE 1: Récupérer les concepts et phrases principales
+	// Récupérer les phrases les plus importantes
 	phrasesPrincipales := extrairePhrasesImportantes(analyse, catMain)
+
+	// ÉTAPE 2: Classifier chaque phrase selon sa fonction scientifique
+	phrasesClassifiees := ClassifierPhrasesDuResume(phrasesPrincipales, analyse)
+
+	// ÉTAPE 3: Structurer selon les 5 piliers
+	piliers := StructurerParPiliers(phrasesClassifiees)
+
+	// ÉTAPE 4: Générer le résumé formaté
+	resumeStructure := FormaterResumePiliers(piliers)
+
+	// ÉTAPE 5: Ajouter un résumé narratif enrichi
 	motsCles := extraireMotsClesUniques(analyse)
+	resumeNarratif := genererNarratifPiliers(piliers, motsCles)
 
-	// COUCHE 1: Extraire l'idée dominante unique
-	ideeDominante := IdentifierIdeeDominante(phrasesPrincipales, motsCles)
+	return resumeStructure + "\n" + resumeNarratif
+}
 
-	// COUCHE 2 & 3: Analyser phrases avec type et axes sémantiques
-	phrasesAnalysees := AnalyserPhrasesAvancee(phrasesPrincipales)
+// genererNarratifPiliers crée un texte narratif cohérent à partir des piliers
+func genererNarratifPiliers(piliers ResumePiliers, motsCles []string) string {
+	output := ""
+	output += fmt.Sprintf("╔════════════════════════════════════════════════════════════╗\n")
+	output += fmt.Sprintf("║  RÉCIT SCIENTIFIQUE CONTINU                               ║\n")
+	output += fmt.Sprintf("╚════════════════════════════════════════════════════════════╝\n\n")
 
-	resumePasse1 := formulerResume(phrasesPrincipales, motsCles, catMain, len(analyse.Phrases))
+	// Construire un narratif fluide qui relie les piliers
+	phrases := make([]string, 0)
 
-	// PASSE 2: Enrichir et corriger le résumé pour plus de détails et cohérence
-	resumeFinale := enrichirResumeAvance(resumePasse1, phrasesPrincipales, motsCles, analyse, ideeDominante, phrasesAnalysees)
+	// 1. CONTEXTE seul
+	if len(piliers.Contexte) > 0 {
+		contexte := piliers.Contexte[0].Texte
+		contexte = strings.TrimSuffix(contexte, ".")
+		phrases = append(phrases, fmt.Sprintf("Le domaine considéré : %s.", strings.ToLower(contexte)))
+	}
 
-	return resumeFinale
+	// 2. PROBLÈME (indépendant)
+	if len(piliers.Probleme) > 0 {
+		probleme := piliers.Probleme[0].Texte
+		probleme = strings.TrimSuffix(probleme, ".")
+		phrases = append(phrases, fmt.Sprintf("Cependant, il existe une limitation fondamentale : %s.", strings.ToLower(probleme)))
+	}
+
+	// 3. OBJECTIF (ce qu'on veut faire)
+	if len(piliers.Objectif) > 0 {
+		objectif := piliers.Objectif[0].Texte
+		objectif = strings.TrimSuffix(objectif, ".")
+		phrases = append(phrases, fmt.Sprintf("Pour remédier à cette situation, ce travail vise à %s.", strings.ToLower(objectif)))
+	}
+
+	// 4. APPROCHE (comment on le fait)
+	if len(piliers.Approche) > 0 {
+		approche := piliers.Approche[0].Texte
+		approche = strings.TrimSuffix(approche, ".")
+		phrases = append(phrases, fmt.Sprintf("La stratégie employée consiste à : %s.", strings.ToLower(approche)))
+	}
+
+	// 5. APPORT (ce que ça change)
+	if len(piliers.Apport) > 0 {
+		apport := piliers.Apport[0].Texte
+		apport = strings.TrimSuffix(apport, ".")
+		phrases = append(phrases, fmt.Sprintf("Il en résultat que : %s.", strings.ToLower(apport)))
+	}
+
+	for _, p := range phrases {
+		output += p + "\n"
+	}
+
+	return output
+}
+
+// contexts est une fonction utilitaire
+func contexts(s string) string {
+	return strings.TrimPrefix(strings.TrimPrefix(s, "Le "), "La ")
 }
 
 // extrairePhrasesImportantes récupère les phrases les plus pertinentes (OPTIMISÉ: QuickSort + limite adaptative)
