@@ -151,8 +151,6 @@ func ResumerTexte(texte string, ratio float64) string {
 	}
 	phrases = phrasesNonVides
 
-	fmt.Printf("[DEBUG ResumerTexte] Mots trouvés: %d, Ratio: %.2f\n", len(phrases), ratio)
-
 	if len(phrases) == 0 {
 		return texte
 	}
@@ -213,6 +211,87 @@ func ResumerTexte(texte string, ratio float64) string {
 	return strings.Join(resume, " ")
 }
 
+// ============================================================================
+// PHASE X+4: PARAPHRASE ENCYCLOPÉDIQUE
+// ============================================================================
+// Reformule un résumé atomisé en phrases encyclopédiques cohérentes
+
+// GenerateEncyclopedicSummary reformule des mots clés en phrases lisibles
+func GenerateEncyclopedicSummary(mots []string) string {
+	if len(mots) == 0 {
+		return ""
+	}
+
+	// Grouper les mots par segments de 5-7 mots pour former des phrases
+	const segmentSize = 6
+	var phrases []string
+
+	for i := 0; i < len(mots); i += segmentSize {
+		end := i + segmentSize
+		if end > len(mots) {
+			end = len(mots)
+		}
+
+		segment := mots[i:end]
+		phrase := reformulerSegment(segment)
+		if phrase != "" {
+			phrases = append(phrases, phrase)
+		}
+	}
+
+	// Joindre les phrases avec des points
+	return strings.Join(phrases, ". ") + "."
+}
+
+// reformulerSegment transforme un segment de mots en phrase grammaticale
+func reformulerSegment(mots []string) string {
+	if len(mots) == 0 {
+		return ""
+	}
+
+	// Structures de phrase encyclopédique:
+	// "Le sujet est...", "Il comprend...", "Ses éléments..."
+
+	texte := strings.Join(mots, " ")
+
+	// Heuristiques pour créer des phrases grammaticales
+	switch {
+	// Pattern: determinant + nom + verbe
+	case len(mots) >= 3 && (mots[0] == "la" || mots[0] == "le" || mots[0] == "les"):
+		// Garder comme est: "La Mésange huppée est..."
+		return capitalizeFirst(texte)
+
+	// Pattern: nombre + substantif
+	case isNumber(mots[0]):
+		return capitalizeFirst(texte)
+
+	// Pattern: adjectif/description
+	default:
+		// Ajouter un déterminant simple
+		return capitalizeFirst("C'est " + texte)
+	}
+}
+
+// capitalizeFirst met en majuscule le premier caractère
+func capitalizeFirst(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+	runes := []rune(s)
+	runes[0] = unicode.ToUpper(runes[0])
+	return string(runes)
+}
+
+// isNumber vérifie si une chaîne est un nombre
+func isNumber(s string) bool {
+	for _, c := range s {
+		if !unicode.IsDigit(c) && c != ',' {
+			return false
+		}
+	}
+	return len(s) > 0
+}
+
 // SplitterParPhrases divise un texte en phrases
 func SplitterParPhrases(texte string) []string {
 	// Splitter par . ! ?
@@ -234,8 +313,6 @@ func SplitterParPhrases(texte string) []string {
 	if len(phrase) > 10 {
 		phrases = append(phrases, strings.TrimSpace(phrase))
 	}
-
-	fmt.Printf("[DEBUG SplitterParPhrases] Phrases splitées: %d\n", len(phrases))
 
 	return phrases
 }
