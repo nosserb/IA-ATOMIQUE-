@@ -147,182 +147,261 @@ func afficherAide() {
 ║    Analyse de texte, Apprentissage & Génération de résumés   ║
 ╚═══════════════════════════════════════════════════════════════╝
 
-📖 UTILISATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 COMMANDES PRINCIPALES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  1. MODE INTERACTIF (par défaut)
-     $ ./programme
-     ou
-     $ ./programme interactive
+1. MODE INTERACTIF (par défaut)
+   $ ./programme
+   $ ./programme interactive
+   → Lance l'interface interactive avec menu
 
-  2. ANALYSER UN FICHIER
-     $ ./programme file <chemin_fichier>
-     
-     Exemples:
-       $ ./programme file wikipedia.txt
-       $ ./programme file document.md
-       $ ./programme file /home/user/texte.txt
+2. ANALYSER UN FICHIER
+   $ ./programme file <chemin_fichier>
+   
+   Exemples:
+     $ ./programme file document.txt
+     $ ./programme file /path/to/file.md
 
-  3. HUMANISER UN TEXTE
-     $ ./programme humanize [file|-s|-p|-a] <chemin_fichier>
-     
-     Styles disponibles:
-       -s : Standard (naturel et fluide) - défaut
-       -p : Professionnel (formel et technique)
-       -a : Avancé (analyse de style + paraphrase intelligente)
-     
-     Exemples (tous les formats sont supportés):
-       $ ./programme humanize file document.txt
-       $ ./programme humanize file -s document.txt
-       $ ./programme humanize file -p document.txt
-       $ ./programme humanize file -a document.txt
-       $ ./programme humanize -s file document.txt
-       $ ./programme humanize -p file document.txt
-       $ ./programme humanize -a file document.txt
-     
-     Résultat: Crée un fichier "_humanized.txt", "_humanized_prof.txt" ou "_humanized_avance.txt"
+3. ANALYSER UN TEXTE DIRECT
+   $ ./programme text <votre texte>
+   
+   Exemples:
+     $ ./programme text "L'IA est l'avenir"
+     $ ./programme text "Bonjour le monde"
 
-  4. ANALYSER UN TEXTE DIRECT
-     $ ./programme text <votre texte>
-     
-     Exemples:
-       $ ./programme text "L'IA est la technologie du futur"
-       $ ./programme text "Einstein a découvert la relativité en 1905"
+4. MODE HÉRITÉ (texte simple)
+   $ ./programme <votre texte>
+   
+   Exemples:
+     $ ./programme bonjour
+     $ ./programme l'informatique progresse
 
-  5. MODE CLASSIQUE (hérité)
-     $ ./programme <texte quelconque>
-     
-     Exemples:
-       $ ./programme bonjour
-       $ ./programme l'informatique progresse rapidement
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 RÉSUMÉS & GÉNÉRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-═══════════════════════════════════════════════════════════════
+1. RÉSUMÉ OPTIMISÉ (Phase 15 - Grammar-Aware)
+   $ ./programme resume <fichier> [threshold=0.10]
+   
+   Exemples:
+     $ ./programme resume document.txt         (strict, 10%)
+     $ ./programme resume document.txt 0.3     (normal, 30%)
+     $ ./programme resume document.txt 0.5     (détaillé, 50%)
+   
+   → Utilise la technologie T.R.A. avec analyse grammaticale
 
-⚙️  FONCTIONNALITÉS:
+2. GÉNÉRATION DE RÉSUMÉ (simple)
+   $ ./programme generate <fichier> [ratio=0.3]
+   
+   Exemples:
+     $ ./programme generate document.txt
+     $ ./programme generate document.txt 0.5
+   
+   → Génère un résumé par extraction vectorielle
 
-  ✓ Analyse phrase par phrase
-  ✓ Classification en 6 catégories:
-    - TECH: Technologie, informatique, numérique
-    - HISTOIRE: Politique, histoire, événements
-    - BUSINESS: Commerce, économie, affaires
-    - ALIMENTATION: Nutrition, gastronomie
-    - SANTE: Santé, médecine, bien-être
-    - VERBE: Détection d'actions (verbes principaux)
+3. EXTRACTION DES PHRASES CLÉS
+   $ ./programme extract <fichier> [ratio=0.3]
+   
+   Exemples:
+     $ ./programme extract document.txt
+     $ ./programme extract document.txt 0.5
+   
+   → Identifie et extrait les phrases les plus importantes
 
-  ✓ Détection de la structure grammaticale
-  ✓ Génération de résumés synthétiques
-  ✓ Système de modération (blacklist chiffrée AES-256)
-  ✓ Apprentissage dynamique des mots
-  ✓ Humanisation de texte
-    - Améliore la fluidité des phrases
-    - Remplace les formulations maladroites
-    - Ajoute des connecteurs naturels
-    - Optimise la structure et la longueur
+4. GÉNÉRATION AVEC ATOMES
+   $ ./programme atomic <fichier> [compression=0.3]
+   
+   Exemples:
+     $ ./programme atomic document.txt
+     $ ./programme atomic document.txt 0.5
+   
+   → Utilise le réseau atomique autonome pour générer
 
-═══════════════════════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✍️  HUMANISATION & RÉÉCRITURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📊 SORTIE STANDARD:
+RÉÉCRIRE UN TEXTE
+$ ./programme rewrite "<texte>" [style]
 
-  [STATISTIQUES GLOBALES]
-    • Phrases analysées
-    • Catégories détectées
-    • Énergie totale
-    • Confiance moyenne
+Styles disponibles:
+  - standard    : Naturel et fluide (par défaut)
+  - professionnel : Formel et technique
+  - avance      : Analyse de style + paraphrase intelligente
 
-  [DISTRIBUTION]
-    • Répartition en pourcentages
-    • Graphiques visuels
+Exemples:
+  $ ./programme rewrite "C'est pas bon"
+  $ ./programme rewrite "C'est pas bon" standard
+  $ ./programme rewrite "C'est pas bon" professionnel
+  $ ./programme rewrite "C'est pas bon" avance
 
-  [ANALYSE PAR PHRASE]
-    • Catégorie détectée
-    • Mots clés identifiés
-    • Verbes principaux
-    • Résumé synthétique
+HUMANISER UN FICHIER
+$ ./programme humanize file <chemin> [-s|-p|-a]
 
-═══════════════════════════════════════════════════════════════
+Exemples:
+  $ ./programme humanize file document.txt
+  $ ./programme humanize file document.txt -s
+  $ ./programme humanize file document.txt -p
+  $ ./programme humanize file document.txt -a
 
-💡 CONSEILS D'UTILISATION:
+Résultats: _humanized.txt, _humanized_prof.txt, _humanized_avance.txt
 
-  • Pour les meilleurs résultats, utilisez des textes français
-  • Les fichiers volumineux seront traités progressivement
-  • La modération empêche l'apprentissage de contenu offensant
-  • Les neurones se régénèrent automatiquement après chaque exécution
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔬 ANALYSE AVANCÉE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-═══════════════════════════════════════════════════════════════
+RÉSUMÉ OPTIMISÉ AVANCÉ
+$ ./programme resume-optimized <fichier> [threshold=0.10]
 
-❓ AIDE:
-  $ ./programme help
-  ou
-  $ ./programme -h
-  ou
-  $ ./programme --help
+Exemples:
+  $ ./programme resume-optimized document.txt
+  $ ./programme resume-optimized document.txt 0.3
 
-═══════════════════════════════════════════════════════════════
+COMPARER LES APPROCHES DE RÉSUMÉ
+$ ./programme compare-summaries <fichier>
 
-🧪 SIMULATION RÉSEAU ATOMIQUE (T.R.A.):
+Exemples:
+  $ ./programme compare-summaries document.txt
 
-  1. LANCER UNE SIMULATION ATOMIQUE
-     $ ./programme simulate <itérations> [nombre_atomes]
-     
-     Exemples:
-       $ ./programme simulate 100           (100 itérations, 500 atomes)
-       $ ./programme simulate 500 1000      (500 itérations, 1000 atomes)
-       $ ./programme simulate 1000 2000     (1000 itérations, 2000 atomes)
-     
-     Affiche:
-       ✓ Cohérence du réseau (initiale/finale/moyenne)
-       ✓ Activation moyenne des atomes
-       ✓ Consommation énergétique
-       ✓ Système de freeze (atomes en hibernation)
-       ✓ Comportements émergents
-       ✓ Performance (itérations/seconde)
+→ Compare vectoriel vs atomique vs grammatical
 
-  2. STATISTIQUES RÉSEAU
-     $ ./programme network-stats
-     
-     Affiche les métriques détaillées du dernier réseau simulé
+ANALYSER LE PRÉTRAITEMENT
+$ ./programme analyze-preprocessing <fichier>
 
-  3. BENCHMARK DE PERFORMANCE
-     $ ./programme benchmark
-     
-     Teste les performances avec différentes tailles de réseau
+Exemples:
+  $ ./programme analyze-preprocessing document.txt
 
-═══════════════════════════════════════════════════════════════
+→ Détail du nettoyage, tokenization, normalisation
 
-⚡ DÉCOUPAGE ULTRA-RAPIDE O(n):
+ANALYSER LE VOCABULAIRE
+$ ./programme analyze-vocabulary <fichier>
 
-  1. TESTER LE DÉCOUPAGE RAPIDE
-     $ ./programme split <fichier> [mots_par_bloc]
-     
-     Exemples:
-       $ ./programme split document.txt           (blocs de 100 mots)
-       $ ./programme split document.txt 50        (blocs de 50 mots)
-       $ ./programme split document.txt 200       (blocs de 200 mots)
-     
-     Affiche:
-       ✓ Nombre de blocs générés
-       ✓ Statistiques (mots, taille min/max)
-       ✓ Confiance moyenne
-       ✓ Vitesse (mots/seconde)
-     
-     Performance: O(n) - Instantané même pour 50+ MB de texte
-     Exemple: 57 000 mots en 27ms (2,1M mots/sec)
+Exemples:
+  $ ./programme analyze-vocabulary document.txt
 
-═══════════════════════════════════════════════════════════════
+→ Statistiques sur les mots, fréquences, catégories
 
-⚛️  TECHNOLOGIE DE RÉSONANCE ATOMIQUE (T.R.A.):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧪 RÉSEAU ATOMIQUE (T.R.A. - Atomic Resonance Technology)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  • Réseau décentralisé asynchrone
-  • Chaque atome opère indépendamment
-  • Résonance entre atomes voisins
-  • Dynamique adaptative des poids (apprentissage)
-  • Système de freeze pour sobriété énergétique
-  • Émergence de comportements globaux
+LANCER UNE SIMULATION
+$ ./programme atomic simulate <itérations> [atomes=500]
 
-  Équations principales:
-    - Résonance: R(si,sj) = exp(-||si-sj||²/2σ²)
-    - État: si(t+1) = si(t) + α·Σ(wij·Rij) + β·(Ri+pi)
-    - Poids: dwij/dt = γ·cohérence(si,sj) - δ·wij
-    - Freeze: Alocal = wa|Δa| + wc|Δc| + wR·R + wE|ΔE|
+Exemples:
+  $ ./programme atomic simulate 100
+  $ ./programme atomic simulate 500 1000
+  $ ./programme atomic simulate 1000 2000
+
+Métriques affichées:
+  ✓ Cohérence initiale/finale/moyenne
+  ✓ Activation moyenne des atomes
+  ✓ Consommation énergétique
+  ✓ Freeze system (hibernation)
+  ✓ Comportements émergents
+  ✓ Performance (iter/sec)
+
+STATISTIQUES RÉSEAU
+$ ./programme atomic network-stats
+
+→ Distribution d'énergie, atomes actifs, métriques globales
+
+BENCHMARK DES ATOMES
+$ ./programme atomic benchmark <itérations> [atomes]
+
+→ Performance, latence, throughput
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 FONCTIONNALITÉS D'ANALYSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Analyse phrase par phrase
+✓ Classification en 6 catégories:
+  - TECH       : Technologie, informatique, numérique
+  - HISTOIRE   : Politique, histoire, événements
+  - BUSINESS   : Commerce, économie, affaires
+  - ALIMENTATION: Nutrition, gastronomie
+  - SANTE      : Santé, médecine, bien-être
+  - VERBE      : Détection d'actions (verbes)
+
+✓ Structure grammaticale (SVC - Subject-Verb-Complement)
+✓ Résumés avec 5 piliers scientifiques:
+  - CONTEXTE : De quoi parle-t-on?
+  - PROBLÈME : Pourquoi c'est insuffisant?
+  - OBJECTIF : Qu'essaie-t-on de faire?
+  - APPROCHE : Comment c'est fait?
+  - APPORT   : Pourquoi c'est nouveau?
+
+✓ Modération (blacklist AES-256 chiffrée)
+✓ Apprentissage dynamique
+✓ Humanisation intelligente
+✓ Réseau de neurones (1000 neurones × 50+ catégories)
+✓ Réseau atomique autonome (T.R.A.)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️  DÉCOUPAGE ULTRA-RAPIDE O(n)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TESTER LE DÉCOUPAGE RAPIDE
+$ ./programme split <fichier> [mots_par_bloc=100]
+
+Exemples:
+  $ ./programme split document.txt
+  $ ./programme split document.txt 50
+  $ ./programme split document.txt 200
+
+Affiche:
+  ✓ Nombre de blocs générés
+  ✓ Statistiques (mots, taille min/max)
+  ✓ Confiance moyenne
+  ✓ Vitesse (mots/seconde)
+
+Performance: O(n) - Instantané même pour 50+ MB de texte
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 CONSEILS D'UTILISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Meilleurs résultats avec du texte français
+• Les fichiers volumineux sont traités progressivement
+• La modération empêche l'apprentissage de contenu offensant
+• Les neurones se régénèrent automatiquement
+• Les résumés scientifiques recherchent 100% de complétude
+
+EXEMPLES RAPIDES:
+  $ ./programme file document.txt
+  $ ./programme resume document.txt 0.1
+  $ ./programme text "Votre texte ici"
+  $ ./programme rewrite "C'est pas bon" professionnel
+  $ ./programme atomic simulate 100
+  $ ./programme compare-summaries document.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚛️  TECHNOLOGIE DE RÉSONANCE ATOMIQUE (T.R.A.)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Réseau décentralisé asynchrone
+• Chaque atome opère indépendamment
+• Résonance entre atomes voisins
+• Dynamique adaptative des poids (apprentissage)
+• Système de freeze pour sobriété énergétique
+• Émergence de comportements globaux
+
+Paramètres principaux:
+  α (coupling)      : Force d'interaction entre atomes
+  β (local rules)   : Poids des règles locales
+  γ (reinforcement) : Renforcement des poids
+  δ (decay)         : Décroissance des poids
+  σ (resonance)     : Sensibilité de résonance
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+❓ HELP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+$ ./programme help
+$ ./programme -h
+$ ./programme --help
 
 ═══════════════════════════════════════════════════════════════
 `)
