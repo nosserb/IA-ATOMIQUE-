@@ -218,25 +218,28 @@ func DetectTextType(text string) TextType {
 }
 
 // GetCompressionForType retourne la compression recommandée selon le type
-func GetCompressionForType(textType TextType, userCompression float64) float64 {
+// Respecte toujours le choix de l'utilisateur
+func GetCompressionForType(textType TextType, userCompression float64) (float64, string) {
+	var recommendation string
+
 	switch textType {
 	case ENCYCLOPEDIC:
-		// Pour encyclopédique, limiter la compression (perte d'infos trop élevée)
+		// Pour encyclopédique, recommander limite
 		if userCompression > 0.6 {
-			return 0.6
+			recommendation = fmt.Sprintf("Texte encyclopédique: compression recommandée ≤ 0.6 (vous avez choisi %.1f)", userCompression)
 		}
-		return userCompression
+		return userCompression, recommendation
 	case NARRATIVE:
-		// Pour narratif, compression modérée
-		return userCompression
+		// Pour narratif, pas de restriction
+		return userCompression, ""
 	case CONCEPTUAL:
-		// Pour conceptuel, compression plus agressive possible
+		// Pour conceptuel, compression agressive possible
 		if userCompression < 0.8 {
-			return 0.8
+			recommendation = fmt.Sprintf("Texte conceptuel: compression recommandée ≥ 0.8 (vous avez choisi %.1f)", userCompression)
 		}
-		return userCompression
+		return userCompression, recommendation
 	default:
-		return userCompression
+		return userCompression, ""
 	}
 }
 
@@ -266,12 +269,11 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	result.TextType = textType
 	result.SkipAbstraction = ShouldSkipAbstractionForType(textType)
 
-	// Adapter la compression selon le type
-	adjustedThreshold := GetCompressionForType(textType, threshold)
-	if adjustedThreshold != threshold {
-		fmt.Printf("  ℹ️  Type: %s (compression ajustée %.2f → %.2f)\n", textType.String(), threshold, adjustedThreshold)
-	} else {
-		fmt.Printf("  ℹ️  Type: %s\n", textType.String())
+	// Récupérer la recommendation (mais ne pas forcer la compression)
+	_, recommendation := GetCompressionForType(textType, threshold)
+	fmt.Printf("  ℹ️  Type: %s (compression: %.2f)\n", textType.String(), threshold)
+	if recommendation != "" {
+		fmt.Printf("  💡 %s\n", recommendation)
 	}
 	if result.SkipAbstraction {
 		fmt.Printf("  ⚠️  Phase X+1 désactivée pour ce type\n")
@@ -287,7 +289,7 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 
 	// === ÉTAPE 2: Résumé de base (Phase 13+++) ===
 	fmt.Println("\n[PHASE 15] Étape 2: Résumé atomique (Phase 13+++)...")
-	baseSummary := database.ResumerTexte(result.PreprocessedText, adjustedThreshold)
+	baseSummary := database.ResumerTexte(result.PreprocessedText, threshold)
 	result.BaseSummary = baseSummary
 	fmt.Printf("  ✓ Résumé généré: %d caractères\n", len(baseSummary))
 
