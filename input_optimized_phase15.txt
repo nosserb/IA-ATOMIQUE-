@@ -20,19 +20,19 @@ Abstraction:       APPLIED
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
 Original Length:   736300 chars
-Summary Length:    446 chars
+Summary Length:    447 chars
 Compression:       99.9%
 Variants Created:  5
-Processing Time:   645 ms
+Processing Time:   643 ms
 
 💾 SYSTEM RESOURCES:
 ────────────────────────────────────────────────────────────
-RAM Used:          4.0 MB / 132.0 MB (3.3%)
+RAM Used:          7.0 MB / 132.0 MB (5.9%)
 Go Routines:       3
-Memory Alloc:      4.3 MB
+Memory Alloc:      7.8 MB
 CPU Usage:         0.70%
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-La pauvreté structure les comportements de survie, car le système oppressif rend invisible sa propre violence; les systèmes institutionnels reproduisent les discriminations. Le système social exploite la vulnérabilité des plus faibles, l'abnégation est exigée de ceux qui n'ont rien à donner; la brutalité systémique se cache sous l'apparence de normalité. Cette logique révèle les rôles assignés figent les trajectoires sociales.
+Le système social exploite la vulnérabilité des plus faibles, car qui rend l'abnégation structurelle plutôt qu'accidentelle; la brutalité systémique se cache sous l'apparence de normalité. Les rôles assignés figent les trajectoires sociales, la pauvreté structure les comportements de survie; le système oppressif rend invisible sa propre violence. Cette logique révèle les systèmes institutionnels reproduisent les discriminations.
 
