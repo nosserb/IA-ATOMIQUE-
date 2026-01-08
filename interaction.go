@@ -800,16 +800,18 @@ func TraiterTexte(texte string, source string) {
 	fmt.Printf("Présence de thèmes          : %.1f%%\n", scoreAbstraction.PresenceThemes)
 	fmt.Printf("\n✨ SCORE GLOBAL D'ABSTRACTION: %.1f%%\n\n", scoreAbstraction.ScoreGlobal)
 
-	// Recommandations
-	if scoreAbstraction.ScoreGlobal < 50 {
-		fmt.Printf("⚠️  ALERTE: Résumé trop concret (citations brutes, pas assez d'abstraction)\n")
-		fmt.Printf("   Recommandation: Augmenter les concepts abstraits et éliminer les citations\n\n")
-	} else if scoreAbstraction.ScoreGlobal < 75 {
-		fmt.Printf("🟡 BON: Niveau d'abstraction acceptable mais perfectible\n")
-		fmt.Printf("   → Ajouter plus de concepts généralisants\n")
-		fmt.Printf("   → Utiliser des verbes d'abstraction (révéler, incarner, montrer)\n\n")
+	// ===== PHASE X+1: APPLIQUER L'ABSTRACTION FORCÉE =====
+	if scoreAbstraction.ScoreGlobal < 60 {
+		fmt.Printf("%s\n", database.AppliquerAbstractionForcee(resumeSynthetique, scoreAbstraction.ScoreGlobal, analyseSemantique))
 	} else {
-		fmt.Printf("✅ EXCELLENT: Résumé bien abstrait et conceptuel\n\n")
+		// Recommandations seulement (pas de réécriture forcée)
+		if scoreAbstraction.ScoreGlobal < 75 {
+			fmt.Printf("🟡 BON: Niveau d'abstraction acceptable mais perfectible\n")
+			fmt.Printf("   → Ajouter plus de concepts généralisants\n")
+			fmt.Printf("   → Utiliser des verbes d'abstraction (révéler, incarner, montrer)\n\n")
+		} else {
+			fmt.Printf("✅ EXCELLENT: Résumé bien abstrait et conceptuel\n\n")
+		}
 	}
 }
 
