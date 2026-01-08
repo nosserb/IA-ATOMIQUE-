@@ -6,20 +6,25 @@
 📊 METRICS:
 ────────────────────────────────────────────────────────────
 Grammar Score:     82.4%
-Style Score:       68.1%
-Coherence Score:   64.3%
-Lexical Richness:  68.1%
-Improvement:       +39.4%
+Style Score:       68.5%
+Coherence Score:   35.7%
+Lexical Richness:  68.5%
+Improvement:       +30.1%
 
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
 Original Length:   695581 chars
-Summary Length:    477 chars
+Summary Length:    439 chars
 Compression:       99.9%
 Variants Created:  5
-Processing Time:   1195 ms
+Processing Time:   1137 ms
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-L'indigence impose des sacrifices inévitables, dans ce cadre, la domination s'exerce par l'internationalisation des normes de plus l'inégalité n'est pas accidentelle mais programmée. en conséquence le profit se construit sur la précarité d'autrui en outre le renoncement forcé est une forme de violence silencieuse. dès lors la maltraitance institutionnelle est la forme moderne de la servitude. révélant ainsi, les rôles assignés figent les trajectoires sociales.
+L'inégalité n'est pas accidentelle mais programmée, car le profit se construit sur la précarité d'autrui.
+Alors le renoncement forcé est une forme de violence silencieuse.
+Alors la maltraitance institutionnelle est la forme moderne de la servitude.
+Les rôles assignés figent les trajectoires sociales.
+L'indigence impose des sacrifices inévitables.
+Cette logique révèle domination s'exerce par l'internationalisation des normes.
 

@@ -806,13 +806,16 @@ func TraiterTexte(texte string, source string) {
 		phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
 
 		// ===== PHASE X+2: LIER LES CONCEPTS AVEC STRUCTURE DISCURSIVE =====
-		resumeLie := database.LierPhrasesConceptuelles(phrasesAbstraites)
+		// resumeLie := database.LierPhrasesConceptuelles(phrasesAbstraites)
+
+		// ===== PHASE X+3: HUMANISER LA SYNTAXE (pas de connecteurs explicites) =====
+		resumeHumain := database.HumanizeStructure(phrasesAbstraites)
 
 		fmt.Printf("╔════════════════════════════════════════════════════════════╗\n")
-		fmt.Printf("║  ⚠️  RÉSUMÉ RÉÉCRIT EN ABSTRACTION FORCÉE (Phase X+2)      ║\n")
-		fmt.Printf("║  Score %.1f%% < 60%% | Micro-structure discursive         ║\n", scoreAbstraction.ScoreGlobal)
+		fmt.Printf("║  ⚠️  RÉSUMÉ RÉÉCRIT EN ABSTRACTION FORCÉE (Phase X+3)      ║\n")
+		fmt.Printf("║  Score %.1f%% < 60%% | Syntaxe naturelle humanisée         ║\n", scoreAbstraction.ScoreGlobal)
 		fmt.Printf("╚════════════════════════════════════════════════════════════╝\n\n")
-		fmt.Printf("%s\n\n", resumeLie)
+		fmt.Printf("%s\n\n", resumeHumain)
 	} else {
 		// Recommandations seulement (pas de réécriture forcée)
 		if scoreAbstraction.ScoreGlobal < 75 {

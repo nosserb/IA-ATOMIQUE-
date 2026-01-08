@@ -136,11 +136,11 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 		fmt.Printf("  ⚠️  Score < 60%% → Réécrit en phrases conceptuelles\n")
 		phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
 
-		// === ÉTAPE 9: PHASE X+2 - CONCEPTUAL LINKING LAYER ===
-		fmt.Println("\n[PHASE X+2] Étape 9: Liage conceptuel (micro-structure)...")
-		resumeLie := database.LierPhrasesConceptuelles(phrasesAbstraites)
-		result.OptimizedSummary = resumeLie
-		fmt.Printf("  ✓ Structure discursive appliquée (thèse + mécanismes + conclusion)\n")
+		// === ÉTAPE 9: PHASE X+3 - NATURAL SYNTAX LAYER ===
+		fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (pas de connecteurs explicites)...")
+		resumeHumain := database.HumanizeStructure(phrasesAbstraites)
+		result.OptimizedSummary = resumeHumain
+		fmt.Printf("  ✓ Syntaxe naturelle appliquée (subordination, ponctuation, rythme)\n")
 	} else {
 		fmt.Printf("  ✓ Score acceptable: pas de réécriture\n")
 	}

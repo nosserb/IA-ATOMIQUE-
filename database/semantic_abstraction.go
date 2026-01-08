@@ -593,3 +593,117 @@ func LierPhrasesConceptuelles(phrases []string) string {
 
 	return strings.TrimSpace(output)
 }
+
+// ============= PHASE X+3: NATURAL SYNTAX LAYER =============
+// Reformule les phrases avec subordination/ponctuation, pas de connecteurs explicites
+
+// HumanizeStructure convertit une structure avec connecteurs explicites en syntaxe naturelle
+func HumanizeStructure(phrasesAbstraites []string) string {
+	if len(phrasesAbstraites) == 0 {
+		return ""
+	}
+
+	if len(phrasesAbstraites) == 1 {
+		p := strings.TrimSuffix(phrasesAbstraites[0], ".")
+		return p + "."
+	}
+
+	// Nettoyer
+	var phrases []string
+	for _, p := range phrasesAbstraites {
+		p = strings.TrimSuffix(p, ".")
+		p = strings.TrimSpace(p)
+		phrases = append(phrases, p)
+	}
+
+	// === STRATÉGIE: Fusionner avec subordination plutôt que connecteurs ===
+	// Objectif: réduire de 40-60% l'usage de connecteurs explicites
+	// Les remplacer par: subordination ("car"), relatives ("qui"), ponctuation, reformulation
+
+	// Première phrase (thèse)
+	these := strings.ToLower(phrases[0])
+	these = CapitalizeFirst(these)
+
+	// Cas 2 phrases: simple subordination
+	if len(phrases) == 2 {
+		second := strings.ToLower(phrases[1])
+		output := these + ", car " + second + "."
+		return output
+	}
+
+	// Cas 3+ phrases: fusionner progressivement avec variation de syntaxe
+	var segments []string
+
+	// Segment 1: Thèse + 1ère mécanique avec subordination
+	if len(phrases) > 1 {
+		second := strings.ToLower(phrases[1])
+		// Remplacer "est" par "qui rend/qui crée/qui impose"
+		second = AddRelativeClause(second)
+		seg1 := these + ", car " + second + "."
+		segments = append(segments, seg1)
+	}
+
+	// Segments intermédiaires: transformer en participes ou nouvelles phrases
+	for i := 2; i < len(phrases); i++ {
+		phrase := strings.ToLower(phrases[i])
+
+		if i == len(phrases)-1 {
+			// Dernière phrase: participiale explicite
+			phrase = "cette logique révèle " + strings.TrimPrefix(phrase, "la ")
+			segments = append(segments, CapitalizeFirst(phrase)+".")
+		} else {
+			// Phrases du milieu: transformer en participes
+			// "Le profit se construit" → "Le profit se construit alors sur..."
+			phrase = AddTransformParticiple(phrase)
+			segments = append(segments, CapitalizeFirst(phrase)+".")
+		}
+	}
+
+	return strings.Join(segments, "\n")
+}
+
+// AddRelativeClause ajoute une relative ("qui", "que", "dont") à une phrase
+func AddRelativeClause(phrase string) string {
+	// "l'inégalité n'est pas accidentelle mais programmée"
+	// → "l'inégalité qui n'est pas accidentelle mais programmée"
+	// ou en gardant la structure: "qui rend l'inégalité structurelle"
+
+	// Si la phrase contient "est" ou "n'est"
+	if strings.Contains(phrase, " est ") || strings.Contains(phrase, " n'est") {
+		// Chercher le sujet (avant "est")
+		parts := strings.Split(phrase, " est ")
+		if len(parts) == 2 {
+			subject := strings.TrimPrefix(parts[0], "la ")
+
+			// "l'inégalité n'est pas accidentelle" → "qui rend l'inégalité structurelle plutôt qu'accidentelle"
+			return "qui rend " + subject + " structurelle plutôt qu'accidentelle"
+		}
+	}
+
+	// Si la phrase contient "s'exerce"
+	if strings.Contains(phrase, "s'exerce") {
+		// "la domination s'exerce par..." → "qui s'exerce par..."
+		return "qui " + strings.TrimPrefix(phrase, "la ")
+	}
+
+	return phrase
+}
+
+// AddTransformParticiple ajoute "alors" ou reformule en participe
+func AddTransformParticiple(phrase string) string {
+	// Simplement ajouter "alors" pour marquer une nouvelle assertion sans connecteur explicite
+	// Pas de transformation complexe ici
+	phrase = strings.TrimSpace(phrase)
+	if strings.HasPrefix(phrase, "le ") || strings.HasPrefix(phrase, "la ") {
+		return "alors " + phrase
+	}
+	return phrase
+}
+
+// CapitalizeFirst met en majuscule le premier caractère
+func CapitalizeFirst(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
+}
