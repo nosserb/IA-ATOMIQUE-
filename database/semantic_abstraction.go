@@ -488,3 +488,108 @@ func AppliquerAbstractionForcee(resumeOriginal string, scoreAbstraction float64,
 
 	return output
 }
+
+// ============= PHASE X+2: CONCEPTUAL LINKING LAYER =============
+// Relie les phrases conceptuelles avec une micro-structure discursive
+
+// ConnecteursLiaison = connecteurs faibles pour lier les concepts
+var ConnecteursLiaison = map[string][]string{
+	"contrast": {
+		"non comme", "mais comme", "contrairement à", "cependant",
+		"or", "pourtant", "néanmoins", "toutefois",
+	},
+	"consequence": {
+		"en conséquence", "dès lors", "partant", "donc",
+		"par suite", "c'est pourquoi", "ainsi", "il en résulte que",
+	},
+	"cadre": {
+		"dans ce cadre", "dans ce contexte", "de ce fait", "en ce sens",
+		"sous cet angle", "de cette manière", "de ce point de vue",
+	},
+	"addition": {
+		"de plus", "par ailleurs", "en outre", "d'ailleurs",
+		"également", "aussi", "de surcroît", "ainsi que",
+	},
+	"revelation": {
+		"révélant ainsi", "ce qui révèle", "mettant en lumière", "exposant",
+		"dévoilant", "mettant en évidence", "illustrant", "témoignant de",
+	},
+}
+
+// LierPhrasesConceptuelles regroupe et lie les phrases avec structure discursive
+func LierPhrasesConceptuelles(phrases []string) string {
+	if len(phrases) == 0 {
+		return ""
+	}
+
+	if len(phrases) == 1 {
+		p := strings.TrimSuffix(phrases[0], ".")
+		return p + "."
+	}
+
+	// Nettoyer les phrases (enlever ponctuation inutile)
+	var phrasesPropres []string
+	for _, p := range phrases {
+		p = strings.TrimSuffix(p, ".")
+		p = strings.TrimSpace(p)
+		phrasesPropres = append(phrasesPropres, p)
+	}
+
+	// Structure: Thèse + Mécanismes + Conclusion
+
+	// === THÈSE (première phrase) ===
+	these := phrasesPropres[0] + ","
+
+	// === MÉCANISMES (grouper par 2-3) ===
+	var mecanismes []string
+	if len(phrasesPropres) > 2 {
+		phrasesMiddle := phrasesPropres[1 : len(phrasesPropres)-1]
+
+		for i := 0; i < len(phrasesMiddle); i += 2 {
+			// Première phrase du groupe
+			groupe := phrasesMiddle[i]
+
+			// Ajouter la suivante avec connecteur si elle existe
+			if i+1 < len(phrasesMiddle) {
+				connecteurs := ConnecteursLiaison["addition"]
+				connecteur := connecteurs[i%len(connecteurs)]
+				groupe += " " + connecteur + " " + strings.ToLower(phrasesMiddle[i+1])
+			}
+
+			mecanismes = append(mecanismes, groupe)
+		}
+	}
+
+	// === CONCLUSION (dernière phrase) ===
+	conclusion := phrasesPropres[len(phrasesPropres)-1]
+
+	// === ASSEMBLER LE DISCOURS AVEC CONNECTEURS ===
+	output := ""
+
+	// Ajouter thèse
+	output += these
+
+	// Ajouter mécanismes avec connecteurs appropriés
+	if len(mecanismes) > 0 {
+		for i, meca := range mecanismes {
+			output += " "
+			if i == 0 {
+				// Premier mécanisme: cadre de contexte
+				output += "dans ce cadre, " + strings.ToLower(meca) + "."
+			} else {
+				// Autres: conséquences
+				connecteurs := ConnecteursLiaison["consequence"]
+				connecteur := connecteurs[(i-1)%len(connecteurs)]
+				output += connecteur + " " + strings.ToLower(meca) + "."
+			}
+		}
+	}
+
+	// Ajouter conclusion avec connecteur de révélation
+	output += " "
+	connecteurs := ConnecteursLiaison["revelation"]
+	connecteur := connecteurs[0]
+	output += connecteur + ", " + strings.ToLower(conclusion) + "."
+
+	return strings.TrimSpace(output)
+}

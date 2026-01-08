@@ -15024,3 +15024,10 @@
 1:forçant
 1:reproduit
 1:inégalités
+1:maternel
+1:sacrifices
+1:l'indigence
+1:l'inégalité
+1:précarité
+1:figent
+1:trajectoires
