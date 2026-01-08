@@ -5,26 +5,21 @@
 
 📊 METRICS:
 ────────────────────────────────────────────────────────────
-Grammar Score:     82.4%
-Style Score:       68.5%
-Coherence Score:   35.7%
-Lexical Richness:  68.5%
-Improvement:       +30.1%
+Grammar Score:     84.1%
+Style Score:       64.8%
+Coherence Score:   35.5%
+Lexical Richness:  64.8%
+Improvement:       +27.0%
 
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
-Original Length:   695581 chars
-Summary Length:    439 chars
-Compression:       99.9%
+Original Length:   1856364 chars
+Summary Length:    453 chars
+Compression:       100.0%
 Variants Created:  5
-Processing Time:   1137 ms
+Processing Time:   3785 ms
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-L'inégalité n'est pas accidentelle mais programmée, car le profit se construit sur la précarité d'autrui.
-Alors le renoncement forcé est une forme de violence silencieuse.
-Alors la maltraitance institutionnelle est la forme moderne de la servitude.
-Les rôles assignés figent les trajectoires sociales.
-L'indigence impose des sacrifices inévitables.
-Cette logique révèle domination s'exerce par l'internationalisation des normes.
+La pauvreté structure les comportements de survie, car le système oppressif rend invisible sa propre violence; la discrimination est inscrite dans les mécanismes de pouvoir. L'extraction de valeur repose sur l'asymétrie des pouvoirs, le dévouement demandé aux exploités justifie leur exploitation; la maltraitance institutionnelle est la forme moderne de la servitude. Cette logique révèle les rôles assignés figent les trajectoires sociales.
 
