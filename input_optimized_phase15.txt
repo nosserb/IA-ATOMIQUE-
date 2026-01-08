@@ -6,11 +6,11 @@
 
 📊 METRICS:
 ────────────────────────────────────────────────────────────
-Grammar Score:     54.0%
-Style Score:       38.2%
-Coherence Score:   100.0%
-Lexical Richness:  38.2%
-Improvement:       +40.8%
+Grammar Score:     75.7%
+Style Score:       41.1%
+Coherence Score:   82.5%
+Lexical Richness:  41.1%
+Improvement:       +29.7%
 
 📝 TEXT ANALYSIS:
 ────────────────────────────────────────────────────────────
@@ -20,19 +20,19 @@ Abstraction:       APPLIED
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
 Original Length:   736300 chars
-Summary Length:    447 chars
+Summary Length:    446 chars
 Compression:       99.9%
 Variants Created:  5
-Processing Time:   643 ms
+Processing Time:   812 ms
 
 💾 SYSTEM RESOURCES:
 ────────────────────────────────────────────────────────────
-RAM Used:          7.0 MB / 132.0 MB (5.9%)
+RAM Used:          7.0 MB / 212.0 MB (3.3%)
 Go Routines:       3
-Memory Alloc:      7.8 MB
-CPU Usage:         0.70%
+Memory Alloc:      7.1 MB
+CPU Usage:         0.89%
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-Le système social exploite la vulnérabilité des plus faibles, car qui rend l'abnégation structurelle plutôt qu'accidentelle; la brutalité systémique se cache sous l'apparence de normalité. Les rôles assignés figent les trajectoires sociales, la pauvreté structure les comportements de survie; le système oppressif rend invisible sa propre violence. Cette logique révèle les systèmes institutionnels reproduisent les discriminations.
+La brutalité systémique se cache sous l'apparence de normalité, car les rôles assignés figent les trajectoires sociales; la pauvreté structure les comportements de survie. Le système oppressif rend invisible sa propre violence, les systèmes institutionnels reproduisent les discriminations; le système social exploite la vulnérabilité des plus faibles. Cette logique révèle l'abnégation est exigée de ceux qui n'ont rien à donner.
 
