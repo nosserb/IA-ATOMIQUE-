@@ -15011,3 +15011,16 @@
 1:collective
 1:d'intelligence
 1:limités
+1:fantine
+1:désespérée
+1:misère
+1:magnifiques
+1:barbier
+1:nourrir
+1:sacrifice
+1:incarne
+1:mères
+1:mariées
+1:forçant
+1:reproduit
+1:inégalités
