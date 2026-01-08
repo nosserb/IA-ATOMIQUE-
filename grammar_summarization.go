@@ -293,6 +293,22 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	result.BaseSummary = baseSummary
 	fmt.Printf("  ✓ Résumé généré: %d caractères\n", len(baseSummary))
 
+	// === ÉTAPE 2.5: PHASE X+4 - REFORMULATION ENCYCLOPÉDIQUE (optionnel) ===
+	if result.TextType == ENCYCLOPEDIC {
+		fmt.Println("\n[PHASE X+4] Étape 2.5: Reformulation encyclopédique...")
+		// Splitter le résumé en mots
+		mots := strings.Fields(baseSummary)
+		// Limiter compression pour texte encyclopédique (max 30%)
+		maxCompressionEncyclo := int(float64(len(mots)) * 0.7)
+		if len(mots) > maxCompressionEncyclo {
+			mots = mots[:maxCompressionEncyclo]
+		}
+		// Reformuler en phrases lisibles
+		reformulated := database.GenerateEncyclopedicSummary(mots)
+		baseSummary = reformulated
+		fmt.Printf("  ✓ Reformulé en phrases encyclopédiques: %d caractères\n", len(baseSummary))
+	}
+
 	// === ÉTAPE 3: Analyse syntaxique ===
 	fmt.Println("\n[PHASE 15] Étape 3: Analyse syntaxique...")
 	sentences := strings.Split(baseSummary, ".")
