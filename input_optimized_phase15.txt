@@ -5,21 +5,21 @@
 
 📊 METRICS:
 ────────────────────────────────────────────────────────────
-Grammar Score:     74.9%
-Style Score:       79.9%
-Coherence Score:   100.0%
-Lexical Richness:  79.9%
-Improvement:       +61.6%
+Grammar Score:     82.9%
+Style Score:       73.5%
+Coherence Score:   50.0%
+Lexical Richness:  73.5%
+Improvement:       +38.0%
 
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
-Original Length:   41341 chars
-Summary Length:    1385 chars
-Compression:       96.6%
+Original Length:   695581 chars
+Summary Length:    3430 chars
+Compression:       99.5%
 Variants Created:  5
-Processing Time:   164 ms
+Processing Time:   872 ms
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-) INTRODUCTION Les systèmes d’intelligence artificielle utilisés aujourd’hui fonctionnent généralement avec des architectures synchrones et centralisées Ces architectures ont permis des progrès importants Cependant, elles montrent leurs limites lorsqu’elles doivent modéliser des systèmes complexes Ces systèmes complexes changent tout le temps et sont réellement distribués Un gros problème subsiste La plupart des moteurs d’inférence classiques ont du mal à représenter des interactions locales qui ne sont pas synchrones C’est pourtant très important pour reproduire des comportements qui s’organisent d’eux-mêmes et qui sont solides Nous avons besoin de créer de nouvelles architectures qui sont capables de former des structures globales stables à partir d’interactions décentralisées Il est nécessaire que ces nouvelles architectures fassent cela sans réduire l’efficacité du système ni augmenter la quantité de mémoire utilisée Notre objectif principal est de créer un système où tout se met en place naturellement, sans avoir besoin d’un contrôle centralisé Un tel système doit également rester facile à modifier et à développer au fil du temps Dans cet article, nous proposons une approche que nous appelons " IA atomique " : un moteur d’inférence asynchrone fondé sur la Technologie de Résonance Atomique (T R A.
+" Sur un autre livre, intitulé Philosophie de la science médicale, il avait écrit cette autre note: "Est-ce que je ne suis pas médecin comme eux Moi aussi j'ai mes malades; d'abord j'ai les leurs, qu'ils appellent les malades; et puis j'ai les miens, que j'appelle les malheureux. , etc C'était un athée d'ailleurs, comme tous ces gens-là. Toutefois -cela vous est égal. Ainsi -Ils étaient là. Donc -À l'instant où il avait traversé la chambre d'à côté pour venir dans celle où il était, la vieille servante les mettait dans un microscopique placard à la tête du lit. -À droite, en entrant par la salle à manger. Par ailleurs -Ils étaient massifs. -Le double de ce qu'il avait gagné en dix-neuf ans. Simultanément " La mère paya les quinze francs D'année en année, l'enfant grandit, et sa misère aussi Tant que Cosette fut toute petite, elle fut le souffre-douleur des deux autres enfants; dès qu'elle se mit à se développer un peu, c'est-à-dire avant même qu'elle eût cinq ans, elle devint la servante de la maison Cinq ans, dira-t-on, c'est invraisemblable Hélas, c'est vrai La souffrance sociale commence à tout âge N'avons-nous pas vu, récemment, le procès d'un nommé Dumolard, orphelin devenu bandit, qui, dès l'âge de cinq ans, disent les documents officiels, étant seul au monde "travaillait pour vivre, et volait. -Pour sûr je l'ai vu quelque part. Par ailleurs " Le propriétaire auquel elle devait son loyer, lui avait dit: "Vous êtes jeune et jolie, vous pouvez payer. " Cependant le matin, quand elle peignait avec un vieux peigne cassé ses beaux cheveux qui ruisselaient comme de la soie floche, elle avait une minute de coquetterie heureuse Chapitre X Suite du succès Elle avait été congédiée vers la fin de l'hiver; l'été se passa, mais l'hiver revint Jours courts, moins de travail L'hiver, point de chaleur, point de lumière, point de midi, le soir touche au matin, brouillard, crépuscule, la fenêtre est grise, on n'y voit pas clair Le ciel est un soupirail Toute la journée est une cave Le soleil a l'air d'un pauvre L'affreuse saison L'hiver change en pierre l'eau du ciel et le cœur de l'homme Ses créanciers la harcelaient Fantine gagnait trop peu Ses dettes avaient grossi Les Thénardier, mal payés, lui écrivaient à chaque instant des lettres dont le contenu la désolait et dont le port la ruinait Un jour ils lui écrivirent que sa petite Cosette était toute nue par le froid qu'il faisait, qu'elle avait besoin d'une jupe de laine, et qu'il fallait au moins que la mère envoyât dix francs pour cela Elle reçut la lettre, et la froissa dans ses mains tout le jour Le soir elle entra chez un barbier qui habitait le coin de la rue, et défit son peigne Ses admirables cheveux blonds lui tombèrent jusqu'aux reins -Les beaux cheveux s'écria le barbier -Combien m'en donneriez-vous dit-elle -Dix francs -Coupez-les Elle acheta une jupe de tricot et l'envoya aux Thénardier Cette jupe fit les Thénardier furieux C'était de l'argent qu'ils voulaient Ils donnèrent la jupe à Eponine La pauvre Alouette continua de frissonner Fantine pensa: "Mon enfant n'a plus froid Je l'ai habillée de mes cheveux. Entre-temps Cependant -Tu n'as pas de dents etc. Ainsi -Est-ce possible? -Comment se dénouera-t-il? -Allons, dit-il, n'y pensons plus Voilà une résolution prise! -En prison à la prison de la ville, en attendant qu'on le transfère
 
