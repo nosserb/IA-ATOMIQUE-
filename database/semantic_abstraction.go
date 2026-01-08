@@ -56,7 +56,204 @@ var (
 		regexp.MustCompile(`'[^']+'`),
 		regexp.MustCompile(`—\s+[^.!?]+[.!?]`), // tiret + citation
 	}
+
+	// Connecteurs explicites à réduire (Phase X+3: Natural Syntax Layer)
+	ConnecteursExplicites = []string{
+		// Connecteurs temporels
+		"alors", "ensuite", "puis", "maintenant", "avant", "après",
+		// Connecteurs d'addition
+		"de plus", "en outre", "d'ailleurs", "également", "aussi",
+		// Connecteurs de conséquence
+		"donc", "en conséquence", "par suite", "dès lors", "c'est pourquoi", "ainsi",
+		// Connecteurs de contraste
+		"cependant", "néanmoins", "pourtant", "toutefois", "or",
+		// Connecteurs de révélation
+		"révélant ainsi", "révélant", "montrant ainsi",
+	}
 )
+
+// ============= PHASE X+3: NATURAL SYNTAX LAYER =============
+// Humanise la syntaxe en réduisant connecteurs explicites et variant les structures
+
+// RephraseSyntax réécrit le résumé avec syntaxe naturelle
+func RephraseSyntax(texte string) string {
+	// 1. Détecter les connecteurs explicites
+	phrases := strings.Split(texte, ".")
+	if len(phrases) <= 1 {
+		return texte
+	}
+
+	// 2. Nettoyer et restructurer chaque phrase
+	var phrasesRestructurees []string
+	for i, phrase := range phrases {
+		phrase = strings.TrimSpace(phrase)
+		if len(phrase) < 5 {
+			continue
+		}
+
+		// Restructurer selon la position et la longueur
+		restructuree := RestructurerPhrase(phrase, i, len(phrases))
+		if restructuree != "" {
+			phrasesRestructurees = append(phrasesRestructurees, restructuree)
+		}
+	}
+
+	// 3. Fusionner phrases courtes avec participes
+	result := FusionnerPhrasesAvecParticipes(phrasesRestructurees)
+
+	return result
+}
+
+// RestructurerPhrase reformule une phrase pour réduire connecteurs explicites
+func RestructurerPhrase(phrase string, index int, total int) string {
+	phraseLower := strings.ToLower(phrase)
+
+	// Supprimer les connecteurs explicites au début (case-insensitive)
+	for _, connecteur := range ConnecteursExplicites {
+		// "Alors le profit" ou "alors le profit" → "le profit"
+		if strings.HasPrefix(phraseLower, connecteur+" ") || strings.HasPrefix(phraseLower, strings.ToLower(connecteur)+" ") {
+			// Trouver la vraie position du connecteur dans la phrase d'origine
+			idx := strings.Index(strings.ToLower(phrase), strings.ToLower(connecteur)+" ")
+			if idx == 0 {
+				phrase = strings.TrimSpace(phrase[len(connecteur):])
+				break
+			}
+		}
+	}
+
+	return strings.TrimSpace(phrase)
+}
+
+// TransformerEnRelative convertit "L'inégalité est programmée" en relative
+func TransformerEnRelative(phrase string) string {
+	// "L'inégalité n'est pas accidentelle mais programmée"
+	// → "qui n'est pas accidentelle mais programmée" (pour fusionner après)
+
+	// Si commence par "la" ou "le", le transformer en relative
+	if strings.HasPrefix(strings.ToLower(phrase), "la ") {
+		// Garder le "qui" pour fusion later
+		return "qui " + strings.TrimPrefix(strings.ToLower(phrase), "la ")
+	}
+	if strings.HasPrefix(strings.ToLower(phrase), "le ") {
+		return "qui " + strings.TrimPrefix(strings.ToLower(phrase), "le ")
+	}
+	if strings.HasPrefix(strings.ToLower(phrase), "l'") {
+		return "qui " + strings.TrimPrefix(strings.ToLower(phrase), "l'")
+	}
+
+	return phrase
+}
+
+// FusionnerPhrasesAvecParticipes fusionne phrases courtes avec participes
+func FusionnerPhrasesAvecParticipes(phrases []string) string {
+	if len(phrases) == 0 {
+		return ""
+	}
+
+	if len(phrases) == 1 {
+		return phrases[0] + "."
+	}
+
+	var result []string
+	i := 0
+
+	for i < len(phrases) {
+		current := phrases[i]
+
+		// Chercher si la phrase suivante est une relative (commence par "qui")
+		if i+1 < len(phrases) && strings.HasPrefix(strings.ToLower(phrases[i+1]), "qui ") {
+			// Fusionner: "L'inégalité, qui n'est pas accidentelle..."
+			next := phrases[i+1]
+			fusion := current + ", " + next
+			result = append(result, fusion)
+			i += 2
+			continue
+		}
+
+		// Chercher si la phrase suivante peut être convertie en participe
+		if i+1 < len(phrases) && CanConvertToParticiple(phrases[i+1]) {
+			next := phrases[i+1]
+			participle := ConvertToParticiple(next)
+			fusion := current + ", " + participle
+			result = append(result, fusion)
+			i += 2
+			continue
+		}
+
+		// Sinon, phrase normale
+		result = append(result, current)
+		i++
+	}
+
+	// Joindre avec variations de ponctuation
+	return JoinWithNaturalRhythm(result)
+}
+
+// CanConvertToParticiple vérifie si une phrase peut être convertie en participe
+func CanConvertToParticiple(phrase string) bool {
+	phraseLower := strings.ToLower(phrase)
+	// Peut être convertie si elle parle de conséquence ou transformation
+	return strings.Contains(phraseLower, "se construit") ||
+		strings.Contains(phraseLower, "transformant") ||
+		strings.Contains(phraseLower, "révélant") ||
+		strings.Contains(phraseLower, "forçant") ||
+		strings.Contains(phraseLower, "impose")
+}
+
+// ConvertToParticiple convertit une phrase en participe présent
+func ConvertToParticiple(phrase string) string {
+	phraseLower := strings.ToLower(phrase)
+
+	// "Le profit se construit sur la précarité"
+	// → "transformant le profit en construction sur la précarité"
+
+	// Chercher le verbe principal
+	if strings.Contains(phraseLower, "se construit") {
+		return "transformant " + strings.ToLower(strings.TrimPrefix(phrase, "le ")) +
+			", " + strings.ToLower(strings.TrimPrefix(phrase, "le "))
+	}
+
+	// "Le renoncement forcé est une violence"
+	// → "révélant le renoncement forcé comme une forme de violence"
+	if strings.Contains(phraseLower, " est ") {
+		return "révélant " + strings.ToLower(phrase)
+	}
+
+	return phrase
+}
+
+// JoinWithNaturalRhythm joint les phrases avec variation de ponctuation
+func JoinWithNaturalRhythm(phrases []string) string {
+	if len(phrases) == 0 {
+		return ""
+	}
+
+	var output string
+
+	for i, phrase := range phrases {
+		phrase = strings.TrimSpace(phrase)
+
+		if i == 0 {
+			// Première phrase: capitaliser
+			output = CapitalizeFirst(phrase)
+		} else if i%3 == 1 {
+			// Variation 1: point-virgule (liaison logique)
+			output += "; " + strings.ToLower(phrase)
+		} else if i%3 == 2 {
+			// Variation 2: nouvelle phrase (respiration)
+			output += ". " + CapitalizeFirst(phrase)
+		} else {
+			// Variation 3: virgule (continuation)
+			output += ", " + strings.ToLower(phrase)
+		}
+	}
+
+	if !strings.HasSuffix(output, ".") {
+		output += "."
+	}
+
+	return output
+}
 
 // AnalyserSemantiquement extrait concepts et abstraction d'un texte
 func AnalyserSemantiquement(texte string, phrases []string) AnalyseSemantique {
@@ -659,7 +856,13 @@ func HumanizeStructure(phrasesAbstraites []string) string {
 		}
 	}
 
-	return strings.Join(segments, "\n")
+	// Joindre puis appliquer Phase X+3: humanisation syntaxique
+	resultat := strings.Join(segments, "\n")
+
+	// Appliquer l'humanisation syntaxique (réduire connecteurs, varier rythme)
+	resultat = RephraseSyntax(resultat)
+
+	return resultat
 }
 
 // AddRelativeClause ajoute une relative ("qui", "que", "dont") à une phrase
