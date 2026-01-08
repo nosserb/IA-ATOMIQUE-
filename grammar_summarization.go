@@ -114,43 +114,52 @@ func DetectTextType(text string) TextType {
 	var narrativeScore float64
 	var conceptualScore float64
 
-	// === KEYWORDS ENCYCLOPÉDIQUES ===
+	// === KEYWORDS ENCYCLOPÉDIQUES (faits, définitions, descriptions scientifiques) ===
 	encyclopedicKeywords := []string{
-		"définition", "est un", "est une", "aussi appelé", "également connu",
-		"mesure", "pèse", "diamètre", "longueur", "hauteur", "largeur",
-		"date", "siècle", "année", "mois", "jour", "né", "mort", "décédé",
-		"localisation", "situé", "région", "pays", "continent", "ville",
-		"habitat", "habitat naturel", "environnement", "écosystème",
-		"espèce", "genre", "famille", "classification", "taxonomie",
-		"propriété", "caractéristique", "trait", "feature",
-		"composé", "élément", "substance", "matière",
-		"fonction", "rôle", "utilité", "servir",
-		"découverte", "inventé", "créé", "développé",
-		"structure", "organisation", "constitution",
-		"nombres", "pourcentage", "statistique", "données",
-		"formule", "équation", "théorie", "loi scientifique",
+		"est le", "est un", "est une", "est un processus", "est un phénomène",
+		"aussi appelé", "également connu", "également appelé",
+		"photosynthèse", "chloroplaste", "chlorophylle", "molécule",
+		"réaction", "processus biologique", "processus chimique",
+		"composé", "élément", "substance", "matière", "structure",
+		"loi", "principe", "théorie scientifique", "mécanisme biologique",
+		"espèce", "genre", "famille", "classification", "taxonomie", "organite",
+		"caractéristique", "propriété", "trait", "attribut",
+		"fonction", "rôle", "servir", "permettre",
+		"se divise en", "se divise", "comprend", "inclut",
+		"localisation", "situé", "région", "zone",
+		"température", "concentration", "efficacité", "intensité",
+		"équation", "formule", "représentation", "calcul",
+		"découverte", "recherche", "étude", "analyse scientifique",
+		"application", "utilisation", "bénéfice", "avantage",
+		"variation", "différence", "distinction", "différenciation",
+		"résultat", "conséquence", "sous-produit", "libération", "absorption",
+		"étape", "phase", "cycle", "boucle",
+		"environnement", "condition", "facteur", "variable",
+		"membrane", "noyau", "mitochondrie", "vacuole", "ribosome",
 	}
 
-	// === KEYWORDS NARRATIFS ===
+	// === KEYWORDS NARRATIFS (histoire, personnages, dialogues) ===
 	narrativeKeywords := []string{
 		"personnage", "héros", "protagoniste", "antagoniste",
 		"raconte", "histoire", "conte", "légende", "saga", "épopée",
-		"dialogue", "dit", "demanda", "répondit", "cria", "murmura",
-		"personnage", "action", "action dramatique", "coup de théâtre",
-		"scène", "acte", "tableau", "chapitre",
+		"dialogue", "dit", "demanda", "répondit", "cria", "murmura", "s'exclama",
+		"action", "action dramatique", "coup de théâtre",
+		"scène", "acte", "tableau", "chapitre", "épisode",
 		"voyage", "aventure", "quête", "mission", "expédition",
-		"rencontre", "amitié", "conflit", "confrontation",
-		"émotion", "sentiment", "amour", "haine", "peur", "courage",
-		"destin", "fatalité", "révélation", "secret",
-		"description", "décor", "paysage", "atmosphère",
-		"il y avait", "autrefois", "il était une fois", "jadis",
-		"soudain", "brusquement", "tout à coup",
+		"rencontre", "amitié", "conflit", "confrontation", "combat",
+		"émotion", "sentiment", "amour", "haine", "peur", "courage", "espoir",
+		"destin", "fatalité", "révélation", "secret", "mystère",
+		"description", "décor", "paysage", "atmosphère", "ambiance",
+		"il y avait", "autrefois", "il était une fois", "jadis", "naguère",
+		"soudain", "brusquement", "tout à coup", "immédiatement",
+		"alors", "ensuite", "puis", "après", "avant",
+		"regarda", "observa", "vit", "entendit", "sentit",
 	}
 
-	// === KEYWORDS CONCEPTUELS ===
+	// === KEYWORDS CONCEPTUELS (idées abstraites, philosophie, analyse) ===
 	conceptualKeywords := []string{
 		"concept", "idée", "principe", "théorie", "approche",
-		"système", "structure", "logique", "mécanisme",
+		"système", "structure", "logique", "mécanisme de",
 		"cause", "conséquence", "relation", "lien", "connexion",
 		"analyse", "perspective", "vision", "interprétation",
 		"abstraction", "généralisation", "universalité",
@@ -158,46 +167,51 @@ func DetectTextType(text string) TextType {
 		"valeur", "sens", "signification", "implication",
 		"justice", "injustice", "égalité", "inégalité",
 		"liberté", "pouvoir", "autorité", "domination",
-		"réflexion", "philosophie", "métaphysique",
+		"réflexion", "philosophie", "métaphysique", "épistémologie",
 		"paradoxe", "dialectique", "contradiction",
 		"contexte", "cadre", "perspective", "angle",
 		"implicite", "sous-entendu", "allusion",
+		"essence", "nature fondamentale", "compréhension",
+		"influence", "impact", "effet", "conséquence", "résultante",
 	}
 
 	// Compter occurrences de chaque type
 	for _, keyword := range encyclopedicKeywords {
-		encyclopedicScore += float64(strings.Count(lower, keyword))
+		count := strings.Count(lower, keyword)
+		encyclopedicScore += float64(count)
 	}
 	for _, keyword := range narrativeKeywords {
-		narrativeScore += float64(strings.Count(lower, keyword))
+		count := strings.Count(lower, keyword)
+		narrativeScore += float64(count)
 	}
 	for _, keyword := range conceptualKeywords {
-		conceptualScore += float64(strings.Count(lower, keyword))
+		count := strings.Count(lower, keyword)
+		conceptualScore += float64(count)
 	}
 
 	// Analyser structure de phrases
 	sentences := strings.Split(text, ".")
 	avgSentenceLength := float64(len(text)) / float64(len(sentences))
 
-	// Phrases longues (>60 chars) = narratif/conceptuel
-	if avgSentenceLength > 60 {
+	// Phrases courtes (<50 chars) favorisent encyclopédique
+	if avgSentenceLength < 50 {
+		encyclopedicScore += 15
+	}
+
+	// Phrases longues (>70 chars) = narratif/conceptuel
+	if avgSentenceLength > 70 {
 		narrativeScore += 10
 		conceptualScore += 10
 	}
 
-	// Phrases courtes (<40 chars) = encyclopédique
-	if avgSentenceLength < 40 {
-		encyclopedicScore += 10
-	}
-
-	// Compter les connecteurs logiques
+	// Compter les connecteurs logiques (faveur conceptuel)
 	logicalConnectors := []string{"car", "donc", "ainsi", "par conséquent", "en résumé", "conclusion"}
 	logicalCount := 0
 	for _, connector := range logicalConnectors {
 		logicalCount += strings.Count(lower, connector)
 	}
-	if logicalCount > 5 {
-		conceptualScore += float64(logicalCount * 2)
+	if logicalCount > 3 {
+		conceptualScore += float64(logicalCount * 3)
 	}
 
 	// Normaliser par nombre de mots
@@ -208,7 +222,7 @@ func DetectTextType(text string) TextType {
 	}
 
 	// Déterminer le type dominant
-	if encyclopedicScore > narrativeScore && encyclopedicScore > conceptualScore {
+	if encyclopedicScore >= narrativeScore && encyclopedicScore >= conceptualScore {
 		return ENCYCLOPEDIC
 	}
 	if narrativeScore > encyclopedicScore && narrativeScore > conceptualScore {
@@ -240,6 +254,23 @@ func GetCompressionForType(textType TextType, userCompression float64) (float64,
 		return userCompression, recommendation
 	default:
 		return userCompression, ""
+	}
+}
+
+// GetOptimalCompressionForType recommande la compression optimale par type
+func GetOptimalCompressionForType(textType TextType) (float64, string) {
+	switch textType {
+	case ENCYCLOPEDIC:
+		// Encyclopédique: max 30% pour rester lisible et factuel
+		return 0.3, "Encyclopédique: compression optimale 20-30% (lisibilité + faits)"
+	case NARRATIVE:
+		// Narratif: modéré, garder le rythme et l'histoire
+		return 0.5, "Narratif: compression optimale 40-60% (garde rythme)"
+	case CONCEPTUAL:
+		// Conceptuel: peut aller plus agressif
+		return 0.7, "Conceptuel: compression optimale 60-80% (abstraction)"
+	default:
+		return 0.3, ""
 	}
 }
 
@@ -289,21 +320,28 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 
 	// === ÉTAPE 2: Résumé de base (Phase 13+++) ===
 	fmt.Println("\n[PHASE 15] Étape 2: Résumé atomique (Phase 13+++)...")
-	baseSummary := database.ResumerTexte(result.PreprocessedText, threshold)
+
+	// Pour encyclopédique: résumer par phrases entières (plus cohérent)
+	var baseSummary string
+	if result.TextType == ENCYCLOPEDIC {
+		// Utiliser la résumé par phrases pour garder cohérence
+		effectiveThreshold := threshold
+		if threshold < 0.3 {
+			fmt.Printf("  ⚠️  Compression limitée à 30%% pour texte encyclopédique (demandée: %.0f%%)\n", threshold*100)
+			effectiveThreshold = 0.3 // Min 70% des phrases
+		}
+		baseSummary = database.ResumerTexteParPhrases(result.PreprocessedText, effectiveThreshold)
+	} else {
+		// Pour autres textes: résumé par mots (plus agressif)
+		baseSummary = database.ResumerTexte(result.PreprocessedText, threshold)
+	}
 	result.BaseSummary = baseSummary
 	fmt.Printf("  ✓ Résumé généré: %d caractères\n", len(baseSummary))
 
 	// === ÉTAPE 2.5: PHASE X+4 - REFORMULATION ENCYCLOPÉDIQUE (optionnel) ===
-	if result.TextType == ENCYCLOPEDIC {
-		fmt.Println("\n[PHASE X+4] Étape 2.5: Reformulation encyclopédique...")
-		// Splitter le résumé en mots
+	if result.TextType == ENCYCLOPEDIC && threshold < 0.3 {
+		fmt.Println("\n[PHASE X+4] Étape 2.5: Reformulation encyclopédique (pour ultra-compression)...")
 		mots := strings.Fields(baseSummary)
-		// Limiter compression pour texte encyclopédique (max 30%)
-		maxCompressionEncyclo := int(float64(len(mots)) * 0.7)
-		if len(mots) > maxCompressionEncyclo {
-			mots = mots[:maxCompressionEncyclo]
-		}
-		// Reformuler en phrases lisibles
 		reformulated := database.GenerateEncyclopedicSummary(mots)
 		baseSummary = reformulated
 		fmt.Printf("  ✓ Reformulé en phrases encyclopédiques: %d caractères\n", len(baseSummary))
@@ -335,8 +373,16 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 
 	// === ÉTAPE 4: Enrichissement vocabulaire ===
 	fmt.Println("\n[PHASE 15] Étape 4: Enrichissement vocabulaire...")
-	enrichedSummary := gs.EnrichSummary(baseSummary)
-	fmt.Printf("  ✓ Vocabulaire enrichi (style naturel)\n")
+	var enrichedSummary string
+	if result.TextType == ENCYCLOPEDIC {
+		// Pour encyclopédique: pas d'enrichissement (garder texte factuel)
+		enrichedSummary = baseSummary
+		fmt.Printf("  ℹ️  Texte encyclopédique: pas d'enrichissement (structure naturelle)\n")
+	} else {
+		// Pour autres types: enrichir le vocabulaire
+		enrichedSummary = gs.EnrichSummary(baseSummary)
+		fmt.Printf("  ✓ Vocabulaire enrichi (style naturel)\n")
+	}
 
 	// === ÉTAPE 5: Génération de variantes optimisées ===
 	fmt.Println("\n[PHASE 15] Étape 5: Génération de variantes...")
@@ -387,10 +433,17 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 			phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
 
 			// === ÉTAPE 9: PHASE X+3 - NATURAL SYNTAX LAYER ===
-			fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (pas de connecteurs explicites)...")
-			resumeHumain := database.HumanizeStructure(phrasesAbstraites)
-			result.OptimizedSummary = resumeHumain
-			fmt.Printf("  ✓ Syntaxe naturelle appliquée (subordination, ponctuation, rythme)\n")
+			// Skip X+3 pour encyclopédique (garder structure factuelle)
+			if result.TextType != ENCYCLOPEDIC {
+				fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (pas de connecteurs explicites)...")
+				resumeHumain := database.HumanizeStructure(phrasesAbstraites)
+				result.OptimizedSummary = resumeHumain
+				fmt.Printf("  ✓ Syntaxe naturelle appliquée (subordination, ponctuation, rythme)\n")
+			} else {
+				fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (SKIPPÉE pour encyclopédique)...")
+				result.OptimizedSummary = strings.Join(phrasesAbstraites, ". ")
+				fmt.Printf("  ℹ️  Texte encyclopédique: conservation structure originale\n")
+			}
 		} else {
 			fmt.Printf("  ✓ Score acceptable: pas de réécriture\n")
 		}

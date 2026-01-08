@@ -211,6 +211,87 @@ func ResumerTexte(texte string, ratio float64) string {
 	return strings.Join(resume, " ")
 }
 
+// ResumerTexteParPhrases résume un texte en gardant les phrases entières (pour encyclopédique)
+// C'est plus cohérent que de sélectionner des mots isolés
+func ResumerTexteParPhrases(texte string, ratioTarget float64) string {
+	// Splitter par phrases
+	phrases := strings.Split(texte, ".")
+	if len(phrases) == 0 {
+		return texte
+	}
+
+	// Calculer le nombre de phrases à garder
+	phrasesCount := len(phrases)
+	phrasesKept := int(float64(phrasesCount) * ratioTarget)
+	if phrasesKept < 1 {
+		phrasesKept = 1
+	}
+	// Garder au moins 30% pour éviter trop d'agressivité
+	minPhrases := phrasesCount * 30 / 100
+	if phrasesKept < minPhrases {
+		phrasesKept = minPhrases
+	}
+
+	// Scorer chaque phrase par importance
+	type scoredPhrase struct {
+		text  string
+		score float64
+		index int
+	}
+
+	var scored []scoredPhrase
+	for i, phrase := range phrases {
+		phrase = strings.TrimSpace(phrase)
+		if phrase == "" {
+			continue
+		}
+
+		// Score = longueur + mots importants
+		words := strings.Fields(phrase)
+		score := float64(len(words))
+
+		// Bonus pour mots-clés encyclopédiques
+		for _, word := range words {
+			word = strings.ToLower(word)
+			if strings.Contains(word, "est") || strings.Contains(word, "se") ||
+				strings.Contains(word, "processus") || strings.Contains(word, "fonction") ||
+				strings.Contains(word, "structure") || strings.Contains(word, "réaction") {
+				score += 2.0
+			}
+		}
+
+		scored = append(scored, scoredPhrase{
+			text:  phrase,
+			score: score,
+			index: i,
+		})
+	}
+
+	// Trier par score
+	sort.Slice(scored, func(i, j int) bool {
+		return scored[i].score > scored[j].score
+	})
+
+	// Garder les meilleures phrases
+	var kept []scoredPhrase
+	for i := 0; i < phrasesKept && i < len(scored); i++ {
+		kept = append(kept, scored[i])
+	}
+
+	// Réordonner par index original (garde l'ordre du texte)
+	sort.Slice(kept, func(i, j int) bool {
+		return kept[i].index < kept[j].index
+	})
+
+	// Joindre
+	var result []string
+	for _, sp := range kept {
+		result = append(result, sp.text)
+	}
+
+	return strings.Join(result, ". ") + "."
+}
+
 // ============================================================================
 // PHASE X+4: PARAPHRASE ENCYCLOPÉDIQUE
 // ============================================================================
@@ -248,28 +329,72 @@ func reformulerSegment(mots []string) string {
 	if len(mots) == 0 {
 		return ""
 	}
-
-	// Structures de phrase encyclopédique:
-	// "Le sujet est...", "Il comprend...", "Ses éléments..."
+	if len(mots) == 1 {
+		return capitalizeFirst(mots[0])
+	}
 
 	texte := strings.Join(mots, " ")
 
 	// Heuristiques pour créer des phrases grammaticales
 	switch {
-	// Pattern: determinant + nom + verbe
-	case len(mots) >= 3 && (mots[0] == "la" || mots[0] == "le" || mots[0] == "les"):
-		// Garder comme est: "La Mésange huppée est..."
-		return capitalizeFirst(texte)
+	// Pattern 1: Article + reste → "Le/La [Nom] est [Reste]"
+	case len(mots) >= 2 && isArticle(mots[0]):
+		article := mots[0]
+		var sujet string
+		if strings.ToLower(article) == "la" {
+			sujet = "La"
+		} else if strings.ToLower(article) == "les" {
+			sujet = "Les"
+		} else {
+			sujet = "Le"
+		}
+		if len(mots) >= 3 {
+			nom := mots[1]
+			reste := strings.Join(mots[2:], " ")
+			return capitalizeFirst(sujet + " " + nom + " est " + reste)
+		}
+		return capitalizeFirst(sujet + " " + strings.Join(mots[1:], " "))
 
-	// Pattern: nombre + substantif
+	// Pattern 2: Nombre + reste → "Il y a [Nombre] [Reste]"
 	case isNumber(mots[0]):
-		return capitalizeFirst(texte)
+		if len(mots) >= 2 {
+			return capitalizeFirst("Il y a " + texte)
+		}
+		return capitalizeFirst(mots[0])
 
-	// Pattern: adjectif/description
+	// Pattern 3: Verbe au passé composé/passif
+	case isVerbPasse(mots[0]) && len(mots) >= 2:
+		reste := strings.Join(mots[1:], " ")
+		return capitalizeFirst("Cela a été " + reste)
+
+	// Pattern 4: Sinon garder l'ordre naturel
 	default:
-		// Ajouter un déterminant simple
-		return capitalizeFirst("C'est " + texte)
+		return capitalizeFirst(texte)
 	}
+}
+
+// isArticle détecte les articles français
+func isArticle(mot string) bool {
+	articles := []string{"la", "le", "les", "l'", "un", "une", "des", "du", "de"}
+	motLower := strings.ToLower(mot)
+	for _, art := range articles {
+		if motLower == art {
+			return true
+		}
+	}
+	return false
+}
+
+// isVerbPasse détecte les verbes au passé composé
+func isVerbPasse(mot string) bool {
+	mot = strings.ToLower(mot)
+	suffixes := []string{"é", "ée", "és", "ées", "it", "ite", "ant", "ante"}
+	for _, suffix := range suffixes {
+		if strings.HasSuffix(mot, suffix) && len(mot) > 2 {
+			return true
+		}
+	}
+	return false
 }
 
 // capitalizeFirst met en majuscule le premier caractère
