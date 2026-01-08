@@ -8,9 +8,9 @@
 ────────────────────────────────────────────────────────────
 Grammar Score:     75.7%
 Style Score:       41.1%
-Coherence Score:   82.5%
+Coherence Score:   67.5%
 Lexical Richness:  41.1%
-Improvement:       +29.7%
+Improvement:       +24.7%
 
 📝 TEXT ANALYSIS:
 ────────────────────────────────────────────────────────────
@@ -20,19 +20,19 @@ Abstraction:       APPLIED
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
 Original Length:   736300 chars
-Summary Length:    446 chars
+Summary Length:    643 chars
 Compression:       99.9%
 Variants Created:  5
-Processing Time:   812 ms
+Processing Time:   847 ms
 
 💾 SYSTEM RESOURCES:
 ────────────────────────────────────────────────────────────
-RAM Used:          7.0 MB / 212.0 MB (3.3%)
+RAM Used:          6.0 MB / 213.0 MB (3.3%)
 Go Routines:       3
-Memory Alloc:      7.1 MB
-CPU Usage:         0.89%
+Memory Alloc:      6.9 MB
+CPU Usage:         0.92%
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-La brutalité systémique se cache sous l'apparence de normalité, car les rôles assignés figent les trajectoires sociales; la pauvreté structure les comportements de survie. Le système oppressif rend invisible sa propre violence, les systèmes institutionnels reproduisent les discriminations; le système social exploite la vulnérabilité des plus faibles. Cette logique révèle l'abnégation est exigée de ceux qui n'ont rien à donner.
+Chez Gustave Flaubert, le roman expose comment la société étrangle les aspirations individuelles. Emma incarne cette tension : une jeune femme étouffée par le mariage provincial, rêvant d'une vie passionnée qu'une société rigide lui refuse. Les hiérarchies établies reproduisent les hiérarchies, car l'ordre social exploite l'humilité des plus humbles; le sacrifice est exigée de ceux qui n'ont rien à donner. La rigueur inhérent se cache sous l'apparence de conformité, les états figent les destinées sociales; la pauvreté les résignation. Cette logique expose l'ordre social oppressif rend insidieuse sa propre cruauté.
 

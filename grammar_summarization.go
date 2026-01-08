@@ -449,6 +449,18 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 		}
 	}
 
+	// === PHASE X+5: POST-PROCESSING ENRICHISSEMENT (optionnel) ===
+	if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
+		fmt.Println("\n[PHASE X+5] Étape 10: Post-processing enrichissement...")
+		isFlaubert := database.IsLikelyFlaubert(inputText)
+		if isFlaubert {
+			fmt.Printf("  📖 Détecté: Flaubert (Madame Bovary)\n")
+		}
+		enhancedSummary := database.EnhancedPostProcessing(result.OptimizedSummary, isFlaubert)
+		result.OptimizedSummary = enhancedSummary
+		fmt.Printf("  ✓ Enrichissement appliqué: contexte, vocabulaire, fluidité\n")
+	}
+
 	// === Résultats finaux ===
 	result.ProcessingTime = time.Since(startTime).Milliseconds()
 	result.ImprovementPercentage = ((result.StyleScore + result.CoherenceScore + result.LexicalRichness) / 3.0) - (result.GrammarScore / 3.0)
