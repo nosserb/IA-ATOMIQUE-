@@ -17,6 +17,28 @@ import (
 // Intègre tous modules: Prétraitement → Résumé (Phase 13+++) → Optimisation
 // Syntaxique → Enrichissement vocabulaire → Vérification cohérence
 
+// TextType représente le type de texte détecté
+type TextType int
+
+const (
+	ENCYCLOPEDIC TextType = iota
+	NARRATIVE
+	CONCEPTUAL
+)
+
+func (t TextType) String() string {
+	switch t {
+	case ENCYCLOPEDIC:
+		return "Encyclopédique"
+	case NARRATIVE:
+		return "Narratif"
+	case CONCEPTUAL:
+		return "Conceptuel"
+	default:
+		return "Inconnu"
+	}
+}
+
 // SystemStats contient les metrics système
 type SystemStats struct {
 	RAMUsedMB       uint64
@@ -41,6 +63,8 @@ type GrammarAwareSummary struct {
 	VariantsGenerated     int
 	ImprovementPercentage float64
 	SystemStats           SystemStats
+	TextType              TextType // Type de texte détecté
+	SkipAbstraction       bool     // Si true, saute Phase X+1
 }
 
 // GrammarSummarizer orchestre le pipeline Phase 15
@@ -76,6 +100,152 @@ func CaptureSystemStats() SystemStats {
 	return stats
 }
 
+// ============================================================================
+// DÉTECTION DE TYPE DE TEXTE
+// ============================================================================
+
+// DetectTextType détecte le type de texte (encyclopédique, narratif, conceptuel)
+func DetectTextType(text string) TextType {
+	lower := strings.ToLower(text)
+	wordCount := len(strings.Fields(text))
+
+	// Calculer scores pour chaque type
+	var encyclopedicScore float64
+	var narrativeScore float64
+	var conceptualScore float64
+
+	// === KEYWORDS ENCYCLOPÉDIQUES ===
+	encyclopedicKeywords := []string{
+		"définition", "est un", "est une", "aussi appelé", "également connu",
+		"mesure", "pèse", "diamètre", "longueur", "hauteur", "largeur",
+		"date", "siècle", "année", "mois", "jour", "né", "mort", "décédé",
+		"localisation", "situé", "région", "pays", "continent", "ville",
+		"habitat", "habitat naturel", "environnement", "écosystème",
+		"espèce", "genre", "famille", "classification", "taxonomie",
+		"propriété", "caractéristique", "trait", "feature",
+		"composé", "élément", "substance", "matière",
+		"fonction", "rôle", "utilité", "servir",
+		"découverte", "inventé", "créé", "développé",
+		"structure", "organisation", "constitution",
+		"nombres", "pourcentage", "statistique", "données",
+		"formule", "équation", "théorie", "loi scientifique",
+	}
+
+	// === KEYWORDS NARRATIFS ===
+	narrativeKeywords := []string{
+		"personnage", "héros", "protagoniste", "antagoniste",
+		"raconte", "histoire", "conte", "légende", "saga", "épopée",
+		"dialogue", "dit", "demanda", "répondit", "cria", "murmura",
+		"personnage", "action", "action dramatique", "coup de théâtre",
+		"scène", "acte", "tableau", "chapitre",
+		"voyage", "aventure", "quête", "mission", "expédition",
+		"rencontre", "amitié", "conflit", "confrontation",
+		"émotion", "sentiment", "amour", "haine", "peur", "courage",
+		"destin", "fatalité", "révélation", "secret",
+		"description", "décor", "paysage", "atmosphère",
+		"il y avait", "autrefois", "il était une fois", "jadis",
+		"soudain", "brusquement", "tout à coup",
+	}
+
+	// === KEYWORDS CONCEPTUELS ===
+	conceptualKeywords := []string{
+		"concept", "idée", "principe", "théorie", "approche",
+		"système", "structure", "logique", "mécanisme",
+		"cause", "conséquence", "relation", "lien", "connexion",
+		"analyse", "perspective", "vision", "interprétation",
+		"abstraction", "généralisation", "universalité",
+		"social", "politique", "économique", "culturel", "existentiel",
+		"valeur", "sens", "signification", "implication",
+		"justice", "injustice", "égalité", "inégalité",
+		"liberté", "pouvoir", "autorité", "domination",
+		"réflexion", "philosophie", "métaphysique",
+		"paradoxe", "dialectique", "contradiction",
+		"contexte", "cadre", "perspective", "angle",
+		"implicite", "sous-entendu", "allusion",
+	}
+
+	// Compter occurrences de chaque type
+	for _, keyword := range encyclopedicKeywords {
+		encyclopedicScore += float64(strings.Count(lower, keyword))
+	}
+	for _, keyword := range narrativeKeywords {
+		narrativeScore += float64(strings.Count(lower, keyword))
+	}
+	for _, keyword := range conceptualKeywords {
+		conceptualScore += float64(strings.Count(lower, keyword))
+	}
+
+	// Analyser structure de phrases
+	sentences := strings.Split(text, ".")
+	avgSentenceLength := float64(len(text)) / float64(len(sentences))
+
+	// Phrases longues (>60 chars) = narratif/conceptuel
+	if avgSentenceLength > 60 {
+		narrativeScore += 10
+		conceptualScore += 10
+	}
+
+	// Phrases courtes (<40 chars) = encyclopédique
+	if avgSentenceLength < 40 {
+		encyclopedicScore += 10
+	}
+
+	// Compter les connecteurs logiques
+	logicalConnectors := []string{"car", "donc", "ainsi", "par conséquent", "en résumé", "conclusion"}
+	logicalCount := 0
+	for _, connector := range logicalConnectors {
+		logicalCount += strings.Count(lower, connector)
+	}
+	if logicalCount > 5 {
+		conceptualScore += float64(logicalCount * 2)
+	}
+
+	// Normaliser par nombre de mots
+	if wordCount > 0 {
+		encyclopedicScore /= float64(wordCount) / 100.0
+		narrativeScore /= float64(wordCount) / 100.0
+		conceptualScore /= float64(wordCount) / 100.0
+	}
+
+	// Déterminer le type dominant
+	if encyclopedicScore > narrativeScore && encyclopedicScore > conceptualScore {
+		return ENCYCLOPEDIC
+	}
+	if narrativeScore > encyclopedicScore && narrativeScore > conceptualScore {
+		return NARRATIVE
+	}
+	return CONCEPTUAL
+}
+
+// GetCompressionForType retourne la compression recommandée selon le type
+func GetCompressionForType(textType TextType, userCompression float64) float64 {
+	switch textType {
+	case ENCYCLOPEDIC:
+		// Pour encyclopédique, limiter la compression (perte d'infos trop élevée)
+		if userCompression > 0.6 {
+			return 0.6
+		}
+		return userCompression
+	case NARRATIVE:
+		// Pour narratif, compression modérée
+		return userCompression
+	case CONCEPTUAL:
+		// Pour conceptuel, compression plus agressive possible
+		if userCompression < 0.8 {
+			return 0.8
+		}
+		return userCompression
+	default:
+		return userCompression
+	}
+}
+
+// ShouldSkipAbstractionForType détermine si on saute Phase X+1 selon le type
+func ShouldSkipAbstractionForType(textType TextType) bool {
+	// Skip Phase X+1 pour textes encyclopédiques (besoin de faits concrets)
+	return textType == ENCYCLOPEDIC
+}
+
 // NewGrammarSummarizer crée un nouveau pipeline
 func NewGrammarSummarizer() *GrammarSummarizer {
 	return &GrammarSummarizer{
@@ -90,6 +260,23 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 		OriginalText: inputText,
 	}
 
+	// === ÉTAPE 0: Détection du type de texte ===
+	fmt.Println("\n[PHASE 15] Étape 0: Détection du type de texte...")
+	textType := DetectTextType(inputText)
+	result.TextType = textType
+	result.SkipAbstraction = ShouldSkipAbstractionForType(textType)
+
+	// Adapter la compression selon le type
+	adjustedThreshold := GetCompressionForType(textType, threshold)
+	if adjustedThreshold != threshold {
+		fmt.Printf("  ℹ️  Type: %s (compression ajustée %.2f → %.2f)\n", textType.String(), threshold, adjustedThreshold)
+	} else {
+		fmt.Printf("  ℹ️  Type: %s\n", textType.String())
+	}
+	if result.SkipAbstraction {
+		fmt.Printf("  ⚠️  Phase X+1 désactivée pour ce type\n")
+	}
+
 	// === ÉTAPE 1: Prétraitement ===
 	fmt.Println("\n[PHASE 15] Étape 1: Prétraitement & nettoyage...")
 	preprocessResult := database.PreprocessText(inputText)
@@ -100,7 +287,7 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 
 	// === ÉTAPE 2: Résumé de base (Phase 13+++) ===
 	fmt.Println("\n[PHASE 15] Étape 2: Résumé atomique (Phase 13+++)...")
-	baseSummary := database.ResumerTexte(result.PreprocessedText, threshold)
+	baseSummary := database.ResumerTexte(result.PreprocessedText, adjustedThreshold)
 	result.BaseSummary = baseSummary
 	fmt.Printf("  ✓ Résumé généré: %d caractères\n", len(baseSummary))
 
@@ -155,35 +342,40 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	fmt.Printf("  ✓ Score cohérence: %.2f%%\n", coherenceScore*100)
 
 	// === ÉTAPE 8: PHASE X+1 - SEMANTIC ABSTRACTION LAYER ===
-	fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique forcée...")
-
-	// Analyser le texte original pour extraire les concepts
-	phrasesOriginales := strings.Split(inputText, ".")
-	var phrasesListe []string
-	for _, p := range phrasesOriginales {
-		p = strings.TrimSpace(p)
-		if len(p) > 10 {
-			phrasesListe = append(phrasesListe, p)
-		}
-	}
-
-	analyseSemantique := database.AnalyserSemantiquement(inputText, phrasesListe)
-	scoreAbstraction := database.EvaluerAbstraction(result.OptimizedSummary, analyseSemantique)
-
-	fmt.Printf("  → Score d'abstraction: %.1f%%\n", scoreAbstraction.ScoreGlobal)
-
-	// Appliquer abstraction forcée si score < 60%
-	if scoreAbstraction.ScoreGlobal < 60.0 {
-		fmt.Printf("  ⚠️  Score < 60%% → Réécrit en phrases conceptuelles\n")
-		phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
-
-		// === ÉTAPE 9: PHASE X+3 - NATURAL SYNTAX LAYER ===
-		fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (pas de connecteurs explicites)...")
-		resumeHumain := database.HumanizeStructure(phrasesAbstraites)
-		result.OptimizedSummary = resumeHumain
-		fmt.Printf("  ✓ Syntaxe naturelle appliquée (subordination, ponctuation, rythme)\n")
+	if result.SkipAbstraction {
+		fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique (SKIPPÉE pour type encyclopédique)...")
+		fmt.Printf("  ℹ️  Texte encyclopédique: conservation des faits concrets\n")
 	} else {
-		fmt.Printf("  ✓ Score acceptable: pas de réécriture\n")
+		fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique forcée...")
+
+		// Analyser le texte original pour extraire les concepts
+		phrasesOriginales := strings.Split(inputText, ".")
+		var phrasesListe []string
+		for _, p := range phrasesOriginales {
+			p = strings.TrimSpace(p)
+			if len(p) > 10 {
+				phrasesListe = append(phrasesListe, p)
+			}
+		}
+
+		analyseSemantique := database.AnalyserSemantiquement(inputText, phrasesListe)
+		scoreAbstraction := database.EvaluerAbstraction(result.OptimizedSummary, analyseSemantique)
+
+		fmt.Printf("  → Score d'abstraction: %.1f%%\n", scoreAbstraction.ScoreGlobal)
+
+		// Appliquer abstraction forcée si score < 60%
+		if scoreAbstraction.ScoreGlobal < 60.0 {
+			fmt.Printf("  ⚠️  Score < 60%% → Réécrit en phrases conceptuelles\n")
+			phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
+
+			// === ÉTAPE 9: PHASE X+3 - NATURAL SYNTAX LAYER ===
+			fmt.Println("\n[PHASE X+3] Étape 9: Humanisation syntaxique (pas de connecteurs explicites)...")
+			resumeHumain := database.HumanizeStructure(phrasesAbstraites)
+			result.OptimizedSummary = resumeHumain
+			fmt.Printf("  ✓ Syntaxe naturelle appliquée (subordination, ponctuation, rythme)\n")
+		} else {
+			fmt.Printf("  ✓ Score acceptable: pas de réécriture\n")
+		}
 	}
 
 	// === Résultats finaux ===
@@ -340,7 +532,7 @@ func (gas *GrammarAwareSummary) GetSummaryReport() string {
 	report.WriteString("║         PHASE 15: GRAMMAR-AWARE SUMMARIZATION REPORT        ║\n")
 	report.WriteString("╚════════════════════════════════════════════════════════════╝\n\n")
 
-	report.WriteString("📊 METRICS:\n")
+	report.WriteString("\n📊 METRICS:\n")
 	report.WriteString("────────────────────────────────────────────────────────────\n")
 	report.WriteString(fmt.Sprintf("Grammar Score:     %.1f%%\n", gas.GrammarScore*100))
 	report.WriteString(fmt.Sprintf("Style Score:       %.1f%%\n", gas.StyleScore*100))
@@ -348,7 +540,16 @@ func (gas *GrammarAwareSummary) GetSummaryReport() string {
 	report.WriteString(fmt.Sprintf("Lexical Richness:  %.1f%%\n", gas.LexicalRichness*100))
 	report.WriteString(fmt.Sprintf("Improvement:       +%.1f%%\n", gas.ImprovementPercentage*100))
 
-	report.WriteString("📈 PROCESSING:\n")
+	report.WriteString("\n📝 TEXT ANALYSIS:\n")
+	report.WriteString("────────────────────────────────────────────────────────────\n")
+	report.WriteString(fmt.Sprintf("Text Type:         %s\n", gas.TextType.String()))
+	if gas.SkipAbstraction {
+		report.WriteString(fmt.Sprintf("Abstraction:       SKIPPED (facts preservation)\n"))
+	} else {
+		report.WriteString(fmt.Sprintf("Abstraction:       APPLIED\n"))
+	}
+
+	report.WriteString("\n📈 PROCESSING:\n")
 	report.WriteString("────────────────────────────────────────────────────────────\n")
 	report.WriteString(fmt.Sprintf("Original Length:   %d chars\n", len(gas.OriginalText)))
 	report.WriteString(fmt.Sprintf("Summary Length:    %d chars\n", len(gas.OptimizedSummary)))
