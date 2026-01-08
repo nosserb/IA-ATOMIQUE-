@@ -10,8 +10,16 @@ import (
 // Améliore le résumé conceptuel avec contexte, vocabulaire spécifique et fluidité
 
 // EnhancedPostProcessing améliore un résumé avec contexte littéraire et fluidité
+// IMPORTANT: Phase X+5 s'applique SEULEMENT pour textes Flaubert/littéraires
 func EnhancedPostProcessing(summary string, isFlaubert bool) string {
 	result := summary
+
+	// Phase X+5 activée UNIQUEMENT pour textes littéraires (Flaubert)
+	// Les textes techniques n'ont pas besoin d'enrichissement lexical Flaubert-spécifique
+	if !isFlaubert {
+		// Pour textes non-Flaubert: retourner résumé sans modification
+		return result
+	}
 
 	// Étape 0: Ajouter ancrage narratif AVANT contexte (pour éviter la duplication)
 	if isFlaubert {
