@@ -131,57 +131,83 @@ func CalculerConfiance(catActivation map[int]int) float64 {
 
 // ResumerTexte crée un résumé du texte
 func ResumerTexte(texte string, ratio float64) string {
-	if ratio <= 0 || ratio >= 1 {
+	// Accepter ratio entre 0 et 1 (0.1 = 10%, 0.5 = 50%, etc)
+	if ratio <= 0 {
 		ratio = 0.3 // 30% par défaut
 	}
+	if ratio > 1 {
+		ratio = 1 // Max 100%
+	}
 
-	// Splitter par phrases
-	phrases := SplitterParPhrases(texte)
+	// Splitter par phrases (le texte prétraité a été splitté par points, donc on re-split par espaces)
+	phrases := strings.Split(texte, " ")
+
+	// Filtrer les phrases vides
+	var phrasesNonVides []string
+	for _, p := range phrases {
+		if strings.TrimSpace(p) != "" {
+			phrasesNonVides = append(phrasesNonVides, strings.TrimSpace(p))
+		}
+	}
+	phrases = phrasesNonVides
+
+	fmt.Printf("[DEBUG ResumerTexte] Mots trouvés: %d, Ratio: %.2f\n", len(phrases), ratio)
 
 	if len(phrases) == 0 {
-		return ""
+		return texte
 	}
 
-	// Calculer le nombre de phrases à garder
-	nbPhrasesGardees := int(float64(len(phrases)) * ratio)
-	if nbPhrasesGardees < 1 {
-		nbPhrasesGardees = 1
+	// Calculer le nombre de mots à garder (basé sur ratio)
+	nbMotsGardes := int(float64(len(phrases)) * ratio)
+
+	// Minimum 20% du texte
+	minMots := len(phrases) / 5
+	if minMots < 10 {
+		minMots = 10
+	}
+	if nbMotsGardes < minMots {
+		nbMotsGardes = minMots
+	}
+	if nbMotsGardes > len(phrases) {
+		nbMotsGardes = len(phrases)
 	}
 
-	// Scorer chaque phrase
-	type phraseScore struct {
-		phrase string
-		index  int
-		score  float64
+	// Scorer chaque mot
+	type wordScore struct {
+		word  string
+		index int
+		score float64
 	}
 
-	var scores []phraseScore
-
-	for i, phrase := range phrases {
-		score := ScorerPhrase(phrase)
-		scores = append(scores, phraseScore{phrase, i, score})
+	var scores []wordScore
+	for i, word := range phrases {
+		score := 1.0
+		if w, ok := Words[word]; ok {
+			score = w.Poids
+		}
+		scores = append(scores, wordScore{word, i, score})
 	}
 
-	// Trier par score
+	// Trier par score décroissant
 	sort.Slice(scores, func(i, j int) bool {
 		return scores[i].score > scores[j].score
 	})
 
-	// Garder les meilleures phrases et les réordonner
-	var phrasesGardees []phraseScore
-	for i := 0; i < nbPhrasesGardees && i < len(scores); i++ {
-		phrasesGardees = append(phrasesGardees, scores[i])
+	// Garder les meilleurs mots
+	var motsGardes []wordScore
+	for i := 0; i < nbMotsGardes && i < len(scores); i++ {
+		motsGardes = append(motsGardes, scores[i])
 	}
 
-	// Trier par index original
-	sort.Slice(phrasesGardees, func(i, j int) bool {
-		return phrasesGardees[i].index < phrasesGardees[j].index
+	// Réordonner par index original
+	sort.Slice(motsGardes, func(i, j int) bool {
+		return motsGardes[i].index < motsGardes[j].index
 	})
 
-	// Construire le résumé
+	// Reconstruire le résumé
 	var resume []string
-	for _, ps := range phrasesGardees {
-		resume = append(resume, strings.TrimSpace(ps.phrase))
+	for _, ms := range motsGardes {
+		resume = append(resume, ms.word)
 	}
 
 	return strings.Join(resume, " ")
@@ -208,6 +234,8 @@ func SplitterParPhrases(texte string) []string {
 	if len(phrase) > 10 {
 		phrases = append(phrases, strings.TrimSpace(phrase))
 	}
+
+	fmt.Printf("[DEBUG SplitterParPhrases] Phrases splitées: %d\n", len(phrases))
 
 	return phrases
 }
