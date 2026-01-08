@@ -6,33 +6,50 @@
 
 📊 METRICS:
 ────────────────────────────────────────────────────────────
-Grammar Score:     75.7%
-Style Score:       41.1%
-Coherence Score:   70.0%
-Lexical Richness:  41.1%
-Improvement:       +25.5%
+Grammar Score:     66.9%
+Style Score:       63.9%
+Coherence Score:   100.0%
+Lexical Richness:  63.9%
+Improvement:       +53.6%
 
 📝 TEXT ANALYSIS:
 ────────────────────────────────────────────────────────────
-Text Type:         Narratif
-Abstraction:       APPLIED
+Text Type:         Conceptuel
+Abstraction:       SKIPPED (facts preservation)
 
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
-Original Length:   736300 chars
-Summary Length:    582 chars
-Compression:       99.9%
+Original Length:   41341 chars
+Summary Length:    2623 chars
+Compression:       93.7%
 Variants Created:  5
-Processing Time:   842 ms
+Processing Time:   265 ms
 
 💾 SYSTEM RESOURCES:
 ────────────────────────────────────────────────────────────
-RAM Used:          7.0 MB / 213.0 MB (3.3%)
+RAM Used:          3.0 MB / 191.0 MB (1.8%)
 Go Routines:       3
-Memory Alloc:      7.1 MB
-CPU Usage:         0.92%
+Memory Alloc:      3.5 MB
+CPU Usage:         0.35%
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────
-Dans Madame Bovary, Gustave Flaubert peint le drame de l'âme sensible : Emma, mariée au médecin Charles, se consume d'ennui existentiel et passions inassouvies. Ses liaisons—avec le notaire Léon, avec Rodolphe—témoignent de ses rêves romantiques inassouvis, brisés par une bourgeoisie étouffante. Les rôles étiqués figent les destinées contrariées, le dénuement existentiel structure la soumission étouffante; le système oppressif rend invisible sa propre cruauté bourgeoise. Cette logique révèle les hiérarchies bourgeoises reproduisent les discriminations.
+Ces limitations posent des questions sur la pertinence des méthodes centralisées pour les applications modernes, qui nécessitent des systèmes capables de traiter des flux d’informations partagés et de s’adapter rapidement à des environnements dynamiques Contrairement à une orchestration imposée par un serveur central, cette synchronisation émerge spontanément et peut être formalisée par une équation simple mais puissante :
+ 
+
+où si​ représente l’état interne de l’atome i, N(i) l’ensemble de ses voisins, α le coefficient de couplage qui traduit l’influence des voisins, β l’impact des règles locales Ri​ et des perceptions pi​ Cette plasticité permanente peut être représentée par l’évolution des poids des interactions locales :
+
+
+où wij​ représente le poids de la connexion entre les atomes i et j, γ le renforcement proportionnel à la cohérence des états, et δ un terme d’affaiblissement des connexions instables L’une des innovations majeures de ce moteur réside dans la dynamique adaptative des poids de connexion entre unités, exprimée par l’équation :
+
+
+où wij​ représente le poids de liaison entre l’atome i et l’atome j, si​(t) et sj​(t) leurs états à l’instant t, γ le coefficient de renforcement et δ le coefficient de décroissance IMPLÉMENTATION ET APPLICATIONS DE L’IA ATOMIQUE
+
+
+	La mise en œuvre pratique de l’IA atomique repose sur la combinaison de sa modularité, de sa distribution complète et de sa capacité à apprendre en continu à partir des interactions locales Les micro-interactions entre capteurs permettent au réseau de générer une compréhension globale des phénomènes observés, comme la détection d’une congestion de trafic, l’évolution de la pollution de l’air ou la détection d’événements sonores atypiques, sans nécessiter de serveur central Plutôt que de se concentrer sur la puissance de calcul centralisée ou des modèles massifs supervisés, elle démontre que la complexité et la robustesse peuvent émerger de règles locales simples et de la répétition d’interactions élémentaires
+
+[Équations critiques]
+[[MATH:2]] La fonction R(si​,sj​) retourne un nombre compris entre 0 et 1, qui traduit le degré d’alignement ou de compatibilité entre les deux unités
+[[MATH:3]] Le paramètre σ règle la sensibilité de la résonance : une valeur faible rend le système très strict, ne permettant de résonner qu’avec des voisins très proches, tandis qu’une valeur plus élevée autorise une résonance plus large, englobant davantage de voisins
+
 

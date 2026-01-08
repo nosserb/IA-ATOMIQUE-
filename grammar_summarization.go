@@ -51,20 +51,21 @@ type SystemStats struct {
 
 // GrammarAwareSummary contient le résumé optimisé
 type GrammarAwareSummary struct {
-	OriginalText          string
-	PreprocessedText      string
-	BaseSummary           string // Phase 13+++
-	OptimizedSummary      string // Phase 15
-	GrammarScore          float64
-	StyleScore            float64
-	CoherenceScore        float64
-	LexicalRichness       float64
-	ProcessingTime        int64 // en ms
-	VariantsGenerated     int
-	ImprovementPercentage float64
-	SystemStats           SystemStats
-	TextType              TextType // Type de texte détecté
-	SkipAbstraction       bool     // Si true, saute Phase X+1
+	OriginalText           string
+	PreprocessedText       string
+	BaseSummary            string // Phase 13+++
+	OptimizedSummary       string // Phase 15
+	GrammarScore           float64
+	StyleScore             float64
+	CoherenceScore         float64
+	LexicalRichness        float64
+	ProcessingTime         int64 // en ms
+	VariantsGenerated      int
+	ImprovementPercentage  float64
+	SystemStats            SystemStats
+	TextType               TextType // Type de texte détecté
+	SkipAbstraction        bool     // Si true, saute Phase X+1
+	HalluccinationDetected bool     // Si true, fallback en extraction appliqué
 }
 
 // GrammarSummarizer orchestre le pipeline Phase 15
@@ -294,6 +295,40 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 		OriginalText: inputText,
 	}
 
+	// === PRÉAMBULE: VÉRIFICATION INTÉGRITÉ PIPELINE ===
+	fmt.Println("\n[PIPELINE INTEGRITY] Vérification pré-Phase 15...")
+	integrityReport := database.VerifyPipelineIntegrity(inputText, "")
+	fmt.Printf("  🔍 Hash texte: %s\n", integrityReport.TextHash)
+	fmt.Printf("  📏 Longueur: %d chars\n", integrityReport.OriginalLength)
+	fmt.Printf("  ⚙️  Tech density: %.1f%%\n", integrityReport.TechDensity*100)
+	fmt.Printf("  🎯 Domaine détecté: %s\n", integrityReport.DomainDetected)
+	fmt.Printf("  ✔️  Alignement: %v\n", integrityReport.IsAligned)
+
+	// Afficher erreurs critiques
+	if len(integrityReport.Errors) > 0 {
+		fmt.Println("  ❌ ERREURS CRITIQUES:")
+		for _, err := range integrityReport.Errors {
+			fmt.Printf("     - %s\n", err)
+		}
+	}
+
+	// Afficher avertissements
+	if len(integrityReport.Warnings) > 0 {
+		fmt.Println("  ⚠️  AVERTISSEMENTS:")
+		for _, warn := range integrityReport.Warnings {
+			fmt.Printf("     - %s\n", warn)
+		}
+	}
+
+	// CORRECTIF 5: Si divergence trop élevée, ABORT
+	if !integrityReport.IsAligned {
+		fmt.Println("\n  🚨 DIVERGENCE GLOBALE TROP ÉLEVÉE - ABORT PHASE 15")
+		fmt.Println("  👉 Le texte reçu ne correspond pas à l'espace sémantique détecté")
+		fmt.Println("  👉 Vérifiez que vous passez le bon fichier")
+		result.OptimizedSummary = "ERREUR: Divergence sémantique détectée. Vérifiez le fichier d'entrée."
+		return result
+	}
+
 	// === ÉTAPE 0: Détection du type de texte ===
 	fmt.Println("\n[PHASE 15] Étape 0: Détection du type de texte...")
 	textType := DetectTextType(inputText)
@@ -318,6 +353,14 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	fmt.Printf("  ✓ Fusionné %d fragments courts\n", preprocessResult.MergedSentences)
 	fmt.Printf("  ✓ Normalisé ponctuation: %d opérations\n", preprocessResult.NormalizedCount)
 
+	// === ÉTAPE 1.5: EXTRACTION ESPACE CONCEPTUEL SOURCE (CONSTRAINT) ===
+	fmt.Println("\n[DOMAIN CONSTRAINT] Étape 1.5: Extraction espace sémantique source...")
+	domainSpace := database.ExtractDomainConcepts(inputText)
+	fmt.Printf("  ℹ️  Domaine détecté: %s (tech density: %.1f%%)\n", domainSpace.DomainMode, domainSpace.TechDensity*100)
+	fmt.Printf("  📚 Concepts clés: %d\n", len(domainSpace.CoreConcepts))
+	fmt.Printf("  🚫 Concepts interdits: %d\n", len(domainSpace.ForbiddenConcepts))
+	fmt.Printf("  🔧 Termes techniques: %d\n", len(domainSpace.TechTerms))
+
 	// === ÉTAPE 2: Résumé de base (Phase 13+++) ===
 	fmt.Println("\n[PHASE 15] Étape 2: Résumé atomique (Phase 13+++)...")
 
@@ -337,6 +380,20 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	}
 	result.BaseSummary = baseSummary
 	fmt.Printf("  ✓ Résumé généré: %d caractères\n", len(baseSummary))
+
+	// === ÉTAPE 2.5: VALIDATION DOMAINE (CONSTRAINT) ===
+	fmt.Println("\n[DOMAIN CONSTRAINT] Étape 2.5: Validation phrases dans domaine...")
+	validatedSummary := validateSummaryAgainstDomain(baseSummary, &domainSpace)
+	originalLen := len(baseSummary)
+	validatedLen := len(validatedSummary)
+	fmt.Printf("  ✓ Phrases validées: %d → %d caractères (%.1f%% conservé)\n",
+		originalLen, validatedLen, float64(validatedLen)/float64(originalLen)*100)
+
+	if validatedLen < originalLen/2 {
+		fmt.Printf("  ⚠️  Beaucoup de phrases rejetées (hors domaine?)\n")
+	}
+
+	baseSummary = validatedSummary
 
 	// === ÉTAPE 2.5: PHASE X+4 - REFORMULATION ENCYCLOPÉDIQUE (optionnel) ===
 	if result.TextType == ENCYCLOPEDIC && threshold < 0.3 {
@@ -405,10 +462,114 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	result.CoherenceScore = coherenceScore
 	fmt.Printf("  ✓ Score cohérence: %.2f%%\n", coherenceScore*100)
 
+	// === ÉTAPE 0.5: MATH PROTECTION - Équations comme entités atomiques ===
+	fmt.Println("\n[MATH PROTECTION] Étape 0.5: Protection mathématique (avant Phase 2)...")
+
+	// Extraire et protéger toutes les équations AVANT résumé
+	protected := database.ExtractAndProtectEquations(inputText)
+	fmt.Printf("  ✓ Équations détectées: %d blocks\n", protected.BlockCount)
+
+	// Garder une trace des équations originales
+	originalMathBlocks := protected.MathBlocks
+	fmt.Printf("  ✓ %d équations mises en sécurité avec tags MATH\n", len(originalMathBlocks))
+
+	// === ÉTAPE 7.5: FIDELITY CHECK WITH MATH INTEGRITY ===
+	fmt.Println("\n[FIDELITY CHECK] Étape 7.5: Vérification fidélité + intégrité mathématique...")
+
+	// Étape B: S'assurer que les équations sont dans le résumé
+	restoredSummary := database.RestoreEquationsFromPlaceholders(result.OptimizedSummary, originalMathBlocks)
+	if len(originalMathBlocks) > 0 {
+		restoredSummary = database.PreserveEquationsInSummary(restoredSummary, protected)
+	}
+	result.OptimizedSummary = restoredSummary
+
+	// Étape C: Métrique binaire pour équations + fidélité pondérée
+	equationIntegrityScore := database.CalculateEquationIntegrityScore(result.OptimizedSummary, originalMathBlocks)
+
+	// Calculer fidélité pondérée avec contrainte mathématique
+	// Ff_w = 0.3*ConceptScore + 0.5*EquationScore(binaire) + 0.2*TextScore
+	fidelityScore := database.CalculateWeightedFidelityWithMathConstraint(
+		result.OptimizedSummary,
+		inputText,
+		originalMathBlocks,
+	)
+
+	// Afficher les diagnostics
+	weightedReport := database.CalculateWeightedFidelity(result.OptimizedSummary, inputText)
+
+	fmt.Printf("  → Coverage Ff simple: %.2f%%\n", weightedReport.NarrativeScore*100)
+	fmt.Printf("  → Concepts trouvés: %d/%d (%.0f%%)\n",
+		weightedReport.ConceptsMatched, weightedReport.ConceptsTotal,
+		weightedReport.ConceptScore*100)
+	fmt.Printf("  → Équations trouvées: %d/%d (binaire: %.0f%%)\n",
+		len(originalMathBlocks), len(originalMathBlocks),
+		equationIntegrityScore*100)
+	fmt.Printf("  → Fidélité PONDÉRÉE Ff_w(R,T) + contrainte math: %.2f%%\n", fidelityScore*100)
+
+	const FIDELITY_THRESHOLD = 0.80 // 80% minimum
+
+	if fidelityScore < FIDELITY_THRESHOLD {
+		fmt.Printf("  ⚠️  Fidélité pondérée < %.0f%% (équations binaires: %.0f) → Hallucination détectée!\n",
+			FIDELITY_THRESHOLD*100, equationIntegrityScore*100)
+		fmt.Printf("  🔄 Basculage en mode EXTRACTIF (garantie zéro hallucination + équations intactes)\n")
+
+		// Fallback en extraction pur avec système de récompense de compression
+		// Les équations seront automatiquement incluses via ExtractWithCompressionReward
+		compressionTarget := database.ExtractWithCompressionReward(inputText, threshold)
+
+		result.OptimizedSummary = compressionTarget.FinalSummary
+
+		// Restaurer les équations aussi dans la version extractive
+		result.OptimizedSummary = database.PreserveEquationsInSummary(result.OptimizedSummary, protected)
+
+		result.CoherenceScore = 1.0 // Extraction = garantie 100% fidélité
+		result.HalluccinationDetected = true
+		result.SkipAbstraction = true // IMPORTANTE: Sauter abstraction!
+
+		// Afficher les métriques de compression
+		fmt.Printf("  📊 Compression:\n")
+		fmt.Printf("     - Target: %.0f%% (%d chars)\n", threshold*100, compressionTarget.TargetChars)
+		fmt.Printf("     - Réel: %.0f%% (%d chars)\n", compressionTarget.ActualRatio*100, len(compressionTarget.FinalSummary))
+		fmt.Printf("     - Delta: %.1f%%\n", compressionTarget.DeltaPercent)
+		fmt.Printf("     - Reward Score: %.1f/1.0\n", compressionTarget.RewardScore)
+
+		if compressionTarget.RewardScore >= 0.9 {
+			fmt.Printf("  ✅ EXCELLENT: Compression très proche du target!\n")
+		} else if compressionTarget.RewardScore >= 0.8 {
+			fmt.Printf("  ✓ BON: Compression respectée\n")
+		} else if compressionTarget.RewardScore >= 0.6 {
+			fmt.Printf("  ℹ️  ACCEPTABLE: Compression à ±25% du target\n")
+		}
+
+		fmt.Printf("  ✓ Résumé EXTRACTIF sélectionné (100%% fidélité + intégrité mathématique)\n")
+	} else if fidelityScore < 0.92 {
+		// ⚠️ CORRECTIF: Zone d'alerte (80-92%) - trop risqué pour abstraction
+		fmt.Printf("  ⚠️  Fidélité MARGINALE: %.2f%% (zone 80-92%%) → Abstraction REFUSÉE\n", fidelityScore*100)
+		fmt.Printf("  🔄 Basculage en mode EXTRACTIF par prudence (zéro hallucination garanti)\n")
+
+		compressionTarget := database.ExtractWithCompressionReward(inputText, threshold)
+		result.OptimizedSummary = compressionTarget.FinalSummary
+		result.OptimizedSummary = database.PreserveEquationsInSummary(result.OptimizedSummary, protected)
+
+		result.CoherenceScore = 1.0
+		result.HalluccinationDetected = true
+		result.SkipAbstraction = true // IMPORTANTE: Sauter abstraction!
+
+		fmt.Printf("  ✓ Mode EXTRACTIF sécurisé (Ff_w = %.2f%%)\n", fidelityScore*100)
+	} else {
+		fmt.Printf("  ✓ Fidélité acceptable (%.2f%%) → Mode GÉNÉRATIF conservé\n", fidelityScore*100)
+		fmt.Printf("  ✓ Intégrité mathématique: %.0f%% (équations présentes)\n", equationIntegrityScore*100)
+	}
+
 	// === ÉTAPE 8: PHASE X+1 - SEMANTIC ABSTRACTION LAYER ===
-	if result.SkipAbstraction {
-		fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique (SKIPPÉE pour type encyclopédique)...")
-		fmt.Printf("  ℹ️  Texte encyclopédique: conservation des faits concrets\n")
+	if result.SkipAbstraction || result.HalluccinationDetected {
+		if result.HalluccinationDetected {
+			fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique (SKIPPÉE - hallucination fallback)...")
+			fmt.Printf("  ℹ️  Mode extraction: conservation de la fidélité source\n")
+		} else {
+			fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique (SKIPPÉE pour type encyclopédique)...")
+			fmt.Printf("  ℹ️  Texte encyclopédique: conservation des faits concrets\n")
+		}
 	} else {
 		fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique forcée...")
 

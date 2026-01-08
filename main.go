@@ -642,6 +642,9 @@ func main() {
 	case "interactive", "inter":
 		InteractionInteractive()
 
+	case "fidelity":
+		ProcessAntiHallucination(os.Args[1:])
+
 	default:
 		// Mode hérité - traiter comme phrase simple
 		phrase := strings.Join(os.Args[1:], " ")
