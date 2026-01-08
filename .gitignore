@@ -1,32 +1,67 @@
-# Binaires compilés
+# =====================================
+# Go & Binaires compilés
+# =====================================
 programme
 *.exe
 *.so
 *.dylib
+*.o
+*.a
+*.out
 
-# Fichiers générés
+# =====================================
+# Fichiers générés du projet
+# =====================================
 dashboard
 *.enc.bak
 blacklist_backup.enc
-
-# Fichiers temporaires
 temp.txt
+
+# =====================================
+# Fichiers temporaires
+# =====================================
 *.tmp
 *.log
 *.swp
 *~
+*.bak
 
+# =====================================
 # Fichiers de test/données
+# =====================================
 wikipedia.txt
 test*.txt
 sample*.txt
+*.test
 
-# IDE
+# =====================================
+# IDE & Éditeurs
+# =====================================
 .vscode/
 .idea/
 *.iml
-*.swp
-*.swo
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# =====================================
+# Dépendances & Modules
+# =====================================
+vendor/
+go.sum
+
+# =====================================
+# Docker
+# =====================================
+.dockerignore
+.docker/
+
+# =====================================
+# Système
+# =====================================
+.env
+.env.local
+*.pid
 
 # OS
 .DS_Store

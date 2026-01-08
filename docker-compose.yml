@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  ia-atomique:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./web:/app/web
+    environment:
+      - PORT=8080
+    restart: unless-stopped
