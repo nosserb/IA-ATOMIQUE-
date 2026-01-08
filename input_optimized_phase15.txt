@@ -7,17 +7,23 @@
 ────────────────────────────────────────────────────────────
 Grammar Score:     84.1%
 Style Score:       64.8%
-Coherence Score:   35.5%
+Coherence Score:   38.7%
 Lexical Richness:  64.8%
-Improvement:       +27.0%
-
+Improvement:       +28.1%
 📈 PROCESSING:
 ────────────────────────────────────────────────────────────
 Original Length:   1856364 chars
 Summary Length:    453 chars
 Compression:       100.0%
 Variants Created:  5
-Processing Time:   3785 ms
+Processing Time:   3334 ms
+
+💾 SYSTEM RESOURCES:
+────────────────────────────────────────────────────────────
+RAM Used:          9.0 MB / 14932.0 MB (0.1%)
+Go Routines:       3
+Memory Alloc:      9.1 MB
+CPU Usage:         5.47%
 
 💬 SUMMARY:
 ────────────────────────────────────────────────────────────

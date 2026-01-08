@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime"
+	"strconv"
 	"strings"
 	"time"
 
@@ -14,6 +16,16 @@ import (
 // ============================================================================
 // Intègre tous modules: Prétraitement → Résumé (Phase 13+++) → Optimisation
 // Syntaxique → Enrichissement vocabulaire → Vérification cohérence
+
+// SystemStats contient les metrics système
+type SystemStats struct {
+	RAMUsedMB       uint64
+	RAMTotalMB      uint64
+	RAMPercent      float64
+	GoroutinesCount int
+	AllocationsMB   float64
+	CPUUsagePercent float64
+}
 
 // GrammarAwareSummary contient le résumé optimisé
 type GrammarAwareSummary struct {
@@ -28,11 +40,40 @@ type GrammarAwareSummary struct {
 	ProcessingTime        int64 // en ms
 	VariantsGenerated     int
 	ImprovementPercentage float64
+	SystemStats           SystemStats
 }
 
 // GrammarSummarizer orchestre le pipeline Phase 15
 type GrammarSummarizer struct {
 	Enricher *database.VocabularyEnricher
+}
+
+// CaptureSystemStats capture les metrics système
+func CaptureSystemStats() SystemStats {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+
+	stats := SystemStats{
+		RAMUsedMB:       m.Alloc / 1024 / 1024,
+		RAMTotalMB:      m.TotalAlloc / 1024 / 1024,
+		RAMPercent:      float64(m.Alloc) / float64(m.TotalAlloc),
+		GoroutinesCount: runtime.NumGoroutine(),
+		AllocationsMB:   float64(m.Alloc) / 1024 / 1024,
+	}
+
+	// Essayer de récupérer le CPU usage via /proc/self/stat (Linux)
+	if data, err := os.ReadFile("/proc/self/stat"); err == nil {
+		fields := strings.Fields(string(data))
+		if len(fields) > 14 {
+			if utime, err := strconv.ParseFloat(fields[13], 64); err == nil {
+				if stime, err := strconv.ParseFloat(fields[14], 64); err == nil {
+					stats.CPUUsagePercent = (utime + stime) / 100.0 // Approximation
+				}
+			}
+		}
+	}
+
+	return stats
 }
 
 // NewGrammarSummarizer crée un nouveau pipeline
@@ -148,6 +189,9 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	// === Résultats finaux ===
 	result.ProcessingTime = time.Since(startTime).Milliseconds()
 	result.ImprovementPercentage = ((result.StyleScore + result.CoherenceScore + result.LexicalRichness) / 3.0) - (result.GrammarScore / 3.0)
+
+	// Capturer les stats système finales
+	result.SystemStats = CaptureSystemStats()
 
 	return result
 }
@@ -304,7 +348,7 @@ func (gas *GrammarAwareSummary) GetSummaryReport() string {
 	report.WriteString(fmt.Sprintf("Lexical Richness:  %.1f%%\n", gas.LexicalRichness*100))
 	report.WriteString(fmt.Sprintf("Improvement:       +%.1f%%\n", gas.ImprovementPercentage*100))
 
-	report.WriteString("\n📈 PROCESSING:\n")
+	report.WriteString("📈 PROCESSING:\n")
 	report.WriteString("────────────────────────────────────────────────────────────\n")
 	report.WriteString(fmt.Sprintf("Original Length:   %d chars\n", len(gas.OriginalText)))
 	report.WriteString(fmt.Sprintf("Summary Length:    %d chars\n", len(gas.OptimizedSummary)))
@@ -312,6 +356,14 @@ func (gas *GrammarAwareSummary) GetSummaryReport() string {
 		100.0*(1.0-float64(len(gas.OptimizedSummary))/float64(len(gas.OriginalText)))))
 	report.WriteString(fmt.Sprintf("Variants Created:  %d\n", gas.VariantsGenerated))
 	report.WriteString(fmt.Sprintf("Processing Time:   %d ms\n", gas.ProcessingTime))
+
+	report.WriteString("\n💾 SYSTEM RESOURCES:\n")
+	report.WriteString("────────────────────────────────────────────────────────────\n")
+	report.WriteString(fmt.Sprintf("RAM Used:          %.1f MB / %.1f MB (%.1f%%)\n",
+		float64(gas.SystemStats.RAMUsedMB), float64(gas.SystemStats.RAMTotalMB), gas.SystemStats.RAMPercent*100))
+	report.WriteString(fmt.Sprintf("Go Routines:       %d\n", gas.SystemStats.GoroutinesCount))
+	report.WriteString(fmt.Sprintf("Memory Alloc:      %.1f MB\n", gas.SystemStats.AllocationsMB))
+	report.WriteString(fmt.Sprintf("CPU Usage:         %.2f%%\n", gas.SystemStats.CPUUsagePercent))
 
 	report.WriteString("\n💬 SUMMARY:\n")
 	report.WriteString("────────────────────────────────────────────────────────────\n")
