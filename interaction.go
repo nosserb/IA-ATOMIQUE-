@@ -802,7 +802,17 @@ func TraiterTexte(texte string, source string) {
 
 	// ===== PHASE X+1: APPLIQUER L'ABSTRACTION FORCÉE =====
 	if scoreAbstraction.ScoreGlobal < 60 {
-		fmt.Printf("%s\n", database.AppliquerAbstractionForcee(resumeSynthetique, scoreAbstraction.ScoreGlobal, analyseSemantique))
+		// Générer les phrases conceptuelles
+		phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
+
+		// ===== PHASE X+2: LIER LES CONCEPTS AVEC STRUCTURE DISCURSIVE =====
+		resumeLie := database.LierPhrasesConceptuelles(phrasesAbstraites)
+
+		fmt.Printf("╔════════════════════════════════════════════════════════════╗\n")
+		fmt.Printf("║  ⚠️  RÉSUMÉ RÉÉCRIT EN ABSTRACTION FORCÉE (Phase X+2)      ║\n")
+		fmt.Printf("║  Score %.1f%% < 60%% | Micro-structure discursive         ║\n", scoreAbstraction.ScoreGlobal)
+		fmt.Printf("╚════════════════════════════════════════════════════════════╝\n\n")
+		fmt.Printf("%s\n\n", resumeLie)
 	} else {
 		// Recommandations seulement (pas de réécriture forcée)
 		if scoreAbstraction.ScoreGlobal < 75 {

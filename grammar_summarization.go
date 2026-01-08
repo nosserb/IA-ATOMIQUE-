@@ -113,6 +113,38 @@ func (gs *GrammarSummarizer) ProcessWithPhase15(inputText string, threshold floa
 	result.CoherenceScore = coherenceScore
 	fmt.Printf("  ✓ Score cohérence: %.2f%%\n", coherenceScore*100)
 
+	// === ÉTAPE 8: PHASE X+1 - SEMANTIC ABSTRACTION LAYER ===
+	fmt.Println("\n[PHASE X+1] Étape 8: Abstraction sémantique forcée...")
+
+	// Analyser le texte original pour extraire les concepts
+	phrasesOriginales := strings.Split(inputText, ".")
+	var phrasesListe []string
+	for _, p := range phrasesOriginales {
+		p = strings.TrimSpace(p)
+		if len(p) > 10 {
+			phrasesListe = append(phrasesListe, p)
+		}
+	}
+
+	analyseSemantique := database.AnalyserSemantiquement(inputText, phrasesListe)
+	scoreAbstraction := database.EvaluerAbstraction(result.OptimizedSummary, analyseSemantique)
+
+	fmt.Printf("  → Score d'abstraction: %.1f%%\n", scoreAbstraction.ScoreGlobal)
+
+	// Appliquer abstraction forcée si score < 60%
+	if scoreAbstraction.ScoreGlobal < 60.0 {
+		fmt.Printf("  ⚠️  Score < 60%% → Réécrit en phrases conceptuelles\n")
+		phrasesAbstraites := database.GenererPhrasesConceptuelles(analyseSemantique)
+
+		// === ÉTAPE 9: PHASE X+2 - CONCEPTUAL LINKING LAYER ===
+		fmt.Println("\n[PHASE X+2] Étape 9: Liage conceptuel (micro-structure)...")
+		resumeLie := database.LierPhrasesConceptuelles(phrasesAbstraites)
+		result.OptimizedSummary = resumeLie
+		fmt.Printf("  ✓ Structure discursive appliquée (thèse + mécanismes + conclusion)\n")
+	} else {
+		fmt.Printf("  ✓ Score acceptable: pas de réécriture\n")
+	}
+
 	// === Résultats finaux ===
 	result.ProcessingTime = time.Since(startTime).Milliseconds()
 	result.ImprovementPercentage = ((result.StyleScore + result.CoherenceScore + result.LexicalRichness) / 3.0) - (result.GrammarScore / 3.0)
