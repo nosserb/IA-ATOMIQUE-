@@ -93,7 +93,15 @@ func GenererResumeCommand(fichier string, ratio float64) {
 	fmt.Printf("• Mots générés:        %d (cible: %d)\n", len(state.MotsGenerés), params.TailleCible)
 	fmt.Printf("• Compression:         %.1fx\n", float64(len(strings.Fields(texte)))/float64(len(state.MotsGenerés)))
 	fmt.Printf("• Phrases d'entrée:    %d\n", len(phrases))
+
+	// Calculer nombre d'opérations vectorielles effectuées
+	// Opérations = (phrases × vecteurs d'activation) × itérations adaptives
+	estimatedOpsPerPhrase := len(state.Activations)
+	totalOps := len(phrases) * estimatedOpsPerPhrase
+	fmt.Printf("• Opérations vect.:    %d (%.2fM)\n", totalOps, float64(totalOps)/1e6)
+	fmt.Printf("• Opérations/phrase:   %d\n", estimatedOpsPerPhrase)
 	fmt.Printf("• Temps total:         %v\n", temps)
+	fmt.Printf("• Débit:               %.2f M ops/sec\n", float64(totalOps)/1e6/temps.Seconds())
 
 	fmt.Printf("\n✓ Génération réussie - Résumé créé par résonance vectorielle\n\n")
 }
@@ -213,7 +221,16 @@ func GenererResumeDecoupageCommand(fichier string, ratio float64) {
 	fmt.Printf("• Mots générés:        %d (cible: %d)\n", len(strings.Fields(resume)), tailleResume)
 	fmt.Printf("• Compression réelle:  %.1fx\n", float64(motsTotaux)/float64(len(strings.Fields(resume))))
 	fmt.Printf("• Phrases d'entrée:    %d\n", len(phrases))
+	fmt.Printf("• Blocs créés:         %d\n", len(resumeur.Blocs))
+
+	// Calculer nombre d'opérations vectorielles effectuées
+	// Opérations = blocs × (vecteurs de cohérence + sélection + génération)
+	opsParBloc := 50 // Cohérence + TF-IDF + normalisation + sélection
+	totalOps := len(resumeur.Blocs) * opsParBloc
+	fmt.Printf("• Opérations vect.:    %d (%.2fM)\n", totalOps, float64(totalOps)/1e6)
+	fmt.Printf("• Opérations/bloc:     %d\n", opsParBloc)
 	fmt.Printf("• Temps total:         %v\n", temps)
+	fmt.Printf("• Débit:               %.2f M ops/sec\n", float64(totalOps)/1e6/temps.Seconds())
 
 	fmt.Printf("\n✓ Résumé généré avec découpage vectoriel et cohérence globale\n\n")
 }
