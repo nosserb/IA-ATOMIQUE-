@@ -648,6 +648,27 @@ func main() {
 	case "fidelity":
 		ProcessAntiHallucination(os.Args[1:])
 
+	case "atomic-optimized":
+		ProcessOptimizedAtomicCommand(os.Args[1:])
+
+	case "stest", "stress-test":
+		ProcessStressTestUltimate(os.Args[2:])
+
+	case "stest-batch":
+		ProcessStressTestAdaptiveBatch(os.Args[2:])
+
+	case "stest-l3":
+		ProcessStressTestLevier3(os.Args[2:])
+
+	case "stest-l3-demo":
+		ProcessStressTestLevier3WithRedundancy(os.Args[2:])
+
+	case "stest-ultra":
+		ProcessStressTestCommandUltraOptimized(os.Args[2:])
+
+	case "ultra":
+		ProcessUltraLiteMode(os.Args[2:])
+
 	default:
 		// Mode hérité - traiter comme phrase simple
 		phrase := strings.Join(os.Args[1:], " ")

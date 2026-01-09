@@ -158,13 +158,10 @@ func ResumerTexte(texte string, ratio float64) string {
 	// Calculer le nombre de mots à garder (basé sur ratio)
 	nbMotsGardes := int(float64(len(phrases)) * ratio)
 
-	// Minimum 20% du texte
-	minMots := len(phrases) / 5
-	if minMots < 10 {
-		minMots = 10
-	}
-	if nbMotsGardes < minMots {
-		nbMotsGardes = minMots
+	// Respecter le ratio sans minimum imposé
+	// (l'utilisateur a demandé un ratio spécifique, on le respecte)
+	if nbMotsGardes < 1 {
+		nbMotsGardes = 1 // Minimum: au moins 1 mot
 	}
 	if nbMotsGardes > len(phrases) {
 		nbMotsGardes = len(phrases)
@@ -224,12 +221,7 @@ func ResumerTexteParPhrases(texte string, ratioTarget float64) string {
 	phrasesCount := len(phrases)
 	phrasesKept := int(float64(phrasesCount) * ratioTarget)
 	if phrasesKept < 1 {
-		phrasesKept = 1
-	}
-	// Garder au moins 30% pour éviter trop d'agressivité
-	minPhrases := phrasesCount * 30 / 100
-	if phrasesKept < minPhrases {
-		phrasesKept = minPhrases
+		phrasesKept = 1 // Minimum: au moins 1 phrase
 	}
 
 	// Scorer chaque phrase par importance
