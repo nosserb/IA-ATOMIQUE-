@@ -147,117 +147,748 @@ func afficherAide() {
 ║    Analyse de texte, Apprentissage & Génération de résumés   ║
 ╚═══════════════════════════════════════════════════════════════╝
 
-📖 UTILISATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 COMMANDES PRINCIPALES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  1. MODE INTERACTIF (par défaut)
-     $ ./programme
-     ou
-     $ ./programme interactive
+1. MODE INTERACTIF (par défaut)
+   $ ./programme
+   $ ./programme interactive
+   → Lance l'interface interactive avec menu
 
-  2. ANALYSER UN FICHIER
-     $ ./programme file <chemin_fichier>
-     
-     Exemples:
-       $ ./programme file wikipedia.txt
-       $ ./programme file document.md
-       $ ./programme file /home/user/texte.txt
+2. ANALYSER UN FICHIER
+   $ ./programme file <chemin_fichier>
+   
+   Exemples:
+     $ ./programme file document.txt
+     $ ./programme file /path/to/file.md
 
-  3. ANALYSER UN TEXTE DIRECT
-     $ ./programme text <votre texte>
-     
-     Exemples:
-       $ ./programme text "L'IA est la technologie du futur"
-       $ ./programme text "Einstein a découvert la relativité en 1905"
+3. ANALYSER UN TEXTE DIRECT
+   $ ./programme text <votre texte>
+   
+   Exemples:
+     $ ./programme text "L'IA est l'avenir"
+     $ ./programme text "Bonjour le monde"
 
-  4. MODE CLASSIQUE (hérité)
-     $ ./programme <texte quelconque>
-     
-     Exemples:
-       $ ./programme bonjour
-       $ ./programme l'informatique progresse rapidement
+4. MODE HÉRITÉ (texte simple)
+   $ ./programme <votre texte>
+   
+   Exemples:
+     $ ./programme bonjour
+     $ ./programme l'informatique progresse
 
-═══════════════════════════════════════════════════════════════
+5. INTERFACE WEB
+	$ ./programme web
+	→ Lance l'interface web locale
 
-⚙️  FONCTIONNALITÉS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎓 APPRENTISSAGE AUTOMATIQUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ✓ Analyse phrase par phrase
-  ✓ Classification en 6 catégories:
-    - TECH: Technologie, informatique, numérique
-    - HISTOIRE: Politique, histoire, événements
-    - BUSINESS: Commerce, économie, affaires
-    - ALIMENTATION: Nutrition, gastronomie
-    - SANTE: Santé, médecine, bien-être
-    - VERBE: Détection d'actions (verbes principaux)
+1. APPRENDRE À PARTIR DE TEXTES
+   $ ./programme learn <fichier.txt|dossier>
+   
+   Exemples:
+     $ ./programme learn histoire.txt
+     $ ./programme learn corpus/sciences/
+     $ ./programme learn medecine.txt
+   
+   → Extrait automatiquement des connaissances factuelles
+   → Patterns: dates, relations causales, définitions
+   → Co-occurrences: associations statistiques
 
-  ✓ Détection de la structure grammaticale
-  ✓ Génération de résumés synthétiques
-  ✓ Système de modération (blacklist chiffrée AES-256)
-  ✓ Apprentissage dynamique des mots
+2. CONSULTER LES CONNAISSANCES
+   $ ./programme knowledge <terme>
+   
+   Exemples:
+     $ ./programme knowledge Napoléon
+     $ ./programme knowledge 1815
+     $ ./programme knowledge coeur
+   
+   → Affiche toutes les connaissances sur un terme
 
-═══════════════════════════════════════════════════════════════
+3. STATISTIQUES D'APPRENTISSAGE
+   $ ./programme stats-kb
+   $ ./programme kb-stats
+   
+   → Affiche les statistiques de la base de connaissances
+   → Nombre de faits extraits, définitions, dates, etc.
 
-📊 SORTIE STANDARD:
+4. TESTER LES CONNAISSANCES
+   $ ./programme test-knowledge <question>
+   
+   Exemple:
+     $ ./programme test-knowledge "Quand a eu lieu Waterloo?"
+   
+   → Cherche les connaissances pertinentes pour répondre
 
-  [STATISTIQUES GLOBALES]
-    • Phrases analysées
-    • Catégories détectées
-    • Énergie totale
-    • Confiance moyenne
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 RÉSUMÉS & GÉNÉRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  [DISTRIBUTION]
-    • Répartition en pourcentages
-    • Graphiques visuels
+1. RÉSUMÉ OPTIMISÉ (Phase 15 - Grammar-Aware)
+   $ ./programme resume <fichier> [threshold=0.10]
+   
+   Exemples:
+     $ ./programme resume document.txt         (strict, 10%)
+     $ ./programme resume document.txt 0.3     (normal, 30%)
+     $ ./programme resume document.txt 0.5     (détaillé, 50%)
+   
+   → Utilise la technologie T.R.A. avec analyse grammaticale
 
-  [ANALYSE PAR PHRASE]
-    • Catégorie détectée
-    • Mots clés identifiés
-    • Verbes principaux
-    • Résumé synthétique
+2. GÉNÉRATION DE RÉSUMÉ (simple)
+   $ ./programme generate <fichier> [ratio=0.3]
+   
+   Exemples:
+     $ ./programme generate document.txt
+     $ ./programme generate document.txt 0.5
+   
+   → Génère un résumé par extraction vectorielle
 
-═══════════════════════════════════════════════════════════════
+3. EXTRACTION DES PHRASES CLÉS
+   $ ./programme extract <fichier> [ratio=0.3]
+   
+   Exemples:
+     $ ./programme extract document.txt
+     $ ./programme extract document.txt 0.5
+   
+   → Identifie et extrait les phrases les plus importantes
 
-💡 CONSEILS D'UTILISATION:
+4. GÉNÉRATION AVEC ATOMES
+   $ ./programme atomic <fichier> [compression=0.3]
+   
+   Exemples:
+     $ ./programme atomic document.txt
+     $ ./programme atomic document.txt 0.5
+   
+   → Utilise le réseau atomique autonome pour générer
 
-  • Pour les meilleurs résultats, utilisez des textes français
-  • Les fichiers volumineux seront traités progressivement
-  • La modération empêche l'apprentissage de contenu offensant
-  • Les neurones se régénèrent automatiquement après chaque exécution
+5. COMPARATIF DES MÉTHODES
+	$ ./programme compare <fichier> [compression=0.3]
+	$ ./programme compare-summaries <fichier>
+	→ Compare vectoriel vs atomique vs grammatical
 
-═══════════════════════════════════════════════════════════════
+6. ANALYSES INTERNES
+	$ ./programme analyze-preprocessing <fichier>
+	$ ./programme analyze-vocabulary <fichier>
+	→ Affiche les détails du pipeline et du vocabulaire
 
-❓ AIDE:
-  $ ./programme help
-  ou
-  $ ./programme -h
-  ou
-  $ ./programme --help
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✍️  HUMANISATION & RÉÉCRITURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RÉÉCRIRE UN TEXTE
+$ ./programme rewrite "<texte>" [style]
+
+Styles disponibles:
+  - standard    : Naturel et fluide (par défaut)
+  - professionnel : Formel et technique
+  - avance      : Analyse de style + paraphrase intelligente
+
+Exemples:
+  $ ./programme rewrite "C'est pas bon"
+  $ ./programme rewrite "C'est pas bon" standard
+  $ ./programme rewrite "C'est pas bon" professionnel
+  $ ./programme rewrite "C'est pas bon" avance
+
+HUMANISER UN FICHIER
+$ ./programme humanize file <chemin> [-s|-p|-a]
+
+Exemples:
+  $ ./programme humanize file document.txt
+  $ ./programme humanize file document.txt -s
+  $ ./programme humanize file document.txt -p
+  $ ./programme humanize file document.txt -a
+
+Résultats: _humanized.txt, _humanized_prof.txt, _humanized_avance.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔬 ANALYSE AVANCÉE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RÉSUMÉ OPTIMISÉ AVANCÉ
+$ ./programme resume-optimized <fichier> [threshold=0.10]
+
+Exemples:
+  $ ./programme resume-optimized document.txt
+  $ ./programme resume-optimized document.txt 0.3
+
+COMPARER LES APPROCHES DE RÉSUMÉ
+$ ./programme compare-summaries <fichier>
+
+Exemples:
+  $ ./programme compare-summaries document.txt
+
+→ Compare vectoriel vs atomique vs grammatical
+
+ANALYSER LE PRÉTRAITEMENT
+$ ./programme analyze-preprocessing <fichier>
+
+Exemples:
+  $ ./programme analyze-preprocessing document.txt
+
+→ Détail du nettoyage, tokenization, normalisation
+
+ANALYSER LE VOCABULAIRE
+$ ./programme analyze-vocabulary <fichier>
+
+Exemples:
+  $ ./programme analyze-vocabulary document.txt
+
+→ Statistiques sur les mots, fréquences, catégories
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧪 RÉSEAU ATOMIQUE (T.R.A. - Atomic Resonance Technology)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANCER UNE SIMULATION
+$ ./programme atomic simulate <itérations> [atomes=500]
+
+Exemples:
+  $ ./programme atomic simulate 100
+  $ ./programme atomic simulate 500 1000
+  $ ./programme atomic simulate 1000 2000
+
+Métriques affichées:
+  ✓ Cohérence initiale/finale/moyenne
+  ✓ Activation moyenne des atomes
+  ✓ Consommation énergétique
+  ✓ Freeze system (hibernation)
+  ✓ Comportements émergents
+  ✓ Performance (iter/sec)
+
+STATISTIQUES RÉSEAU
+$ ./programme atomic network-stats
+
+→ Distribution d'énergie, atomes actifs, métriques globales
+
+BENCHMARK DES ATOMES
+$ ./programme atomic benchmark <itérations> [atomes]
+
+→ Performance, latence, throughput
+
+AUTRES SOUS-COMMANDES ATOMIQUES
+$ ./programme cellular <options>
+$ ./programme relaxation <options>
+$ ./programme relax-opt <options>
+→ Commandes avancées (voir documentation)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 FONCTIONNALITÉS D'ANALYSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Analyse phrase par phrase
+✓ Classification en 6 catégories:
+  - TECH       : Technologie, informatique, numérique
+  - HISTOIRE   : Politique, histoire, événements
+  - BUSINESS   : Commerce, économie, affaires
+  - ALIMENTATION: Nutrition, gastronomie
+  - SANTE      : Santé, médecine, bien-être
+  - VERBE      : Détection d'actions (verbes)
+
+✓ Structure grammaticale (SVC - Subject-Verb-Complement)
+✓ Résumés avec 5 piliers scientifiques:
+  - CONTEXTE : De quoi parle-t-on?
+  - PROBLÈME : Pourquoi c'est insuffisant?
+  - OBJECTIF : Qu'essaie-t-on de faire?
+  - APPROCHE : Comment c'est fait?
+  - APPORT   : Pourquoi c'est nouveau?
+
+✓ Modération (blacklist AES-256 chiffrée)
+✓ Apprentissage dynamique
+✓ Humanisation intelligente
+✓ Réseau de neurones (1000 neurones × 50+ catégories)
+✓ Réseau atomique autonome (T.R.A.)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️  DÉCOUPAGE ULTRA-RAPIDE O(n)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TESTER LE DÉCOUPAGE RAPIDE
+$ ./programme split <fichier> [mots_par_bloc=100]
+
+Exemples:
+  $ ./programme split document.txt
+  $ ./programme split document.txt 50
+  $ ./programme split document.txt 200
+
+Affiche:
+  ✓ Nombre de blocs générés
+  ✓ Statistiques (mots, taille min/max)
+  ✓ Confiance moyenne
+  ✓ Vitesse (mots/seconde)
+
+Performance: O(n) - Instantané même pour 50+ MB de texte
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 CONSEILS D'UTILISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Meilleurs résultats avec du texte français
+• Les fichiers volumineux sont traités progressivement
+• La modération empêche l'apprentissage de contenu offensant
+• Les neurones se régénèrent automatiquement
+• Les résumés scientifiques recherchent 100% de complétude
+
+EXEMPLES RAPIDES:
+  $ ./programme file document.txt
+  $ ./programme resume document.txt 0.1
+  $ ./programme text "Votre texte ici"
+  $ ./programme rewrite "C'est pas bon" professionnel
+  $ ./programme atomic simulate 100
+  $ ./programme compare-summaries document.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏁 BENCHMARKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BENCHMARKS ACADÉMIQUES
+$ ./programme academic all
+$ ./programme academic mmlu
+$ ./programme academic hellaswag
+$ ./programme bench-academic
+→ Lance les tests MMLU/Hellaswag (échantillons intégrés)
+
+BENCHMARK TEXTE MASSIF
+$ ./programme benchmark-text
+$ ./programme bench-1m
+→ Traite 1M de mots pour mesurer la vitesse
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚛️  TECHNOLOGIE DE RÉSONANCE ATOMIQUE (T.R.A.)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Réseau décentralisé asynchrone
+• Chaque atome opère indépendamment
+• Résonance entre atomes voisins
+• Dynamique adaptative des poids (apprentissage)
+• Système de freeze pour sobriété énergétique
+• Émergence de comportements globaux
+
+Paramètres principaux:
+  α (coupling)      : Force d'interaction entre atomes
+  β (local rules)   : Poids des règles locales
+  γ (reinforcement) : Renforcement des poids
+  δ (decay)         : Décroissance des poids
+  σ (resonance)     : Sensibilité de résonance
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+❓ HELP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+$ ./programme help
+$ ./programme -h
+$ ./programme --help
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🖼️  IMAGE & DÉFLOUTAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GÉNÉRATION D'IMAGES
+$ ./programme image <subcommand> [...]
+→ Voir "image help" pour les sous-commandes disponibles
+
+DÉFL_OUTAGE (ATOMIC)
+$ ./programme deblur ultra <image> [options]
+$ ./programme deblur fast <image> [options]
+$ ./programme deblur draft <image> [options]
+$ ./programme deblur help
+
+MOTION BLUR (Lucy-Richardson)
+$ ./programme motion <imagePath> [output] [iterations]
+
+COMBO (Motion + Ultra Deblur)
+$ ./programme combo <imagePath> [output]
 
 ═══════════════════════════════════════════════════════════════
 `)
 }
 
 func main() {
-	go AutoIntrospection()
+	// Mode CLI (terminal)
+	// Désactiver les goroutines pour commands deblur
+	// go AutoIntrospection()
+	// go AutoIntrospection()
 
 	if len(os.Args) < 2 {
-		fmt.Println("[IA-ATOMIQUE v4.1] Interface Interactive")
-		fmt.Println("Compréhension + Apprentissage + Résumé")
-		InteractionInteractive()
+		fmt.Println("[IA-ATOMIQUE v1.0] - Technologie de Résonance Atomique")
+		fmt.Println("Interface Interactive - Réseau Atomique Distribué")
+		RunAtomicDemo()
 		return
 	}
 
-	// Vérifier les commandes
+	// Vérifier les commandes atomiques en priorité
 	commande := os.Args[1]
 
+	// DEBUG
+	if commande == "ultra_pure" {
+		fmt.Printf("DEBUG: ULTRA_PURE detected! os.Args = %v\n", os.Args)
+	}
+
+	// Commandes de génération d'images
+	if commande == "image" {
+		ImageGenerationCommand(os.Args[1:])
+		return
+	}
+
+	// Commandes d'entraînement du modèle
+	if commande == "train" {
+		TrainingCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes d'émergence de patterns
+	if commande == "pattern" {
+		PatternCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes de génération atomique
+	if commande == "generate" {
+		GenerateCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes du réseau atomique
+	if commande == "simulate" || commande == "network-stats" || commande == "benchmark" ||
+		commande == "cellular" || commande == "relaxation" || commande == "relax-opt" ||
+		(commande == "deblur" && (len(os.Args) < 3 || (os.Args[2] != "ultra" && os.Args[2] != "draft" && os.Args[2] != "fast"))) ||
+		(commande == "help" && len(os.Args) == 2) {
+		ParseSimulationArgs(os.Args)
+		return
+	}
+
+	// Benchmark traitement de texte 1M de mots
+	if commande == "benchmark-text" || commande == "bench-1m" {
+		BenchmarkTextProcessing1M()
+		return
+	}
+
+	// Tests avancés (Needle In Haystack, Perplexity)
+	if commande == "test" {
+		HandleAdvancedTests(os.Args[2:])
+		return
+	}
+
+	// Benchmarks académiques (MMLU, Hellaswag)
+	if commande == "academic" || commande == "bench-academic" {
+		if len(os.Args) > 2 {
+			HandleAcademicBenchmarks(os.Args[2:])
+		} else {
+			HandleAcademicBenchmarks([]string{})
+		}
+		return
+	}
+
+	// Commandes d'apprentissage automatique
+	if commande == "learn" {
+		LearnCommand(os.Args[2:])
+		return
+	}
+	if commande == "knowledge" {
+		KnowledgeCommand(os.Args[2:])
+		return
+	}
+	if commande == "stats-kb" || commande == "kb-stats" {
+		StatsCommand(os.Args[2:])
+		return
+	}
+	if commande == "test-knowledge" {
+		TestKnowledgeCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes de défloutage ultra-rapide
+	if commande == "deblur" && len(os.Args) > 2 {
+		mode := os.Args[2]
+		switch mode {
+		case "ultra":
+			HandleUltraFastDeblur(os.Args[3:])
+			return
+		case "draft":
+			HandleDraftFastDeblur(os.Args[3:])
+			return
+		case "fast":
+			HandleFastDeblur(os.Args[3:])
+			return
+		case "help", "-h":
+			PrintDeblurModesHelp()
+			return
+		}
+	}
+
+	// Commande de motion blur removal (déconvolution Lucy-Richardson)
+	if commande == "motion" && len(os.Args) > 2 {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme motion <imagePath> [output] [iterations]")
+			fmt.Println("Example: ./programme motion blurry.jpg deblurred.png 10")
+			return
+		}
+
+		imagePath := os.Args[2]
+		outputPath := "deblurred_motion.png"
+		iterations := 15
+
+		if len(os.Args) > 3 {
+			outputPath = os.Args[3]
+		}
+		if len(os.Args) > 4 {
+			fmt.Sscanf(os.Args[4], "%d", &iterations)
+		}
+
+		fmt.Println("\n🎬 MOTION BLUR REMOVAL (Lucy-Richardson Deconvolution)")
+		fmt.Println("═════════════════════════════════════════════════════════")
+		err := LucyRichardsonDeconvolve(imagePath, outputPath, iterations)
+		if err != nil {
+			fmt.Printf("❌ Error: %v\n", err)
+			return
+		}
+		fmt.Printf("✅ Motion blur removed: %s\n", outputPath)
+		return
+	}
+
+	// Commande combo: motion blur removal + ultra deblur (best quality)
+	if commande == "combo" && len(os.Args) > 2 {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme combo <imagePath> [output]")
+			fmt.Println("Example: ./programme combo blurry.jpg deblurred_final.png")
+			fmt.Println("\nCombines motion deconvolution + ultra atomic deblurring")
+			fmt.Println("Total time: ~30-40 seconds for best quality")
+			return
+		}
+
+		imagePath := os.Args[2]
+		finalOutput := "deblurred_combo.png"
+		if len(os.Args) > 3 {
+			finalOutput = os.Args[3]
+		}
+
+		// Verify image exists
+		if _, err := os.Stat(imagePath); err != nil {
+			fmt.Printf("❌ Image not found: %s\n", imagePath)
+			return
+		}
+
+		tempFile := ".combo_motion_temp.png"
+
+		fmt.Println("\n⚡💎 COMBO: MOTION DECONVOLUTION + ATOMIC ULTRA DEBLUR")
+		fmt.Println("═══════════════════════════════════════════════════════")
+		fmt.Println("Step 1/2: Motion Blur Removal (Lucy-Richardson)")
+		fmt.Println("Step 2/2: Ultra Atomic Deblurring (327,000+ atoms)")
+		fmt.Printf("\nProcessing: %s\n", imagePath)
+
+		// Step 1: Motion deconvolution
+		fmt.Println("\n🎬 [STEP 1] Motion deconvolution...")
+		err := LucyRichardsonDeconvolve(imagePath, tempFile, 18)
+		if err != nil {
+			fmt.Printf("❌ Motion deconv failed: %v\n", err)
+			return
+		}
+
+		// Step 2: Ultra deblur on the result
+		fmt.Println("\n⚛️  [STEP 2] Ultra atomic deblurring...")
+		fmt.Printf("═══════════════════════════════════════════════════════\n")
+
+		// Use the existing ultra deblur pipeline on the motion-corrected image
+		runUltraDeblurPipeline4K(tempFile, 4, 4, 1000, finalOutput)
+
+		os.Remove(tempFile)
+
+		fmt.Printf("\n✅ COMBO COMPLETE!\n")
+		fmt.Printf("💾 Saved: %s\n", finalOutput)
+		fmt.Printf("✨ Motion blur removed + Atomic deblurred + Enhanced quality!\n")
+		return
+	}
+
+	// Commande de découpage rapide
+	if commande == "split" || commande == "decoupe" {
+		if len(os.Args) > 2 {
+			TestDecoupageRapide(os.Args[2:])
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme split <fichier> [mots_par_bloc]")
+		}
+		return
+	}
+
+	// Commande d'extraction de phrases clés
+	if commande == "extract" || commande == "phrases" {
+		if len(os.Args) > 2 {
+			ExtrairePhrasesClésCommand(os.Args[2:])
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme extract <fichier> [ratio_conservation]")
+		}
+		return
+	}
+	// Commande de génération d'images atomiques (remplace l'ancienne "generate")
+	if commande == "generate" {
+		GenerateCommand(os.Args[2:])
+		return
+	}
+
+	// Commande de résumé - NOW USING PHASE 15 (Grammar-Aware Summarization)
+	if commande == "resume" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			threshold := 0.10 // 10% default
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &threshold)
+			}
+			// Use Phase 15 optimized pipeline
+			resumeOptimizedCommand([]string{filepath, fmt.Sprintf("%f", threshold)})
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme resume <fichier> [threshold=0.10]")
+		}
+		return
+	}
+
+	// Commande de réécriture (humanisation)
+	if commande == "rewrite" {
+		if len(os.Args) > 2 {
+			// This command is deprecated - use 'humanize' instead
+			fmt.Println("[ATTENTION] La commande 'rewrite' est dépréciée. Utilisez 'humanize' à la place.")
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme humanize <fichier> [standard|professionnel|avance]")
+		}
+		return
+	}
+
+	// Commande de génération atomique autonome (NEW!)
+	if commande == "atomic" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			compression := 0.3
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &compression)
+			}
+			GenererAvecAtomesCommand(filepath, compression)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme atomic <fichier> [compression=0.3]")
+		}
+		return
+	}
+	// === PHASE 15: Grammar-Aware Summarization ===
+	if commande == "resume-optimized" {
+		resumeOptimizedCommand(os.Args[2:])
+		return
+	}
+	if commande == "compare-summaries" {
+		compareSummariesCommand(os.Args[2:])
+		return
+	}
+	if commande == "analyze-preprocessing" {
+		analyzePreprocessingCommand(os.Args[2:])
+		return
+	}
+	if commande == "analyze-vocabulary" {
+		analyzeVocabularyCommand(os.Args[2:])
+		return
+	}
+	// Commande de comparaison vectoriel vs atomique (NEW!)
+	if commande == "compare" {
+		if len(os.Args) > 2 {
+			filepath := os.Args[2]
+			compression := 0.3
+			if len(os.Args) > 3 {
+				fmt.Sscanf(os.Args[3], "%f", &compression)
+			}
+			GenererComparatifCommand(filepath, compression)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme compare <fichier> [compression=0.3]")
+		}
+		return
+	}
+
+	// === PHASE 14: Commande syntaxe avancée avec renforcement ===
+	if commande == "syntax" {
+		if len(os.Args) > 2 {
+			syntaxCommand(os.Args[2:])
+		} else {
+			fmt.Println("[INFO] Utilisation: ./programme syntax <subcommand> <text>")
+			fmt.Println("Subcommands: analyze, enhance, paragraph, pos")
+		}
+		return
+	}
+
+	// Vérifier les autres commandes
 	switch commande {
 	case "help", "-h", "--help":
 		afficherAide()
+
+	case "web":
+		InitWebInterface()
 
 	case "file":
 		if len(os.Args) > 2 {
 			TraiterFichier(os.Args[2])
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme file <chemin>")
+		}
+
+	case "humanize":
+		style := "standard" // Style par défaut
+		filepath := ""
+
+		// Vérifier les différentes syntaxes possibles
+		if len(os.Args) > 3 {
+			// Cas 1: humanize file <chemin>
+			// Cas 2: humanize file -s <chemin>
+			// Cas 3: humanize file -p <chemin>
+			// Cas 4: humanize file -a <chemin>
+			// Cas 5: humanize file <chemin> -s
+			// Cas 6: humanize file <chemin> -p
+			// Cas 7: humanize file <chemin> -a
+			// Cas 8: humanize -s file <chemin>
+			// Cas 9: humanize -p file <chemin>
+			// Cas 10: humanize -a file <chemin>
+
+			if os.Args[2] == "file" {
+				// Cas 1-7: "file" est le second argument
+				if len(os.Args) > 3 {
+					if os.Args[3] == "-s" || os.Args[3] == "-p" || os.Args[3] == "-a" {
+						// Cas 2-4: flag avant le chemin
+						if len(os.Args) > 4 {
+							if os.Args[3] == "-p" {
+								style = "professionnel"
+							} else if os.Args[3] == "-a" {
+								style = "avance"
+							}
+							filepath = os.Args[4]
+						}
+					} else {
+						// Cas 1 ou 5-7: chemin avant le flag
+						filepath = os.Args[3]
+						if len(os.Args) > 4 && (os.Args[4] == "-s" || os.Args[4] == "-p" || os.Args[4] == "-a") {
+							if os.Args[4] == "-p" {
+								style = "professionnel"
+							} else if os.Args[4] == "-a" {
+								style = "avance"
+							}
+						}
+					}
+				}
+			} else if (os.Args[2] == "-s" || os.Args[2] == "-p" || os.Args[2] == "-a") && os.Args[3] == "file" {
+				// Cas 8-10: flag avant "file"
+				if os.Args[2] == "-p" {
+					style = "professionnel"
+				} else if os.Args[2] == "-a" {
+					style = "avance"
+				}
+				if len(os.Args) > 4 {
+					filepath = os.Args[4]
+				}
+			}
+		}
+
+		if filepath != "" {
+			TraiterFichierHumanize(filepath, style)
+		} else {
+			fmt.Println("[ERREUR] Utilisation: ./programme humanize [file|-s|-p] <chemin>")
+			fmt.Println("  Formats supportés:")
+			fmt.Println("    ./programme humanize file <chemin>")
+			fmt.Println("    ./programme humanize file -s <chemin>")
+			fmt.Println("    ./programme humanize file -p <chemin>")
+			fmt.Println("    ./programme humanize -s file <chemin>")
+			fmt.Println("    ./programme humanize -p file <chemin>")
 		}
 
 	case "text":
@@ -271,6 +902,71 @@ func main() {
 	case "interactive", "inter":
 		InteractionInteractive()
 
+	case "start":
+		StartLLMMode()
+		return
+
+	case "fidelity":
+		ProcessAntiHallucination(os.Args[1:])
+
+	case "atomic-optimized":
+		ProcessOptimizedAtomicCommand(os.Args[1:])
+
+	case "stest", "stress-test":
+		ProcessStressTestUltimate(os.Args[2:])
+
+	case "stest-batch":
+		ProcessStressTestAdaptiveBatch(os.Args[2:])
+
+	case "stest-l3":
+		ProcessStressTestLevier3(os.Args[2:])
+
+	case "stest-l3-demo":
+		ProcessStressTestLevier3WithRedundancy(os.Args[2:])
+
+	case "stest-ultra":
+		ProcessStressTestCommandUltraOptimized(os.Args[2:])
+
+	case "ultra":
+		ProcessUltraLiteMode(os.Args[2:])
+
+	case "energy":
+		EnergyBasedImageCommand(os.Args[1:])
+
+	case "ultra_pure":
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme ultra_pure <imagePath> [output]")
+			fmt.Println("Example: ./programme ultra_pure blurry.jpg deblurred_pure.png")
+			fmt.Println("\nPURE atomic deblurring with 5000 iterations (no motion preprocessing)")
+			fmt.Println("Total time: ~120-150 seconds for MAXIMUM quality")
+			return
+		}
+
+		imagePath := os.Args[2]
+		finalOutput := "deblurred_ultra_pure.png"
+		if len(os.Args) > 3 {
+			finalOutput = os.Args[3]
+		}
+
+		// Verify image exists
+		if _, err := os.Stat(imagePath); err != nil {
+			fmt.Printf("❌ Image not found: %s\n", imagePath)
+			return
+		}
+
+		fmt.Printf("\n⚛️ ULTRA PURE ATOMIC DEBLURRING (5000 ITERATIONS, 10px patches)\n")
+		fmt.Printf("═══════════════════════════════════════════════════════\n")
+		fmt.Printf("Processing: %s\n", imagePath)
+		fmt.Printf("Expected time: ~120-150 seconds\n\n")
+
+		// Direct ultra deblurring with 5000 iterations - NO motion preprocessing
+		// Use 10px patch size (2x coarser) for more aggressive deblurring
+		runUltraDeblurPipeline4K(imagePath, 4, 4, 5000, finalOutput)
+
+		fmt.Printf("\n✅ ULTRA PURE COMPLETE!\n")
+		fmt.Printf("💾 Saved: %s\n", finalOutput)
+		fmt.Printf("✨ Maximum quality atomic deblurring applied!\n")
+
 	default:
 		// Mode hérité - traiter comme phrase simple
 		phrase := strings.Join(os.Args[1:], " ")
@@ -278,4 +974,169 @@ func main() {
 	}
 
 	database.RegenererNeurones()
+}
+
+// TestDecoupageRapide teste et affiche les résultats du découpage ultra-rapide
+func TestDecoupageRapide(args []string) {
+	if len(args) == 0 {
+		fmt.Println("[ERREUR] Spécifier un fichier")
+		return
+	}
+
+	// Lire le fichier
+	contenu, err := os.ReadFile(args[0])
+	if err != nil {
+		fmt.Printf("[ERREUR] Impossible de lire %s: %v\n", args[0], err)
+		return
+	}
+
+	texte := string(contenu)
+
+	// Déterminer la taille des blocs
+	motsParBloc := 100
+	if len(args) > 1 {
+		fmt.Sscanf(args[1], "%d", &motsParBloc)
+	}
+
+	fmt.Printf("\n╔════════════════════════════════════════════════════════╗\n")
+	fmt.Printf("║     DÉCOUPAGE ULTRA-RAPIDE O(n) - ANALYSE DE BLOCS    ║\n")
+	fmt.Printf("╚════════════════════════════════════════════════════════╝\n\n")
+
+	// Lancer le chrono
+	debut := time.Now()
+
+	// Découper le texte
+	blocs := database.DecouperTexteRapide(texte, motsParBloc)
+
+	// Analyser chaque bloc
+	var allResultats []map[int]int
+	var allConfiances []float64
+
+	for i, bloc := range blocs {
+		resultat, motsCles, confiance := database.AnalyserBloc(bloc)
+		allResultats = append(allResultats, resultat)
+		allConfiances = append(allConfiances, confiance)
+
+		// Limiter l'affichage des mots-clés
+		affiChage := strings.Join(motsCles, ", ")
+		if len(affiChage) > 50 {
+			affiChage = affiChage[:50] + "..."
+		}
+
+		if i < 5 || i >= len(blocs)-2 { // Afficher les 5 premiers et 2 derniers
+			fmt.Printf("[Bloc %d] %d mots | Confiance: %.2f%% | Mots-clés: %s\n",
+				bloc.NumeroBloc,
+				bloc.Taille,
+				confiance*100,
+				affiChage,
+			)
+		} else if i == 5 {
+			fmt.Printf("...\n")
+		}
+	}
+
+	// Fusionner les résultats
+	catGlobale := database.FusionnerResultatsBlocs(blocs, allResultats, allConfiances)
+
+	// Afficher les statistiques
+	stats := database.StatistiquesBlocs(blocs)
+	temps := time.Since(debut)
+
+	fmt.Printf("\n[STATISTIQUES DE DÉCOUPAGE]\n")
+	fmt.Printf("  • Nombre de blocs: %d\n", stats["nombre_blocs"])
+	fmt.Printf("  • Total de mots: %d\n", stats["total_mots"])
+	fmt.Printf("  • Taille moyenne: %d mots\n", stats["taille_moyenne"])
+	fmt.Printf("  • Taille min/max: %d/%d mots\n", stats["taille_min"], stats["taille_max"])
+
+	fmt.Printf("\n[RÉSULTATS FUSIONNÉS]\n")
+	fmt.Printf("  • Catégories détectées: %d\n", len(catGlobale))
+	fmt.Printf("  • Confiance moyenne: %.2f%%\n", (sum(allConfiances)/float64(len(allConfiances)))*100)
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Complexité: O(n)\n")
+	fmt.Printf("  • Temps de découpage + analyse: %v\n", temps)
+	fmt.Printf("  • Vitesse: %.0f mots/sec\n", float64(stats["total_mots"].(int))/temps.Seconds())
+
+	fmt.Printf("\n✓ Découpage instantané réussi - Compatible avec réseau atomique distribué\n\n")
+}
+
+func sum(vals []float64) float64 {
+	total := 0.0
+	for _, v := range vals {
+		total += v
+	}
+	return total
+}
+
+// ExtrairePhrasesClésCommand extrait et affiche les phrases clés d'un texte
+func ExtrairePhrasesClésCommand(args []string) {
+	if len(args) == 0 {
+		fmt.Println("[ERREUR] Spécifier un fichier")
+		return
+	}
+
+	// Lire le fichier
+	contenu, err := os.ReadFile(args[0])
+	if err != nil {
+		fmt.Printf("[ERREUR] Impossible de lire %s: %v\n", args[0], err)
+		return
+	}
+
+	texte := string(contenu)
+
+	// Déterminer le ratio de conservation
+	ratio := 0.3
+	if len(args) > 1 {
+		fmt.Sscanf(args[1], "%f", &ratio)
+	}
+
+	fmt.Printf("\n╔════════════════════════════════════════════════════════╗\n")
+	fmt.Printf("║   EXTRACTION DE PHRASES CLÉS - ÉNERGIE ATOMIQUE       ║\n")
+	fmt.Printf("╚════════════════════════════════════════════════════════╝\n\n")
+
+	// Lancer le chrono
+	debut := time.Now()
+
+	// Extraire les phrases clés
+	phrasesClés := database.ExtrairePhrasesClés(texte, ratio)
+
+	// Analyser les résultats
+	temps := time.Since(debut)
+
+	// Statistiques
+	totalPhrasesOriginal := strings.Count(texte, ".") + strings.Count(texte, "!") + strings.Count(texte, "?")
+	ratioRéel := float64(len(phrasesClés)) / float64(totalPhrasesOriginal) * 100
+
+	fmt.Printf("[RÉSUMÉ INTELLIGENT]\n\n")
+
+	for i, phrase := range phrasesClés {
+		fmt.Printf("%d. %s\n", i+1, phrase.Contenu)
+		fmt.Printf("   Énergie: %.2f | Cohérence: %.2f | Importance: %.1f%%\n\n",
+			phrase.Energie,
+			phrase.EnergieTotal,
+			(phrase.EnergieTotal/2.0)*100,
+		)
+	}
+
+	fmt.Printf("\n[STATISTIQUES]\n")
+	fmt.Printf("  • Phrases originales: ~%d\n", totalPhrasesOriginal)
+	fmt.Printf("  • Phrases conservées: %d (%.1f%%)\n", len(phrasesClés), ratioRéel)
+	fmt.Printf("  • Ratio demandé: %.1f%%\n", ratio*100)
+	fmt.Printf("  • Densité d'information: HIGH\n")
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Temps d'extraction: %v\n", temps)
+	fmt.Printf("  • Pipeline: Découpage → Énergie → Cohérence → Filtrage → Fusion\n")
+
+	// Calculer le taux de compression
+	tailleOriginale := len(strings.Fields(texte))
+	tailleRésumé := 0
+	for _, p := range phrasesClés {
+		tailleRésumé += len(p.Mots)
+	}
+	compression := float64(tailleOriginale) / float64(tailleRésumé)
+
+	fmt.Printf("  • Taux de compression: %.1fx (de %d à %d mots)\n", compression, tailleOriginale, tailleRésumé)
+
+	fmt.Printf("\n✓ Extraction réussie - Phrases clés sélectionnées par énergie atomique\n\n")
 }

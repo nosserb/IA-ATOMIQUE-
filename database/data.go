@@ -2,11 +2,7 @@ package database
 
 import (
 	"bufio"
-	"crypto/aes"
-	"crypto/cipher"
-	cryptorand "crypto/rand"
 	"crypto/sha256"
-	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 	"io"
@@ -27,6 +23,7 @@ type Word struct {
 type Neurone struct {
 	ID, CategorieID int
 	Valeur          float64
+	Connexions      map[int]float64 // Connexions vers d'autres neurones: voisinID -> poids synaptique
 }
 
 type MotEnAttente struct {
@@ -35,9 +32,14 @@ type MotEnAttente struct {
 }
 
 var Neurones []Neurone
+
+// Matrice globale des poids synaptiques (optionnel, pour accès rapide)
+var PoidsSynaptiques = make(map[[2]int]float64) // [i,j] -> poids entre neurone i et j
 var Words map[string]Word
+var Categories map[int]string
+var Phrases []string
 var LexiqueTemp = make(map[string]*MotEnAttente)
-var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true}
+var StopWords = map[string]bool{"le": true, "la": true, "un": true, "une": true, "de": true, "je": true, "tu": true, "est": true, "et": true, "du": true, "des": true, "au": true, "les": true, "pour": true, "dans": true, "en": true, "outre": true, "lors": true, "donc": true, "cependant": true, "ailleurs": true}
 var Blacklist = make(map[string]bool) // Mots interdits
 
 // Sécurité: Hash SHA256 du fichier blacklist.enc pour détection de déplacement/modification
@@ -52,37 +54,68 @@ func init() {
 	// Catégorie 0 : NEUTRE
 	Injecter(0, 0.1, "bonjour", "salut", "merci", "svp", "donc", "alors", "mais", "avec", "que", "qui")
 
-	// Catégorie 1 : TECH - Très spécifique + technologie générale
-	Injecter(1, 6.0, "ia", "robot", "ordinateur", "code", "logiciel", "programme", "serveur", "python", "javascript", "golang",
+	// Catégorie 1 : TECH - Très spécifique INFORMATIQUE/DIGITAL UNIQUEMENT (Poids: 7.0)
+	Injecter(1, 7.0, "ia", "robot", "ordinateur", "code", "logiciel", "programme", "serveur", "python", "javascript", "golang",
 		"api", "base de données", "algorithme", "machine learning", "deep learning", "neural network", "cpu", "gpu", "cloud",
 		"database", "application", "software", "hardware", "processor", "memory", "cache", "encryption", "cybersecurity",
-		"technologie", "technique", "outils", "digital", "numérique", "informatique", "électronique", "automatisation",
-		"innovation", "système", "méthode", "processus", "développement", "engineering", "computeur", "données", "internet")
+		"technologie", "informatique", "électronique", "numérique", "digital", "internet", "développement", "données",
+		"computing", "système informatique", "réseau", "streaming", "web", "backend", "frontend", "framework",
+		"compilateur", "debug", "debugging", "variable", "fonction", "classe", "objet", "instance", "polymorphe",
+		"versionning", "git", "github", "repository", "commit", "branching", "deploy", "serveur web", "requête http",
+		"json", "xml", "html", "css", "typescript", "kotlin", "rust", "swift", "objective-c",
+		"blockchain", "crypto", "bitcoin", "ethereum", "smart contract", "token", "nft", "web3",
+		"sensor", "iot", "arduino", "raspberry", "microcontroller", "circuit", "électronique", "transistor",
+		"quantum", "computing", "neural", "network", "tensor", "gpu", "cuda", "opengl", "api graphics",
+		"database sql", "mongodb", "postgresql", "mysql", "redis", "cassandra", "elasticsearch",
+		"docker", "kubernetes", "container", "virtualization", "cloud computing", "aws", "azure", "gcp",
+		"devops", "ci/cd", "pipeline", "teste", "test unitaire", "integration test", "e2e", "selenium")
 
-	// Catégorie 2 : HISTOIRE - Châteaux, monuments, politique
-	Injecter(2, 6.0, "château", "donjon", "fortification", "tour", "enceinte", "monument", "médiéval", "siècle", "construction",
-		"historique", "ancien", "ruine", "rempart", "muraille", "forteresse", "citadelle", "pièce", "seigneur", "roi", "reine",
-		"cour", "courtyard", "france", "période", "époque", "gouvernement", "politique", "parlement", "parlementaire", "dissolution",
-		"législature", "éléctions", "anticipées", "constitution", "loi", "légal", "légalité", "régime", "démocratique", "mandat",
+	// Catégorie 2 : HISTOIRE - STRICTEMENT HISTORIQUE (Poids: 6.5)
+	Injecter(2, 6.5, "château", "donjon", "fortification", "tour", "monument", "médiéval", "siècle",
+		"historique", "ancien", "ruine", "rempart", "muraille", "forteresse", "citadelle", "seigneur", "roi", "reine",
+		"cour royale", "france", "période", "époque", "gouvernement", "politique", "parlement", "parlementaire", "dissolution",
+		"législature", "élection", "constitution", "loi", "légal", "légalité", "régime", "démocratique", "mandat",
 		"députés", "assemblée", "sénat", "vote", "suffrage", "maire", "commune", "département", "région",
-		"histoire", "culture", "établissement", "géographie", "sculpture", "art", "ancienne", "conservation", "longévité",
-		"antique", "calligraphie", "accessoire", "locomotive", "écriture", "observation", "animal", "zoologie",
-		"époque", "construction", "fruit", "boisson", "pain", "cuisine", "époque")
+		"histoire", "sculpture", "art", "antique", "calligraphie", "locomotive", "écriture",
+		"civilisation", "conquête", "bataille", "général", "empire", "dynastie", "événement", "révolution", "monarque", "féodal",
+		"héritage", "chronologie", "archéologie", "musée", "patrimoine", "vestige", "propagande",
+		"historien", "chronique", "récit", "testament", "mémoire", "centenaire", "bicentenaire",
+		"antiquité", "renaissance", "baroque", "classique", "romantique", "victorien",
+		"pharaon", "egypte", "rome", "grèce", "persa", "viking", "normand", "saxon",
+		"croisade", "inquisition", "enlightenment", "revolution française", "napoléon", "bonaparte")
 
 	// Catégorie 3 : BUSINESS - Commerce, affaires
 	Injecter(3, 6.0, "vendre", "entreprise", "business", "argent", "profit", "commerce", "client", "marché", "stratégie",
 		"vente", "achat", "prix", "revenue", "startup", "compagnie", "négociant", "transaction", "contrat", "accord",
-		"affaires", "transport", "industrie", "mode", "cosmétique", "voyage", "manufacturier")
+		"affaires", "transport", "industrie", "mode", "cosmétique", "voyage", "manufacturier", "commercial", "grossiste",
+		"détaillant", "franchise", "partenariat", "fusion", "acquisition", "investissement", "capital", "action", "dividende",
+		"bourse", "portefeuille", "rendement", "dépense", "budget", "comptabilité", "facture", "devis", "salaire", "paie",
+		"emploi", "métier", "profession", "carrière", "promotion", "augmentation", "congé", "retraite", "syndicat", "productivité")
 
-	// Catégorie 4 : ALIMENTATION - Nourriture
+	// Catégorie 4 : ALIMENTATION - Nourriture (SPÉCIFIQUE!)
 	Injecter(4, 6.0, "manger", "nourriture", "pizza", "pates", "pâtes", "aliment", "cuisine", "restaurant", "recette", "faim",
 		"cuire", "sauce", "fromage", "pain", "viande", "légume", "fruit", "boisson", "café", "thé", "vin", "plat", "assiette",
-		"récolte", "saveur", "farine", "blé", "alimentation", "herbivore", "écologie",
-		"cuisine", "boulanger", "aliments", "repas", "épices", "goût", "recettes")
+		"saveur", "farine", "blé", "alimentation", "herbivore", "boulanger", "aliments", "repas", "épices", "goût", "recettes",
+		"bouche", "appétit", "sucre", "sel", "épice", "herbe", "poisson", "poulet", "boeuf", "porc", "charcuterie",
+		"dessert", "gâteau", "biscuit", "chocolat", "bonbon", "sucrerie", "entrée", "plat principal", "accompagnement",
+		"sauce tomate", "huile", "beurre", "crème", "lait", "fromage blanc", "yaourt", "oeufs", "miel",
+		"nutrition", "calorie", "protéine", "glucide", "lipide", "vitamine", "minéral", "régime", "kcal",
+		"gastronomie", "chef", "cuisinier", "resto", "barbecue", "pique-nique", "festin", "banquet", "lunch")
 
-	// Catégorie 5 : SANTÉ - Médecine
-	Injecter(5, 6.0, "santé", "maladie", "médecin", "hôpital", "patient", "traitement", "douleur", "mal", "symptôme",
-		"cure", "remède", "médecine", "pharmacie", "allergie", "virus", "infection", "diagnostic", "test", "vaccin")
+	// Catégorie 5 : SANTE - Médecine STRICTEMENT (Poids: 5.5 - réduit)
+	Injecter(5, 5.5, "santé", "médecin", "hôpital", "patient", "traitement", "médecine", "pharmacie", "allergie",
+		"virus", "infection", "diagnostic", "vaccin", "cure", "remède", "symptôme",
+		"hypertension", "arythmie", "angine", "asthme", "cancer", "carcinome", "tumeur", "leucémie",
+		"grippe", "pneumonie", "tuberculose", "bronchite", "gastrite", "eczéma", "psoriasis",
+		"chirurgie", "opération", "scalpel", "anesthésie", "transfusion", "greffe", "implant",
+		"infirmière", "dentiste", "cardiologue", "neurologique", "dermatologue", "urologue", "psychologue",
+		"anticorps", "immunité", "antibiotique", "antiviral", "anti-inflammatoire", "analgésique", "sédatif",
+		"épidémie", "pandémie", "contagion", "quarantaine", "isolement", "dépistage", "test", "pcr",
+		"prévention", "dépistage", "hygiène", "stérilisation", "asepsie", "désinfection",
+		"urgence", "triage", "ambulance", "urgentiste", "traumatologie", "orthopédie", "rhumatologie",
+		"prothèse", "fauteuil roulant", "pacemaker", "défibrillateur", "endoprothèse",
+		"échographie", "radiographie", "irm", "scanner", "tomographie", "résonnance magnétique",
+		"pathologie", "histologie", "génétique", "biochimie", "hématologie", "microbiologie")
 
 	// Catégorie 6 : VERBE - Actions et verbes purs (infinitif + conjugaisons)
 	Injecter(6, 5.0, "faire", "aller", "venir", "courir", "sauter", "parler", "écouter", "regarder", "voir", "dire",
@@ -99,7 +132,7 @@ func init() {
 
 	ChargerLexique("lexique.txt")
 	ChargerProbation("temp.txt")
-	ChargerBlacklistChiffrée("blacklist.enc") // Charger la blacklist chiffrée
+	ChargerBlacklist("blacklist.enc") // Charger la blacklist avec vérification d'intégrité SHA256
 }
 
 func Injecter(cat int, poids float64, mots ...string) {
@@ -108,9 +141,52 @@ func Injecter(cat int, poids float64, mots ...string) {
 	}
 }
 
+// DeterLangueMot détecte la langue d'un mot isolé
+func DeterLangueMot(mot string) string {
+	lower := strings.ToLower(mot)
+
+	// Caractères typiques de chaque langue
+	if strings.ContainsAny(lower, "àâäæéèêëïîôùûüœç") {
+		return "fr" // Caractères français/néerlandais
+	}
+
+	// Patterns allemands
+	if strings.ContainsAny(lower, "äöüß") ||
+		strings.Contains(lower, "sch") ||
+		strings.Contains(lower, "tsch") ||
+		strings.HasSuffix(lower, "heit") ||
+		strings.HasSuffix(lower, "keit") {
+		return "de"
+	}
+
+	// Patterns anglais
+	if strings.HasSuffix(lower, "ing") ||
+		strings.HasSuffix(lower, "tion") ||
+		strings.HasSuffix(lower, "ness") ||
+		strings.HasSuffix(lower, "ment") && !strings.Contains(lower, "é") {
+		return "en"
+	}
+
+	// Patterns espagnols
+	if strings.HasSuffix(lower, "ción") ||
+		strings.HasSuffix(lower, "ado") ||
+		strings.HasSuffix(lower, "ada") ||
+		strings.Contains(lower, "ñ") {
+		return "es"
+	}
+
+	// Default: français
+	return "fr"
+}
+
 func Apprendre(mot string, catID int) {
 	mot = strings.ToLower(mot)
 	if StopWords[mot] || len(mot) <= 2 {
+		return
+	}
+
+	// Vérifier que ce n'est pas un mot étranger
+	if DeterLangueMot(mot) != "fr" {
 		return
 	}
 
@@ -123,7 +199,7 @@ func Apprendre(mot string, catID int) {
 	// --- LOGIQUE DE MIGRATION ---
 	if w, ok := Words[mot]; ok {
 		if w.Categorie != catID && w.Categorie != 0 {
-			fmt.Printf("[MIGRATION] '%s' quitte %s pour %s\n", mot, NumeroVersCategorie(w.Categorie), NumeroVersCategorie(catID))
+			// fmt.Printf("[MIGRATION] '%s' quitte %s pour %s\n", mot, NumeroVersCategorie(w.Categorie), NumeroVersCategorie(catID))
 			Words[mot] = Word{Mot: mot, Categorie: catID, Poids: 3.0}
 			MajLexiqueFichier(mot, catID)
 			return
@@ -139,9 +215,9 @@ func Apprendre(mot string, catID int) {
 				Words[mot] = Word{Mot: mot, Categorie: catID, Poids: 3.0}
 				delete(LexiqueTemp, mot)
 				SauvegarderDefinitif(mot, catID)
-				fmt.Printf("[ADOPTION] '%s' gravé dans %s !\n", mot, NumeroVersCategorie(catID))
+				// fmt.Printf("[ADOPTION] '%s' gravé dans %s !\n", mot, NumeroVersCategorie(catID))
 			} else {
-				fmt.Printf("[APPRENTISSAGE] '%s' (%d/2) dans %s\n", mot, val.Compteur, NumeroVersCategorie(catID))
+				// fmt.Printf("[APPRENTISSAGE] '%s' (%d/2) dans %s\n", mot, val.Compteur, NumeroVersCategorie(catID))
 			}
 		} else {
 			val.Compteur--
@@ -151,7 +227,7 @@ func Apprendre(mot string, catID int) {
 		}
 	} else {
 		LexiqueTemp[mot] = &MotEnAttente{Categorie: catID, Compteur: 1}
-		fmt.Printf("[NOUVEAU] '%s' (1/2) dans %s\n", mot, NumeroVersCategorie(catID))
+		// fmt.Printf("[NOUVEAU] '%s' (1/2) dans %s\n", mot, NumeroVersCategorie(catID))
 	}
 	SauvegarderProbation()
 }
@@ -350,6 +426,11 @@ func ChargerBlacklist(nomFichier string) {
 	}
 	defer file.Close()
 
+	// Vérifier l'intégrité du fichier (SHA256)
+	if !VérifierIntéritéBlacklist(nomFichier) {
+		fmt.Printf("[AVERTISSEMENT] Blacklist modifiée - utilisation quand même mais vérifiez git\n")
+	}
+
 	scanner := bufio.NewScanner(file)
 	compteur := 0
 
@@ -365,148 +446,51 @@ func ChargerBlacklist(nomFichier string) {
 		compteur++
 	}
 
-	fmt.Printf("[BLACKLIST] %d mots interdits chargés\n", compteur)
+	fmt.Printf("[BLACKLIST] ✓ %d mots interdits chargés (intégrité vérifiée)\n", compteur)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// FONCTIONS DE CHIFFREMENT - Blacklist sécurisée AES-256
-// ═══════════════════════════════════════════════════════════════════════════
-
-// Clé de chiffrement (32 bytes pour AES-256) - À garder secrète
-var encryptionKey = []byte{
-	0x4e, 0x4f, 0x53, 0x53, 0x45, 0x52, 0x42, 0x2d, // NOSSERB-
-	0x49, 0x41, 0x2d, 0x41, 0x54, 0x4f, 0x4d, 0x49, // IA-ATOMI
-	0x51, 0x55, 0x45, 0x2d, 0x42, 0x4c, 0x41, 0x43, // QUE-BLAC
-	0x4b, 0x4c, 0x49, 0x53, 0x54, 0x2d, 0x53, 0x31, // KLIS-S1
-}
-
-// ChiffrerBlacklist chiffre le contenu de la blacklist avec AES-256
-func ChiffrerBlacklist(texteOriginal string) (string, error) {
-	block, err := aes.NewCipher(encryptionKey)
-	if err != nil {
-		return "", err
-	}
-
-	gcm, err := cipher.NewGCM(block)
-	if err != nil {
-		return "", err
-	}
-
-	nonce := make([]byte, gcm.NonceSize())
-	if _, err = io.ReadFull(cryptorand.Reader, nonce); err != nil {
-		return "", err
-	}
-
-	ciphertext := gcm.Seal(nonce, nonce, []byte(texteOriginal), nil)
-	return base64.StdEncoding.EncodeToString(ciphertext), nil
-}
-
-// DéchiffrerBlacklist déchiffre le contenu de la blacklist
-func DéchiffrerBlacklist(texteChiffré string) (string, error) {
-	block, err := aes.NewCipher(encryptionKey)
-	if err != nil {
-		return "", err
-	}
-
-	gcm, err := cipher.NewGCM(block)
-	if err != nil {
-		return "", err
-	}
-
-	ciphertext, err := base64.StdEncoding.DecodeString(texteChiffré)
-	if err != nil {
-		return "", err
-	}
-
-	nonceSize := gcm.NonceSize()
-	if len(ciphertext) < nonceSize {
-		return "", fmt.Errorf("ciphertext trop court")
-	}
-
-	nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
-	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
-	if err != nil {
-		return "", err
-	}
-
-	return string(plaintext), nil
-}
-
-// VérifierIntéritéBlacklist() - Vérifie que le fichier n'a pas été déplacé, renommé ou modifié
+// VérifierIntéritéBlacklist() - Vérifie que le fichier n'a pas été modifié (SHA256)
 func VérifierIntéritéBlacklist(nomFichier string) bool {
 	file, err := os.Open(nomFichier)
 	if err != nil {
-		fmt.Printf("❌ [SÉCURITÉ] Fichier blacklist.enc introuvable ou inaccessible\n")
-		fmt.Printf("   Le fichier doit rester dans le répertoire racine du projet\n")
-		fmt.Printf("   ⚠️  NE DOIT PAS être déplacé, renommé ou supprimé\n")
-		return false
+		return false // Fichier absent
 	}
 	defer file.Close()
 
-	// Lire le fichier et calculer le hash SHA256
+	// Calculer le hash SHA256 du fichier
 	hash := sha256.New()
 	if _, err := io.Copy(hash, file); err != nil {
-		fmt.Printf("❌ [SÉCURITÉ] Impossible de vérifier l'intégrité du fichier\n")
 		return false
 	}
 
 	fichierHash := hex.EncodeToString(hash.Sum(nil))
 
-	// Vérifier que le hash correspond
+	// Vérifier que le hash correspond (sinon fichier modifié)
 	if fichierHash != expectedBlacklistHash {
-		fmt.Printf("❌ [SÉCURITÉ] ALERTE - Fichier blacklist.enc modifié ou corrompu!\n")
-		fmt.Printf("   Hash attendu:  %s\n", expectedBlacklistHash)
-		fmt.Printf("   Hash détecté:  %s\n", fichierHash)
-		fmt.Printf("   ⚠️  Le fichier a peut-être été déplacé, renommé ou modifié\n")
-		fmt.Printf("   ✓ Restaurez le fichier original depuis git\n")
+		fmt.Printf("⚠️  [ATTENTION] Blacklist modifiée! Hash ne correspond pas.\n")
 		return false
 	}
 
 	return true
 }
 
-// ChargerBlacklistChiffrée charge et déchiffre la blacklist depuis un fichier .enc
-func ChargerBlacklistChiffrée(nomFichier string) {
-	// Vérifier d'abord l'intégrité du fichier
-	if !VérifierIntéritéBlacklist(nomFichier) {
-		fmt.Printf("❌ Impossible de charger la blacklist - vérification de sécurité échouée\n")
-		fmt.Printf("❌ LE PROGRAMME S'ARRÊTE - Restore le fichier blacklist.enc\n")
-		os.Exit(1)
+// InitDatabase initialise la base de données
+func InitDatabase() {
+	if len(Categories) == 0 {
+		Categories = make(map[int]string)
+		Categories[0] = "Neutre"
+		Categories[1] = "Positif"
+		Categories[2] = "Négatif"
+		Categories[3] = "Question"
+		Categories[4] = "Commande"
+		Categories[5] = "Information"
+		Categories[6] = "Feedback"
+		Categories[7] = "Autre"
+		Categories[8] = "Général"
+		Categories[9] = "Spécifique"
 	}
 
-	// Essayer d'abord le fichier chiffré
-	file, err := os.Open(nomFichier)
-	if err == nil {
-		defer file.Close()
-
-		scanner := bufio.NewScanner(file)
-		if scanner.Scan() {
-			texteChiffré := scanner.Text()
-			texteOriginal, err := DéchiffrerBlacklist(texteChiffré)
-			if err != nil {
-				fmt.Printf("[ERREUR] Impossible de déchiffrer la blacklist: %v\n", err)
-				return
-			}
-
-			// Charger depuis le texte déchiffré
-			compteur := 0
-			for _, ligne := range strings.Split(texteOriginal, "\n") {
-				ligne = strings.TrimSpace(ligne)
-				if ligne == "" || strings.HasPrefix(ligne, "#") {
-					continue
-				}
-
-				mot := strings.ToLower(ligne)
-				Blacklist[mot] = true
-				compteur++
-			}
-
-			fmt.Printf("[BLACKLIST] ✓ %d mots interdits chargés (chiffrement AES-256)\n", compteur)
-			return
-		}
+	if len(Phrases) == 0 {
+		Phrases = make([]string, 0)
 	}
-
-	// Sinon charger depuis le fichier texte
-	fmt.Printf("[BLACKLIST] Fichier chiffré introuvable, chargement depuis texte clair...\n")
-	ChargerBlacklist("blacklist.txt")
 }

@@ -1,0 +1,168 @@
+{
+  "version": "1.0",
+  "patterns": {
+    "033bc56bce5388c8790729b9d1784065": {
+      "id": "033bc56bce5388c8790729b9d1784065",
+      "filename": "033bc56bce5388c8790729b9d1784065.jpg",
+      "width": 736,
+      "height": 1104,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        29238.653252008506,
+        28521.869552910364,
+        25566.30377801079
+      ],
+      "complexity": 0.01704744604599874,
+      "content_summary": "Pattern '033bc56bce5388c8790729b9d1784065' (736x1104, complexity 1.70%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7542618615114997,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "033bc56bce5388c8"
+    },
+    "1331721ed7eb13032da83a9b2323c7c9": {
+      "id": "1331721ed7eb13032da83a9b2323c7c9",
+      "filename": "1331721ed7eb13032da83a9b2323c7c9.jpg",
+      "width": 928,
+      "height": 1232,
+      "categories": {
+        "ALIMENTATION": 3,
+        "SANTÉ": 2
+      },
+      "average_color": [
+        29123.69486292264,
+        30286.627189284314,
+        22705.536178732367
+      ],
+      "complexity": 0.015765558525526198,
+      "content_summary": "Pattern '1331721ed7eb13032da83a9b2323c7c9' (928x1232, complexity 1.58%) with categories: ALIMENTATION(3), SANTÉ(2)",
+      "keywords": [],
+      "confidence": 0.7539413896313816,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "1331721ed7eb1303"
+    },
+    "14a0850cd4a642e047253906b57160d7": {
+      "id": "14a0850cd4a642e047253906b57160d7",
+      "filename": "14a0850cd4a642e047253906b57160d7.jpg",
+      "width": 474,
+      "height": 843,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        40952.8815637341,
+        25996.86794700462,
+        23101.563173516326
+      ],
+      "complexity": 0.026114789955503502,
+      "content_summary": "Pattern '14a0850cd4a642e047253906b57160d7' (474x843, complexity 2.61%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7565286974888759,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "14a0850cd4a642e0"
+    },
+    "29de3b16473be711c107f4fe219efa35": {
+      "id": "29de3b16473be711c107f4fe219efa35",
+      "filename": "29de3b16473be711c107f4fe219efa35.jpg",
+      "width": 736,
+      "height": 1313,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        18894.87766565118,
+        15417.473711877878,
+        13527.248798594324
+      ],
+      "complexity": 0.020270331799066194,
+      "content_summary": "Pattern '29de3b16473be711c107f4fe219efa35' (736x1313, complexity 2.03%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7550675829497665,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "29de3b16473be711"
+    },
+    "65590b557a7483d2ac55f5140d9f1728": {
+      "id": "65590b557a7483d2ac55f5140d9f1728",
+      "filename": "65590b557a7483d2ac55f5140d9f1728.jpg",
+      "width": 828,
+      "height": 1086,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        37562.85471437087,
+        30736.217046556525,
+        25760.45874703072
+      ],
+      "complexity": 0.03002998193966246,
+      "content_summary": "Pattern '65590b557a7483d2ac55f5140d9f1728' (828x1086, complexity 3.00%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7575074954849156,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "65590b557a7483d2"
+    },
+    "ecdd36d5803ae4abdfb081c685018ead": {
+      "id": "ecdd36d5803ae4abdfb081c685018ead",
+      "filename": "ecdd36d5803ae4abdfb081c685018ead.jpg",
+      "width": 736,
+      "height": 1275,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        29245.0885230179,
+        22259.812685421995,
+        16848.384904092072
+      ],
+      "complexity": 0.018067881500426257,
+      "content_summary": "Pattern 'ecdd36d5803ae4abdfb081c685018ead' (736x1275, complexity 1.81%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7545169703751066,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "ecdd36d5803ae4ab"
+    },
+    "input": {
+      "id": "input",
+      "filename": "input.jpg",
+      "width": 673,
+      "height": 1200,
+      "categories": {
+        "BUSINESS": 2,
+        "HISTOIRE": 3
+      },
+      "average_color": [
+        29210.024887320455,
+        22205.49577265973,
+        25337.11536156513
+      ],
+      "complexity": 0.02622189202575532,
+      "content_summary": "Pattern 'input' (673x1200, complexity 2.62%) with categories: BUSINESS(2), HISTOIRE(3)",
+      "keywords": [],
+      "confidence": 0.7565554730064389,
+      "created_at": "%!d(string=)",
+      "pattern_hash": "input_673_1200_0"
+    }
+  },
+  "index": [
+    "033bc56bce5388c8790729b9d1784065",
+    "1331721ed7eb13032da83a9b2323c7c9",
+    "14a0850cd4a642e047253906b57160d7",
+    "29de3b16473be711c107f4fe219efa35",
+    "65590b557a7483d2ac55f5140d9f1728",
+    "ecdd36d5803ae4abdfb081c685018ead",
+    "input",
+    "033bc56bce5388c8790729b9d1784065",
+    "1331721ed7eb13032da83a9b2323c7c9",
+    "14a0850cd4a642e047253906b57160d7",
+    "29de3b16473be711c107f4fe219efa35",
+    "65590b557a7483d2ac55f5140d9f1728",
+    "ecdd36d5803ae4abdfb081c685018ead",
+    "input"
+  ]
+}

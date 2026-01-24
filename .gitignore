@@ -1,37 +1,22 @@
-# Binaires compilés
+# Binaires
 programme
-*.exe
-*.so
-*.dylib
+IA-ATOMIQUE
 
-# Fichiers générés
-dashboard
-*.enc.bak
-blacklist_backup.enc
+# Tests
+stress_test*.go
+benchmark*.go
+*_test.go
 
-# Fichiers temporaires
+# Temporaires
 temp.txt
+dashboard
 *.tmp
-*.log
-*.swp
-*~
 
-# Fichiers de test/données
-wikipedia.txt
-test*.txt
-sample*.txt
-
-# IDE
+# IDE et OS
 .vscode/
 .idea/
-*.iml
-*.swp
-*.swo
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Go
+# Build
 vendor/
-*.prof
