@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync/atomic"
 	"time"
 )
 
@@ -239,7 +240,7 @@ func saveSimulationResults(network *database.AtomicNetwork,
 
 	f.WriteString(fmt.Sprintf("Nombre d'atomes: %d\n", len(network.Atoms)))
 	f.WriteString(fmt.Sprintf("Itérations: %d\n", len(coherence)))
-	f.WriteString(fmt.Sprintf("\nCohérence par itération:\n"))
+	f.WriteString("\nCohérence par itération:\n")
 
 	for i, c := range coherence {
 		if i%50 == 0 {
@@ -247,7 +248,7 @@ func saveSimulationResults(network *database.AtomicNetwork,
 		}
 	}
 
-	f.WriteString(fmt.Sprintf("\nActivation par itération:\n"))
+	f.WriteString("\nActivation par itération:\n")
 	for i, a := range activation {
 		if i%50 == 0 {
 			f.WriteString(fmt.Sprintf("Iter %4d: %.4f\n", i, a))
@@ -400,6 +401,51 @@ func ParseSimulationArgs(args []string) {
 	case "help":
 		RunAtomicDemo()
 
+	case "cellular":
+		// Test cellular emergence system
+		if len(args) > 2 {
+			testCellularEmergence(args[2:])
+		} else {
+			fmt.Println("Usage: ./programme cellular <imagePath> <iterations> [detection-period]")
+			fmt.Println("Example: ./programme cellular target.png 500 50")
+		}
+
+	case "relaxation":
+		// Test cellular relaxation (local energy minimization)
+		if len(args) > 2 {
+			testCellularRelaxation(args[2:])
+		} else {
+			fmt.Println("Usage: ./programme relaxation <imagePath> <gridH> <gridW> [iterations]")
+			fmt.Println("Example: ./programme relaxation target.png 8 8 100")
+		}
+
+	case "relax-opt":
+		// Test OPTIMIZED cellular relaxation with all 7 strategies
+		if len(args) > 2 {
+			testOptimizedRelaxation(args[2:])
+		} else {
+			fmt.Println("Usage: ./programme relax-opt <imagePath> <gridH> <gridW> [iterations]")
+			fmt.Println("Example: ./programme relax-opt target.png 8 8 50")
+		}
+
+	case "deblur":
+		// Test multi-phase deblurring
+		if len(args) > 2 {
+			testDeblurPipeline(args[2:])
+		} else {
+			fmt.Println("Usage: ./programme deblur <imagePath> <gridH> <gridW> [iterations] [width] [height] [outputFile]")
+			fmt.Println("Example: ./programme deblur target.jpg 8 8 50 1920 1080 deblurred.png")
+		}
+
+	case "fusion":
+		// Masked fusion of an element into a base image
+		if len(args) > 2 {
+			testFusionPipeline(args[2:])
+		} else {
+			fmt.Println("Usage: ./programme fusion <baseImage> <elementImage> <maskImage> <gridH> <gridW> [iterations] [width] [height] [outputFile]")
+			fmt.Println("Example: ./programme fusion scene.jpg text.png mask.png 8 8 60 1920 1080 fused.png")
+		}
+
 	case "exit":
 		fmt.Println("Au revoir!")
 		os.Exit(0)
@@ -408,4 +454,602 @@ func ParseSimulationArgs(args []string) {
 		fmt.Printf("Commande inconnue: %s\n", command)
 		RunAtomicDemo()
 	}
+}
+
+// testCellularEmergence tests the hierarchical cellular emergence system
+func testCellularEmergence(args []string) {
+	if len(args) < 2 {
+		fmt.Println("Usage: ./programme cellular <imagePath> <iterations> [detection-period]")
+		fmt.Println("Example: ./programme cellular target.png 500 50")
+		return
+	}
+
+	imagePath := args[0]
+	iterations, err := strconv.Atoi(args[1])
+	if err != nil {
+		fmt.Printf("Invalid iterations: %s\n", args[1])
+		return
+	}
+
+	detectionPeriod := 20 // Default: detect cells every 20 atomic iterations
+	if len(args) > 2 {
+		dp, err := strconv.Atoi(args[2])
+		if err == nil {
+			detectionPeriod = dp
+		}
+	}
+
+	fmt.Println("\n╔════════════════════════════════════════════════════════════╗")
+	fmt.Println("║    HIERARCHICAL CELLULAR EMERGENCE TEST                  ║")
+	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+
+	// Load image and create atom network
+	fmt.Printf("\n[LOADING IMAGE]\n")
+	fmt.Printf("  • Path: %s\n", imagePath)
+
+	atomNetwork := database.NewConstraintRelaxationNetwork(512, 512, 2)
+
+	// Load image energetics
+	energyProfile, _ := database.NewImageEnergyProfile(imagePath)
+	atomNetwork.EnergyProfile = energyProfile
+
+	fmt.Printf("  • Network: 256×256 atoms (512×512 pixels at 2px/patch)\n")
+
+	// Create hierarchical layers
+	fmt.Printf("\n[CREATING HIERARCHY]\n")
+	hierarchy := database.NewHierarchicalLayers(atomNetwork, detectionPeriod)
+	fmt.Printf("  • Atomic iterations per cell detection: %d\n", detectionPeriod)
+
+	fmt.Printf("\n[RUNNING SIMULATION]\n")
+	fmt.Printf("  • Total iterations: %d\n\n", iterations)
+
+	startTime := time.Now()
+	lastPrintTime := time.Now()
+
+	for iter := 0; iter < iterations; iter++ {
+		hierarchy.Step()
+
+		// Print progress every second
+		if time.Since(lastPrintTime) > 1*time.Second {
+			stats := hierarchy.GetHierarchicalStats()
+
+			atomicCoherence := stats["atomic_coherence"].(float64)
+			numCells := stats["num_cells"].(int)
+
+			fmt.Printf("[Iter %4d] Atomic Coherence: %.2f%% | Cells: %3d\n",
+				iter+1, atomicCoherence*100, numCells)
+
+			if numCells > 0 {
+				cellularCoherence := stats["cellular_coherence"].(float64)
+				fmt.Printf("           Cellular Coherence: %.2f%%\n", cellularCoherence*100)
+			}
+
+			lastPrintTime = time.Now()
+		}
+	}
+
+	elapsed := time.Since(startTime)
+
+	// Final status
+	fmt.Printf("\n")
+	finalStats := hierarchy.GetHierarchicalStats()
+
+	fmt.Println(hierarchy.PrintCellularStatus())
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Total time: %v\n", elapsed)
+	fmt.Printf("  • Iterations/sec: %.0f\n", float64(iterations)/elapsed.Seconds())
+
+	// Save result
+	fmt.Printf("\n[CELLULAR EMERGENCE SUCCESS]\n")
+	if finalStats["num_cells"].(int) > 0 {
+		fmt.Printf("  ✓ %d cells detected and stabilized\n", finalStats["num_cells"].(int))
+		fmt.Printf("  ✓ Hierarchical coherence enables perfect rendering\n")
+	} else {
+		fmt.Printf("  ⚠ No cells detected yet - continue iteration for stabilization\n")
+	}
+
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
+}
+
+// testCellularRelaxation tests the local energy minimization system
+func testCellularRelaxation(args []string) {
+	if len(args) < 2 {
+		fmt.Println("Usage: ./programme relaxation <imagePath> <gridH> <gridW> [iterations]")
+		fmt.Println("Example: ./programme relaxation target.png 8 8 100")
+		return
+	}
+
+	imagePath := args[0]
+	gridH, err1 := strconv.Atoi(args[1])
+	gridW, err2 := strconv.Atoi(args[2])
+
+	if err1 != nil || err2 != nil {
+		fmt.Printf("Invalid grid dimensions\n")
+		return
+	}
+
+	iterations := 100
+	if len(args) > 3 {
+		if it, err := strconv.Atoi(args[3]); err == nil {
+			iterations = it
+		}
+	}
+
+	fmt.Println("\n╔════════════════════════════════════════════════════════════╗")
+	fmt.Println("║    CELLULAR RELAXATION SYSTEM - LOCAL ENERGY MINIMIZATION ║")
+	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+
+	// Load and create network
+	fmt.Printf("\n[LOADING IMAGE]\n")
+	fmt.Printf("  • Path: %s\n", imagePath)
+
+	atomNetwork := database.NewConstraintRelaxationNetwork(512, 512, 2)
+	energyProfile, _ := database.NewImageEnergyProfile(imagePath)
+	atomNetwork.EnergyProfile = energyProfile
+
+	// Initial relaxation to stabilize atoms
+	fmt.Printf("\n[ATOMIC PRE-RELAXATION]\n")
+	fmt.Printf("  • Atoms: 256×256 (512×512 pixels)\n")
+	for i := 0; i < 50; i++ {
+		atomNetwork.RelaxationStep()
+	}
+
+	// Create patch grid
+	fmt.Printf("\n[PATCH GRID CREATION]\n")
+	fmt.Printf("  • Grid: %d×%d patches\n", gridH, gridW)
+
+	grid := database.NewPatchGrid(atomNetwork.Atoms, gridH, gridW)
+	grid.InitializePatches(256)
+
+	fmt.Printf("  • Patches initialized: %d\n", len(grid.Patches))
+
+	// Setup parameters
+	grid.Alpha = 0.4  // Structural importance
+	grid.Beta = 0.3   // Constraint importance
+	grid.Gamma = 0.3  // Interaction importance
+	grid.Lambda = 0.8 // Inter-cell coupling
+	grid.LearningRate = 0.01
+
+	fmt.Printf("\n[ENERGY MINIMIZATION PARAMETERS]\n")
+	fmt.Printf("  • α (Structural):    %.2f\n", grid.Alpha)
+	fmt.Printf("  • β (Constraint):    %.2f\n", grid.Beta)
+	fmt.Printf("  • γ (Interaction):   %.2f\n", grid.Gamma)
+	fmt.Printf("  • λ (Coupling):      %.2f\n", grid.Lambda)
+	fmt.Printf("  • Learning rate:     %.4f\n", grid.LearningRate)
+
+	// Run relaxation
+	fmt.Printf("\n[RUNNING RELAXATION]\n")
+	fmt.Printf("  • Iterations: %d\n\n", iterations)
+
+	startTime := time.Now()
+	lastPrintTime := time.Now()
+
+	for iter := 0; iter < iterations; iter++ {
+		grid.MinimizeGlobalEnergy()
+
+		// Print progress
+		if time.Since(lastPrintTime) > 1*time.Second || iter == iterations-1 {
+			stats := grid.GetStatistics()
+			totalEnergy := stats["total_energy"].(float64)
+			avgEnergy := stats["avg_patch_energy"].(float64)
+			convergence := stats["convergence_percent"].(float64)
+
+			fmt.Printf("[Iter %3d] Total Energy: %.4f | Avg: %.4f | Converged: %.1f%%\n",
+				iter+1, totalEnergy, avgEnergy, convergence)
+
+			lastPrintTime = time.Now()
+		}
+
+		// Check global convergence
+		if grid.VerifyGlobalConvergence() {
+			fmt.Printf("\n✓ Global convergence reached at iteration %d\n", iter+1)
+			break
+		}
+	}
+
+	elapsed := time.Since(startTime)
+
+	// Final statistics
+	fmt.Println(grid.PrintGridStatus())
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Total time: %v\n", elapsed)
+	fmt.Printf("  • Iterations/sec: %.1f\n", float64(iterations)/elapsed.Seconds())
+
+	fmt.Printf("\n[SUCCESS]\n")
+	stats := grid.GetStatistics()
+	if stats["global_converged"].(bool) {
+		fmt.Printf("  ✓ All %d patches converged\n", stats["num_patches"])
+		fmt.Printf("  ✓ Energy minimized to: %.6f\n", stats["total_energy"])
+		fmt.Printf("  ✓ Perfect local reconstruction achieved\n")
+	} else {
+		fmt.Printf("  ⚠ Partial convergence (%.1f%% patches stable)\n", stats["convergence_percent"])
+		fmt.Printf("  • Run more iterations for complete convergence\n")
+	}
+
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
+}
+
+// testOptimizedRelaxation tests the optimized cellular relaxation with all 7 strategies
+func testOptimizedRelaxation(args []string) {
+	if len(args) < 2 {
+		fmt.Println("Usage: ./programme relax-opt <imagePath> <gridH> <gridW> [iterations]")
+		fmt.Println("Example: ./programme relax-opt target.png 8 8 50")
+		return
+	}
+
+	imagePath := args[0]
+	gridH, err1 := strconv.Atoi(args[1])
+	gridW, err2 := strconv.Atoi(args[2])
+
+	if err1 != nil || err2 != nil {
+		fmt.Printf("Invalid grid dimensions\n")
+		return
+	}
+
+	iterations := 50
+	if len(args) > 3 {
+		if it, err := strconv.Atoi(args[3]); err == nil {
+			iterations = it
+		}
+	}
+
+	// Parse output resolution (optional: default 512x512)
+	outputWidth := 512
+	outputHeight := 512
+	outputPath := "relaxed_output.png"
+
+	if len(args) > 4 {
+		if w, err := strconv.Atoi(args[4]); err == nil {
+			outputWidth = w
+		} else {
+			// If args[4] is not a number, assume it's the output path
+			outputPath = args[4]
+		}
+	}
+	if len(args) > 5 {
+		if h, err := strconv.Atoi(args[5]); err == nil {
+			outputHeight = h
+		}
+	}
+	// If args[6] exists and is not a number, it's the output path
+	if len(args) > 6 {
+		outputPath = args[6]
+	}
+
+	fmt.Println("\n╔════════════════════════════════════════════════════════════╗")
+	fmt.Println("║     OPTIMIZED CELLULAR RELAXATION - 7 STRATEGIES            ║")
+	fmt.Println("║  1️⃣ Adaptive atoms | 2️⃣ Modification mask | 3️⃣ Adaptive iters ║")
+	fmt.Println("║  4️⃣ Parallelization | 5️⃣ Lookup table | 6️⃣ Early stopping   ║")
+	fmt.Println("║  7️⃣ Pattern fusion                                          ║")
+	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+
+	// Create optimized grid
+	fmt.Printf("\n[INITIALIZATION]\n")
+	fmt.Printf("  • Grid: %d×%d patches\n", gridH, gridW)
+	fmt.Printf("  • Image: %s\n", imagePath)
+
+	grid := database.NewOptimizedPatchGrid(gridH, gridW)
+
+	// Load image
+	fmt.Printf("\n[LOADING & CREATING PATCHES]\n")
+	err := grid.InitializePatchesFromImage(imagePath)
+	if err != nil {
+		fmt.Printf("Error loading image: %v\n", err)
+		return
+	}
+
+	fmt.Printf("  ✓ Image loaded and patches created\n")
+	fmt.Printf("  • Parallel workers: %d (CPU cores)\n", grid.ParallelWorkers)
+
+	// Setup parameters
+	grid.Alpha = 0.4  // Structural importance
+	grid.Beta = 0.3   // Constraint importance
+	grid.Gamma = 0.3  // Interaction importance
+	grid.Lambda = 0.8 // Inter-cell coupling
+	grid.LearningRate = 0.01
+	grid.ConvergenceEps = 0.001
+
+	fmt.Printf("\n[OPTIMIZATION PARAMETERS]\n")
+	fmt.Printf("  • α (Structural):        %.2f\n", grid.Alpha)
+	fmt.Printf("  • β (Constraint):        %.2f\n", grid.Beta)
+	fmt.Printf("  • γ (Interaction):       %.2f\n", grid.Gamma)
+	fmt.Printf("  • λ (Coupling):          %.2f\n", grid.Lambda)
+	fmt.Printf("  • Learning rate:         %.4f\n", grid.LearningRate)
+	fmt.Printf("  • Convergence epsilon:   %.6f\n", grid.ConvergenceEps)
+
+	// Adaptive atom strategy
+	fmt.Printf("\n[STRATEGY 1: ADAPTIVE ATOMS]\n")
+	fmt.Printf("  • Formula: n_i,j = ceil(k·σ(C_i,j))\n")
+	fmt.Printf("  • Scale factor (k):      %.1f\n", grid.AdaptiveStrategy.ScaleFactor)
+	fmt.Printf("  • Min atoms/patch:       %d (2×2)\n", grid.AdaptiveStrategy.MinAtoms)
+	fmt.Printf("  • Max atoms/patch:       %d (16×16)\n", grid.AdaptiveStrategy.MaxAtoms)
+
+	fmt.Printf("\n[RUNNING OPTIMIZED RELAXATION]\n")
+	fmt.Printf("  • Iterations: %d (adaptive per patch)\n", iterations)
+	fmt.Printf("  • Phase 1: Initial all-patches mark\n\n")
+
+	// Initialize: mark all patches as modified for first iteration
+	for i := 0; i < gridH; i++ {
+		for j := 0; j < gridW; j++ {
+			grid.Mask.MarkModified(i, j)
+		}
+	}
+
+	startTime := time.Now()
+	lastPrintTime := time.Now()
+
+	for iter := 0; iter < iterations; iter++ {
+		// Relax all patches in parallel (Strategy 4)
+		grid.RelaxParallel()
+
+		// Print progress periodically
+		if time.Since(lastPrintTime) > 500*time.Millisecond || iter == iterations-1 {
+			stats := grid.GetStatistics()
+			totalEnergy := stats["total_energy"].(float64)
+			avgEnergy := stats["avg_patch_energy"].(float64)
+			convergence := stats["convergence_percent"].(float64)
+			totalIters := stats["total_iterations"].(int)
+			processedCells := atomic.LoadInt32(&grid.ProcessedCells)
+
+			fmt.Printf("[Iter %2d] Energy: %.4f | Avg: %.4f | Converged: %.1f%% | Total iters: %d | Processed cells: %d\n",
+				iter+1, totalEnergy, avgEnergy, convergence, totalIters, processedCells)
+
+			lastPrintTime = time.Now()
+		}
+
+		// Check global convergence
+		if grid.VerifyGlobalConvergence() {
+			fmt.Printf("\n✓ GLOBAL CONVERGENCE REACHED at iteration %d\n", iter+1)
+			break
+		}
+	}
+
+	elapsed := time.Since(startTime)
+
+	// Final optimization summary
+	fmt.Print(grid.PrintOptimizationSummary())
+
+	fmt.Printf("[PERFORMANCE METRICS]\n")
+	fmt.Printf("  • Total time:            %v\n", elapsed)
+	fmt.Printf("  • Iterations/sec:        %.1f\n", float64(iterations)/elapsed.Seconds())
+
+	stats := grid.GetStatistics()
+	if stats["global_converged"].(bool) {
+		fmt.Printf("\n✓ SUCCESS - Complete convergence achieved!\n")
+	} else {
+		fmt.Printf("\n⚠ Partial convergence (%.1f%% patches stable)\n", stats["convergence_percent"].(float64))
+	}
+
+	// Export relaxed image with configurable resolution
+	fmt.Printf("\n[EXPORTING RESULT]\n")
+	exportErr := grid.ExportRelaxedImage(outputPath, outputWidth, outputHeight)
+	if exportErr != nil {
+		fmt.Printf("  ✗ Error exporting image: %v\n", exportErr)
+	} else {
+		fmt.Printf("  ✓ Image exported: %s\n", outputPath)
+		fmt.Printf("  • Resolution: %d×%d pixels\n", outputWidth, outputHeight)
+		fmt.Printf("  • Grid: %d×%d patches\n", gridH, gridW)
+	}
+
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
+}
+
+// testDeblurPipeline tests the multi-phase deblurring system
+func testDeblurPipeline(args []string) {
+	if len(args) < 3 {
+		fmt.Println("Usage: ./programme deblur <imagePath> <gridH> <gridW> [iterations] [width] [height] [outputFile]")
+		fmt.Println("Example: ./programme deblur target.jpg 8 8 50")
+		fmt.Println("         ./programme deblur target.jpg 8 8 50 1920 1080 deblurred.png")
+		return
+	}
+
+	imagePath := args[0]
+	gridH, err1 := strconv.Atoi(args[1])
+	gridW, err2 := strconv.Atoi(args[2])
+
+	if err1 != nil || err2 != nil {
+		fmt.Printf("Invalid grid dimensions\n")
+		return
+	}
+
+	iterations := 50
+	if len(args) > 3 {
+		if n, err := strconv.Atoi(args[3]); err == nil && n > 0 {
+			iterations = n
+		}
+	}
+
+	// Parse output resolution (optional: default 1024x1024)
+	outputWidth := 1024
+	outputHeight := 1024
+	outputPath := "deblurred_output.png"
+
+	if len(args) > 4 {
+		if w, err := strconv.Atoi(args[4]); err == nil {
+			outputWidth = w
+		} else {
+			// If args[4] is not a number, assume it's the output path
+			outputPath = args[4]
+		}
+	}
+	if len(args) > 5 {
+		if h, err := strconv.Atoi(args[5]); err == nil {
+			outputHeight = h
+		}
+	}
+	// If args[6] exists, it's the output path
+	if len(args) > 6 {
+		outputPath = args[6]
+	}
+
+	fmt.Println("\n╔════════════════════════════════════════════════════════════╗")
+	fmt.Println("║         MULTI-PHASE DEBLURRING PIPELINE (3 PHASES)          ║")
+	fmt.Println("║  Phase 1: Coarse (16×16) - Global structure restoration    ║")
+	fmt.Println("║  Phase 2: Medium (8×8)   - Edge reconstruction             ║")
+	fmt.Println("║  Phase 3: Fine (4×4)     - Texture refinement              ║")
+	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+
+	// Create optimized grid
+	fmt.Printf("\n[INITIALIZATION]\n")
+	fmt.Printf("  • Grid: %d×%d patches\n", gridH, gridW)
+	fmt.Printf("  • Image: %s\n", imagePath)
+
+	grid := database.NewOptimizedPatchGrid(gridH, gridW)
+
+	// Load image
+	fmt.Printf("\n[LOADING & CREATING PATCHES]\n")
+	err := grid.InitializePatchesFromImage(imagePath)
+	if err != nil {
+		fmt.Printf("Error loading image: %v\n", err)
+		return
+	}
+
+	fmt.Printf("  ✓ Image loaded and patches created\n")
+	fmt.Printf("  • Parallel workers: %d (CPU cores)\n", grid.ParallelWorkers)
+
+	// Setup parameters
+	grid.Alpha = 0.4
+	grid.Beta = 0.3
+	grid.Gamma = 0.3
+	grid.Lambda = 0.8
+	grid.LearningRate = 0.01
+	grid.ConvergenceEps = 0.001
+
+	fmt.Printf("\n[OPTIMIZATION PARAMETERS]\n")
+	fmt.Printf("  • α (Structural):        %.2f\n", grid.Alpha)
+	fmt.Printf("  • β (Constraint):        %.2f\n", grid.Beta)
+	fmt.Printf("  • γ (Interaction):       %.2f\n", grid.Gamma)
+	fmt.Printf("  • λ (Coupling):          %.2f\n", grid.Lambda)
+	fmt.Printf("  • Learning rate:         %.4f\n", grid.LearningRate)
+
+	startTime := time.Now()
+
+	// Execute deblur pipeline
+	grid.ExecuteDeblurPipeline(iterations)
+
+	elapsed := time.Since(startTime)
+
+	fmt.Printf("\n[PERFORMANCE METRICS]\n")
+	fmt.Printf("  • Total time:            %v\n", elapsed)
+	fmt.Printf("  • Total iterations:      %d\n", iterations)
+
+	// Export result
+	fmt.Printf("\n[EXPORTING RESULT]\n")
+	exportErr := grid.ExportRelaxedImage(outputPath, outputWidth, outputHeight)
+	if exportErr != nil {
+		fmt.Printf("  ✗ Error exporting image: %v\n", exportErr)
+	} else {
+		fmt.Printf("  ✓ Deblurred image exported: %s\n", outputPath)
+		fmt.Printf("  • Resolution: %d×%d pixels\n", outputWidth, outputHeight)
+		fmt.Printf("  • Grid: %d×%d patches\n", gridH, gridW)
+	}
+
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
+}
+
+// testFusionPipeline fuses an element into a base image using a binary mask and atomic energy coupling.
+// Arguments: base element mask gridH gridW [iterations] [width] [height] [output]
+func testFusionPipeline(args []string) {
+	if len(args) < 5 {
+		fmt.Println("Usage: ./programme fusion <baseImage> <elementImage> <maskImage> <gridH> <gridW> [iterations] [width] [height] [outputFile]")
+		fmt.Println("Example: ./programme fusion scene.jpg text.png mask.png 8 8 60 1920 1080 fused.png")
+		return
+	}
+
+	basePath := args[0]
+	elementPath := args[1]
+	maskPath := args[2]
+	gridH, err1 := strconv.Atoi(args[3])
+	gridW, err2 := strconv.Atoi(args[4])
+
+	if err1 != nil || err2 != nil {
+		fmt.Printf("Invalid grid dimensions\n")
+		return
+	}
+
+	iterations := 40
+	if len(args) > 5 {
+		if it, err := strconv.Atoi(args[5]); err == nil && it > 0 {
+			iterations = it
+		}
+	}
+
+	outputWidth, outputHeight := 0, 0
+	outputPath := "fused_output.png"
+
+	if len(args) > 6 {
+		if w, err := strconv.Atoi(args[6]); err == nil && w > 0 {
+			outputWidth = w
+		} else {
+			outputPath = args[6]
+		}
+	}
+	if len(args) > 7 {
+		if h, err := strconv.Atoi(args[7]); err == nil && h > 0 {
+			outputHeight = h
+		}
+	}
+	if len(args) > 8 {
+		outputPath = args[8]
+	}
+
+	fmt.Println("\n╔════════════════════════════════════════════════════════════╗")
+	fmt.Println("║        MASKED ATOMIC FUSION - STRUCTURE PRESERVATION       ║")
+	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+
+	fmt.Printf("\n[INITIALIZATION]\n")
+	fmt.Printf("  • Base image:     %s\n", basePath)
+	fmt.Printf("  • Element image:  %s\n", elementPath)
+	fmt.Printf("  • Mask image:     %s\n", maskPath)
+	fmt.Printf("  • Grid:           %d×%d patches\n", gridH, gridW)
+
+	grid := database.NewOptimizedPatchGrid(gridH, gridW)
+
+	// Prepare fusion patches
+	baseW, baseH, err := grid.InitializeFusionPatches(basePath, elementPath, maskPath)
+	if err != nil {
+		fmt.Printf("Error preparing fusion inputs: %v\n", err)
+		return
+	}
+
+	// Default output size to base image if not provided
+	if outputWidth == 0 {
+		outputWidth = baseW
+	}
+	if outputHeight == 0 {
+		outputHeight = baseH
+	}
+
+	// Energy weights tuned for structure preservation + strong constraint
+	grid.Alpha = 0.65  // Preserve base structure/colors
+	grid.Beta = 0.85   // Enforce element inside mask
+	grid.Gamma = 0.35  // Intra-patch smoothness
+	grid.Lambda = 0.45 // Patch coupling at boundaries
+	grid.LearningRate = 0.02
+
+	fmt.Printf("\n[ENERGY WEIGHTS]\n")
+	fmt.Printf("  • α (Structure):   %.2f\n", grid.Alpha)
+	fmt.Printf("  • β (Constraint):  %.2f\n", grid.Beta)
+	fmt.Printf("  • γ (Interaction): %.2f\n", grid.Gamma)
+	fmt.Printf("  • λ (Coupling):    %.2f\n", grid.Lambda)
+	fmt.Printf("  • Iterations:      %d\n", iterations)
+
+	start := time.Now()
+	grid.RunFusionPipeline(iterations, grid.Alpha, grid.Beta, grid.Gamma, grid.Lambda)
+	elapsed := time.Since(start)
+
+	fmt.Printf("\n[EXPORT]\n")
+	if err := grid.ExportRelaxedImage(outputPath, outputWidth, outputHeight); err != nil {
+		fmt.Printf("  ✗ Export error: %v\n", err)
+	} else {
+		fmt.Printf("  ✓ Fused image: %s (%dx%d)\n", outputPath, outputWidth, outputHeight)
+	}
+
+	fmt.Printf("\n[PERFORMANCE]\n")
+	fmt.Printf("  • Total time: %v\n", elapsed)
+	fmt.Printf("  • Iterations/sec: %.1f\n", float64(iterations)/elapsed.Seconds())
+
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
 }

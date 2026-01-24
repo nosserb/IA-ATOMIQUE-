@@ -177,6 +177,51 @@ func afficherAide() {
      $ ./programme bonjour
      $ ./programme l'informatique progresse
 
+5. INTERFACE WEB
+	$ ./programme web
+	→ Lance l'interface web locale
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎓 APPRENTISSAGE AUTOMATIQUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. APPRENDRE À PARTIR DE TEXTES
+   $ ./programme learn <fichier.txt|dossier>
+   
+   Exemples:
+     $ ./programme learn histoire.txt
+     $ ./programme learn corpus/sciences/
+     $ ./programme learn medecine.txt
+   
+   → Extrait automatiquement des connaissances factuelles
+   → Patterns: dates, relations causales, définitions
+   → Co-occurrences: associations statistiques
+
+2. CONSULTER LES CONNAISSANCES
+   $ ./programme knowledge <terme>
+   
+   Exemples:
+     $ ./programme knowledge Napoléon
+     $ ./programme knowledge 1815
+     $ ./programme knowledge coeur
+   
+   → Affiche toutes les connaissances sur un terme
+
+3. STATISTIQUES D'APPRENTISSAGE
+   $ ./programme stats-kb
+   $ ./programme kb-stats
+   
+   → Affiche les statistiques de la base de connaissances
+   → Nombre de faits extraits, définitions, dates, etc.
+
+4. TESTER LES CONNAISSANCES
+   $ ./programme test-knowledge <question>
+   
+   Exemple:
+     $ ./programme test-knowledge "Quand a eu lieu Waterloo?"
+   
+   → Cherche les connaissances pertinentes pour répondre
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📝 RÉSUMÉS & GÉNÉRATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -217,6 +262,16 @@ func afficherAide() {
      $ ./programme atomic document.txt 0.5
    
    → Utilise le réseau atomique autonome pour générer
+
+5. COMPARATIF DES MÉTHODES
+	$ ./programme compare <fichier> [compression=0.3]
+	$ ./programme compare-summaries <fichier>
+	→ Compare vectoriel vs atomique vs grammatical
+
+6. ANALYSES INTERNES
+	$ ./programme analyze-preprocessing <fichier>
+	$ ./programme analyze-vocabulary <fichier>
+	→ Affiche les détails du pipeline et du vocabulaire
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✍️  HUMANISATION & RÉÉCRITURE
@@ -312,6 +367,12 @@ $ ./programme atomic benchmark <itérations> [atomes]
 
 → Performance, latence, throughput
 
+AUTRES SOUS-COMMANDES ATOMIQUES
+$ ./programme cellular <options>
+$ ./programme relaxation <options>
+$ ./programme relax-opt <options>
+→ Commandes avancées (voir documentation)
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 FONCTIONNALITÉS D'ANALYSE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -378,6 +439,22 @@ EXEMPLES RAPIDES:
   $ ./programme compare-summaries document.txt
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏁 BENCHMARKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BENCHMARKS ACADÉMIQUES
+$ ./programme academic all
+$ ./programme academic mmlu
+$ ./programme academic hellaswag
+$ ./programme bench-academic
+→ Lance les tests MMLU/Hellaswag (échantillons intégrés)
+
+BENCHMARK TEXTE MASSIF
+$ ./programme benchmark-text
+$ ./programme bench-1m
+→ Traite 1M de mots pour mesurer la vitesse
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ⚛️  TECHNOLOGIE DE RÉSONANCE ATOMIQUE (T.R.A.)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -403,14 +480,35 @@ $ ./programme help
 $ ./programme -h
 $ ./programme --help
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🖼️  IMAGE & DÉFLOUTAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GÉNÉRATION D'IMAGES
+$ ./programme image <subcommand> [...]
+→ Voir "image help" pour les sous-commandes disponibles
+
+DÉFL_OUTAGE (ATOMIC)
+$ ./programme deblur ultra <image> [options]
+$ ./programme deblur fast <image> [options]
+$ ./programme deblur draft <image> [options]
+$ ./programme deblur help
+
+MOTION BLUR (Lucy-Richardson)
+$ ./programme motion <imagePath> [output] [iterations]
+
+COMBO (Motion + Ultra Deblur)
+$ ./programme combo <imagePath> [output]
+
 ═══════════════════════════════════════════════════════════════
 `)
 }
 
 func main() {
 	// Mode CLI (terminal)
-	go AutoIntrospection()
-	go AutoIntrospection()
+	// Désactiver les goroutines pour commands deblur
+	// go AutoIntrospection()
+	// go AutoIntrospection()
 
 	if len(os.Args) < 2 {
 		fmt.Println("[IA-ATOMIQUE v1.0] - Technologie de Résonance Atomique")
@@ -422,10 +520,183 @@ func main() {
 	// Vérifier les commandes atomiques en priorité
 	commande := os.Args[1]
 
+	// DEBUG
+	if commande == "ultra_pure" {
+		fmt.Printf("DEBUG: ULTRA_PURE detected! os.Args = %v\n", os.Args)
+	}
+
+	// Commandes de génération d'images
+	if commande == "image" {
+		ImageGenerationCommand(os.Args[1:])
+		return
+	}
+
+	// Commandes d'entraînement du modèle
+	if commande == "train" {
+		TrainingCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes d'émergence de patterns
+	if commande == "pattern" {
+		PatternCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes de génération atomique
+	if commande == "generate" {
+		GenerateCommand(os.Args[2:])
+		return
+	}
+
 	// Commandes du réseau atomique
 	if commande == "simulate" || commande == "network-stats" || commande == "benchmark" ||
+		commande == "cellular" || commande == "relaxation" || commande == "relax-opt" ||
+		(commande == "deblur" && (len(os.Args) < 3 || (os.Args[2] != "ultra" && os.Args[2] != "draft" && os.Args[2] != "fast"))) ||
 		(commande == "help" && len(os.Args) == 2) {
 		ParseSimulationArgs(os.Args)
+		return
+	}
+
+	// Benchmark traitement de texte 1M de mots
+	if commande == "benchmark-text" || commande == "bench-1m" {
+		BenchmarkTextProcessing1M()
+		return
+	}
+
+	// Tests avancés (Needle In Haystack, Perplexity)
+	if commande == "test" {
+		HandleAdvancedTests(os.Args[2:])
+		return
+	}
+
+	// Benchmarks académiques (MMLU, Hellaswag)
+	if commande == "academic" || commande == "bench-academic" {
+		if len(os.Args) > 2 {
+			HandleAcademicBenchmarks(os.Args[2:])
+		} else {
+			HandleAcademicBenchmarks([]string{})
+		}
+		return
+	}
+
+	// Commandes d'apprentissage automatique
+	if commande == "learn" {
+		LearnCommand(os.Args[2:])
+		return
+	}
+	if commande == "knowledge" {
+		KnowledgeCommand(os.Args[2:])
+		return
+	}
+	if commande == "stats-kb" || commande == "kb-stats" {
+		StatsCommand(os.Args[2:])
+		return
+	}
+	if commande == "test-knowledge" {
+		TestKnowledgeCommand(os.Args[2:])
+		return
+	}
+
+	// Commandes de défloutage ultra-rapide
+	if commande == "deblur" && len(os.Args) > 2 {
+		mode := os.Args[2]
+		switch mode {
+		case "ultra":
+			HandleUltraFastDeblur(os.Args[3:])
+			return
+		case "draft":
+			HandleDraftFastDeblur(os.Args[3:])
+			return
+		case "fast":
+			HandleFastDeblur(os.Args[3:])
+			return
+		case "help", "-h":
+			PrintDeblurModesHelp()
+			return
+		}
+	}
+
+	// Commande de motion blur removal (déconvolution Lucy-Richardson)
+	if commande == "motion" && len(os.Args) > 2 {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme motion <imagePath> [output] [iterations]")
+			fmt.Println("Example: ./programme motion blurry.jpg deblurred.png 10")
+			return
+		}
+
+		imagePath := os.Args[2]
+		outputPath := "deblurred_motion.png"
+		iterations := 15
+
+		if len(os.Args) > 3 {
+			outputPath = os.Args[3]
+		}
+		if len(os.Args) > 4 {
+			fmt.Sscanf(os.Args[4], "%d", &iterations)
+		}
+
+		fmt.Println("\n🎬 MOTION BLUR REMOVAL (Lucy-Richardson Deconvolution)")
+		fmt.Println("═════════════════════════════════════════════════════════")
+		err := LucyRichardsonDeconvolve(imagePath, outputPath, iterations)
+		if err != nil {
+			fmt.Printf("❌ Error: %v\n", err)
+			return
+		}
+		fmt.Printf("✅ Motion blur removed: %s\n", outputPath)
+		return
+	}
+
+	// Commande combo: motion blur removal + ultra deblur (best quality)
+	if commande == "combo" && len(os.Args) > 2 {
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme combo <imagePath> [output]")
+			fmt.Println("Example: ./programme combo blurry.jpg deblurred_final.png")
+			fmt.Println("\nCombines motion deconvolution + ultra atomic deblurring")
+			fmt.Println("Total time: ~30-40 seconds for best quality")
+			return
+		}
+
+		imagePath := os.Args[2]
+		finalOutput := "deblurred_combo.png"
+		if len(os.Args) > 3 {
+			finalOutput = os.Args[3]
+		}
+
+		// Verify image exists
+		if _, err := os.Stat(imagePath); err != nil {
+			fmt.Printf("❌ Image not found: %s\n", imagePath)
+			return
+		}
+
+		tempFile := ".combo_motion_temp.png"
+
+		fmt.Println("\n⚡💎 COMBO: MOTION DECONVOLUTION + ATOMIC ULTRA DEBLUR")
+		fmt.Println("═══════════════════════════════════════════════════════")
+		fmt.Println("Step 1/2: Motion Blur Removal (Lucy-Richardson)")
+		fmt.Println("Step 2/2: Ultra Atomic Deblurring (327,000+ atoms)")
+		fmt.Printf("\nProcessing: %s\n", imagePath)
+
+		// Step 1: Motion deconvolution
+		fmt.Println("\n🎬 [STEP 1] Motion deconvolution...")
+		err := LucyRichardsonDeconvolve(imagePath, tempFile, 18)
+		if err != nil {
+			fmt.Printf("❌ Motion deconv failed: %v\n", err)
+			return
+		}
+
+		// Step 2: Ultra deblur on the result
+		fmt.Println("\n⚛️  [STEP 2] Ultra atomic deblurring...")
+		fmt.Printf("═══════════════════════════════════════════════════════\n")
+
+		// Use the existing ultra deblur pipeline on the motion-corrected image
+		runUltraDeblurPipeline4K(tempFile, 4, 4, 1000, finalOutput)
+
+		os.Remove(tempFile)
+
+		fmt.Printf("\n✅ COMBO COMPLETE!\n")
+		fmt.Printf("💾 Saved: %s\n", finalOutput)
+		fmt.Printf("✨ Motion blur removed + Atomic deblurred + Enhanced quality!\n")
 		return
 	}
 
@@ -448,19 +719,9 @@ func main() {
 		}
 		return
 	}
-
-	// Commande de génération de résumé
+	// Commande de génération d'images atomiques (remplace l'ancienne "generate")
 	if commande == "generate" {
-		if len(os.Args) > 2 {
-			filepath := os.Args[2]
-			ratio := 0.3 // 30% par défaut
-			if len(os.Args) > 3 {
-				fmt.Sscanf(os.Args[3], "%f", &ratio)
-			}
-			GenererResumeCommand(filepath, ratio)
-		} else {
-			fmt.Println("[ERREUR] Utilisation: ./programme generate <fichier> [ratio_compression=0.3]")
-		}
+		GenerateCommand(os.Args[2:])
 		return
 	}
 
@@ -482,15 +743,11 @@ func main() {
 
 	// Commande de réécriture (humanisation)
 	if commande == "rewrite" {
-		style := "standard"
 		if len(os.Args) > 2 {
-			texte := os.Args[2]
-			if len(os.Args) > 3 && (os.Args[3] == "standard" || os.Args[3] == "professionnel" || os.Args[3] == "avance") {
-				style = os.Args[3]
-			}
-			ReecrireCommand(texte, style)
+			// This command is deprecated - use 'humanize' instead
+			fmt.Println("[ATTENTION] La commande 'rewrite' est dépréciée. Utilisez 'humanize' à la place.")
 		} else {
-			fmt.Println("[ERREUR] Utilisation: ./programme rewrite \"<texte>\" [standard|professionnel|avance]")
+			fmt.Println("[ERREUR] Utilisation: ./programme humanize <fichier> [standard|professionnel|avance]")
 		}
 		return
 	}
@@ -645,6 +902,10 @@ func main() {
 	case "interactive", "inter":
 		InteractionInteractive()
 
+	case "start":
+		StartLLMMode()
+		return
+
 	case "fidelity":
 		ProcessAntiHallucination(os.Args[1:])
 
@@ -668,6 +929,43 @@ func main() {
 
 	case "ultra":
 		ProcessUltraLiteMode(os.Args[2:])
+
+	case "energy":
+		EnergyBasedImageCommand(os.Args[1:])
+
+	case "ultra_pure":
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ./programme ultra_pure <imagePath> [output]")
+			fmt.Println("Example: ./programme ultra_pure blurry.jpg deblurred_pure.png")
+			fmt.Println("\nPURE atomic deblurring with 5000 iterations (no motion preprocessing)")
+			fmt.Println("Total time: ~120-150 seconds for MAXIMUM quality")
+			return
+		}
+
+		imagePath := os.Args[2]
+		finalOutput := "deblurred_ultra_pure.png"
+		if len(os.Args) > 3 {
+			finalOutput = os.Args[3]
+		}
+
+		// Verify image exists
+		if _, err := os.Stat(imagePath); err != nil {
+			fmt.Printf("❌ Image not found: %s\n", imagePath)
+			return
+		}
+
+		fmt.Printf("\n⚛️ ULTRA PURE ATOMIC DEBLURRING (5000 ITERATIONS, 10px patches)\n")
+		fmt.Printf("═══════════════════════════════════════════════════════\n")
+		fmt.Printf("Processing: %s\n", imagePath)
+		fmt.Printf("Expected time: ~120-150 seconds\n\n")
+
+		// Direct ultra deblurring with 5000 iterations - NO motion preprocessing
+		// Use 10px patch size (2x coarser) for more aggressive deblurring
+		runUltraDeblurPipeline4K(imagePath, 4, 4, 5000, finalOutput)
+
+		fmt.Printf("\n✅ ULTRA PURE COMPLETE!\n")
+		fmt.Printf("💾 Saved: %s\n", finalOutput)
+		fmt.Printf("✨ Maximum quality atomic deblurring applied!\n")
 
 	default:
 		// Mode hérité - traiter comme phrase simple

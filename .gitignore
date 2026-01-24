@@ -1,73 +1,22 @@
-# =====================================
-# Go & Binaires compilés
-# =====================================
+# Binaires
 programme
-*.exe
-*.so
-*.dylib
-*.o
-*.a
-*.out
+IA-ATOMIQUE
 
-# =====================================
-# Fichiers générés du projet
-# =====================================
-dashboard
-*.enc.bak
-blacklist_backup.enc
+# Tests
+stress_test*.go
+benchmark*.go
+*_test.go
+
+# Temporaires
 temp.txt
-
-# =====================================
-# Fichiers temporaires
-# =====================================
+dashboard
 *.tmp
-*.log
-*.swp
-*~
-*.bak
 
-# =====================================
-# Fichiers de test/données
-# =====================================
-wikipedia.txt
-test*.txt
-sample*.txt
-*.test
-
-# =====================================
-# IDE & Éditeurs
-# =====================================
+# IDE et OS
 .vscode/
 .idea/
-*.iml
-*.sublime-project
-*.sublime-workspace
-.DS_Store
-
-# =====================================
-# Dépendances & Modules
-# =====================================
-vendor/
-go.sum
-
-# =====================================
-# Docker
-# =====================================
-.dockerignore
-.docker/
-
-# =====================================
-# Système
-# =====================================
-.env
-.env.local
-*.pid
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Go
-github/
+# Build
 vendor/
-*.prof

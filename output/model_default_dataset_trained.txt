@@ -1,0 +1,19 @@
+IA-ATOMIQUE Trained Model
+═══════════════════════════════════════
+Dataset: default_dataset
+Epochs Trained: 19
+Final Loss: 4407.375108
+Best Loss: 4407.375108
+Training Time: 70.290996ms
+
+Network Statistics:
+  avg_state: 0.106082
+  max_state: 0.201327
+  total_energy: 7444.118520
+  energy_density: 0.028397
+  iteration: 20.000000
+  avg_intensity: 0.209921
+  active_atoms: 2242.000000
+  active_percent: 54.736328
+  min_state: 0.005739
+  frozen_atoms: 3548.000000
