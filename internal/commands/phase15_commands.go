@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"IA-ATOMIQUE/database"
@@ -12,7 +12,7 @@ import (
 // PHASE 15: COMMANDES CLI - GRAMMAR-AWARE SUMMARIZATION
 // ============================================================================
 
-func resumeOptimizedCommand(args []string) {
+func ResumeOptimizedCommand(args []string) {
 	if len(args) == 0 {
 		fmt.Println("[INFO] Utilisation: ./programme resume-optimized <file.txt> <threshold> [output_file]")
 		fmt.Println("       Paramètres:")
@@ -65,7 +65,7 @@ func resumeOptimizedCommand(args []string) {
 	}
 }
 
-func compareSummariesCommand(args []string) {
+func CompareSummariesCommand(args []string) {
 	if len(args) == 0 {
 		fmt.Println("[INFO] Utilisation: ./programme compare-summaries <file.txt> <threshold>")
 		fmt.Println("       Compare Phase 13+++ vs Phase 15")
@@ -118,7 +118,7 @@ func compareSummariesCommand(args []string) {
 	fmt.Println(result.OptimizedSummary)
 }
 
-func analyzePreprocessingCommand(args []string) {
+func AnalyzePreprocessingCommand(args []string) {
 	if len(args) == 0 {
 		fmt.Println("[INFO] Utilisation: ./programme analyze-preprocessing <file.txt>")
 		fmt.Println("       Analyse l'impact du prétraitement")
@@ -171,7 +171,7 @@ func analyzePreprocessingCommand(args []string) {
 	}
 }
 
-func analyzeVocabularyCommand(args []string) {
+func AnalyzeVocabularyCommand(args []string) {
 	if len(args) == 0 {
 		fmt.Println("[INFO] Utilisation: ./programme analyze-vocabulary <sentence>")
 		fmt.Println("       Analyse l'enrichissement lexical")
@@ -254,5 +254,5 @@ func phaseCommand(args []string) {
 	}
 
 	// main.go appelle directement les commandes spécifiques
-	resumeOptimizedCommand(args)
+	ResumeOptimizedCommand(args)
 }

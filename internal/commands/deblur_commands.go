@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"IA-ATOMIQUE/database"
@@ -91,7 +91,7 @@ func HandleUltraFastDeblur(args []string) {
 	fmt.Printf("Target: <2 seconds\n\n")
 
 	// Run with 4K output (3840×2160)
-	runUltraDeblurPipeline4K(imagePath, mode.GridH, mode.GridW, mode.Iterations, outputPath)
+	RunUltraDeblurPipeline4K(imagePath, mode.GridH, mode.GridW, mode.Iterations, outputPath)
 }
 
 // HandleDraftFastDeblur - défloutage draft (<1.5sec)
@@ -128,6 +128,8 @@ func HandleDraftFastDeblur(args []string) {
 	fmt.Printf("Target: <1.5sec\n\n")
 
 	runFastDeblurPipeline(imagePath, mode.GridH, mode.GridW, mode.Iterations, outputPath)
+	return
+
 }
 
 // HandleFastDeblur - défloutage fast (<3sec)
@@ -219,8 +221,8 @@ func runFastDeblurPipeline(imagePath string, gridH, gridW, iterations int, outpu
 	fmt.Printf("💾 Saved: %s\n", outputPath)
 }
 
-// runUltraDeblurPipeline4K - Special 4K upscale + deblur pipeline for ultra mode
-func runUltraDeblurPipeline4K(imagePath string, gridH, gridW, iterations int, outputPath string) {
+// RunUltraDeblurPipeline4K - Special 4K upscale + deblur pipeline for ultra mode
+func RunUltraDeblurPipeline4K(imagePath string, gridH, gridW, iterations int, outputPath string) {
 	fmt.Printf("🔄 Running ULTRA 4K deblur pipeline...\n")
 
 	// Load image to get dimensions for adaptive grid sizing

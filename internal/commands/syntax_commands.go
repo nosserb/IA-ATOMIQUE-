@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"flag"
@@ -9,7 +9,7 @@ import (
 )
 
 // syntaxCommand gère les commandes de syntaxe avancée
-func syntaxCommand(args []string) {
+func SyntaxCommand(args []string) {
 	if len(args) < 2 {
 		fmt.Println("Usage: ./programme syntax <subcommand> <text>")
 		fmt.Println("\nSubcommands:")
