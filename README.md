@@ -1,4 +1,4 @@
-# IA-ATOMIQUE v4.1
+# IA-ATOMIQUE v5.2
 
 > Advanced Neural Network System with Atomic Resonance Technology
 
