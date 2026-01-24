@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"bufio"
@@ -84,7 +84,7 @@ Free text without a slash is analyzed directly.
 			if len(parts) > 2 {
 				threshold = parts[2]
 			}
-			resumeOptimizedCommand([]string{parts[1], threshold})
+			ResumeOptimizedCommand([]string{parts[1], threshold})
 			continue
 
 		case strings.HasPrefix(lower, "/compare "):

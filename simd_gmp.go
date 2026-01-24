@@ -2,6 +2,12 @@ package main
 
 import "math/big"
 
+// ArithmeticOperation est un placeholder pour les opérations SIMD/GMP.
+type ArithmeticOperation struct{}
+
+// ExecuteOperationInPlace est un stub pour la compatibilité de build.
+func ExecuteOperationInPlace(op ArithmeticOperation, result *big.Int) {}
+
 // SIMD avec GMP: Désactivé temporairement (libGMP non installé)
 // Ce fichier sera réactivé quand:
 // 1. apt install libgmp-dev

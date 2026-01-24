@@ -2,6 +2,8 @@ package main
 
 import (
 	"IA-ATOMIQUE/database"
+	"IA-ATOMIQUE/internal/commands"
+	"IA-ATOMIQUE/internal/tests"
 	"fmt"
 	"math/rand"
 	"os"
@@ -513,7 +515,7 @@ func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("[IA-ATOMIQUE v1.0] - Technologie de Résonance Atomique")
 		fmt.Println("Interface Interactive - Réseau Atomique Distribué")
-		RunAtomicDemo()
+		commands.RunAtomicDemo()
 		return
 	}
 
@@ -527,25 +529,25 @@ func main() {
 
 	// Commandes de génération d'images
 	if commande == "image" {
-		ImageGenerationCommand(os.Args[1:])
+		commands.ImageGenerationCommand(os.Args[1:])
 		return
 	}
 
 	// Commandes d'entraînement du modèle
 	if commande == "train" {
-		TrainingCommand(os.Args[2:])
+		commands.TrainingCommand(os.Args[2:])
 		return
 	}
 
 	// Commandes d'émergence de patterns
 	if commande == "pattern" {
-		PatternCommand(os.Args[2:])
+		commands.PatternCommand(os.Args[2:])
 		return
 	}
 
 	// Commandes de génération atomique
 	if commande == "generate" {
-		GenerateCommand(os.Args[2:])
+		commands.GenerateCommand(os.Args[2:])
 		return
 	}
 
@@ -554,47 +556,47 @@ func main() {
 		commande == "cellular" || commande == "relaxation" || commande == "relax-opt" ||
 		(commande == "deblur" && (len(os.Args) < 3 || (os.Args[2] != "ultra" && os.Args[2] != "draft" && os.Args[2] != "fast"))) ||
 		(commande == "help" && len(os.Args) == 2) {
-		ParseSimulationArgs(os.Args)
+		commands.ParseSimulationArgs(os.Args)
 		return
 	}
 
 	// Benchmark traitement de texte 1M de mots
 	if commande == "benchmark-text" || commande == "bench-1m" {
-		BenchmarkTextProcessing1M()
+		fmt.Println("[INFO] Cette fonction a été déplacée ou supprimée")
 		return
 	}
 
 	// Tests avancés (Needle In Haystack, Perplexity)
 	if commande == "test" {
-		HandleAdvancedTests(os.Args[2:])
+		tests.HandleAdvancedTests(os.Args[2:])
 		return
 	}
 
 	// Benchmarks académiques (MMLU, Hellaswag)
 	if commande == "academic" || commande == "bench-academic" {
 		if len(os.Args) > 2 {
-			HandleAcademicBenchmarks(os.Args[2:])
+			tests.HandleAcademicBenchmarks(os.Args[2:])
 		} else {
-			HandleAcademicBenchmarks([]string{})
+			tests.HandleAcademicBenchmarks([]string{})
 		}
 		return
 	}
 
 	// Commandes d'apprentissage automatique
 	if commande == "learn" {
-		LearnCommand(os.Args[2:])
+		commands.LearnCommand(os.Args[2:])
 		return
 	}
 	if commande == "knowledge" {
-		KnowledgeCommand(os.Args[2:])
+		commands.KnowledgeCommand(os.Args[2:])
 		return
 	}
 	if commande == "stats-kb" || commande == "kb-stats" {
-		StatsCommand(os.Args[2:])
+		commands.StatsCommand(os.Args[2:])
 		return
 	}
 	if commande == "test-knowledge" {
-		TestKnowledgeCommand(os.Args[2:])
+		commands.TestKnowledgeCommand(os.Args[2:])
 		return
 	}
 
@@ -603,16 +605,16 @@ func main() {
 		mode := os.Args[2]
 		switch mode {
 		case "ultra":
-			HandleUltraFastDeblur(os.Args[3:])
+			commands.HandleUltraFastDeblur(os.Args[3:])
 			return
 		case "draft":
-			HandleDraftFastDeblur(os.Args[3:])
+			commands.HandleDraftFastDeblur(os.Args[3:])
 			return
 		case "fast":
-			HandleFastDeblur(os.Args[3:])
+			commands.HandleFastDeblur(os.Args[3:])
 			return
 		case "help", "-h":
-			PrintDeblurModesHelp()
+			commands.PrintDeblurModesHelp()
 			return
 		}
 	}
@@ -638,7 +640,7 @@ func main() {
 
 		fmt.Println("\n🎬 MOTION BLUR REMOVAL (Lucy-Richardson Deconvolution)")
 		fmt.Println("═════════════════════════════════════════════════════════")
-		err := LucyRichardsonDeconvolve(imagePath, outputPath, iterations)
+		err := commands.LucyRichardsonDeconvolve(imagePath, outputPath, iterations)
 		if err != nil {
 			fmt.Printf("❌ Error: %v\n", err)
 			return
@@ -679,7 +681,7 @@ func main() {
 
 		// Step 1: Motion deconvolution
 		fmt.Println("\n🎬 [STEP 1] Motion deconvolution...")
-		err := LucyRichardsonDeconvolve(imagePath, tempFile, 18)
+		err := commands.LucyRichardsonDeconvolve(imagePath, tempFile, 18)
 		if err != nil {
 			fmt.Printf("❌ Motion deconv failed: %v\n", err)
 			return
@@ -690,7 +692,7 @@ func main() {
 		fmt.Printf("═══════════════════════════════════════════════════════\n")
 
 		// Use the existing ultra deblur pipeline on the motion-corrected image
-		runUltraDeblurPipeline4K(tempFile, 4, 4, 1000, finalOutput)
+		commands.RunUltraDeblurPipeline4K(tempFile, 4, 4, 1000, finalOutput)
 
 		os.Remove(tempFile)
 
@@ -713,7 +715,7 @@ func main() {
 	// Commande d'extraction de phrases clés
 	if commande == "extract" || commande == "phrases" {
 		if len(os.Args) > 2 {
-			ExtrairePhrasesClésCommand(os.Args[2:])
+			commands.ExtrairePhrasesClésCommand(os.Args[2:])
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme extract <fichier> [ratio_conservation]")
 		}
@@ -721,7 +723,7 @@ func main() {
 	}
 	// Commande de génération d'images atomiques (remplace l'ancienne "generate")
 	if commande == "generate" {
-		GenerateCommand(os.Args[2:])
+		commands.GenerateCommand(os.Args[2:])
 		return
 	}
 
@@ -734,7 +736,7 @@ func main() {
 				fmt.Sscanf(os.Args[3], "%f", &threshold)
 			}
 			// Use Phase 15 optimized pipeline
-			resumeOptimizedCommand([]string{filepath, fmt.Sprintf("%f", threshold)})
+			commands.ResumeOptimizedCommand([]string{filepath, fmt.Sprintf("%f", threshold)})
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme resume <fichier> [threshold=0.10]")
 		}
@@ -760,7 +762,7 @@ func main() {
 			if len(os.Args) > 3 {
 				fmt.Sscanf(os.Args[3], "%f", &compression)
 			}
-			GenererAvecAtomesCommand(filepath, compression)
+			commands.GenererAvecAtomesCommand(filepath, compression)
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme atomic <fichier> [compression=0.3]")
 		}
@@ -768,19 +770,19 @@ func main() {
 	}
 	// === PHASE 15: Grammar-Aware Summarization ===
 	if commande == "resume-optimized" {
-		resumeOptimizedCommand(os.Args[2:])
+		commands.ResumeOptimizedCommand(os.Args[2:])
 		return
 	}
 	if commande == "compare-summaries" {
-		compareSummariesCommand(os.Args[2:])
+		commands.CompareSummariesCommand(os.Args[2:])
 		return
 	}
 	if commande == "analyze-preprocessing" {
-		analyzePreprocessingCommand(os.Args[2:])
+		commands.AnalyzePreprocessingCommand(os.Args[2:])
 		return
 	}
 	if commande == "analyze-vocabulary" {
-		analyzeVocabularyCommand(os.Args[2:])
+		commands.AnalyzeVocabularyCommand(os.Args[2:])
 		return
 	}
 	// Commande de comparaison vectoriel vs atomique (NEW!)
@@ -791,7 +793,7 @@ func main() {
 			if len(os.Args) > 3 {
 				fmt.Sscanf(os.Args[3], "%f", &compression)
 			}
-			GenererComparatifCommand(filepath, compression)
+			commands.GenererComparatifCommand(filepath, compression)
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme compare <fichier> [compression=0.3]")
 		}
@@ -801,7 +803,7 @@ func main() {
 	// === PHASE 14: Commande syntaxe avancée avec renforcement ===
 	if commande == "syntax" {
 		if len(os.Args) > 2 {
-			syntaxCommand(os.Args[2:])
+			commands.SyntaxCommand(os.Args[2:])
 		} else {
 			fmt.Println("[INFO] Utilisation: ./programme syntax <subcommand> <text>")
 			fmt.Println("Subcommands: analyze, enhance, paragraph, pos")
@@ -815,11 +817,11 @@ func main() {
 		afficherAide()
 
 	case "web":
-		InitWebInterface()
+		commands.InitWebInterface()
 
 	case "file":
 		if len(os.Args) > 2 {
-			TraiterFichier(os.Args[2])
+			commands.TraiterFichier(os.Args[2])
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme file <chemin>")
 		}
@@ -880,7 +882,7 @@ func main() {
 		}
 
 		if filepath != "" {
-			TraiterFichierHumanize(filepath, style)
+			commands.TraiterFichierHumanize(filepath, style)
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme humanize [file|-s|-p] <chemin>")
 			fmt.Println("  Formats supportés:")
@@ -894,44 +896,44 @@ func main() {
 	case "text":
 		if len(os.Args) > 2 {
 			texte := strings.Join(os.Args[2:], " ")
-			TraiterTexte(texte, "entrée CLI")
+			commands.TraiterTexte(texte, "entrée CLI")
 		} else {
 			fmt.Println("[ERREUR] Utilisation: ./programme text <votre texte>")
 		}
 
 	case "interactive", "inter":
-		InteractionInteractive()
+		commands.InteractionInteractive()
 
 	case "start":
-		StartLLMMode()
+		commands.StartLLMMode()
 		return
 
 	case "fidelity":
-		ProcessAntiHallucination(os.Args[1:])
+		commands.ProcessAntiHallucination(os.Args[1:])
 
 	case "atomic-optimized":
-		ProcessOptimizedAtomicCommand(os.Args[1:])
+		commands.ProcessOptimizedAtomicCommand(os.Args[1:])
 
 	case "stest", "stress-test":
-		ProcessStressTestUltimate(os.Args[2:])
+		fmt.Println("[INFO] Stress tests retirés du binaire principal")
 
 	case "stest-batch":
-		ProcessStressTestAdaptiveBatch(os.Args[2:])
+		fmt.Println("[INFO] Stress tests retirés du binaire principal")
 
 	case "stest-l3":
-		ProcessStressTestLevier3(os.Args[2:])
+		fmt.Println("[INFO] Stress tests retirés du binaire principal")
 
 	case "stest-l3-demo":
-		ProcessStressTestLevier3WithRedundancy(os.Args[2:])
+		fmt.Println("[INFO] Stress tests retirés du binaire principal")
 
 	case "stest-ultra":
-		ProcessStressTestCommandUltraOptimized(os.Args[2:])
+		fmt.Println("[INFO] Stress tests retirés du binaire principal")
 
 	case "ultra":
 		ProcessUltraLiteMode(os.Args[2:])
 
 	case "energy":
-		EnergyBasedImageCommand(os.Args[1:])
+		commands.EnergyBasedImageCommand(os.Args[1:])
 
 	case "ultra_pure":
 		if len(os.Args) < 3 {
@@ -961,7 +963,7 @@ func main() {
 
 		// Direct ultra deblurring with 5000 iterations - NO motion preprocessing
 		// Use 10px patch size (2x coarser) for more aggressive deblurring
-		runUltraDeblurPipeline4K(imagePath, 4, 4, 5000, finalOutput)
+		commands.RunUltraDeblurPipeline4K(imagePath, 4, 4, 5000, finalOutput)
 
 		fmt.Printf("\n✅ ULTRA PURE COMPLETE!\n")
 		fmt.Printf("💾 Saved: %s\n", finalOutput)
@@ -970,7 +972,7 @@ func main() {
 	default:
 		// Mode hérité - traiter comme phrase simple
 		phrase := strings.Join(os.Args[1:], " ")
-		TraiterTexte(phrase, "mode classique")
+		commands.TraiterTexte(phrase, "mode classique")
 	}
 
 	database.RegenererNeurones()
@@ -1050,7 +1052,13 @@ func TestDecoupageRapide(args []string) {
 
 	fmt.Printf("\n[RÉSULTATS FUSIONNÉS]\n")
 	fmt.Printf("  • Catégories détectées: %d\n", len(catGlobale))
-	fmt.Printf("  • Confiance moyenne: %.2f%%\n", (sum(allConfiances)/float64(len(allConfiances)))*100)
+	confTotal := 0.0
+	for _, c := range allConfiances {
+		confTotal += c
+	}
+	if len(allConfiances) > 0 {
+		fmt.Printf("  • Confiance moyenne: %.2f%%\n", (confTotal/float64(len(allConfiances)))*100)
+	}
 
 	fmt.Printf("\n[PERFORMANCE]\n")
 	fmt.Printf("  • Complexité: O(n)\n")
@@ -1058,85 +1066,4 @@ func TestDecoupageRapide(args []string) {
 	fmt.Printf("  • Vitesse: %.0f mots/sec\n", float64(stats["total_mots"].(int))/temps.Seconds())
 
 	fmt.Printf("\n✓ Découpage instantané réussi - Compatible avec réseau atomique distribué\n\n")
-}
-
-func sum(vals []float64) float64 {
-	total := 0.0
-	for _, v := range vals {
-		total += v
-	}
-	return total
-}
-
-// ExtrairePhrasesClésCommand extrait et affiche les phrases clés d'un texte
-func ExtrairePhrasesClésCommand(args []string) {
-	if len(args) == 0 {
-		fmt.Println("[ERREUR] Spécifier un fichier")
-		return
-	}
-
-	// Lire le fichier
-	contenu, err := os.ReadFile(args[0])
-	if err != nil {
-		fmt.Printf("[ERREUR] Impossible de lire %s: %v\n", args[0], err)
-		return
-	}
-
-	texte := string(contenu)
-
-	// Déterminer le ratio de conservation
-	ratio := 0.3
-	if len(args) > 1 {
-		fmt.Sscanf(args[1], "%f", &ratio)
-	}
-
-	fmt.Printf("\n╔════════════════════════════════════════════════════════╗\n")
-	fmt.Printf("║   EXTRACTION DE PHRASES CLÉS - ÉNERGIE ATOMIQUE       ║\n")
-	fmt.Printf("╚════════════════════════════════════════════════════════╝\n\n")
-
-	// Lancer le chrono
-	debut := time.Now()
-
-	// Extraire les phrases clés
-	phrasesClés := database.ExtrairePhrasesClés(texte, ratio)
-
-	// Analyser les résultats
-	temps := time.Since(debut)
-
-	// Statistiques
-	totalPhrasesOriginal := strings.Count(texte, ".") + strings.Count(texte, "!") + strings.Count(texte, "?")
-	ratioRéel := float64(len(phrasesClés)) / float64(totalPhrasesOriginal) * 100
-
-	fmt.Printf("[RÉSUMÉ INTELLIGENT]\n\n")
-
-	for i, phrase := range phrasesClés {
-		fmt.Printf("%d. %s\n", i+1, phrase.Contenu)
-		fmt.Printf("   Énergie: %.2f | Cohérence: %.2f | Importance: %.1f%%\n\n",
-			phrase.Energie,
-			phrase.EnergieTotal,
-			(phrase.EnergieTotal/2.0)*100,
-		)
-	}
-
-	fmt.Printf("\n[STATISTIQUES]\n")
-	fmt.Printf("  • Phrases originales: ~%d\n", totalPhrasesOriginal)
-	fmt.Printf("  • Phrases conservées: %d (%.1f%%)\n", len(phrasesClés), ratioRéel)
-	fmt.Printf("  • Ratio demandé: %.1f%%\n", ratio*100)
-	fmt.Printf("  • Densité d'information: HIGH\n")
-
-	fmt.Printf("\n[PERFORMANCE]\n")
-	fmt.Printf("  • Temps d'extraction: %v\n", temps)
-	fmt.Printf("  • Pipeline: Découpage → Énergie → Cohérence → Filtrage → Fusion\n")
-
-	// Calculer le taux de compression
-	tailleOriginale := len(strings.Fields(texte))
-	tailleRésumé := 0
-	for _, p := range phrasesClés {
-		tailleRésumé += len(p.Mots)
-	}
-	compression := float64(tailleOriginale) / float64(tailleRésumé)
-
-	fmt.Printf("  • Taux de compression: %.1fx (de %d à %d mots)\n", compression, tailleOriginale, tailleRésumé)
-
-	fmt.Printf("\n✓ Extraction réussie - Phrases clés sélectionnées par énergie atomique\n\n")
 }
