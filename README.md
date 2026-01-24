@@ -14,7 +14,7 @@
 
 Intelligence emerges from **local interactions between autonomous computational atoms** rather than centralized computation. Each atom updates independently using only neighbor data—no global synchronization needed.
 
-## ⚡ Quick Start
+## Quick Start
 
 ```bash
 # Build
