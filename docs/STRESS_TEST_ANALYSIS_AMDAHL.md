@@ -1,6 +1,6 @@
 # Stress Test - Optimisation vers <1ms pour 10M opérations
 
-## RàCAPITULATIF DES MESURES ACTUELLES
+## RπCAPITULATIF DES MESURES ACTUELLES
 
 ### Test 1: Génération séquentielle (S  50%)
 ```
@@ -11,7 +11,7 @@ Configuration:
 
 Résultats:
    Temps séquentiel: 2,200 ms
-   Temps parallàle: 918.93 ms
+   Temps parallπle: 918.93 ms
    Speedup réel: 2.39x
    Fraction séquentielle: S  50.26%
 
@@ -30,7 +30,7 @@ Configuration:
 
 Résultats:
    Temps séquentiel: 2,275 ms
-   Temps parallàle: 850.47 ms
+   Temps parallπle: 850.47 ms
    Speedup réel: 2.68x 
    Fraction séquentielle: S  39.73%
    Overhead: 0 ms 
@@ -38,12 +38,12 @@ Résultats:
 Améliorations:
    S réduit de 50%  40% (10% de réduction)
    Speedup augmenté de 2.39x  2.68x (+12%)
-   Débit parallàle: 11.76 M ops/sec 
+   Débit parallπle: 11.76 M ops/sec 
 ```
 
 ---
 
-## 1à Théorie d'Amdahl - Validation empirique
+## 1π Théorie d'Amdahl - Validation empirique
 
 ### Formule
 $$\text{Speedup}_{\max} = \frac{1}{S + \frac{1-S}{N}}$$
@@ -75,12 +75,12 @@ Explication: Cache + parallélisation génération
 ### Conclusion Amdahl:
  **Speedup réel > Théorique** car:
 - Overhead minimal (channels sans mutex)
-- Meilleure localité cache en parallàle
+- Meilleure localité cache en parallπle
 - CPU prefetching amélioré
 
 ---
 
-## 2à Formule générale avec Overhead
+## 2π Formule générale avec Overhead
 
 $$T_{\text{par}} = S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} + O$$
 
@@ -97,7 +97,7 @@ S = 0.3973
 N = 8
 O = 0 ms (negligible avec channels)
 
-T_par = 0.3973 à 2,275.33 + 0.6027 à 2,275.33/8 + 0
+T_par = 0.3973 π 2,275.33 + 0.6027 π 2,275.33/8 + 0
       = 903.93 + 171.42
       = 1,075.35 ms (théorique)
 
@@ -107,36 +107,36 @@ T_par réel = 850.47 ms (20% plus rapide que théorique)
 
 ---
 
-## 3à OBJECTIF: <1ms pour 10M opérations
+## 3π OBJECTIF: <1ms pour 10M opérations
 
 ### Inverse la formule pour trouver S_max:
 
 $$T_{\text{par}} = S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} \leq 1 \text{ ms}$$
 
-Avec T_seq optimisé à **2 ms** (améliorations ultérieures):
+Avec T_seq optimisé π **2 ms** (améliorations ultérieures):
 
 ```
-1 ms  S à 2 + (1-S) à 2/8
+1 ms  S π 2 + (1-S) π 2/8
 
 1  2S + 0.25(1-S)
 1  2S + 0.25 - 0.25S
 1  1.75S + 0.25
 0.75  1.75S
 
-S à 0.75/1.75  0.4286 (42.86%)
+S π 0.75/1.75  0.4286 (42.86%)
 ```
 
 ### Conclusion:
-- **S actuel: 39.73%**  (déjà < 42.86%)
+- **S actuel: 39.73%**  (déjπ < 42.86%)
 - **T_seq actuel: 2,275 ms**  Besoin 2 ms avec optimisations
-- **Donc <1ms est RàALISABLE** avec:
-  1. Réduire S à ~10% (pré-génération)
+- **Donc <1ms est RπALISABLE** avec:
+  1. Réduire S π ~10% (pré-génération)
   2. SIMD/vectorisation T_seq  0.5 ms
   3. 16 cores (N=16)
 
 ---
 
-## 4à FORMULE OPTIMISàE
+## 4π FORMULE OPTIMISπE
 
 $$T_{\text{par}}^{\text{optim}} = S_{\text{opt}} \cdot T_{\text{seq}}^{\text{opt}} + \frac{(1-S_{\text{opt}}) \cdot T_{\text{seq}}^{\text{opt}}}{N} + n_{\text{batch}} \cdot O_{\text{batch}}$$
 
@@ -149,7 +149,7 @@ Configuration:
    O = 0 ms
 
 Calcul:
-T_par = 0.10 à 2 + 0.90 à 2/8 + 0
+T_par = 0.10 π 2 + 0.90 π 2/8 + 0
       = 0.2 + 0.225
       = 0.425 ms  << 1 ms
 ```
@@ -157,13 +157,13 @@ T_par = 0.10 à 2 + 0.90 à 2/8 + 0
 ### Scénario 2: Optimisation agressif (16 workers + SIMD)
 ```
 Configuration:
-   S_opt = 0.05 (tràs bon parallélisme)
+   S_opt = 0.05 (trπs bon parallélisme)
    T_seq_opt = 0.5 ms (avec SIMD)
    N = 16
    O = 0 ms
 
 Calcul:
-T_par = 0.05 à 0.5 + 0.95 à 0.5/16 + 0
+T_par = 0.05 π 0.5 + 0.95 π 0.5/16 + 0
       = 0.025 + 0.0297
       = 0.0547 ms  "Instantané"
 ```
@@ -177,14 +177,14 @@ Configuration:
    O = 0 ms
 
 Calcul:
-T_par = 0.15 à 1.5 + 0.85 à 1.5/10 + 0
+T_par = 0.15 π 1.5 + 0.85 π 1.5/10 + 0
       = 0.225 + 0.1275
       = 0.3525 ms  << 1 ms
 ```
 
 ---
 
-## 5à ROADMAP VERS <1ms
+## 5π ROADMAP VERS <1ms
 
 ### Phase 1: Pré-génération des nombres (S: 40%  15%)
 ```
@@ -194,7 +194,7 @@ Au lieu de:
 
 Faire:
 - Pré-générer TOUS les nombres avant de lancer les workers
-- Faire la génération elle-màme en parallàle avec 8 workers
+- Faire la génération elle-mπme en parallπle avec 8 workers
 - S  10-15%
 
 Code:
@@ -211,18 +211,18 @@ parResults := RunParallelStressTest(operations, config)
 ### Phase 2: SIMD Vectorization (T_seq: 2.2ms  0.8ms)
 ```
 Au lieu de:
-- big.Int.Mul(), big.Int.Add() (une opération à la fois)
+- big.Int.Mul(), big.Int.Add() (une opération π la fois)
 - T_seq  2.2 ms
 
 Faire:
 - Batch 4-8 multiplications avec AVX2
-- Paralléliser l'arithmétique elle-màme
+- Paralléliser l'arithmétique elle-mπme
 - T_seq  0.8 ms (70% de réduction)
 
 Go n'a pas de SIMD natif, mais on peut:
 1. Utiliser CGO + libGMP avec SIMD
 2. Ou cgo avec libomp
-3. Ou passer à Rust pour la boucle critique
+3. Ou passer π Rust pour la boucle critique
 ```
 
 **Impact**: Speedup 3.2x  5.0x, T_par  0.4ms
@@ -242,19 +242,19 @@ Speedup_max = 1 / (0.15 + 0.85/16)
             = 1 / 0.2031
              4.92x
 
-T_par = 0.15 à 2200 + 0.85 à 2200/16
+T_par = 0.15 π 2200 + 0.85 π 2200/16
       = 330 + 116.56
       = 446.56 ms
 ```
 
 **Impact**: Si T_seq=2ms + SIMD:
-T_par = 0.15à2 + 0.85à2/16 = 0.3 + 0.106 = 0.406 ms 
+T_par = 0.15π2 + 0.85π2/16 = 0.3 + 0.106 = 0.406 ms 
 
 ---
 
-## 6à TABLEAU COMPARATIF
+## 6π TABLEAU COMPARATIF
 
-| Paramàtre | Actuel | Phase 1 | Phase 2 | Phase 3 |
+| Paramπtre | Actuel | Phase 1 | Phase 2 | Phase 3 |
 |-----------|--------|---------|---------|---------|
 | **S (fraction seq)** | 39.73% | 15% | 15% | 12% |
 | **T_seq** | 2,275 ms | 2,275 ms | 800 ms | 800 ms |
@@ -265,7 +265,7 @@ T_par = 0.15à2 + 0.85à2/16 = 0.3 + 0.106 = 0.406 ms
 
 ---
 
-## 7à VALIDATIONS MATHàMATIQUES
+## 7π VALIDATIONS MATHπMATIQUES
 
 ### Vérification Inverse:
 Pour T_par = 0.5 ms et M = 10M ops, quelle fréquence CPU?
@@ -283,30 +283,30 @@ cycles = 3000 MHz / 2500 Mops = 1.2 cycles/op
 
 ### Efficacité énergétique:
 ```
-ànergie par core: P_core à T_par
-Supposons 10W par core à 8 cores = 80W total
+πnergie par core: P_core π T_par
+Supposons 10W par core π 8 cores = 80W total
 T_par = 0.85 sec = 850 ms
 
-ànergie = 80 W à 0.85 s = 68 Joules pour 10M ops
+πnergie = 80 W π 0.85 s = 68 Joules pour 10M ops
        = 6.8 µJ par opération
 
 Pour comparaison GPU:
-GPU: ~1W à 10 µs = 10 µJ/op (plus efficace mais moins flexible)
+GPU: ~1W π 10 µs = 10 µJ/op (plus efficace mais moins flexible)
 ```
 
 ---
 
-## 8à IMPLàMENTATION PROPOSàE
+## 8π IMPLπMENTATION PROPOSπE
 
 ### Pseudo-code pour atteindre <1ms:
 
 ```go
-// 1. Pré-générer toutes les opérations en parallàle
+// 1. Pré-générer toutes les opérations en parallπle
 genStart := time.Now()
 operations := GenerateRandomOperationsParallel(10M, ..., 8)
 genTime := time.Since(genStart) // Pas compté dans T_par!
 
-// 2. Lancer UNIQUEMENT l'exécution parallàle
+// 2. Lancer UNIQUEMENT l'exécution parallπle
 execStart := time.Now()
 results := RunParallelStressTest(operations, config)
 execTime := time.Since(execStart)
@@ -319,7 +319,7 @@ seqTime := time.Since(seqStart)
 // 4. Calcul réel sans frais de génération
 Tpar_réel := execTime
 S = EstimateSequentialFraction(seqTime/execTime, 8)
-// S doit àtre 10-15% (pas 40%)
+// S doit πtre 10-15% (pas 40%)
 
 // 5. Prédiction Amdahl
 Tpar_théorique := S*seqTime + (1-S)*seqTime/8
@@ -328,11 +328,11 @@ fmt.Printf(" T_par = %.2f ms (objectif < 1 ms)\n", execTime.Milliseconds())
 
 ---
 
-## 9à CONCLUSION
+## 9π CONCLUSION
 
 ### Mesure actuelle:
 -  **2.68x speedup** avec 8 workers
--  **S = 39.73%** (déjà bon)
+-  **S = 39.73%** (déjπ bon)
 -  **T_par = 850 ms** (proche du miliseconde)
 -  **Overhead = 0 ms** (channels sans mutex)
 
@@ -350,4 +350,4 @@ vs speedup actuel: 2.68x  **10x d'amélioration possible**
 
 ---
 
-**Status**:  Stress test architecturalement pràt pour optimisations Phase 2 (SIMD) et Phase 3 (16+ workers)
+**Status**:  Stress test architecturalement prπt pour optimisations Phase 2 (SIMD) et Phase 3 (16+ workers)

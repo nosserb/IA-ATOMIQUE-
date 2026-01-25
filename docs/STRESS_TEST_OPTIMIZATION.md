@@ -2,7 +2,7 @@
 
 ## Résumé Exécutif
 
-Nous avons implémenté un **stress test de calcul arithmétique massif** qui vérifie la loi d'Amdahl et l'optimisation du batching parallàle.
+Nous avons implémenté un **stress test de calcul arithmétique massif** qui vérifie la loi d'Amdahl et l'optimisation du batching parallπle.
 
 ### Résultats clés:
 - **1M opérations**: **2.23x speedup** (229ms  103ms)
@@ -11,7 +11,7 @@ Nous avons implémenté un **stress test de calcul arithmétique massif** qui v�
 
 ---
 
-## 1à Loi d'Amdahl
+## 1π Loi d'Amdahl
 
 ### Formule théorique
 $$\text{Speedup}_{\max} = \frac{1}{S + \frac{1-S}{N}}$$
@@ -26,13 +26,13 @@ $$\text{Speedup}_{\max} = \frac{1}{0.05 + \frac{0.95}{4}} = \frac{1}{0.2875}  3.
 
 ---
 
-## 2à Résultats empiriques
+## 2π Résultats empiriques
 
 ### Configuration
 ```
  Opérations: M opérations arithmétiques aléatoires
  Nombres: 18-20 chiffres (big.Int massifs)
- Opérations: +, -, à, à sur big.Int
+ Opérations: +, -, π, π sur big.Int
  Workers: 4
  BatchSize: Optimisé = M/N (100k pour 1M ops, 100k pour 10M ops)
 ```
@@ -44,12 +44,12 @@ Séquentiel:
    Débit: 4,361,699 ops/sec
    Latence: 0.162 µs/op
 
-Parallàle (4 workers, channels):
+Parallπle (4 workers, channels):
    Temps total: 102.99 ms
    Débit: 9,709,254 ops/sec
    Latence: 0.239 µs/op
 
- Speedup RàEL: 2.23x
+ Speedup RπEL: 2.23x
 ```
 
 ### Test 10M opérations
@@ -59,19 +59,19 @@ Séquentiel:
    Débit: 4,589,109 ops/sec
    Latence: 0.155 µs/op
 
-Parallàle (4 workers, channels):
+Parallπle (4 workers, channels):
    Temps total: 1160.05 ms
    Débit: 8,620,314 ops/sec
    Latence: 0.296 µs/op
 
- Speedup RàEL: 1.88x
+ Speedup RπEL: 1.88x
 ```
 
 ---
 
-## 3à Analyse Amdahl empirique
+## 3π Analyse Amdahl empirique
 
-### Estimation de S à partir du speedup observé
+### Estimation de S π partir du speedup observé
 
 $$S = \frac{N - \text{Speedup}}{N \times (\text{Speedup} - 1)}$$
 
@@ -87,11 +87,11 @@ $$S = \frac{N - \text{Speedup}}{N \times (\text{Speedup} - 1)}$$
 - Speedup théorique max: 1.42x
 - **Efficacité: 132.0% du potentiel** 
 
- L'efficacité > 100% suggàre un cache warming effect à grande échelle.
+ L'efficacité > 100% suggπre un cache warming effect π grande échelle.
 
 ---
 
-## 4à Optimisations implémentées
+## 4π Optimisations implémentées
 
 ### A. Batching adaptatif
 ```go
@@ -132,17 +132,17 @@ endIdx := int64(workerID+1) * int64(len(operations)) / int64(config.WorkerCount)
 ### D. Nombres massifs (big.Int)
 ```go
 // Au lieu de simples int64:
-// x = 10^7 à 10^8
+// x = 10^7 π 10^8
 
 // On utilise:
 bigX := big.NewInt(x * 1e18 + y)  // 18-20 chiffres
 ```
 
-**Effet**: Opérations plus coàteuses  overhead parallàle justifié
+**Effet**: Opérations plus coπteuses  overhead parallπle justifié
 
 ---
 
-## 5à Coàt de synchronisation (Overhead)
+## 5π Coπt de synchronisation (Overhead)
 
 $$T_{\text{par}} = \frac{T_{\text{seq}} \cdot (1-S)}{N} + T_{\text{seq}} \cdot S + O$$
 
@@ -159,11 +159,11 @@ $$O \ll \frac{T_{\text{seq}} \cdot (1-S)}{N}$$
 
 ---
 
-## 6à Comparaison: Mutex vs Channels
+## 6π Comparaison: Mutex vs Channels
 
 ### Mutex (synchronisation fine):
 ```
-1M opérations à 1 lock/unlock = 1M synchronisations
+1M opérations π 1 lock/unlock = 1M synchronisations
 Overhead par sync: ~230 ns
 Total overhead: 230 ms
 Résultat: Parallélisme pire que séquentiel (overhead > work)
@@ -181,7 +181,7 @@ Résultat: Parallélisme efficace
 
 ---
 
-## 7à Utilisation
+## 7π Utilisation
 
 ```bash
 # 100k opérations
@@ -197,26 +197,26 @@ Résultat: Parallélisme efficace
 ### Sortie typique:
 ```
 
-     STRESS TEST DE CALCUL ARITHMàTIQUE MASSIF            
+     STRESS TEST DE CALCUL ARITHMπTIQUE MASSIF            
 
 
  Configuration:
    Nombre d'opérations: 1000000
    Plage de nombres: [10^7, 10^8]
-   Workers parallàles: 4
+   Workers parallπles: 4
    Taille des batches: 100000 (optimisé M/N)
    Nombre de batches: 10
 
- PHASE 1: EXàCUTION SàQUENTIELLE 
+ PHASE 1: EXπCUTION SπQUENTIELLE 
    Temps: 229.27 ms
    Débit: 4,361,699 ops/sec
 
- PHASE 2: EXàCUTION PARALLàLE 
+ PHASE 2: EXπCUTION PARALLπLE 
    Temps: 102.99 ms
    Débit: 9,709,254 ops/sec
 
  ANALYSE COMPARATIVE 
-   Speedup RàEL: 2.23x 
+   Speedup RπEL: 2.23x 
    Réduction temps: 55.1%
    Fraction séquentielle (S): 36.17%
    Speedup théorique max (Amdahl): 1.92x
@@ -227,7 +227,7 @@ Résultat: Parallélisme efficace
 
 ---
 
-## 8à Leàons clés
+## 8π Leπons clés
 
 ### Ce qui fonctionne bien:
 1. **Channels sans mutex** - Communication haute performance
@@ -235,7 +235,7 @@ Résultat: Parallélisme efficace
 3. **Grandes opérations** - Work dominate overhead quand operations complexes
 4. **Division équitable** - Pas de load imbalance avec len(ops)/N
 
-### Piàges à éviter:
+### Piπges π éviter:
 1. **Mutex fin-grain** - 1 lock/op = catastrophe
 2. **Batch trop petit** - Overhead synchronisation dépasse le travail
 3. **Nombre petit** - Si M < 10k ops, séquentiel plus rapide
@@ -249,7 +249,7 @@ Résultat: Parallélisme efficace
 
 ---
 
-## 9à Formules de la Loi d'Amdahl
+## 9π Formules de la Loi d'Amdahl
 
 ### 1. Speedup idéal (pas d'overhead)
 $$\text{Speedup} = \frac{1}{S + \frac{1-S}{N}}$$
@@ -257,7 +257,7 @@ $$\text{Speedup} = \frac{1}{S + \frac{1-S}{N}}$$
 ### 2. Speedup réaliste (avec overhead)
 $$\text{Speedup} = \frac{T_{\text{seq}}}{S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} + O}$$
 
-### 3. Limite quand N  à
+### 3. Limite quand N  π
 $$\lim_{N \to \infty} \text{Speedup} = \frac{1}{S}$$
 
 **Conclusion**: Réduire S est PLUS important que d'augmenter N.
@@ -295,7 +295,7 @@ Ratio = 2.23 / 1.92 = 1.16x (116% - cache warming)
 
 ---
 
-**Conclusion**: En appliquant la loi d'Amdahl et en optimisant le batching, nous avons transformé un parallélisme contre-productif (Speedup < 1) en un gain réel de **2.23x sur 1M opérations** gràce à:
+**Conclusion**: En appliquant la loi d'Amdahl et en optimisant le batching, nous avons transformé un parallélisme contre-productif (Speedup < 1) en un gain réel de **2.23x sur 1M opérations** grπce π:
 - Channels au lieu de mutex
 - Batches adaptatives (M/N)
 - Opérations assez complexes (big.Int massifs)

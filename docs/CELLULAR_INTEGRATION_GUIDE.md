@@ -14,7 +14,7 @@ IMAGE GENERATION PIPELINE
 
  STEP 2: Create Atomic Network
    NewConstraintRelaxationNetwork(512, 512, patchSize)
-      Atoms form 256à256 grid
+      Atoms form 256π256 grid
 
  STEP 3: Apply Energy Constraints
    Network.RelaxationStep() in loop
@@ -178,21 +178,21 @@ type DetectionCriteria struct {
 ## Performance Characteristics
 
 ### Time Complexity
-- **Per atomic iteration**: O(n_atoms à neighbors)  O(n_atoms) for local interactions
-- **Cell detection**: O(n_atoms à 8) = O(n_atoms) for flood-fill
-- **Cellular iteration**: O(n_cells à neighboring_cells)  O(n_cells)
+- **Per atomic iteration**: O(n_atoms π neighbors)  O(n_atoms) for local interactions
+- **Cell detection**: O(n_atoms π 8) = O(n_atoms) for flood-fill
+- **Cellular iteration**: O(n_cells π neighboring_cells)  O(n_cells)
 - **Overall**: Linear with atom count
 
 ### Memory Usage
-- **Atomic network**: 256à256 à sizeof(PixelAtomV2)  100 MB
-- **Cells detected**: Typically 40-100 cells à ~100 atoms each
+- **Atomic network**: 256π256 π sizeof(PixelAtomV2)  100 MB
+- **Cells detected**: Typically 40-100 cells π ~100 atoms each
 - **Cell network**: O(n_cells²) for adjacency, but sparse
 
 ### Example Performance
 ```
-256à256 atoms, 500 iterations:
+256π256 atoms, 500 iterations:
    Time: 10-15 seconds
-   Atoms per second: 256à256à500 / 12 = ~2.7M atoms/sec
+   Atoms per second: 256π256π500 / 12 = ~2.7M atoms/sec
    Detection calls: 500/20 = 25 times
    Cells created: ~47
    Final coherence: 94%
@@ -327,7 +327,7 @@ func FullPipelineWithCells(imagePath string) {
     }
     
     // PHASE 2: Atomic network creation
-    fmt.Println("  Creating 256à256 atom network...")
+    fmt.Println("  Creating 256π256 atom network...")
     atomNetwork := database.NewConstraintRelaxationNetwork(512, 512, 2)
     atomNetwork.EnergyProfile = energyProfile
     
@@ -336,7 +336,7 @@ func FullPipelineWithCells(imagePath string) {
     hierarchy := database.NewHierarchicalLayers(atomNetwork, 20)
     
     // PHASE 4: Convergence
-    fmt.Println("à Running convergence (500 iterations)...")
+    fmt.Println("π Running convergence (500 iterations)...")
     
     startTime := time.Now()
     for i := 0; i < 500; i++ {

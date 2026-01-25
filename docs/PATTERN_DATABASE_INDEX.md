@@ -35,7 +35,7 @@
 - Testing results
 - Best for: Developers, technical details
 
-### 4. **PATTERN_DATABASE_SUMMARY.txt** à
+### 4. **PATTERN_DATABASE_SUMMARY.txt** π
 **Complete overview**
 - What was built
 - How it works (3 phases)
@@ -45,7 +45,7 @@
 - Quality assurance checklist
 - Best for: Full project understanding
 
-### 5. **PATTERN_DATABASE_INDEX.md** (this file) à
+### 5. **PATTERN_DATABASE_INDEX.md** (this file) π
 **Navigation guide**
 - All documents overview
 - Quick reference
@@ -81,7 +81,7 @@ Everything about what was built and how it works.
 
 ---
 
-## à All Commands
+## π All Commands
 
 ```bash
 # INDEX (scan and analyze images)
@@ -117,7 +117,7 @@ Neuron categories that patterns can activate:
 - **HISTOIRE** - History, medieval, ancient
 - **BUSINESS** - Commerce, markets, enterprise
 - **ALIMENTATION** - Food, nutrition, cuisine
-- **SANTà** - Health, medicine, wellness
+- **SANTπ** - Health, medicine, wellness
 - **VERBE** - Actions, movement, dynamics
 
 ### Database
@@ -245,7 +245,7 @@ Database:     ~400-600B per pattern
 
 ---
 
-## à Quick Reference
+## π Quick Reference
 
 | Task | Command |
 |------|---------|

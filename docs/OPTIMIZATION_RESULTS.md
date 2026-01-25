@@ -1,11 +1,11 @@
-# OPTIMISATIONS COMPLàTàES - IA-ATOMIQUE
+# OPTIMISATIONS COMPLπTπES - IA-ATOMIQUE
 
 ## Objectif Atteint: <2 Secondes
 
 **Résultats Actuels:**
--  **Génération Ultra:** 15ms (128à128)
--  **Génération Draft:** 20ms (256à256)
--  **Génération Fast:** 20ms (256à256)
+-  **Génération Ultra:** 15ms (128π128)
+-  **Génération Draft:** 20ms (256π256)
+-  **Génération Fast:** 20ms (256π256)
 -  **Défloutage Ultra:** 28ms
 -  **Défloutage Draft:** 26ms
 -  **Défloutage Fast:** 25ms
@@ -16,49 +16,49 @@
 
 ## Tableau Comparatif
 
-### GàNàRATIONS D'IMAGES
+### GπNπRATIONS D'IMAGES
 
 | Mode | Résolution | Patch | Iter | Temps | Quality | Usage |
 |------|-----------|-------|------|-------|---------|-------|
-| **ULTRA** | 128à128 | 64à64 | 2 | ~15ms |  | Preview ultra-rapide |
-| **DRAFT** | 256à256 | 32à32 | 5 | ~20ms |  | Brouillon/Draft |
-| **FAST** | 256à256 | 16à16 | 10 | ~20ms |  | Web/Mobile |
-| BALANCED | 512à512 | 8à8 | 30 | 1-2s |  | Standard |
-| QUALITY | 512à512 | 8à8 | 100 | 3-5s |  | Production |
+| **ULTRA** | 128π128 | 64π64 | 2 | ~15ms |  | Preview ultra-rapide |
+| **DRAFT** | 256π256 | 32π32 | 5 | ~20ms |  | Brouillon/Draft |
+| **FAST** | 256π256 | 16π16 | 10 | ~20ms |  | Web/Mobile |
+| BALANCED | 512π512 | 8π8 | 30 | 1-2s |  | Standard |
+| QUALITY | 512π512 | 8π8 | 100 | 3-5s |  | Production |
 
-### DàFLOUTAGE D'IMAGES
+### DπFLOUTAGE D'IMAGES
 
 | Mode | Grid | Iter | Temps | Quality | Usage |
 |------|------|------|-------|---------|-------|
-| **ULTRA** | 2à2 | 5 | ~28ms |  | Preview |
-| **DRAFT** | 4à4 | 10 | ~26ms |  | Good draft |
-| **FAST** | 8à8 | 20 | ~25ms |  | Web-ready |
-| BALANCED | 16à16 | 50 | 1-2s |  | Standard |
-| QUALITY | 32à32 | 100 | 3-5s |  | High-res |
+| **ULTRA** | 2π2 | 5 | ~28ms |  | Preview |
+| **DRAFT** | 4π4 | 10 | ~26ms |  | Good draft |
+| **FAST** | 8π8 | 20 | ~25ms |  | Web-ready |
+| BALANCED | 16π16 | 50 | 1-2s |  | Standard |
+| QUALITY | 32π32 | 100 | 3-5s |  | High-res |
 
 ---
 
 ## Optimisations Implémentées
 
-### 1. RàDUCTION DES ATOMES (Biggest Win! )
+### 1. RπDUCTION DES ATOMES (Biggest Win! )
 ```
-Avant:  256à256 pixels @ 8px patch = 1,024 atomes
-Apràs:  128à128 pixels @ 64px patch = 4 atomes 
-        256à256 pixels @ 32px patch = 64 atomes 
+Avant:  256π256 pixels @ 8px patch = 1,024 atomes
+Aprπs:  128π128 pixels @ 64px patch = 4 atomes 
+        256π256 pixels @ 32px patch = 64 atomes 
 ```
 **Impact:** 96% fewer atoms to process!
 
-### 2. ITàRATIONS RàDUITES (Second Win! )
+### 2. ITπRATIONS RπDUITES (Second Win! )
 ```
 Avant:  100+ iterations
-Apràs:  2-10 iterations
+Aprπs:  2-10 iterations
 ```
 **Impact:** 10-50x fewer computation cycles!
 
 ### 3. SIMPLIFICATION CALCULS (Speedup 20-30% )
 ```go
 // Au lieu de:
-resonance := exp(-(diff²)/(2à²))  // Expensive
+resonance := exp(-(diff²)/(2π²))  // Expensive
 
 // Faire:
 resonance := 1.0 - abs(diff)  // Linear approximation
@@ -73,7 +73,7 @@ for all 8 neighbors { compute... }  // 8 ops
 for top-2 neighbors { compute... }  // 2 ops
 ```
 
-### 5. EARLY STOPPING (Variable Speedup à)
+### 5. EARLY STOPPING (Variable Speedup π)
 ```go
 if grid.VerifyGlobalConvergence() {
     break  // Stop early!
@@ -105,18 +105,18 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ## Commandes Disponibles
 
-### GàNàRATIONS D'IMAGES
+### GπNπRATIONS D'IMAGES
 
 ```bash
-# Mode ULTRA (128à128, <500ms)
+# Mode ULTRA (128π128, <500ms)
 ./programme image ultra "blue ocean"
 ./programme image ultra "red sunset"
 
-# Mode DRAFT (256à256, <1.5sec)
+# Mode DRAFT (256π256, <1.5sec)
 ./programme image draft "green forest"
 ./programme image draft "abstract art"
 
-# Mode FAST (256à256, <3sec)
+# Mode FAST (256π256, <3sec)
 ./programme image fast "detailed landscape"
 ./programme image fast "colorful patterns"
 
@@ -126,7 +126,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 ./programme image generate 512 512 100 8 "prompt"
 ```
 
-### DàFLOUTAGE D'IMAGES
+### DπFLOUTAGE D'IMAGES
 
 ```bash
 # Mode ULTRA (<500ms)
@@ -225,9 +225,9 @@ done
 
 ### Atom Count Reduction Strategy
 ```
-Standard: (512à8) à (512à8) = 64² = 4,096 atoms
-DRAFT:    (256à32) à (256à32) = 8² = 64 atoms (64à reduction!)
-ULTRA:    (128à64) à (128à64) = 2² = 4 atoms (1,024à reduction!)
+Standard: (512π8) π (512π8) = 64² = 4,096 atoms
+DRAFT:    (256π32) π (256π32) = 8² = 64 atoms (64π reduction!)
+ULTRA:    (128π64) π (128π64) = 2² = 4 atoms (1,024π reduction!)
 ```
 
 ### Coupling Coefficients for Speed
@@ -258,14 +258,14 @@ Standard:
 
 
 IMAGE GENERATION:
-   ULTRA:   15ms   (128à128 @ 2 iter)
-   DRAFT:   20ms   (256à256 @ 5 iter)
-   FAST:    20ms   (256à256 @ 10 iter)
+   ULTRA:   15ms   (128π128 @ 2 iter)
+   DRAFT:   20ms   (256π256 @ 5 iter)
+   FAST:    20ms   (256π256 @ 10 iter)
 
 IMAGE DEBLURRING:
-   ULTRA:   28ms   (2à2 grid @ 5 iter)
-   DRAFT:   26ms   (4à4 grid @ 10 iter)
-   FAST:    25ms   (8à8 grid @ 20 iter)
+   ULTRA:   28ms   (2π2 grid @ 5 iter)
+   DRAFT:   26ms   (4π4 grid @ 10 iter)
+   FAST:    25ms   (8π8 grid @ 20 iter)
 
 
  ALL TARGETS MET!

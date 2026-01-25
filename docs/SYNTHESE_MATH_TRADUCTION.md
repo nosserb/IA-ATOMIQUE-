@@ -13,7 +13,7 @@ L(Pi) = argmax_{l  {FR, EN, DE, ES}} count(keywords_l, tokens(Pi))
 ```
 
 ### Tables de mots-clés
-- **FR**: {le, la, les, un, une, des, de, et, est, que, qui, où, à, ...} (~20)
+- **FR**: {le, la, les, un, une, des, de, et, est, que, qui, où, π, ...} (~20)
 - **EN**: {the, is, and, or, be, of, in, to, a, ...} (~15)
 - **DE**: {der, die, das, den, dem, des, ein, eine, und, ist, zu, ...} (~15)
 - **ES**: {el, la, los, las, un, una, de, y, es, que, ...} (~15)
@@ -34,7 +34,7 @@ func DetecterLanguePhrase(texte string) string {
 ## 2. TRADUCTION CONDITIONNELLE
 
 ### Principe
-Normaliser tous les textes vers le **franàais** avant extraction:
+Normaliser tous les textes vers le **franπais** avant extraction:
 
 ```
 Text_{FR}(Pi) = {
@@ -52,7 +52,7 @@ file  fichier
 data  données
 analysis  analyse
 network  réseau
-system  systàme
+system  systπme
 ...
 ```
 
@@ -68,12 +68,12 @@ Netz  réseau
 ```
 archivo  fichier
 datos  données
-sistema  systàme
+sistema  systπme
 ...
 ```
 
 ### Stratégie traduction
-- **Mot-à-mot**: Pour chaque mot du texte original, lookup dans `TraductionMap[langue][mot]`
+- **Mot-π-mot**: Pour chaque mot du texte original, lookup dans `TraductionMap[langue][mot]`
 - **Préservation casse**: Si mot original majuscule  traduction en majuscule
 - **Mots non-trouvés**: Gardés intacts (robustesse)
 
@@ -105,7 +105,7 @@ Chaque phrase traduite se voit attribuer un **facteur de confiance** reflétant 
 γi  [0.7, 1.0]
 
 γi = {
-    1.0    si L(Pi) = FR  (texte original franàais)
+    1.0    si L(Pi) = FR  (texte original franπais)
     0.8    si traduit ET len(Pi) < 10 mots (court)
     0.7    si traduit ET len(Pi)  10 mots (long)
 }
@@ -139,23 +139,23 @@ func TraduireSiNecessaire(phrase *Phrase, langue string) (string, bool, float64)
 
 ---
 
-## 4. àNERGIE TOTALE AVEC CONFIANCE
+## 4. πNERGIE TOTALE AVEC CONFIANCE
 
-### ànergie intrinsàque (base)
+### πnergie intrinsπque (base)
 ```
-E(Pi) = Σ_{k  mots_clés(Pi)} àk à f(wk)
+E(Pi) = Σ_{k  mots_clés(Pi)} πk π f(wk)
 
 où:
-  àk = poids catégorie mot k:
+  πk = poids catégorie mot k:
        - TECH: 1.5
        - HISTOIRE/BUSINESS: 1.3
-       - ALIMENTATION/SANTà: 1.0
+       - ALIMENTATION/SANTπ: 1.0
   f(wk) = fréquence mot k / fréquence_max
 ```
 
-**Formule complàte avec confiance**:
+**Formule complπte avec confiance**:
 ```
-E_total(Pi) = E(Pi) à γi + β à Σ_{ji} sim(Pi, Pj)
+E_total(Pi) = E(Pi) π γi + β π Σ_{ji} sim(Pi, Pj)
 
 où:
   γi  [0.7, 1.0]   facteur confiance traduction
@@ -164,11 +164,11 @@ où:
 ```
 
 ### Décomposition
-- **Terme énergétique**: `E(Pi) à γi`
-  - Capture l'importance intrinsàque (mot-clés)
+- **Terme énergétique**: `E(Pi) π γi`
+  - Capture l'importance intrinsπque (mot-clés)
   - **Réduite par γi** pour traductions (moins de confiance)
   
-- **Terme cohérence**: `β à Σ sim(Pi, Pj)`
+- **Terme cohérence**: `β π Σ sim(Pi, Pj)`
   - Capture les relations inter-phrases
   - Renforce les phrases liées
 
@@ -178,109 +178,109 @@ où:
 ```
 "Le réseau neuronal atomique résout l'optimisation quantique"
 
-E(Pi) = 1.5àréseau + 1.5àneuronal + 1.5àatomique + 1.3àoptimisation + 1.0àquantique
+E(Pi) = 1.5πréseau + 1.5πneuronal + 1.5πatomique + 1.3πoptimisation + 1.0πquantique
       = 1.5 + 1.5 + 1.5 + 1.3 + 1.0 = 7.3
-γi = 1.0  (original franàais)
+γi = 1.0  (original franπais)
 
-E_total(Pi) = 7.3 à 1.0 + 0.2 à 2.1 = 7.3 + 0.42 = 7.72
+E_total(Pi) = 7.3 π 1.0 + 0.2 π 2.1 = 7.3 + 0.42 = 7.72
 ```
 
-**Màme phrase EN traduite**:
+**Mπme phrase EN traduite**:
 ```
 Original EN: "The atomic neural network solves quantum optimization"
 
-Apràs traduction: "Le atomique neuronal réseau résout quantum optimisation"
+Aprπs traduction: "Le atomique neuronal réseau résout quantum optimisation"
 (degraded via traduction)
 
-E(Pi) estimé = 6.5 (perte info traduction mot-à-mot)
+E(Pi) estimé = 6.5 (perte info traduction mot-π-mot)
 γi = 0.7  (long phrase traduit, 8 mots)
 
-E_total(Pi) = 6.5 à 0.7 + 0.2 à 2.1 = 4.55 + 0.42 = 4.97
+E_total(Pi) = 6.5 π 0.7 + 0.2 π 2.1 = 4.55 + 0.42 = 4.97
 ```
 
 **Observation**: Phrase traduite score baisse de 7.72  4.97 (-35%), ce qui est souhaité.
 
 ---
 
-## 5. FILTRAGE àNERGàTIQUE
+## 5. FILTRAGE πNERGπTIQUE
 
 ### Seuil dynamique
 ```
-ϵ = μ(E_total) - à(E_total)
+ϵ = μ(E_total) - π(E_total)
 ```
 
 Où:
 - `μ(E_total)` = énergie moyenne de toutes les phrases
-- `à(E_total)` = écart-type énergies
+- `π(E_total)` = écart-type énergies
 - **Résultat**: Seuil adaptatif aux variations du corpus
 
 ### Décision
 ```
-Conserver phrase Pi à E_total(Pi)  ϵ
+Conserver phrase Pi π E_total(Pi)  ϵ
 ```
 
 ### Sélection par ratio
 Pour ratio de conservation `r` (ex: 25%):
 1. Calculer `E_total(Pi)` pour toutes phrases
 2. Trier décroissant par énergie
-3. Sélectionner top `r à |phrases|` phrases
+3. Sélectionner top `r π |phrases|` phrases
 
 ---
 
-## 6. PIPELINE COMPLET (8 àTAPES)
+## 6. PIPELINE COMPLET (8 πTAPES)
 
 ```
 
- 1. DàCOUPAGE                                                 
+ 1. DπCOUPAGE                                                 
     Texte brut  Phrases par délimiteurs (., !, ?, ...)      
-à
+π
                        
 
- 2. DàTECTION DE LANGUE                                       
+ 2. DπTECTION DE LANGUE                                       
     Pour chaque phrase: L(Pi) = argmax count(keywords_l)     
     Résultat: Phrase.Langue  {FR, EN, DE, ES}              
-à
+π
                        
 
  3. TRADUCTION                                                
     Si L(Pi)  FR: Text_{FR}(Pi) = TraduireMotsPar(Pi)      
     Sinon: Keep original                                      
     Résultat: Phrase.Contenu (en FR), γi assigné            
-à
+π
                        
 
- 4. EXTRACTION MOTS-CLàS                                      
+ 4. EXTRACTION MOTS-CLπS                                      
     Tokenisation  Suppression stopwords  Scoring catégories
     Résultat: Phrase.MotsClés[], Phrase.Energie             
-à
+π
                        
 
- 5. CALCUL COHàRENCE                                          
-    E_total(Pi) = E(Pi)àγi + βàΣ sim(Pi, Pj)                
+ 5. CALCUL COHπRENCE                                          
+    E_total(Pi) = E(Pi)πγi + βπΣ sim(Pi, Pj)                
     Résultat: Phrase.EnergieTotal                           
-à
+π
                        
 
  6. CALCUL SEUIL                                              
-    ϵ = μ(E_total) - à(E_total)                             
-à
+    ϵ = μ(E_total) - π(E_total)                             
+π
                        
 
  7. FILTRAGE                                                  
-    Conserver si E_total(Pi)  ϵ ou rank < rà|phrases|      
+    Conserver si E_total(Pi)  ϵ ou rank < rπ|phrases|      
     Résultat: Phrase.EstFiltrée = true/false                
-à
+π
                        
 
  8. FUSION                                                    
     Concaténation phrases conservées dans ordre original     
     Résultat: Résumé_FR = Fusion({Pi conservées})           
-à
+π
 ```
 
 ---
 
-## 7. EXEMPLE D'EXàCUTION
+## 7. EXEMPLE D'EXπCUTION
 
 ### Entrée
 ```
@@ -289,7 +289,7 @@ Texte mixte EN/FR (1000 mots):
 les formes... File processing completed successfully..."
 ```
 
-### àtape 1: Découpage
+### πtape 1: Découpage
 ```
 Phrase 1: "The atomic network detects patterns"
 Phrase 2: "Le réseau atomique détecte les formes"
@@ -297,27 +297,27 @@ Phrase 3: "File processing completed successfully"
 Total: 150 phrases découpertes
 ```
 
-### àtape 2-3: Détection + Traduction
+### πtape 2-3: Détection + Traduction
 ```
 Phrase 1: L(P1) = EN  γ1 = 0.8, traduction appliquée
 Phrase 2: L(P2) = FR  γ2 = 1.0, pas traduction
 Phrase 3: L(P3) = EN  γ3 = 0.8, traduction appliquée
 ```
 
-### àtape 4-5: ànergie + Cohérence
+### πtape 4-5: πnergie + Cohérence
 ```
-E_total(P1) = 6.2à0.8 + 0.2à1.5 = 4.96 + 0.30 = 5.26
-E_total(P2) = 7.1à1.0 + 0.2à2.1 = 7.1 + 0.42 = 7.52
-E_total(P3) = 5.8à0.8 + 0.2à1.2 = 4.64 + 0.24 = 4.88
+E_total(P1) = 6.2π0.8 + 0.2π1.5 = 4.96 + 0.30 = 5.26
+E_total(P2) = 7.1π1.0 + 0.2π2.1 = 7.1 + 0.42 = 7.52
+E_total(P3) = 5.8π0.8 + 0.2π1.2 = 4.64 + 0.24 = 4.88
 ```
 
-### àtape 6: Seuil
+### πtape 6: Seuil
 ```
-μ = 5.5, à = 1.2
+μ = 5.5, π = 1.2
 ϵ = 5.5 - 1.2 = 4.3
 ```
 
-### àtape 7: Filtrage
+### πtape 7: Filtrage
 ```
 P1: 5.26  4.3  Conservée
 P2: 7.52  4.3  Conservée
@@ -326,31 +326,31 @@ P3: 4.88  4.3  Conservée
 Total conservées: 40 phrases (26.7% de 150)
 ```
 
-### àtape 8: Fusion
+### πtape 8: Fusion
 ```
 Résumé_FR = P2 (original) + P1 (traduite) + P3 (traduite) + ...
 ```
 
 ---
 
-## 8. PROPRIàTàS MATHàMATIQUES
+## 8. PROPRIπTπS MATHπMATIQUES
 
 ### 1. **Normalisation linguistique**
 ```
- Pi traduite, Contenu(Pi)  franàais
+ Pi traduite, Contenu(Pi)  franπais
  Extraction cohérente dans langue unique
 ```
 
 ### 2. **Conservation d'énergie**
 ```
-E(Pi) inchangée par traduction (calculée apràs)
+E(Pi) inchangée par traduction (calculée aprπs)
  Pondération uniquement via γi
 ```
 
 ### 3. **Facteur confiance appliqué linéairement**
 ```
-E_total(Pi) = γi à E(Pi) + ... (multiplication scalaire)
- Réduction proportionnelle à confiance
+E_total(Pi) = γi π E(Pi) + ... (multiplication scalaire)
+ Réduction proportionnelle π confiance
 ```
 
 ### 4. **Cohérence préservée**
@@ -361,13 +361,13 @@ sim(Pi, Pj) calculée post-traduction
 
 ### 5. **Seuil adaptatif**
 ```
-ϵ = μ - à  1 écart-type sous moyenne
+ϵ = μ - π  1 écart-type sous moyenne
  Filtrage robuste aux variations corpus
 ```
 
 ---
 
-## 9. IMPLàMENTATION EN GO
+## 9. IMPLπMENTATION EN GO
 
 ### Signature fonctions clés
 
@@ -393,7 +393,7 @@ func DetecterEtTraduirePhrases(phrases []Phrase) []Phrase {
     return phrases
 }
 
-// ànergie totale avec γi
+// πnergie totale avec γi
 func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
     const beta = 0.2
     coherence := 0.0
@@ -409,7 +409,7 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 
 ---
 
-## 10. RàSULTATS VALIDàS
+## 10. RπSULTATS VALIDπS
 
 **Test input.txt (2037 phrases détectées)**:
 
@@ -426,7 +426,7 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 **Performance par étape**:
 - Découpage: ~50ms
 - Détection + Traduction: ~150-200ms  Nouvelle étape
-- ànergie: ~100ms
+- πnergie: ~100ms
 - Cohérence: ~200ms
 - Filtrage: ~50ms
 - Fusion: ~30ms
@@ -438,9 +438,9 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 Le pipeline de **normalisation linguistique** enrichit l'extraction atomique avec:
 
  **Multilingue**: Support FR/EN/DE/ES nativement  
- **Mathématique**: Formule `E_total = Eàγi + βàcohérence`  
+ **Mathématique**: Formule `E_total = Eπγi + βπcohérence`  
  **Robuste**: Détection + traduction intégrées  
  **Performant**: +12% overhead acceptable  
  **Production-ready**: Testé, documenté, compilé  
 
-La pondération γi  [0.7, 1.0] prévient la sur-sélection de traductions tout en préservant le franàais comme langue normalisée.
+La pondération γi  [0.7, 1.0] prévient la sur-sélection de traductions tout en préservant le franπais comme langue normalisée.

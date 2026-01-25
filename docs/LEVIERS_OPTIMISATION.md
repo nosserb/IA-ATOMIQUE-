@@ -1,6 +1,6 @@
-# LES 7 LEVIERS D'OPTIMISATION - IMPLàMENTATION
+# LES 7 LEVIERS D'OPTIMISATION - IMPLπMENTATION
 
-## Levier nà1: UX Instantanée <230ms (IMPLàMENTà)
+## Levier nπ1: UX Instantanée <230ms (IMPLπMENTπ)
 
 ### Concept: Réponse Partielle Immédiate + Fond Asynchrone
 
@@ -8,7 +8,7 @@ L'humain ne voit **que la réponse immédiate**, pas l'end-to-end.
 
 **Formule Psychologique**
 ```
-T_UX = T_réponse_visible à 230ms
+T_UX = T_réponse_visible π 230ms
 T_total = T_UX + T_fond_async (invisible)
 ```
 
@@ -29,7 +29,7 @@ go func() {
     }
 }()
 
-// Retour utilisateur IMMàDIAT (53ms)
+// Retour utilisateur IMMπDIAT (53ms)
 // Fond continue silencieusement
 ```
 
@@ -38,29 +38,29 @@ go func() {
 ```
 
  Phase                Temps     Perception  
-ààà
+πππ
  Calcul immédiat (5%) 53ms       VISIBLE  
  Calcul fond (95%)    235ms      INVISIBLE
  Total                1778ms    = 53ms pour 
                                   l'humain! 
-ààà
+πππ
 
-Speedup peràu: 1778ms / 53ms = **33x plus rapide**
+Speedup perπu: 1778ms / 53ms = **33x plus rapide**
 ```
 
-### Pourquoi àa fonctionne
+### Pourquoi πa fonctionne
 
-1. **Limite psychologique**: 230ms = seuil d'instantanéité peràue
+1. **Limite psychologique**: 230ms = seuil d'instantanéité perπue
 2. **Feedback immédiat**: L'utilisateur voit du contenu TOUT DE SUITE
 3. **Transparence**: Le fond se termine silencieusement
-4. **Cas réel**: Tous les navigateurs, OS, apps IA font àa
-   - Gmail: affiche l'email immédiatement, met à jour les labels en fond
+4. **Cas réel**: Tous les navigateurs, OS, apps IA font πa
+   - Gmail: affiche l'email immédiatement, met π jour les labels en fond
    - Google Maps: montre la carte tout de suite, charge les détails en fond
    - VS Code: parse le fichier immédiatement, index linguistic en fond
 
 ---
 
-## Levier nà2: Batch Adaptatif Dynamique (IMPLàMENTà)
+## Levier nπ2: Batch Adaptatif Dynamique (IMPLπMENTπ)
 
 ### Concept: Batch optimal calculé dynamiquement
 
@@ -90,13 +90,13 @@ B_optimal = min((230,000 / 0.06) / 8, 500k)
 ### Implémentation Go
 
 ```go
-// àtape 1: Estimer le temps par opération
+// πtape 1: Estimer le temps par opération
 opTimeUs := EstimateOperationTime(operations, 1000)  // ~0.06µs
 
-// àtape 2: Calculer batch adaptatif
+// πtape 2: Calculer batch adaptatif
 adaptiveBatch := CalculateAdaptiveBatch(opTimeUs, 8, 230.0)  // 479k
 
-// àtape 3: Exécuter par batch
+// πtape 3: Exécuter par batch
 for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
     batchEnd := min(batchStart + adaptiveBatch, len(ops))
     for i := batchStart; i < batchEnd; i++ {
@@ -114,20 +114,20 @@ for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
    Nombre de batches: 21
    Overhead: 0.000ms (0.00% )
 
- RàSULTATS LEVIERS 1+2:
+ RπSULTATS LEVIERS 1+2:
    Réponse visible (5%): 74ms  < 230ms
    Calcul fond (95%): 242ms (async)
    Total: 1522ms
-   Speedup peràu: 20x!
+   Speedup perπu: 20x!
   
   Comparaison:
   
    Sans levier       Avec leviers 1+2 
-  àà
+  ππ
    2268ms (seq)      74ms (visible)    
-   850ms (8 workers) 20x peràu!        
+   850ms (8 workers) 20x perπu!        
    2.68x speedup     Instantané        
-  àà
+  ππ
 ```
 
 ### Pourquoi 0% overhead?
@@ -141,7 +141,7 @@ for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
 
 ---
 
-## Levier nà3: àlimination d'Opérations Inutiles
+## Levier nπ3: πlimination d'Opérations Inutiles
 
 ### Concept: Beaucoup de calculs sont redondants
 
@@ -153,7 +153,7 @@ x + 0    Redondant
 x * 1    Redondant
 x - 0    Redondant
 x / 1    Redondant
-f(0)     Peut àtre cachéisé
+f(0)     Peut πtre cachéisé
 ```
 
 ### Implémentation
@@ -178,7 +178,7 @@ fmt.Printf("Ops eliminées: %d (%.1f%%)\n", removed, float64(removed)*100/float6
 
 ---
 
-## Levier nà4: Optimisation Mémoire
+## Levier nπ4: Optimisation Mémoire
 
 ### Concept: Mémoire > CPU
 
@@ -189,7 +189,7 @@ fmt.Printf("Ops eliminées: %d (%.1f%%)\n", removed, float64(removed)*100/float6
 CPU est 100-300x plus rapide que mémoire!
 ```
 
-### Problàme
+### Problπme
 
 ```go
 //  LENT: Chaque op fait un cache miss
@@ -198,7 +198,7 @@ type ArithmeticOperation struct {
     Y      *big.Int  // Pointeur indirection
     OpType int
 }
-// Accàs: big.Int[0]  cache miss  200ns
+// Accπs: big.Int[0]  cache miss  200ns
 
 //  RAPIDE: Structure contiguë (SoA)
 type OpBatch struct {
@@ -206,7 +206,7 @@ type OpBatch struct {
     Ys     []uint64
     OpTypes []int
 }
-// Accàs: Xs[0]  cache hit  1ns
+// Accπs: Xs[0]  cache hit  1ns
 ```
 
 ### Implémentation
@@ -229,9 +229,9 @@ for i := range batch.Xs {
 
 ---
 
-## Levier nà5: Réduire S (Fraction Séquentielle)
+## Levier nπ5: Réduire S (Fraction Séquentielle)
 
-### Concept: àliminer tout ce qui bloque parallélisation
+### Concept: πliminer tout ce qui bloque parallélisation
 
 Loi d'Amdahl:
 ```
@@ -240,7 +240,7 @@ Speedup_max = 1 / (S + (1-S)/N)
 Donc: réduire S = augmenter speedup linéairement
 ```
 
-### Actions Concràtes
+### Actions Concrπtes
 
 ```go
 //  MAUVAIS: Logging dans boucle = bloque
@@ -249,7 +249,7 @@ for i := range operations {
     ExecuteOperation(i)
 }
 
-//  BON: Logging apràs
+//  BON: Logging aprπs
 numProcessed := 0
 for i := range operations {
     ExecuteOperation(i)
@@ -266,7 +266,7 @@ for i := range operations {
     ExecuteOperation(i)
 }
 
-//  BON: Stats par worker (agrégation apràs)
+//  BON: Stats par worker (agrégation aprπs)
 workerStats := make([]int, numWorkers)
 for w := 0; w < numWorkers; w++ {
     go func(id int) {
@@ -276,14 +276,14 @@ for w := 0; w < numWorkers; w++ {
         }
     }(w)
 }
-// Agrégation apràs: total := sum(workerStats)
+// Agrégation aprπs: total := sum(workerStats)
 ```
 
-**Cible**: `S à 0.10` (10%) pour "instantané peràu"
+**Cible**: `S π 0.10` (10%) pour "instantané perπu"
 
 ---
 
-## Levier nà6: SIMD (Optionnel, Complexe)
+## Levier nπ6: SIMD (Optionnel, Complexe)
 
 ### Concept: Vectorisation CPU (AVX2, AVX-512)
 
@@ -296,19 +296,19 @@ Avec W = largeur SIMD
 - AVX-512:  W=8    8x plus rapide
 ```
 
-### Coàt
+### Coπt
 
-- Complexité: **TRàS àLEVàE**
+- Complexité: **TRπS πLEVπE**
 - Portabilité: **Fragile** (dépend du CPU)
 - Maintenance: **Lourd** (CGO, Rust binding)
 
 ### Timing
 
 ```go
-//  TROP TàT: Faire SIMD avant leviers 1-5 = gaspillage
-// SIMD rend code opaque, difficile à debugger
+//  TROP TπT: Faire SIMD avant leviers 1-5 = gaspillage
+// SIMD rend code opaque, difficile π debugger
 
-//  BON: Apràs tous les leviers
+//  BON: Aprπs tous les leviers
 // Si toujours besoin d'optimisation, alors SIMD + libGMP
 ```
 
@@ -319,14 +319,14 @@ Avec W = largeur SIMD
 ```
 
  Levier           Gain         Effort    Statut  
-àààà
- 1. UX Immédiate  33x peràu!            DONE 
+ππππ
+ 1. UX Immédiate  33x perπu!            DONE 
  2. Batch Dyn     0% overhead           TODO 
  3. Fusion Ops    30-70%              TODO 
  4. Cache Opt     2-3x                TODO 
  5. Réduire S     Linéaire              TODO 
  6. SIMD          4-8x            OPT  
-àààà
+ππππ
 ```
 
 ---
@@ -352,13 +352,13 @@ Avec W = largeur SIMD
 
 ---
 
-## Prochaine àtape
+## Prochaine πtape
 
-**Continuons avec Levier nà3: àlimination d'Opérations Inutiles**
+**Continuons avec Levier nπ3: πlimination d'Opérations Inutiles**
 
 Objective: Détecter et éliminer 30-70% des opérations redondantes.
 
 Commande:
 ```bash
-./programme stest 10000000 --levier3  # (à implémenter)
+./programme stest 10000000 --levier3  # (π implémenter)
 ```

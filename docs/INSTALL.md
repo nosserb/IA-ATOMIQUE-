@@ -6,13 +6,13 @@
 - **Go 1.22+** ou **Docker**
 - **Git**
 
-### 1à Cloner le repo
+### 1π Cloner le repo
 ```bash
 git clone https://github.com/ton-user/IA-ATOMIQUE.git
 cd IA-ATOMIQUE
 ```
 
-### 2à Compiler et Lancer
+### 2π Compiler et Lancer
 
 #### Option A: Avec Go (recommandé)
 ```bash
@@ -40,7 +40,7 @@ docker run -p 8080:8080 ia-atomique
 docker-compose up
 ```
 
-### 3à Accéder à l'interface
+### 3π Accéder π l'interface
 ```
 http://localhost:8080
 ```
@@ -50,7 +50,7 @@ http://localhost:8080
 ### Mode Web (Interface)
 ```bash
 ./programme web
-# Accàde à http://localhost:8080
+# Accπde π http://localhost:8080
 ```
 
 ### Mode Fichier
@@ -60,7 +60,7 @@ http://localhost:8080
 
 ### Mode Texte
 ```bash
-./programme text "Votre texte à analyser"
+./programme text "Votre texte π analyser"
 ```
 
 ### Mode Interactif
@@ -70,7 +70,7 @@ http://localhost:8080
 
 ## Troubleshooting
 
-### Port 8080 déjà utilisé
+### Port 8080 déjπ utilisé
 ```bash
 # Modifier le port dans web.go ligne 29:
 # go StartWebServer("9000")
@@ -80,7 +80,7 @@ go build -o programme
 
 ### Erreur de compilation
 ```bash
-# Mettre à jour les dépendances
+# Mettre π jour les dépendances
 go mod tidy
 go mod download
 go build -o programme
@@ -112,7 +112,7 @@ Vérifier que le répertoire `web/` existe avec:
  go.mod             # Dépendances Go
 ```
 
-## Exemple de texte à tester
+## Exemple de texte π tester
 
 ```
 L'intelligence artificielle transforme le monde. 

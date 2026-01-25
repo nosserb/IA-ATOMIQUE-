@@ -1,28 +1,28 @@
-# Correctif: Intégrité Mathématique (Phase 15 - àtape 0.5 + 7.5)
+# Correctif: Intégrité Mathématique (Phase 15 - πtape 0.5 + 7.5)
 
-## à Diagnostic Initial (Message Précédent)
+## π Diagnostic Initial (Message Précédent)
 
 | Métrique | Valeur | Statut |
 |----------|--------|--------|
 | **Concepts** | 29/30  97% |  Excellent |
 | **Cohérence** | 100% |  Parfait |
-| **àquations** | 0/2  0% |  **CRITIQUE** |
+| **πquations** | 0/2  0% |  **CRITIQUE** |
 | **Fidélité pondérée** | 32.93% |  < 80% |
 | **Fallback** | EXTRACTIF |  Non optimal |
 
-**Problàme racine unique**: Les équations ne sont pas reconnues comme "présentes" dans le résumé, déclenchant le fallback extraction malgré une qualité conceptuelle excellente.
+**Problπme racine unique**: Les équations ne sont pas reconnues comme "présentes" dans le résumé, déclenchant le fallback extraction malgré une qualité conceptuelle excellente.
 
 ---
 
 ## Solution Implémentée
 
-### àtape 0.5: Protection Mathématique Atomique (AVANT Phase 2)
+### πtape 0.5: Protection Mathématique Atomique (AVANT Phase 2)
 
 #### Code nouveau : `database/math_integrity.go`
 
 **Concepts clés**:
 - Les équations sont des **entités atomiques non compressibles**
-- eàquations, eR (toute équation doit àtre présente intégralement)
+- eπquations, eR (toute équation doit πtre présente intégralement)
 - Pas de résumé, pas de paraphrase  copie stricte ou référence stricte
 
 **Implémentation**:
@@ -30,15 +30,15 @@
 ```go
 type ProtectedContent struct {
     MarkedText  string       // Texte avec [[MATH:id]] placeholders
-    MathBlocks  []MathBlock  // àquations sauvegardées
+    MathBlocks  []MathBlock  // πquations sauvegardées
     BlockCount  int
 }
 
 // Détecte phrases contenant notations mathématiques
 func ContainsMathNotation(text string) bool {
-    // Symboles "forts": , , , à, à, , etc.
+    // Symboles "forts": , , , π, π, , etc.
     // + heuristiques: opérateurs + indices variables
-    // + patterns textuels: "peut àtre formalisée", "équation", etc.
+    // + patterns textuels: "peut πtre formalisée", "équation", etc.
 }
 
 // Extraction phrase-par-phrase (pas ligne-par-ligne)
@@ -54,15 +54,15 @@ func ExtractAndProtectEquations(text string) ProtectedContent {
 
 ---
 
-### àtape 7.5: Métriques Binaires + Contrainte Mathématique
+### πtape 7.5: Métriques Binaires + Contrainte Mathématique
 
 #### Nouvelle formule de fidélité pondérée WITH math constraint:
 
 ```
-Ff_w = ààConceptScore + βàEqScore(binaire) + γàTextScore
+Ff_w = ππConceptScore + βπEqScore(binaire) + γπTextScore
 
 où:
-  à = 0.3 (concepts)
+  π = 0.3 (concepts)
   β = 0.5 (équations  CRITIQUE)   Poids fort
   γ = 0.2 (texte narratif)
 
@@ -93,30 +93,30 @@ func CalculateWeightedFidelityWithMathConstraint(
 
 ---
 
-## Résultats Avant/Apràs
+## Résultats Avant/Aprπs
 
 ### Test 1: Compression 0.85 (85%)
 
-| Métrique | Avant | Apràs | Amélioration |
+| Métrique | Avant | Aprπs | Amélioration |
 |----------|-------|-------|--------------|
-| àquations trouvées | 0/2 (0%) | 5/5 (100%) | **+100%** |
+| πquations trouvées | 0/2 (0%) | 5/5 (100%) | **+100%** |
 | Concepts | 30/30 (100%) | 30/30 (100%) |  |
 | Fidélité pondérée simple | 32.93% | 80.90% | **+146%** |
-| Mode | EXTRACTIF  | GàNàRATIF  | **Déblocké** |
+| Mode | EXTRACTIF  | GπNπRATIF  | **Déblocké** |
 | Intégrité math | 0% | 100% | **+100%** |
 
-**Output systàme**:
+**Output systπme**:
 ```
-[MATH PROTECTION] àtape 0.5: Protection mathématique (avant Phase 2)...
-   àquations détectées: 5 blocks
+[MATH PROTECTION] πtape 0.5: Protection mathématique (avant Phase 2)...
+   πquations détectées: 5 blocks
    5 équations mises en sécurité avec tags MATH
 
-[FIDELITY CHECK] àtape 7.5: Vérification fidélité + intégrité mathématique...
+[FIDELITY CHECK] πtape 7.5: Vérification fidélité + intégrité mathématique...
    Coverage Ff simple: 4.76%
    Concepts trouvés: 30/30 (100%)
-   àquations trouvées: 5/5 (binaire: 100%)
-   Fidélité PONDàRàE Ff_w(R,T) + contrainte math: 80.90%
-   Fidélité acceptable (80.90%)  Mode GàNàRATIF conservé
+   πquations trouvées: 5/5 (binaire: 100%)
+   Fidélité PONDπRπE Ff_w(R,T) + contrainte math: 80.90%
+   Fidélité acceptable (80.90%)  Mode GπNπRATIF conservé
    Intégrité mathématique: 100% (équations présentes)
 ```
 
@@ -124,27 +124,27 @@ func CalculateWeightedFidelityWithMathConstraint(
 
 ```
    Concepts trouvés: 29/30 (97%)
-   àquations trouvées: 5/5 (binaire: 100%)
-   Fidélité PONDàRàE Ff_w(R,T) + contrainte math: 80.01%
-   Fidélité acceptable (80.01%)  Mode GàNàRATIF conservé
+   πquations trouvées: 5/5 (binaire: 100%)
+   Fidélité PONDπRπE Ff_w(R,T) + contrainte math: 80.01%
+   Fidélité acceptable (80.01%)  Mode GπNπRATIF conservé
 ```
 
-**Commentaire**: Màme à 5%, la contrainte mathématique maintient Ff_w > 80% parce que les équations sont complàtes. C'est correct!
+**Commentaire**: Mπme π 5%, la contrainte mathématique maintient Ff_w > 80% parce que les équations sont complπtes. C'est correct!
 
 ### Test 3: Compression 0.02 (2%)
 
 ```
    Concepts trouvés: 29/30 (97%)
-   àquations trouvées: 5/5 (binaire: 100%)
-   Fidélité PONDàRàE Ff_w(R,T) + contrainte math: 80.20%
-   Fidélité acceptable (80.20%)  Mode GàNàRATIF conservé
+   πquations trouvées: 5/5 (binaire: 100%)
+   Fidélité PONDπRπE Ff_w(R,T) + contrainte math: 80.20%
+   Fidélité acceptable (80.20%)  Mode GπNπRATIF conservé
 ```
 
-**Interprétation**: Le systàme *pourrait* se montrer plus strict si besoin. Pour l'instant, avec β=0.5, màme 2% de compression garantit les équations. à réajuster selon use case.
+**Interprétation**: Le systπme *pourrait* se montrer plus strict si besoin. Pour l'instant, avec β=0.5, mπme 2% de compression garantit les équations. π réajuster selon use case.
 
 ---
 
-## Clarification: Pourquoi àa s'appelle "binaire"?
+## Clarification: Pourquoi πa s'appelle "binaire"?
 
 ```
 Différence entre anciennes métriques:
@@ -154,25 +154,25 @@ Différence entre anciennes métriques:
 
  Mathématique binaire: EqScore = { 1 si TOUTES présentes
                                     { 0 sinon
-   Une équation absente = àCHEC total (par conception)
+   Une équation absente = πCHEC total (par conception)
 ```
 
 **Justification scientifique**:
-- àquation incomplàte = Fausse par définition mathématique
-- On peut résumer un concept, on ne peut pas "résumer" à*x + b = y
+- πquation incomplπte = Fausse par définition mathématique
+- On peut résumer un concept, on ne peut pas "résumer" π*x + b = y
 - Donc: tout ou rien
 
 ---
 
 ## Intégration dans Pipeline
 
-### Phase 15 àtape 0.5 (NOUVEAU):
+### Phase 15 πtape 0.5 (NOUVEAU):
 ```go
 protected := database.ExtractAndProtectEquations(inputText)
 fmt.Printf("   %d équations mises en sécurité avec tags MATH\n", len(protected.MathBlocks))
 ```
 
-### Phase 15 àtape 7.5 (MODIFIà):
+### Phase 15 πtape 7.5 (MODIFIπ):
 ```go
 equationIntegrityScore := database.CalculateEquationIntegrityScore(result.OptimizedSummary, originalMathBlocks)
 
@@ -189,16 +189,16 @@ if fidelityScore < FIDELITY_THRESHOLD {
 ```
 
 ### Résumé en `grammar_summarization.go`:
-- àtape 0.5: `ExtractAndProtectEquations()` AVANT Phase 2
-- àtape 7.5: `CalculateWeightedFidelityWithMathConstraint()` + affichage détaillé
+- πtape 0.5: `ExtractAndProtectEquations()` AVANT Phase 2
+- πtape 7.5: `CalculateWeightedFidelityWithMathConstraint()` + affichage détaillé
 
 ---
 
 ## Ce que Tu Peux Annoncer
 
-### ànoncé Rigoureux (Publishable):
+### πnoncé Rigoureux (Publishable):
 
-> "The summarization engine enforces mathematical integrity by treating equations as immutable atomic units within a weighted fidelity framework. Formally, for any equation e in the source text, the system maintains e  R (equation e appears completely in summary R). The fidelity metric uses a binary equation score: EqScore  {0, 1}, penalizing any summarization where formal notation is omitted or paraphrased. When weighted fidelity falls below à = 0.80, the system automatically rejects abstractive generation and falls back to faithful extractive summarization, guaranteeing zero semantic hallucination by construction."
+> "The summarization engine enforces mathematical integrity by treating equations as immutable atomic units within a weighted fidelity framework. Formally, for any equation e in the source text, the system maintains e  R (equation e appears completely in summary R). The fidelity metric uses a binary equation score: EqScore  {0, 1}, penalizing any summarization where formal notation is omitted or paraphrased. When weighted fidelity falls below π = 0.80, the system automatically rejects abstractive generation and falls back to faithful extractive summarization, guaranteeing zero semantic hallucination by construction."
 
 ### Contexte Numérique:
 
@@ -225,8 +225,8 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 **Modified**:
 -  `grammar_summarization.go`
-  - àtape 0.5: Add `ExtractAndProtectEquations()` call
-  - àtape 7.5: Replace simple Ff with weighted Ff + binary EqScore
+  - πtape 0.5: Add `ExtractAndProtectEquations()` call
+  - πtape 7.5: Replace simple Ff with weighted Ff + binary EqScore
   - Updated output formatting
 
 ---
@@ -254,16 +254,16 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ## Summary
 
-**Le correctif minimal mais tràs efficace**:
+**Le correctif minimal mais trπs efficace**:
 -  Détecte les équations via notations mathématiques (5 trouvées)
--  Les protàge avec tags avant résumé (àtape 0.5)
+-  Les protπge avec tags avant résumé (πtape 0.5)
 -  Vérifie leur présence en binaire (1 ou 0, pas graduel)
--  Intàgre dans fidélité pondérée avec poids β=0.5
--  Débloque mode GàNàRATIF màme pour petites compressions (si équations intactes)
+-  Intπgre dans fidélité pondérée avec poids β=0.5
+-  Débloque mode GπNπRATIF mπme pour petites compressions (si équations intactes)
 -  Fallback en extractif si équation manque (zéro hallucination par design)
 -  Publication-ready (énoncé rigoureux fourni)
 
 **Bonus psychologique**: Vous pouvez maintenant dire avec certitude:
 
-> "Le systàme n'hallucine pas les équations. S'il les supprime, c'est un CHOIX (fallback extractif), pas une erreur."
+> "Le systπme n'hallucine pas les équations. S'il les supprime, c'est un CHOIX (fallback extractif), pas une erreur."
 

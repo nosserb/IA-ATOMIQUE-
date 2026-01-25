@@ -4,7 +4,7 @@ Guide d'installation simple pour Windows.
 
 ## Installation Rapide (2 étapes)
 
-### àtape 1: Installer Go (une seule fois)
+### πtape 1: Installer Go (une seule fois)
 
 1. **Télécharge Go** depuis https://golang.org/dl/
 2. **Choisir la version Windows** (msi):
@@ -18,11 +18,11 @@ Guide d'installation simple pour Windows.
 - Tape: `go version`
 - Tu dois voir quelque chose comme: `go version go1.22.2 windows/amd64`
 
-Si àa marche pas, redémarre ton PC et réessaye.
+Si πa marche pas, redémarre ton PC et réessaye.
 
 ---
 
-### àtape 2: Lancer le projet
+### πtape 2: Lancer le projet
 
 1. **Clone le repo GitHub**
    ```
@@ -37,11 +37,11 @@ Si àa marche pas, redémarre ton PC et réessaye.
 
 3. **Double-clique sur `run-web.bat`**
    - Le serveur démarre
-   - Une fenàtre s'ouvre
+   - Une fenπtre s'ouvre
 
 4. **Ouvre ton navigateur**
-   - Accàde à: http://localhost:8080
-   - Et voilà! 
+   - Accπde π: http://localhost:8080
+   - Et voilπ! 
 
 ---
 
@@ -51,7 +51,7 @@ Si àa marche pas, redémarre ton PC et réessaye.
 
 | Fichier | Fonction |
 |---------|----------|
-| `install.bat` | Installation initiale (à faire une seule fois) |
+| `install.bat` | Installation initiale (π faire une seule fois) |
 | `run-web.bat` | Lancer le serveur web |
 | `build.bat` | Recompiler le projet |
 | `verify.bat` | Vérifier que tout est OK |
@@ -72,9 +72,9 @@ verify.bat
 
 ## Mode Command Prompt/PowerShell
 
-Si tu préfàres la ligne de commande:
+Si tu préfπres la ligne de commande:
 
-### Premiàre utilisation
+### Premiπre utilisation
 ```bash
 # Ouvre Command Prompt (Cmd.exe)
 # Navigue vers le répertoire:
@@ -96,28 +96,28 @@ programme.exe web
 
 ---
 
-## Résolution des Problàmes
+## Résolution des Problπmes
 
 ### "Go is not recognized"
 
-**Problàme:** Go n'est pas installé ou trouvable
+**Problπme:** Go n'est pas installé ou trouvable
 
 **Solution:**
 1. Installe Go depuis https://golang.org/dl/
-2. Redémarre ton PC complàtement
+2. Redémarre ton PC complπtement
 3. Réessaye
 
 ### "web\index.html n'existe pas"
 
-**Problàme:** Fichiers web manquants
+**Problπme:** Fichiers web manquants
 
 **Solution:**
 - Assure-toi que le dossier `web/` existe
 - Avec les fichiers: `index.html`, `style.css`, `script.js`
 
-### Port 8080 déjà utilisé
+### Port 8080 déjπ utilisé
 
-**Problàme:** Un autre programme utilise le port 8080
+**Problπme:** Un autre programme utilise le port 8080
 
 **Solution 1:**
 - Ferme l'autre application
@@ -129,11 +129,11 @@ programme.exe web
   ```
 - Recompile: `build.bat`
 - Lance avec: `programme.exe web`
-- Accàde à: http://localhost:9000
+- Accπde π: http://localhost:9000
 
 ### "programme.exe n'existe pas"
 
-**Problàme:** Pas compilé
+**Problπme:** Pas compilé
 
 **Solution:**
 - Double-clique `build.bat` ou `install.bat`
@@ -148,7 +148,7 @@ programme.exe web
 2. **Envoyer vers > Bureau (créer un raccourci)**
 3. **Double-clique le raccourci pour lancer!**
 
-### Lancer dans une vraie fenàtre (pas CMD)
+### Lancer dans une vraie fenπtre (pas CMD)
 
 Pour une expérience plus fluide:
 
@@ -160,32 +160,32 @@ objShell.Run "cmd /c run-web.bat", 0
 WScript.Quit
 ```
 
-2. **Sauvegarde dans le màme dossier**
-3. **Double-clique pour lancer sans fenàtre CMD**
+2. **Sauvegarde dans le mπme dossier**
+3. **Double-clique pour lancer sans fenπtre CMD**
 
 ### Ajouter au menu Démarrer
 
 1. **Appuie sur Win+R**
 2. **Tape: `shell:startup`**
-3. **Mets un raccourci de `run-web.bat` là**
-4. **à chaque démarrage, le serveur se lance!**
+3. **Mets un raccourci de `run-web.bat` lπ**
+4. **π chaque démarrage, le serveur se lance!**
 
 ---
 
 ## Workflow Typique
 
 ```
-1. Double-clique install.bat (premiàre fois seulement)
+1. Double-clique install.bat (premiπre fois seulement)
    
 2. Double-clique run-web.bat
    
-3. Une fenàtre s'ouvre avec le serveur
+3. Une fenπtre s'ouvre avec le serveur
    
 4. Ouvre navigateur: http://localhost:8080
    
 5. Utilise l'interface!
    
-6. Pour arràter: Ferme la fenàtre CMD
+6. Pour arrπter: Ferme la fenπtre CMD
 ```
 
 ---
@@ -218,7 +218,7 @@ git push origin main
 
 ---
 
-## à Support
+## π Support
 
 Si quelque chose ne marche pas:
 
@@ -227,10 +227,10 @@ Si quelque chose ne marche pas:
 3. **Vérification:** `verify.bat`
 4. **Réessaye:** `run-web.bat`
 
-Si àa marche toujours pas:
+Si πa marche toujours pas:
 - Redémarre ton PC
 - Réinstalle Go proprement
-- Essaye à nouveau
+- Essaye π nouveau
 
 ---
 

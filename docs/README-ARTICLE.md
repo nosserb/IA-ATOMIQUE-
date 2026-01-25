@@ -8,7 +8,7 @@
 
 ## Concept
 
-L'**IA atomique** est une architecture révolutionnaire qui remplace le paradigme centralisé et synchrone par un systàme entiàrement **distribué et asynchrone**. Plutôt qu'un serveur central superviseur, le systàme repose sur des **unités autonomes élémentaires** (atomes computationnels) qui interagissent localement selon le mécanisme de **résonance atomique**.
+L'**IA atomique** est une architecture révolutionnaire qui remplace le paradigme centralisé et synchrone par un systπme entiπrement **distribué et asynchrone**. Plutôt qu'un serveur central superviseur, le systπme repose sur des **unités autonomes élémentaires** (atomes computationnels) qui interagissent localement selon le mécanisme de **résonance atomique**.
 
 Les structures globales stables et les comportements complexes **émergent naturellement** de ces interactions locales, sans coordination centrale.
 
@@ -16,9 +16,9 @@ Les structures globales stables et les comportements complexes **émergent natur
 
 ## Caractéristiques Fondamentales
 
-### 1. Architecture Entiàrement Distribuée
+### 1. Architecture Entiπrement Distribuée
 -  Pas de serveur central ni d'unité de contrôle
--  Chaque atome computationnel agit de maniàre autonome
+-  Chaque atome computationnel agit de maniπre autonome
 -  Interactions exclusivement locales entre voisins immédiats
 
 ### 2. Résonance Atomique
@@ -27,8 +27,8 @@ Permet aux unités de s'aligner spontanément par compatibilité d'état:
 $$R(s_i, s_j) = \exp\left(-\frac{\|s_i - s_j\|^2}{2\sigma^2}\right)$$
 
 ### 3. Asynchronisme Total
--  Chaque atome évolue à son propre rythme
--  Pas de dépendance à une horloge centrale
+-  Chaque atome évolue π son propre rythme
+-  Pas de dépendance π une horloge centrale
 -  Résilience exceptionnelle aux perturbations
 
 ### 4. Dynamique Adaptative des Poids
@@ -39,16 +39,16 @@ $$\frac{dw_{ij}}{dt} = \gamma \cdot \text{cohérence}(s_i, s_j) - \delta \cdot w
 ### 5. Sobriété Computationnelle
 -  Atomes simples (mémoire et calcul minimaux)
 -  Intelligence globale via interactions collectives
--  Déployable sur systàmes embarqués, microcontrôleurs
+-  Déployable sur systπmes embarqués, microcontrôleurs
 
-### 6. àmergence de Comportements Complexes
+### 6. πmergence de Comportements Complexes
 -  Structures stables sans supervision centrale
 -  Auto-organisation naturelle du réseau
 -  Apprentissage local continu
 
 ---
 
-## à Prérequis
+## π Prérequis
 
 - Go 1.22+
 - Pas de dépendances externes
@@ -91,30 +91,30 @@ La simulation du réseau atomique retourne:
 
 ```
 ============================================================
-  SIMULATION DU RàSEAU ATOMIQUE - TECHNOLOGIE DE RàSONANCE
+  SIMULATION DU RπSEAU ATOMIQUE - TECHNOLOGIE DE RπSONANCE
 ============================================================
 
 [INITIALISATION]
    Atomes créés: 500
-   Coefficient couplage (à): 0.70
-   Coefficient ràgles (β): 0.30
+   Coefficient couplage (π): 0.70
+   Coefficient rπgles (β): 0.30
    Facteur renforcement (γ): 0.15
    Facteur décroissance (δ): 0.05
-   Sensibilité résonance (à): 0.80
+   Sensibilité résonance (π): 0.80
 
-[DàMARRAGE SIMULATION]
+[DπMARRAGE SIMULATION]
    Nombre d'itérations: 1000
    Mode: Totalement asynchrone, décentralisé
 
-[Itération  100] Cohérence: 0.4231 | Activation: 0.3102 | ànergie: 45.2130
-[Itération  200] Cohérence: 0.6142 | Activation: 0.4251 | ànergie: 72.1450
-[Itération  300] Cohérence: 0.7503 | Activation: 0.4897 | ànergie: 91.2340
+[Itération  100] Cohérence: 0.4231 | Activation: 0.3102 | πnergie: 45.2130
+[Itération  200] Cohérence: 0.6142 | Activation: 0.4251 | πnergie: 72.1450
+[Itération  300] Cohérence: 0.7503 | Activation: 0.4897 | πnergie: 91.2340
 
 ============================================================
-  RàSULTATS EXPàRIMENTAUX
+  RπSULTATS EXPπRIMENTAUX
 ============================================================
 
-[COHàRENCE RàSEAU]
+[COHπRENCE RπSEAU]
    Initiale: 0.2100
    Finale:   0.8347
    Moyenne:  0.5234
@@ -125,11 +125,11 @@ La simulation du réseau atomique retourne:
    Initiale: 0.1500
    Finale:   0.5200
 
-[CONSOMMATION àNERGàTIQUE]
-   ànergie totale: 2341.5600
-   ànergie par atome (moyenne): 4.683120
+[CONSOMMATION πNERGπTIQUE]
+   πnergie totale: 2341.5600
+   πnergie par atome (moyenne): 4.683120
 
-[àMERGENCE - COMPORTEMENTS GLOBAUX]
+[πMERGENCE - COMPORTEMENTS GLOBAUX]
    Atomes fortement actifs: 287 (57.4%)
    Structures cohérentes détectées: OUI
 
@@ -137,11 +137,11 @@ La simulation du réseau atomique retourne:
   CONCLUSIONS
 ============================================================
 
- Interactions locales et asynchrones: CONVERGENCE CONFIRMàE
- Résonance atomique: STRUCTURES STABLES àMERGENTES
- Dynamique adaptative: APPRENTISSAGE CONTINU OBSERVà
- Réseau décentralisé: SANS POINT DE DàFAILLANCE UNIQUE
- Sobriété computationnelle: DàPLOYABLE SUR SYSTàMES EMBARQUàS
+ Interactions locales et asynchrones: CONVERGENCE CONFIRMπE
+ Résonance atomique: STRUCTURES STABLES πMERGENTES
+ Dynamique adaptative: APPRENTISSAGE CONTINU OBSERVπ
+ Réseau décentralisé: SANS POINT DE DπFAILLANCE UNIQUE
+ Sobriété computationnelle: DπPLOYABLE SUR SYSTπMES EMBARQUπS
 ```
 
 ---
@@ -167,34 +167,34 @@ La simulation du réseau atomique retourne:
 ### Composants Principaux
 
 #### **ComputationalAtom** (`database/atomic.go`)
-Unité autonome représentant un nàud du réseau:
+Unité autonome représentant un nπud du réseau:
 - **InternalState** (si) : état continu [0, 1]
 - **Neighbors** : liste des voisins directs
 - **ConnectionWeights** : poids adaptatifs wij
-- **LocalRules** : ràgles simples de comportement
+- **LocalRules** : rπgles simples de comportement
 - **Perceptions** : signaux de l'environnement
 
 #### **AtomicNetwork** (`database/atomic.go`)
 Réseau distribué d'atomes computationnels:
-- **Paramàtres** : à, β, γ, δ, à
+- **Paramπtres** : π, β, γ, δ, π
 - **Itérations** : asynchrones et indépendantes
 - **Métriques** : cohérence, activation, énergie
-- **àmergence** : détection comportements collectifs
+- **πmergence** : détection comportements collectifs
 
 ---
 
-## àquations Fondamentales
+## πquations Fondamentales
 
-### Mise à Jour d'àtat
+### Mise π Jour d'πtat
 
 $$s_i(t+1) = s_i(t) + \alpha \cdot \sum_{j \in N(i)} w_{ij} \cdot R(s_i, s_j) + \beta \cdot (R_i + p_i)$$
 
 Où:
-- **à** : coefficient de couplage (influence des voisins)
+- **π** : coefficient de couplage (influence des voisins)
 - **wij** : poids de connexion
 - **R(si, sj)** : résonance atomique
-- **β** : coefficient impact ràgles locales
-- **Ri** : ràgles locales
+- **β** : coefficient impact rπgles locales
+- **Ri** : rπgles locales
 - **pi** : perceptions
 
 ### Dynamique des Poids
@@ -211,17 +211,17 @@ Où:
 
 ## Principes Implémentés
 
-### 1. àmergence par Interactions Locales
-L'ordre global naàt de ràgles locales simples, **sans intervention externe**.
+### 1. πmergence par Interactions Locales
+L'ordre global naπt de rπgles locales simples, **sans intervention externe**.
 
 ### 2. Résonance Atomique
 L'harmonisation spontanée permet la coordination **sans orchestration centrale**.
 
 ### 3. Asynchronisme Total
-Chaque unité opàre indépendamment, garantissant **résilience et réactivité**.
+Chaque unité opπre indépendamment, garantissant **résilience et réactivité**.
 
 ### 4. Plasticité Continue
-Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
+Le systπme s'adapte en permanence via l'**apprentissage décentralisé**.
 
 ### 5. Sobriété Computationnelle
 **Intelligence massive** avec ressources minimales par unité.
@@ -242,7 +242,7 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 - Adaptation en temps réel aux obstacles
 - Apprentissage distribué des stratégies
 
-### Systàmes Industriels & IoT
+### Systπmes Industriels & IoT
 - Réseaux de capteurs distribués
 - Maintenance prédictive locale
 - Optimisation des processus sans goulot d'étranglement
@@ -258,7 +258,7 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 
 ## Sécurité et Intégrité
 
-- **Opérations thread-safe** : mutex pour accàs concurrent
+- **Opérations thread-safe** : mutex pour accπs concurrent
 - **Cohérence réseau** : vérification intégrité topologique
 - **Isolation atomes** : chaque unité autonome
 - **Pas de point de défaillance unique** : architecture résiliente
@@ -268,15 +268,15 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 ## Références Académiques
 
 Cet article s'appuie sur les travaux fondamentaux en:
-- **Systàmes multi-agents** (Wooldridge)
+- **Systπmes multi-agents** (Wooldridge)
 - **Architecture de subsomption** (Brooks)
-- **Auto-organisation** et systàmes complexes
+- **Auto-organisation** et systπmes complexes
 - **Réseaux de neurones biologiques**
 - **Synchronisation et dynamiques collectives**
 
 ---
 
-## à Contributions et Feedback
+## π Contributions et Feedback
 
 Pour questions, suggestions ou signalements de bugs:
 
@@ -293,12 +293,12 @@ MIT License - Libre d'usage dans contextes académiques et commerciaux
 ## Auteur
 
 **BRESSON Guylann**
-- Indépendant / àtudiant en informatique
+- Indépendant / πtudiant en informatique
 - Email: guylann.bresson.gb@gmail.com
-- Spécialité: Intelligence Artificielle Distribuée, Systàmes Autonomes
+- Spécialité: Intelligence Artificielle Distribuée, Systπmes Autonomes
 
 ---
 
-**Derniàre mise à jour:** Janvier 2026  
-**Statut:** Implémentation académique v1.0 - Conforme à l'article publié sur HAL  
+**Derniπre mise π jour:** Janvier 2026  
+**Statut:** Implémentation académique v1.0 - Conforme π l'article publié sur HAL  
 **Branche:** feature/article

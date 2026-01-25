@@ -12,7 +12,7 @@ web/
 
 web.go             # Serveur HTTP et API Go
 start-web.sh       # Script de lancement facile
-WEB_README.md      # Documentation complàte
+WEB_README.md      # Documentation complπte
 ```
 
 ## Démarrage Rapide
@@ -27,7 +27,7 @@ Ou directement:
 ./programme web
 ```
 
-### Accéder à l'interface:
+### Accéder π l'interface:
 ```
 http://localhost:8080
 ```
@@ -37,22 +37,22 @@ http://localhost:8080
  **Interface intuitive** - Une seule page pour résumer  
  **Design moderne** - Gradient violet, animation fluide  
  **Responsive** - Adapté aux mobiles et desktop  
- **Analyse en temps réel** - API intégrée à votre IA  
+ **Analyse en temps réel** - API intégrée π votre IA  
  **Statistiques** - Affiche confiance, catégories, phrases  
  **Accessibilité** - Raccourci Ctrl+Entrée pour envoyer  
 
-## Comment àa fonctionne?
+## Comment πa fonctionne?
 
 1. L'utilisateur tape du texte dans la zone gauche
 2. Clique sur "Résumer" ou appuie sur Ctrl+Entrée
-3. Le texte est envoyé à l'API `/api/summarize`
+3. Le texte est envoyé π l'API `/api/summarize`
 4. Votre IA analyse le texte phrase par phrase
 5. Le résumé et les statistiques s'affichent en temps réel
 
 ## Personnalisation
 
 ### Modifier les couleurs:
-àditez `web/style.css`:
+πditez `web/style.css`:
 ```css
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 /* Change ces valeurs pour tes couleurs préférées */
@@ -76,7 +76,7 @@ go StartWebServer("9000")  // Utilise le port 9000 au lieu de 8080
 ```json
 Request:
 {
-  "text": "Votre texte à résumer..."
+  "text": "Votre texte π résumer..."
 }
 
 Response:
@@ -101,18 +101,18 @@ Voici des textes de test recommandés:
 > "L'intelligence artificielle révolutionne le monde. Les réseaux neuronaux permettent l'apprentissage automatique. La technologie évolue chaque jour."
 
 **Long:**  
-> Collez un article entier et regardez l'analyse complàte!
+> Collez un article entier et regardez l'analyse complπte!
 
 ## Astuces
 
 -  Ctrl+A pour sélectionner tout rapidement
--  Les requàtes sont instantanées
+-  Les requπtes sont instantanées
 -  Testez sur mobile aussi!
 -  Le résumé affiche les catégories dominantes
 
-## Si àa ne marche pas
+## Si πa ne marche pas
 
-| Problàme | Solution |
+| Problπme | Solution |
 |----------|----------|
 | Page blanche | Vérifier que les fichiers web/ existent |
 | Port 8080 occupé | Changer le port dans web.go |
@@ -121,7 +121,7 @@ Voici des textes de test recommandés:
 
 ## Prochaines étapes optionnelles
 
-- [ ] Ajouter un systàme d'upload de fichiers
+- [ ] Ajouter un systπme d'upload de fichiers
 - [ ] Créer un historique des résumés
 - [ ] Exporter en PDF/Word
 - [ ] Ajouter un mode sombre
@@ -131,4 +131,4 @@ Voici des textes de test recommandés:
 
 ---
 
-**Ton interface web est pràte! Bon résumé!** 
+**Ton interface web est prπte! Bon résumé!** 

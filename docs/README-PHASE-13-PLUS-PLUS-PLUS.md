@@ -19,11 +19,11 @@ Repetitions: ~0
 
 | # | Strategy | Location | Effect |
 |---|----------|----------|--------|
-| 1à | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
-| 2à | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
-| 3à | **Fenàtrage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
-| 4à | **Anti-Répétition** | coherence.go | Eliminate words repeated <5 words apart |
-| 5à | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
+| 1π | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
+| 2π | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
+| 3π | **Fenπtrage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
+| 4π | **Anti-Répétition** | coherence.go | Eliminate words repeated <5 words apart |
+| 5π | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
 
 ---
 
@@ -101,7 +101,7 @@ go build -o programme
 ```
 For each block:
   - Count word occurrences
-  - Penalty = (count-2) à 0.1 for words appearing >2x
+  - Penalty = (count-2) π 0.1 for words appearing >2x
   - Apply penalty to selection score
 ```
 
@@ -112,7 +112,7 @@ For words with IDF > 0.5 AND TF > 0.05:
   - Prevents repetitive words from dominating scores
 ```
 
-### 3. Strict Fenàtrage
+### 3. Strict Fenπtrage
 ```
 For consecutive selected blocks:
   - Calculate Jaccard similarity of vocabularies
@@ -170,7 +170,7 @@ database/resumeur_coherence.go  (+150 lines)
  NormaliserRepetitionsBlocs()
  CalculerSimilarityVocabLexical()
  RepetitionsBloc field
- Fenàtrage strict logic
+ Fenπtrage strict logic
 
 database/generation.go           (+15 lines)
  TF-IDF penalty 0.8x
@@ -211,7 +211,7 @@ database/coherence.go            (+80 lines)
 
 **Before**:
 ```
-"...donné que les systàmes donnent résultats...
+"...donné que les systπmes donnent résultats...
 ...dans ce cas, plusieurs cas différents...
 ...le monde du digital, un monde qui change..."
 ```
@@ -219,9 +219,9 @@ database/coherence.go            (+80 lines)
 
 **After**:
 ```
-"...donné que les systàmes fournissent résultats...
+"...donné que les systπmes fournissent résultats...
 ...dans cette situation, plusieurs contextes différents...
-...l'univers du digital, une sphàre qui change..."
+...l'univers du digital, une sphπre qui change..."
 ```
  Zero repetitions, natural vocabulary variation
 
@@ -310,7 +310,7 @@ database/coherence.go            (+80 lines)
 
 ---
 
-## à FAQ
+## π FAQ
 
 **Q: Should I upgrade from Phase 13++?**  
 A: Yes. Phase 13+++ is faster (6.3x), better quality (zero repetitions), and 100% backward compatible.
@@ -356,7 +356,7 @@ A: Yes. Tested, documented, validated.  DEPLOY.
 ~0 repetitions
 6.3x faster
 $0 implementation cost
-à% production readiness
+π% production readiness
 ```
 
 ---
@@ -369,7 +369,7 @@ $0 implementation cost
 
 ---
 
-## à Support
+## π Support
 
 - **Configuration**: See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)
 - **Troubleshooting**: See [PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md)

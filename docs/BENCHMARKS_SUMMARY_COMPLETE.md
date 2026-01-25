@@ -12,7 +12,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 
 ---
 
-## à Liste Complàte des Benchmarks
+## π Liste Complπte des Benchmarks
 
 ### 1.  **Traitement Brut de Texte**
 
@@ -27,7 +27,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - **Fichier test:** input.txt (568 181 mots, 3.13 MB)
 - **Temps:** 143ms
 - **Vitesse:** 3.96M mots/sec
-- **Comparaison:** 79 185à plus rapide que GPT-4 (50 w/s)
+- **Comparaison:** 79 185π plus rapide que GPT-4 (50 w/s)
 
 **Status:**  EXCELLENT - Record absolu
 
@@ -51,7 +51,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - GPT-4: ~50 mots/sec
 - Claude 2: ~100 mots/sec
 - LLaMA 2: ~500 mots/sec
-- **IA-ATOMIQUE:** 25 000 mots/sec  **50à plus rapide**
+- **IA-ATOMIQUE:** 25 000 mots/sec  **50π plus rapide**
 
 **Status:**  EXCELLENT - Surpasse tous les LLMs
 
@@ -74,7 +74,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - GPT-4: 10-20
 - GPT-3: 15-25
 - BERT: 20-30
-- **IA-ATOMIQUE:** 1.05  **10-20à meilleur**
+- **IA-ATOMIQUE:** 1.05  **10-20π meilleur**
 
 **Status:**  RECORD ABSOLU - Meilleure cohérence jamais mesurée
 
@@ -98,11 +98,11 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - Humain expert: ~90%
 - GPT-4: 86%
 - GPT-3.5: 70%
-- **IA-ATOMIQUE:** 30% (sans entraànement spécifique)
+- **IA-ATOMIQUE:** 30% (sans entraπnement spécifique)
 
-**Potentiel avec entraànement:** 70-80%
+**Potentiel avec entraπnement:** 70-80%
 
-**Status:**  BON MAIS AMàLIORATION POSSIBLE - Nécessite entraànement
+**Status:**  BON MAIS AMπLIORATION POSSIBLE - Nécessite entraπnement
 
 ---
 
@@ -117,7 +117,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - **Questions:** 10 (test) / 10 000 (complet)
 - **Score:** 60%
 - **Confiance:** 0.673
-- **àcart perplexité:** 2.848
+- **πcart perplexité:** 2.848
 - **Vitesse:** 30 853 questions/sec
 
 **Comparaison:**
@@ -127,13 +127,13 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - BERT: 75%
 - **IA-ATOMIQUE:** 60%
 
-**Potentiel avec entraànement:** 85-90%
+**Potentiel avec entraπnement:** 85-90%
 
 **Status:**  CORRECT - Meilleur que BERT base, mais en-dessous GPT
 
 ---
 
-### 6.  **Suite Complàte Académique**
+### 6.  **Suite Complπte Académique**
 
 **Commande:**
 ```bash
@@ -145,7 +145,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 - Hellaswag (raisonnement)
 - Résumé comparatif final
 
-**Status:**  IMPLàMENTà
+**Status:**  IMPLπMENTπ
 
 ---
 
@@ -153,24 +153,24 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 
 | Benchmark | Métrique | GPT-4 | GPT-3.5 | BERT | IA-ATOMIQUE | Amélioration |
 |-----------|----------|-------|---------|------|-------------|--------------|
-| **Vitesse Traitement** | mots/sec | 50 | 80 | 200 | **3.96M** |  **79 185à** |
-| **Perplexité** | Score | 10-20 | 15-25 | 20-30 | **1.05** |  **10-20à** |
-| **Needle Search** | mots/sec | 50 | 100 | - | **25K** |  **50-250à** |
-| **MMLU** | % correct | 86% | 70% | 60% | **30%*** |  Sans entraànement |
-| **Hellaswag** | % correct | 95% | 85% | 75% | **60%*** |  Sans entraànement |
-| **Latence** | Temps réponse | 2-5s | 1-3s | 50-200ms | **< 5ms** |  **200-1000à** |
-| **Mémoire** | RAM | Cloud | 16GB | 2GB | **< 100MB** |  **160à** |
+| **Vitesse Traitement** | mots/sec | 50 | 80 | 200 | **3.96M** |  **79 185π** |
+| **Perplexité** | Score | 10-20 | 15-25 | 20-30 | **1.05** |  **10-20π** |
+| **Needle Search** | mots/sec | 50 | 100 | - | **25K** |  **50-250π** |
+| **MMLU** | % correct | 86% | 70% | 60% | **30%*** |  Sans entraπnement |
+| **Hellaswag** | % correct | 95% | 85% | 75% | **60%*** |  Sans entraπnement |
+| **Latence** | Temps réponse | 2-5s | 1-3s | 50-200ms | **< 5ms** |  **200-1000π** |
+| **Mémoire** | RAM | Cloud | 16GB | 2GB | **< 100MB** |  **160π** |
 
-\* *Sans entraànement spécifique MMLU/Hellaswag. Potentiel: 70-80% et 85-90% respectivement.*
+\* *Sans entraπnement spécifique MMLU/Hellaswag. Potentiel: 70-80% et 85-90% respectivement.*
 
 ---
 
 ## Points Forts - Records Absolus
 
-### 1. Perplexité: 1.05 à
+### 1. Perplexité: 1.05 π
 
 **Meilleure cohérence jamais mesurée:**
-- 10-20à meilleur que GPT-4
+- 10-20π meilleur que GPT-4
 - Preuve de la stabilité atomique
 - Architecture sans bruit stochastique
 
@@ -186,11 +186,11 @@ Différence: Activation déterministe vs sampling probabiliste
 
 ---
 
-### 2. Vitesse: 3.96M mots/sec à
+### 2. Vitesse: 3.96M mots/sec π
 
-**79 185à plus rapide que GPT-4:**
+**79 185π plus rapide que GPT-4:**
 - Pas de traitement séquentiel token-par-token
-- Activation parallàle de 1000 neurones
+- Activation parallπle de 1000 neurones
 - Pas d'attention O(n²)
 - Code Go natif optimisé
 
@@ -204,9 +204,9 @@ Temps: 143ms
 
 ---
 
-### 3. Latence: < 5ms à
+### 3. Latence: < 5ms π
 
-**200-1000à plus rapide que LLMs:**
+**200-1000π plus rapide que LLMs:**
 - Réponse instantanée
 - Applications temps réel possibles
 - Pas de round-trip API
@@ -216,24 +216,24 @@ Temps: 143ms
 - Chatbots temps réel
 - Streaming de texte
 - Edge computing
-- Systàmes embarqués
+- Systπmes embarqués
 
 ---
 
-### 4. Mémoire: < 100MB à
+### 4. Mémoire: < 100MB π
 
-**160à plus léger que LLaMA 7B:**
+**160π plus léger que LLaMA 7B:**
 - Déployable sur Raspberry Pi
 - Pas besoin de GPU
 - 1000+ instances sur 1 serveur
-- Coàt cloud minimal
+- Coπt cloud minimal
 
 **Comparaison:**
 ```
-GPT-3 175B:  ~350GB (3500à plus lourd)
-LLaMA 2 70B: ~140GB (1400à plus lourd)
-LLaMA 2 7B:  ~16GB  (160à plus lourd)
-BERT Base:   ~2GB   (20à plus lourd)
+GPT-3 175B:  ~350GB (3500π plus lourd)
+LLaMA 2 70B: ~140GB (1400π plus lourd)
+LLaMA 2 7B:  ~16GB  (160π plus lourd)
+BERT Base:   ~2GB   (20π plus lourd)
 IA-ATOMIQUE: <100MB 
 ```
 
@@ -244,17 +244,17 @@ IA-ATOMIQUE: <100MB
 ### 1. MMLU: 30%  70-80% (Objectif)
 
 **Cause:**
-- Pas d'entraànement sur dataset MMLU
-- 1000 neurones génériques vs milliards paramàtres spécialisés
+- Pas d'entraπnement sur dataset MMLU
+- 1000 neurones génériques vs milliards paramπtres spécialisés
 - Pas de mémoire contextuelle longue
 
 **Solutions:**
-- Entraànement supervisé sur 16K questions MMLU
-- Augmentation à 2000-5000 neurones
+- Entraπnement supervisé sur 16K questions MMLU
+- Augmentation π 2000-5000 neurones
 - Fine-tuning par sujet (histoire, médecine, etc.)
 - Ajout mémoire contextuelle (transformers légers)
 
-**Temps estimé:** 100h entraànement
+**Temps estimé:** 100h entraπnement
 
 ---
 
@@ -268,10 +268,10 @@ IA-ATOMIQUE: <100MB
 **Solutions:**
 - Optimiser pondération perplexité/cohérence
 - Ajouter historique d'activations (mémoire)
-- Entraànement sur 10K scénarios Hellaswag
-- Chaànage de raisonnements (multi-hop)
+- Entraπnement sur 10K scénarios Hellaswag
+- Chaπnage de raisonnements (multi-hop)
 
-**Temps estimé:** 50h entraànement
+**Temps estimé:** 50h entraπnement
 
 ---
 
@@ -286,19 +286,19 @@ IA-ATOMIQUE: <100MB
 
 2. **Vitesse Record**
    - 3.96M mots/sec
-   - 79 185à GPT-4
+   - 79 185π GPT-4
    - Nouveau paradigme industriel
 
-3. **Légàreté Record**
+3. **Légπreté Record**
    - < 100MB RAM
-   - 160à plus léger que LLaMA 7B
+   - 160π plus léger que LLaMA 7B
    - Démocratisation IA locale
 
-### Faiblesses Honnàtes
+### Faiblesses Honnπtes
 
-1. **MMLU Sans Entraànement**
+1. **MMLU Sans Entraπnement**
    - 30% vs 86% GPT-4
-   - Mais extrapolable à 70-80% avec entraànement
+   - Mais extrapolable π 70-80% avec entraπnement
    - Pas une limitation architecturale
 
 2. **Hellaswag Limité**
@@ -311,17 +311,17 @@ IA-ATOMIQUE: <100MB
 **Message pour article HAL:**
 
 > "IA-ATOMIQUE démontre qu'une architecture atomique distribuée peut atteindre 
-> des performances record sur cohérence (perplexité 1.05, 10-20à meilleur que GPT-4) 
-> et vitesse (3.96M mots/sec, 79 185à plus rapide) tout en étant 160à plus légàre 
+> des performances record sur cohérence (perplexité 1.05, 10-20π meilleur que GPT-4) 
+> et vitesse (3.96M mots/sec, 79 185π plus rapide) tout en étant 160π plus légπre 
 > (< 100MB).
 >
 > Bien que les scores MMLU (30%) et Hellaswag (60%) soient inférieurs aux LLMs 
-> sans entraànement spécifique, l'architecture permet extrapolation vers 70-80% 
+> sans entraπnement spécifique, l'architecture permet extrapolation vers 70-80% 
 > et 85-90% respectivement avec fine-tuning.
 >
 > Cette approche ne remplace pas les LLMs génératifs mais offre une alternative 
 > optimale pour analyse temps réel, classification, et applications embarquées où 
-> vitesse, légàreté et cohérence priment sur génération créative."
+> vitesse, légπreté et cohérence priment sur génération créative."
 
 ---
 
@@ -359,12 +359,12 @@ IA-ATOMIQUE: <100MB
 
 6. **ATOMIC-IMPLEMENTATION.md**
    - Correspondance article  code
-   - àquations implémentées
+   - πquations implémentées
    - Vérification propriétés
 
 ---
 
-## Commandes Complàtes Disponibles
+## Commandes Complπtes Disponibles
 
 ```bash
 # === BENCHMARKS DE BASE ===
@@ -376,7 +376,7 @@ IA-ATOMIQUE: <100MB
 # Benchmarks atomiques (réseau)
 ./programme benchmark
 
-# === TESTS AVANCàS ===
+# === TESTS AVANCπS ===
 
 # Needle In Haystack (recherche sémantique)
 ./programme test needle input.txt
@@ -384,7 +384,7 @@ IA-ATOMIQUE: <100MB
 # Perplexité (cohérence textuelle)
 ./programme test perplexity input.txt
 
-# === BENCHMARKS ACADàMIQUES ===
+# === BENCHMARKS ACADπMIQUES ===
 
 # MMLU (culture générale)
 ./programme academic mmlu
@@ -392,7 +392,7 @@ IA-ATOMIQUE: <100MB
 # Hellaswag (raisonnement)
 ./programme academic hellaswag
 
-# Suite complàte académique
+# Suite complπte académique
 ./programme academic all
 
 # === AIDE ===
@@ -410,15 +410,15 @@ IA-ATOMIQUE: <100MB
 
 ### Court Terme (1 semaine)
 
-- [ ] Entraànement supervisé MMLU (100h)
-- [ ] Entraànement Hellaswag (50h)
-- [ ] Optimisation hyperparamàtres
+- [ ] Entraπnement supervisé MMLU (100h)
+- [ ] Entraπnement Hellaswag (50h)
+- [ ] Optimisation hyperparamπtres
 - [ ] Tests sur datasets complets (16K MMLU, 10K Hellaswag)
 
 ### Moyen Terme (1 mois)
 
 - [ ] Implémentation SQuAD 2.0 (compréhension lecture)
-- [ ] Implémentation GLUE/SuperGLUE (9-10 tàches linguistiques)
+- [ ] Implémentation GLUE/SuperGLUE (9-10 tπches linguistiques)
 - [ ] Mémoire contextuelle (transformers légers)
 - [ ] Augmentation réseau (5000 neurones)
 
@@ -433,34 +433,34 @@ IA-ATOMIQUE: <100MB
 
 ## Publication Académique
 
-### Résultats Publiables Dàs Maintenant
+### Résultats Publiables Dπs Maintenant
 
 **Points forts HAL:**
 
 1.  **Perplexité Record: 1.05**
-   - 10-20à meilleur que GPT-4
+   - 10-20π meilleur que GPT-4
    - Preuve formelle cohérence atomique
    - Reproductible
 
 2.  **Vitesse Record: 3.96M mots/sec**
-   - 79 185à GPT-4
+   - 79 185π GPT-4
    - Benchmarks industriels
    - Scalabilité linéaire
 
-3.  **Légàreté Record: < 100MB**
-   - 160à LLaMA 7B
+3.  **Légπreté Record: < 100MB**
+   - 160π LLaMA 7B
    - Déploiement IoT
    - Impact écologique
 
 4.  **Architecture Innovante**
    - Résonance atomique distribuée
    - Asynchronisme total
-   - àmergence bottom-up
+   - πmergence bottom-up
 
-**Limitations à mentionner:**
+**Limitations π mentionner:**
 
-1.  MMLU 30% (sans entraànement)
-   - Extrapolable à 70-80%
+1.  MMLU 30% (sans entraπnement)
+   - Extrapolable π 70-80%
    - Trade-off vitesse/précision
 
 2.  Hellaswag 60%
@@ -470,25 +470,25 @@ IA-ATOMIQUE: <100MB
 **Angle publication:**
 
 > "Towards Ultra-Fast and Lightweight Natural Language Processing: 
-> An Atomic Resonance Approach Achieving 10-20à Better Coherence 
-> and 79,000à Faster Processing than GPT-4"
+> An Atomic Resonance Approach Achieving 10-20π Better Coherence 
+> and 79,000π Faster Processing than GPT-4"
 
 ---
 
 ## Conclusion
 
-### Synthàse Finale
+### Synthπse Finale
 
 **Records Absolus (3):**
-1. à Perplexité: 1.05 (10-20à GPT-4)
-2. à Vitesse: 3.96M mots/sec (79 185à GPT-4)
-3. à Légàreté: < 100MB (160à LLaMA 7B)
+1. π Perplexité: 1.05 (10-20π GPT-4)
+2. π Vitesse: 3.96M mots/sec (79 185π GPT-4)
+3. π Légπreté: < 100MB (160π LLaMA 7B)
 
 **Performances Excellentes (2):**
-4.  Needle Search: 25K mots/sec (50à LLMs)
-5.  Latence: < 5ms (200-1000à LLMs)
+4.  Needle Search: 25K mots/sec (50π LLMs)
+5.  Latence: < 5ms (200-1000π LLMs)
 
-**à Améliorer (2):**
+**π Améliorer (2):**
 6.  MMLU: 30%  objectif 70-80%
 7.  Hellaswag: 60%  objectif 85-90%
 
@@ -503,13 +503,13 @@ IA-ATOMIQUE: <100MB
  **Limites actuelles pour:**
 - Génération créative longue
 - Raisonnement multi-étapes complexe
-- Culture générale sans entraànement
+- Culture générale sans entraπnement
 
-**Publication HAL:**  **PRàT** avec résultats perplexité/vitesse/légàreté
+**Publication HAL:**  **PRπT** avec résultats perplexité/vitesse/légπreté
 
 ---
 
-**Derniàre mise à jour:** Janvier 2026  
+**Derniπre mise π jour:** Janvier 2026  
 **Version:** 4.1  
 **Auteur:** BRESSON Guylann  
 **Contact:** guylann.bresson.gb@gmail.com  

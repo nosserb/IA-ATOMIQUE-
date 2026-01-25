@@ -1,40 +1,40 @@
-# Systàme Hybride Probabilité + Stabilité Atomique
+# Systπme Hybride Probabilité + Stabilité Atomique
 
 ## Concept Innovant
 
 Au lieu de choisir entre **probabilité linguistique** OU **stabilité atomique**, on les **MIXE** pour combiner leurs forces :
 
 ### Probabilité Linguistique (30%)
-- **Ce que àa mesure** : Patterns statistiques du langage
+- **Ce que πa mesure** : Patterns statistiques du langage
 - **Comment** : Perplexité inversée  textes "naturels" ont faible perplexité
 - **Force** : Capture les habitudes linguistiques
 - **Faiblesse** : Peut manquer la cohérence sémantique profonde
 
 ### Stabilité Atomique (50%)
-- **Ce que àa mesure** : Cohérence du réseau d'atomes computationnels
+- **Ce que πa mesure** : Cohérence du réseau d'atomes computationnels
 - **Comment** : Mesure si la continuation renforce ou perturbe la structure atomique
 - **Force** : Détecte la cohérence sémantique profonde
 - **Faiblesse** : Peut manquer les patterns statistiques
 
 ### Synergie Multiplicative (20%)
-- **Ce que àa capture** : Interactions entre probabilité ET stabilité
-- **Formule** : Synergie = P(prob) à S(stabilité)
-- **Avantage** : Récompense les textes qui sont à LA FOIS probables ET stables
+- **Ce que πa capture** : Interactions entre probabilité ET stabilité
+- **Formule** : Synergie = P(prob) π S(stabilité)
+- **Avantage** : Récompense les textes qui sont π LA FOIS probables ET stables
 
 ## Formule Hybride
 
 ```
-Score = ààP + βàS + γà(PàS)
+Score = ππP + βπS + γπ(PπS)
 
 Où :
-- à = 0.30 (30% probabilité)
+- π = 0.30 (30% probabilité)
 - β = 0.50 (50% stabilité) 
 - γ = 0.20 (20% synergie)
 - P = score probabilité [0-1]
 - S = score stabilité atomique [0-1]
 ```
 
-## Comment àa Marche
+## Comment πa Marche
 
 ### 1. Score de Probabilité
 ```go
@@ -57,7 +57,7 @@ for i := 0; i < 10; i++ {
     ReseatAtomique.Iterate()
 }
 
-// APRàS convergence
+// APRπS convergence
 coherence_apres := ReseatAtomique.GetCoherence()
 
 // Stabilité
@@ -70,7 +70,7 @@ if coherence_apres > coherence_avant {
 
 ### 3. Synergie
 ```
-Synergie = P à S
+Synergie = P π S
 
 Exemples:
 - P=0.9, S=0.9  Synergie=0.81 (excellent!)
@@ -85,16 +85,16 @@ Exemples:
 **Contexte** : "Une femme entre dans une cuisine. Elle prend une casserole et la remplit d'eau."
 
 **Fin A** : "Elle met la casserole sur le feu et attend que l'eau bouille."
-- P = 0.85 (tràs probable linguistiquement)
-- S = 0.92 (tràs stable - séquence logique)
+- P = 0.85 (trπs probable linguistiquement)
+- S = 0.92 (trπs stable - séquence logique)
 - Synergie = 0.78
-- **Score = 0.30à0.85 + 0.50à0.92 + 0.20à0.78 = 0.871**  CORRECT
+- **Score = 0.30π0.85 + 0.50π0.92 + 0.20π0.78 = 0.871**  CORRECT
 
-**Fin B** : "Elle commence à chanter et danse dans le salon."
+**Fin B** : "Elle commence π chanter et danse dans le salon."
 - P = 0.45 (peu probable - rupture narrative)
 - S = 0.28 (instable - perturbe cohérence)
 - Synergie = 0.13
-- **Score = 0.30à0.45 + 0.50à0.28 + 0.20à0.13 = 0.301**  MAUVAIS
+- **Score = 0.30π0.45 + 0.50π0.28 + 0.20π0.13 = 0.301**  MAUVAIS
 
 ### Exemple 2: Histoire (MMLU)
 **Question** : "Quelle bataille a marqué la fin de l'Empire napoléonien?"
@@ -103,15 +103,15 @@ Exemples:
 - P = 0.72 (mots historiques cohérents)
 - S = 0.88 (stable - concepts reliés: napoléonwaterloo1815)
 - Synergie = 0.63
-- **Score = 0.30à0.72 + 0.50à0.88 + 0.20à0.63 = 0.782**  CORRECT
+- **Score = 0.30π0.72 + 0.50π0.88 + 0.20π0.63 = 0.782**  CORRECT
 
 **Choix B** : "La bataille d'Austerlitz"
 - P = 0.68 (mots historiques aussi)
 - S = 0.45 (moins stable - Austerlitz = VICTOIRE pas défaite)
 - Synergie = 0.31
-- **Score = 0.30à0.68 + 0.50à0.45 + 0.20à0.31 = 0.491**  MAUVAIS
+- **Score = 0.30π0.68 + 0.50π0.45 + 0.20π0.31 = 0.491**  MAUVAIS
 
-## Avantages du Systàme Hybride
+## Avantages du Systπme Hybride
 
 ### 1. Complémentarité
 - Probabilité capture les patterns statistiques
@@ -124,7 +124,7 @@ Exemples:
 - Synergie amplifie les bonnes réponses
 
 ### 3. Adaptabilité
-- Poids à, β, γ ajustables selon performance
+- Poids π, β, γ ajustables selon performance
 - Apprentissage automatique des meilleurs poids
 - Spécialisation possible par domaine
 
@@ -160,30 +160,30 @@ Avec datasets complets (16K questions) et réseau 1000+ atomes :
 ### Long Terme
 1. **Réseau génératif** : Prédire continuations probables
 2. **Apprentissage par renforcement** : Optimiser poids automatiquement
-3. **Transfer learning** : Pré-entraàner sur corpus massif
+3. **Transfer learning** : Pré-entraπner sur corpus massif
 
-## Pourquoi àa Fonctionne
+## Pourquoi πa Fonctionne
 
 ### Théorie
 Le langage a DEUX niveaux :
 1. **Niveau statistique** : Fréquences, co-occurrences, patterns
 2. **Niveau sémantique** : Sens, cohérence, logique
 
-Les modàles traditionnels excellent au niveau 1 mais ratent le niveau 2.  
-Les systàmes symboliques excellent au niveau 2 mais ratent le niveau 1.
+Les modπles traditionnels excellent au niveau 1 mais ratent le niveau 2.  
+Les systπmes symboliques excellent au niveau 2 mais ratent le niveau 1.
 
-**Le systàme hybride capture LES DEUX !**
+**Le systπme hybride capture LES DEUX !**
 
 ### Analogie
 C'est comme avoir deux juges :
-- **Juge Statistique** : "Cette phrase ressemble à du franàais normal"
+- **Juge Statistique** : "Cette phrase ressemble π du franπais normal"
 - **Juge Sémantique** : "Cette phrase a du SENS logique"
 
 Une bonne réponse doit satisfaire LES DEUX juges.
 
 ## Conclusion
 
-Le systàme hybride **Probabilité + Stabilité Atomique** est une innovation qui :
+Le systπme hybride **Probabilité + Stabilité Atomique** est une innovation qui :
 -  Combine forces de deux approches complémentaires
 -  Améliore la confiance des prédictions
 -  Capte la synergie via terme multiplicatif

@@ -1,4 +1,4 @@
-# à Archive IA-ATOMIQUE - Pràte pour Email!
+# π Archive IA-ATOMIQUE - Prπte pour Email!
 
 ## Fichier Créé
 
@@ -13,7 +13,7 @@ Located at:
 
 ---
 
-## à Contenu de l'Archive
+## π Contenu de l'Archive
 
 Tous les fichiers de la branche `chore/siteweb`:
 
@@ -47,11 +47,11 @@ Tous les fichiers de la branche `chore/siteweb`:
 - `Dockerfile`  NOUVEAU!
 - `docker-compose.yml`  NOUVEAU!
 - `Makefile`  NOUVEAU!
-- `.gitignore` (mis à jour)
+- `.gitignore` (mis π jour)
 - `go.mod`
 
 ### Documentation
-- `README.md` (mis à jour)
+- `README.md` (mis π jour)
 - `INSTALL.md`  NOUVEAU!
 - `WEB_README.md`  NOUVEAU!
 - `SETUP_WEB.md`  NOUVEAU!
@@ -98,7 +98,7 @@ make web
 
 - **Fichier:** 36 KB
 - **Extraction:** ~200 KB
-- **Facile à envoyer par email!** 
+- **Facile π envoyer par email!** 
 
 ---
 
@@ -106,7 +106,7 @@ make web
 
 Cette archive contient TOUT ce qui a été créé:
 
- Interface web complàte (HTML/CSS/JS)  
+ Interface web complπte (HTML/CSS/JS)  
  Serveur HTTP intégré (Go)  
  Support Windows complet (Batch + PowerShell)  
  Support Docker (Dockerfile, docker-compose)  
@@ -117,7 +117,7 @@ Cette archive contient TOUT ce qui a été créé:
 
 ---
 
-## Prochaine àtape
+## Prochaine πtape
 
 Une fois extractée et testée, tu peux pusher sur GitHub:
 
@@ -130,4 +130,4 @@ git push origin chore/siteweb
 
 ---
 
-**Archive pràte à envoyer! **
+**Archive prπte π envoyer! **

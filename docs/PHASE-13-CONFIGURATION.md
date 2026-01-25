@@ -17,7 +17,7 @@ go build -o programme
 
 ---
 
-## Paramàtres Configurables
+## Paramπtres Configurables
 
 ### 1. **Normalisation Lexicale** (resumeur_coherence.go)
 
@@ -29,17 +29,17 @@ penalite += float64(count-2) * 0.1  //  Ajuster ce coefficient
 
 | Coefficient | Effet |
 |-------------|-------|
-| 0.05 | Tràs permissif, peu de pénalité |
+| 0.05 | Trπs permissif, peu de pénalité |
 | **0.1** |  **Recommandé** |
 | 0.15 | Strict, forte déprioritisation |
-| 0.20 | Tràs strict, blocs répétitifs exclus |
+| 0.20 | Trπs strict, blocs répétitifs exclus |
 
 **Exemple**:
 ```go
-// Pour àtre plus permissif sur répétitions internes
+// Pour πtre plus permissif sur répétitions internes
 penalite += float64(count-2) * 0.05
 
-// Pour àtre ultra-strict
+// Pour πtre ultra-strict
 penalite += float64(count-2) * 0.2
 ```
 
@@ -73,7 +73,7 @@ if idf[mot] > 0.4 {  // N'importe quel mot rare
 }
 ```
 
-### 3. **Fenàtrage Strict - Similarité Lexicale** (resumeur_coherence.go)
+### 3. **Fenπtrage Strict - Similarité Lexicale** (resumeur_coherence.go)
 
 **Seuil de Diversité**:
 ```go
@@ -90,7 +90,7 @@ if similarity > 0.6 {  //  Ajuster ce seuil
 | 0.5 | 50% vocab commun | Diversifié, sélection modérée |
 | **0.6** | 60% vocab commun |  **Recommandé** |
 | 0.7 | 70% vocab commun | Assez permissif, plus de blocs |
-| 0.8 | 80% vocab commun | Tràs permissif, couverture max |
+| 0.8 | 80% vocab commun | Trπs permissif, couverture max |
 
 **Exemple Pratique**:
 ```go
@@ -122,7 +122,7 @@ if i-lastPos < 5 {  //  Ajuster distance
 
 | Distance | Effet |
 |----------|-------|
-| <3 | Ultra-strict, "tràs tràs" impossible |
+| <3 | Ultra-strict, "trπs trπs" impossible |
 | <5 |  **Recommandé**, répétitions bien séparées |
 | <7 | Modéré, quelques proches répétitions acceptées |
 | <10 | Permissif, répétitions espacées acceptées |
@@ -157,14 +157,14 @@ if compteurMots[motClean] % 3 == 0 && synChoisi != motClean {
 
 | Modulo | Fréquence | Effet |
 |--------|-----------|-------|
-| % 2 | Tous les 2 | Tràs diversifié (50% synonymes) |
+| % 2 | Tous les 2 | Trπs diversifié (50% synonymes) |
 | % 3 | Tous les 3 |  **Recommandé** (33% synonymes) |
 | % 4 | Tous les 4 | Modéré (25% synonymes) |
 | % 5 | Tous les 5 | Discret (20% synonymes) |
 
 **Configuration**:
 ```go
-// Tràs varié (synonymes fréquents)
+// Trπs varié (synonymes fréquents)
 if compteurMots[motClean] % 2 == 0 && synChoisi != motClean {
     motsFiltres = append(motsFiltres, synChoisi)
     continue
@@ -196,7 +196,7 @@ if similarity > 0.4 { delete(...) }  // Strict diversité
 
 // generation.go
 if idf[mot] > 0.5 && tf[mot] > 0.05 {
-    tfidfVal *= 0.7  // Tràs pénalisant
+    tfidfVal *= 0.7  // Trπs pénalisant
 }
 
 // coherence.go
@@ -206,7 +206,7 @@ if compteurMots[motClean] % 2 == 0 && ... {  // Synonymes fréquents
 }
 ```
 
-**Résultat**: 400-500 mots, **zéro** répétitions visibles, lecture tràs naturelle.
+**Résultat**: 400-500 mots, **zéro** répétitions visibles, lecture trπs naturelle.
 
 ---
 
@@ -261,9 +261,9 @@ if numBlocs > 75 { numBlocs = 75 }  // vs 50
 
 ## Recettes de Tuning
 
-### Cas 1: Résumé Tràs Court (100-200 mots)
+### Cas 1: Résumé Trπs Court (100-200 mots)
 ```go
-// àtre ultra-strict pour qualité
+// πtre ultra-strict pour qualité
 penalite += float64(count-2) * 0.2
 if similarity > 0.4 { delete(...) }
 if i-lastPos < 7 { continue }
@@ -279,7 +279,7 @@ if compteurMots[motClean] % 2 == 0 { synonymes }
 
 ### Cas 3: Résumé Long (1000+ mots)
 ```go
-// Assouplir critàres
+// Assouplir critπres
 penalite += float64(count-2) * 0.05
 if similarity > 0.7 { delete(...) }
 if i-lastPos < 3 { continue }
@@ -292,7 +292,7 @@ if numBlocs > 80 { numBlocs = 80 }
 ```go
 // Synonymes peuvent perdre précision
 // Désactiver ou utiliser dict technique
-if compteurMots[motClean] % 10 == 0 { synonymes }  // Tràs rare
+if compteurMots[motClean] % 10 == 0 { synonymes }  // Trπs rare
 
 // Augmenter pénalité TF-IDF (mots techniques courants)
 tfidfVal *= 0.7
@@ -332,39 +332,39 @@ time ./programme resume input.txt 0.12 > /dev/null
 ### Cycle d'Optimisation
 ```
 1. Test configuration actuelle
-2. Changer 1 paramàtre à la fois
+2. Changer 1 paramπtre π la fois
 3. Re-tester (longueur, cohérence, vitesse)
 4. Garder si améliore métrique cible
-5. Répéter jusqu'à optimum
+5. Répéter jusqu'π optimum
 ```
 
 ---
 
 ## Diagnostic & Dépannage
 
-### Problàme: Trop de Répétitions
+### Problπme: Trop de Répétitions
 **Cause probable**: Distance anti-répétition trop courte  
 **Solution**:
 ```go
-if i-lastPos < 7 { continue }  // Augmenter de 5 à 7
+if i-lastPos < 7 { continue }  // Augmenter de 5 π 7
 ```
 
-### Problàme: Résumé Trop Court
-**Cause probable**: Fenàtrage strict trop agressif  
+### Problπme: Résumé Trop Court
+**Cause probable**: Fenπtrage strict trop agressif  
 **Solution**:
 ```go
-if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 à 0.7
+if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 π 0.7
 ```
 
-### Problàme: Synonymes "Bizarre"
+### Problπme: Synonymes "Bizarre"
 **Cause probable**: Dictionnaire inadapté au domaine  
-**Solution**: àtendre `SynonymsDict` avec termes appropriés
+**Solution**: πtendre `SynonymsDict` avec termes appropriés
 ```go
 "algorithme": {"méthode", "procédure", "technique", "algorithme"},
 "données":    {"informations", "éléments", "contenus", "données"},
 ```
 
-### Problàme: Cohérence Baisse
+### Problπme: Cohérence Baisse
 **Cause probable**: Filtrage trop agressif  
 **Solution**: Assouplir pénalités
 ```go
@@ -384,7 +384,7 @@ Input Blocs (180)
     
 [2] TF-IDF Intelligent  Mots rares pénalisés
     
-[3] Fenàtrage Strict  Blocs consécutifs diversifiés
+[3] Fenπtrage Strict  Blocs consécutifs diversifiés
      (Sélection: 45 blocs)
 [4] Génération
     
@@ -398,7 +398,7 @@ Output Texte (679 mots, 95% cohérence)
 **Si sortie n'est pas bonne**:
 1. Identifier quel filtre contribue le plus
 2. Ajuster ce filtre specifically
-3. Laisser autres à defaults
+3. Laisser autres π defaults
 
 ---
 
@@ -407,8 +407,8 @@ Output Texte (679 mots, 95% cohérence)
 - [ ] Tester configuration default Phase 13+++
 - [ ] Mesurer: longueur, cohérence, vitesse
 - [ ] Identifier métrique cible (longueur? qualité? vitesse?)
-- [ ] Ajuster paramàtres selon profil (Quality/Balanced/Coverage)
-- [ ] Re-tester apràs chaque changement
+- [ ] Ajuster paramπtres selon profil (Quality/Balanced/Coverage)
+- [ ] Re-tester aprπs chaque changement
 - [ ] Documenter configuration finale
 - [ ] Valider sur multi-textes d'entrée
 
@@ -417,13 +417,13 @@ Output Texte (679 mots, 95% cohérence)
 ## Références
 
 - [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md) - Spécifications techniques
-- [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) - Comparaison avant/apràs
+- [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) - Comparaison avant/aprπs
 - [Code Source: resumeur_coherence.go](database/resumeur_coherence.go#L554-L580)
 - [Code Source: generation.go](database/generation.go#L495-L510)
 - [Code Source: coherence.go](database/coherence.go#L410-L470)
 
 ---
 
-**Derniàre mise à jour**: Phase 13+++  
+**Derniπre mise π jour**: Phase 13+++  
 **Status**:  Stable & Documented  
 **Recommandation**: Utiliser profil "Balanced" par défaut, adapter selon besoins spécifiques.

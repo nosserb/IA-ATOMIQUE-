@@ -1,17 +1,17 @@
-# TOUT EST PRàT POUR GITHUB!
+# TOUT EST PRπT POUR GITHUB!
 
 ## Résumé: Qu'est-ce qui a été préparé?
 
-Ton projet **IA-ATOMIQUE** est maintenant **100% pràt** pour GitHub. Voici ce qui a été ajouté:
+Ton projet **IA-ATOMIQUE** est maintenant **100% prπt** pour GitHub. Voici ce qui a été ajouté:
 
 ---
 
-## à Fichiers Créés / Modifiés
+## π Fichiers Créés / Modifiés
 
 ### Interface Web (3 fichiers)
  `web/index.html` - Interface moderne avec zones input/output  
  `web/style.css` - Design épuré avec gradient violet  
- `web/script.js` - Logique JavaScript pour les requàtes API  
+ `web/script.js` - Logique JavaScript pour les requπtes API  
 
 ### Serveur (1 fichier)
  `web.go` - Serveur HTTP avec endpoint `/api/summarize`
@@ -34,15 +34,15 @@ Ton projet **IA-ATOMIQUE** est maintenant **100% pràt** pour GitHub. Voici ce q
  `SETUP_WEB.md` - Détails avancés  
  `GITHUB_CHECKLIST.md` - Checklist pré-déploiement  
  `GITHUB_READY.md` - Status de la préparation  
- `GITHUB_PUSH_GUIDE.md` - Guide pas à pas pour GitHub  
+ `GITHUB_PUSH_GUIDE.md` - Guide pas π pas pour GitHub  
 
 ### Configuration (2 fichiers)
- `.gitignore` - Mis à jour avec tous les fichiers à ignorer  
- `go.mod` - Dépendances Go (déjà existant)
+ `.gitignore` - Mis π jour avec tous les fichiers π ignorer  
+ `go.mod` - Dépendances Go (déjπ existant)
 
 ---
 
-## Comment àa Marche
+## Comment πa Marche
 
 ### Pour toi (développeur)
 
@@ -103,7 +103,7 @@ make web
 # ou
 ./start-web.sh
 
-# Accédez à http://localhost:8080
+# Accédez π http://localhost:8080
 ```
 
 ### Avec Docker (production)
@@ -128,11 +128,11 @@ GitHub Actions vérifiera automatiquement:
 **Côté utilisateur:**
 1. Colle ton texte dans la zone gauche
 2. Clique "Résumer" (ou Ctrl+Entrée)
-3. Vois le résumé apparaàtre à droite
+3. Vois le résumé apparaπtre π droite
 4. Consulte les statistiques (confiance, catégories)
 
 **Côté serveur:**
-- Reàoit le texte via API POST
+- Reπoit le texte via API POST
 - Utilise ton IA neuronale pour analyser
 - Retourne un JSON avec le résumé et stats
 
@@ -167,7 +167,7 @@ IA-ATOMIQUE/
  .github/workflows/
     build.yml                   CI/CD
 
- README.md                       Doc principale (mise à jour)
+ README.md                       Doc principale (mise π jour)
  INSTALL.md                      Installation
  WEB_README.md                   Web config
  SETUP_WEB.md                    Setup avancé
@@ -176,7 +176,7 @@ IA-ATOMIQUE/
  GITHUB_PUSH_GUIDE.md            Guide push
 
  go.mod                          Dépendances
- .gitignore                      Config Git (mise à jour)
+ .gitignore                      Config Git (mise π jour)
  LICENSE
  README.fr.md
 ```
@@ -215,20 +215,20 @@ Chaque document a un objectif:
 ## Checklist Finale
 
 - [x] Code compile sans erreur
-- [x] Interface web complàte et testée
+- [x] Interface web complπte et testée
 - [x] Serveur HTTP intégré
 - [x] Docker et Compose configurés
 - [x] Makefile pour automation
 - [x] CI/CD GitHub Actions
-- [x] Documentation complàte (7 fichiers)
+- [x] Documentation complπte (7 fichiers)
 - [x] Scripts helpers (verify, git-push)
 - [x] .gitignore correct
-- [x] README.md mis à jour
+- [x] README.md mis π jour
 - [x] Tests de compilation réussis
 
 ---
 
-## Prochaine àtape?
+## Prochaine πtape?
 
 ### Créer le repo GitHub:
 1. Va sur github.com
@@ -267,7 +267,7 @@ make test          # Teste la compilation
 
 ### Pour vérifier avant push
 ```bash
-./verify-github.sh  # Checklist complàte
+./verify-github.sh  # Checklist complπte
 ```
 
 ### Pour pusher facilement
@@ -279,7 +279,7 @@ make test          # Teste la compilation
 
 ## C'est Tout!
 
-Ton projet est **100% pràt** pour àtre hébergé sur GitHub. Les utilisateurs vont pouvoir:
+Ton projet est **100% prπt** pour πtre hébergé sur GitHub. Les utilisateurs vont pouvoir:
 
  Cloner ton repo  
  Installer facilement (3 options: make, docker, manuel)  

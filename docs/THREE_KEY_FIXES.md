@@ -1,9 +1,9 @@
-# Les 3 Correctifs Clés : De "Plat" à "Riche Visuellement"
+# Les 3 Correctifs Clés : De "Plat" π "Riche Visuellement"
 
-## Le Problàme Identifié
+## Le Problπme Identifié
 
 ```
-Coherence: 0.00   Le systàme était "stable" mais visually mort
+Coherence: 0.00   Le systπme était "stable" mais visually mort
 ```
 
 L'IA minimisait l'énergie **mais sans récompenser la structure interne**.
@@ -12,7 +12,7 @@ L'IA minimisait l'énergie **mais sans récompenser la structure interne**.
 
 ---
 
-## CORRECTIF 1: ànergie de Cohérence Régionale
+## CORRECTIF 1: πnergie de Cohérence Régionale
 
 ### Concept (Simple mais Puissant)
 
@@ -26,12 +26,12 @@ Une région gagne de l'énergie si ses atomes partagent:
 **Fichier**: `database/image_energy_based.go` - Fonction `ComputeLocalEnergy()`
 
 ```go
-// TERM 6: RàGION COHERENCE ENERGY
+// TERM 6: RπGION COHERENCE ENERGY
 colorVariance /= float64(neighborCount)
 gradientVariance /= float64(neighborCount)
 
-// RàCOMPENSE: variation bien structurée (0.2-0.8)
-// PàNALITà: soit trop uniforme (< 0.1), soit trop chaotique (> 0.9)
+// RπCOMPENSE: variation bien structurée (0.2-0.8)
+// PπNALITπ: soit trop uniforme (< 0.1), soit trop chaotique (> 0.9)
 idealVariance := 0.5
 colorVariationPenalty := math.Abs(colorVariance-idealVariance) * 0.15
 gradientVariationPenalty := math.Abs(gradientVariance-idealVariance*0.5) * 0.1
@@ -55,7 +55,7 @@ Phase 1  random
 Phase 2  inherit colors seulement
 Phase 3  inherit colors seulement
 
-APRàS:
+APRπS:
 Phase 1  random
 Phase 2  inherit complet (couleurs + énergies + structures stables)
 Phase 3  inherit complet
@@ -84,7 +84,7 @@ Phase 3: ...
 
 3. **Transférer état**: `net.InheritPhaseState(previousNetwork)`
 ```
-àtat de phase hérité: 256 atomes, poids d'héritage=40.0%
+πtat de phase hérité: 256 atomes, poids d'héritage=40.0%
 ```
 
 **Impact**: Les phases successives ne "cassent" pas les bons équilibres de la phase précédente.
@@ -95,7 +95,7 @@ Phase 3: ...
 
 ### Concept
 
-Si le systàme devient **trop uniforme** (mort visuelle):
+Si le systπme devient **trop uniforme** (mort visuelle):
 
 ```go
 // TERM 7: AESTHETIC PENALTY
@@ -106,11 +106,11 @@ if totalUniformity > 0.95 {
 }
 ```
 
-**Pas une ràgle dure**, juste une **pénalité douce** qui dit:
-- "C'est bon, tu peux àtre uniforme"
-- "Mais si c'est TROP uniforme... àa coàte un peu"
+**Pas une rπgle dure**, juste une **pénalité douce** qui dit:
+- "C'est bon, tu peux πtre uniforme"
+- "Mais si c'est TROP uniforme... πa coπte un peu"
 
-**Impact**: Le systàme maintient naturellement une variation visuelle agréable.
+**Impact**: Le systπme maintient naturellement une variation visuelle agréable.
 
 ---
 
@@ -123,7 +123,7 @@ Images: Stables mais plates
 Qualité: 3/10
 ```
 
-### Apràs les 3 Correctifs
+### Aprπs les 3 Correctifs
 ```
 Coherence: 0.63-0.65  Maintenant récompensée!
 Images: Stables ET structurées
@@ -141,10 +141,10 @@ Multi-Phase Energy:
 **Fichier**: `energy_commands.go` - `HandleMultiPhaseGeneration()`
 
 ```
-AVANT:          APRàS:
+AVANT:          APRπS:
 Phase 1: 150     200   (+33%)
 Phase 2: 200     300   (+50%)
-Phase 3: 250     400   (+60%)   TRàS important pour fine
+Phase 3: 250     400   (+60%)   TRπS important pour fine
 ```
 
 **Pourquoi Phase 3 +60%?** 
@@ -152,18 +152,18 @@ Parce que la **qualité fine dépend fortement de convergence profonde**.
 
 ---
 
-## Philosophie Derriàre
+## Philosophie Derriπre
 
 ### Avant
 ```
-"ànergie basse" = "Image bonne"
+"πnergie basse" = "Image bonne"
  Résultat: Trop de simplification
 ```
 
-### Apràs
+### Aprπs
 ```
-"ànergie basse" ET "Structure riche" = "Image bonne"
- Résultat: àquilibre visuel naturel
+"πnergie basse" ET "Structure riche" = "Image bonne"
+ Résultat: πquilibre visuel naturel
 ```
 
 ### Héritage Inter-Phase
@@ -208,9 +208,9 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-## Métriques Clés à Observer
+## Métriques Clés π Observer
 
-| Métrique | Avant | Apràs | Impact |
+| Métrique | Avant | Aprπs | Impact |
 |----------|-------|-------|--------|
 | **Coherence** | 0.00 | 0.63+ |  Structure récompensée |
 | **Phase Energy** | 0.709  -0.356 | 0.709  -0.356  -0.635 |  Meilleur équilibre |
@@ -221,7 +221,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ## Pourquoi Ça Marche
 
-1. **ànergie de Cohérence**: Transforme le problàme de "stabilité" en "stabilité + structure"
+1. **πnergie de Cohérence**: Transforme le problπme de "stabilité" en "stabilité + structure"
    - Les régions uniformes sont encore acceptables
    - Les régions structurées sont **récompensées**
 
@@ -231,18 +231,18 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 3. **Pénalité Esthétique**: Soft guidance
    - Pas dogmatique ("tu DOIS avoir variation")
-   - Juste ("si c'est TROP uniforme, àa coàte")
+   - Juste ("si c'est TROP uniforme, πa coπte")
 
-**Résultat**: Image qui est à la fois **physiquement stable ET visuellement riche**.
+**Résultat**: Image qui est π la fois **physiquement stable ET visuellement riche**.
 
 ---
 
-## Prochaines àtapes Possibles
+## Prochaines πtapes Possibles
 
 - [ ] **Tuner les poids** (0.15, 0.1, 0.1  données-driven)
-- [ ] **Critàres visuels additionnels** (symétrie, répétition)
+- [ ] **Critπres visuels additionnels** (symétrie, répétition)
 - [ ] **Guidance par prompt** (texte  contraintes esthétiques)
-- [ ] **Super-résolution** (4à4 patches  1à1 pixels)
+- [ ] **Super-résolution** (4π4 patches  1π1 pixels)
 
 ---
 

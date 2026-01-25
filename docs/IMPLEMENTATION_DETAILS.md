@@ -5,11 +5,11 @@
 ### Fichiers Modifiés
 
 #### 1. **interaction.go** (+450 lignes)
-Nouvelles fonctions implémentées à la fin du fichier:
+Nouvelles fonctions implémentées π la fin du fichier:
 
 ```go
 type StyleProfile struct
- Défini les caractéristiques de style à détecter
+ Défini les caractéristiques de style π détecter
 
 func AnalyserStyleTexte(texte string) StyleProfile
  Analyse formalisme (0.0-1.0)
@@ -26,18 +26,18 @@ func MapperSynonymes() map[string][]string
  Dictionnaire de 30+ paires mot[synonymes]
     Verbes: avoir, faire, aller, venir
     Adjectifs: bon, grand, difficile, important
-    Adverbes: tràs, beaucoup, peu, souvent
-    Noms: chose, faàon, temps, problàme
+    Adverbes: trπs, beaucoup, peu, souvent
+    Noms: chose, faπon, temps, problπme
 
 func ParaphraseIntelligente(phrase string) string
  Utilise MapperSynonymes
- Remplace jusqu'à 3 mots par phrase
+ Remplace jusqu'π 3 mots par phrase
  Préserve casse originale
  Sortie: phrase paraphrasée
 
 func VerifierQualiteRecriture(original, rewritten string) map[string]float64
  Mesure conservation concepts (ratio %)
- Valide longueur (à30% acceptable)
+ Valide longueur (π30% acceptable)
  Vérifie lisibilité
  Retourne scores: conservation_concepts, longueur, lisibilite, global
 
@@ -62,7 +62,7 @@ func HumanizeTexteAvance(texte, style string) string
 Modifications du CLI pour supporter le flag `-a`:
 
 ```go
-Ligne 173: Documentation help mise à jour
+Ligne 173: Documentation help mise π jour
  Ajout mode avancé dans le help
  Exemples avec -a
  Mention fichier _humanized_avance.txt
@@ -81,7 +81,7 @@ Ligne 285-340: Case "humanize" refondue
 ./programme humanize -a file document.txt      
 ```
 
-### àtat de Compilation
+### πtat de Compilation
 
 ```
  0 erreurs
@@ -96,11 +96,11 @@ Ligne 285-340: Case "humanize" refondue
 ### 1. Analyse de Style (`AnalyserStyleTexte`)
 
 **Indicateurs détectés:**
-- Mots formels: "à l'occasion de", "en ce qui concerne", "cependant"
+- Mots formels: "π l'occasion de", "en ce qui concerne", "cependant"
 - Mots informels: "sympa", "cool", "genre", "vraiment"
 - Termes techniques: "algorithme", "données", "architecture", "API"
 - Longueur phrase: Total mots / nombre phrases
-- Mots longs: % de mots > 8 caractàres
+- Mots longs: % de mots > 8 caractπres
 
 **Scoring:**
 ```
@@ -119,7 +119,7 @@ Articles, prépositions, conjonctions, pronoms, auxiliaires
 stopwords = {
   "le", "la", "les", "un", "une", "des",
   "et", "ou", "mais", "donc", "car",
-  "est", "sont", "a", "en", "de", "à",
+  "est", "sont", "a", "en", "de", "π",
   "pour", "par", "dans", "sur", "qui", "que", "ce"
 }
 ```
@@ -140,18 +140,18 @@ stopwords = {
    - Chercher occurrence dans phrase
    - Calculer hash stable: hash(motOriginal) % len(options)
    - Sélectionner synonyme déterministe
-   - Remplacer premiàre occurrence avec regex
-   - Préserver casse (premiàre lettre majuscule)
-   - Limiter à 3 remplacements
+   - Remplacer premiπre occurrence avec regex
+   - Préserver casse (premiπre lettre majuscule)
+   - Limiter π 3 remplacements
 3. Retourner phrase paraphrasée
 ```
 
 **Exemple d'exécution:**
 ```
-Input:  "Les ordinateurs font tràs vite"
-Hash("tràs") % 3 = 0  "extràmement"
+Input:  "Les ordinateurs font trπs vite"
+Hash("trπs") % 3 = 0  "extrπmement"
 Hash("vite") % X = Y  "rapidement"
-Output: "Les ordinateurs accomplissent extràmement rapidement"
+Output: "Les ordinateurs accomplissent extrπmement rapidement"
 ```
 
 ### 4. Validation de Qualité (`VerifierQualiteRecriture`)
@@ -178,7 +178,7 @@ c) **Lisibilité (0.0-1.0)**
 ```
 Détecte:
   - Ponctuation dupliquée (".." ou ",,")
-score = 1.0 - (problàmes_count * 0.5)
+score = 1.0 - (problπmes_count * 0.5)
 ```
 
 d) **Score Global**
@@ -203,14 +203,14 @@ global = (conservation + longueur + lisibilite) / 3
    b) ParaphraseIntelligente()  reformule
    c) VerifierQualiteRecriture()  score global
    d) Si score >= 0.6  Utiliser paraphrase
-      Sinon  Fallback à HumanizeTexteStyle(standard)
+      Sinon  Fallback π HumanizeTexteStyle(standard)
    e) Afficher score pour phrases 1-3
 
 4. Reconstruire texte
     Jointure par ". "
     Assurer point final
 
-5. Afficher "[HUMANISATION AVANCàE COMPLàTàE]"
+5. Afficher "[HUMANISATION AVANCπE COMPLπTπE]"
 ```
 
 ---
@@ -247,16 +247,16 @@ $ ./programme humanize -a file test.txt
 
 ### Test 3: Modes comparatifs
 ```
-Texte original: "Les ordinateurs modernes sont tràs puissants"
+Texte original: "Les ordinateurs modernes sont trπs puissants"
 
-Standard:       "Les ordinateurs modernes sont tràs puissants. Ensuite..."
+Standard:       "Les ordinateurs modernes sont trπs puissants. Ensuite..."
                 (ajoute connecteur)
 
-Professionnel:  "Les ordinateurs modernes sont particuliàrement puissants"
-                (remplace "tràs"  "particuliàrement")
+Professionnel:  "Les ordinateurs modernes sont particuliπrement puissants"
+                (remplace "trπs"  "particuliπrement")
 
-Avancé:         "Les ordinateurs modernes sont extràmement puissants"
-                (remplace "tràs"  "extràmement", autre synonyme)
+Avancé:         "Les ordinateurs modernes sont extrπmement puissants"
+                (remplace "trπs"  "extrπmement", autre synonyme)
 ```
 
 ### Test 4: Scores de Qualité
@@ -293,7 +293,7 @@ Transparent pour l'utilisateur
 - 4 catégories (verbes, adj, adv, noms)
 
 ### Mots-clés filtrés
-- 40+ stopwords franàais
+- 40+ stopwords franπais
 
 ### Documentation
 - HUMANIZATION_GUIDE.md: 260 lignes
@@ -304,12 +304,12 @@ Transparent pour l'utilisateur
 
 ## Avantages de l'Implémentation
 
-1. **Modulaire**: Chaque fonction peut àtre utilisée indépendamment
+1. **Modulaire**: Chaque fonction peut πtre utilisée indépendamment
 2. **Extensible**: Facile d'ajouter plus de synonymes ou stopwords
 3. **Performant**: O(n) complexity pour la plupart des opérations
 4. **Robuste**: Fallback automatique si qualité insuffisante
 5. **Transparent**: Affichage des scores pour comprendre le processus
-6. **Compatible**: N'interfàre pas avec les modes standard/professionnel
+6. **Compatible**: N'interfπre pas avec les modes standard/professionnel
 
 ---
 

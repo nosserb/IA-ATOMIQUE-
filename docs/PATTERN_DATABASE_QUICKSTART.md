@@ -181,7 +181,7 @@ rm patterns.db
 | HISTOIRE | Historical, medieval, ancient | Warm |
 | BUSINESS | Markets, commerce, enterprise | Mixed |
 | ALIMENTATION | Food, fruits, meals | Green |
-| SANTà | Health, medicine, hospitals | Green/Blue |
+| SANTπ | Health, medicine, hospitals | Green/Blue |
 
 ---
 

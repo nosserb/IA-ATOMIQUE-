@@ -4,69 +4,69 @@
 
 ## Nouveaux Modes Ultra-Rapides
 
-### GàNàRATION D'IMAGES
+### GπNπRATION D'IMAGES
 
-#### 1à Mode ULTRA (<500ms)
+#### 1π Mode ULTRA (<500ms)
 ```bash
 ./programme image ultra "prompt"
 ```
-- **Résolution:** 128à128 pixels
-- **Patch size:** 64à64 (TRàS gros pour moins d'atomes)
+- **Résolution:** 128π128 pixels
+- **Patch size:** 64π64 (TRπS gros pour moins d'atomes)
 - **Itérations:** 2 seulement
 - ** Temps:** ~20-50ms
 - ** Qualité:** Preview ultra-rapide
 
-#### 2à Mode DRAFT (<1-2 sec)
+#### 2π Mode DRAFT (<1-2 sec)
 ```bash
 ./programme image draft "prompt"
 ```
-- **Résolution:** 256à256 pixels
-- **Patch size:** 32à32
+- **Résolution:** 256π256 pixels
+- **Patch size:** 32π32
 - **Itérations:** 5
 - ** Temps:** ~30-100ms
 - ** Qualité:** Draft acceptable
 
-#### 3à Mode FAST (2-3 sec)
+#### 3π Mode FAST (2-3 sec)
 ```bash
 ./programme image fast "prompt"
 ```
-- **Résolution:** 256à256 pixels
-- **Patch size:** 16à16
+- **Résolution:** 256π256 pixels
+- **Patch size:** 16π16
 - **Itérations:** 10
 - ** Temps:** ~50-150ms
 - ** Qualité:** Bonne qualité
 
-### DàFLOUTAGE D'IMAGES
+### DπFLOUTAGE D'IMAGES
 
-Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé pour l'ULTRA.
+Les mπmes modes s'appliquent au défloutage ! Mais avec une différence clé pour l'ULTRA.
 
-#### 1à Mode ULTRA **4K UPSCALE**  NOUVEAU
+#### 1π Mode ULTRA **4K UPSCALE**  NOUVEAU
 ```bash
 ./programme deblur ultra image.jpg output_4k.png
 ```
-- **Grid:** 4à4 patches (quality processing)
+- **Grid:** 4π4 patches (quality processing)
 - **Itérations:** 15 (enhanced deblurring)
-- **Output:** **3840à2160 (4K)**  Automatique !
+- **Output:** **3840π2160 (4K)**  Automatique !
 - **Alpha/Beta:** 0.6 / 0.35 (quality enhancement)
 - ** Temps:** ~200ms
 - ** Qualité:** Maximum + Upscale 4K
 - ** Cas d'usage:** Export final haute qualité, impression, archivage
 
-#### 2à Mode DRAFT (Résolution originale)
+#### 2π Mode DRAFT (Résolution originale)
 ```bash
 ./programme deblur draft image.jpg deblurred_draft.png
 ```
-- **Grid:** 8à8 patches
+- **Grid:** 8π8 patches
 - **Itérations:** 20
 - **Output:** Original size
 - ** Temps:** ~40ms
 - ** Qualité:** Good preview
 
-#### 3à Mode FAST (Résolution originale)
+#### 3π Mode FAST (Résolution originale)
 ```bash
 ./programme deblur fast image.jpg deblurred_fast.png
 ```
-- **Grid:** 16à16 patches
+- **Grid:** 16π16 patches
 - **Itérations:** 40
 - **Output:** Original size
 - ** Temps:** ~45ms
@@ -77,17 +77,17 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 ```
  IMAGE GENERATION BENCHMARK
 
-1. ULTRA MODE:   22ms    (128à128 @ 5 iter)
-2. DRAFT MODE:   27ms    (256à256 @ 5 iter)
-3. FAST MODE:    18ms    (256à256 @ 10 iter)
+1. ULTRA MODE:   22ms    (128π128 @ 5 iter)
+2. DRAFT MODE:   27ms    (256π256 @ 5 iter)
+3. FAST MODE:    18ms    (256π256 @ 10 iter)
 
  ALL TARGETS MET! (<2 seconds)
 
  DEBLUR BENCHMARK (NEW WITH 4K ULTRA)
 
-1. ULTRA 4K:     206ms   (5123840à2160 + quality)   NEW!
-2. DRAFT:        43ms    (512à512, original size)
-3. FAST:         46ms    (512à512, original size)
+1. ULTRA 4K:     206ms   (5123840π2160 + quality)   NEW!
+2. DRAFT:        43ms    (512π512, original size)
+3. FAST:         46ms    (512π512, original size)
 
  ALL DEBLUR MODES UNDER 2 SECONDS!
    Ultra mode now does: deblur + 4K upscale + quality enhancement
@@ -97,16 +97,16 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 
 ### Générations
 1. **Patch Size Augmenté**
-   - Ultra: 64à64 (seulement 4 atomes total!)
-   - Draft: 32à32 (64 atomes)
-   - Fast: 16à16 (256 atomes)
+   - Ultra: 64π64 (seulement 4 atomes total!)
+   - Draft: 32π32 (64 atomes)
+   - Fast: 16π16 (256 atomes)
 
 2. **Itérations Réduites**
    - Ultra: 2 itérations
    - Draft: 5 itérations
    - Fast: 10 itérations
 
-3. **Paramàtres Adaptés**
+3. **Paramπtres Adaptés**
    ```go
    // Pour convergence ultra-rapide
    CouplingCoefficient: 0.9    // Plus d'influence voisins
@@ -128,9 +128,9 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 
 ### Défloutage
 1. **Grid Minimal**
-   - Ultra: 2à2 (4 patches)
-   - Draft: 4à4 (16 patches)
-   - Fast: 8à8 (64 patches)
+   - Ultra: 2π2 (4 patches)
+   - Draft: 4π4 (16 patches)
+   - Fast: 8π8 (64 patches)
 
 2. **Couplage Réduit**
    ```go
@@ -139,22 +139,22 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
    ```
 
 3. **Early Stopping**
-   - Arràt dàs convergence atteinte
+   - Arrπt dπs convergence atteinte
    - Pas d'itérations inutiles
 
 4. **Modification Mask**
    - Seulement traiter régions changées
-   - àviter recalcul inutile
+   - πviter recalcul inutile
 
 ## Performances Comparées
 
 | Mode | Résolution | Temps | Qualité | Utilisation |
 |------|-----------|-------|---------|------------|
-| **ULTRA** | 128à128 | <0.5s |  | Preview instant |
-| **DRAFT** | 256à256 | <1.5s |  | Draft/Brouillon |
-| **FAST** | 256à256 | <3s |  | Web/Mobile |
-| **BALANCED** | 512à512 | 5-10s |  | Production standard |
-| **QUALITY** | 512à512 | 20-30s |  | Print/Haute résolution |
+| **ULTRA** | 128π128 | <0.5s |  | Preview instant |
+| **DRAFT** | 256π256 | <1.5s |  | Draft/Brouillon |
+| **FAST** | 256π256 | <3s |  | Web/Mobile |
+| **BALANCED** | 512π512 | 5-10s |  | Production standard |
+| **QUALITY** | 512π512 | 20-30s |  | Print/Haute résolution |
 
 ## Cas d'Usage
 
@@ -168,7 +168,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 - **Draft:** Déflouter captures d'écran
 - **Fast:** Restaurer photos utilisateur
 
-## Commandes Complàtes
+## Commandes Complπtes
 
 ### Génération
 ```bash
@@ -229,9 +229,9 @@ PNG Output ~0.1-2 seconds
 
 ### Reduce Atoms Count (Biggest Impact)
 ```
-Standard: 256à256 @ 8px patch = 1024 atoms
-ULTRA: 128à128 @ 64px patch = 4 atoms! 
-DRAFT: 256à256 @ 32px patch = 64 atoms
+Standard: 256π256 @ 8px patch = 1024 atoms
+ULTRA: 128π128 @ 64px patch = 4 atoms! 
+DRAFT: 256π256 @ 32px patch = 64 atoms
 ```
 
 ### Reduce Iterations (Significant)

@@ -1,10 +1,10 @@
-# PARADIGME DE RELAXATION D'àNERGIE POUR GàNàRATION D'IMAGES
+# PARADIGME DE RELAXATION D'πNERGIE POUR GπNπRATION D'IMAGES
 
 ## Résumé Exécutif
 
-**Nous avons pivé d'une approche "dessin" à une approche "physique".**
+**Nous avons pivé d'une approche "dessin" π une approche "physique".**
 
-Au lieu de dire à une IA "dessine une image avec ces propriétés", nous disons: "Voici un systàme d'atomes interagissant localement. Minimisez l'énergie jusqu'à équilibre."
+Au lieu de dire π une IA "dessine une image avec ces propriétés", nous disons: "Voici un systπme d'atomes interagissant localement. Minimisez l'énergie jusqu'π équilibre."
 
 ### Les résultats?
  **Instantané** (pas de forward pass réseau géant)  
@@ -20,14 +20,14 @@ Au lieu de dire à une IA "dessine une image avec ces propriétés", nous disons
 
 ### Niveau 1: Atomes (Micro)
 - **Unité**: Chaque pixel/patch = 1 atome autonome
-- **àtat**: couleur RGB, intensité, orientation, confiance
+- **πtat**: couleur RGB, intensité, orientation, confiance
 - **Interaction**: Uniquement avec 8 voisins immédiats
 - **Physique**: Minimise tension locale via gradient descent
 
 ### Niveau 2: Motifs (Meso)
 - **Détection**: Régions cohérentes émergent automatiquement
 - **Propriétés**: Edges, gradients, textures, symétries
-- **Pas programmé**: àmerge naturellement de l'équilibre
+- **Pas programmé**: πmerge naturellement de l'équilibre
 - **BFS clustering**: Trouve régions de couleur similaire
 
 ### Niveau 3: Champ Global (Macro)
@@ -38,7 +38,7 @@ Au lieu de dire à une IA "dessine une image avec ces propriétés", nous disons
 
 ---
 
-## Fonction d'ànergie Locale
+## Fonction d'πnergie Locale
 
 Chaque atome minimise:
 
@@ -59,26 +59,26 @@ champ_global:  faible attrait vers propriétés globales
 ## Cycle de Génération
 
 ```
-àTAPE 1: Initialisation
+πTAPE 1: Initialisation
    Couleurs aléatoires
    Confiance basse
-   ànergie TRàS HAUTE
+   πnergie TRπS HAUTE
 
-àTAPE 2: Relaxation
+πTAPE 2: Relaxation
    Chaque atome réduit son énergie
    Atomes se synchronisent progressivement
-   Patterns commencent à émerger
+   Patterns commencent π émerger
   
-àTAPE 3: Convergence
+πTAPE 3: Convergence
    Plateau en énergie totale
    Stabilité atteinte
-   Arràt automatique
+   Arrπt automatique
 
-àTAPE 4: Auto-Réévaluation
+πTAPE 4: Auto-Réévaluation
    Détection d'oscillations
    Suppression des mauvaises configurations
-   Ajustement automatique des paramàtres
-   Qualité s'améliore d'elle-màme
+   Ajustement automatique des paramπtres
+   Qualité s'améliore d'elle-mπme
 ```
 
 ---
@@ -88,27 +88,27 @@ champ_global:  faible attrait vers propriétés globales
 **Paradigme: Coarse-to-Fine Progressive**
 
 ```
-Phase 1: Patches 16à16 (100 itérations)
-    Structure globale grossiàre
-    ànergie: ~1.0
+Phase 1: Patches 16π16 (100 itérations)
+    Structure globale grossiπre
+    πnergie: ~1.0
     Base pour la phase suivante
 
-     Upscale 2à
+     Upscale 2π
 
-Phase 2: Patches 8à8 (200 itérations)
+Phase 2: Patches 8π8 (200 itérations)
     Détails intermédiaires
-    ànergie: ~0.5
+    πnergie: ~0.5
     Base pour la phase suivante
 
-     Upscale 2à
+     Upscale 2π
 
-Phase 3: Patches 4à4 (250 itérations)
+Phase 3: Patches 4π4 (250 itérations)
     Micro-structure fine
-    ànergie: ~0.3
+    πnergie: ~0.3
     Résultat final haute résolution
 ```
 
-**Avantage clé**: Chaque phase commence pràs d'une solution viable, donc converge **3-5à plus vite** que une seule longue phase.
+**Avantage clé**: Chaque phase commence prπs d'une solution viable, donc converge **3-5π plus vite** que une seule longue phase.
 
 ---
 
@@ -127,7 +127,7 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 ```
 
 - **Energy**: Tension globale (baisse = mieux)
-- **Stability**: -1 (chaos) à +1 (équilibre) 
+- **Stability**: -1 (chaos) π +1 (équilibre) 
 - **Oscillating%**: Atomes qui changent de direction (bas = stable)
 
 ---
@@ -149,10 +149,10 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 ### Multi-Phase (Meilleure Qualité)
 ```bash
 ./programme energy multi-phase
-# Génàre automatiquement 3 phases: 16à16  8à8  4à4
+# Génπre automatiquement 3 phases: 16π16  8π8  4π4
 ```
 
-### Analyse du Paysage ànergétique
+### Analyse du Paysage πnergétique
 ```bash
 ./programme energy analyze
 # Montre l'évolution de l'énergie et stabilité
@@ -168,17 +168,17 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 
 ## Auto-Réévaluation: La Clé de la Qualité
 
-**L'IA se juge elle-màme et s'améliore en temps réel.**
+**L'IA se juge elle-mπme et s'améliore en temps réel.**
 
 ```go
 // Pseudo-algorithme
 for iteration := 0; iteration < maxIterations; iteration++ {
-    // 1. Mettre à jour tous les atomes
+    // 1. Mettre π jour tous les atomes
     for atom := range atoms {
         atom.MinimizeLocalEnergy()
     }
     
-    // 2. AUTO-àVALUATION
+    // 2. AUTO-πVALUATION
     if TotalEnergy > PreviousTotalEnergy {
         // L'énergie a augmenté = MAUVAIS
         // Pénaliser les oscillations
@@ -194,7 +194,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
         ReduceGlobalFieldInfluence()
     }
     
-    // 4. Arràt si convergence
+    // 4. Arrπt si convergence
     if EnergyPlateau > 200_iterations && Stability > 0.8 {
         break  // Converged!
     }
@@ -241,12 +241,12 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-## Limitations Honnàtes
+## Limitations Honnπtes
 
  **Photorealism** (style ultra-réaliste)  
  **Faces** (détails complexes)  
  **Texte** (symboles précis)  
- **Imitation d'artiste** (style tràs spécifique)  
+ **Imitation d'artiste** (style trπs spécifique)  
 
 **BUT**: Nous pouvons combiner avec des couches apprises pour améliorer.
 
@@ -263,11 +263,11 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 ### Moyen Terme (Trimestres)
 - [ ] Neurons plastiques (apprentissage sans retraining)
 - [ ] Génération 30+ FPS (streaming video)
-- [ ] àdition interactive (modifier contraintes, voir changement live)
+- [ ] πdition interactive (modifier contraintes, voir changement live)
 - [ ] Super-résolution atomique
 
 ### Long Terme (Années)
-- [ ] Fusion avec modàles spécialisés
+- [ ] Fusion avec modπles spécialisés
 - [ ] Photorealism via couches apprises
 - [ ] Vision adaptative (feedback caméra temps réel)
 - [ ] Applications robotique/tactile
@@ -278,16 +278,16 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 > **Une image n'est pas une somme de pixels.**
 > 
-> **C'est un systàme d'interactions locales en équilibre.**
+> **C'est un systπme d'interactions locales en équilibre.**
 > 
 > **Générez par relaxation, pas par simulation d'un réseau neurone.**
 > 
-> **Laissez émerger la structure globale de ràgles locales simples.**
+> **Laissez émerger la structure globale de rπgles locales simples.**
 
 C'est le principe sous-jacent:
 - Croissance cristalline
 - Formation de motifs biologiques
-- Systàmes complexes auto-organisés
+- Systπmes complexes auto-organisés
 - Physique statistique
 
 ---
@@ -298,11 +298,11 @@ C'est le principe sous-jacent:
 - **Markov Random Fields**: Probabilité d'équilibre
 - **Energy-Based Models**: Minimisation d'énergie libre
 - **Pattern Formation**: Réactions-diffusion (Turing)
-- **Self-Organization**: Systàmes complexes
+- **Self-Organization**: Systπmes complexes
 
 ---
 
-## à Fichiers Clés
+## π Fichiers Clés
 
 - `database/image_energy_based.go` - Implémentation du moteur
 - `energy_commands.go` - Commandes CLI

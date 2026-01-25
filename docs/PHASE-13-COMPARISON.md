@@ -9,7 +9,7 @@
 | **Cohérence moyenne** | 94.83% | 95.00% | +0.17% |
 | **Compression réelle** | 12.9x | 8.0x | -38% |
 | **Temps d'exécution** | 1.38s | 0.19s | -86%  |
-| **Répétitions <5 mots** | Multiples | ~0 |  àliminées |
+| **Répétitions <5 mots** | Multiples | ~0 |  πliminées |
 
 ---
 
@@ -21,11 +21,11 @@
 - 1297 mots générés (cible: 1250)
 - Excellente cohérence: 94.83%
 - Connecteurs diversifiés: "En outre", "De plus", "Ensuite", "Cependant", "Ainsi"
-- Problàme résiduel: Répétitions internes de mots rares
+- Problπme résiduel: Répétitions internes de mots rares
 
-**Exemple de problàme (Phase 13++)**:
+**Exemple de problπme (Phase 13++)**:
 ```
-"...donné que les systàmes donnent résultats...
+"...donné que les systπmes donnent résultats...
 ...dans ce cas, plusieurs cas différents...
 ...le monde du digital, un monde qui change..."
 ```
@@ -35,7 +35,7 @@
 
 ### Phase 13+++ - Stratégies Multiples
 **Caractéristiques**:
-- 45 blocs sélectionnés (fenàtrage strict appliqué)
+- 45 blocs sélectionnés (fenπtrage strict appliqué)
 - 679 mots générés (compression 8x vs 12.9x)
 - Cohérence maintenue: 95.00% (+0.17%)
 -  **86% plus rapide** (0.19s vs 1.38s)
@@ -45,7 +45,7 @@
 
 1. **Normalisation Lexicale**  Pénalité blocs répétitifs
 2. **TF-IDF Intelligent**  Mots rares pénalisés 0.8x
-3. **Fenàtrage Strict**  Blocs consécutifs diversifiés >40%
+3. **Fenπtrage Strict**  Blocs consécutifs diversifiés >40%
 4. **Anti-Répétition**  Mots répétés <5 mots supprimés
 5. **Synonymes**  Variation vocabulaire fréquent
 
@@ -55,34 +55,34 @@
 
 ### Qualité Améliorie
 - **Répétitions intra-blocs**: Détectées et pénalisées
-- **Répétitions inter-phrases**: àliminées (<5 mots)
+- **Répétitions inter-phrases**: πliminées (<5 mots)
 - **Vocabulaire varié**: Synonymes pour mots fréquents
 - **Lectures plus fluides**: Pas de "donné... donnent... données"
 
 ### Performance Accélérée
-- **86% plus rapide**: Moins de blocs à traiter
-- **Fenàtrage strict réduit sélection**: 45 vs 50 blocs
+- **86% plus rapide**: Moins de blocs π traiter
+- **Fenπtrage strict réduit sélection**: 45 vs 50 blocs
 - **Post-traitement optimisé**: Filtrage simple et rapide
 
 ### Cohérence Stable
-- **94.83%  95.00%**: Légàre amélioration
+- **94.83%  95.00%**: Légπre amélioration
 - **Preuve**: Les filtres éliminent bruit, préservent signal
 
 ---
 
-## à Trade-offs Phase 13+++
+## π Trade-offs Phase 13+++
 
 ### Réduction de Longueur
 - **Avant**: 1297 mots
-- **Apràs**: 679 mots
-- **Raison**: Fenàtrage strict élimine blocs similaires
+- **Aprπs**: 679 mots
+- **Raison**: Fenπtrage strict élimine blocs similaires
 - **Impact**: Moins de couverture, mais meilleure qualité
 
 ### Solution si plus de mots requis:
 ```
 // Augmenter limite sélection
 numBlocs := int(math.Ceil(ratio * float64(len(r.Blocs))))
-if numBlocs > 75 {  // Augmenter de 50 à 75
+if numBlocs > 75 {  // Augmenter de 50 π 75
     numBlocs = 75
 }
 
@@ -100,19 +100,19 @@ if similarity > 0.7 {  // vs 0.6 (plus permissif)
 
 ### Avant Phase 13+++
 ```
-"...ces systàmes donnent des résultats.
+"...ces systπmes donnent des résultats.
 Les données donnent aussi un cas particulier.
-Dans ce cas, plusieurs cas doivent àtre traités.
+Dans ce cas, plusieurs cas doivent πtre traités.
 Le monde moderne, un monde en constante évolution..."
 ```
  Répétitions évidentes: "donné(s)", "cas", "monde"
 
-### Apràs Phase 13+++
+### Aprπs Phase 13+++
 ```
-"...ces systàmes fournissent des résultats.
-Les données génàrent aussi une situation particuliàre.
-Dans cette situation, plusieurs contextes doivent àtre traités.
-L'univers moderne, une sphàre en constante transformation..."
+"...ces systπmes fournissent des résultats.
+Les données génπrent aussi une situation particuliπre.
+Dans cette situation, plusieurs contextes doivent πtre traités.
+L'univers moderne, une sphπre en constante transformation..."
 ```
  Vocabulaire varié via synonymes & anti-répétition
 
@@ -132,7 +132,7 @@ Phase 13+++: 679 mots   95.00% cohérence
 Phase 13++:  Non testé (baseline petit corpus)
 Phase 13+++: 12 mots    95.00% cohérence 
 ```
-**Conclusion**: Fenàtrage strict fonctionne màme sur petits corpus.
+**Conclusion**: Fenπtrage strict fonctionne mπme sur petits corpus.
 
 ---
 
@@ -154,15 +154,15 @@ Phase 13+++: 12 mots    95.00% cohérence
 ```
 **Effet**: Mots-clés rares ne dominent pas
 
-### Stratégie 3: Fenàtrage Strict 
+### Stratégie 3: Fenπtrage Strict 
 ```go
-// Bloc A: ["intell", "artif", "systàme"]
+// Bloc A: ["intell", "artif", "systπme"]
 // Bloc B: ["intell", "artif", "distribué"]
 // Similarité = 2/4 = 50%  OK (< 60%)
-// Bloc C: ["artif", "systàme", "donné"]
+// Bloc C: ["artif", "systπme", "donné"]
 // Similarité = 1/3 = 33%  OK
 ```
-**Effet**: Topics variés d'un bloc à l'autre
+**Effet**: Topics variés d'un bloc π l'autre
 
 ### Stratégie 4: Anti-Répétition <5 mots 
 ```go
@@ -177,7 +177,7 @@ Phase 13+++: 12 mots    95.00% cohérence
 // Mot "monde" apparait 8x
 // Fois 1: "monde"  garder
 // Fois 3: "univers" (synonyme aléatoire)
-// Fois 5: "sphàre" (synonyme aléatoire)
+// Fois 5: "sphπre" (synonyme aléatoire)
 // Fois 7: "domaine" (synonyme aléatoire)
 ```
 **Effet**: Lecture naturelle sans "monde" répétitif
@@ -194,19 +194,19 @@ Phase 13+++: 12 mots    95.00% cohérence
 ### Phase 13+++ (Optimisé)
 -  Besoins de **qualité maximale** (zéro répétitions)
 -  Contextes temps-réel (API, chat) - 86% plus rapide
-- à Contenu où vocabulaire varié = meilleure expérience
--  Ressources limitées (mobile) - moins de mots à afficher
+- π Contenu où vocabulaire varié = meilleure expérience
+-  Ressources limitées (mobile) - moins de mots π afficher
 
 ---
 
-## à Recommandations
+## π Recommandations
 
 ### Pour Maximiser Longueur Phase 13+++
 ```go
 // Augmenter sélection
 if numBlocs > 75 { numBlocs = 75 }  // vs 50
 
-// Assouplir fenàtrage strict
+// Assouplir fenπtrage strict
 if similarity > 0.75 { skip }  // vs 0.6
 
 // Réduire pénalité TF-IDF
@@ -222,7 +222,7 @@ if i-lastPos < 3 { skip }  // vs 5
 // Réduire sélection
 if numBlocs > 30 { numBlocs = 30 }  // vs 45
 
-// Durcir fenàtrage strict
+// Durcir fenπtrage strict
 if similarity > 0.4 { skip }  // vs 0.6
 
 // Augmenter pénalité TF-IDF
@@ -240,7 +240,7 @@ if i-lastPos < 10 { skip }  // vs 5
 **Phase 13+++** représente un équilibre optimal entre:
 -  **Qualité**: 5 couches de filtrage répétitions
 -  **Performance**: 86% plus rapide
--  **Cohérence**: Stable à 95%
+-  **Cohérence**: Stable π 95%
 -  **Lisibilité**: Vocabulaire varié, pas de répétitions
 
 **Recommandé pour** la plupart des cas d'usage réels où la qualité de lecture > couverture quantitative.

@@ -5,9 +5,9 @@
 The **ULTRA 4K DEBLUR** mode combines high-quality deblurring with intelligent 4K upscaling, all in under 200ms.
 
 ```
-Original: 512à512 blurry image
+Original: 512π512 blurry image
  (Process with quality parameters)
-Output: 3840à2160 deblurred + enhanced
+Output: 3840π2160 deblurred + enhanced
 ```
 
 ## Quick Start
@@ -24,9 +24,9 @@ Output: 3840à2160 deblurred + enhanced
 
 | Parameter | Ultra | Draft | Fast |
 |-----------|-------|-------|------|
-| **Grid** | 4à4 | 8à8 | 16à16 |
+| **Grid** | 4π4 | 8π8 | 16π16 |
 | **Iterations** | 15 | 20 | 40 |
-| **Output Resolution** | **4K (3840à2160)** | Original | Original |
+| **Output Resolution** | **4K (3840π2160)** | Original | Original |
 | **Alpha (deblur)** | 0.6 | 0.5 | 0.45 |
 | **Beta (quality)** | 0.35 | 0.3 | 0.25 |
 | **Learning Rate** | 0.02 | 0.015 | 0.01 |
@@ -38,10 +38,10 @@ Output: 3840à2160 deblurred + enhanced
 ### Real Benchmark Results
 
 ```
-ULTRA 4K DEBLUR (512à512  3840à2160)
+ULTRA 4K DEBLUR (512π512  3840π2160)
 Actual Timing: 0.206 seconds
  Load image: ~5ms
- Deblur pipeline (4à4 grid, 15 iter): ~120ms
+ Deblur pipeline (4π4 grid, 15 iter): ~120ms
  Upscale to 4K: ~70ms
  Export PNG: ~10ms
 
@@ -63,30 +63,30 @@ Actual Timing: 0.046 seconds
 ### Ultra Mode Pipeline
 
 ```
-Input Image (512à512)
+Input Image (512π512)
         
 [Grid Initialization]
-   4à4 patch grid (4 patches wide, 4 patches tall)
+   4π4 patch grid (4 patches wide, 4 patches tall)
    ~10 atoms per patch = ~160 total atoms
         
 [Deblurring Relaxation - 15 iterations]
    Parallel atomic updates on multi-core
-   Quality parameters: à=0.6, β=0.35, à=0.75
+   Quality parameters: π=0.6, β=0.35, π=0.75
    Higher learning rate (0.02) for aggressive deblur
    Early stopping on convergence
         
 [4K Upscaling Export]
-   Intelligent interpolation to 3840à2160
+   Intelligent interpolation to 3840π2160
    Preserves deblurring quality
    PNG output
         
-Output: 3840à2160 deblurred image
+Output: 3840π2160 deblurred image
 ```
 
 ### Quality Enhancement Parameters
 
 **Ultra Mode:**
-- **Alpha (à) = 0.6**: Controls deblurring strength
+- **Alpha (π) = 0.6**: Controls deblurring strength
   - Higher = more aggressive deblurring
   - Targets blur removal
   
@@ -94,7 +94,7 @@ Output: 3840à2160 deblurred image
   - Controls how much quality is enhanced during relaxation
   - Balances between blur removal and artifact prevention
 
-- **Lambda (à) = 0.75**: Atomic coupling strength
+- **Lambda (π) = 0.75**: Atomic coupling strength
   - Controls neighbor interaction strength
   - Higher = faster convergence
 
@@ -105,7 +105,7 @@ Output: 3840à2160 deblurred image
 ### Upscaling Strategy
 
 The 4K upscaling is NOT simple magnification:
-1. **Deblurred Grid**: 4à4 patches contain high-quality local information
+1. **Deblurred Grid**: 4π4 patches contain high-quality local information
 2. **Interpolation**: Each pixel in the 4K output is computed from nearby deblurred patches
 3. **Quality Preservation**: The atomic relaxation ensures smooth, artifact-free upscaling
 
@@ -119,16 +119,16 @@ This makes the 4K output look natural and crisp, not pixelated.
 ./programme deblur ultra blurry_phone_photo.jpg enhanced_4k.png
 ```
 
-**Result:** 3840à2160 deblurred image, ready for high-quality printing or display
+**Result:** 3840π2160 deblurred image, ready for high-quality printing or display
 
 ### Example 2: Quick Preview vs High-Quality Export
 
 ```bash
 # Quick preview during editing
-./programme deblur draft input.jpg preview.png    # ~40ms, 512à512
+./programme deblur draft input.jpg preview.png    # ~40ms, 512π512
 
 # Final high-quality export
-./programme deblur ultra input.jpg final_export.png  # ~200ms, 3840à2160
+./programme deblur ultra input.jpg final_export.png  # ~200ms, 3840π2160
 ```
 
 ### Example 3: Batch Processing
@@ -153,7 +153,7 @@ DRAFT             Good preview, original res
 
 | Mode | Best For | Output |
 |------|----------|--------|
-| **ULTRA** | Final export, printing, archival | 4K (3840à2160) |
+| **ULTRA** | Final export, printing, archival | 4K (3840π2160) |
 | **FAST** | Web publishing, portfolio | Original size |
 | **DRAFT** | Quick preview, editing | Original size |
 
@@ -174,7 +174,7 @@ When convergence plateaus, the algorithm has found the optimal deblurred state.
 ## Performance Optimization Techniques
 
 ### 1. Reduced Problem Size
-- **4à4 grid**: Only 16 patches to process (vs original 64+ in older system)
+- **4π4 grid**: Only 16 patches to process (vs original 64+ in older system)
 - **~160 atoms**: Minimal computation
 
 ### 2. Parallel Processing
@@ -233,8 +233,8 @@ GridW: 2
 ## File Size Reference
 
 Typical output sizes:
-- Input (512à512): ~50-150 KB
-- Output 4K (3840à2160): ~1-3 MB
+- Input (512π512): ~50-150 KB
+- Output 4K (3840π2160): ~1-3 MB
   - Deblurred images compress well (PNG)
   - Smooth regions = high compression ratio
 
@@ -242,13 +242,13 @@ Typical output sizes:
 
 ### Before (Old System)
 ```
-Input  2à2 grid  5 iterations  LOW quality  512à512
+Input  2π2 grid  5 iterations  LOW quality  512π512
 Time: 500ms+ | Quality: Poor
 ```
 
 ### After (New Ultra Mode)
 ```
-Input  4à4 grid  15 iterations  HIGH quality  3840à2160 upscale
+Input  4π4 grid  15 iterations  HIGH quality  3840π2160 upscale
 Time: 200ms | Quality: Excellent
 ```
 

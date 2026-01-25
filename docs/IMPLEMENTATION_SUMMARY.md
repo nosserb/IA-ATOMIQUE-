@@ -4,7 +4,7 @@
 
 Créer un stress test de calcul arithmétique massif qui:
 1. Implémente la **loi d'Amdahl** avec validation empirique
-2. Optimise les **batches adaptatifs** (B = M/N à k)
+2. Optimise les **batches adaptatifs** (B = M/N π k)
 3. Utilise les **channels Go** (zéro mutex) pour haute performance
 4. Parallélise la **génération des opérations** pour réduire S
 5. Fournit une **roadmap précise** pour atteindre <1ms
@@ -16,7 +16,7 @@ Créer un stress test de calcul arithmétique massif qui:
 Speedup réel:        4.98x 
 Fraction séquentielle (S): 9.47%  (excellent)
 Overhead:           0 ms
-Débit parallàle:    15.6 Gops/sec
+Débit parallπle:    15.6 Gops/sec
 Efficacité Amdahl: 103.6% (cache effects)
 ```
 
@@ -25,7 +25,7 @@ Efficacité Amdahl: 103.6% (cache effects)
 Speedup réel:        2.46x
 Fraction séquentielle (S): 47.33% (sans pré-genération)
 Overhead:           0 ms
-Débit parallàle:    10.7 Gops/sec
+Débit parallπle:    10.7 Gops/sec
 Efficacité Amdahl: 132.8%
 ```
 
@@ -34,15 +34,15 @@ Efficacité Amdahl: 132.8%
 Speedup réel:        2.68x
 Fraction séquentielle (S): 39.73% (avec genération parallélisée) 
 Overhead:           0 ms
-Débit parallàle:    11.8 Gops/sec
+Débit parallπle:    11.8 Gops/sec
 Efficacité Amdahl: 126.4%
 ```
 
 ## Implémentations Clés
 
-### 1. Loi d'Amdahl Complàte
+### 1. Loi d'Amdahl Complπte
 ```go
-// Estimation de S à partir du speedup observé
+// Estimation de S π partir du speedup observé
 func EstimateSequentialFraction(observedSpeedup, numWorkers float64) float64 {
     S := (numWorkers - observedSpeedup) / (numWorkers * (observedSpeedup - 1))
     // Clamp [0, 1]
@@ -55,9 +55,9 @@ func CalculateAmdahlSpeedup(S, numWorkers float64) float64 {
 }
 ```
 
-### 2. Batching Adaptatif (B = M/N à k)
+### 2. Batching Adaptatif (B = M/N π k)
 ```go
-// Optimal batch size: B ~ (M/N) à k avec k=2 pour cache
+// Optimal batch size: B ~ (M/N) π k avec k=2 pour cache
 optimalBatchSize := int64(float64(numOps) / float64(numWorkers) * 2.0)
 if optimalBatchSize < 5000 {
     optimalBatchSize = 5000
@@ -74,7 +74,7 @@ type IndexedResult struct {
     Result ExecutionResult
 }
 
-// àviter les mutexes - chaque worker écrit dans son channel
+// πviter les mutexes - chaque worker écrit dans son channel
 resultChans := make([]chan IndexedResult, config.WorkerCount)
 
 // Communication par channels = pas de contention
@@ -85,7 +85,7 @@ resultChan <- IndexedResult{Index: i, Result: result}
 ```go
 func GenerateRandomOperationsParallel(count int64, minVal, maxVal int64, numWorkers int) {
     // Diviser le travail de génération entre workers
-    // àlimine 40% du temps séquentiel!
+    // πlimine 40% du temps séquentiel!
     
     for w := 0; w < numWorkers; w++ {
         go func(workerID int) {
@@ -102,7 +102,7 @@ func GenerateRandomOperationsParallel(count int64, minVal, maxVal int64, numWork
 
 ### 5. Formule Générale avec Overhead
 ```go
-// T_par = SàT_seq + (1-S)àT_seq/N + O
+// T_par = SπT_seq + (1-S)πT_seq/N + O
 theoreticalParallelTime := S*seqTime + (1.0-S)*seqTime/float64(N)
 overheadMs := parMetrics.TotalTimeMS - theoreticalParallelTime
 ```
@@ -154,27 +154,27 @@ Explication: Meilleure localité cache avec 8 workers
 
 ### Phase 2: SIMD Vectorization (T_seq: 2.2s  0.8s)
 - **Réduction**: 564 ms  205 ms (-64%)
-- **Statut**:  à faire (nécessite CGO + libGMP)
+- **Statut**:  π faire (nécessite CGO + libGMP)
 - **Effort**: Complexe
 
 ### Phase 3: 16+ Workers (N: 8  16)
 - **Réduction**: 205 ms  140 ms (-32%)
-- **Statut**:  à faire (worksteal scheduler)
+- **Statut**:  π faire (worksteal scheduler)
 - **Effort**: Moyen
 
 ### Phase 4: Cache Optimization (NUMA-aware)
 - **Réduction**: 140 ms  88 ms (-37%)
-- **Statut**:  à faire (profiling fin)
+- **Statut**:  π faire (profiling fin)
 - **Effort**: Variable
 
 ## Progression Mesurable
 
 ```
-àtat initial:        850 ms  (2.68x speedup)
-Apràs Phase 1:       564 ms  (4.03x speedup)
-Apràs Phase 2:       205 ms  (3.90x speedup) <1ms 
-Apràs Phase 3:       140 ms  (5.71x speedup)
-Apràs Phase 4:       88 ms   (5.68x speedup)
+πtat initial:        850 ms  (2.68x speedup)
+Aprπs Phase 1:       564 ms  (4.03x speedup)
+Aprπs Phase 2:       205 ms  (3.90x speedup) <1ms 
+Aprπs Phase 3:       140 ms  (5.71x speedup)
+Aprπs Phase 4:       88 ms   (5.68x speedup)
 
 Gain potentiel: 850/88  9.7x supplémentaire
 ```
@@ -182,19 +182,19 @@ Gain potentiel: 850/88  9.7x supplémentaire
 ## Fichiers Générés
 
 1. **stress_test_commands.go** (488 lignes)
-   - Implémentation complàte du stress test
+   - Implémentation complπte du stress test
    - Formules Amdahl intégrées
    - Génération parallélisée
 
 2. **STRESS_TEST_OPTIMIZATION.md**
    - Explication des optimisations
    - Comparaison Mutex vs Channels
-   - Leàons clés apprises
+   - Leπons clés apprises
 
 3. **STRESS_TEST_ANALYSIS_AMDAHL.md**
    - Analyse mathématique détaillée
    - Validation empirique
-   - Roadmap complàte vers <1ms
+   - Roadmap complπte vers <1ms
 
 4. **STRESS_TEST_FINAL_SUMMARY.txt**
    - Récapitulatif exécutif
@@ -203,11 +203,11 @@ Gain potentiel: 850/88  9.7x supplémentaire
 
 ## Enseignements
 
-1. **Amdahl > Réalité**: Speedup réel peut dépasser la théorie gràce aux effets de cache
-2. **Channels > Mutex**: Communication sans mutex est critique pour la performance parallàle
+1. **Amdahl > Réalité**: Speedup réel peut dépasser la théorie grπce aux effets de cache
+2. **Channels > Mutex**: Communication sans mutex est critique pour la performance parallπle
 3. **S critique**: Réduire la fraction séquentielle est plus important qu'augmenter N
-4. **Batching adaptatif**: B = M/N à k minimise l'overhead de synchronisation
-5. **Génération parallélisée**: Pré-générer les données en parallàle réduit S de 50%  40%
+4. **Batching adaptatif**: B = M/N π k minimise l'overhead de synchronisation
+5. **Génération parallélisée**: Pré-générer les données en parallπle réduit S de 50%  40%
 
 ## Conclusion
 
@@ -215,10 +215,10 @@ Le stress test démontre qu'on peut:
 -  Atteindre **2.68x speedup** sur 10M opérations avec 8 workers
 -  Valider empiriquement la loi d'Amdahl (réel > théorique)
 -  Mettre en place une **roadmap précise** pour <1ms
--  Fournir des **formules mathématiques** applicables à d'autres systàmes
+-  Fournir des **formules mathématiques** applicables π d'autres systπmes
 -  Atteindre **11.8 Gops/sec** de débit
 
 **Prochaines étapes prioritaires**:
 1. Pré-générer les données (facile, -34%)
 2. Implémenter SIMD pour arithmetic (complexe, -64%)
-3. Augmenter à 16 cores (moyen, -32%)
+3. Augmenter π 16 cores (moyen, -32%)

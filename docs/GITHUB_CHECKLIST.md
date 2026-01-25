@@ -1,12 +1,12 @@
 # Checklist Déploiement GitHub
 
-## à Avant de pusher
+## π Avant de pusher
 
 ### Code & Compilation
 - [x] `go build` compile sans erreur
 - [x] `go mod tidy` exécuté
 - [x] Pas de fichiers `.DS_Store` ou temporaires
-- [x] `.gitignore` à jour
+- [x] `.gitignore` π jour
 
 ### Fichiers Web
 - [x] `web/index.html` existe
@@ -21,7 +21,7 @@
 - [x] `.github/workflows/build.yml` configuré
 
 ### Documentation
-- [x] `README.md` mis à jour avec section web
+- [x] `README.md` mis π jour avec section web
 - [x] `INSTALL.md` créé avec instructions
 - [x] `SETUP_WEB.md` créé
 - [x] `WEB_README.md` créé
@@ -46,7 +46,7 @@ git status
 git add .
 git commit -m "feat: Add web interface for text summarization"
 
-# Vérifier les fichiers qui vont àtre pushés
+# Vérifier les fichiers qui vont πtre pushés
 git diff --cached --name-status
 
 # Push
@@ -55,7 +55,7 @@ git push origin chore/siteweb
 
 ---
 
-## à Test avec Docker (optionnel)
+## π Test avec Docker (optionnel)
 
 ```bash
 # Build l'image
@@ -70,7 +70,7 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-## Fichiers importants à vérifier
+## Fichiers importants π vérifier
 
 ```
  README.md          - Section web ajoutée
@@ -83,12 +83,12 @@ docker run -p 8080:8080 ia-atomique
  Makefile           - Build automation
  .gitignore         - Fichiers ignorés
  go.mod            - Dépendances Go
- web/               - Interface web complàte
+ web/               - Interface web complπte
 ```
 
 ---
 
-## Apràs le push
+## Aprπs le push
 
 1. GitHub Actions va tester la compilation automatiquement
 2. L'interface web sera accessible une fois clonée
@@ -123,4 +123,4 @@ go build -o programme && ./programme web
 
 ---
 
- **Pràt pour GitHub!**
+ **Prπt pour GitHub!**

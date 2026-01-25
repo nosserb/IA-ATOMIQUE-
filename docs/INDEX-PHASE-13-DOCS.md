@@ -92,7 +92,7 @@ INPUT BLOCS (180)
      Penalize 0.8x during vectorization
      Prevent repetitive words from dominating
     
-[3] Fenàtrage Strict
+[3] Fenπtrage Strict
      Calculate lexical similarity (Jaccard)
      Skip consecutive blocks with >60% overlap
      Force vocabulary diversity
@@ -117,7 +117,7 @@ OUTPUT TEXT (95% coherence, ~0 repetitions)
 ### Pénalité de Répétition (Strategy 1)
 ```
 If word appears N times in bloc (N > 2):
-    Penalty = (N - 2) à 0.1
+    Penalty = (N - 2) π 0.1
     finalScore *= (1 - Penalty)
 ```
 
@@ -130,7 +130,7 @@ For rare but frequent words:
 
 ### Similarité Lexicale Jaccard (Strategy 3)
 ```
-Similarity = |A à B| / |A  B|
+Similarity = |A π B| / |A  B|
 If Similarity > 0.6:
     Skip this block (too similar to previous)
 ```
@@ -228,7 +228,7 @@ database/resumeur_coherence.go
  NormaliserRepetitionsBlocs() function
  CalculerSimilarityVocabLexical() function
  RepetitionsBloc field in BlocVectoriel
- Fenàtrage strict logic
+ Fenπtrage strict logic
 
 database/generation.go
  TF-IDF penalty 0.8x for rare-frequent words
@@ -265,7 +265,7 @@ Total changes: ~250 lines of code.
 
 ---
 
-## à Support
+## π Support
 
 ### Common Questions
 

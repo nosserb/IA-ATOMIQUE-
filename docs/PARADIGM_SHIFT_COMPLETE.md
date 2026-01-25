@@ -1,16 +1,16 @@
-# SYNTHàSE: Réorientation Paradigmatique Complàte
+# SYNTHπSE: Réorientation Paradigmatique Complπte
 
 ## Ce Que Nous Avons Transformé
 
 ### AVANT: "Pixel-by-pixel Generation"
 - Pensée: "Chaque pixel = décision indépendante"
 - Approche: Réseau neuronal géant (GAN/Diffusion)
-- Résultat: Boàte noire, coàteux, lent, nécessite GPU
-- Problàme: **Vous ne savez pas comment àa marche**
+- Résultat: Boπte noire, coπteux, lent, nécessite GPU
+- Problπme: **Vous ne savez pas comment πa marche**
 
-### APRàS: "Constraint Relaxation Physics"
+### APRπS: "Constraint Relaxation Physics"
 - Pensée: "Chaque atome minimise sa tension locale"
-- Approche: Systàme physique en équilibre
+- Approche: Systπme physique en équilibre
 - Résultat: Transparence totale, rapide, aucun GPU
 - Avantage: **Vous pouvez comprendre et modifier en temps réel**
 
@@ -23,7 +23,7 @@
 Image =  décisions de pixels indépendants
        = sortie d'un réseau neural P(image | prompt)
 ```
-**Problàme**: Pas de garantie de cohérence globale.
+**Problπme**: Pas de garantie de cohérence globale.
 
 ### La Nouvelle Vision
 ```
@@ -44,30 +44,30 @@ Image = équilibre minimisant l'énergie libre locale
    Symétrie cible                               
    Cohérence texture                            
    N'impose rien, juste "pression"            
-à
+π
                influence 
 
-  NIVEAU 2: MOTIFS (àmergents)                   
+  NIVEAU 2: MOTIFS (πmergents)                   
    Régions cohérentes (BFS clustering)          
    Bords détectés                               
    Gradients locaux                             
    Symétries observées                          
-   àmerge naturellement, pas programmé        
-à
+   πmerge naturellement, pas programmé        
+π
                contraintes 
 
   NIVEAU 1: ATOMES (Interactions Locales)        
    256² ou 512² atomes (pixels/patches)         
-   àtat: {R,G,B, intensity, orientation, ...}  
+   πtat: {R,G,B, intensity, orientation, ...}  
    Chacun minimise E_local uniquement            
    Interagit avec 8 voisins                     
-   Les briques de base du systàme             
-à
+   Les briques de base du systπme             
+π
 ```
 
 ---
 
-## Fonction d'ànergie: Le Càur du Systàme
+## Fonction d'πnergie: Le Cπur du Systπme
 
 Chaque atome i minimise:
 
@@ -97,7 +97,7 @@ $$E_{confiance} = (1 - c_i)$$
 
 ### 5. Champ Global (Influence faible)
 $$E_{champ} = w_{global} \times \left( |B_i - B_{global}| + |\theta_i - \theta_{shadow}| \right)$$
-- $w_{global} = 0.05-0.15$ (tràs faible!)
+- $w_{global} = 0.05-0.15$ (trπs faible!)
 - Attrait doux vers propriétés globales
 - Pas une contrainte rigide
 
@@ -115,15 +115,15 @@ for iteration := 0; iteration < maxIterations; iteration++ {
     
     // Phase 2: Gradient descent - réduire l'énergie
     for atom := range atoms {  // Parallélisable!
-        deltaColor := -à * E/Color        // Gradient
-        deltaOrientation := -à * E/à      // Gradient
+        deltaColor := -π * E/Color        // Gradient
+        deltaOrientation := -π * E/π      // Gradient
         
         atom.Color += deltaColor
         atom.Orientation += deltaOrientation
         atom.Clamp()  // [0, 1]
     }
     
-    // Phase 3: AUTO-RààVALUATION
+    // Phase 3: AUTO-RππVALUATION
     totalEnergy := SumAllEnergies()
     if totalEnergy > previousEnergy {
         // Mauvaise direction! Pénaliser
@@ -137,9 +137,9 @@ for iteration := 0; iteration < maxIterations; iteration++ {
         ReduceGlobalFieldInfluence()
     }
     
-    // Phase 5: Arràt si convergence
+    // Phase 5: Arrπt si convergence
     if EnergyChange < 0.001 && PlateauIterations > 200 {
-        break  // àquilibre atteint!
+        break  // πquilibre atteint!
     }
 }
 ```
@@ -153,46 +153,46 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 ### Pourquoi c'est plus rapide et meilleur?
 
 ```
-Phase 1: Patches 16à16 (200 atomes)
- Peu d'atomes = converge TRàS vite
+Phase 1: Patches 16π16 (200 atomes)
+ Peu d'atomes = converge TRπS vite
  100-150 itérations seulement
  Structure globale établie
 
-Phase 2: Patches 8à8 (1000 atomes)
- Initialise à partir de Phase 1 (déjà bien organisé)
- Commence pràs d'une solution viable
+Phase 2: Patches 8π8 (1000 atomes)
+ Initialise π partir de Phase 1 (déjπ bien organisé)
+ Commence prπs d'une solution viable
  200 itérations suffisent
  Détails intermédiaires
 
-Phase 3: Patches 4à4 (4000 atomes)
- Initialise à partir de Phase 2 (excellent point de départ)
+Phase 3: Patches 4π4 (4000 atomes)
+ Initialise π partir de Phase 2 (excellent point de départ)
  Converge rapidement vers raffinement final
  250 itérations pour qualité
  Résultat haute résolution
 ```
 
-**Résultat**: ~3-5à plus rapide qu'une seule phase longue.
+**Résultat**: ~3-5π plus rapide qu'une seule phase longue.
 
 ---
 
 ## Mesures Quantitatives en Temps Réel
 
 ### Total Energy
-- Diminue réguliàrement (signe de convergence)
+- Diminue réguliπrement (signe de convergence)
 - Plateu = équilibre trouvé
 - Plus bas = meilleur équilibre
 
 ### Average Local Energy
 - Moyenne des tensions par atome
 - Doit tendre vers un stable ~0.3-0.5
-- Si trop bas = systàme trop rigide
+- Si trop bas = systπme trop rigide
 - Si trop haut = encore du chaos
 
 ### Stability Score
 - **-1.0**: Oscillations massives (atomes changent direction)
-- **0.0**: Légàrement instable
+- **0.0**: Légπrement instable
 - **+0.5**: Stable
-- **+1.0**: Tràs stable (plateau atteint)
+- **+1.0**: Trπs stable (plateau atteint)
 
 ### Oscillating Atoms %
 - Atomes qui changent de direction = mauvais signe
@@ -225,11 +225,11 @@ Phase 3: Patches 4à4 (4000 atomes)
  **Edge/Embedded** (téléphones, robots)  
  **Sécurité** (pas de dataset, aucun biais)  
  **Adaptation** (contraintes changent  image change)  
- **Contrôle créatif** (ajustement fin des paramàtres)  
+ **Contrôle créatif** (ajustement fin des paramπtres)  
 
  **Photorealism ultra** (style hyper-réaliste)  
  **Portraits complexes** (détails fins d'expression)  
- **Imitation d'artiste** (apprentissage de style tràs spécifique)  
+ **Imitation d'artiste** (apprentissage de style trπs spécifique)  
 
 ---
 
@@ -258,7 +258,7 @@ Phase 3: Patches 4à4 (4000 atomes)
 
 ```
 Hardware: CPU (pas de GPU)
-Image: 256à256 (32à32 grid @ 8à8 patches)
+Image: 256π256 (32π32 grid @ 8π8 patches)
 Time: 0.387 seconds
 Atoms: 1024
 Iterations: 100
@@ -268,7 +268,7 @@ Iterations: 100
  Total: ~0.4 sec for convergence
 ```
 
-**Conclusion**: Assez rapide pour temps réel, assez beau pour intéràt visuel.
+**Conclusion**: Assez rapide pour temps réel, assez beau pour intérπt visuel.
 
 ---
 
@@ -280,12 +280,12 @@ Iterations: 100
 ```
 Problem: "Générez une image"
 Solution: Train énorme réseau sur données
-Result: Boàte noire, coàteux, lent
+Result: Boπte noire, coπteux, lent
 ```
 
 **Maintenant**:
 ```
-Problem: "Relaxez un systàme vers équilibre"
+Problem: "Relaxez un systπme vers équilibre"
 Solution: Définissez fonction d'énergie, itérez
 Result: Transparent, rapide, adaptable
 ```
@@ -296,11 +296,11 @@ Result: Transparent, rapide, adaptable
 2. **Adaptation instantanée** - Changez contraintes  changement immédiat
 3. **Pas de training** - Aucune donnée nécessaire, c'est juste de la physique
 4. **Explainabilité totale** - Vous comprenez chaque décision
-5. **Scalabilité** - Fonctionne à toute résolution
+5. **Scalabilité** - Fonctionne π toute résolution
 
 ---
 
-## Prochaines àtapes
+## Prochaines πtapes
 
 ### Immédiat (Semaines)
 -  Implémenter relaxation d'énergie de base
@@ -312,11 +312,11 @@ Result: Transparent, rapide, adaptable
 ### Court Terme (Mois)
 - [ ] Couches de features apprises (pour photorealism)
 - [ ] Guidance par texte (prompt  champ spatialisé)
-- [ ] àdition interactive (voir changements live)
+- [ ] πdition interactive (voir changements live)
 - [ ] Super-résolution atomique
 
 ### Long Terme (Années)
-- [ ] Fusion avec modàles spécialisés
+- [ ] Fusion avec modπles spécialisés
 - [ ] Vision adaptative (feedback caméra)
 - [ ] Génération temps réel 30+ FPS
 - [ ] Applications robotique
@@ -333,11 +333,11 @@ Result: Transparent, rapide, adaptable
 > 
 > **Les atomes trouvent naturellement leur équilibre.**
 
-C'est la màme physique que:
+C'est la mπme physique que:
 - Cristaux croissant
 - Motifs biologiques
-- Systàmes complexes auto-organisés
-- Univers lui-màme
+- Systπmes complexes auto-organisés
+- Univers lui-mπme
 
 ---
 
@@ -348,7 +348,7 @@ Nous ne sommes pas au niveau de DALL-E pour le photorealism.
 **MAIS**: Nous avons quelque chose de bien plus intéressant.
 
 Une approche **physique** plutôt qu'empirique.  
-Une approche **compréhensible** plutôt que boàte noire.  
+Une approche **compréhensible** plutôt que boπte noire.  
 Une approche **adaptable** sans retraining.  
 Une approche **embedded-friendly** sans GPU.  
 

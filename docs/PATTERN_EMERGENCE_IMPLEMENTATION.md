@@ -11,10 +11,10 @@ A complete **atomic pattern emergence system** that transforms abstract waves in
    Input Seeds (reference)                                  
                                                             
    [Pixel Grid]  Local Diffusion  Reinforcement      
-                  P_ij(t+1) = ... + γàexp(-||àP||²)       
+                  P_ij(t+1) = ... + γπexp(-||πP||²)       
                                                             
    Output Pattern (emerging structure)                      
-à
+π
 ```
 
 ---
@@ -28,8 +28,8 @@ database/atomic_pattern_emergence.go  (428 lines)
  SeedPoint              (anchored reference pixels)
  PixelConnection        (learned weights between neighbors)
  PatternEmergenceEngine (main system)
-     DiffuseStep()      (P_ij(t+1) = P_ij(t) + ààΣ WààP)
-     ReinforceConnections() (W  W + γàexp(-||àP||²))
+     DiffuseStep()      (P_ij(t+1) = P_ij(t) + ππΣ WππP)
+     ReinforceConnections() (W  W + γπexp(-||πP||²))
      AddSeedsFromImage()    (anchor from reference)
      IteratePattern()       (full cycle)
      SaveImage()            (output PNG)
@@ -153,16 +153,16 @@ $$L = \frac{1}{|S|} \sum_{(i,j) \in S} \|P_{i,j}^{\text{gen}} - P_{i,j}^{\text{r
 
 3. DIFFUSION ITERATIONS
     For each pixel:
-      Compute neighbor influences (Σ WààP)
-      Apply diffusion (P  P + ààinfluence)
-      Apply momentum (+ βàV)
+      Compute neighbor influences (Σ WππP)
+      Apply diffusion (P  P + ππinfluence)
+      Apply momentum (+ βπV)
       Clamp to [0,1]
     Reapply seed constraints
     Compute loss metric
 
 4. REINFORCEMENT (every 5 steps)
     For each connection:
-      W  W + γàexp(-||àP||²)
+      W  W + γπexp(-||πP||²)
     Prevent weight explosion (clamp to 10.0)
 
 5. OUTPUT
@@ -201,7 +201,7 @@ $ ./programme pattern emerge 256 256 50 input/image/test.png 0.15
    Iterations: 50
    Seeds: 1849 (15%)
    Loss: 2.811
-   à: 0.150 | γ: 0.050
+   π: 0.150 | γ: 0.050
 
  Final: output/pattern_final_emerged.png
 ```
@@ -252,7 +252,7 @@ This is **Atomic Intelligence**: bottom-up emergence.
 -  **Local learning**: Weights adapt to local success
 -  **Interpretable**: Can see each pixel's influence
 -  **Fast**: ~100ms per iteration on 256x256
--  **Scalable**: Works 256à256 to 2048à2048
+-  **Scalable**: Works 256π256 to 2048π2048
 
 ---
 
@@ -340,14 +340,14 @@ Iteration 50: Recognizable shapes
 ## Performance Metrics
 
 **Typical Performance:**
-- 256à256, 100 iterations: ~5 seconds
-- 512à512, 200 iterations: ~30 seconds
-- 1024à1024, 200 iterations: ~2 minutes
+- 256π256, 100 iterations: ~5 seconds
+- 512π512, 200 iterations: ~30 seconds
+- 1024π1024, 200 iterations: ~2 minutes
 
 **Memory:**
-- 256à256: ~2 MB
-- 512à512: ~8 MB
-- 1024à1024: ~32 MB
+- 256π256: ~2 MB
+- 512π512: ~8 MB
+- 1024π1024: ~32 MB
 
 ---
 
@@ -377,11 +377,11 @@ Iteration 50: Recognizable shapes
 3. **Color spaces** (HSV, LAB instead of RGB)
 4. **Directional diffusion** (anisotropic)
 5. **Temporal evolution** (animation)
-6. **Adaptive parameters** (dynamic à, γ)
+6. **Adaptive parameters** (dynamic π, γ)
 
 ### Research Directions
 - How does seed density affect convergence speed?
-- Can we learn à and γ from data?
+- Can we learn π and γ from data?
 - What patterns emerge with no seeds?
 - How does this compare to neural networks?
 

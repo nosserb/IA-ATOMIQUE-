@@ -2,11 +2,11 @@
 
 ## Vue d'Ensemble
 
-L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer ses capacités par rapport aux modàles de langage classiques (GPT-4, GPT-3, BERT).
+L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer ses capacités par rapport aux modπles de langage classiques (GPT-4, GPT-3, BERT).
 
 ---
 
-## à Commandes Disponibles
+## π Commandes Disponibles
 
 ### 1. MMLU (Massive Multitask Language Understanding)
 
@@ -19,14 +19,14 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 
 **Ce qui est testé:**
 - Histoire, médecine, droit, mathématiques, sciences, littérature
-- 16 000 questions dans la version complàte
+- 16 000 questions dans la version complπte
 - Format QCM avec 4 choix
 
 **Résultats attendus:**
 - Humain expert: ~90%
 - GPT-4: ~86%
 - GPT-3.5: ~70%
-- IA-ATOMIQUE actuel: 30-40% (entraànement nécessaire)
+- IA-ATOMIQUE actuel: 30-40% (entraπnement nécessaire)
 
 ---
 
@@ -41,7 +41,7 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 
 **Ce qui est testé:**
 - Prédire la suite logique d'une action quotidienne
-- 10 000+ scénarios dans la version complàte
+- 10 000+ scénarios dans la version complπte
 - Test de compréhension contextuelle
 
 **Résultats attendus:**
@@ -58,7 +58,7 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 **Exécuter tous les tests académiques**
 
 ```bash
-# Suite complàte
+# Suite complπte
 ./programme academic all
 ```
 
@@ -89,12 +89,12 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 
 **Interprétation:**
 - **Score > 85%**: Niveau GPT-4+ (excellent)
-- **Score 70-85%**: Niveau GPT-3.5 (tràs bon)
+- **Score 70-85%**: Niveau GPT-3.5 (trπs bon)
 - **Score 60-70%**: Niveau correct
-- **Score < 60%**: Nécessite entraànement supplémentaire
+- **Score < 60%**: Nécessite entraπnement supplémentaire
 
 **Confiance moyenne:**
-- Mesure la certitude du modàle dans ses réponses
+- Mesure la certitude du modπle dans ses réponses
 - Idéalement entre 0.7 et 1.0
 
 ---
@@ -108,31 +108,31 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
    Réponses correctes: 6
    Score: 60.00%
    Confiance moyenne: 0.673
-   àcart perplexité moyen: 2.848
+   πcart perplexité moyen: 2.848
 
 [EXEMPLES DE RAISONNEMENT]
 [Q1] 
   Contexte: Une femme entre dans une cuisine...
   Suite choisie: Elle met la casserole sur le feu...
-  Confiance: 0.582 | àcart perplexité: 1.765
+  Confiance: 0.582 | πcart perplexité: 1.765
 ```
 
 **Interprétation:**
 - **Score > 90%**: Niveau humain/GPT-4 (excellent)
-- **Score 80-90%**: Niveau GPT-3+ (tràs bon)
+- **Score 80-90%**: Niveau GPT-3+ (trπs bon)
 - **Score 70-80%**: Niveau BERT+ (bon)
 - **Score < 70%**: Raisonnement limité
 
-**àcart perplexité:**
+**πcart perplexité:**
 - Mesure la différence de perplexité entre choix corrects et incorrects
-- Plus l'écart est grand, mieux le modàle distingue les bonnes réponses
+- Plus l'écart est grand, mieux le modπle distingue les bonnes réponses
 - Valeur typique: 2-5
 
 ---
 
 ## Méthodologie
 
-### MMLU - àvaluation par Cohérence Sémantique
+### MMLU - πvaluation par Cohérence Sémantique
 
 **Algorithme:**
 1. Tokeniser la question
@@ -158,7 +158,7 @@ boost_confiance = min(confidence_categorie * 0.2, 0.2)
 
 ---
 
-### Hellaswag - àvaluation par Perplexité
+### Hellaswag - πvaluation par Perplexité
 
 **Algorithme:**
 1. Pour chaque fin possible:
@@ -190,20 +190,20 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ### Pourquoi les scores sont-ils inférieurs aux LLMs?
 
-1. **Pas d'entraànement spécifique**
-   - GPT-4 entraàné sur milliards de tokens
+1. **Pas d'entraπnement spécifique**
+   - GPT-4 entraπné sur milliards de tokens
    - IA-ATOMIQUE utilise réseau générique 1000 neurones
    - Pas de fine-tuning sur datasets MMLU/Hellaswag
 
 2. **Architecture différente**
-   - LLMs: modàles génératifs (probabilité token suivant)
-   - IA-ATOMIQUE: modàle discriminatif (activation catégories)
+   - LLMs: modπles génératifs (probabilité token suivant)
+   - IA-ATOMIQUE: modπle discriminatif (activation catégories)
    - Pas de mémoire contextuelle longue (pas de transformer)
 
 3. **Objectif différent**
    - LLMs: comprendre ET générer
    - IA-ATOMIQUE: analyser, classifier, résumer
-   - Focus sur vitesse/légàreté plutôt que génération
+   - Focus sur vitesse/légπreté plutôt que génération
 
 ---
 
@@ -211,9 +211,9 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ### Stratégies d'Amélioration
 
-1. **Entraànement Supervisé**
+1. **Entraπnement Supervisé**
    ```bash
-   # Entraàner sur dataset MMLU complet
+   # Entraπner sur dataset MMLU complet
    ./programme train --dataset mmlu --epochs 10
    ```
    - Ajuster poids connexions pour MMLU
@@ -221,17 +221,17 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 2. **Augmentation des Catégories**
    ```go
-   // Passer de 50 à 100+ catégories
+   // Passer de 50 π 100+ catégories
    database.NombreCategories = 100
    ```
    - Plus de spécialisation par domaine
    - Meilleure représentation sémantique
 
-3. **Optimisation Hyperparamàtres**
+3. **Optimisation Hyperparamπtres**
    ```go
    // Tester différents coefficients
    alpha := 0.8  // Couplage
-   beta := 0.4   // Ràgles locales
+   beta := 0.4   // Rπgles locales
    gamma := 0.2  // Renforcement
    ```
 
@@ -240,7 +240,7 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
    // Ajouter historique des activations
    type ContextMemory struct {
        PreviousStates []map[int]float64
-       WindowSize     int  // Ex: 10 derniàres activations
+       WindowSize     int  // Ex: 10 derniπres activations
    }
    ```
 
@@ -248,22 +248,22 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ## Résultats Extrapolés
 
-### Avec Entraànement Complet
+### Avec Entraπnement Complet
 
 **Estimations basées sur architecture:**
 
-| Benchmark | Score Actuel | Potentiel Entraàné | Délai |
+| Benchmark | Score Actuel | Potentiel Entraπné | Délai |
 |-----------|--------------|-------------------|-------|
-| MMLU | 30-40% | 70-80% | 100h entraànement |
-| Hellaswag | 60-70% | 85-90% | 50h entraànement |
-| Perplexité | 1.05 | 1.00-1.02 | Déjà optimal  |
+| MMLU | 30-40% | 70-80% | 100h entraπnement |
+| Hellaswag | 60-70% | 85-90% | 50h entraπnement |
+| Perplexité | 1.05 | 1.00-1.02 | Déjπ optimal  |
 | Needle Search | 95% | 98-99% | 10h tuning |
 
 **Points forts conservés:**
 -  Vitesse: 3.96M mots/sec (inchangé)
 -  Mémoire: < 100MB (inchangé)
 -  Latence: < 5ms (inchangé)
--  Perplexité: 1.05 (déjà record)
+-  Perplexité: 1.05 (déjπ record)
 
 ---
 
@@ -331,16 +331,16 @@ Nous avons évalué IA-ATOMIQUE sur les benchmarks MMLU et Hellaswag:
 
 | Benchmark | GPT-4 | IA-ATOMIQUE | Notes |
 |-----------|-------|-------------|-------|
-| MMLU | 86% | 30-40% | Sans entraànement spécifique |
+| MMLU | 86% | 30-40% | Sans entraπnement spécifique |
 | Hellaswag | 95% | 60-70% | Architecture discriminative |
-| Perplexité | 10-20 | 1.05 | **10-20à meilleur**  |
-| Vitesse | 50 w/s | 3.96M w/s | **79,000à plus rapide**  |
+| Perplexité | 10-20 | 1.05 | **10-20π meilleur**  |
+| Vitesse | 50 w/s | 3.96M w/s | **79,000π plus rapide**  |
 
 **Discussion:** Bien que les scores MMLU/Hellaswag soient inférieurs aux LLMs, 
 IA-ATOMIQUE excelle sur perplexité (cohérence) et vitesse. L'architecture atomique 
 distribuée privilégie l'analyse et classification rapide plutôt que la génération 
-créative. Avec entraànement supervisé, nous estimons atteindre 70-80% sur MMLU et 
-85-90% sur Hellaswag tout en conservant les avantages de vitesse/légàreté.
+créative. Avec entraπnement supervisé, nous estimons atteindre 70-80% sur MMLU et 
+85-90% sur Hellaswag tout en conservant les avantages de vitesse/légπreté.
 ```
 
 ---
@@ -373,13 +373,13 @@ créative. Avec entraànement supervisé, nous estimons atteindre 70-80% sur MML
 2. Si nécessaire: GPT-4 pour génération (2-5s)
     Rédaction finale, explication détaillée
 
-Résultat: 99% des requàtes traitées en < 5ms
-          1% passées à GPT-4 seulement si nécessaire
+Résultat: 99% des requπtes traitées en < 5ms
+          1% passées π GPT-4 seulement si nécessaire
 ```
 
 ---
 
-**Derniàre mise à jour:** Janvier 2026  
+**Derniπre mise π jour:** Janvier 2026  
 **Version:** 1.0  
 **Auteur:** BRESSON Guylann  
 **Contact:** guylann.bresson.gb@gmail.com

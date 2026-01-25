@@ -1,24 +1,24 @@
 # Comment Améliorer les Réponses
 
-## àtat Actuel
+## πtat Actuel
 - **MMLU** : 40% (mauvais sur faits historiques/médicaux)
 - **Hellaswag** : 60% (bon sur bon sens/logique)
 
 ## Pourquoi les Erreurs ?
 
 ### Sur MMLU (Questions Factuelles)
-Le systàme **devine** au lieu de **savoir** :
+Le systπme **devine** au lieu de **savoir** :
 - "Napoléon" + "bataille"  cherche mots proches
-- Trouve "Austerlitz" (aussi célàbre) au lieu de "Waterloo"
+- Trouve "Austerlitz" (aussi célπbre) au lieu de "Waterloo"
 - **Manque** : Base de faits "Waterloo = 1815 = FIN empire"
 
 ### Sur Hellaswag (Bon Sens)
-Le systàme **raisonne mieux** :
+Le systπme **raisonne mieux** :
 - "Casserole + eau"  stabilité atomique détecte "feu" logique
 - Score hybride capture la séquence causale
 - **Force** : Cohérence sémantique
 
-## 3 Solutions Concràtes
+## 3 Solutions Concrπtes
 
 ### 1. BASE DE CONNAISSANCES FACTUELLES 
 ```go
@@ -32,7 +32,7 @@ var FactualKnowledge = map[string]map[string]string{
         "victoires": "austerlitz, iéna, friedland",
         "défaite_finale": "waterloo",
     },
-    "révolution_franàaise": {
+    "révolution_franπaise": {
         "date": "1789",
         "début": "14 juillet 1789",
         "bastille": "14 juillet 1789",
@@ -58,7 +58,7 @@ func GetFactualAnswer(question, choice string) float64 {
 
 **Impact estimé** : MMLU 40%  60-70%
 
-### 2. DàTECTION DE QUESTIONS FACTUELLES 
+### 2. DπTECTION DE QUESTIONS FACTUELLES 
 ```go
 type QuestionType int
 
@@ -98,7 +98,7 @@ if questionType == FACTUAL {
 
 ### 3. APPRENTISSAGE SUR ERREURS 
 ```go
-// Apràs chaque mauvaise réponse, apprendre
+// Aprπs chaque mauvaise réponse, apprendre
 type ErrorMemory struct {
     Question       string
     WrongAnswer    string
@@ -134,7 +134,7 @@ func CheckErrorMemory(question, choice string) float64 {
     for _, err := range errorMemory {
         if SimilarText(question, err.Question) > 0.8 {
             if SimilarText(choice, err.CorrectAnswer) > 0.8 {
-                return 0.5 // GROS boost si ressemble à bonne réponse passée
+                return 0.5 // GROS boost si ressemble π bonne réponse passée
             }
         }
     }
@@ -142,7 +142,7 @@ func CheckErrorMemory(question, choice string) float64 {
 }
 ```
 
-**Impact estimé** : Apprentissage progressif, +10-20% apràs 100 questions
+**Impact estimé** : Apprentissage progressif, +10-20% aprπs 100 questions
 
 ## Prédiction avec Améliorations
 
@@ -159,19 +159,19 @@ func CheckErrorMemory(question, choice string) float64 {
 - Histoire : 50 événements majeurs (dates, lieux)
 - Médecine : 50 organes/maladies/traitements
 - Sciences : 50 lois/formules/concepts
-- Mathématiques : 30 théoràmes/propriétés
+- Mathématiques : 30 théorπmes/propriétés
 
 **Implémentation** : 1-2 heures
 **Gain** : +20-30% sur MMLU
 
 ## Conclusion
 
-Le systàme **raisonne bien** (d'où 60% Hellaswag) mais **manque de mémoire** (d'où 40% MMLU).
+Le systπme **raisonne bien** (d'où 60% Hellaswag) mais **manque de mémoire** (d'où 40% MMLU).
 
 C'est comme un étudiant intelligent mais qui n'a pas révisé :
 -  Comprend la logique
 -  Détecte la cohérence
--  Ne connaàt pas les dates
--  Ne connaàt pas les faits
+-  Ne connaπt pas les dates
+-  Ne connaπt pas les faits
 
 **Solution** : Lui donner une "fiche de révision" = base de connaissances !

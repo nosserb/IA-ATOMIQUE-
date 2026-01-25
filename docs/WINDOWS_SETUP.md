@@ -2,9 +2,9 @@
 
 Installation ultra-simple pour Windows.
 
-## 3 àtapes Seulement
+## 3 πtapes Seulement
 
-### 1à Installer Go (une fois pour toutes)
+### 1π Installer Go (une fois pour toutes)
 
 - **Télécharge:** https://golang.org/dl/
 - **Choisis:** `Windows x86-64` (la version 64-bit pour la plupart)
@@ -18,7 +18,7 @@ Installation ultra-simple pour Windows.
 
 ---
 
-### 2à Clone le Repo
+### 2π Clone le Repo
 
 ```bash
 git clone https://github.com/TON-USER/ia-atomique.git
@@ -27,7 +27,7 @@ cd ia-atomique
 
 ---
 
-### 3à Lance l'Installation
+### 3π Lance l'Installation
 
 **Option A: Batch Files (Command Prompt)**
 ```bash
@@ -69,7 +69,7 @@ run-web.bat
 
 ## Utilisation
 
-### Premiàre Fois
+### Premiπre Fois
 ```bash
 # 1. Double-clique install.bat (ou .\install.ps1)
 # Ça compile tout automatiquement
@@ -83,7 +83,7 @@ run-web.bat
 ### Prochaines Fois
 ```bash
 # Juste: Double-clique run-web.bat
-# Et voilà!
+# Et voilπ!
 ```
 
 ---
@@ -93,7 +93,7 @@ run-web.bat
 ### "Go is not recognized"
 - Go n'est pas installé
 - Télécharge depuis https://golang.org/dl/
-- Redémarre Command Prompt apràs installation
+- Redémarre Command Prompt aprπs installation
 
 ### "Programme.exe n'existe pas"
 - Lancer `install.bat` ou `build.bat` d'abord
@@ -119,10 +119,10 @@ run-web.bat
 
 ### Lancer au Démarrage Windows
 1. Win+R  `shell:startup`  Enter
-2. Copie un raccourci de `run-web.bat` là
-3. à chaque redémarrage, le serveur se lance!
+2. Copie un raccourci de `run-web.bat` lπ
+3. π chaque redémarrage, le serveur se lance!
 
-### Créer un Fichier VBS (Cache la fenàtre)
+### Créer un Fichier VBS (Cache la fenπtre)
 Crée `run-web-silent.vbs`:
 ```vbs
 Set objShell = CreateObject("WScript.Shell")

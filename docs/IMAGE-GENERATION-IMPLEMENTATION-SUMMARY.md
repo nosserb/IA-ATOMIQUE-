@@ -162,8 +162,8 @@ Bash script for demonstrations:
 ### Computational Complexity
 
 - **Per atom, per iteration**: O(8) neighborhood reads
-- **Total per phase**: O(N) where N = (W/P) à (H/P)
-- **Full pipeline**: O(5 à N à iterations)
+- **Total per phase**: O(N) where N = (W/P) π (H/P)
+- **Full pipeline**: O(5 π N π iterations)
 - **Memory usage**: O(N) atoms + auxiliary maps
 
 ### Parallelization
@@ -191,22 +191,22 @@ Bash script for demonstrations:
 
 ### Performance Tiers
 
-**Fast** (30 sec): 256à256, 50 iterations
+**Fast** (30 sec): 256π256, 50 iterations
 ```bash
 ./programme image pipeline 256 256 50 8 "prompt"
 ```
 
-**Balanced** (2-3 min): 512à512, 200 iterations
+**Balanced** (2-3 min): 512π512, 200 iterations
 ```bash
 ./programme image pipeline 512 512 200 8 "prompt"
 ```
 
-**High Quality** (5-10 min): 512à512, 200 iterations, patch 4
+**High Quality** (5-10 min): 512π512, 200 iterations, patch 4
 ```bash
 ./programme image pipeline 512 512 200 4 "prompt"
 ```
 
-**Ultra Quality** (15+ min): 1024à1024, 400 iterations
+**Ultra Quality** (15+ min): 1024π1024, 400 iterations
 ```bash
 ./programme image pipeline 1024 1024 400 8 "prompt"
 ```
@@ -235,7 +235,7 @@ Bash script for demonstrations:
 
 ### Example Outputs
 
-After running pipeline with 100 iterations on 128à128 image:
+After running pipeline with 100 iterations on 128π128 image:
 ```
  PHASE 5: Coherence Verification
     Global Coherence: 0.996

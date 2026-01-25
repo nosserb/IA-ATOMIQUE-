@@ -2,7 +2,7 @@
 
 ## Concept Fondamental
 
-**Pas de chunking arbitraire!** Au lieu de diviser l'image en carrés réguliers de 64à64 pixels, nous créons une **hiérarchie émergente d'atomes**:
+**Pas de chunking arbitraire!** Au lieu de diviser l'image en carrés réguliers de 64π64 pixels, nous créons une **hiérarchie émergente d'atomes**:
 
 ```
 LEVEL 1: Atoms (pixels individuels, état [0,1], interactions locales)
@@ -12,30 +12,30 @@ LEVEL 2: Cells (agrégations stables d'atomes, nouvel état global)
 LEVEL 3: Cellular Dynamics (stabilisation hiérarchique)
 ```
 
-## à Critàres de Détection de Cellules
+## π Critπres de Détection de Cellules
 
-Une **Cell** émerge automatiquement quand 9 atomes du réseau répondent TOUS à ces critàres:
+Une **Cell** émerge automatiquement quand 9 atomes du réseau répondent TOUS π ces critπres:
 
-### Critàre 1: Taille minimale
+### Critπre 1: Taille minimale
 - **Minimum 9 atomes** formant un cluster connexe
-- Ces atomes doivent àtre géographiquement proches
+- Ces atomes doivent πtre géographiquement proches
 
-### Critàre 2: Connectivité interne
+### Critπre 2: Connectivité interne
 - **Chaque atome du cluster a  2 connexions avec d'autres atomes du cluster**
 - Pas d'atomes isolés ou faiblement connectés
 - Pas d'atomes "accrochés" avec une seule connexion
 
-### Critàre 3: 100% Stabilité
+### Critπre 3: 100% Stabilité
 - **Tous les atomes du cluster ont Confidence  0.90 (90%+)**
 - Pas de "bruit" ou d'oscillations
 - Cohérence maximale au sein du cluster
 
-### Critàre 4: Cohérence Mutuelle
+### Critπre 4: Cohérence Mutuelle
 - **La variance des états internes < seuil**
 - Les atomes du cluster ont des intensités similaraires
 - Variance minimale = stabilité maximale
 
-### Critàre 5: Connectivité de composante
+### Critπre 5: Connectivité de composante
 - **Le cluster est un graphe connexe**
 - On peut atteindre tout atome depuis n'importe quel autre
 - Pas de sous-clusters déconnectés
@@ -49,7 +49,7 @@ type Cell struct {
     ID                  int                // Identifiant unique
     AtomPositions       [][2]int           // Positions [y][x] des atomes
     CenterX, CenterY    float64            // Centre de masse
-    CellState           float64            // àtat agrégé [0, 1]
+    CellState           float64            // πtat agrégé [0, 1]
     AverageIntensity    float64            // Intensité moyenne
     Stability           float64            // Mesure de cohérence [0, 1]
     
@@ -57,7 +57,7 @@ type Cell struct {
     ConnectedCells      map[int]float64    // Cellules voisines + distance
     CellWeights         map[int]float64    // Poids adaptatifs (comme les atomes)
     
-    // ànergie et tracking
+    // πnergie et tracking
     EnergyConsumption   float64
     LastUpdateIteration int
     IsActive            bool
@@ -71,7 +71,7 @@ type CellularClusterDetector struct {
     // Les atomes du réseau
     Atoms              [][]PixelAtomV2
     
-    // Critàres
+    // Critπres
     MinAtomsPerCell       int     // Default: 9
     MinConnectionsPerAtom int     // Default: 2
     StabilityThreshold    float64 // Default: 0.85
@@ -86,8 +86,8 @@ type CellularClusterDetector struct {
 **Algorithme de détection:**
 1. **Parcours du réseau** en cherchant des atomes stables
 2. **Flood-fill** pour chaque atome stable trouvé
-3. **Vérification stricte** de tous les critàres
-4. **Création de Cell** si tous les critàres passent
+3. **Vérification stricte** de tous les critπres
+4. **Création de Cell** si tous les critπres passent
 
 ### 3. Réseau Cellulaire
 
@@ -95,7 +95,7 @@ type CellularClusterDetector struct {
 type CellularNetwork struct {
     Cells              []*Cell
     
-    // Paramàtres de résonance cellulaire
+    // Paramπtres de résonance cellulaire
     CellCouplingAlpha      float64 // 0.7
     CellLocalBeta          float64 // 0.3
     CellReinforcementGamma float64 // 0.12
@@ -133,7 +133,7 @@ Pour chaque itération:
   1. Step atomique (relaxation)
   2. Chaque N itérations:
      - Détecter les cellules émergentes
-     - Créer/mettre à jour réseau cellulaire
+     - Créer/mettre π jour réseau cellulaire
      - Itération cellulaire
 ```
 
@@ -154,7 +154,7 @@ Pour chaque itération:
 # Avec détection plus fréquente (tous les 10 iterations)
 ./programme cellular target.png 1000 10
 
-# Simulation longue pour émergence complàte
+# Simulation longue pour émergence complπte
 ./programme cellular target.png 2000 15
 ```
 
@@ -167,7 +167,7 @@ Pour chaque itération:
 
 [LOADING IMAGE]
    Path: target.png
-   Network: 256à256 atoms (512à512 pixels at 2px/patch)
+   Network: 256π256 atoms (512π512 pixels at 2px/patch)
 
 [CREATING HIERARCHY]
    Atomic iterations per cell detection: 20
@@ -222,39 +222,39 @@ Pour chaque itération:
 - **Iterations/sec**: Vitesse de traitement
 - **Total Energy**: Somme énergie atomique + cellulaire
 
-## Cas d'àtude: Processus d'àmergence
+## Cas d'πtude: Processus d'πmergence
 
 ### Phase 1: Chaos Atomique (Iter 0-50)
 ```
 Atomic Coherence: 20-40%
 Cells: 0
-àtat: Les atomes oscillent, pas encore stabilisés
+πtat: Les atomes oscillent, pas encore stabilisés
 ```
 
 ### Phase 2: Régions Stables (Iter 50-150)
 ```
 Atomic Coherence: 40-70%
 Cells: 1-5
-àtat: Des petits clusters stables apparaissent
+πtat: Des petits clusters stables apparaissent
 ```
 
-### Phase 3: àmergence Cellulaire (Iter 150-300)
+### Phase 3: πmergence Cellulaire (Iter 150-300)
 ```
 Atomic Coherence: 70-90%
 Cells: 10-30
-àtat: Clusters grandissent et fusionnent, cellules interagissent
+πtat: Clusters grandissent et fusionnent, cellules interagissent
 ```
 
 ### Phase 4: Stabilisation Hiérarchique (Iter 300+)
 ```
 Atomic Coherence: 90-98%
 Cells: 30-100
-àtat: Structure complàtement stabilisée, pràte pour rendu parfait
+πtat: Structure complπtement stabilisée, prπte pour rendu parfait
 ```
 
-## Comment Cela Résout le Problàme
+## Comment Cela Résout le Problπme
 
-### Le Problàme Original
+### Le Problπme Original
 - Image générée par relaxation atomique
 - Structures émergent mais **pas organisées**
 - Rendu imparfait, structures aléatoires
@@ -272,7 +272,7 @@ Cells: 30-100
  **Structure auto-organisée** - Les cellules interagissent sans supervision  
  **Rendu parfait** - La hiérarchie crée la stabilisation finale  
 
-## Paramàtres Ajustables
+## Paramπtres Ajustables
 
 ### Detection Criteria
 ```go
@@ -285,7 +285,7 @@ CoherenceThreshold    = 0.90    // Cohérence minimale
 ### Cellular Dynamics
 ```go
 CellCouplingAlpha      = 0.7    // Influence des cellules voisines
-CellLocalBeta          = 0.3    // Ràgles locales cellulaires
+CellLocalBeta          = 0.3    // Rπgles locales cellulaires
 CellReinforcementGamma = 0.12   // Renforcement poids cohérents
 CellDecayDelta         = 0.04   // Décroissance poids faibles
 CellResonanceSigma     = 0.75   // Sélectivité résonance cellulaire
@@ -305,7 +305,7 @@ CellResonanceSigma     = 0.75   // Sélectivité résonance cellulaire
 
 ## Perspective Théorique
 
-### àmergence Multi-Niveaux
+### πmergence Multi-Niveaux
 ```
 Interactions Locales (Atomes)
         
@@ -323,36 +323,36 @@ Structure Globale Parfaite
 ### Principes
 1. **Pas de supervision centrale** - Tout émerge localement
 2. **Pas de "force externe"** - Les cellules naissent de la stabilité
-3. **Pas de design arbitraire** - Les critàres garantissent la qualité
+3. **Pas de design arbitraire** - Les critπres garantissent la qualité
 4. **Auto-organisation multi-niveau** - Hiérarchie émergente
 
 ## Résultats Attendus
 
-### Petit réseau (128à128 atomes)
+### Petit réseau (128π128 atomes)
 - Temps: 2-5 secondes
 - Cellules: 5-15
 - Coherence finale: 85-95%
 
-### Réseau moyen (256à256 atomes)  
+### Réseau moyen (256π256 atomes)  
 - Temps: 10-30 secondes
 - Cellules: 20-50
 - Coherence finale: 90-98%
 
-### Grand réseau (512à512 atomes)
+### Grand réseau (512π512 atomes)
 - Temps: 60-180 secondes
 - Cellules: 80-200
 - Coherence finale: 95-99%
 
-## Prochaines àtapes
+## Prochaines πtapes
 
 1. **Visualisation** des cellules (afficher clusters en couleur)
 2. **Export** de la structure cellulaire (JSON)
 3. **Multi-scale cellular** (cellules peuvent former meta-cellules)
 4. **Real-time rendering** basé sur structure cellulaire
-5. **Apprentissage cellulaire** (cellules ajustent leurs paramàtres)
+5. **Apprentissage cellulaire** (cellules ajustent leurs paramπtres)
 
 ---
 
 **Version:** 1.0  
 **Date:** Janvier 2026  
-**Statut:** Implémentation complàte et fonctionnelle
+**Statut:** Implémentation complπte et fonctionnelle

@@ -1,8 +1,8 @@
 # IA-ATOMIQUE v4.1 - Mode Humanisation Avancée
 
-## à Aperàu
+## π Aperπu
 
-Le systàme d'humanisation de texte a été considérablement amélioré avec l'introduction d'une **approche avancée** basée sur l'analyse sémantique et la paraphrase intelligente.
+Le systπme d'humanisation de texte a été considérablement amélioré avec l'introduction d'une **approche avancée** basée sur l'analyse sémantique et la paraphrase intelligente.
 
 ---
 
@@ -37,18 +37,18 @@ Le systàme d'humanisation de texte a été considérablement amélioré avec l'
 - **Utilisation**: `./programme humanize file -a texte.txt`
 - **Approche**: 5 étapes de traitement sophistiqué
 
-#### àtape 1: Analyse Sémantique du Style
+#### πtape 1: Analyse Sémantique du Style
 ```
 AnalyserStyleTexte(texte)  StyleProfile {
-  - Formalisme (0.0 à 1.0)
-  - Complexité (0.0 à 1.0)  
+  - Formalisme (0.0 π 1.0)
+  - Complexité (0.0 π 1.0)  
   - Longueur moyenne des phrases
   - Pourcentage de vocabulaire technique
   - Tags [simple|complexe], [formel|informel], [technique|simple]
 }
 ```
 
-#### àtape 2: Extraction des Concepts Clés
+#### πtape 2: Extraction des Concepts Clés
 ```
 ExtraireConceptsCles(phrase)  []string
 
@@ -57,12 +57,12 @@ Conserve les mots significatifs (noms, verbes, adjectifs)
 Utilisé pour valider la conservation du sens
 ```
 
-#### àtape 3: Paraphrase Intelligente
+#### πtape 3: Paraphrase Intelligente
 ```
 ParaphraseIntelligente(phrase)  string
 
 - Utilise dictionnaire de 30+ synonymes contextuels
-- Remplace jusqu'à 3 mots par phrase
+- Remplace jusqu'π 3 mots par phrase
 - Préserve la casse originale
 - Fallback automatique si qualité < 0.6
 ```
@@ -70,23 +70,23 @@ ParaphraseIntelligente(phrase)  string
 Dictionnaire de synonymes:
 - **Verbes**: avoirposséder, faireréaliser, alleravancer...
 - **Adjectifs**: bonexcellent, grandvaste, difficileardu...
-- **Adverbes**: tràsextràmement, beaucoupénormément, peufaiblement...
-- **Noms**: choseélément, faàonmaniàre, tempspériode...
+- **Adverbes**: trπsextrπmement, beaucoupénormément, peufaiblement...
+- **Noms**: choseélément, faπonmaniπre, tempspériode...
 
-#### àtape 4: Vérification Interne de Qualité
+#### πtape 4: Vérification Interne de Qualité
 ```
 VerifierQualiteRecriture(original, rewritten)  {
   "conservation_concepts": 0.0-1.0 (ratio concepts conservés)
-  "longueur": 0.0-1.0 (texto rewritten à30% de l'original)
+  "longueur": 0.0-1.0 (texto rewritten π30% de l'original)
   "lisibilite": 0.0-1.0 (absence de ponctuation dupliquée)
   "global": 0.0-1.0 (moyenne des 3 scores)
 }
 ```
 
-- Si score < 0.6  Fallback à HumanizeTexteStyle standard
+- Si score < 0.6  Fallback π HumanizeTexteStyle standard
 - Score affiché par phrase pour transparence
 
-#### àtape 5: Segmentation et Traitement
+#### πtape 5: Segmentation et Traitement
 ```
 Pour chaque phrase:
   1. Extraire concepts clés
@@ -102,7 +102,7 @@ Pour chaque phrase:
 
 ## Syntaxes Supportées
 
-Le systàme accepte 10 variantes de syntaxe différentes:
+Le systπme accepte 10 variantes de syntaxe différentes:
 
 ### Mode Standard
 ```bash
@@ -130,14 +130,14 @@ Le systàme accepte 10 variantes de syntaxe différentes:
 ### Texte Original
 ```
 L'intelligence artificielle fait une difference immense. 
-Les entreprises utilisent tràs souvent cette technologie. 
+Les entreprises utilisent trπs souvent cette technologie. 
 De nombreux chercheurs travaillent sans relache.
 ```
 
 ### Mode Standard
 ```
 L'intelligence artificielle fait une difference immense. 
-Les entreprises utilisent tràs souvent cette technologie. 
+Les entreprises utilisent trπs souvent cette technologie. 
 Ensuite, de nombreux chercheurs travaillent sans relache.
 ```
  Ajout connecteur "Ensuite"
@@ -145,7 +145,7 @@ Ensuite, de nombreux chercheurs travaillent sans relache.
 ### Mode Professionnel
 ```
 L'intelligence artificielle effectue une transformation considérable. 
-Les organisations déploient réguliàrement cette technologie. 
+Les organisations déploient réguliπrement cette technologie. 
 Nombreux chercheurs s'engagent continuellement.
 ```
  Vocabulaire professionnel, pas de connecteurs
@@ -153,7 +153,7 @@ Nombreux chercheurs s'engagent continuellement.
 ### Mode Avancé
 ```
 L'intelligence artificielle constitue une difference majeure. 
-Les entreprises emploient extràmement habituellement cette technologie. 
+Les entreprises emploient extrπmement habituellement cette technologie. 
 De nombreux chercheurs accomplissent continuellement.
 
 [Styles détectés: [simple] [formel] [concis]]
@@ -217,9 +217,9 @@ HumanizeTexteAvance()
 
 1. **Apprentissage adaptatif**: Mémoriser les synonymes préférés par domaine
 2. **Analyse des relations sémantiques**: Utiliser des graphes de concepts
-3. **Apprentissage machine**: Entraàner un modàle sur corpus spécialisés
-4. **Traitement multi-langues**: àtendre au-delà du franàais
-5. **Pondération des scores**: Permettre l'ajustement des critàres de qualité
+3. **Apprentissage machine**: Entraπner un modπle sur corpus spécialisés
+4. **Traitement multi-langues**: πtendre au-delπ du franπais
+5. **Pondération des scores**: Permettre l'ajustement des critπres de qualité
 6. **Génération multi-versions**: Proposer plusieurs variantes au choix
 
 ---
@@ -229,7 +229,7 @@ HumanizeTexteAvance()
 ### v4.1 - Humanisation Avancée
 -  Ajout mode avancé avec analyse sémantique
 -  Implémentation du dictionnaire de synonymes
--  Systàme de validation interne de qualité
+-  Systπme de validation interne de qualité
 -  Extraction automatique des concepts clés
 -  Support du flag `-a` pour mode avancé
 -  Correction du parsing des arguments pour 10 variantes
@@ -255,4 +255,4 @@ HumanizeTexteAvance()
 
 ---
 
-*Documentation mise à jour: v4.1*
+*Documentation mise π jour: v4.1*

@@ -37,7 +37,7 @@ Phase 13+++ successfully implements **5 complementary strategies** to eliminate 
    - Code: ~15 lines
    - Status:  COMPLETE
 
-3. **Fenàtrage Strict** (Level: Block Selection)
+3. **Fenπtrage Strict** (Level: Block Selection)
    - File: `database/resumeur_coherence.go`
    - Functions: `CalculerSimilarityVocabLexical()`, modified selection logic
    - Effect: Force lexical diversity (>40% vocabulary difference) between consecutive blocks
@@ -96,7 +96,7 @@ Repetitions: 0
 
 ## Comparison: Phase 13++ vs Phase 13+++
 
-| Metric | Phase 13++ | Phase 13+++ | à | Status |
+| Metric | Phase 13++ | Phase 13+++ | π | Status |
 |--------|-----------|-----------|---|--------|
 | Words | 1297 | 679 | -48% | Better quality |
 | Coherence | 94.83% | 95.00% | +0.17% |  Better |
@@ -119,7 +119,7 @@ Repetitions: 0
 
 ### Data Added
 - `RepetitionsBloc` field in `BlocVectoriel` struct
-- `SynonymsDict` with 20 words à 3-4 synonyms
+- `SynonymsDict` with 20 words π 3-4 synonyms
 
 ### Total Implementation
 - ~250 lines of code
@@ -329,7 +329,7 @@ $ go build -o programme
 
 ---
 
-## à Support & Maintenance
+## π Support & Maintenance
 
 ### For Configuration Issues
  See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)
@@ -345,7 +345,7 @@ $ go build -o programme
 
 ---
 
-## à Final Checklist
+## π Final Checklist
 
 Before deployment, verify:
 - [ ] Build successful: `go build -o programme` 
@@ -389,7 +389,7 @@ The implementation is:
 6.9x performance improvement
 8 documentation files
 100% backward compatibility
-à% confidence for deployment
+π% confidence for deployment
 ```
 
 ---

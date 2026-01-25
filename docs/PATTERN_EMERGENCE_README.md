@@ -21,7 +21,7 @@ Result: **Emergent order from local rules**
 ```
 
 ### What Happens
-1. Creates 512à512 pixel grid
+1. Creates 512π512 pixel grid
 2. Adds 15% seeds from your reference image
 3. Runs 200 diffusion iterations
 4. Saves progression in `output/`
@@ -41,7 +41,7 @@ Images showing **evolution from chaos to recognizable pattern**:
 
 **1. Local Diffusion**
 ```
-P_ij(t+1) = P_ij(t) + ààΣ Wà(P_kl - P_ij)
+P_ij(t+1) = P_ij(t) + ππΣ Wπ(P_kl - P_ij)
                                       
           new pixel  current  neighbor  color difference
                      value   weights
@@ -55,7 +55,7 @@ Otherwise               follow diffusion equation
 
 **3. Connection Reinforcement**
 ```
-W(t+1) = W(t) + γàexp(-||àColor||²)
+W(t+1) = W(t) + γπexp(-||πColor||²)
                                 
       new weight learning  if colors
                     rate   match, strengthen
@@ -67,7 +67,7 @@ W(t+1) = W(t) + γàexp(-||àColor||²)
 
 | Parameter | Default | Meaning |
 |-----------|---------|---------|
-| **à (alpha)** | 0.15 | How much pixels influence neighbors (0.05-0.30) |
+| **π (alpha)** | 0.15 | How much pixels influence neighbors (0.05-0.30) |
 | **γ (gamma)** | 0.05 | How fast weights learn (0.01-0.10) |
 | **Seed Density** | 0.15 | % of pixels anchored to reference (0.05-0.50) |
 | **Iterations** | 200 | Diffusion steps (50-1000) |
@@ -173,7 +173,7 @@ Get accurate copy with high seed density.
  **Interpretable** - Can see each step of emergence
  **Fast** - ~100ms per iteration (CPU)
  **Flexible** - Works with any image
- **Scalable** - 256à256 to 2048à2048
+ **Scalable** - 256π256 to 2048π2048
  **Mathematical** - Based on physics (diffusion equations)
  **Emergent** - Order from simple local rules
 
@@ -183,9 +183,9 @@ Get accurate copy with high seed density.
 
 | Resolution | 100 iter | 200 iter | 500 iter |
 |-----------|----------|----------|----------|
-| 256à256   | 1 sec    | 2 sec    | 5 sec    |
-| 512à512   | 4 sec    | 8 sec    | 20 sec   |
-| 1024à1024 | 16 sec   | 32 sec   | 80 sec   |
+| 256π256   | 1 sec    | 2 sec    | 5 sec    |
+| 512π512   | 4 sec    | 8 sec    | 20 sec   |
+| 1024π1024 | 16 sec   | 32 sec   | 80 sec   |
 
 Memory: ~15-50 MB depending on resolution.
 
@@ -282,7 +282,7 @@ You have a complete **atomic pattern emergence system** that:
 - Uses seeds for guidance
 - Learns through reinforcement
 - Transforms abstract waves  recognizable images
-- Scales from 256à256 to 2048à2048
+- Scales from 256π256 to 2048π2048
 - Is fully documented and tested
 
 **Order emerges from local rules!** 

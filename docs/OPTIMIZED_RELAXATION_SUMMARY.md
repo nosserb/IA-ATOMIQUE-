@@ -19,15 +19,15 @@ New approach: Dynamic patches, smart relaxation  10-100x FASTER
 
 ## Implementation Status
 
-### 1à **Adaptive Atom Count** 
+### 1π **Adaptive Atom Count** 
 ```
-Formula: n_i,j = ceil(kàà(C_i,j))
+Formula: n_i,j = ceil(kππ(C_i,j))
 Implementation: AdaptiveAtomStrategy
 ```
 
 **What it does:**
-- Uniform regions (sky, walls, background)  **4 atoms (2à2)**
-- Complex regions (edges, textures)  **up to 256 atoms (16à16)**
+- Uniform regions (sky, walls, background)  **4 atoms (2π2)**
+- Complex regions (edges, textures)  **up to 256 atoms (16π16)**
 - Savings: **~70% fewer atoms** than fixed grid approach
 
 **Result:**
@@ -37,7 +37,7 @@ Implementation: AdaptiveAtomStrategy
 
 ---
 
-### 2à **Modification Mask** 
+### 2π **Modification Mask** 
 ```
 Process only: C_i,j  neigh(M) where M = modified cells
 Implementation: ModificationMask with neighborhood tracking
@@ -61,7 +61,7 @@ Implementation: ModificationMask with neighborhood tracking
 
 ---
 
-### 3à **Adaptive Iterations** 
+### 3π **Adaptive Iterations** 
 ```
 Formula: N_iter(phase)(C) = ceil(energy_variance(C) / threshold)
 Implementation: AdaptiveIterationStrategy
@@ -79,14 +79,14 @@ Variance = 0.5        10 iterations
 Variance = 1.0        ~500 iterations (complex)
 ```
 
-**Result (8à8 test):**
+**Result (8π8 test):**
 - Total 535 iterations across 30 rounds
 - Average: 8 iters/patch (not 30!)
 - Savings: **~73% reduction** in iterations vs fixed
 
 ---
 
-### 4à **Parallelization** 
+### 4π **Parallelization** 
 ```
 C_i,j  neighborhood: relax(C_i,j) in parallel
 Implementation: goroutines + semaphore pooling
@@ -112,7 +112,7 @@ for i, j := range cellsToProcess:
 
 ---
 
-### 5à **Interaction Lookup Table** 
+### 5π **Interaction Lookup Table** 
 ```
 E_interaction(C_i,j, C_i',j')  E_lookup[C_i,j, C_i',j']
 Implementation: InteractionLookupTable with memoization
@@ -126,7 +126,7 @@ Implementation: InteractionLookupTable with memoization
 **Caching:**
 ```go
 // First call: compute
-interaction := ààf(d)à||àa||²
+interaction := ππf(d)π||πa||²
 
 // Subsequent calls: lookup
 if cached[i,j,i',j'] exists: return cached value
@@ -139,9 +139,9 @@ if cached[i,j,i',j'] exists: return cached value
 
 ---
 
-### 6à **Early Stopping** 
+### 6π **Early Stopping** 
 ```
-If |àE(C)| < ε_local à stop relaxation for this cell
+If |πE(C)| < ε_local π stop relaxation for this cell
 Implementation: RelaxWithEarlyStopping()
 ```
 
@@ -165,9 +165,9 @@ if energyDelta < convergenceEps {
 
 ---
 
-### 7à **Pattern Fusion** 
+### 7π **Pattern Fusion** 
 ```
-If pattern(C_i,j)  pattern(C_k,l) à C_i,j = C_k,l
+If pattern(C_i,j)  pattern(C_k,l) π C_i,j = C_k,l
 Implementation: PatternFingerprint + PatternCache
 ```
 
@@ -192,12 +192,12 @@ hash := FNV1a(fingerprint)
 
 ## Performance Metrics
 
-### Test: `target.png` with 8à8 grid, 30 iterations
+### Test: `target.png` with 8π8 grid, 30 iterations
 
 | Metric | Value | Comparison |
 |--------|-------|-----------|
-| **Total Atoms** | 256 | 93.75% less than 8à8à256=16,384 |
-| **Iterations** | 535 total | 73% less than 8à8à30=1,920 |
+| **Total Atoms** | 256 | 93.75% less than 8π8π256=16,384 |
+| **Iterations** | 535 total | 73% less than 8π8π30=1,920 |
 | **Avg Iter/Patch** | 8 | Fixed: 30 |
 | **Converged Patches** | 15/64 (23.4%) | Growing with rounds |
 | **Execution Time** | 2.69 ms | ~10x faster than v1 |
@@ -219,7 +219,7 @@ Convergence trend: Energy decreases, stabilizes
 ./programme relax-opt target.png 4 4 20
 ```
 - Input: `target.png` (image to copy)
-- Grid: 4à4 patches
+- Grid: 4π4 patches
 - Iterations: 20 maximum (adaptive per patch)
 
 ### Large Grid
@@ -275,8 +275,8 @@ grid.ConvergenceEps = 0.001  // Convergence threshold
 **Adaptive Strategy:**
 ```go
 grid.AdaptiveStrategy.ScaleFactor = 1.5     // k in formula
-grid.AdaptiveStrategy.MinAtoms = 4          // 2à2 minimum
-grid.AdaptiveStrategy.MaxAtoms = 256        // 16à16 maximum
+grid.AdaptiveStrategy.MinAtoms = 4          // 2π2 minimum
+grid.AdaptiveStrategy.MaxAtoms = 256        // 16π16 maximum
 ```
 
 **Parallel Workers:**
@@ -288,18 +288,18 @@ grid.ParallelWorkers = 4  // Detect CPU cores automatically
 
 ## Speedup Breakdown
 
-Assuming 8à8 grid with 50 iterations on quad-core CPU:
+Assuming 8π8 grid with 50 iterations on quad-core CPU:
 
 ```
 Naive approach (no optimization):
-   64 patches à 50 iters à 256 atoms each
+   64 patches π 50 iters π 256 atoms each
    ~51,200 atom updates
    Sequential: 51,200 ops
   
 Optimized approach:
-   Adaptive atoms: 64 patches à 4 avg atoms = 256 atoms
-   Adaptive iterations: 50 à 0.27 (avg factor) = ~13 iters
-   256 à 13 = 3,328 atom updates
+   Adaptive atoms: 64 patches π 4 avg atoms = 256 atoms
+   Adaptive iterations: 50 π 0.27 (avg factor) = ~13 iters
+   256 π 13 = 3,328 atom updates
    Parallelization: 3,328 / 4 cores = 832 ops per core
   
 Total speedup: 51,200 / 3,328 = **15.4x faster**
@@ -320,7 +320,7 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 - [ ] Implement LRU cache eviction for pattern cache
 - [ ] Add time-based cache invalidation
 - [ ] Use moving average for smoother convergence detection
-- [ ] GPU acceleration for large grids (1024à1024+)
+- [ ] GPU acceleration for large grids (1024π1024+)
 - [ ] Hierarchical multi-scale relaxation (coarse  fine)
 - [ ] Dynamic worker pool size based on CPU load
 

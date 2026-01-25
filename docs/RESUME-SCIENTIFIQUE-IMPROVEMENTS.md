@@ -1,20 +1,20 @@
-# Améliorations du Systàme de Résumé Scientifique
+# Améliorations du Systπme de Résumé Scientifique
 
 ## Vue d'ensemble
-Implémentation du systàme des **5 piliers scientifiques** pour générer des résumés structurés, lisibles et complets.
+Implémentation du systπme des **5 piliers scientifiques** pour générer des résumés structurés, lisibles et complets.
 
 ---
 
-## Systàme Implémenté
+## Systπme Implémenté
 
-### 1à Les 5 Piliers Obligatoires
+### 1π Les 5 Piliers Obligatoires
 
-Chaque résumé doit répondre à ces 5 questions dans l'ordre:
+Chaque résumé doit répondre π ces 5 questions dans l'ordre:
 
 | Pilier | Question | Exemple |
 |--------|----------|---------|
 | **CONTEXTE** | De quoi parle-t-on? | "Le domaine de l'IA..." |
-| **PROBLàME** | Pourquoi c'est insuffisant? | "Cependant, ces systàmes sont lents..." |
+| **PROBLπME** | Pourquoi c'est insuffisant? | "Cependant, ces systπmes sont lents..." |
 | **OBJECTIF** | Qu'essaie-t-on de faire? | "Notre objectif est de proposer..." |
 | **APPROCHE** | Comment c'est fait? | "Nous utilisons une technologie..." |
 | **APPORT** | Pourquoi c'est nouveau/utile? | "Les résultats montrent..." |
@@ -58,14 +58,14 @@ type ResumePiliers struct {
 ### Fonctions Principales
 
 #### 1. **ClassifierPhraseScientiifque** 
-Assigne une fonction scientifique à chaque phrase
-- Détecte les mots-clés spécifiques à chaque pilier
+Assigne une fonction scientifique π chaque phrase
+- Détecte les mots-clés spécifiques π chaque pilier
 - Assigne des poids différents selon la fonction
 - Retourne la fonction avec le score maximal
 
 **Mots-clés utilisés:**
 - **CONTEXTE**: domaine, champ, étude, actuellement, existant
-- **PROBLàME**: cependant, limite, problàme, défi, insuffisant, sans
+- **PROBLπME**: cependant, limite, problπme, défi, insuffisant, sans
 - **OBJECTIF**: proposer, objectif, visée, cherche, développer, résoudre
 - **APPROCHE**: méthode, technique, utiliser, basé, architecture, algorithme
 - **APPORT**: résultat, contribution, nouveau, améliorationavantage, performance
@@ -79,7 +79,7 @@ Organise les phrases par pilier
 - Bonus si tous les 5 piliers sont présents (0-100%)
 
 #### 4. **FormaterResumePiliers**
-Génàre l'affichage structuré des piliers
+Génπre l'affichage structuré des piliers
 
 #### 5. **genererNarratifPiliers**
 Crée un texte narratif continu qui relie les piliers
@@ -90,32 +90,32 @@ Crée un texte narratif continu qui relie les piliers
 
 ```
 
-  RàSUMà SCIENTIFIQUE (80.0% complet)                       
+  RπSUMπ SCIENTIFIQUE (80.0% complet)                       
 
 
-[PROBLàME IDENTIFIà]
-   Cependant ces systàmes sont limités par leur latence.
+[PROBLπME IDENTIFIπ]
+   Cependant ces systπmes sont limités par leur latence.
 
 [OBJECTIF / BUT]
    Notre objectif est de proposer une approche asynchrone.
 
-[APPROCHE MàTHODOLOGIQUE]
+[APPROCHE MπTHODOLOGIQUE]
    Nous utilisons une technologie de résonance atomique.
 
-[APPORT / RàSULTATS]
+[APPORT / RπSULTATS]
    Les résultats montrent une accélération de 30x.
 
 
-  RàCIT SCIENTIFIQUE CONTINU                               
+  RπCIT SCIENTIFIQUE CONTINU                               
 
 
-Cependant, il existe une limitation fondamentale : ces systàmes 
+Cependant, il existe une limitation fondamentale : ces systπmes 
 sont limités par leur latence.
 
-Pour remédier à cette situation, ce travail vise à proposer une 
+Pour remédier π cette situation, ce travail vise π proposer une 
 approche asynchrone.
 
-La stratégie employée consiste à : utiliser une technologie de 
+La stratégie employée consiste π : utiliser une technologie de 
 résonance atomique.
 
 Il en résulte que : les résultats montrent une accélération de 30x.
@@ -127,10 +127,10 @@ Il en résulte que : les résultats montrent une accélération de 30x.
 
 ### Avant
 - Résumé fluide mais flou
-- Structure implicite, difficile à suivre
+- Structure implicite, difficile π suivre
 - Aucune métrique de qualité scientifique
 
-### Apràs
+### Aprπs
 - **Structure explicite** avec les 5 piliers
 - **Score de complétude** (0-100%)
 - **Double sortie**: structure + narratif
@@ -140,10 +140,10 @@ Il en résulte que : les résultats montrent une accélération de 30x.
 
 ---
 
-## Prochaines àtapes Recommandées
+## Prochaines πtapes Recommandées
 
-### àTAPE 5  Réécriture Locale (Clé)
-Apràs génération, éliminer les phrases redondantes:
+### πTAPE 5  Réécriture Locale (Clé)
+Aprπs génération, éliminer les phrases redondantes:
 ```go
 // Pseudo-code
 for each phrase in resume {
@@ -161,7 +161,7 @@ Créer deux résumés:
 Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ### Amélioration des Mots-Clés
-àtendre les dictionnaires de mots-clés par domaine:
+πtendre les dictionnaires de mots-clés par domaine:
 - Science informatique vs histoire vs médecine...
 - Adapter les poids selon le contexte
 
@@ -175,7 +175,7 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 ## Utilisation
 
 ```bash
-# Tester le nouveau systàme
+# Tester le nouveau systπme
 ./programme text "Votre texte ici"
 
 # Voir les détails du résumé scientifique
@@ -187,24 +187,24 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ## Métrique de Qualité
 
-**Score de résumabilité scientifique** = (Nombre de piliers présents) / 5 à 100%
+**Score de résumabilité scientifique** = (Nombre de piliers présents) / 5 π 100%
 
 - **100%**: Résumé parfait (tous les 5 piliers)
-- **80%**: Tràs bon (4 piliers)
+- **80%**: Trπs bon (4 piliers)
 - **60%**: Acceptable (3 piliers)
-- **< 60%**: Incomplet, à enrichir
+- **< 60%**: Incomplet, π enrichir
 
 ---
 
 ## Points d'Attention
 
-1. **Classification**: Les mots-clés peuvent se chevaucher (ex: "propose" peut àtre OBJECTIF ou APPROCHE)
+1. **Classification**: Les mots-clés peuvent se chevaucher (ex: "propose" peut πtre OBJECTIF ou APPROCHE)
     Solution: Ajouter du contexte sémantique
 
 2. **Ordre des piliers**: Actuellement ils apparaissent dans l'ordre de présence
-    Solution: Forcer l'ordre CONTEXTE  PROBLàME  OBJECTIF  APPROCHE  APPORT
+    Solution: Forcer l'ordre CONTEXTE  PROBLπME  OBJECTIF  APPROCHE  APPORT
 
-3. **Fusion de phrases**: Plusieurs phrases d'un màme pilier peuvent àtre fusionnées
+3. **Fusion de phrases**: Plusieurs phrases d'un mπme pilier peuvent πtre fusionnées
     Solution: Ajouter un générateur de fusion intelligente
 
 ---

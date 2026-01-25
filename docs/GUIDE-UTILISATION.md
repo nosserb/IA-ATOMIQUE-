@@ -1,21 +1,21 @@
-# GUIDE D'UTILISATION - SYSTàME DE RàSUMà ADAPTATIF
+# GUIDE D'UTILISATION - SYSTπME DE RπSUMπ ADAPTATIF
 
 ## Concept Clé
 
-Le systàme détecte automatiquement le **type de texte** et adapte le pipeline de résumé en conséquence. Vous obtenez des résumés optimisés sans configuration supplémentaire.
+Le systπme détecte automatiquement le **type de texte** et adapte le pipeline de résumé en conséquence. Vous obtenez des résumés optimisés sans configuration supplémentaire.
 
 ## 3 Types de Textes Supportés
 
-### 1. **ENCYCLOPàDIQUE** 
+### 1. **ENCYCLOPπDIQUE** 
 Textes factuels, scientifiques, informatifs
 
 **Caractéristiques détectées:**
 - Définitions ("est un", "est une", "est le")
-- Processus ("photosynthàse", "réaction")
+- Processus ("photosynthπse", "réaction")
 - Structures ("molécule", "chloroplaste", "organite")
-- àquations et formules scientifiques
+- πquations et formules scientifiques
 
-**Comportement du systàme:**
+**Comportement du systπme:**
 ```
  Résume par PHRASES (pas par mots)
  Compression limité max 30%
@@ -31,7 +31,7 @@ Textes factuels, scientifiques, informatifs
 - Faits préservés
 - Pas d'hallucinations IA
 
-**Exemples:** Photosynthàse, biologie, chimie, physique, géographie
+**Exemples:** Photosynthπse, biologie, chimie, physique, géographie
 
 ---
 
@@ -44,7 +44,7 @@ Histoires, récits, expériences, témoignages
 - Actions ("aventure", "voyage", "conflit")
 - Ambiance temporelle ("autrefois", "soudain", "alors")
 
-**Comportement du systàme:**
+**Comportement du systπme:**
 ```
  Résume par mots (plus flexible)
  Respecte ratio utilisateur (0.1  0.9)
@@ -56,7 +56,7 @@ Histoires, récits, expériences, témoignages
 **Qualité obtenue:**
 - Rythme préservé
 - Tension narrative maintenue
-- àmotions transcrites
+- πmotions transcrites
 - Cohérence acceptable
 
 **Exemples:** Romans, contes, mémoires, témoignages
@@ -72,11 +72,11 @@ Philosophie, analyse, théorie, argumentation
 - Abstraction ("philosophie", "métaphysique")
 - Argumentation ("par contre", "néanmoins", "cependant")
 
-**Comportement du systàme:**
+**Comportement du systπme:**
 ```
  Résume par mots (compression agressive OK)
  Accepte ratio élevé (0.7-0.9)
- Phase X+1 foràée si abstraction < 60%
+ Phase X+1 forπée si abstraction < 60%
  Humanisation Phase X+3 appliquée
  Convertit concret  abstrait
 ```
@@ -91,27 +91,27 @@ Philosophie, analyse, théorie, argumentation
 
 ---
 
-## UTILISATION RECOMMANDàE
+## UTILISATION RECOMMANDπE
 
-### Utilisation Simple (RECOMMANDàE)
+### Utilisation Simple (RECOMMANDπE)
 ```bash
 ./programme resume votre_document.txt 0.5
 ```
-Le systàme détecte le type et adapte automatiquement! 
+Le systπme détecte le type et adapte automatiquement! 
 
 **Résultat selon type:**
 - Encyclopédique + ratio 0.1  30% gardé automatiquement (protection)
 - Narratif + ratio 0.5  50% gardé (respecté)
 - Conceptuel + ratio 0.7  30% gardé (agressif, acceptable)
 
-### Utilisation Avancée (PRàDICTION)
+### Utilisation Avancée (PRπDICTION)
 
 **Pour textes encyclopédiques:**
 ```bash
-# Vous voullez 15%  demandez 0.15  reàoit 30% (meilleur compromis)
+# Vous voullez 15%  demandez 0.15  reπoit 30% (meilleur compromis)
 ./programme resume physique.txt 0.15
 
-# Vous voullez 40%  demandez 0.4  reàoit 30-40%
+# Vous voullez 40%  demandez 0.4  reπoit 30-40%
 ./programme resume chimie.txt 0.4
 ```
 
@@ -131,24 +131,24 @@ Le systàme détecte le type et adapte automatiquement!
 
 ---
 
-## INTERPRàTATION DU RAPPORT
+## INTERPRπTATION DU RAPPORT
 
 ### Exemple 1: Texte Encyclopédique
 
 ```
-[PHASE 15] àtape 0: Détection du type de texte...
-  à  Type: Encyclopédique (compression: 0.10)
+[PHASE 15] πtape 0: Détection du type de texte...
+  π  Type: Encyclopédique (compression: 0.10)
     Phase X+1 désactivée pour ce type
 
-[PHASE 15] àtape 2: Résumé atomique (Phase 13+++)...
-    Compression limitée à 30% pour texte encyclopédique (demandée: 10%)
-   Résumé généré: 1847 caractàres
+[PHASE 15] πtape 2: Résumé atomique (Phase 13+++)...
+    Compression limitée π 30% pour texte encyclopédique (demandée: 10%)
+   Résumé généré: 1847 caractπres
 ```
 
 **Interprétation:**
 -  Type correct identifié
-- à Phase X+1 skippée (fait correct, pas d'abstraction)
--  Vous avez demandé 10% mais reàu 30%  Protection appliquée
+- π Phase X+1 skippée (fait correct, pas d'abstraction)
+-  Vous avez demandé 10% mais reπu 30%  Protection appliquée
 -  Résumé bien généré
 
 **En bas du rapport:**
@@ -164,11 +164,11 @@ Compression:       82.4%
 ### Exemple 2: Texte Narratif
 
 ```
-[PHASE 15] àtape 0: Détection du type de texte...
-  à  Type: Narratif (compression: 0.50)
+[PHASE 15] πtape 0: Détection du type de texte...
+  π  Type: Narratif (compression: 0.50)
 
-[PHASE 15] àtape 2: Résumé atomique...
-   Résumé généré: 12500 caractàres
+[PHASE 15] πtape 2: Résumé atomique...
+   Résumé généré: 12500 caractπres
 ```
 
 **Interprétation:**
@@ -178,18 +178,18 @@ Compression:       82.4%
 
 ---
 
-## MESSAGES SPàCIAUX
+## MESSAGES SPπCIAUX
 
 ### " Phase X+1 désactivée pour ce type"
 **Signifie:** Texte encyclopédique détecté  faits conservés  c'est normal et bon
 
-### " Compression limitée à 30%"
+### " Compression limitée π 30%"
 **Signifie:** Vous avez demandé < 30% sur encyclopédique  protection automatique appliquée
 
-### "à Texte encyclopédique: conservation des faits concrets"
-**Signifie:** Phase X+1 skippée  pas de foràage d'abstraction
+### "π Texte encyclopédique: conservation des faits concrets"
+**Signifie:** Phase X+1 skippée  pas de forπage d'abstraction
 
-### "à Texte encyclopédique: conservation structure originale"
+### "π Texte encyclopédique: conservation structure originale"
 **Signifie:** Phase X+3 skippée  pas de connecteurs parasites ajoutés
 
 ---
@@ -200,7 +200,7 @@ Compression:       82.4%
 ```bash
 ./programme resume article_biologie.txt 0.2
 ```
-- Détection: ENCYCLOPàDIQUE
+- Détection: ENCYCLOPπDIQUE
 - Limite: 30% gardé (pas 20%)
 - Résultat: Article cohérent et factuel
 
@@ -227,11 +227,11 @@ Compression:       82.4%
 ### Pour Encyclopédique
 - Demandez 30-40% pour meilleur résultat
 - Ne demandez pas < 20% (perte importante)
-- Le systàme corrigera automatiquement
+- Le systπme corrigera automatiquement
 
 ### Pour Narratif
 - Demandez 30-50% pour bonne cohérence
-- Demandez 10-20% pour résumé tràs court
+- Demandez 10-20% pour résumé trπs court
 - Demandez 70-90% pour simple réduction
 
 ### Pour Conceptuel
@@ -241,7 +241,7 @@ Compression:       82.4%
 
 ---
 
-## METRIQUES à SURVEILLER
+## METRIQUES π SURVEILLER
 
 ### Compression
 - < -10%: Expansion (texte enrichi, normal pour encyclopédique)
@@ -252,7 +252,7 @@ Compression:       82.4%
 ### Coherence Score
 - > 50%: Excellent
 - 20-50%: Bon
-- < 20%: à améliorer (trop agressif)
+- < 20%: π améliorer (trop agressif)
 
 ### Grammar Score
 - > 75%: Excellent
@@ -261,11 +261,11 @@ Compression:       82.4%
 
 ---
 
-## DàPANNAGE
+## DπPANNAGE
 
 ### "Le résumé est trop court"
  Augmentez le ratio (ex: 0.3  0.5)
- Ou laissez le systàme adapter pour encyclopédique
+ Ou laissez le systπme adapter pour encyclopédique
 
 ### "Le résumé garde trop de contenu"
  Diminuez le ratio (ex: 0.7  0.5)
@@ -273,21 +273,21 @@ Compression:       82.4%
 
 ### "Beaucoup de connecteurs inutiles"
  C'est Narratif/Conceptuel (normal)
- Encyclopédique a protection contre àa
+ Encyclopédique a protection contre πa
 
 ### "Perte de faits importants"
- Vérifiez que c'est détecté ENCYCLOPàDIQUE
+ Vérifiez que c'est détecté ENCYCLOPπDIQUE
  Augmentez ratio si < 0.3
 
 ---
 
 ## CHECKLIST UTILISATION
 
-- [ ] Vous avez un document à résumer
+- [ ] Vous avez un document π résumer
 - [ ] Vous avez deviné le type (encyclopédique/narratif/conceptuel)
 - [ ] Vous avez choisi un ratio de compression
 - [ ] Vous avez lancé: `./programme resume document.txt ratio`
-- [ ] Vous avez lu le rapport (cherchez les  et à)
+- [ ] Vous avez lu le rapport (cherchez les  et π)
 - [ ] Vous avez comparé avec l'original si doubtful
 - [ ] Vous avez ajusté le ratio si nécessaire et relancé
 
@@ -295,12 +295,12 @@ Compression:       82.4%
 
 ## CONCLUSION
 
-Le systàme est conàu pour vous donner:
+Le systπme est conπu pour vous donner:
 1. **Automatisation**: Détection type sans effort
-2. **Qualité**: Adaptation à chaque type
+2. **Qualité**: Adaptation π chaque type
 3. **Protection**: Limites intelligentes contre mauvaise compression
 4. **Contrôle**: Vous fixez toujours le ratio
 5. **Transparence**: Rapport détaillé explique ce qui s'est passé
 
-**Conseil:** Utilisez ratios 0.3-0.7 pour meilleur résultat. Laissez le systàme adapter pour encyclopédique.
+**Conseil:** Utilisez ratios 0.3-0.7 pour meilleur résultat. Laissez le systπme adapter pour encyclopédique.
 

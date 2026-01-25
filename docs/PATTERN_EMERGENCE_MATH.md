@@ -2,7 +2,7 @@
 
 ## Complete Formula Derivation
 
-### 1à LOCAL DIFFUSION MECHANISM
+### 1π LOCAL DIFFUSION MECHANISM
 
 **Core Equation:**
 $$\boxed{P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} \cdot (P_{k,l}(t) - P_{i,j}(t)) + \beta \cdot V_{i,j}(t)}$$
@@ -11,13 +11,13 @@ $$\boxed{P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} 
 
 ```
 P_ij(t+1) = P_ij(t)    [Current value]
-          + ààΣ WààP   [Weighted neighbor influence]
-          + βàV(t)     [Momentum from previous step]
+          + ππΣ WππP   [Weighted neighbor influence]
+          + βπV(t)     [Momentum from previous step]
 
 Where:
-  àP = P_kl - P_ij    (color difference to neighbor)
+  πP = P_kl - P_ij    (color difference to neighbor)
   W = connection weight (learned)
-  à = diffusion strength (0.15)
+  π = diffusion strength (0.15)
   β = momentum damping (0.95)
   V = accumulated velocity
 ```
@@ -26,13 +26,13 @@ Where:
 
 Each pixel **pulls** toward its neighbors:
 - Strong neighbors (high W): large influence
-- Different colors (large àP): drive bigger change
-- Diffusion coefficient à: controls how fast
+- Different colors (large πP): drive bigger change
+- Diffusion coefficient π: controls how fast
 
 **Physics Analogy:**
 $$\frac{\partial P}{\partial t} = \nabla^2 P \quad \text{(Heat Equation)}$$
 
-### 2à SEED POINT ANCHORING
+### 2π SEED POINT ANCHORING
 
 **Constraint Equation:**
 $$\boxed{P_{i,j}(t+1) = \begin{cases} 
@@ -60,7 +60,7 @@ T=100:  [????]          T=100:  [RRRGG]
 3. **Stabilize**: fix key pixel values
 4. **Enable learning**: gradient signals from seeds
 
-### 3à CONNECTION WEIGHT LEARNING
+### 3π CONNECTION WEIGHT LEARNING
 
 **Reinforcement Equation:**
 $$\boxed{W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp\left(-\|P_{i,j} - P_{k,l}\|^2\right)}$$
@@ -72,14 +72,14 @@ $$W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp\left(-\sum_{c=R,G,B} (P^
 
 ```
 γ = 0.05          (Reinforcement rate)
-||àP||² = (àR)² + (àG)² + (àB)²    (Color distance)
+||πP||² = (πR)² + (πG)² + (πB)²    (Color distance)
 
-When ||àP||² is small:
-  exp(-||àP||²)  1        (maximum reinforcement)
+When ||πP||² is small:
+  exp(-||πP||²)  1        (maximum reinforcement)
   W increases by +γ
 
-When ||àP||² is large:
-  exp(-||àP||²)  0        (no reinforcement)
+When ||πP||² is large:
+  exp(-||πP||²)  0        (no reinforcement)
   W stays same
 ```
 
@@ -87,8 +87,8 @@ When ||àP||² is large:
 
 ```
 Iteration 1:
-  Similar pixels (àP small)      W increases
-  Different pixels (àP large)    W stays
+  Similar pixels (πP small)      W increases
+  Different pixels (πP large)    W stays
 
 Iteration 50:
   Similar pixels have higher W  (stronger influence)
@@ -102,7 +102,7 @@ Result: "Correct" connections amplified
 $$W_{i,j;k,l} = \min(W_{i,j;k,l}, 10.0)$$
 Prevents unbounded growth and numerical instability.
 
-### 4à LOSS FUNCTION
+### 4π LOSS FUNCTION
 
 **Definition:**
 $$\boxed{L = \frac{1}{|S|} \sum_{(i,j) \in S} \left\| P_{i,j}^{\text{gen}} - P_{i,j}^{\text{seed}} \right\|_2^2}$$
@@ -122,15 +122,15 @@ L  3:  Maximum possible (e.g., pure white vs black)
 Tracking L tells us:
   - Decreasing: pattern converging 
   - Flat: convergence plateau (can stop)
-  - Increasing: divergence (reduce à)
+  - Increasing: divergence (reduce π)
 ```
 
-### 5à COMPLETE ALGORITHM
+### 5π COMPLETE ALGORITHM
 
 **Pseudocode:**
 
 ```
-PATTERN_EMERGENCE(reference_image, width, height, iterations, seed_density, à, γ):
+PATTERN_EMERGENCE(reference_image, width, height, iterations, seed_density, π, γ):
   
   1. INITIALIZATION
      P  uniform gray (0.5, 0.5, 0.5)
@@ -144,8 +144,8 @@ PATTERN_EMERGENCE(reference_image, width, height, iterations, seed_density, à, 
           influence  0
           FOR each neighbor (k,l) in N(i,j):
             influence += W[i,j;k,l] * (P[k,l] - P[i,j])
-          P[i,j]  P[i,j] + à * influence + β * V[i,j]
-          V[i,j]  à * influence  (momentum)
+          P[i,j]  P[i,j] + π * influence + β * V[i,j]
+          V[i,j]  π * influence  (momentum)
           P[i,j]  clamp(P[i,j], 0, 1)
      
      b) SEED CONSTRAINT
@@ -180,11 +180,11 @@ PATTERN_EMERGENCE(reference_image, width, height, iterations, seed_density, à, 
            \      |      /
      W_i,j-1   P_i,j  W_i,j+1
            /      |      \
-                         à
+                         π
      W_i+1,j-1  W_i+1,j  W_i+1,j+1
 
 Total neighbors per pixel: 8
-Connections in W matrix: 2,097,152 (256à256)
+Connections in W matrix: 2,097,152 (256π256)
 ```
 
 **Connection Access:**
@@ -198,20 +198,20 @@ connections := Connections[key]  // 8 elements
 
 ## Parameter Effects
 
-### Effect of Diffusion Coefficient à
+### Effect of Diffusion Coefficient π
 
 ```
-à = 0.05:  Slow diffusion
+π = 0.05:  Slow diffusion
   Iteration 10:    (10% spread)
   Iteration 50:    (60% spread)
   Iteration 100:   (80% spread)
 
-à = 0.15:  Normal (default)
+π = 0.15:  Normal (default)
   Iteration 10:    (60% spread)
   Iteration 50:    (80% spread)
   Iteration 100:   (95% spread)
 
-à = 0.30:  Fast diffusion
+π = 0.30:  Fast diffusion
   Iteration 10:    (100% spread)
   Iteration 50:    (converged)
   Iteration 100:   (converged)
@@ -275,7 +275,7 @@ This occurs when:
 $$L(t) \propto e^{-\lambda t}$$
 
 Where $\lambda$ depends on:
-- $\alpha$ (larger à  faster convergence)
+- $\alpha$ (larger π  faster convergence)
 - $\gamma$ (larger γ  faster stabilization)
 - Seed density (more seeds  faster convergence)
 
@@ -337,16 +337,16 @@ $$\frac{dE}{dt} = -\alpha \sum_{...} \|...\|^2 < 0$$
 Running 1000 iterations with different parameters:
 
 Parameters     Loss@100   Loss@500   Loss@1000   Converged?
-à=0.10, γ=0.05: 0.89      0.34       0.32       (plateau)
-à=0.15, γ=0.05: 0.78      0.28       0.27       (plateau)
-à=0.20, γ=0.05: 0.65      0.25       0.24       (plateau)
-à=0.15, γ=0.01: 0.88      0.58       0.52       (slow)
-à=0.15, γ=0.10: 0.72      0.22       0.20       (fast)
+π=0.10, γ=0.05: 0.89      0.34       0.32       (plateau)
+π=0.15, γ=0.05: 0.78      0.28       0.27       (plateau)
+π=0.20, γ=0.05: 0.65      0.25       0.24       (plateau)
+π=0.15, γ=0.01: 0.88      0.58       0.52       (slow)
+π=0.15, γ=0.10: 0.72      0.22       0.20       (fast)
 ```
 
 ### Quality Metrics
 ```
-Test image: 256à256 geometric shapes
+Test image: 256π256 geometric shapes
 Seeds: 1,024 (15% density)
 
 Metric           Value      Interpretation
@@ -364,12 +364,12 @@ Convergence     200 iter     Stabilized by iteration 200
 ```
 Problem: Generated drifts from seeds
 Causes:
-  1. à too large (diffusion too strong)
+  1. π too large (diffusion too strong)
   2. Too few seeds (not enough guidance)
   3. Reference image incompatible
 
 Solutions:
-  - Reduce à: 0.15  0.10
+  - Reduce π: 0.15  0.10
   - Increase seed density: 0.10  0.20
   - Choose different reference image
   - Run fewer iterations and stop early
@@ -387,7 +387,7 @@ Actions:
 
 Decision:
   - Quality acceptable?  Done! 
-  - Quality poor?  Adjust parameters (à, γ, seeds)
+  - Quality poor?  Adjust parameters (π, γ, seeds)
 ```
 
 ### When Loss Oscillates (~ noisy)
@@ -400,7 +400,7 @@ Causes:
 
 Solutions:
   - Reduce γ: 0.05  0.02
-  - Reduce à: 0.15  0.10
+  - Reduce π: 0.15  0.10
   - Disable reinforcement for smoothness
 ```
 
@@ -410,35 +410,35 @@ Solutions:
 
 ### Time Complexity
 ```
-Per iteration: O(W à H à 8)  [8 neighbors per pixel]
+Per iteration: O(W π H π 8)  [8 neighbors per pixel]
 
 Examples:
-  256à256:   655 K ops/iter   5 ms (Intel i5)
-  512à512: 2.6 M ops/iter    20 ms
-  1024à1024: 10 M ops/iter   80 ms
+  256π256:   655 K ops/iter   5 ms (Intel i5)
+  512π512: 2.6 M ops/iter    20 ms
+  1024π1024: 10 M ops/iter   80 ms
 
 200 iterations:
-  256à256:   1 second
-  512à512:   4 seconds
-  1024à1024: 16 seconds
+  256π256:   1 second
+  512π512:   4 seconds
+  1024π1024: 16 seconds
 ```
 
 ### Memory Complexity
 ```
-Pixel data:     W à H à 3 floats (RGB)
-  256à256:     0.75 MB
-  512à512:     3.0 MB
-  1024à1024:   12.0 MB
+Pixel data:     W π H π 3 floats (RGB)
+  256π256:     0.75 MB
+  512π512:     3.0 MB
+  1024π1024:   12.0 MB
 
-Connections:    W à H à 8 floats (weights)
-  256à256:     2.0 MB
-  512à512:     8.0 MB
-  1024à1024:   32.0 MB
+Connections:    W π H π 8 floats (weights)
+  256π256:     2.0 MB
+  512π512:     8.0 MB
+  1024π1024:   32.0 MB
 
 Total:
-  256à256:     2.75 MB
-  512à512:     11 MB
-  1024à1024:   44 MB
+  256π256:     2.75 MB
+  512π512:     11 MB
+  1024π1024:   44 MB
 ```
 
 ---
@@ -447,13 +447,13 @@ Total:
 
 ### Multi-Scale Emergence
 ```
-Scale 1: 256à256, à=0.20, γ=0.05, 100 iter
+Scale 1: 256π256, π=0.20, γ=0.05, 100 iter
          (fast coarse pattern)
          
-Scale 2: 512à512, à=0.15, γ=0.05, 200 iter
+Scale 2: 512π512, π=0.15, γ=0.05, 200 iter
          (refine with higher resolution)
          
-Scale 3: 1024à1024, à=0.10, γ=0.05, 300 iter
+Scale 3: 1024π1024, π=0.10, γ=0.05, 300 iter
          (final high-detail version)
 
 Result: Progressive refinement hierarchy
@@ -462,24 +462,24 @@ Result: Progressive refinement hierarchy
 ### Adaptive Parameters
 ```
 Early phase (iterations 0-50):
-  à = 0.25  (spread fast)
+  π = 0.25  (spread fast)
   γ = 0.02  (weak learning)
 
 Middle phase (iterations 50-150):
-  à = 0.15  (balanced)
+  π = 0.15  (balanced)
   γ = 0.05  (normal learning)
 
 Late phase (iterations 150+):
-  à = 0.05  (fine-tuning)
+  π = 0.05  (fine-tuning)
   γ = 0.10  (strong learning)
 ```
 
 ### Anisotropic Diffusion
 ```
-Instead of uniform à:
-  à_ij = à_base + à_edge à àI
+Instead of uniform π:
+  π_ij = π_base + π_edge π πI
 
-Where àI is local gradient
+Where πI is local gradient
 Result: Preserve edges while smoothing regions
 ```
 
@@ -491,7 +491,7 @@ Result: Preserve edges while smoothing regions
 
 1. **Diffusion**: $P_i,j(t+1) = P_{i,j}(t) + \alpha \Sigma W(P_{k,l} - P_{i,j})$
 2. **Anchoring**: Seed points fixed to reference values
-3. **Learning**: $W(t+1) = W(t) + \gamma \exp(-||àP||²)$
+3. **Learning**: $W(t+1) = W(t) + \gamma \exp(-||πP||²)$
 4. **Monitoring**: Loss tracks convergence toward seeds
 
 This is **atomic intelligence**: local rules create global patterns!

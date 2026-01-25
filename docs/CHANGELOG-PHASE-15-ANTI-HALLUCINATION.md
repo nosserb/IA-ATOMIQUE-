@@ -4,15 +4,15 @@
 
 ### Objectif résolu
 
-**Problàme identifié** :
-- Phase 15 àtape 2 génàre parfois du contenu non présent dans le texte source
+**Problπme identifié** :
+- Phase 15 πtape 2 génπre parfois du contenu non présent dans le texte source
 - Aucun mécanisme de vérification de fidélité
 - Risque d'hallucinations dans les résumés
 
 **Solution implémentée** :
-- Formalisation mathématique du problàme
+- Formalisation mathématique du problπme
 - 6 stratégies anti-hallucination
-- Score de fidélité Ff(R,T) = |C(R)àC(T)| / |C(R)|
+- Score de fidélité Ff(R,T) = |C(R)πC(T)| / |C(R)|
 - Hybridation automatique génératif  extractif
 
 ---
@@ -29,9 +29,9 @@
    - `TestHybridApproach()` : Test hybridation
 
 2. **`PHASE-15-ANTI-HALLUCINATION.md`** (Documentation)
-   - Formalisaton mathématique complàte
+   - Formalisaton mathématique complπte
    - 6 stratégies détaillées
-   - Théoràme d'absence d'hallucination
+   - Théorπme d'absence d'hallucination
    - Exemples d'utilisation
 
 3. **`FIDELITY_QUICKSTART.md`** (Guide utilisateur)
@@ -48,7 +48,7 @@
 
 1. **`database/fidelity_check.go`** (+améliorations)
    - Fonctions existantes conservées (CalculateFidelity, ExtractiveResume, HybridResume)
-   - Peut àtre enrichi avec nouveaux termes techniques
+   - Peut πtre enrichi avec nouveaux termes techniques
 
 2. **`main.go`** (+3 lignes)
    - Ajout du case `"fidelity"` pour router vers `ProcessAntiHallucination()`
@@ -124,39 +124,39 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ```
 
- Phase 15 àtape 2 Généré     
+ Phase 15 πtape 2 Généré     
  Résumé: Rg                  
-à
+π
                
-               à
+               π
 
  Extraction vocabulaire      
  C(T) = termes du source     
-à
+π
                
-               à
+               π
 
  Calcul Ff(Rg, T)            
  Score couverture            
-à
+π
                
-       à
+       π
                        
-       à                à
+       π                π
    Ff  0.80      Ff < 0.80
                        
-       à                à
+       π                π
    GARDER       REMPLACER
   Rg généré     par Re extractif
 ```
 
 ---
 
-## Metrics de succàs
+## Metrics de succπs
 
-| Métrique | Avant | Apràs | Amélioration |
+| Métrique | Avant | Aprπs | Amélioration |
 |---|---|---|---|
-| Hallucinations détectées | 0 | 100% | à |
+| Hallucinations détectées | 0 | 100% | π |
 | Fidélité garantie | Non | Oui |  |
 | Fallback automatique | Non | Oui |  |
 | Textes techniques | Variable | Stable | +40% |
@@ -178,14 +178,14 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 **Option 2 : Via CLI pour validation**
 ```bash
 ./programme fidelity file mon_texte.txt
-# Génàre rapport automatique
+# Génπre rapport automatique
 ```
 
 ### Seuil recommandé
 
-- **Production générale** : à = 0.80 (80%)
-- **Domaines critiques** (médical, légal) : à = 0.90
-- **Domaines flexibles** (fiction) : à = 0.70
+- **Production générale** : π = 0.80 (80%)
+- **Domaines critiques** (médical, légal) : π = 0.90
+- **Domaines flexibles** (fiction) : π = 0.70
 
 ---
 
@@ -210,17 +210,17 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 
 ## Qualité du code
 
-| Aspect | àtat |
+| Aspect | πtat |
 |---|---|
 | Compilation |  Pas d'erreurs |
 | Tests |  4 tests passant |
-| Documentation |  Complàte |
+| Documentation |  Complπte |
 | Performance |  < 1s pour 1000 mots |
 | Maintenabilité |  Code bien structuré |
 
 ---
 
-## à Support
+## π Support
 
 **Questions** ? Consultez :
 1. `FIDELITY_QUICKSTART.md` pour utilisation

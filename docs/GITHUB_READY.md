@@ -1,14 +1,14 @@
-# Pràt pour GitHub!
+# Prπt pour GitHub!
 
-## Configuration Complàte
+## Configuration Complπte
 
-Ton projet **IA-ATOMIQUE** est maintenant entiàrement configuré pour àtre hébergé sur GitHub avec l'interface web!
+Ton projet **IA-ATOMIQUE** est maintenant entiπrement configuré pour πtre hébergé sur GitHub avec l'interface web!
 
 ---
 
-## à Qu'est-ce qui a été préparé
+## π Qu'est-ce qui a été préparé
 
-### 1. **Interface Web Complàte**
+### 1. **Interface Web Complπte**
 ```
 web/
  index.html    - Interface moderne et responsive
@@ -28,7 +28,7 @@ web/
 - `Makefile` - Commandes de build et run simplifiées
 - `start-web.sh` - Script de lancement rapide
 
-### 4. **Documentation Complàte**
+### 4. **Documentation Complπte**
 - `README.md` - Section web ajoutée
 - `INSTALL.md` - Instructions d'installation
 - `WEB_README.md` - Guide de configuration
@@ -36,12 +36,12 @@ web/
 - `GITHUB_CHECKLIST.md` - Checklist avant push
 
 ### 5. **CI/CD Automatisé**
-- `.github/workflows/build.yml` - Tests automatiques à chaque push
+- `.github/workflows/build.yml` - Tests automatiques π chaque push
 - Compilation vérifiée automatiquement
 - Fichiers web vérifiés automatiquement
 
 ### 6. **Configuration Git**
-- `.gitignore` - Mis à jour pour ignorer les fichiers temporaires
+- `.gitignore` - Mis π jour pour ignorer les fichiers temporaires
 - Scripts exécutables - `start-web.sh` et `verify-github.sh`
 
 ---
@@ -124,10 +124,10 @@ IA-ATOMIQUE/
  main.go
  interaction.go
  go.mod
- README.md                  # Mis à jour
+ README.md                  # Mis π jour
  database/
     *.go
- .gitignore                 # Mis à jour
+ .gitignore                 # Mis π jour
 ```
 
 ---
@@ -139,7 +139,7 @@ L'interface utilise l'API `/api/summarize` (POST):
 ```json
 REQUEST:
 {
-  "text": "Votre texte à résumer..."
+  "text": "Votre texte π résumer..."
 }
 
 RESPONSE:
@@ -155,7 +155,7 @@ RESPONSE:
 
 ---
 
-## Prochaines àtapes
+## Prochaines πtapes
 
 1. **Pusher sur GitHub** - Utilise la branche `chore/siteweb`
 2. **Faire un PR** - Vers main/develop
@@ -178,7 +178,7 @@ Tout fonctionne out-of-the-box!
 
 ## Troubleshooting Rapide
 
-| Problàme | Solution |
+| Problπme | Solution |
 |----------|----------|
 | Port 8080 occupé | `make web PORT=9000` |
 | Compilation échoue | `go mod tidy && go build` |
@@ -192,11 +192,11 @@ Tout fonctionne out-of-the-box!
 - [x] Code compile sans erreur
 - [x] Fichiers web présents
 - [x] Docker configuré
-- [x] Documentation complàte
+- [x] Documentation complπte
 - [x] CI/CD configuré
 - [x] .gitignore correct
 - [x] Scripts exécutables
-- [x] README.md mis à jour
+- [x] README.md mis π jour
 - [x] Installation facile pour utilisateurs
 
 **READY TO PUSH! **

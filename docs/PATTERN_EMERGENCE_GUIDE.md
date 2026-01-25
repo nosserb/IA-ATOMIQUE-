@@ -12,7 +12,7 @@
 
 ## Mathematical Foundation
 
-### 1à Pixel Grid Representation
+### 1π Pixel Grid Representation
 
 Each image is modeled as a grid of pixels with RGB values:
 
@@ -20,7 +20,7 @@ $$P_{i,j}(t) = \text{pixel color at position } (i,j) \text{ at time } t$$
 
 Where $P_{i,j} \in [0,1]^3$ for RGB channels.
 
-### 2à Local Diffusion Equation
+### 2π Local Diffusion Equation
 
 Each pixel updates based on its neighbors' influence:
 
@@ -36,7 +36,7 @@ $$P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} \cdot (
 - Pixel color shifts toward neighbors' average (diffusion effect)
 - Creates smooth transitions and wave propagation
 
-### 3à Seed Point Anchoring
+### 3π Seed Point Anchoring
 
 Known pixels constrain the system to follow reality:
 
@@ -47,7 +47,7 @@ $$P_{i,j}(t+1) = \begin{cases} P_{i,j}^{\text{real}} & \text{if } (i,j) \in \tex
 - Prevents the system from drifting into unreality
 - Forces emergence of specific patterns
 
-### 4à Connection Reinforcement
+### 4π Connection Reinforcement
 
 Weights strengthen when pixels have similar colors (learned alignment):
 
@@ -62,7 +62,7 @@ $$W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp(-\|P_{i,j} - P_{k,l}\|^2
 - Cooperative pixels strengthen mutual influence
 - Patterns stabilize and become more recognizable
 
-### 5à Loss Function for Guidance
+### 5π Loss Function for Guidance
 
 Measure error between generated and reference pixels:
 
@@ -172,7 +172,7 @@ ls -lh output/pattern_*.png
 
 ## Parameter Tuning
 
-### Diffusion Coefficient (à)
+### Diffusion Coefficient (π)
 
 Controls how much pixels are influenced by neighbors:
 
@@ -234,7 +234,7 @@ $$\text{Loss} = \sqrt{\text{Mean squared error from seeds}}$$
 
 - **Decreasing loss**: Waves converging toward seed values 
 - **Flat/oscillating loss**: Convergence plateau (consider stopping)
-- **Increasing loss**: Divergence (reduce à or increase γ)
+- **Increasing loss**: Divergence (reduce π or increase γ)
 
 **Example output:**
 ```
@@ -334,8 +334,8 @@ Iteration 200:   Clear recognition possible
 
 ### Time Complexity
 
-- Per iteration: O(width à height à neighbors)
-- Typical: 256à256 pixel = ~100ms per iteration
+- Per iteration: O(width π height π neighbors)
+- Typical: 256π256 pixel = ~100ms per iteration
 - 200 iterations: ~20 seconds
 
 ### Optimization Tips
@@ -366,7 +366,7 @@ Iteration 200:   Clear recognition possible
 **Solutions:**
 - Decrease seed density (0.3  0.1)
 - Decrease reinforcement rate (0.05  0.02)
-- Increase diffusion à (0.15  0.20)
+- Increase diffusion π (0.15  0.20)
 
 ### Issue: Generated image looks blocky
 
@@ -384,7 +384,7 @@ Iteration 200:   Clear recognition possible
 
 **Solutions:**
 - Seed constraint not being applied
-- Try reducing diffusion à
+- Try reducing diffusion π
 - Check seed point coordinates
 
 ---
@@ -457,7 +457,7 @@ This is why the mathematical formulation worksit mirrors nature.
 
 ---
 
-## à Quick Reference
+## π Quick Reference
 
 ```bash
 # Show help
@@ -483,9 +483,9 @@ This is why the mathematical formulation worksit mirrors nature.
 
 ### Variable Alpha Over Time
 Decrease diffusion as iterations progress:
-- Early (0-100): à = 0.25 (fast spreading)
-- Middle (100-200): à = 0.15 (stabilizing)
-- Late (200+): à = 0.05 (fine-tuning)
+- Early (0-100): π = 0.25 (fast spreading)
+- Middle (100-200): π = 0.15 (stabilizing)
+- Late (200+): π = 0.05 (fine-tuning)
 
 ### Adaptive Gamma
 Increase reinforcement as patterns stabilize.
@@ -525,7 +525,7 @@ This is **atomic intelligence**: intelligence emerges from local rules, not top-
 
 ---
 
-## à Example Session
+## π Example Session
 
 ```bash
 $ ./programme pattern emerge 512 512 250 input/image/face.png 0.15
@@ -542,7 +542,7 @@ Transforming abstract waves  recognizable structures
     Seeds saved to visualization
 
  Phase 3: Pixel Diffusion (250 iterations)
-   P_ij(t+1) = P_ij(t) + ààΣ Wà(neighbor_colors - P_ij)
+   P_ij(t+1) = P_ij(t) + ππΣ Wπ(neighbor_colors - P_ij)
     Iter 62: Loss 0.12345
     Iter 125: Loss 0.08912
     Iter 187: Loss 0.07654

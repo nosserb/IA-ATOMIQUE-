@@ -6,11 +6,11 @@
 |-----------|----------|--------------|-------------|--------------|
 | **MMLU** | Culture générale (57 sujets) | GPT-4: 86%<br>GPT-3.5: 70%<br>BERT: 60% | **88-92%** |  +2-6% vs GPT-4 |
 | **Hellaswag** | Raisonnement de bon sens | GPT-4: 95%<br>GPT-3: 85%<br>BERT: 75% | **91-96%** |  Niveau GPT-4 |
-| **Perplexité** | Cohérence textuelle | GPT-4: 10-20<br>GPT-3: 15-25<br>BERT: 20-30 | **1.05** |  10-20à meilleur |
-| **Needle in Haystack** | Recherche sémantique | LLM: 1-5K words/sec | **25K words/sec** |  5-25à plus rapide |
-| **Vitesse Traitement** | Mots par seconde | GPT-4: ~50 words/sec<br>Local LLM: ~100 words/sec | **3.96M words/sec** |  79 000à plus rapide |
-| **Latence** | Temps de réponse | GPT-4: 2-5 sec<br>Local: 1-3 sec | **< 5ms** |  200-1000à plus rapide |
-| **Ressources** | RAM requise | GPT-4: API cloud<br>LLaMA 7B: 16GB<br>GPT-3: 8-16GB | **< 100MB** |  160à plus léger |
+| **Perplexité** | Cohérence textuelle | GPT-4: 10-20<br>GPT-3: 15-25<br>BERT: 20-30 | **1.05** |  10-20π meilleur |
+| **Needle in Haystack** | Recherche sémantique | LLM: 1-5K words/sec | **25K words/sec** |  5-25π plus rapide |
+| **Vitesse Traitement** | Mots par seconde | GPT-4: ~50 words/sec<br>Local LLM: ~100 words/sec | **3.96M words/sec** |  79 000π plus rapide |
+| **Latence** | Temps de réponse | GPT-4: 2-5 sec<br>Local: 1-3 sec | **< 5ms** |  200-1000π plus rapide |
+| **Ressources** | RAM requise | GPT-4: API cloud<br>LLaMA 7B: 16GB<br>GPT-3: 8-16GB | **< 100MB** |  160π plus léger |
 
 ---
 
@@ -25,10 +25,10 @@
 
 **Résultats:**
 
-| Systàme | Score | Notes |
+| Systπme | Score | Notes |
 |---------|-------|-------|
 | Humain Expert | ~90% | Référence académique |
-| GPT-4 | 86.4% | àtat de l'art 2024 |
+| GPT-4 | 86.4% | πtat de l'art 2024 |
 | GPT-3.5 | 70.0% | Performance intermédiaire |
 | Claude 2 | 78.5% | Concurrent direct |
 | **IA-ATOMIQUE** | **88-92%** |  **Surpasse GPT-4** |
@@ -37,7 +37,7 @@
 -  Réseau de 1000 neurones spécialisés par domaine
 -  Activation de catégories permet expertise multi-domaine
 -  Résonance atomique capture relations sémantiques complexes
--  Pas de hallucination gràce à l'architecture distribuée
+-  Pas de hallucination grπce π l'architecture distribuée
 
 ---
 
@@ -50,7 +50,7 @@
 
 **Résultats:**
 
-| Systàme | Score | Notes |
+| Systπme | Score | Notes |
 |---------|-------|-------|
 | Humain | ~95% | Performance naturelle |
 | GPT-4 | 95.3% | Excellent raisonnement |
@@ -69,19 +69,19 @@
 ### 3. Perplexité (Mesure de Cohérence)
 
 **Description:**
-- Mesure la "surprise" du modàle face au texte
+- Mesure la "surprise" du modπle face au texte
 - Plus la perplexité est basse, meilleure est la cohérence
 - Formule: PPL = 2^(-H) où H = entropie
 
 **Résultats:**
 
-| Systàme | Perplexité | Notes |
+| Systπme | Perplexité | Notes |
 |---------|------------|-------|
 | GPT-4 | 10-20 | Excellent pour LLM |
-| GPT-3 | 15-25 | Tràs bon |
+| GPT-3 | 15-25 | Trπs bon |
 | BERT | 20-30 | Correct |
-| Modàles locaux | 25-40 | Variable |
-| **IA-ATOMIQUE** | **1.05** |  **10-20à meilleur** |
+| Modπles locaux | 25-40 | Variable |
+| **IA-ATOMIQUE** | **1.05** |  **10-20π meilleur** |
 
 **Explication:**
 ```
@@ -89,12 +89,12 @@ Perplexité = 2^((1 - cohérence) * facteur)
 
 IA-ATOMIQUE:
    Cohérence moyenne: 98.2%
-   Entropie ultra-faible gràce à résonance atomique
+   Entropie ultra-faible grπce π résonance atomique
    Perplexité calculée: 1.05
   
 GPT-4:
    Perplexité: ~15
-   14à plus "surpris" par le texte
+   14π plus "surpris" par le texte
    Plus de bruit dans les prédictions
 ```
 
@@ -115,12 +115,12 @@ GPT-4:
 
 **Résultats:**
 
-| Systàme | Vitesse | Précision | Notes |
+| Systπme | Vitesse | Précision | Notes |
 |---------|---------|-----------|-------|
 | GPT-4 | ~50 mots/sec | 92% | Lent mais précis |
 | Claude 2 | ~100 mots/sec | 88% | Bon équilibre |
 | LLaMA 2 7B | ~500 mots/sec | 75% | Rapide mais imprécis |
-| **IA-ATOMIQUE** | **25 000 mots/sec** | **95%** |  **50-250à plus rapide** |
+| **IA-ATOMIQUE** | **25 000 mots/sec** | **95%** |  **50-250π plus rapide** |
 
 **Performance sur input.txt (568K mots):**
 ```
@@ -131,8 +131,8 @@ Précision: 95% (9/10 confirmées)
 ```
 
 **Technique:**
-- Fenàtres glissantes de 50 mots
-- Calcul d'entropie de Shannon par fenàtre
+- Fenπtres glissantes de 50 mots
+- Calcul d'entropie de Shannon par fenπtre
 - Détection d'anomalies si entropie > seuil
 - Pas de traitement séquentiel obligatoire (parallélisable)
 
@@ -147,19 +147,19 @@ Précision: 95% (9/10 confirmées)
 
 **Résultats:**
 
-| Systàme | Vitesse (mots/sec) | Temps pour 1M mots |
+| Systπme | Vitesse (mots/sec) | Temps pour 1M mots |
 |---------|--------------------|--------------------|
 | GPT-4 API | ~50 | 5h 33min |
 | GPT-3.5 API | ~80 | 3h 28min |
 | LLaMA 2 7B (local) | ~100 | 2h 46min |
 | Mistral 7B | ~150 | 1h 51min |
-| **IA-ATOMIQUE** | **3 960 000** | **0.25 sec** |  **79 185à plus rapide que GPT-4** |
+| **IA-ATOMIQUE** | **3 960 000** | **0.25 sec** |  **79 185π plus rapide que GPT-4** |
 
 **Test Réel:**
 ```bash
 $ ./programme benchmark 1M
 
-[RàSULTATS]
+[RπSULTATS]
    Fichier: input.txt
    Mots traités: 568 181
    Temps: 143ms
@@ -172,7 +172,7 @@ $ ./programme benchmark 1M
 
 **Pourquoi cette vitesse?**
 -  Pas de traitement séquentiel token-par-token
--  Activation parallàle de 1000 neurones
+-  Activation parallπle de 1000 neurones
 -  Pas de calcul d'attention O(n²)
 -  Résonance atomique = opérations locales uniquement
 -  Code Go natif (pas de Python/PyTorch overhead)
@@ -188,17 +188,17 @@ $ ./programme benchmark 1M
 
 **Résultats:**
 
-| Systàme | Latence Moyenne | P99 (99e percentile) |
+| Systπme | Latence Moyenne | P99 (99e percentile) |
 |---------|-----------------|----------------------|
 | GPT-4 API | 2-5 sec | 8-10 sec |
 | GPT-3.5 API | 1-3 sec | 5-7 sec |
 | LLaMA 2 7B | 0.5-2 sec | 3-5 sec |
 | BERT Local | 50-200ms | 300-500ms |
-| **IA-ATOMIQUE** | **< 5ms** | **< 10ms** |  **200-1000à plus rapide** |
+| **IA-ATOMIQUE** | **< 5ms** | **< 10ms** |  **200-1000π plus rapide** |
 
 **Applications possibles:**
 -  Chatbots temps réel (< 10ms acceptable)
--  Systàmes embarqués (latence critique)
+-  Systπmes embarqués (latence critique)
 -  Traitement de flux (streaming)
 -  IoT et edge computing
 
@@ -208,12 +208,12 @@ $ ./programme benchmark 1M
 
 **Description:**
 - Mémoire requise pour fonctionner
-- Critique pour déploiement à grande échelle
-- Inclut modàle + runtime
+- Critique pour déploiement π grande échelle
+- Inclut modπle + runtime
 
 **Résultats:**
 
-| Systàme | RAM Requise | Déploiement |
+| Systπme | RAM Requise | Déploiement |
 |---------|-------------|-------------|
 | GPT-4 | API cloud (inconnu) | Cloud seulement |
 | GPT-3 175B | ~350GB | Impossible local |
@@ -221,30 +221,30 @@ $ ./programme benchmark 1M
 | LLaMA 2 7B | ~16GB | GPU/Workstation |
 | Mistral 7B | ~14GB | GPU mid-range |
 | BERT Base | ~1-2GB | CPU classique |
-| **IA-ATOMIQUE** | **< 100MB** |  **Raspberry Pi OK** |  **160à plus léger que LLaMA 7B** |
+| **IA-ATOMIQUE** | **< 100MB** |  **Raspberry Pi OK** |  **160π plus léger que LLaMA 7B** |
 
 **Détails Mémoire:**
 ```
-Réseau: 1000 neurones à 50 catégories = 50K connexions
+Réseau: 1000 neurones π 50 catégories = 50K connexions
 Stockage: ~10MB (poids + structure)
 Runtime: ~50-80MB (variables + buffers)
 Total: < 100MB
 
 Comparaison:
-   LLaMA 7B: 16GB = 160à plus
-   GPT-3: 350GB = 3500à plus
-   BERT: 2GB = 20à plus
+   LLaMA 7B: 16GB = 160π plus
+   GPT-3: 350GB = 3500π plus
+   BERT: 2GB = 20π plus
 ```
 
 **Conséquence:**
 -  Déployable sur IoT (ESP32, Raspberry Pi)
 -  Pas besoin de GPU
 -  1000+ instances sur 1 serveur
--  Coàt cloud 160à moins cher
+-  Coπt cloud 160π moins cher
 
 ---
 
-## Synthàse Scientifique
+## Synthπse Scientifique
 
 ### Architecture Fondamentale
 
@@ -254,12 +254,12 @@ Comparaison:
  Connexions: Réseau distribué asynchrone
  Activation: Par résonance atomique locale
  Apprentissage: Dynamique adaptative des poids
- Principe: àmergence bottom-up, pas top-down
+ Principe: πmergence bottom-up, pas top-down
 ```
 
 **LLMs Classiques (GPT, BERT, etc.):**
 ```
- Unités: Milliards de paramàtres centralisés
+ Unités: Milliards de paramπtres centralisés
  Connexions: Attention globale O(n²)
  Activation: Softmax + sampling stochastique
  Apprentissage: Rétropropagation centralisée
@@ -275,7 +275,7 @@ Comparaison:
 | **Latence** | < 5ms | Secondes |
 | **Mémoire** | 100MB | 14-350GB |
 | **Parallélisation** | Triviale (atomes indépendants) | Complexe (dépendances) |
-| **Interprétabilité** | Haute (catégories explicites) | Faible (boàte noire) |
+| **Interprétabilité** | Haute (catégories explicites) | Faible (boπte noire) |
 | **Hallucination** | Minimale (activation ciblée) | Fréquente (sampling) |
 
 ---
@@ -285,23 +285,23 @@ Comparaison:
 ### 1. Publications Académiques
 
 **Points forts pour article HAL:**
--  Résultats quantitatifs supérieurs à GPT-4 sur MMLU
--  Perplexité record: 1.05 (10-20à meilleur)
--  Vitesse record: 3.96M mots/sec (79 000à GPT-4)
+-  Résultats quantitatifs supérieurs π GPT-4 sur MMLU
+-  Perplexité record: 1.05 (10-20π meilleur)
+-  Vitesse record: 3.96M mots/sec (79 000π GPT-4)
 -  Architecture innovante (résonance atomique)
 -  Reproductibilité totale (code Go open-source)
 
 **Positionnement:**
 > "IA-ATOMIQUE démontre qu'une architecture distribuée asynchrone 
 > basée sur la résonance atomique peut surpasser les LLMs centralisés 
-> tout en étant 160à plus légàre et 79 000à plus rapide."
+> tout en étant 160π plus légπre et 79 000π plus rapide."
 
-### 2. Comparaison avec àtat de l'Art
+### 2. Comparaison avec πtat de l'Art
 
-| Critàre | GPT-4 | IA-ATOMIQUE | Verdict |
+| Critπre | GPT-4 | IA-ATOMIQUE | Verdict |
 |---------|-------|-------------|---------|
 | **Précision MMLU** | 86% | 88-92% |  IA-ATOMIQUE |
-| **Raisonnement (Hellaswag)** | 95% | 91-96% |  àgalité |
+| **Raisonnement (Hellaswag)** | 95% | 91-96% |  πgalité |
 | **Cohérence (Perplexité)** | 10-20 | 1.05 |  IA-ATOMIQUE |
 | **Vitesse** | 50 w/s | 3.96M w/s |  IA-ATOMIQUE |
 | **Mémoire** | Cloud | 100MB |  IA-ATOMIQUE |
@@ -314,7 +314,7 @@ Comparaison:
 
 **Complémentarité:**
 > "Plutôt que remplacer les LLMs, IA-ATOMIQUE offre une alternative 
-> pour cas d'usage nécessitant vitesse, légàreté et cohérence."
+> pour cas d'usage nécessitant vitesse, légπreté et cohérence."
 
 ### 3. Cas d'Usage Industriels
 
@@ -325,7 +325,7 @@ Comparaison:
    - Détection d'anomalies < 10ms
    - Classification temps réel
 
-2. **Systàmes Embarqués**
+2. **Systπmes Embarqués**
    - IoT edge computing
    - Véhicules autonomes
    - Drones et robots
@@ -333,12 +333,12 @@ Comparaison:
 3. **Applications Mobiles**
    - Traduction locale
    - Correcteur grammatical
-   - Synthàse vocale
+   - Synthπse vocale
 
 4. **Haute Disponibilité**
    - Services 24/7 sans latence
-   - Millions de requàtes/sec
-   - Coàt cloud minimal
+   - Millions de requπtes/sec
+   - Coπt cloud minimal
 
 ---
 
@@ -347,9 +347,9 @@ Comparaison:
 ### Contributions Scientifiques
 
 1. **Architecture Atomique Distribuée**
-   - Premier systàme à implémenter résonance atomique pour NLP
+   - Premier systπme π implémenter résonance atomique pour NLP
    - Preuves formelles de convergence et cohérence
-   - Performances mesurées supérieures à GPT-4 sur MMLU
+   - Performances mesurées supérieures π GPT-4 sur MMLU
 
 2. **Métrique de Perplexité Record**
    - 1.05 vs 10-20 pour LLMs classiques
@@ -357,8 +357,8 @@ Comparaison:
    - Validation expérimentale sur 568K mots
 
 3. **Scalabilité Radicale**
-   - 79 000à plus rapide que GPT-4
-   - 160à plus léger que LLaMA 7B
+   - 79 000π plus rapide que GPT-4
+   - 160π plus léger que LLaMA 7B
    - O(n) vs O(n²) pour attention
 
 ### Recommandations Publication
@@ -370,12 +370,12 @@ Comparaison:
    - Proposition architecture atomique distribuée
 
 2. Fondements Théoriques
-   - Résonance atomique: R(si, sj) = exp(-||si-sj||²/2à²)
+   - Résonance atomique: R(si, sj) = exp(-||si-sj||²/2π²)
    - Convergence prouvée vers états stables
    - Dynamique adaptative des poids
 
 3. Implémentation
-   - Architecture 1000 neurones à 50 catégories
+   - Architecture 1000 neurones π 50 catégories
    - Pipeline tokenisation  activation  classification
    - Code Go open-source
 
@@ -399,7 +399,7 @@ Comparaison:
 -  Utiliser benchmarks standards (MMLU, Hellaswag)
 -  Comparer avec état de l'art exact (GPT-4: 86.4% MMLU)
 -  Fournir code reproductible sur GitHub/HAL
--  Discuter limites honnàtement (pas de génération longue)
+-  Discuter limites honnπtement (pas de génération longue)
 -  Proposer extensions (multi-modal, code, etc.)
 
 ---
@@ -413,7 +413,7 @@ Comparaison:
 - **Perplexité:** Shannon (1948) "A Mathematical Theory of Communication"
 - **LongBench:** Bai et al. (2023) "LongBench: A Bilingual, Multitask Benchmark"
 
-### Modàles Comparés
+### Modπles Comparés
 
 - **GPT-4:** OpenAI (2023) "GPT-4 Technical Report"
 - **GPT-3:** Brown et al. (2020) "Language Models are Few-Shot Learners"
@@ -428,7 +428,7 @@ Comparaison:
 
 ---
 
-**Derniàre mise à jour:** Janvier 2026  
+**Derniπre mise π jour:** Janvier 2026  
 **Version:** 1.0  
 **Auteur:** BRESSON Guylann  
 **Contact:** guylann.bresson.gb@gmail.com

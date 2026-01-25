@@ -19,7 +19,7 @@ That's it! Check `output/` for results.
 Each pixel talks to its neighbors through local rules:
 
 ```
-P_ij(t+1) = P_ij(t) + ààΣ Wà(neighbor_colors - P_ij)
+P_ij(t+1) = P_ij(t) + ππΣ Wπ(neighbor_colors - P_ij)
             
      (pixel updates based on neighbors)
 
@@ -33,12 +33,12 @@ P_ij(t+1) = P_ij(t) + ààΣ Wà(neighbor_colors - P_ij)
 ```
 Iteration 0     50              100             150             200
                                                             
-àààà
+ππππ
  Gray           Waves         Pattern        Recognizable   Final
  (no           spreading     forming        structure      (detailed)
   structure)   from seeds    around         visible       
                              anchors                      
-àààà
+ππππ
 ```
 
 Each saved image shows the progression from chaos to order.
@@ -54,7 +54,7 @@ Each saved image shows the progression from chaos to order.
 ```
 
 **Result:** 
-- Starts with 512à512 gray pixels
+- Starts with 512π512 gray pixels
 - Adds ~15% seed points from face.png
 - Runs 200 diffusion iterations
 - Final output: `pattern_final_emerged.png`
@@ -112,11 +112,11 @@ output/
 
 | Parameter | Default | Effect |
 |-----------|---------|--------|
-| **Width/Height** | 512à512 | Output resolution |
+| **Width/Height** | 512π512 | Output resolution |
 | **Iterations** | 200 | Diffusion steps (more = better) |
 | **Seed Image** | (optional) | Reference to guide patterns |
 | **Seed Density** | 0.15 | 15% of pixels as anchors |
-| **Alpha (à)** | 0.15 | Neighbor influence (0.05-0.3) |
+| **Alpha (π)** | 0.15 | Neighbor influence (0.05-0.3) |
 | **Gamma (γ)** | 0.05 | Reinforcement strength (0.01-0.1) |
 
 ---
@@ -285,7 +285,7 @@ Output:
 **Converges too fast?**
 - Reduce seeds: 0.15  0.05
 - Reduce iterations: 200  100
-- Decrease à or γ in code
+- Decrease π or γ in code
 
 **Takes too long?**
 - Use smaller resolution: 512  256
@@ -300,12 +300,12 @@ Output:
 
 | Resolution | Iterations | Time |
 |-----------|-----------|------|
-| 256à256   | 100       | ~5 sec |
-| 256à256   | 300       | ~15 sec |
-| 512à512   | 100       | ~15 sec |
-| 512à512   | 200       | ~30 sec  |
-| 512à512   | 500       | ~80 sec |
-| 1024à1024 | 200       | ~2 min |
+| 256π256   | 100       | ~5 sec |
+| 256π256   | 300       | ~15 sec |
+| 512π512   | 100       | ~15 sec |
+| 512π512   | 200       | ~30 sec  |
+| 512π512   | 500       | ~80 sec |
+| 1024π1024 | 200       | ~2 min |
 
 ---
 

@@ -322,7 +322,7 @@ This image generation system integrates seamlessly with the existing IA-ATOMIQUE
 
 ---
 
-## à Support & Troubleshooting
+## π Support & Troubleshooting
 
 See **[QUICKSTART-IMAGE-GENERATION.md](QUICKSTART-IMAGE-GENERATION.md)** for common issues:
 - Blurry output

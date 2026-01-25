@@ -6,10 +6,10 @@ Nous étendons l'**Atomic Resonance Technology (T.R.A.)** du texte aux **images*
 
 ### Principes fondamentaux
 
-1. **Pixels comme atomes** : Chaque pixel ou bloc (8à8, 16à16) est une unité autonome avec son propre état
+1. **Pixels comme atomes** : Chaque pixel ou bloc (8π8, 16π16) est une unité autonome avec son propre état
 2. **Interactions locales uniquement** : Les atomes ne s'influencent que via leurs voisins immédiats (8-voisinage)
 3. **Prompt comme champ externe** : Le prompt utilisateur est traduit en contraintes locales qui guident le réseau
-4. **àmergence visuelle** : L'image cohérente émerge naturellement des interactions locales
+4. **πmergence visuelle** : L'image cohérente émerge naturellement des interactions locales
 5. **Performance** : Massivement parallélisable, génération ultra-rapide
 
 ### Comparaison avec les LLM de génération d'images
@@ -18,10 +18,10 @@ Nous étendons l'**Atomic Resonance Technology (T.R.A.)** du texte aux **images*
 |--------|-------------|---------------------------|
 | Architecture | Atomes autonomes décentralisés | Transformers centralisés |
 | Interactions | Locales (voisins) | Globales (attention) |
-| Mémoire | Tràs faible | ànorme (10GB+) |
-| Vitesse | Tràs rapide (instantané) | Lente (30-60s) |
+| Mémoire | Trπs faible | πnorme (10GB+) |
+| Vitesse | Trπs rapide (instantané) | Lente (30-60s) |
 | Parallélisation | Triviale | Complexe |
-| Contrôle créatif | Tràs fin (par région) | Global/basique |
+| Contrôle créatif | Trπs fin (par région) | Global/basique |
 
 ## Architecture atomique pour les images
 
@@ -34,11 +34,11 @@ type PixelAtom struct {
     Color              [3]float64         // RGB normalisé [0, 1]
     Intensity          float64            // Luminosité [0, 1]
     Features           map[string]float64 // Texture, orientation, etc.
-    State              float64            // àtat interne [0, 1]
+    State              float64            // πtat interne [0, 1]
     Neighbors          []int              // IDs des atomes voisins
     ConnectionWeights  map[int]float64    // Poids d'influence w_ij
     ExternalConstraint float64            // Contrainte du prompt
-    IsFrozen           bool               // àtat de veille énergétique
+    IsFrozen           bool               // πtat de veille énergétique
 }
 ```
 
@@ -56,9 +56,9 @@ Un réseau 2D d'atomes interconnectés :
 
 Chaque atome interagit avec **8 voisins maximum** (4-voisinage ou 8-voisinage).
 
-### Formule de mise à jour atomique
+### Formule de mise π jour atomique
 
-Pour chaque atome $i$ à chaque itération :
+Pour chaque atome $i$ π chaque itération :
 
 $$a_i(t+1) = a_i(t) + \alpha \sum_{j \in N(i)} w_{ij} \cdot f(a_i(t), a_j(t), c_i) + \beta \cdot g(c_i)$$
 
@@ -67,7 +67,7 @@ Où :
 - $N(i)$ : voisinage de l'atome $i$
 - $w_{ij}$ : poids d'influence entre atomes
 - $f$ : fonction d'alignement basée sur la résonance
-- $\beta$ : coefficient des ràgles locales
+- $\beta$ : coefficient des rπgles locales
 - $c_i$ : contraintes externes (prompt)
 - $g$ : fonction d'application des contraintes
 
@@ -96,7 +96,7 @@ Contraintes extraites:
 
  Application locale
 
-Chaque atome reàoit ses modifications basées sur position + terme
+Chaque atome reπoit ses modifications basées sur position + terme
 ```
 
 ### Dictionnaire de contraintes
@@ -117,7 +117,7 @@ Accumule tous les modificateurs de couleur du prompt, créant une influence colo
 
 ## Processus de génération
 
-### àtape 1 : Initialisation
+### πtape 1 : Initialisation
 
 ```go
 network := database.NewAtomicImageNetwork(width, height, patchSize)
@@ -126,29 +126,29 @@ network.ParsePrompt("votre prompt ici")
 
 - Crée un réseau 2D d'atomes
 - Initialise les états aléatoirement
-- àtablit les connexions voisinage
+- πtablit les connexions voisinage
 - Parse le prompt en contraintes
 
-### àtape 2 : Itération asynchrone
+### πtape 2 : Itération asynchrone
 
 Pour chaque itération $t$ :
 
 1. **Lecture des voisins** : Chaque atome lit les états de ses voisins (pas de verrouillage nécessaire)
-2. **Calcul de résonance** : àvalue l'alignement avec chaque voisin
+2. **Calcul de résonance** : πvalue l'alignement avec chaque voisin
 3. **Accumulation d'influence** : Somme pondérée des influences
 4. **Application des contraintes** : Ajuste l'état selon le prompt
-5. **Mise à jour** : Modifie l'état interne et la couleur
+5. **Mise π jour** : Modifie l'état interne et la couleur
 6. **Apprentissage** : Ajuste les poids via $w_{ij}(t+1) = w_{ij}(t) + \gamma \cdot \text{coherence} - \delta \cdot w_{ij}(t)$
 7. **Freeze check** : Passe en hibernation si inactif
 
-### àtape 3 : Post-traitement
+### πtape 3 : Post-traitement
 
 ```go
 network.LocalSmoothing(radius)    // Lissage local
 network.EdgeEnhancement(strength)  // Accentuation des détails
 ```
 
-### àtape 4 : Rendu et sauvegarde
+### πtape 4 : Rendu et sauvegarde
 
 ```go
 img := network.RenderImage()
@@ -163,7 +163,7 @@ network.SaveImage("output.png")
 ./programme image generate 512 512 100 8 "sunset over mountains"
 ```
 
-**Paramàtres** :
+**Paramπtres** :
 - `512 512` : Dimensions (64-2048 pixels)
 - `100` : Itérations de génération
 - `8` : Taille des patches (1-64, plus grand = plus rapide)
@@ -177,7 +177,7 @@ network.SaveImage("output.png")
 ./programme image prompt "detailed fantasy landscape with castles and forests"
 ```
 
-Le systàme détermine automatiquement :
+Le systπme détermine automatiquement :
 - Dimensions basées sur la complexité du prompt
 - Nombre d'itérations optimal
 - Taille des patches
@@ -188,9 +188,9 @@ Le systàme détermine automatiquement :
 ./programme image multi-scale "abstract colorful art"
 ```
 
-Génàre à 3 niveaux :
-1. **Coarse** (16à16 patches) : Structures globales (30 iter)
-2. **Medium** (8à8 patches) : Détails intermédiaires (40 iter)
+Génπre π 3 niveaux :
+1. **Coarse** (16π16 patches) : Structures globales (30 iter)
+2. **Medium** (8π8 patches) : Détails intermédiaires (40 iter)
 3. **Fine** (interpolé) : Post-traitement et affinage
 
 Cette approche est **beaucoup plus rapide** et produit **meilleure qualité**.
@@ -211,7 +211,7 @@ Lancer des générations dans une boucle interactive.
 func (net *AtomicImageNetwork) UpdateAtomState(atom *PixelAtom, alpha, beta float64) {
     // 1. Phase gelée (économie d'énergie)
     if atom.IsFrozen { 
-        // Mise à jour minimaliste seulement
+        // Mise π jour minimaliste seulement
         atom.State *= 0.98
         return 
     }
@@ -229,12 +229,12 @@ func (net *AtomicImageNetwork) UpdateAtomState(atom *PixelAtom, alpha, beta floa
     // 3. Contraintes externes du prompt
     constraintInfluence := atom.ExternalConstraint * (0.5 - atom.State)
 
-    // 4. Mise à jour d'état
+    // 4. Mise π jour d'état
     oldState := atom.State
     atom.State += alpha*neighborInfluence + beta*constraintInfluence
     atom.State = clamp(atom.State, 0, 1)
 
-    // 5. Mise à jour des poids (apprentissage)
+    // 5. Mise π jour des poids (apprentissage)
     coherence := 1.0 - |atom.State - oldState|
     for neighborID := range atom.ConnectionWeights {
         w := atom.ConnectionWeights[neighborID]
@@ -255,19 +255,19 @@ func (net *AtomicImageNetwork) UpdateAtomState(atom *PixelAtom, alpha, beta floa
 }
 ```
 
-## Paramàtres d'optimisation
+## Paramπtres d'optimisation
 
-### ànergétiques
+### πnergétiques
 
 - **FreezeThreshold** : Seuil d'inactivité pour hibernation
 - **FreezeIterations** : Itérations avant freeze
-- **CouplingCoefficient (à)** : Force d'interaction voisinage (0.7)
+- **CouplingCoefficient (π)** : Force d'interaction voisinage (0.7)
 - **DecayFactor (δ)** : Affaiblissement des faibles connexions (0.05)
 
 ### Apprentissage
 
 - **ReinforcementFactor (γ)** : Renforcement des poids (0.15)
-- **ResonanceSensitivity (à)** : Sensibilité à l'alignement (0.1)
+- **ResonanceSensitivity (π)** : Sensibilité π l'alignement (0.1)
 
 ### Génération
 
@@ -299,24 +299,24 @@ Les termes de texture modifient les connexions locales pour créer différents m
 ./programme image prompt "blue sky at top, green grass at bottom"
 ```
 
-Les contraintes peuvent àtre appliquées spatialement (haut, bas, centre, etc.).
+Les contraintes peuvent πtre appliquées spatialement (haut, bas, centre, etc.).
 
 ## Performance
 
 ### Complexité temporelle
 
 - **Initialisation** : O(n) où n = nombre d'atomes
-- **Itération** : O(n à k) où k = nombre de voisins (typiquement 8)
+- **Itération** : O(n π k) où k = nombre de voisins (typiquement 8)
 - **Parallélisation** : Triviale - chaque atome indépendant
 - **Speedup** : Quasi-linéaire avec le nombre de threads
 
 ### Complexité mémoire
 
 - **Par atome** : ~200 bytes (état, couleur, poids, etc.)
-- **Total pour 64à64 atomes** : ~800 KB
-- **Total pour 512à512 atomes** : ~52 MB
+- **Total pour 64π64 atomes** : ~800 KB
+- **Total pour 512π512 atomes** : ~52 MB
 
-Comparé à :
+Comparé π :
 - **Stable Diffusion** : 10-20 GB
 - **DALL-E** : Serveur, pas d'info locale
 
@@ -324,10 +324,10 @@ Comparé à :
 
 | Résolution | Patchs | Atomes | Itérations | Temps |
 |-----------|--------|--------|-----------|-------|
-| 256à256 | 32à32 | 1024 | 50 | 50ms |
-| 512à512 | 64à64 | 4096 | 100 | 200ms |
-| 1024à1024 | 128à128 | 16384 | 100 | 800ms |
-| 2048à2048 | 256à256 | 65536 | 100 | 3.2s |
+| 256π256 | 32π32 | 1024 | 50 | 50ms |
+| 512π512 | 64π64 | 4096 | 100 | 200ms |
+| 1024π1024 | 128π128 | 16384 | 100 | 800ms |
+| 2048π2048 | 256π256 | 65536 | 100 | 3.2s |
 
 ## Extensions futures
 
@@ -335,9 +335,9 @@ Comparé à :
 
 ```go
 type HierarchicalImageNetwork struct {
-    coarseNetwork  *AtomicImageNetwork  // 32à32 patches
-    mediumNetwork  *AtomicImageNetwork  // 16à16 patches
-    fineNetwork    *AtomicImageNetwork  // 8à8 patches
+    coarseNetwork  *AtomicImageNetwork  // 32π32 patches
+    mediumNetwork  *AtomicImageNetwork  // 16π16 patches
+    fineNetwork    *AtomicImageNetwork  // 8π8 patches
 }
 ```
 
@@ -351,14 +351,14 @@ type SpatialConstraint struct {
 }
 ```
 
-Appliquer des contraintes différentes à différentes régions spatiales.
+Appliquer des contraintes différentes π différentes régions spatiales.
 
 ### 3. Feedback utilisateur itératif
 
 ```bash
 ./programme image generate-interactive 512 512
 # L'utilisateur vote "like" ou "dislike" sur des variations
-# Le systàme apprend les préférences et réaffine
+# Le systπme apprend les préférences et réaffine
 ```
 
 ### 4. Fusion texte-image
@@ -381,9 +381,9 @@ Générer des séquences d'images où la résonance crée des transitions fluide
 
 ### Fichiers
 
-- **`database/image_atomic.go`** : Càur du moteur
+- **`database/image_atomic.go`** : Cπur du moteur
 - **`image_commands.go`** : Interface CLI
-- **`main.go`** : Intégration dans le systàme
+- **`main.go`** : Intégration dans le systπme
 
 ### Commandes disponibles
 
@@ -410,21 +410,21 @@ Générer des séquences d'images où la résonance crée des transitions fluide
 
 ```
 Input  Conv2D  Conv2D  ...  Output
-(Millions de paramàtres, apprentissage centralisé)
+(Millions de paramπtres, apprentissage centralisé)
 ```
 
 **T.R.A. Images**
 
 ```
 Random Input  Atom1  Atom2  Local Resonance  Coherent Output
-(Pas de paramàtres apprenables, émergence locale)
+(Pas de paramπtres apprenables, émergence locale)
 ```
 
 ### Diffusion basée
 
 ```
 Noise  Reverse Diffusion (1000 steps)  Image
-(Tràs lent, gros modàle)
+(Trπs lent, gros modπle)
 ```
 
 **T.R.A. Images**
@@ -436,11 +436,11 @@ Noise  Local Resonance (50-100 iter)  Image
 
 ## Conclusion
 
-L'extension de T.R.A. aux images crée un systàme de génération visuelle :
+L'extension de T.R.A. aux images crée un systπme de génération visuelle :
 -  **Ultra-rapide** : Instantané comparé aux alternatives
 -  **Ultra-léger** : MB vs GB
 -  **Parallélisable trivialement** : O(1) communication inter-atomes
--  **Contrôlable** : Prompt tràs fin, région-spécifique
--  **Beau** : àmerge naturellement d'interactions locales
+-  **Contrôlable** : Prompt trπs fin, région-spécifique
+-  **Beau** : πmerge naturellement d'interactions locales
 
-C'est la fusion de la physique (résonance), de la biologie (autonomie locale), et de l'informatique (asynchrone parallàle).
+C'est la fusion de la physique (résonance), de la biologie (autonomie locale), et de l'informatique (asynchrone parallπle).

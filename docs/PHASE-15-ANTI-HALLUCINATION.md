@@ -1,10 +1,10 @@
-# SOLUTION MATHàMATIQUE CONTRE LES HALLUCINATIONS - PHASE 15
+# SOLUTION MATHπMATIQUE CONTRE LES HALLUCINATIONS - PHASE 15
 
-## à Résumé exécutif
+## π Résumé exécutif
 
-Vous avez identifié que Phase 15 àtape 2 (résumé génératif) peut **inventer du contenu non présent dans le texte source**. Nous avons implémenté **une solution mathématiquement formalisée** basée sur 6 stratégies pour garantir R  C(T).
+Vous avez identifié que Phase 15 πtape 2 (résumé génératif) peut **inventer du contenu non présent dans le texte source**. Nous avons implémenté **une solution mathématiquement formalisée** basée sur 6 stratégies pour garantir R  C(T).
 
-### Problàme formalisé
+### Problπme formalisé
 
 $$R \not\subseteq C(T)$$
 
@@ -15,7 +15,7 @@ où :
 
 ---
 
-## Critàre de fidélité implémenté
+## Critπre de fidélité implémenté
 
 ### Formule mathématique
 
@@ -69,7 +69,7 @@ finalSummary, _, mode := database.HybridResume(generated, sourceText, 0.80)
 
 ### Stratégie B : Filtrage post-génération (Corrective Filter)
 
-**Approche** : Apràs génération, supprimer les mots NOT IN $C(T) \cup V_{technique}$
+**Approche** : Aprπs génération, supprimer les mots NOT IN $C(T) \cup V_{technique}$
 
 $$R' = \{w \in R : w \in C(T) \cup V_{technique}\}$$
 
@@ -107,7 +107,7 @@ où :
 - $\tau$ = seuil (recommandé = 0.80)
 
 **Avantages** :
--  Meilleur des deux mondes : génération quand fidàle, extraction sinon
+-  Meilleur des deux mondes : génération quand fidπle, extraction sinon
 -  Zéro hallucination garantie
 -  Texte plus naturel quand possible
 
@@ -118,7 +118,7 @@ finalSummary, fidelityScore, mode := database.HybridResume(
     sourceText, 
     0.80, // seuil
 )
-// mode = "GàNàRATIF (fidàle)" ou "EXTRACTIF (hallucination détectée)"
+// mode = "GπNπRATIF (fidπle)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
 ---
@@ -138,7 +138,7 @@ où :
 
 **Implémentation actuelle** (heuristique) :
 ```go
-sim = (lengthRatio à 0.3) + (conceptCoverage à 0.7)
+sim = (lengthRatio π 0.3) + (conceptCoverage π 0.7)
 ```
 
 **Future amélioration** : Intégrer embeddings BERT/OpenAI pour mesure réelle.
@@ -190,7 +190,7 @@ Fichiers créés/modifiés :
 
 **Output** :
 ```
-SUITE COMPLàTE: TESTS ANTI-HALLUCINATION
+SUITE COMPLπTE: TESTS ANTI-HALLUCINATION
 ============================================================
 
 [TEST: Technique Simple]
@@ -233,15 +233,15 @@ SUITE COMPLàTE: TESTS ANTI-HALLUCINATION
 
 ---
 
-## Mathématique complàte
+## Mathématique complπte
 
-### Vocabulaire source (àtape 1)
+### Vocabulaire source (πtape 1)
 
 $$C(T) = \{w_1, w_2, \ldots, w_n\} \cup K_{\text{technique}}$$
 
 où $K_{\text{technique}}$ = termes prédéfinis dans le domaine IA-ATOMIQUE.
 
-### Extraction de concepts clés (àtape 2)
+### Extraction de concepts clés (πtape 2)
 
 Pour chaque mot $w \in C(T)$ :
 
@@ -262,7 +262,7 @@ où :
 - $P$ = ensemble de toutes les phrases
 - $P_k$ = phrases contenant $k$
 
-### àvaluation finale
+### πvaluation finale
 
 $$\text{Verdict} = \begin{cases}
 \text{"GARDER"} & \text{si } F_f \geq \tau \text{ ET } R_{\text{techniques}} \geq 0.70 \\
@@ -273,7 +273,7 @@ $$\text{Verdict} = \begin{cases}
 
 ## Garanties mathématiques
 
-### Théoràme : Absence d'hallucination
+### Théorπme : Absence d'hallucination
 
 **Si** stratégie C avec $\tau = 0.80$ est utilisée,  
 **Alors** le résumé final $R_{\text{final}} \subseteq C(T)$ (aucun contenu inventé).
@@ -288,10 +288,10 @@ $$\text{Verdict} = \begin{cases}
 
 ## Configuration et seuils
 
-| Paramàtre | Valeur par défaut | Recommandation |
+| Paramπtre | Valeur par défaut | Recommandation |
 |---|---|---|
-| Seuil fidélité ($\tau$) | 0.80 | Peut monter à 0.85 pour domaines critiques |
-| Concepts clés ($K$) | Top 15 mots | Augmenter à 20-25 pour textes longs |
+| Seuil fidélité ($\tau$) | 0.80 | Peut monter π 0.85 pour domaines critiques |
+| Concepts clés ($K$) | Top 15 mots | Augmenter π 20-25 pour textes longs |
 | Stopwords | ~100 mots FR | Adapter selon domaine |
 | Termes techniques prédéfinis | ~40 termes IA-ATOMIQUE | Enrichir selon nouveau domaine |
 
@@ -315,7 +315,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-**Derniàre mise à jour** : 8 janvier 2026  
+**Derniπre mise π jour** : 8 janvier 2026  
 **Phase** : Phase 15 Anti-Hallucination  
 **Statut** :  Implémenté et testé  
 **Compilé** :  Go 1.22.2

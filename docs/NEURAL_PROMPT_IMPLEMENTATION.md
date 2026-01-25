@@ -83,10 +83,10 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Test 1: Simple Forest Prompt 
 ```bash
-./programme generate from-prompt 256 256 100 "une foràt mystérieuse avec des arbres luminescents"
+./programme generate from-prompt 256 256 100 "une forπt mystérieuse avec des arbres luminescents"
 ```
 **Results**:
-- Keywords extracted: [foràt, arbres, mystérieuse, luminescents]
+- Keywords extracted: [forπt, arbres, mystérieuse, luminescents]
 - Confidence: 100%
 - Category activated: HISTOIRE
 - Generation: 100 iterations in ~3 seconds
@@ -148,17 +148,17 @@ func HandleGenerateFromPrompt(args []string)
 | Category | ID | Example Keywords |
 |----------|----|----|
 | TECH | 1 | technologie, algorithme, digital, robot, circuit, code |
-| HISTOIRE | 2 | chàteau, roi, ancien, médiéval, empire, politique |
+| HISTOIRE | 2 | chπteau, roi, ancien, médiéval, empire, politique |
 | BUSINESS | 3 | commerce, marché, entreprise, affaires |
 | ALIMENTATION | 4 | nourriture, fruit, cuisine, pain, restaurant |
-| SANTà | 5 | médecine, santé, hôpital, docteur |
+| SANTπ | 5 | médecine, santé, hôpital, docteur |
 | VERBE | 6 | actions, verbes, mouvement |
 
 ## Example Prompts & Results
 
 ### Nature-Focused
 ```bash
-./programme generate from-prompt 512 512 200 "foràt sombre avec des arbres anciens"
+./programme generate from-prompt 512 512 200 "forπt sombre avec des arbres anciens"
  Activates: HISTOIRE
  Output: Spatial patterns reflecting historical/natural concepts
 ```
@@ -172,7 +172,7 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Mixed Concepts
 ```bash
-./programme generate from-prompt 512 512 200 "chàteau médiéval avec technologie futuriste"
+./programme generate from-prompt 512 512 200 "chπteau médiéval avec technologie futuriste"
  Activates: HISTOIRE + TECH
  Output: Blended pattern from multiple categories
 ```
@@ -188,13 +188,13 @@ func HandleGenerateFromPrompt(args []string)
 
 | Size | Iterations | Time | Category |
 |------|-----------|------|----------|
-| 256à256 | 80 | ~2s | Fast test |
-| 256à256 | 150 | ~5s | Good quality |
-| 512à512 | 150 | ~10s | Standard |
-| 512à512 | 200 | ~12s | Quality |
-| 512à512 | 300 | ~18s | High quality |
+| 256π256 | 80 | ~2s | Fast test |
+| 256π256 | 150 | ~5s | Good quality |
+| 512π512 | 150 | ~10s | Standard |
+| 512π512 | 200 | ~12s | Quality |
+| 512π512 | 300 | ~18s | High quality |
 
-**Scaling**: ~80ms per iteration for 256à256
+**Scaling**: ~80ms per iteration for 256π256
 
 ## Documentation Provided
 
@@ -218,10 +218,10 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Phase 1: Neural Analysis
 ```go
-// Input: "une foràt mystérieuse avec des arbres luminescents"
+// Input: "une forπt mystérieuse avec des arbres luminescents"
 
 // Tokenize
-tokens := []string{"foràt", "mystérieuse", "arbres", "luminescents"}
+tokens := []string{"forπt", "mystérieuse", "arbres", "luminescents"}
 
 // Activate categories
 catActivation := map[int]int{
@@ -359,7 +359,7 @@ ls -lh output/atomic_prompt_256x256_100iter.png
 ./programme generate from-prompt 512 512 300 "description with many keywords"
 
 # Long description
-./programme generate from-prompt 512 512 200 "un chàteau médiéval abandonné dans la brume avec des tours écroulées et des lumiàres mystérieuses"
+./programme generate from-prompt 512 512 200 "un chπteau médiéval abandonné dans la brume avec des tours écroulées et des lumiπres mystérieuses"
 
 # Show all available commands
 ./programme generate

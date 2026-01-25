@@ -6,9 +6,9 @@
 
 ---
 
-## RàSUMà EXàCUTIF
+## RπSUMπ EXπCUTIF
 
-L'IA-ATOMIQUE a passé avec succàs les tests de référence académiques et industriels, démontrant des performances **supérieures aux LLM commerciaux** tout en utilisant **~30x moins de ressources**.
+L'IA-ATOMIQUE a passé avec succπs les tests de référence académiques et industriels, démontrant des performances **supérieures aux LLM commerciaux** tout en utilisant **~30x moins de ressources**.
 
 ### Scores Principaux
 
@@ -21,10 +21,10 @@ L'IA-ATOMIQUE a passé avec succàs les tests de référence académiques et ind
 
 ---
 
-## 1à TEST PERPLEXITà (Cohérence Atomique)
+## 1π TEST PERPLEXITπ (Cohérence Atomique)
 
 ### Principe
-Mesure de "surprise" face au texte. Plus la perplexité est basse, plus le systàme comprend la structure.
+Mesure de "surprise" face au texte. Plus la perplexité est basse, plus le systπme comprend la structure.
 
 ### Résultats
 
@@ -32,8 +32,8 @@ Mesure de "surprise" face au texte. Plus la perplexité est basse, plus le syst�
 Perplexité Globale:     1.049  (Objectif: <10)
 Cohérence Moyenne:      98.2%
 Score de Stabilité:     98.2%
-Variance ànergétique:   38.76
-Qualité:                EXCELLENT - Texte tràs cohérent
+Variance πnergétique:   38.76
+Qualité:                EXCELLENT - Texte trπs cohérent
 ```
 
 ### Performances
@@ -47,29 +47,29 @@ Top 5 Catégories Détectées:
 1. Catégorie 1 (TECH):      279 448 mots (49.2%)
 2. Catégorie 3 (BUSINESS):       288 mots (0.05%)
 3. Catégorie 2 (HISTOIRE):       193 mots (0.03%)
-4. Catégorie 5 (SANTà):          127 mots (0.02%)
+4. Catégorie 5 (SANTπ):          127 mots (0.02%)
 5. Catégorie 4 (ALIMENTATION):    74 mots (0.01%)
 ```
 
 ### Variation Locale
 - Perplexité min: **1.000** (segments parfaitement cohérents)
-- Perplexité max: **2.927** (légàres variations)
-- àcart: **1.927** (tràs stable)
+- Perplexité max: **2.927** (légπres variations)
+- πcart: **1.927** (trπs stable)
 
 ### Comparaison Standards
 
-| Systàme | Perplexité Typique | àvaluation |
+| Systπme | Perplexité Typique | πvaluation |
 |---------|-------------------|------------|
 | **GPT-4** | 10-20 | Excellent |
 | **GPT-3** | 20-40 | Bon |
-| **Modàles simples** | >100 | Faible |
+| **Modπles simples** | >100 | Faible |
 | **IA-ATOMIQUE** | **1.05** | ** Exceptionnel** |
 
-**Verdict**:  **Performance 10-20à supérieure à GPT-4**
+**Verdict**:  **Performance 10-20π supérieure π GPT-4**
 
 ---
 
-## 2à TEST NEEDLE IN HAYSTACK (Recherche Sémantique)
+## 2π TEST NEEDLE IN HAYSTACK (Recherche Sémantique)
 
 ### Principe
 Retrouver une information cachée (phrase absurde) dans un texte massif. Test de la capacité d'attention sur contexte long.
@@ -111,7 +111,7 @@ Position: 481720
 |--------|-------------|
 | 100K mots | 4 secondes |
 | 1M mots | 40 secondes |
-| 3M mots (5à Les Misérables) | 2 minutes |
+| 3M mots (5π Les Misérables) | 2 minutes |
 | 10M mots | 6.7 minutes |
 
 ### Avantage Atomique
@@ -123,11 +123,11 @@ Position: 481720
 
 **Résultat**: Détection automatique sans supervision humaine.
 
-**Verdict**:  **Capacité à scanner 5à Les Misérables en 2 minutes sur PC portable**
+**Verdict**:  **Capacité π scanner 5π Les Misérables en 2 minutes sur PC portable**
 
 ---
 
-## 3à TEST DE VITESSE PURE (Benchmark Texte)
+## 3π TEST DE VITESSE PURE (Benchmark Texte)
 
 ### Résultats Finaux
 
@@ -155,7 +155,7 @@ Temps par mot:          0.253 µs
 | 100K mots | 25 ms |
 | 1M mots | 253 ms |
 | 10M mots | 2.5 secondes |
-| **Wikipedia FR complàte (4.5M articles)** | ~15 minutes |
+| **Wikipedia FR complπte (4.5M articles)** | ~15 minutes |
 
 ### Comparaison LLM Local
 
@@ -163,35 +163,35 @@ Temps par mot:          0.253 µs
 LLM Local (50 tokens/sec):  3.1 heures pour 568K mots
 IA-ATOMIQUE:                0.14 seconde
 
-Accélération:               79 185à plus rapide 
+Accélération:               79 185π plus rapide 
 ```
 
 **Verdict**:  **Rend l'intelligence instantanée et gratuite**
 
 ---
 
-## TEST INDUSTRIEL PROPOSà
+## TEST INDUSTRIEL PROPOSπ
 
-### Challenge: Indexation Wikipedia Complàte
+### Challenge: Indexation Wikipedia Complπte
 
 **Objectif**: Prouver la viabilité industrielle en indexant des flux massifs de données.
 
-#### Wikipedia Franàais
+#### Wikipedia Franπais
 - **Volume**: 4.5 millions d'articles
 - **Mots estimés**: ~2 milliards de mots
 - **Taille**: ~80 Go de texte brut
 
 #### Temps Estimé (IA-ATOMIQUE)
 ```
-à 3.96M mots/sec:
+π 3.96M mots/sec:
 2 000 000 000 mots / 3 960 000 mots/sec = 505 secondes = 8.4 minutes
 ```
 
-**Avec overhead fichier (à2)**: ~17 minutes sur PC portable
+**Avec overhead fichier (π2)**: ~17 minutes sur PC portable
 
 #### Temps Référence (LLM Classique)
 ```
-à 50 tokens/sec:
+π 50 tokens/sec:
 2 000 000 000 mots / 50 mots/sec = 40 000 000 secondes = 463 jours
 ```
 
@@ -203,7 +203,7 @@ Accélération:               79 185à plus rapide
    - Application: Recherche de précédents, conformité RGPD
 
 2. **Flux Twitter/X temps réel**
-   - Volume: ~500K tweets/jour à 20 mots = 10M mots/jour
+   - Volume: ~500K tweets/jour π 20 mots = 10M mots/jour
    - Temps: 2.5 secondes/jour
    - Application: Détection tendances, modération
 
@@ -220,28 +220,28 @@ Accélération:               79 185à plus rapide
 
 ### Tableau Récapitulatif
 
-| Critàre | IA-ATOMIQUE | GPT-4 | GPT-3 | Avantage |
+| Critπre | IA-ATOMIQUE | GPT-4 | GPT-3 | Avantage |
 |---------|-------------|-------|-------|----------|
-| **Perplexité** | 1.05 | 10-20 | 20-40 |  **10-40à meilleur** |
-| **Vitesse** | 3.96M mots/sec | 50 mots/sec | 30 mots/sec |  **79K-132Kà plus rapide** |
+| **Perplexité** | 1.05 | 10-20 | 20-40 |  **10-40π meilleur** |
+| **Vitesse** | 3.96M mots/sec | 50 mots/sec | 30 mots/sec |  **79K-132Kπ plus rapide** |
 | **Cohérence** | 98.2% | ~85% | ~80% |  **+13-18%** |
-| **Contexte long** | 568K mots en 0.14s | Limité à 128K tokens | Limité à 4K tokens |  **Illimité** |
-| **Coàt calcul** | PC portable | Datacenters | Datacenters |  **Gratuit** |
-| **Latence** | <1 ms par mot | 20-50 ms par token | 30-100 ms par token |  **20-100à plus réactif** |
+| **Contexte long** | 568K mots en 0.14s | Limité π 128K tokens | Limité π 4K tokens |  **Illimité** |
+| **Coπt calcul** | PC portable | Datacenters | Datacenters |  **Gratuit** |
+| **Latence** | <1 ms par mot | 20-50 ms par token | 30-100 ms par token |  **20-100π plus réactif** |
 
 ### Architecture Unique
 
 | Aspect | LLM Traditionnels | IA-ATOMIQUE |
 |--------|------------------|-------------|
 | **Paradigme** | Transformeurs centralisés | Résonance atomique distribuée |
-| **Mémoire** | Billions de paramàtres | 1000 neurones à 50 catégories |
+| **Mémoire** | Billions de paramπtres | 1000 neurones π 50 catégories |
 | **Calcul** | Matrices denses GPU | Interactions locales CPU |
 | **Parallélisme** | Batch processing | Asynchrone total |
 | **Apprentissage** | Backpropagation | Adaptation continue |
 
 ---
 
-## RàSULTATS ACADàMIQUES
+## RπSULTATS ACADπMIQUES
 
 ### Tests de Référence Passés
 
@@ -251,34 +251,34 @@ Accélération:               79 185à plus rapide
 - Précision: 100% (anomalies confirmées manuellement)
 
  **Perplexity Benchmark**
-- Score: 1.05 (10-20à meilleur que GPT-4)
+- Score: 1.05 (10-20π meilleur que GPT-4)
 - Zéro moment de surprise
 - Stabilité: 98.2%
 
  **Speed Benchmark**
 - 3.96M mots/sec
-- 79 185à plus rapide que LLM standard
+- 79 185π plus rapide que LLM standard
 - Latence: 0.253 µs/mot
 
-### Tests Proposés (à venir)
+### Tests Proposés (π venir)
 
-à **MMLU (Massive Multitask Language Understanding)**
+π **MMLU (Massive Multitask Language Understanding)**
 - 57 sujets académiques
 - Extension des catégories requise
 - Score estimé: >85% (basé sur cohérence actuelle)
 
-à **BIG-Bench**
-- 204 tàches diverses
-- Adaptation multi-tàches
+π **BIG-Bench**
+- 204 tπches diverses
+- Adaptation multi-tπches
 - Performance prédite: Top 10%
 
 ---
 
-## INNOVATIONS CLàS
+## INNOVATIONS CLπS
 
 ### 1. Résonance Atomique pour Cohérence
 ```
-R(si, sj) = exp(-||si - sj||²/2à²)
+R(si, sj) = exp(-||si - sj||²/2π²)
 
 Résultat: Cohérence émergente naturelle sans supervision
 ```
@@ -290,10 +290,10 @@ Perplexité = 2^((1-coherence) * factor)
 Résultat: Mesure physique directe de la surprise
 ```
 
-### 3. Fenàtres Glissantes pour Needle Search
+### 3. Fenπtres Glissantes pour Needle Search
 ```
-- Fenàtres de 50 mots avec chevauchement 50%
-- Détection d'anomalies statistiques (moyenne - 2à)
+- Fenπtres de 50 mots avec chevauchement 50%
+- Détection d'anomalies statistiques (moyenne - 2π)
 - Score d'anomalie = 1 - cohérence locale
 
 Résultat: Détection instantanée de ruptures sémantiques
@@ -305,8 +305,8 @@ Résultat: Détection instantanée de ruptures sémantiques
 
 L'**IA-ATOMIQUE** a démontré des performances **exceptionnelles** sur les tests de référence:
 
-1.  **Perplexité 10-20à meilleure** que GPT-4
-2.  **Vitesse 79 185à supérieure** aux LLM standards
+1.  **Perplexité 10-20π meilleure** que GPT-4
+2.  **Vitesse 79 185π supérieure** aux LLM standards
 3.  **Cohérence 98.2%** sur texte réel
 4.  **Capacité d'attention illimitée** (contexte long)
 5.  **Détection d'anomalies** en temps réel
@@ -321,28 +321,28 @@ L'**IA-ATOMIQUE** a démontré des performances **exceptionnelles** sur les test
 **Moyen Terme**:
 - Alternative gratuite aux LLM commerciaux
 - Traitement de flux massifs (Wikipedia, archives légales)
-- Analyse de sentiment à l'échelle du web
+- Analyse de sentiment π l'échelle du web
 
 **Long Terme**:
 - Intelligence distribuée embarquée
-- Systàmes autonomes temps réel
+- Systπmes autonomes temps réel
 - IA gratuite et accessible universellement
 
 ---
 
-## à Contact & Contributions
+## π Contact & Contributions
 
 **Auteur**: BRESSON Guylann  
 **Email**: guylann.bresson.gb@gmail.com  
 **Projet**: IA-ATOMIQUE v4.1 Beta  
 **Licence**: MIT  
 
-**Prochaines àtapes**:
+**Prochaines πtapes**:
 1. Extension des catégories pour MMLU (57 sujets)
 2. Indexation vectorielle persistante
 3. Publication académique des résultats
-4. Tests sur Wikipedia complàte
+4. Tests sur Wikipedia complπte
 
 ---
 
-**Derniàre mise à jour**: 23 Janvier 2026
+**Derniπre mise π jour**: 23 Janvier 2026
