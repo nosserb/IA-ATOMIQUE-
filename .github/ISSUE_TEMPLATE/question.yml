@@ -1,0 +1,51 @@
+name: Question
+description: Ask a question or request help
+title: "[QUESTION]: "
+labels: ["question"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please check the documentation first.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to accomplish?
+      placeholder: I'm trying to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: What have you tried?
+      description: Steps you've already taken
+      placeholder: I tried...
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Your specific question
+      placeholder: How do I...?
+    validations:
+      required: true
+
+  - type: input
+    id: go-version
+    attributes:
+      label: Go Version
+      placeholder: "1.22.0"
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other

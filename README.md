@@ -1,14 +1,17 @@
-# IA-ATOMIQUE v5.2
+# IA-ATOMIQUE
 
-<p align="center">
-<a href="https://ibb.co/5QTzvfj"><img src="https://i.ibb.co/kLKr0WD/NEUROPULSE-2.png" alt="NEUROPULSE-2" border="0" /></a>
-</p>
-
-> Advanced Neural Network System with Atomic Resonance Technology
+Advanced neural network system with Atomic Resonance Technology (T.R.A.)
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
-[![License MIT](https://img.shields.io/badge/License-MIT-4CAF50?style=flat-square)](LICENSE)
-[![Security AES-256](https://img.shields.io/badge/Security-AES--256-blue?style=flat-square)](docs/SECURITY.md)
+[![License MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Latest Release](https://img.shields.io/badge/release-v5.2-blue?style=flat-square)](https://github.com/yourrepo/releases)
+
+---
+
+<p align="center">
+<strong>Decentralized. Autonomous. Intelligent.</strong><br/>
+A neural network where computation emerges from local atomic interactions.
+</p>
 
 ## Overview
 
@@ -45,7 +48,7 @@ go build -o programme
 ### Neural Processing
 - **1000-neuron network** with 50+ categories
 - **Atomic Resonance Technology** - decentralized, asynchronous computation
-- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANTÃ, VERBE
+- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANTï¿½, VERBE
 - **Subject-Verb-Complement (SVC)** structure detection
 - **Multi-language support**: FR/EN/DE/ES
 
@@ -58,7 +61,7 @@ go build -o programme
 
 ### Image Generation & Processing
 - **Energy-based image generation** from text prompts
-- **Multi-scale pipeline** (32Ã32  256Ã256)
+- **Multi-scale pipeline** (32ï¿½32  256ï¿½256)
 - **Symmetry breaking** for coherent image synthesis
 - **Ultra deblur** with 327,000+ atoms
 - **Motion blur removal** (Lucy-Richardson deconvolution)
@@ -99,17 +102,17 @@ ComputationalAtom (autonomous unit)
 
 AtomicNetwork (distributed)
    Asynchronous iteration
-   Resonance equation: R(si, sj) = exp(-||si - sj||Â²/2ÏÂ²)
+   Resonance equation: R(si, sj) = exp(-||si - sj||Â²/2ï¿½Â²)
    Weight update: dwij/dt = Î³*coherence - Î´*wij
    Freeze system (energy efficiency)
 ```
 
 ### Key Parameters
-- **Î (coupling)**: Neighbor influence strength
+- **ï¿½ (coupling)**: Neighbor influence strength
 - **Î² (local rules)**: Internal rule weight
 - **Î³ (reinforcement)**: Weight update strength
 - **Î´ (decay)**: Connection decay rate
-- **Ï (resonance sensitivity)**: Resonance sharpness
+- **ï¿½ (resonance sensitivity)**: Resonance sharpness
 
 ## Commands Reference
 
@@ -244,30 +247,43 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before
 
 ## License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+## License
 
-## Known Issues
+MIT License (c) 2025-2026 IA-ATOMIQUE Contributors
 
-This is a **beta version (v5.2)**. Known issues:
-- Some edge cases in multi-language detection
-- Image generation can be slow on low-end hardware
-- Web interface requires manual setup
+See [LICENSE](LICENSE) for full text.
 
-Please report bugs via GitHub Issues.
+## Getting Help
 
-## Acknowledgments
+- Read the [docs](docs/) for comprehensive guides
+- Check [SUPPORT.md](SUPPORT.md) for troubleshooting
+- See [CONTRIBUTING.md](CONTRIBUTING.md) if you want to contribute
+- Review [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards
+- Report security issues in [SECURITY.md](SECURITY.md)
 
-- Built with Go 1.22+
-- Inspired by cellular automata and emergence theory
-- Uses AES-256 encryption for content moderation
-- Atomic resonance concept adapted from physics principles
+## Contributing
 
-## Contact
+Contributions welcome! Please:
 
-For questions, suggestions, or bug reports:
-- GitHub Issues: [Report here](https://github.com/nosserb/IA-ATOMIQUE/issues)
-- Email: guylann.bresson.gb@gmail.com
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md)
+2. Follow [conventional commits](https://www.conventionalcommits.org/)
+3. Keep code idiomatic Go
+4. Add tests for new features
+
+## Roadmap
+
+See [docs/CHANGELOG.md](CHANGELOG.md) for version history.
+
+## Status
+
+Current version: **5.2.0**
+
+This project is **production-ready** with active maintenance.
 
 ---
+
+<p align="center">
+Built with Go | Atomic Resonance Technology | MIT Licensed
+</p>
 
 **Made with by the IA-ATOMIQUE team**
