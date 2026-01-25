@@ -1,5 +1,9 @@
 # IA-ATOMIQUE v5.2
 
+<p align="center">
+<a href="https://ibb.co/99Ktdy4Y"><img src="https://i.ibb.co/N6DSGWNY/NEUROPULSE.png" alt="NEUROPULSE" border="0" /></a>
+</p>
+
 > Advanced Neural Network System with Atomic Resonance Technology
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
