@@ -1,9 +1,5 @@
 # IA-ATOMIQUE
 
-<p align="center">
-<a href="https://ibb.co/5QTzvfj"><img src="https://i.ibb.co/kLKr0WD/NEUROPULSE-2.png" alt="NEUROPULSE-2" border="0" /></a>
-</p>
-
 Advanced neural network system with Atomic Resonance Technology (T.R.A.)
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
@@ -52,7 +48,7 @@ go build -o programme
 ### Neural Processing
 - **1000-neuron network** with 50+ categories
 - **Atomic Resonance Technology** - decentralized, asynchronous computation
-- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANTE, VERBE
+- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANT�, VERBE
 - **Subject-Verb-Complement (SVC)** structure detection
 - **Multi-language support**: FR/EN/DE/ES
 
@@ -65,7 +61,7 @@ go build -o programme
 
 ### Image Generation & Processing
 - **Energy-based image generation** from text prompts
-- **Multi-scale pipeline** (32x32 to 256x256)
+- **Multi-scale pipeline** (32�32  256�256)
 - **Symmetry breaking** for coherent image synthesis
 - **Ultra deblur** with 327,000+ atoms
 - **Motion blur removal** (Lucy-Richardson deconvolution)
@@ -100,23 +96,23 @@ Type text without slash for direct analysis.
 ```
 ComputationalAtom (autonomous unit)
    InternalState [0, 1]
-   LocalRules (beta parameter)
+   LocalRules (β parameter)
    Perceptions
    Neighbors (local connections)
 
 AtomicNetwork (distributed)
    Asynchronous iteration
-   Resonance equation: R(si, sj) = exp(-||si - sj||^2/2*sigma^2)
-   Weight update: dwij/dt = gamma*coherence - delta*wij
+   Resonance equation: R(si, sj) = exp(-||si - sj||²/2�²)
+   Weight update: dwij/dt = γ*coherence - δ*wij
    Freeze system (energy efficiency)
 ```
 
 ### Key Parameters
-- **alpha (coupling)**: Neighbor influence strength
-- **beta (local rules)**: Internal rule weight
-- **gamma (reinforcement)**: Weight update strength
-- **delta (decay)**: Connection decay rate
-- **sigma (resonance sensitivity)**: Resonance sharpness
+- **� (coupling)**: Neighbor influence strength
+- **β (local rules)**: Internal rule weight
+- **γ (reinforcement)**: Weight update strength
+- **δ (decay)**: Connection decay rate
+- **� (resonance sensitivity)**: Resonance sharpness
 
 ## Commands Reference
 
