@@ -1,12 +1,12 @@
-# 📚 Phase 13+++ - Documentation Index
+#  Phase 13+++ - Documentation Index
 
-## 🎯 Start Here
+##  Start Here
 
-👉 **[PHASE-13-QUICKREF.md](PHASE-13-QUICKREF.md)** ← One-page overview
+ **[PHASE-13-QUICKREF.md](PHASE-13-QUICKREF.md)**  One-page overview
 
 ---
 
-## 📖 Documentation Map
+##  Documentation Map
 
 ### Phase 13+++: Normalisation Lexicale Avancée
 
@@ -18,7 +18,7 @@
    - Key metrics
    - Quick configuration profiles
    - Common issues & fixes
-   - **👉 Best for: Quick reference, decisions**
+   - ** Best for: Quick reference, decisions**
 
 2. **[PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md)** (10 min read)
    - Full technical specifications
@@ -26,14 +26,14 @@
    - Code examples for each
    - Architecture diagram
    - Formulas and equations
-   - **👉 Best for: Understanding implementation**
+   - ** Best for: Understanding implementation**
 
 3. **[PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md)** (8 min read)
    - Before/after metrics (Phase 13++ vs 13+++)
    - Detailed advantages analysis
    - Trade-offs discussion
    - When to use each phase
-   - **👉 Best for: Understanding impact, comparisons**
+   - ** Best for: Understanding impact, comparisons**
 
 4. **[PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)** (15 min read)
    - All configurable parameters
@@ -41,7 +41,7 @@
    - Tuning recipes for specific cases
    - Benchmarking guide
    - Diagnostic troubleshooting
-   - **👉 Best for: Customization, optimization**
+   - ** Best for: Customization, optimization**
 
 5. **[PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md)** (10 min read)
    - Full validation results
@@ -49,75 +49,75 @@
    - Quality metrics
    - Checklist validation
    - Lessons learned
-   - **👉 Best for: Verification, production readiness**
+   - ** Best for: Verification, production readiness**
 
 ---
 
-## 🔍 Find What You Need
+##  Find What You Need
 
 ### "I want to..."
 
 #### Understand Phase 13+++ quickly
-→ Read [PHASE-13-QUICKREF.md](PHASE-13-QUICKREF.md) (2 min)
+ Read [PHASE-13-QUICKREF.md](PHASE-13-QUICKREF.md) (2 min)
 
 #### Know how it compares to Phase 13++
-→ Read [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) (8 min)
+ Read [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) (8 min)
 
 #### Understand technical details
-→ Read [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md) (10 min)
+ Read [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md) (10 min)
 
 #### Customize for my use case
-→ Read [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md) (15 min)
+ Read [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md) (15 min)
 
 #### Verify it's production-ready
-→ Read [PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md) (10 min)
+ Read [PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md) (10 min)
 
 #### Deep dive into implementation
-→ Read all docs in order (45 min)
+ Read all docs in order (45 min)
 
 ---
 
-## 📊 The 5 Strategies at a Glance
+##  The 5 Strategies at a Glance
 
 ```
 INPUT BLOCS (180)
-    ↓
+    
 [1] Normalisation Lexicale
-    ├─ Count word occurrences per bloc
-    ├─ Penalize blocs with repetitions
-    └─ Apply penalty to selection score
-    ↓
+     Count word occurrences per bloc
+     Penalize blocs with repetitions
+     Apply penalty to selection score
+    
 [2] TF-IDF Intelligent
-    ├─ Identify rare but frequent words
-    ├─ Penalize 0.8x during vectorization
-    └─ Prevent repetitive words from dominating
-    ↓
-[3] Fenêtrage Strict
-    ├─ Calculate lexical similarity (Jaccard)
-    ├─ Skip consecutive blocks with >60% overlap
-    └─ Force vocabulary diversity
-    ↓ (SELECTION: 45 blocs)
+     Identify rare but frequent words
+     Penalize 0.8x during vectorization
+     Prevent repetitive words from dominating
+    
+[3] Fen�trage Strict
+     Calculate lexical similarity (Jaccard)
+     Skip consecutive blocks with >60% overlap
+     Force vocabulary diversity
+     (SELECTION: 45 blocs)
 [4] Anti-Répétition <5 mots
-    ├─ Track word positions in generated text
-    ├─ If word repeated <5 words apart: skip 2nd
-    └─ Zero close-range repetitions
-    ↓
+     Track word positions in generated text
+     If word repeated <5 words apart: skip 2nd
+     Zero close-range repetitions
+    
 [5] Synonymes Contextuels
-    ├─ Replace frequent words with synonyms
-    ├─ Natural vocabulary variation
-    └─ Every 3rd occurrence
-    ↓
+     Replace frequent words with synonyms
+     Natural vocabulary variation
+     Every 3rd occurrence
+    
 OUTPUT TEXT (95% coherence, ~0 repetitions)
 ```
 
 ---
 
-## 🎓 Key Concepts
+##  Key Concepts
 
 ### Pénalité de Répétition (Strategy 1)
 ```
 If word appears N times in bloc (N > 2):
-    Penalty = (N - 2) × 0.1
+    Penalty = (N - 2) � 0.1
     finalScore *= (1 - Penalty)
 ```
 
@@ -130,7 +130,7 @@ For rare but frequent words:
 
 ### Similarité Lexicale Jaccard (Strategy 3)
 ```
-Similarity = |A ∩ B| / |A ∪ B|
+Similarity = |A � B| / |A  B|
 If Similarity > 0.6:
     Skip this block (too similar to previous)
 ```
@@ -151,7 +151,7 @@ For each frequent word (>2 occurrences):
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Default usage (Balanced profile)
@@ -166,29 +166,29 @@ For each frequent word (>2 occurrences):
 
 ---
 
-## 📈 Key Metrics
+##  Key Metrics
 
 | Metric | Phase 13++ | Phase 13+++ | Improvement |
 |--------|-----------|-----------|------------|
 | Words | 1297 | 679-847 | More quality |
 | Coherence | 94.83% | 95.00% | +0.17% |
-| Speed | 1384ms | 219ms | **6.3x faster** ⚡ |
-| Repetitions | Many | ~0 | **Eliminated** ✅ |
+| Speed | 1384ms | 219ms | **6.3x faster**  |
+| Repetitions | Many | ~0 | **Eliminated**  |
 
 ---
 
-## ✅ Validation Status
+##  Validation Status
 
-- ✅ Build: SUCCESS
-- ✅ Tests: ALL PASSED
-- ✅ Coherence: 95.00%
-- ✅ Repetitions: ~0 detected
-- ✅ Performance: 219ms
-- ✅ Production: READY
+-  Build: SUCCESS
+-  Tests: ALL PASSED
+-  Coherence: 95.00%
+-  Repetitions: ~0 detected
+-  Performance: 219ms
+-  Production: READY
 
 ---
 
-## 🔧 Configuration
+##  Configuration
 
 ### Balanced Profile (Default, Recommended)
 ```go
@@ -221,29 +221,29 @@ See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md) for details.
 
 ---
 
-## 📁 Code Changes
+##  Code Changes
 
 ```
 database/resumeur_coherence.go
-├─ NormaliserRepetitionsBlocs() function
-├─ CalculerSimilarityVocabLexical() function
-├─ RepetitionsBloc field in BlocVectoriel
-└─ Fenêtrage strict logic
+ NormaliserRepetitionsBlocs() function
+ CalculerSimilarityVocabLexical() function
+ RepetitionsBloc field in BlocVectoriel
+ Fen�trage strict logic
 
 database/generation.go
-└─ TF-IDF penalty 0.8x for rare-frequent words
+ TF-IDF penalty 0.8x for rare-frequent words
 
 database/coherence.go
-├─ SynonymsDict map (20+ entries)
-├─ Anti-répétition <5 words filter
-└─ Synonym replacement logic
+ SynonymsDict map (20+ entries)
+ Anti-répétition <5 words filter
+ Synonym replacement logic
 ```
 
 Total changes: ~250 lines of code.
 
 ---
 
-## 🎓 For Developers
+##  For Developers
 
 ### Understanding the Flow
 1. Read [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md)
@@ -265,12 +265,12 @@ Total changes: ~250 lines of code.
 
 ---
 
-## 🆘 Support
+## � Support
 
 ### Common Questions
 
 **Q: Why 95% coherence instead of 99%?**  
-A: 95% = optimal balance. Higher coherence requires more aggressive filtering → less content.
+A: 95% = optimal balance. Higher coherence requires more aggressive filtering  less content.
 
 **Q: Why 0.6 similarity threshold?**  
 A: 60% = psychologically optimal. <50% loses topic continuity. >70% permits too-similar blocks.
@@ -282,19 +282,19 @@ A: Default to Balanced. Quality if reading experience > quantity. Coverage if ne
 A: Yes! Add to `SynonymsDict` in `database/coherence.go`. Format: `"word": {"syn1", "syn2", "syn3", "word"}`
 
 **Q: What if coherence drops?**  
-A: Reduce penalties: `0.1 → 0.05` for normalization, `0.8 → 0.85` for TF-IDF.
+A: Reduce penalties: `0.1  0.05` for normalization, `0.8  0.85` for TF-IDF.
 
 ---
 
-## 📝 Summary
+##  Summary
 
 **Phase 13+++** implements **5 complementary strategies** to eliminate repetitions while maintaining 95% coherence at 6.3x faster speed.
 
 **Documentation** provides:
-- ✅ Quick reference (2 min)
-- ✅ Technical depth (45 min)
-- ✅ Configuration guide (15 min)
-- ✅ Validation proof (10 min)
+-  Quick reference (2 min)
+-  Technical depth (45 min)
+-  Configuration guide (15 min)
+-  Validation proof (10 min)
 
 **Status**: Production-ready, tested, documented, optimized.
 
@@ -309,4 +309,4 @@ A: Reduce penalties: `0.1 → 0.05` for normalization, `0.8 → 0.85` for TF-IDF
 ---
 
 Last updated: Phase 13+++  
-Status: ✅ Complete and validated
+Status:  Complete and validated

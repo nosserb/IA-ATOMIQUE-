@@ -1,12 +1,12 @@
 # Phase 13+++ - Code Changes Summary
 
-## 📝 Overview
+##  Overview
 This document lists all code modifications made for Phase 13+++: Normalisation Lexicale Avancée.
 
 **Total Lines Added**: ~250  
 **Files Modified**: 3  
 **Functions Added**: 2  
-**Build Status**: ✅ SUCCESS
+**Build Status**:  SUCCESS
 
 ---
 
@@ -34,7 +34,7 @@ type BlocVectoriel struct {
     Mots               []string
     Vecteur            VecteurAtomique
     // ... other fields
-    RepetitionsBloc    map[string]int  // ← NEW: Track word occurrences
+    RepetitionsBloc    map[string]int  //  NEW: Track word occurrences
     PenaliteRepetition float64
     EnergyAtomic       float64
 ```
@@ -157,7 +157,7 @@ return result
 
 **After**:
 ```go
-// === PHASE 13+++: Fenêtrage strict - Force lexical diversity between consecutive blocks ===
+// === PHASE 13+++: Fen�trage strict - Force lexical diversity between consecutive blocks ===
 result := []BlocVectoriel{}
 for i, bloc := range r.Blocs {
     if selectedIndices[i] {
@@ -217,7 +217,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
         }
     }
 
-    // Calculate Jaccard similarity: |A ∩ B| / |A ∪ B|
+    // Calculate Jaccard similarity: |A � B| / |A  B|
     intersection := 0
     for mot := range vocab1 {
         if vocab2[mot] {
@@ -247,7 +247,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
 
 **Before**:
 ```go
-// TF-IDF = TF × IDF
+// TF-IDF = TF � IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -262,7 +262,7 @@ for _, mot := range vocab {
 
 **After**:
 ```go
-// TF-IDF = TF × IDF
+// TF-IDF = TF � IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -274,7 +274,7 @@ for _, mot := range vocab {
     
     // === PHASE 13+++: Intelligent weighting for rare but frequent words ===
     // Identify words that are semantically rare (high IDF) but appear often (high TF)
-    // These tend to be repetitive in generated text → penalize to 0.8x
+    // These tend to be repetitive in generated text  penalize to 0.8x
     if idf[mot] > 0.5 && tf[mot] > 0.05 {
         // Word is rare semantically but frequent in corpus = potential repetition
         tfidfVal *= 0.8
@@ -323,17 +323,17 @@ import (
 ```go
 // === PHASE 13+++: Contextual synonyms dictionary ===
 var SynonymsDict = map[string][]string{
-    "malheureux":   {"regrettable", "désolé", "fâcheux", "malheureux"},
+    "malheureux":   {"regrettable", "désolé", "f�cheux", "malheureux"},
     "changer":      {"modifier", "transformer", "altérer", "changer"},
     "important":    {"crucial", "essentiel", "vital", "important"},
     "différent":    {"distinct", "varié", "divers", "différent"},
-    "donne":        {"génère", "fournit", "conduit", "donne"},
+    "donne":        {"gén�re", "fournit", "conduit", "donne"},
     "avoir":        {"posséder", "détenir", "disposer de", "avoir"},
-    "être":         {"constituer", "représenter", "figurer", "être"},
+    "�tre":         {"constituer", "représenter", "figurer", "�tre"},
     "faire":        {"effectuer", "réaliser", "accomplir", "faire"},
     "donner":       {"attribuer", "procurer", "conférer", "donner"},
     "montrer":      {"démontrer", "révéler", "illustrer", "montrer"},
-    "monde":        {"univers", "domaine", "sphère", "monde"},
+    "monde":        {"univers", "domaine", "sph�re", "monde"},
     "jour":         {"époque", "période", "moment", "jour"},
     "suivant":      {"ultérieur", "postérieur", "subséquent", "suivant"},
     "simple":       {"élémentaire", "basique", "rudimentaire", "simple"},
@@ -423,21 +423,21 @@ mots = motsFiltres
 ## Summary of Changes
 
 ### resumeur_coherence.go (6 changes, ~150 lines)
-1. ✅ Added `RepetitionsBloc` field to `BlocVectoriel` struct
-2. ✅ Added call to `NormaliserRepetitionsBlocs()` in `Decouper()`
-3. ✅ Implemented `NormaliserRepetitionsBlocs()` function
-4. ✅ Modified scoring in `SelectionnerBlocsAvecFenetrageGlissant()`
-5. ✅ Added strict fenêtrage logic
-6. ✅ Implemented `CalculerSimilarityVocabLexical()` function
+1.  Added `RepetitionsBloc` field to `BlocVectoriel` struct
+2.  Added call to `NormaliserRepetitionsBlocs()` in `Decouper()`
+3.  Implemented `NormaliserRepetitionsBlocs()` function
+4.  Modified scoring in `SelectionnerBlocsAvecFenetrageGlissant()`
+5.  Added strict fen�trage logic
+6.  Implemented `CalculerSimilarityVocabLexical()` function
 
 ### generation.go (1 change, ~15 lines)
-1. ✅ Added TF-IDF penalty (0.8x) for rare-frequent words
+1.  Added TF-IDF penalty (0.8x) for rare-frequent words
 
 ### coherence.go (4 changes, ~80 lines)
-1. ✅ Added `math/rand` import
-2. ✅ Added `SynonymsDict` with 20+ entries
-3. ✅ Added anti-repetition filter (<5 words)
-4. ✅ Added synonym diversification logic
+1.  Added `math/rand` import
+2.  Added `SynonymsDict` with 20+ entries
+3.  Added anti-repetition filter (<5 words)
+4.  Added synonym diversification logic
 
 ---
 
@@ -460,22 +460,22 @@ go build -o programme
 # Expected: 12 mots, 95% coherence, <1ms
 ```
 
-All tests passed ✅
+All tests passed 
 
 ---
 
 ## Code Quality
 
-- ✅ No breaking changes
-- ✅ Backward compatible
-- ✅ All imports present
-- ✅ No undefined variables
-- ✅ Consistent formatting
-- ✅ Comments added for clarity
+-  No breaking changes
+-  Backward compatible
+-  All imports present
+-  No undefined variables
+-  Consistent formatting
+-  Comments added for clarity
 
 ---
 
 **Total Implementation Time**: Phase 13+++  
-**Status**: ✅ COMPLETE & TESTED  
-**Build**: ✅ SUCCESS  
+**Status**:  COMPLETE & TESTED  
+**Build**:  SUCCESS  
 **Recommendation**: DEPLOY

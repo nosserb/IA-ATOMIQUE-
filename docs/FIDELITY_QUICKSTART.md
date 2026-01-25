@@ -1,6 +1,6 @@
 # GUIDE UTILISATEUR - MODULE ANTI-HALLUCINATION PHASE 15
 
-## 🚀 Démarrage rapide
+##  Démarrage rapide
 
 ### 1. Compiler le projet
 ```bash
@@ -20,12 +20,12 @@ go build -o programme
 [TEST: Technique Simple]
   Source length: 28 words
   Generated length: 10 words
-  Fidelity: 100.00%  ✅
+  Fidelity: 100.00%  
 
 [TEST: Texte Encyclopédique]
   Source length: 29 words
   Generated length: 10 words
-  Fidelity: 100.00%  ✅
+  Fidelity: 100.00%  
 ```
 
 #### Analyser un fichier spécifique
@@ -34,10 +34,10 @@ go build -o programme
 ```
 
 **Sortie** :
-1. ✅ Termes clés extraits
+1.  Termes clés extraits
 2. Résumé Phase 13+++
 3. Score fidélité (Ff) calculé
-4. Décision : GÉNÉRATIF ou EXTRACTIF
+4. Décision : G�N�RATIF ou EXTRACTIF
 5. Résumé final
 6. Rapport sauvegardé
 
@@ -55,59 +55,59 @@ go build -o programme
 
 ---
 
-## 🎯 Résultat attendus
+##  Résultat attendus
 
-### Cas 1 : Texte technique (✅ BONNE FIDÉLITÉ)
+### Cas 1 : Texte technique ( BONNE FID�LIT�)
 
 ```
 Texte original (167 mots):
 "Un atome computationnel est une unité autonome du réseau atomique T.R.A..."
 
-[ANALYSE FIDÉLITÉ]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 38-42%
 Mode sélectionné: EXTRACTIF
 
-Raison: Score < 80% → Basculer automatiquement sur extraction TF-IDF
+Raison: Score < 80%  Basculer automatiquement sur extraction TF-IDF
 ```
 
-### Cas 2 : Texte général (⚠️ HALLUCINATION DÉTECTÉE)
+### Cas 2 : Texte général ( HALLUCINATION D�TECT�E)
 
 ```
 Texte original (8080 mots):
 "La Mésange huppée (Lophophanes cristatus)..."
 
-[ANALYSE FIDÉLITÉ]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 1.42%
 Mode sélectionné: EXTRACTIF
 
 Raison: Termes techniques IA-ATOMIQUE ne correspondent pas
 ```
 
-### Cas 3 : Texte bien aligné (✅ TEXTE GÉNÉRÉ ACCEPTÉ)
+### Cas 3 : Texte bien aligné ( TEXTE G�N�R� ACCEPT�)
 
 ```
-[ANALYSE FIDÉLITÉ]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 85%
-Mode sélectionné: GÉNÉRATIF (fidèle)
+Mode sélectionné: G�N�RATIF (fid�le)
 
-Raison: Score >= 80% → Texte généré est assez fidèle
+Raison: Score >= 80%  Texte généré est assez fid�le
 ```
 
 ---
 
-## 📊 Interprétation des scores
+##  Interprétation des scores
 
 | Score Ff | Interprétation | Action |
 |---|---|---|
-| **≥ 90%** | Excellent | ✅ Garder résumé généré |
-| **80-90%** | Bon | ✅ Garder résumé généré |
-| **70-80%** | Acceptable | ⚠️ Garder avec vigilance |
-| **60-70%** | Faible | ⚠️ Utiliser extractif |
-| **< 60%** | Critique | ❌ FORCER extractif |
+| ** 90%** | Excellent |  Garder résumé généré |
+| **80-90%** | Bon |  Garder résumé généré |
+| **70-80%** | Acceptable |  Garder avec vigilance |
+| **60-70%** | Faible |  Utiliser extractif |
+| **< 60%** | Critique |  FORCER extractif |
 
 ---
 
-## 🔧 Stratégies utilisables
+##  Stratégies utilisables
 
 ### Stratégie A : Extraction pure (TF-IDF)
 **Approche** : Sélectionner les meilleures phrases du texte original
@@ -135,8 +135,8 @@ filteredSummary := database.FilterForFidelity(generated, sourceVocab)
 
 ---
 
-### Stratégie C : Hybridation (RECOMMANDÉE)
-**Approche** : Utiliser génération si fidèle, sinon extractif
+### Stratégie C : Hybridation (RECOMMAND�E)
+**Approche** : Utiliser génération si fid�le, sinon extractif
 
 ```go
 finalSummary, fidelity, mode := database.HybridResume(
@@ -145,16 +145,16 @@ finalSummary, fidelity, mode := database.HybridResume(
     0.80, // seuil fidélité
 )
 
-// mode = "GÉNÉRATIF (fidèle)" ou "EXTRACTIF (hallucination détectée)"
+// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
-**Fidélité** : Garantie ≥ 80%
+**Fidélité** : Garantie  80%
 **Avantage** : Meilleur des deux mondes
 **Inconvénient** : Aucun !
 
 ---
 
-## 📈 Mesures mathématiques
+##  Mesures mathématiques
 
 ### Formule fidélité
 
@@ -167,14 +167,14 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 
 ### Seuil hybride
 
-- **Par défaut** : τ = 0.80 (80%)
-- **Ajustable** : Augmentez à 0.85-0.90 pour domaines critiques
+- **Par défaut** : � = 0.80 (80%)
+- **Ajustable** : Augmentez � 0.85-0.90 pour domaines critiques
 
 ---
 
-## 🐛 Dépannage
+##  Dépannage
 
-### "Coverage très bas (< 10%)"
+### "Coverage tr�s bas (< 10%)"
 
 **Cause probable** : Vocabulaire source incompatible avec termes techniques du projet
 
@@ -182,42 +182,42 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 1. Vérifier que texte source utilise terminologie IA-ATOMIQUE
 2. Enrichir `database/fidelity_check.go` avec nouveaux termes techniques
 
-### "Résumé fragmenté après filtrage"
+### "Résumé fragmenté apr�s filtrage"
 
 **Cause** : Trop de mots rejetés par stratégie B
 
-**Solution** : Utiliser stratégie C (hybridation) à la place
+**Solution** : Utiliser stratégie C (hybridation) � la place
 
 ### "Mode EXTRACTIF quand je veux génération"
 
 **Cause** : Fidélité < seuil
 
 **Solution** : Soit
-1. Relâcher le seuil : `database.HybridResume(..., 0.70)`
+1. Rel�cher le seuil : `database.HybridResume(..., 0.70)`
 2. Soit enrichir le vocabulaire source pour meilleure couverture
 
 ---
 
-## ✅ Checklist de validation
+##  Checklist de validation
 
 - [ ] Compiler le projet : `go build -o programme`
 - [ ] Tester basique : `./programme fidelity test`
 - [ ] Tester sur fichier : `./programme fidelity file test_atomique_technique.txt`
-- [ ] Vérifier décision hybride : Mode = EXTRACTIF ou GÉNÉRATIF ?
+- [ ] Vérifier décision hybride : Mode = EXTRACTIF ou G�N�RATIF ?
 - [ ] Consulter rapport : `test_atomique_technique_fidelity_report_*.txt`
 
 ---
 
-## 📚 Fichiers clés
+##  Fichiers clés
 
 | Fichier | Description |
 |---|---|
 | `database/fidelity_check.go` | Implémentation du scoring Ff et stratégies |
 | `fidelity_commands.go` | CLI pour tester les stratégies |
-| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathématique complète |
+| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathématique compl�te |
 
 ---
 
-**Statut** : ✅ Opérationnel  
-**Dernière mise à jour** : 8 janvier 2026  
+**Statut** :  Opérationnel  
+**Derni�re mise � jour** : 8 janvier 2026  
 **Contact** : IA-ATOMIQUE Project Team

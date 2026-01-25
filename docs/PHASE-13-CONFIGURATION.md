@@ -1,6 +1,6 @@
 # Guide Phase 13+++ - Configuration & Tuning
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Compiler
@@ -17,29 +17,29 @@ go build -o programme
 
 ---
 
-## ⚙️ Paramètres Configurables
+##  Param�tres Configurables
 
 ### 1. **Normalisation Lexicale** (resumeur_coherence.go)
 
 **Coefficient de Pénalité**:
 ```go
 // Ligne ~565
-penalite += float64(count-2) * 0.1  // ← Ajuster ce coefficient
+penalite += float64(count-2) * 0.1  //  Ajuster ce coefficient
 ```
 
 | Coefficient | Effet |
 |-------------|-------|
-| 0.05 | Très permissif, peu de pénalité |
-| **0.1** | ✅ **Recommandé** |
+| 0.05 | Tr�s permissif, peu de pénalité |
+| **0.1** |  **Recommandé** |
 | 0.15 | Strict, forte déprioritisation |
-| 0.20 | Très strict, blocs répétitifs exclus |
+| 0.20 | Tr�s strict, blocs répétitifs exclus |
 
 **Exemple**:
 ```go
-// Pour être plus permissif sur répétitions internes
+// Pour �tre plus permissif sur répétitions internes
 penalite += float64(count-2) * 0.05
 
-// Pour être ultra-strict
+// Pour �tre ultra-strict
 penalite += float64(count-2) * 0.2
 ```
 
@@ -48,14 +48,14 @@ penalite += float64(count-2) * 0.2
 **Seuils et Pénalité**:
 ```go
 // Ligne ~507
-if idf[mot] > 0.5 && tf[mot] > 0.05 {  // ← Ajuster seuils
-    tfidfVal *= 0.8  // ← Ajuster multiplicateur
+if idf[mot] > 0.5 && tf[mot] > 0.05 {  //  Ajuster seuils
+    tfidfVal *= 0.8  //  Ajuster multiplicateur
 }
 ```
 
 | IDF | TF | Multiplicateur | Cas d'Usage |
 |-----|----|----|---|
-| >0.5 | >0.05 | **0.8** | ✅ **Standard** |
+| >0.5 | >0.05 | **0.8** |  **Standard** |
 | >0.6 | >0.10 | 0.8 | Plus sélectif |
 | >0.4 | >0.03 | 0.9 | Plus permissif |
 | >0.7 | >0.15 | 0.7 | Ultra-strict |
@@ -73,12 +73,12 @@ if idf[mot] > 0.4 {  // N'importe quel mot rare
 }
 ```
 
-### 3. **Fenêtrage Strict - Similarité Lexicale** (resumeur_coherence.go)
+### 3. **Fen�trage Strict - Similarité Lexicale** (resumeur_coherence.go)
 
 **Seuil de Diversité**:
 ```go
 // Ligne ~735
-if similarity > 0.6 {  // ← Ajuster ce seuil
+if similarity > 0.6 {  //  Ajuster ce seuil
     delete(selectedIndices, i)
     continue
 }
@@ -88,9 +88,9 @@ if similarity > 0.6 {  // ← Ajuster ce seuil
 |-------|---|---|
 | 0.4 | 40% vocab commun | Ultra-diversifié, peu de blocs |
 | 0.5 | 50% vocab commun | Diversifié, sélection modérée |
-| **0.6** | 60% vocab commun | ✅ **Recommandé** |
+| **0.6** | 60% vocab commun |  **Recommandé** |
 | 0.7 | 70% vocab commun | Assez permissif, plus de blocs |
-| 0.8 | 80% vocab commun | Très permissif, couverture max |
+| 0.8 | 80% vocab commun | Tr�s permissif, couverture max |
 
 **Exemple Pratique**:
 ```go
@@ -115,15 +115,15 @@ if similarity > 0.6 {
 **Distance Intra-Texte**:
 ```go
 // Ligne ~420
-if i-lastPos < 5 {  // ← Ajuster distance
+if i-lastPos < 5 {  //  Ajuster distance
     continue  // Skip répétition
 }
 ```
 
 | Distance | Effet |
 |----------|-------|
-| <3 | Ultra-strict, "très très" impossible |
-| <5 | ✅ **Recommandé**, répétitions bien séparées |
+| <3 | Ultra-strict, "tr�s tr�s" impossible |
+| <5 |  **Recommandé**, répétitions bien séparées |
 | <7 | Modéré, quelques proches répétitions acceptées |
 | <10 | Permissif, répétitions espacées acceptées |
 
@@ -157,14 +157,14 @@ if compteurMots[motClean] % 3 == 0 && synChoisi != motClean {
 
 | Modulo | Fréquence | Effet |
 |--------|-----------|-------|
-| % 2 | Tous les 2 | Très diversifié (50% synonymes) |
-| % 3 | Tous les 3 | ✅ **Recommandé** (33% synonymes) |
+| % 2 | Tous les 2 | Tr�s diversifié (50% synonymes) |
+| % 3 | Tous les 3 |  **Recommandé** (33% synonymes) |
 | % 4 | Tous les 4 | Modéré (25% synonymes) |
 | % 5 | Tous les 5 | Discret (20% synonymes) |
 
 **Configuration**:
 ```go
-// Très varié (synonymes fréquents)
+// Tr�s varié (synonymes fréquents)
 if compteurMots[motClean] % 2 == 0 && synChoisi != motClean {
     motsFiltres = append(motsFiltres, synChoisi)
     continue
@@ -185,9 +185,9 @@ if compteurMots[motClean] % 5 == 0 && synChoisi != motClean {
 
 ---
 
-## 📊 Profils de Configuration Pré-définis
+##  Profils de Configuration Pré-définis
 
-### 🎯 **Profil 1: Maximum Quality** (Zéro Répétitions)
+###  **Profil 1: Maximum Quality** (Zéro Répétitions)
 
 ```go
 // resumeur_coherence.go
@@ -196,7 +196,7 @@ if similarity > 0.4 { delete(...) }  // Strict diversité
 
 // generation.go
 if idf[mot] > 0.5 && tf[mot] > 0.05 {
-    tfidfVal *= 0.7  // Très pénalisant
+    tfidfVal *= 0.7  // Tr�s pénalisant
 }
 
 // coherence.go
@@ -206,11 +206,11 @@ if compteurMots[motClean] % 2 == 0 && ... {  // Synonymes fréquents
 }
 ```
 
-**Résultat**: 400-500 mots, **zéro** répétitions visibles, lecture très naturelle.
+**Résultat**: 400-500 mots, **zéro** répétitions visibles, lecture tr�s naturelle.
 
 ---
 
-### ⚡ **Profil 2: Balanced** (Recommandé - Par Défaut)
+###  **Profil 2: Balanced** (Recommandé - Par Défaut)
 
 ```go
 // resumeur_coherence.go
@@ -233,7 +233,7 @@ if compteurMots[motClean] % 3 == 0 && ... {  // Synonymes modérés
 
 ---
 
-### 📖 **Profil 3: Maximum Coverage** (Plus de Contenu)
+###  **Profil 3: Maximum Coverage** (Plus de Contenu)
 
 ```go
 // resumeur_coherence.go
@@ -259,11 +259,11 @@ if numBlocs > 75 { numBlocs = 75 }  // vs 50
 
 ---
 
-## 🛠️ Recettes de Tuning
+##  Recettes de Tuning
 
-### Cas 1: Résumé Très Court (100-200 mots)
+### Cas 1: Résumé Tr�s Court (100-200 mots)
 ```go
-// Être ultra-strict pour qualité
+// �tre ultra-strict pour qualité
 penalite += float64(count-2) * 0.2
 if similarity > 0.4 { delete(...) }
 if i-lastPos < 7 { continue }
@@ -279,7 +279,7 @@ if compteurMots[motClean] % 2 == 0 { synonymes }
 
 ### Cas 3: Résumé Long (1000+ mots)
 ```go
-// Assouplir critères
+// Assouplir crit�res
 penalite += float64(count-2) * 0.05
 if similarity > 0.7 { delete(...) }
 if i-lastPos < 3 { continue }
@@ -292,7 +292,7 @@ if numBlocs > 80 { numBlocs = 80 }
 ```go
 // Synonymes peuvent perdre précision
 // Désactiver ou utiliser dict technique
-if compteurMots[motClean] % 10 == 0 { synonymes }  // Très rare
+if compteurMots[motClean] % 10 == 0 { synonymes }  // Tr�s rare
 
 // Augmenter pénalité TF-IDF (mots techniques courants)
 tfidfVal *= 0.7
@@ -309,7 +309,7 @@ if i-lastPos < 4 { continue }  // vs 5
 
 ---
 
-## 📈 Benchmarking & Tuning Itératif
+##  Benchmarking & Tuning Itératif
 
 ### Test 1: Mesurer Longueur
 ```bash
@@ -332,39 +332,39 @@ time ./programme resume input.txt 0.12 > /dev/null
 ### Cycle d'Optimisation
 ```
 1. Test configuration actuelle
-2. Changer 1 paramètre à la fois
+2. Changer 1 param�tre � la fois
 3. Re-tester (longueur, cohérence, vitesse)
 4. Garder si améliore métrique cible
-5. Répéter jusqu'à optimum
+5. Répéter jusqu'� optimum
 ```
 
 ---
 
-## 🔍 Diagnostic & Dépannage
+##  Diagnostic & Dépannage
 
-### ❌ Problème: Trop de Répétitions
+###  Probl�me: Trop de Répétitions
 **Cause probable**: Distance anti-répétition trop courte  
 **Solution**:
 ```go
-if i-lastPos < 7 { continue }  // Augmenter de 5 à 7
+if i-lastPos < 7 { continue }  // Augmenter de 5 � 7
 ```
 
-### ❌ Problème: Résumé Trop Court
-**Cause probable**: Fenêtrage strict trop agressif  
+###  Probl�me: Résumé Trop Court
+**Cause probable**: Fen�trage strict trop agressif  
 **Solution**:
 ```go
-if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 à 0.7
+if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 � 0.7
 ```
 
-### ❌ Problème: Synonymes "Bizarre"
+###  Probl�me: Synonymes "Bizarre"
 **Cause probable**: Dictionnaire inadapté au domaine  
-**Solution**: Étendre `SynonymsDict` avec termes appropriés
+**Solution**: �tendre `SynonymsDict` avec termes appropriés
 ```go
 "algorithme": {"méthode", "procédure", "technique", "algorithme"},
 "données":    {"informations", "éléments", "contenus", "données"},
 ```
 
-### ❌ Problème: Cohérence Baisse
+###  Probl�me: Cohérence Baisse
 **Cause probable**: Filtrage trop agressif  
 **Solution**: Assouplir pénalités
 ```go
@@ -374,56 +374,56 @@ tfidfVal *= 0.85  // Augmenter de 0.8
 
 ---
 
-## 🎓 Comprendre l'Impact
+##  Comprendre l'Impact
 
 ### Les 5 Filtres en Cascade
 ```
 Input Blocs (180)
-    ↓
-[1] Normalisation Lexicale → Pénalité blocs répétitifs
-    ↓
-[2] TF-IDF Intelligent → Mots rares pénalisés
-    ↓
-[3] Fenêtrage Strict → Blocs consécutifs diversifiés
-    ↓ (Sélection: 45 blocs)
+    
+[1] Normalisation Lexicale  Pénalité blocs répétitifs
+    
+[2] TF-IDF Intelligent  Mots rares pénalisés
+    
+[3] Fen�trage Strict  Blocs consécutifs diversifiés
+     (Sélection: 45 blocs)
 [4] Génération
-    ↓
+    
 [5] Post-Traitement
-    ├─ Anti-répétition <5 mots
-    └─ Synonymes contextuels
-    ↓
+     Anti-répétition <5 mots
+     Synonymes contextuels
+    
 Output Texte (679 mots, 95% cohérence)
 ```
 
 **Si sortie n'est pas bonne**:
 1. Identifier quel filtre contribue le plus
 2. Ajuster ce filtre specifically
-3. Laisser autres à defaults
+3. Laisser autres � defaults
 
 ---
 
-## ✅ Checklist Optimisation
+##  Checklist Optimisation
 
 - [ ] Tester configuration default Phase 13+++
 - [ ] Mesurer: longueur, cohérence, vitesse
 - [ ] Identifier métrique cible (longueur? qualité? vitesse?)
-- [ ] Ajuster paramètres selon profil (Quality/Balanced/Coverage)
-- [ ] Re-tester après chaque changement
+- [ ] Ajuster param�tres selon profil (Quality/Balanced/Coverage)
+- [ ] Re-tester apr�s chaque changement
 - [ ] Documenter configuration finale
 - [ ] Valider sur multi-textes d'entrée
 
 ---
 
-## 📚 Références
+##  Références
 
 - [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md) - Spécifications techniques
-- [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) - Comparaison avant/après
+- [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) - Comparaison avant/apr�s
 - [Code Source: resumeur_coherence.go](database/resumeur_coherence.go#L554-L580)
 - [Code Source: generation.go](database/generation.go#L495-L510)
 - [Code Source: coherence.go](database/coherence.go#L410-L470)
 
 ---
 
-**Dernière mise à jour**: Phase 13+++  
-**Status**: ✅ Stable & Documented  
+**Derni�re mise � jour**: Phase 13+++  
+**Status**:  Stable & Documented  
 **Recommandation**: Utiliser profil "Balanced" par défaut, adapter selon besoins spécifiques.

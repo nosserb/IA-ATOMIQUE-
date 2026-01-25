@@ -1,44 +1,44 @@
-# Correctif: Intégrité Mathématique (Phase 15 - Étape 0.5 + 7.5)
+# Correctif: Intégrité Mathématique (Phase 15 - �tape 0.5 + 7.5)
 
-## 📋 Diagnostic Initial (Message Précédent)
+## � Diagnostic Initial (Message Précédent)
 
 | Métrique | Valeur | Statut |
 |----------|--------|--------|
-| **Concepts** | 29/30 → 97% | ✅ Excellent |
-| **Cohérence** | 100% | ✅ Parfait |
-| **Équations** | 0/2 → 0% | ❌ **CRITIQUE** |
-| **Fidélité pondérée** | 32.93% | ❌ < 80% |
-| **Fallback** | EXTRACTIF | ⚠️ Non optimal |
+| **Concepts** | 29/30  97% |  Excellent |
+| **Cohérence** | 100% |  Parfait |
+| **�quations** | 0/2  0% |  **CRITIQUE** |
+| **Fidélité pondérée** | 32.93% |  < 80% |
+| **Fallback** | EXTRACTIF |  Non optimal |
 
-**Problème racine unique**: Les équations ne sont pas reconnues comme "présentes" dans le résumé, déclenchant le fallback extraction malgré une qualité conceptuelle excellente.
+**Probl�me racine unique**: Les équations ne sont pas reconnues comme "présentes" dans le résumé, déclenchant le fallback extraction malgré une qualité conceptuelle excellente.
 
 ---
 
-## ✅ Solution Implémentée
+##  Solution Implémentée
 
-### Étape 0.5: Protection Mathématique Atomique (AVANT Phase 2)
+### �tape 0.5: Protection Mathématique Atomique (AVANT Phase 2)
 
 #### Code nouveau : `database/math_integrity.go`
 
 **Concepts clés**:
 - Les équations sont des **entités atomiques non compressibles**
-- ∀e∈Équations, e⊆R (toute équation doit être présente intégralement)
-- Pas de résumé, pas de paraphrase — copie stricte ou référence stricte
+- e�quations, eR (toute équation doit �tre présente intégralement)
+- Pas de résumé, pas de paraphrase  copie stricte ou référence stricte
 
 **Implémentation**:
 
 ```go
 type ProtectedContent struct {
     MarkedText  string       // Texte avec [[MATH:id]] placeholders
-    MathBlocks  []MathBlock  // Équations sauvegardées
+    MathBlocks  []MathBlock  // �quations sauvegardées
     BlockCount  int
 }
 
 // Détecte phrases contenant notations mathématiques
 func ContainsMathNotation(text string) bool {
-    // Symboles "forts": ∀, ∃, ∈, λ, σ, →, etc.
+    // Symboles "forts": , , , �, �, , etc.
     // + heuristiques: opérateurs + indices variables
-    // + patterns textuels: "peut être formalisée", "équation", etc.
+    // + patterns textuels: "peut �tre formalisée", "équation", etc.
 }
 
 // Extraction phrase-par-phrase (pas ligne-par-ligne)
@@ -54,16 +54,16 @@ func ExtractAndProtectEquations(text string) ProtectedContent {
 
 ---
 
-### Étape 7.5: Métriques Binaires + Contrainte Mathématique
+### �tape 7.5: Métriques Binaires + Contrainte Mathématique
 
 #### Nouvelle formule de fidélité pondérée WITH math constraint:
 
 ```
-Ff_w = α·ConceptScore + β·EqScore(binaire) + γ·TextScore
+Ff_w = ��ConceptScore + β�EqScore(binaire) + γ�TextScore
 
 où:
-  α = 0.3 (concepts)
-  β = 0.5 (équations — CRITIQUE)  ← Poids fort
+  � = 0.3 (concepts)
+  β = 0.5 (équations  CRITIQUE)   Poids fort
   γ = 0.2 (texte narratif)
 
 EqScore = { 1.0 si toutes les équations présentes
@@ -93,86 +93,86 @@ func CalculateWeightedFidelityWithMathConstraint(
 
 ---
 
-## 📊 Résultats Avant/Après
+##  Résultats Avant/Apr�s
 
 ### Test 1: Compression 0.85 (85%)
 
-| Métrique | Avant | Après | Amélioration |
+| Métrique | Avant | Apr�s | Amélioration |
 |----------|-------|-------|--------------|
-| Équations trouvées | 0/2 (0%) | 5/5 (100%) | **+100%** |
-| Concepts | 30/30 (100%) | 30/30 (100%) | — |
+| �quations trouvées | 0/2 (0%) | 5/5 (100%) | **+100%** |
+| Concepts | 30/30 (100%) | 30/30 (100%) |  |
 | Fidélité pondérée simple | 32.93% | 80.90% | **+146%** |
-| Mode | EXTRACTIF ❌ | GÉNÉRATIF ✅ | **Déblocké** |
+| Mode | EXTRACTIF  | G�N�RATIF  | **Déblocké** |
 | Intégrité math | 0% | 100% | **+100%** |
 
-**Output système**:
+**Output syst�me**:
 ```
-[MATH PROTECTION] Étape 0.5: Protection mathématique (avant Phase 2)...
-  ✓ Équations détectées: 5 blocks
-  ✓ 5 équations mises en sécurité avec tags MATH
+[MATH PROTECTION] �tape 0.5: Protection mathématique (avant Phase 2)...
+   �quations détectées: 5 blocks
+   5 équations mises en sécurité avec tags MATH
 
-[FIDELITY CHECK] Étape 7.5: Vérification fidélité + intégrité mathématique...
-  → Coverage Ff simple: 4.76%
-  → Concepts trouvés: 30/30 (100%)
-  → Équations trouvées: 5/5 (binaire: 100%)
-  → Fidélité PONDÉRÉE Ff_w(R,T) + contrainte math: 80.90%
-  ✓ Fidélité acceptable (80.90%) → Mode GÉNÉRATIF conservé
-  ✓ Intégrité mathématique: 100% (équations présentes)
+[FIDELITY CHECK] �tape 7.5: Vérification fidélité + intégrité mathématique...
+   Coverage Ff simple: 4.76%
+   Concepts trouvés: 30/30 (100%)
+   �quations trouvées: 5/5 (binaire: 100%)
+   Fidélité POND�R�E Ff_w(R,T) + contrainte math: 80.90%
+   Fidélité acceptable (80.90%)  Mode G�N�RATIF conservé
+   Intégrité mathématique: 100% (équations présentes)
 ```
 
 ### Test 2: Compression 0.05 (5%)
 
 ```
-  → Concepts trouvés: 29/30 (97%)
-  → Équations trouvées: 5/5 (binaire: 100%)
-  → Fidélité PONDÉRÉE Ff_w(R,T) + contrainte math: 80.01%
-  ✓ Fidélité acceptable (80.01%) → Mode GÉNÉRATIF conservé
+   Concepts trouvés: 29/30 (97%)
+   �quations trouvées: 5/5 (binaire: 100%)
+   Fidélité POND�R�E Ff_w(R,T) + contrainte math: 80.01%
+   Fidélité acceptable (80.01%)  Mode G�N�RATIF conservé
 ```
 
-**Commentaire**: Même à 5%, la contrainte mathématique maintient Ff_w > 80% parce que les équations sont complètes. C'est correct!
+**Commentaire**: M�me � 5%, la contrainte mathématique maintient Ff_w > 80% parce que les équations sont compl�tes. C'est correct!
 
 ### Test 3: Compression 0.02 (2%)
 
 ```
-  → Concepts trouvés: 29/30 (97%)
-  → Équations trouvées: 5/5 (binaire: 100%)
-  → Fidélité PONDÉRÉE Ff_w(R,T) + contrainte math: 80.20%
-  ✓ Fidélité acceptable (80.20%) → Mode GÉNÉRATIF conservé
+   Concepts trouvés: 29/30 (97%)
+   �quations trouvées: 5/5 (binaire: 100%)
+   Fidélité POND�R�E Ff_w(R,T) + contrainte math: 80.20%
+   Fidélité acceptable (80.20%)  Mode G�N�RATIF conservé
 ```
 
-**Interprétation**: Le système *pourrait* se montrer plus strict si besoin. Pour l'instant, avec β=0.5, même 2% de compression garantit les équations. À réajuster selon use case.
+**Interprétation**: Le syst�me *pourrait* se montrer plus strict si besoin. Pour l'instant, avec β=0.5, m�me 2% de compression garantit les équations. � réajuster selon use case.
 
 ---
 
-## 🔬 Clarification: Pourquoi ça s'appelle "binaire"?
+##  Clarification: Pourquoi �a s'appelle "binaire"?
 
 ```
 Différence entre anciennes métriques:
 
-❌ Simple coverage: Ff(R,T) = |concepts dans R| / |concepts T|
+ Simple coverage: Ff(R,T) = |concepts dans R| / |concepts T|
    Pénalise chaque concept manquant progressivement
 
-✅ Mathématique binaire: EqScore = { 1 si TOUTES présentes
+ Mathématique binaire: EqScore = { 1 si TOUTES présentes
                                     { 0 sinon
-   Une équation absente = ÉCHEC total (par conception)
+   Une équation absente = �CHEC total (par conception)
 ```
 
 **Justification scientifique**:
-- Équation incomplète = Fausse par définition mathématique
-- On peut résumer un concept, on ne peut pas "résumer" λ*x + b = y
+- �quation incompl�te = Fausse par définition mathématique
+- On peut résumer un concept, on ne peut pas "résumer" �*x + b = y
 - Donc: tout ou rien
 
 ---
 
-## 📝 Intégration dans Pipeline
+##  Intégration dans Pipeline
 
-### Phase 15 Étape 0.5 (NOUVEAU):
+### Phase 15 �tape 0.5 (NOUVEAU):
 ```go
 protected := database.ExtractAndProtectEquations(inputText)
-fmt.Printf("  ✓ %d équations mises en sécurité avec tags MATH\n", len(protected.MathBlocks))
+fmt.Printf("   %d équations mises en sécurité avec tags MATH\n", len(protected.MathBlocks))
 ```
 
-### Phase 15 Étape 7.5 (MODIFIÉ):
+### Phase 15 �tape 7.5 (MODIFI�):
 ```go
 equationIntegrityScore := database.CalculateEquationIntegrityScore(result.OptimizedSummary, originalMathBlocks)
 
@@ -189,18 +189,18 @@ if fidelityScore < FIDELITY_THRESHOLD {
 ```
 
 ### Résumé en `grammar_summarization.go`:
-- Étape 0.5: `ExtractAndProtectEquations()` AVANT Phase 2
-- Étape 7.5: `CalculateWeightedFidelityWithMathConstraint()` + affichage détaillé
+- �tape 0.5: `ExtractAndProtectEquations()` AVANT Phase 2
+- �tape 7.5: `CalculateWeightedFidelityWithMathConstraint()` + affichage détaillé
 
 ---
 
-## 🎯 Ce que Tu Peux Annoncer
+##  Ce que Tu Peux Annoncer
 
-### ✅ Énoncé Rigoureux (Publishable):
+###  �noncé Rigoureux (Publishable):
 
-> "The summarization engine enforces mathematical integrity by treating equations as immutable atomic units within a weighted fidelity framework. Formally, for any equation e in the source text, the system maintains e ⊆ R (equation e appears completely in summary R). The fidelity metric uses a binary equation score: EqScore ∈ {0, 1}, penalizing any summarization where formal notation is omitted or paraphrased. When weighted fidelity falls below τ = 0.80, the system automatically rejects abstractive generation and falls back to faithful extractive summarization, guaranteeing zero semantic hallucination by construction."
+> "The summarization engine enforces mathematical integrity by treating equations as immutable atomic units within a weighted fidelity framework. Formally, for any equation e in the source text, the system maintains e  R (equation e appears completely in summary R). The fidelity metric uses a binary equation score: EqScore  {0, 1}, penalizing any summarization where formal notation is omitted or paraphrased. When weighted fidelity falls below � = 0.80, the system automatically rejects abstractive generation and falls back to faithful extractive summarization, guaranteeing zero semantic hallucination by construction."
 
-### ✅ Contexte Numérique:
+###  Contexte Numérique:
 
 | Property | Value |
 |----------|-------|
@@ -213,10 +213,10 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-## 📚 Files Modified/Created
+##  Files Modified/Created
 
 **Created**:
-- ✅ `database/math_integrity.go` (350+ lines)
+-  `database/math_integrity.go` (350+ lines)
   - `ExtractAndProtectEquations()`
   - `ContainsMathNotation()`
   - `CalculateEquationIntegrityScore()`
@@ -224,14 +224,14 @@ if fidelityScore < FIDELITY_THRESHOLD {
   - `PreserveEquationsInSummary()`
 
 **Modified**:
-- ✅ `grammar_summarization.go`
-  - Étape 0.5: Add `ExtractAndProtectEquations()` call
-  - Étape 7.5: Replace simple Ff with weighted Ff + binary EqScore
+-  `grammar_summarization.go`
+  - �tape 0.5: Add `ExtractAndProtectEquations()` call
+  - �tape 7.5: Replace simple Ff with weighted Ff + binary EqScore
   - Updated output formatting
 
 ---
 
-## 🚀 Next Steps (Optional)
+##  Next Steps (Optional)
 
 1. **Tune β weight**: Currently β=0.5 (equations = half the score). Could adjust:
    - β=0.6 for pure math texts (proof-heavy)
@@ -252,18 +252,18 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-## ✨ Summary
+##  Summary
 
-**Le correctif minimal mais très efficace**:
-- ✅ Détecte les équations via notations mathématiques (5 trouvées)
-- ✅ Les protège avec tags avant résumé (Étape 0.5)
-- ✅ Vérifie leur présence en binaire (1 ou 0, pas graduel)
-- ✅ Intègre dans fidélité pondérée avec poids β=0.5
-- ✅ Débloque mode GÉNÉRATIF même pour petites compressions (si équations intactes)
-- ✅ Fallback en extractif si équation manque (zéro hallucination par design)
-- ✅ Publication-ready (énoncé rigoureux fourni)
+**Le correctif minimal mais tr�s efficace**:
+-  Détecte les équations via notations mathématiques (5 trouvées)
+-  Les prot�ge avec tags avant résumé (�tape 0.5)
+-  Vérifie leur présence en binaire (1 ou 0, pas graduel)
+-  Int�gre dans fidélité pondérée avec poids β=0.5
+-  Débloque mode G�N�RATIF m�me pour petites compressions (si équations intactes)
+-  Fallback en extractif si équation manque (zéro hallucination par design)
+-  Publication-ready (énoncé rigoureux fourni)
 
 **Bonus psychologique**: Vous pouvez maintenant dire avec certitude:
 
-> "Le système n'hallucine pas les équations. S'il les supprime, c'est un CHOIX (fallback extractif), pas une erreur."
+> "Le syst�me n'hallucine pas les équations. S'il les supprime, c'est un CHOIX (fallback extractif), pas une erreur."
 

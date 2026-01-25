@@ -1,112 +1,112 @@
-# ⚡ IA-ATOMIQUE - ULTRA-FAST IMAGE GENERATION & DEBLURRING
+#  IA-ATOMIQUE - ULTRA-FAST IMAGE GENERATION & DEBLURRING
 
-**Objectif atteint:** Générer ou déflouter une image en **<2 secondes** ✅
+**Objectif atteint:** Générer ou déflouter une image en **<2 secondes** 
 
-## 🚀 Nouveaux Modes Ultra-Rapides
+##  Nouveaux Modes Ultra-Rapides
 
-### GÉNÉRATION D'IMAGES
+### G�N�RATION D'IMAGES
 
-#### 1️⃣ Mode ULTRA (<500ms)
+#### 1� Mode ULTRA (<500ms)
 ```bash
 ./programme image ultra "prompt"
 ```
-- **Résolution:** 128×128 pixels
-- **Patch size:** 64×64 (TRÈS gros pour moins d'atomes)
+- **Résolution:** 128�128 pixels
+- **Patch size:** 64�64 (TR�S gros pour moins d'atomes)
 - **Itérations:** 2 seulement
-- **⏱️ Temps:** ~20-50ms
-- **📊 Qualité:** Preview ultra-rapide
+- ** Temps:** ~20-50ms
+- ** Qualité:** Preview ultra-rapide
 
-#### 2️⃣ Mode DRAFT (<1-2 sec)
+#### 2� Mode DRAFT (<1-2 sec)
 ```bash
 ./programme image draft "prompt"
 ```
-- **Résolution:** 256×256 pixels
-- **Patch size:** 32×32
+- **Résolution:** 256�256 pixels
+- **Patch size:** 32�32
 - **Itérations:** 5
-- **⏱️ Temps:** ~30-100ms
-- **📊 Qualité:** Draft acceptable
+- ** Temps:** ~30-100ms
+- ** Qualité:** Draft acceptable
 
-#### 3️⃣ Mode FAST (2-3 sec)
+#### 3� Mode FAST (2-3 sec)
 ```bash
 ./programme image fast "prompt"
 ```
-- **Résolution:** 256×256 pixels
-- **Patch size:** 16×16
+- **Résolution:** 256�256 pixels
+- **Patch size:** 16�16
 - **Itérations:** 10
-- **⏱️ Temps:** ~50-150ms
-- **📊 Qualité:** Bonne qualité
+- ** Temps:** ~50-150ms
+- ** Qualité:** Bonne qualité
 
-### DÉFLOUTAGE D'IMAGES
+### D�FLOUTAGE D'IMAGES
 
-Les mêmes modes s'appliquent au défloutage ! Mais avec une différence clé pour l'ULTRA.
+Les m�mes modes s'appliquent au défloutage ! Mais avec une différence clé pour l'ULTRA.
 
-#### 1️⃣ Mode ULTRA **4K UPSCALE** ⭐ NOUVEAU
+#### 1� Mode ULTRA **4K UPSCALE**  NOUVEAU
 ```bash
 ./programme deblur ultra image.jpg output_4k.png
 ```
-- **Grid:** 4×4 patches (quality processing)
+- **Grid:** 4�4 patches (quality processing)
 - **Itérations:** 15 (enhanced deblurring)
-- **Output:** **3840×2160 (4K)** ← Automatique !
+- **Output:** **3840�2160 (4K)**  Automatique !
 - **Alpha/Beta:** 0.6 / 0.35 (quality enhancement)
-- **⏱️ Temps:** ~200ms
-- **📊 Qualité:** Maximum + Upscale 4K
-- **💡 Cas d'usage:** Export final haute qualité, impression, archivage
+- ** Temps:** ~200ms
+- ** Qualité:** Maximum + Upscale 4K
+- ** Cas d'usage:** Export final haute qualité, impression, archivage
 
-#### 2️⃣ Mode DRAFT (Résolution originale)
+#### 2� Mode DRAFT (Résolution originale)
 ```bash
 ./programme deblur draft image.jpg deblurred_draft.png
 ```
-- **Grid:** 8×8 patches
+- **Grid:** 8�8 patches
 - **Itérations:** 20
 - **Output:** Original size
-- **⏱️ Temps:** ~40ms
-- **📊 Qualité:** Good preview
+- ** Temps:** ~40ms
+- ** Qualité:** Good preview
 
-#### 3️⃣ Mode FAST (Résolution originale)
+#### 3� Mode FAST (Résolution originale)
 ```bash
 ./programme deblur fast image.jpg deblurred_fast.png
 ```
-- **Grid:** 16×16 patches
+- **Grid:** 16�16 patches
 - **Itérations:** 40
 - **Output:** Original size
-- **⏱️ Temps:** ~45ms
-- **📊 Qualité:** Web-ready
+- ** Temps:** ~45ms
+- ** Qualité:** Web-ready
 
-## 📊 Benchmark Résultats
+##  Benchmark Résultats
 
 ```
-⚡⚡⚡ IMAGE GENERATION BENCHMARK
-═════════════════════════════════════
-1. ULTRA MODE:   22ms    (128×128 @ 5 iter)
-2. DRAFT MODE:   27ms    (256×256 @ 5 iter)
-3. FAST MODE:    18ms    (256×256 @ 10 iter)
+ IMAGE GENERATION BENCHMARK
 
-✅ ALL TARGETS MET! (<2 seconds)
+1. ULTRA MODE:   22ms    (128�128 @ 5 iter)
+2. DRAFT MODE:   27ms    (256�256 @ 5 iter)
+3. FAST MODE:    18ms    (256�256 @ 10 iter)
 
-⚡⚡⚡ DEBLUR BENCHMARK (NEW WITH 4K ULTRA)
-═════════════════════════════════════
-1. ULTRA 4K:     206ms   (512→3840×2160 + quality)  ⭐ NEW!
-2. DRAFT:        43ms    (512×512, original size)
-3. FAST:         46ms    (512×512, original size)
+ ALL TARGETS MET! (<2 seconds)
 
-✅ ALL DEBLUR MODES UNDER 2 SECONDS!
+ DEBLUR BENCHMARK (NEW WITH 4K ULTRA)
+
+1. ULTRA 4K:     206ms   (5123840�2160 + quality)   NEW!
+2. DRAFT:        43ms    (512�512, original size)
+3. FAST:         46ms    (512�512, original size)
+
+ ALL DEBLUR MODES UNDER 2 SECONDS!
    Ultra mode now does: deblur + 4K upscale + quality enhancement
 ```
 
-## 🔥 Optimisations Implémentées
+##  Optimisations Implémentées
 
 ### Générations
 1. **Patch Size Augmenté**
-   - Ultra: 64×64 (seulement 4 atomes total!)
-   - Draft: 32×32 (64 atomes)
-   - Fast: 16×16 (256 atomes)
+   - Ultra: 64�64 (seulement 4 atomes total!)
+   - Draft: 32�32 (64 atomes)
+   - Fast: 16�16 (256 atomes)
 
 2. **Itérations Réduites**
    - Ultra: 2 itérations
    - Draft: 5 itérations
    - Fast: 10 itérations
 
-3. **Paramètres Adaptés**
+3. **Param�tres Adaptés**
    ```go
    // Pour convergence ultra-rapide
    CouplingCoefficient: 0.9    // Plus d'influence voisins
@@ -128,9 +128,9 @@ Les mêmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 
 ### Défloutage
 1. **Grid Minimal**
-   - Ultra: 2×2 (4 patches)
-   - Draft: 4×4 (16 patches)
-   - Fast: 8×8 (64 patches)
+   - Ultra: 2�2 (4 patches)
+   - Draft: 4�4 (16 patches)
+   - Fast: 8�8 (64 patches)
 
 2. **Couplage Réduit**
    ```go
@@ -139,24 +139,24 @@ Les mêmes modes s'appliquent au défloutage ! Mais avec une différence clé po
    ```
 
 3. **Early Stopping**
-   - Arrêt dès convergence atteinte
+   - Arr�t d�s convergence atteinte
    - Pas d'itérations inutiles
 
 4. **Modification Mask**
    - Seulement traiter régions changées
-   - Éviter recalcul inutile
+   - �viter recalcul inutile
 
-## 📈 Performances Comparées
+##  Performances Comparées
 
 | Mode | Résolution | Temps | Qualité | Utilisation |
 |------|-----------|-------|---------|------------|
-| **ULTRA** | 128×128 | <0.5s | ⭐ | Preview instant |
-| **DRAFT** | 256×256 | <1.5s | ⭐⭐ | Draft/Brouillon |
-| **FAST** | 256×256 | <3s | ⭐⭐⭐ | Web/Mobile |
-| **BALANCED** | 512×512 | 5-10s | ⭐⭐⭐⭐ | Production standard |
-| **QUALITY** | 512×512 | 20-30s | ⭐⭐⭐⭐⭐ | Print/Haute résolution |
+| **ULTRA** | 128�128 | <0.5s |  | Preview instant |
+| **DRAFT** | 256�256 | <1.5s |  | Draft/Brouillon |
+| **FAST** | 256�256 | <3s |  | Web/Mobile |
+| **BALANCED** | 512�512 | 5-10s |  | Production standard |
+| **QUALITY** | 512�512 | 20-30s |  | Print/Haute résolution |
 
-## 🎯 Cas d'Usage
+##  Cas d'Usage
 
 ### Génération D'Images
 - **Ultra:** Preview d'idées (interface interactive)
@@ -168,7 +168,7 @@ Les mêmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 - **Draft:** Déflouter captures d'écran
 - **Fast:** Restaurer photos utilisateur
 
-## 🚀 Commandes Complètes
+##  Commandes Compl�tes
 
 ### Génération
 ```bash
@@ -201,37 +201,37 @@ Les mêmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 ./programme deblur help
 ```
 
-## 💡 Architecture Optimisée
+##  Architecture Optimisée
 
 ```
 Image Input
-    ↓
-[Choice of Mode] → ULTRA / DRAFT / FAST
-    ↓
+    
+[Choice of Mode]  ULTRA / DRAFT / FAST
+    
 [Minimal Network]
 - Fewer atoms (large patches)
 - Reduced dimensions
 - Minimal neighborhood
-    ↓
+    
 [Optimized Update Loop]
 - Simplified resonance (no complex math)
 - Top-K neighbors only (not all 8)
 - Batched parallel processing
-    ↓
+    
 [Early Exit]
 - Skip post-processing
 - Early convergence detection
-    ↓
-PNG Output ~0.1-2 seconds ✅
+    
+PNG Output ~0.1-2 seconds 
 ```
 
-## 📊 Optimisation Détail
+##  Optimisation Détail
 
 ### Reduce Atoms Count (Biggest Impact)
 ```
-Standard: 256×256 @ 8px patch = 1024 atoms
-ULTRA: 128×128 @ 64px patch = 4 atoms! 🎯
-DRAFT: 256×256 @ 32px patch = 64 atoms
+Standard: 256�256 @ 8px patch = 1024 atoms
+ULTRA: 128�128 @ 64px patch = 4 atoms! 
+DRAFT: 256�256 @ 32px patch = 64 atoms
 ```
 
 ### Reduce Iterations (Significant)
@@ -255,19 +255,19 @@ ULTRA/DRAFT: Zéro post-processing
 FAST: Minimal only
 ```
 
-## ✅ Résultat Final
+##  Résultat Final
 
-✨ **Images générées en <2 secondes**
+ **Images générées en <2 secondes**
 - Mode ULTRA: ~50ms
 - Mode DRAFT: ~100ms  
 - Mode FAST: ~200ms
 
-✨ **Images défloutées en <2 secondes**
+ **Images défloutées en <2 secondes**
 - Mode ULTRA: ~400ms
 - Mode DRAFT: ~1000ms
 - Mode FAST: ~2000ms
 
-## 🔧 Configuration personnalisée
+##  Configuration personnalisée
 
 Pour créer un mode custom:
 ```go
@@ -284,7 +284,7 @@ config := database.FastImageConfig{
 fnet := database.NewFastAtomicImageNetwork(config)
 ```
 
-## 📚 Fichiers Modifiés
+##  Fichiers Modifiés
 
 1. **database/image_fast.go** - New fast generation module
 2. **image_commands.go** - New CLI handlers
@@ -293,9 +293,9 @@ fnet := database.NewFastAtomicImageNetwork(config)
 
 ---
 
-**Status:** ✅ PRODUCTION READY
-**Objectif:** Générer en <2sec ✅
-**Défloutage:** Also <2sec ✅
+**Status:**  PRODUCTION READY
+**Objectif:** Générer en <2sec 
+**Défloutage:** Also <2sec 
 
 **Test it:**
 ```bash

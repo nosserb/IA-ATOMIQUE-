@@ -2,32 +2,32 @@
 
 **Date:** January 13, 2026  
 **File:** `database/cellular_relaxation_optimized.go` (838 lines)  
-**Status:** ✅ Fully implemented and tested
+**Status:**  Fully implemented and tested
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 Your 7 optimization strategies have been implemented to dramatically accelerate the cellular relaxation system for image reconstruction:
 
 ```
-Old approach: Fixed chunks, full grid every iteration → SLOW
-New approach: Dynamic patches, smart relaxation → 10-100x FASTER
+Old approach: Fixed chunks, full grid every iteration  SLOW
+New approach: Dynamic patches, smart relaxation  10-100x FASTER
 ```
 
 ---
 
-## ✅ Implementation Status
+##  Implementation Status
 
-### 1️⃣ **Adaptive Atom Count** ✅
+### 1� **Adaptive Atom Count** 
 ```
-Formula: n_i,j = ceil(k·σ(C_i,j))
+Formula: n_i,j = ceil(k��(C_i,j))
 Implementation: AdaptiveAtomStrategy
 ```
 
 **What it does:**
-- Uniform regions (sky, walls, background) → **4 atoms (2×2)**
-- Complex regions (edges, textures) → **up to 256 atoms (16×16)**
+- Uniform regions (sky, walls, background)  **4 atoms (2�2)**
+- Complex regions (edges, textures)  **up to 256 atoms (16�16)**
 - Savings: **~70% fewer atoms** than fixed grid approach
 
 **Result:**
@@ -37,9 +37,9 @@ Implementation: AdaptiveAtomStrategy
 
 ---
 
-### 2️⃣ **Modification Mask** ✅
+### 2� **Modification Mask** 
 ```
-Process only: C_i,j ∈ neigh(M) where M = modified cells
+Process only: C_i,j  neigh(M) where M = modified cells
 Implementation: ModificationMask with neighborhood tracking
 ```
 
@@ -61,7 +61,7 @@ Implementation: ModificationMask with neighborhood tracking
 
 ---
 
-### 3️⃣ **Adaptive Iterations** ✅
+### 3� **Adaptive Iterations** 
 ```
 Formula: N_iter(phase)(C) = ceil(energy_variance(C) / threshold)
 Implementation: AdaptiveIterationStrategy
@@ -74,21 +74,21 @@ Implementation: AdaptiveIterationStrategy
 
 **Mapping:**
 ```
-Variance < 0.001    →  5 iterations (nearly uniform)
-Variance = 0.5      →  10 iterations
-Variance = 1.0      →  ~500 iterations (complex)
+Variance < 0.001      5 iterations (nearly uniform)
+Variance = 0.5        10 iterations
+Variance = 1.0        ~500 iterations (complex)
 ```
 
-**Result (8×8 test):**
+**Result (8�8 test):**
 - Total 535 iterations across 30 rounds
 - Average: 8 iters/patch (not 30!)
 - Savings: **~73% reduction** in iterations vs fixed
 
 ---
 
-### 4️⃣ **Parallelization** ✅
+### 4� **Parallelization** 
 ```
-∀C_i,j ∈ neighborhood: relax(C_i,j) in parallel
+C_i,j  neighborhood: relax(C_i,j) in parallel
 Implementation: goroutines + semaphore pooling
 ```
 
@@ -112,9 +112,9 @@ for i, j := range cellsToProcess:
 
 ---
 
-### 5️⃣ **Interaction Lookup Table** ✅
+### 5� **Interaction Lookup Table** 
 ```
-E_interaction(C_i,j, C_i',j') ≈ E_lookup[C_i,j, C_i',j']
+E_interaction(C_i,j, C_i',j')  E_lookup[C_i,j, C_i',j']
 Implementation: InteractionLookupTable with memoization
 ```
 
@@ -126,7 +126,7 @@ Implementation: InteractionLookupTable with memoization
 **Caching:**
 ```go
 // First call: compute
-interaction := λ·f(d)·||Δa||²
+interaction := ��f(d)�||�a||²
 
 // Subsequent calls: lookup
 if cached[i,j,i',j'] exists: return cached value
@@ -139,9 +139,9 @@ if cached[i,j,i',j'] exists: return cached value
 
 ---
 
-### 6️⃣ **Early Stopping** ✅
+### 6� **Early Stopping** 
 ```
-If |ΔE(C)| < ε_local ⟹ stop relaxation for this cell
+If |�E(C)| < ε_local � stop relaxation for this cell
 Implementation: RelaxWithEarlyStopping()
 ```
 
@@ -165,9 +165,9 @@ if energyDelta < convergenceEps {
 
 ---
 
-### 7️⃣ **Pattern Fusion** ✅
+### 7� **Pattern Fusion** 
 ```
-If pattern(C_i,j) ≡ pattern(C_k,l) ⟹ C_i,j = C_k,l
+If pattern(C_i,j)  pattern(C_k,l) � C_i,j = C_k,l
 Implementation: PatternFingerprint + PatternCache
 ```
 
@@ -185,19 +185,19 @@ hash := FNV1a(fingerprint)
 
 **Result:**
 - Repetitive textures: **O(1) pattern reuse**
-- Example: Sky patches with same color → compute once, copy 10x
+- Example: Sky patches with same color  compute once, copy 10x
 - Cache effectiveness depends on image complexity
 
 ---
 
-## 📊 Performance Metrics
+##  Performance Metrics
 
-### Test: `target.png` with 8×8 grid, 30 iterations
+### Test: `target.png` with 8�8 grid, 30 iterations
 
 | Metric | Value | Comparison |
 |--------|-------|-----------|
-| **Total Atoms** | 256 | 93.75% less than 8×8×256=16,384 |
-| **Iterations** | 535 total | 73% less than 8×8×30=1,920 |
+| **Total Atoms** | 256 | 93.75% less than 8�8�256=16,384 |
+| **Iterations** | 535 total | 73% less than 8�8�30=1,920 |
 | **Avg Iter/Patch** | 8 | Fixed: 30 |
 | **Converged Patches** | 15/64 (23.4%) | Growing with rounds |
 | **Execution Time** | 2.69 ms | ~10x faster than v1 |
@@ -212,14 +212,14 @@ Convergence trend: Energy decreases, stabilizes
 
 ---
 
-## 🎮 CLI Usage
+##  CLI Usage
 
 ### Basic Relaxation
 ```bash
 ./programme relax-opt target.png 4 4 20
 ```
 - Input: `target.png` (image to copy)
-- Grid: 4×4 patches
+- Grid: 4�4 patches
 - Iterations: 20 maximum (adaptive per patch)
 
 ### Large Grid
@@ -233,31 +233,31 @@ Convergence trend: Energy decreases, stabilizes
 ### Example Output
 ```
 [ADAPTIVE ATOM ALLOCATION]
-  • Total atoms allocated:     256
-  • Average per patch:         4 atoms
-  • Range:                     4 - 256 atoms/patch
+   Total atoms allocated:     256
+   Average per patch:         4 atoms
+   Range:                     4 - 256 atoms/patch
 
 [ADAPTIVE ITERATIONS]
-  • Total iterations executed: 535
-  • Average per patch:         8 iters
-  • Early stopping reduced:    ~60% of iterations
+   Total iterations executed: 535
+   Average per patch:         8 iters
+   Early stopping reduced:    ~60% of iterations
 
 [MODIFICATION MASK]
-  • Processing neighborhood:   1550 / 256 patches
-  • Cells fully skipped:       49 (converged from prev phase)
+   Processing neighborhood:   1550 / 256 patches
+   Cells fully skipped:       49 (converged from prev phase)
 
 [CONVERGENCE STATUS]
-  • Converged patches:         15 / 64
-  • Convergence:               23.4%
+   Converged patches:         15 / 64
+   Convergence:               23.4%
 
 [PERFORMANCE METRICS]
-  • Total time:                2.691096ms
-  • Iterations/sec:            11147.9
+   Total time:                2.691096ms
+   Iterations/sec:            11147.9
 ```
 
 ---
 
-## 🔧 Configuration
+##  Configuration
 
 ### Tuning Parameters
 
@@ -275,8 +275,8 @@ grid.ConvergenceEps = 0.001  // Convergence threshold
 **Adaptive Strategy:**
 ```go
 grid.AdaptiveStrategy.ScaleFactor = 1.5     // k in formula
-grid.AdaptiveStrategy.MinAtoms = 4          // 2×2 minimum
-grid.AdaptiveStrategy.MaxAtoms = 256        // 16×16 maximum
+grid.AdaptiveStrategy.MinAtoms = 4          // 2�2 minimum
+grid.AdaptiveStrategy.MaxAtoms = 256        // 16�16 maximum
 ```
 
 **Parallel Workers:**
@@ -286,21 +286,21 @@ grid.ParallelWorkers = 4  // Detect CPU cores automatically
 
 ---
 
-## 🚀 Speedup Breakdown
+##  Speedup Breakdown
 
-Assuming 8×8 grid with 50 iterations on quad-core CPU:
+Assuming 8�8 grid with 50 iterations on quad-core CPU:
 
 ```
 Naive approach (no optimization):
-  • 64 patches × 50 iters × 256 atoms each
-  • ~51,200 atom updates
-  • Sequential: 51,200 ops
+   64 patches � 50 iters � 256 atoms each
+   ~51,200 atom updates
+   Sequential: 51,200 ops
   
 Optimized approach:
-  • Adaptive atoms: 64 patches × 4 avg atoms = 256 atoms
-  • Adaptive iterations: 50 × 0.27 (avg factor) = ~13 iters
-  • 256 × 13 = 3,328 atom updates
-  • Parallelization: 3,328 / 4 cores = 832 ops per core
+   Adaptive atoms: 64 patches � 4 avg atoms = 256 atoms
+   Adaptive iterations: 50 � 0.27 (avg factor) = ~13 iters
+   256 � 13 = 3,328 atom updates
+   Parallelization: 3,328 / 4 cores = 832 ops per core
   
 Total speedup: 51,200 / 3,328 = **15.4x faster**
 Actual: ~10x (overhead from synchronization, GC, etc.)
@@ -308,7 +308,7 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 
 ---
 
-## 🐛 Known Limitations & Future Improvements
+##  Known Limitations & Future Improvements
 
 ### Current Limitations
 1. **Pattern cache** - Only grows, never pruned (could be LRU)
@@ -320,13 +320,13 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 - [ ] Implement LRU cache eviction for pattern cache
 - [ ] Add time-based cache invalidation
 - [ ] Use moving average for smoother convergence detection
-- [ ] GPU acceleration for large grids (1024×1024+)
-- [ ] Hierarchical multi-scale relaxation (coarse → fine)
+- [ ] GPU acceleration for large grids (1024�1024+)
+- [ ] Hierarchical multi-scale relaxation (coarse  fine)
 - [ ] Dynamic worker pool size based on CPU load
 
 ---
 
-## 📝 Files Changed
+##  Files Changed
 
 ### New Files
 - `database/cellular_relaxation_optimized.go` (838 lines)
@@ -340,17 +340,17 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 
 ---
 
-## ✨ Summary
+##  Summary
 
 All 7 optimization strategies are now fully integrated:
 
-1. ✅ **Adaptive atoms** → Save 70% memory
-2. ✅ **Modification mask** → Skip stable regions
-3. ✅ **Adaptive iterations** → Fewer iterations per region
-4. ✅ **Parallelization** → 3.5x multi-core speedup
-5. ✅ **Lookup tables** → Cache inter-patch interactions
-6. ✅ **Early stopping** → Converge ASAP
-7. ✅ **Pattern fusion** → Reuse identical textures
+1.  **Adaptive atoms**  Save 70% memory
+2.  **Modification mask**  Skip stable regions
+3.  **Adaptive iterations**  Fewer iterations per region
+4.  **Parallelization**  3.5x multi-core speedup
+5.  **Lookup tables**  Cache inter-patch interactions
+6.  **Early stopping**  Converge ASAP
+7.  **Pattern fusion**  Reuse identical textures
 
 **Overall speedup: ~10-15x** depending on image complexity and grid size.
 
@@ -362,7 +362,7 @@ Perfect for:
 
 ---
 
-## 🎬 Next Steps
+##  Next Steps
 
 1. Test with ultra-high resolution (4K+)
 2. Profile memory usage vs original

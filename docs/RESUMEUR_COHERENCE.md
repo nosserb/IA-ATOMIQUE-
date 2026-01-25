@@ -1,73 +1,73 @@
-# 📊 Résumeur Vectoriel avec Découpage & Cohérence
+#  Résumeur Vectoriel avec Découpage & Cohérence
 
 ## Architecture Mathématique
 
-### 1️⃣ Découpage du Texte (Étape 1)
+### 1� Découpage du Texte (�tape 1)
 
 Pour un document avec **P** phrases et **N** mots :
 
 ```
-B = ⌈N / k⌉  (nombre de blocs)
+B = N / k  (nombre de blocs)
 k = taille cible par bloc (défaut: 25 mots)
 ```
 
 **Exemple:**
 - Document: N = 1189 mots
-- Blocs: B = ⌈1189 / 25⌉ = 48 blocs
-- Notre implémentation: k=25 → B=30 blocs réels
+- Blocs: B = 1189 / 25 = 48 blocs
+- Notre implémentation: k=25  B=30 blocs réels
 
-### 2️⃣ Vectorisation (Étape 2)
+### 2� Vectorisation (�tape 2)
 
-Chaque bloc **i** devient un vecteur **vᵢ** dans ℝ¹¹ (11 dimensions):
+Chaque bloc **i** devient un vecteur **v�** dans ¹¹ (11 dimensions):
 
 ```
-vᵢ = MoyennePondereeVecteurs(phrases[bloc_i])
+v� = MoyennePondereeVecteurs(phrases[bloc_i])
 ```
 
 - Vectorisation TF-IDF intégrée
 - Normalisation L2 implicite
 - Capture le sens du bloc
 
-### 3️⃣ Cohérence Vectorielle Globale (Étape 3)
+### 3� Cohérence Vectorielle Globale (�tape 3)
 
 Calcul du vecteur global du document:
 
 ```
-V_doc = (1/B) Σᵢ₌₁ᴮ vᵢ   (moyenne des vecteurs de blocs)
+V_doc = (1/B) Σ�� v�   (moyenne des vecteurs de blocs)
 ```
 
-Normalisé en ℝ¹¹:
+Normalisé en ¹¹:
 
 ```
 V_doc_norm = V_doc / ||V_doc||
 ```
 
-### 4️⃣ Sélection par Énergie (Étape 4)
+### 4� Sélection par �nergie (�tape 4)
 
 Pour chaque bloc i, calculer le **score d'énergie**:
 
 ```
-cohérence_i = sim_cosinus(vᵢ, V_doc)    [0, 1]
+cohérence_i = sim_cosinus(v�, V_doc)    [0, 1]
 tfidf_i = moyenne_tfidf(mots_bloc_i)     [0, 1]
 
-énergie_i = α·cohérence_i + β·tfidf_i
+énergie_i = ��cohérence_i + β�tfidf_i
 ```
 
 où:
-- **α = 0.6** : Poids cohérence (bloc représentatif)
+- **� = 0.6** : Poids cohérence (bloc représentatif)
 - **β = 0.4** : Poids importance lexicale (mots clés)
-- α + β = 1.0
+- � + β = 1.0
 
 **Sélection:** Les blocs avec **énergie** > seuil sont conservés
 
 Nombre de blocs sélectionnés:
 ```
-B_selected = ⌈B × ratioCompression⌉
+B_selected = B � ratioCompression
 ```
 
-### 5️⃣ Génération du Résumé (Étape 5)
+### 5� Génération du Résumé (�tape 5)
 
-À partir des blocs sélectionnés:
+� partir des blocs sélectionnés:
 
 1. Extraire le vocabulaire valide (filtré par `isValidWord()`)
 2. Vectoriser chaque mot du vocabulaire
@@ -76,23 +76,23 @@ B_selected = ⌈B × ratioCompression⌉
 
 Formule génération:
 ```
-mot_sélectionné = argmax_w [ sim(vw, V_doc) + η·sim(vw, v_mot_précédent) ]
+mot_sélectionné = argmax_w [ sim(vw, V_doc) + ��sim(vw, v_mot_précédent) ]
 ```
 
-### 6️⃣ Complexité & Gains de Performance
+### 6� Complexité & Gains de Performance
 
 **Sans découpage:**
 ```
-Complexité: O(P² · d)
+Complexité: O(P² � d)
 P = nombre de phrases (~50-100)
 d = dimensions (11)
 ```
 
 **Avec découpage:**
 ```
-Complexité: O(B² · d)
+Complexité: O(B² � d)
 B = nombre de blocs (~30)
-Réduction: (B/P)² = (30/50)² ≈ 0.36
+Réduction: (B/P)² = (30/50)²  0.36
 Gain: ~3x plus rapide
 ```
 
@@ -100,7 +100,7 @@ Pour documents massifs:
 ```
 P = 128,938 phrases
 B = 10,000 blocs
-Réduction: (10K/128K)² ≈ 0.006
+Réduction: (10K/128K)²  0.006
 Gain: 166x plus rapide!
 ```
 
@@ -113,16 +113,16 @@ type BlocVectoriel struct {
 	Index      int              // Position
 	Contenu    string           // Texte
 	Mots       []string         // Vocabulaire
-	Vecteur    VecteurAtomique  // vᵢ ∈ ℝ¹¹
-	Coherence  float64          // sim(vᵢ, V_doc) ∈ [0,1]
-	TFIDFScore float64          // Importance lexicale ∈ [0,1]
-	Energie    float64          // Score final = α·cohérence + β·tfidf
+	Vecteur    VecteurAtomique  // v�  ¹¹
+	Coherence  float64          // sim(v�, V_doc)  [0,1]
+	TFIDFScore float64          // Importance lexicale  [0,1]
+	Energie    float64          // Score final = ��cohérence + β�tfidf
 }
 
 type ResumeurCoherence struct {
 	Blocs         []BlocVectoriel
 	VecteurGlobal VecteurAtomique   // V_doc
-	AlphaCoherence float64          // α = 0.6
+	AlphaCoherence float64          // � = 0.6
 	BetaTFIDF      float64          // β = 0.4
 }
 ```
@@ -155,7 +155,7 @@ Affiche:
 - Nombre de blocs créés / sélectionnés
 - Cohérence moyenne
 - TF-IDF moyen
-- Énergie moyenne
+- �nergie moyenne
 - Résumé généré
 - Statistiques de temps
 
@@ -198,15 +198,15 @@ Blocs sélectionnés: 4/30
 
 ## Points forts
 
-✅ **Cohérence garantie** - Tous les vecteurs alignés avec V_doc  
-✅ **Couverture texto** - Blocs sélectionnés préservent l'ordre  
-✅ **Scalabilité** - O(B²·d) vs O(P²·d)  
-✅ **Interprétabilité** - Énergie = α·cohérence + β·importance  
-✅ **Vitesse** - 3-166x plus rapide selon taille  
+ **Cohérence garantie** - Tous les vecteurs alignés avec V_doc  
+ **Couverture texto** - Blocs sélectionnés préservent l'ordre  
+ **Scalabilité** - O(B²�d) vs O(P²�d)  
+ **Interprétabilité** - �nergie = ��cohérence + β�importance  
+ **Vitesse** - 3-166x plus rapide selon taille  
 
 ## Amélioration futures
 
-- [ ] Adapter α et β par document (apprentissage)
+- [ ] Adapter � et β par document (apprentissage)
 - [ ] Ajouter pondération temporelle (plus récent = mieux)
 - [ ] Intégrer connecteurs de blocs (donc, cependant, etc.)
 - [ ] Visualisation de la "carte" de cohérence
@@ -215,18 +215,18 @@ Blocs sélectionnés: 4/30
 ## Mathématique résumée
 
 ```
-Entrée:  P phrases → B blocs → vecteurs vᵢ
+Entrée:  P phrases  B blocs  vecteurs v�
          B blocs vectoriels
 
-V_doc ← MoyennePonderee(v₁, ..., vB)    [Étape 3]
+V_doc  MoyennePonderee(v, ..., vB)    [�tape 3]
 
 Pour chaque bloc i:
-  cohérence_i ← cos_sim(vᵢ, V_doc)
-  énergie_i ← 0.6·cohérence_i + 0.4·tfidf_i
+  cohérence_i  cos_sim(v�, V_doc)
+  énergie_i  0.6�cohérence_i + 0.4�tfidf_i
 
-Sélectionner: top B_selected par énergie    [Étape 4]
+Sélectionner: top B_selected par énergie    [�tape 4]
 
-Générer:  argmax vocabulaire par similarity + coherence  [Étape 5]
+Générer:  argmax vocabulaire par similarity + coherence  [�tape 5]
 
 Sortie:   Résumé cohérent début-fin de longueur cible
 ```

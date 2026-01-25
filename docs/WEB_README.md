@@ -2,7 +2,7 @@
 
 Interface web simple pour résumer des textes avec votre IA neuronale.
 
-## 🚀 Démarrage
+##  Démarrage
 
 ### Option 1: Avec le script (recommandé)
 ```bash
@@ -19,14 +19,14 @@ go run main.go interaction.go web.go web_utils.go database/*.go web
 ./programme web
 ```
 
-## 🌐 Accès
+##  Acc�s
 
-Une fois le serveur démarré, ouvrez votre navigateur et accédez à:
+Une fois le serveur démarré, ouvrez votre navigateur et accédez �:
 ```
 http://localhost:8080
 ```
 
-## 📝 Utilisation
+##  Utilisation
 
 1. **Collez votre texte** dans la zone "Votre Texte"
 2. **Cliquez sur "Résumer"** ou appuyez sur **Ctrl+Entrée**
@@ -34,14 +34,14 @@ http://localhost:8080
 
 ### Résumé généré
 Le résumé affiche:
-- 📊 Les catégories principales détectées
-- 🔑 Les phrases clés du texte
+-  Les catégories principales détectées
+-  Les phrases clés du texte
 - Statistiques d'analyse (phrases, confiance, catégories)
 
-## 🎨 Personnalisation
+##  Personnalisation
 
 ### Modifier les couleurs
-Éditez `web/style.css`:
+�ditez `web/style.css`:
 ```css
 /* Modifier le gradient principal */
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -50,7 +50,7 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 ### Modifier la taille des éléments
 Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 
-## ⚙️ Fichiers
+##  Fichiers
 
 - `web/index.html` - Structure HTML
 - `web/style.css` - Styles et mise en page
@@ -58,14 +58,14 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 - `web.go` - Serveur HTTP et API
 - `start-web.sh` - Script de lancement
 
-## 🔌 API
+##  API
 
 ### Endpoint: POST /api/summarize
 
 **Request:**
 ```json
 {
-  "text": "Votre texte à résumer..."
+  "text": "Votre texte � résumer..."
 }
 ```
 
@@ -81,9 +81,9 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 }
 ```
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
-### Port 8080 déjà utilisé
+### Port 8080 déj� utilisé
 Modifiez le port dans `web.go` ligne:
 ```go
 go StartWebServer("9000")  // Changez 8080 en 9000
@@ -95,7 +95,7 @@ Assurez-vous que le répertoire `web/` existe avec les fichiers:
 - `style.css`
 - `script.js`
 
-## 📊 Améliorations possibles
+##  Améliorations possibles
 
 - [ ] Support des fichiers upload
 - [ ] Historique des résumés
@@ -104,4 +104,4 @@ Assurez-vous que le répertoire `web/` existe avec les fichiers:
 - [ ] Traduction du résumé
 - [ ] Graphiques d'analyse
 
-Bon résumé! 🎉
+Bon résumé! 

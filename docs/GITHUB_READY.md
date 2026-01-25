@@ -1,20 +1,20 @@
-# 🎉 Prêt pour GitHub!
+#  Pr�t pour GitHub!
 
-## ✅ Configuration Complète
+##  Configuration Compl�te
 
-Ton projet **IA-ATOMIQUE** est maintenant entièrement configuré pour être hébergé sur GitHub avec l'interface web!
+Ton projet **IA-ATOMIQUE** est maintenant enti�rement configuré pour �tre hébergé sur GitHub avec l'interface web!
 
 ---
 
-## 📦 Qu'est-ce qui a été préparé
+## � Qu'est-ce qui a été préparé
 
-### 1. **Interface Web Complète**
+### 1. **Interface Web Compl�te**
 ```
 web/
-├── index.html    - Interface moderne et responsive
-├── style.css     - Design élégant avec gradient
-├── script.js     - Logique JavaScript intégrée
-└── demo.html     - Page de démonstration
+ index.html    - Interface moderne et responsive
+ style.css     - Design élégant avec gradient
+ script.js     - Logique JavaScript intégrée
+ demo.html     - Page de démonstration
 ```
 
 ### 2. **Serveur HTTP Intégré**
@@ -28,7 +28,7 @@ web/
 - `Makefile` - Commandes de build et run simplifiées
 - `start-web.sh` - Script de lancement rapide
 
-### 4. **Documentation Complète**
+### 4. **Documentation Compl�te**
 - `README.md` - Section web ajoutée
 - `INSTALL.md` - Instructions d'installation
 - `WEB_README.md` - Guide de configuration
@@ -36,17 +36,17 @@ web/
 - `GITHUB_CHECKLIST.md` - Checklist avant push
 
 ### 5. **CI/CD Automatisé**
-- `.github/workflows/build.yml` - Tests automatiques à chaque push
+- `.github/workflows/build.yml` - Tests automatiques � chaque push
 - Compilation vérifiée automatiquement
 - Fichiers web vérifiés automatiquement
 
 ### 6. **Configuration Git**
-- `.gitignore` - Mis à jour pour ignorer les fichiers temporaires
+- `.gitignore` - Mis � jour pour ignorer les fichiers temporaires
 - Scripts exécutables - `start-web.sh` et `verify-github.sh`
 
 ---
 
-## 🚀 Comment utiliser
+##  Comment utiliser
 
 ### Option 1: Installation simple (Recommandé)
 ```bash
@@ -75,24 +75,24 @@ go build -o programme
 
 ---
 
-## ✨ Fonctionnalités de l'Interface Web
+##  Fonctionnalités de l'Interface Web
 
-✅ **Texte en entrée** - Zone de saisie large et confortable  
-✅ **Résumé en sortie** - Affichage immédiat des résultats  
-✅ **Statistiques** - Confiance, catégories, nombre de phrases  
-✅ **Design moderne** - Gradient violet, interface épurée  
-✅ **Responsive** - Fonctionne sur mobile et desktop  
-✅ **Clavier** - Ctrl+Entrée pour soumettre rapidement  
+ **Texte en entrée** - Zone de saisie large et confortable  
+ **Résumé en sortie** - Affichage immédiat des résultats  
+ **Statistiques** - Confiance, catégories, nombre de phrases  
+ **Design moderne** - Gradient violet, interface épurée  
+ **Responsive** - Fonctionne sur mobile et desktop  
+ **Clavier** - Ctrl+Entrée pour soumettre rapidement  
 
 ---
 
-## 🧪 Avant de Pusher
+##  Avant de Pusher
 
 ```bash
 # Vérifier que tout est OK
 ./verify-github.sh
 
-# Si tout est ✅, tu peux pusher
+# Si tout est , tu peux pusher
 git add .
 git commit -m "feat: Add web interface for text summarization"
 git push origin chore/siteweb
@@ -100,46 +100,46 @@ git push origin chore/siteweb
 
 ---
 
-## 📊 Structure du Projet
+##  Structure du Projet
 
 ```
 IA-ATOMIQUE/
-├── web.go                      # Serveur HTTP (NEW!)
-├── web/                        # Interface web (NEW!)
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   └── demo.html
-├── Dockerfile                  # Docker (NEW!)
-├── docker-compose.yml          # Compose (NEW!)
-├── .github/workflows/          # CI/CD (NEW!)
-│   └── build.yml
-├── Makefile                    # Build helpers (NEW!)
-├── INSTALL.md                  # Installation (NEW!)
-├── WEB_README.md              # Web docs (NEW!)
-├── SETUP_WEB.md               # Setup (NEW!)
-├── GITHUB_CHECKLIST.md        # Checklist (NEW!)
-├── verify-github.sh           # Vérification (NEW!)
-├── start-web.sh               # Lancer (NEW!)
-├── main.go
-├── interaction.go
-├── go.mod
-├── README.md                  # Mis à jour
-├── database/
-│   └── *.go
-└── .gitignore                 # Mis à jour
+ web.go                      # Serveur HTTP (NEW!)
+ web/                        # Interface web (NEW!)
+    index.html
+    style.css
+    script.js
+    demo.html
+ Dockerfile                  # Docker (NEW!)
+ docker-compose.yml          # Compose (NEW!)
+ .github/workflows/          # CI/CD (NEW!)
+    build.yml
+ Makefile                    # Build helpers (NEW!)
+ INSTALL.md                  # Installation (NEW!)
+ WEB_README.md              # Web docs (NEW!)
+ SETUP_WEB.md               # Setup (NEW!)
+ GITHUB_CHECKLIST.md        # Checklist (NEW!)
+ verify-github.sh           # Vérification (NEW!)
+ start-web.sh               # Lancer (NEW!)
+ main.go
+ interaction.go
+ go.mod
+ README.md                  # Mis � jour
+ database/
+    *.go
+ .gitignore                 # Mis � jour
 ```
 
 ---
 
-## 🔗 API
+##  API
 
 L'interface utilise l'API `/api/summarize` (POST):
 
 ```json
 REQUEST:
 {
-  "text": "Votre texte à résumer..."
+  "text": "Votre texte � résumer..."
 }
 
 RESPONSE:
@@ -155,7 +155,7 @@ RESPONSE:
 
 ---
 
-## 🎯 Prochaines Étapes
+##  Prochaines �tapes
 
 1. **Pusher sur GitHub** - Utilise la branche `chore/siteweb`
 2. **Faire un PR** - Vers main/develop
@@ -164,7 +164,7 @@ RESPONSE:
 
 ---
 
-## 💡 Pour les Utilisateurs qui Clonent
+##  Pour les Utilisateurs qui Clonent
 
 Ils vont voir:
 - Instructions claires dans README.md
@@ -172,13 +172,13 @@ Ils vont voir:
 - Alternative Docker
 - Alternative manuelle
 
-Tout fonctionne out-of-the-box! 🎉
+Tout fonctionne out-of-the-box! 
 
 ---
 
-## 🐛 Troubleshooting Rapide
+##  Troubleshooting Rapide
 
-| Problème | Solution |
+| Probl�me | Solution |
 |----------|----------|
 | Port 8080 occupé | `make web PORT=9000` |
 | Compilation échoue | `go mod tidy && go build` |
@@ -187,18 +187,18 @@ Tout fonctionne out-of-the-box! 🎉
 
 ---
 
-## ✅ Checklist Finale
+##  Checklist Finale
 
 - [x] Code compile sans erreur
 - [x] Fichiers web présents
 - [x] Docker configuré
-- [x] Documentation complète
+- [x] Documentation compl�te
 - [x] CI/CD configuré
 - [x] .gitignore correct
 - [x] Scripts exécutables
-- [x] README.md mis à jour
+- [x] README.md mis � jour
 - [x] Installation facile pour utilisateurs
 
-**READY TO PUSH! 🚀**
+**READY TO PUSH! **
 
-Bon déploiement! 🎉
+Bon déploiement! 

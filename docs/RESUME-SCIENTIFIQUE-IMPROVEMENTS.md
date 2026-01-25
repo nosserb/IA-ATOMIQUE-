@@ -1,27 +1,27 @@
-# 🧠 Améliorations du Système de Résumé Scientifique
+#  Améliorations du Syst�me de Résumé Scientifique
 
 ## Vue d'ensemble
-Implémentation du système des **5 piliers scientifiques** pour générer des résumés structurés, lisibles et complets.
+Implémentation du syst�me des **5 piliers scientifiques** pour générer des résumés structurés, lisibles et complets.
 
 ---
 
-## 🎯 Système Implémenté
+##  Syst�me Implémenté
 
-### 1️⃣ Les 5 Piliers Obligatoires
+### 1� Les 5 Piliers Obligatoires
 
-Chaque résumé doit répondre à ces 5 questions dans l'ordre:
+Chaque résumé doit répondre � ces 5 questions dans l'ordre:
 
 | Pilier | Question | Exemple |
 |--------|----------|---------|
 | **CONTEXTE** | De quoi parle-t-on? | "Le domaine de l'IA..." |
-| **PROBLÈME** | Pourquoi c'est insuffisant? | "Cependant, ces systèmes sont lents..." |
+| **PROBL�ME** | Pourquoi c'est insuffisant? | "Cependant, ces syst�mes sont lents..." |
 | **OBJECTIF** | Qu'essaie-t-on de faire? | "Notre objectif est de proposer..." |
 | **APPROCHE** | Comment c'est fait? | "Nous utilisons une technologie..." |
 | **APPORT** | Pourquoi c'est nouveau/utile? | "Les résultats montrent..." |
 
 ---
 
-## 🔧 Structure du Code
+##  Structure du Code
 
 ### Structures de Données
 ```go
@@ -58,14 +58,14 @@ type ResumePiliers struct {
 ### Fonctions Principales
 
 #### 1. **ClassifierPhraseScientiifque** 
-Assigne une fonction scientifique à chaque phrase
-- Détecte les mots-clés spécifiques à chaque pilier
+Assigne une fonction scientifique � chaque phrase
+- Détecte les mots-clés spécifiques � chaque pilier
 - Assigne des poids différents selon la fonction
 - Retourne la fonction avec le score maximal
 
 **Mots-clés utilisés:**
 - **CONTEXTE**: domaine, champ, étude, actuellement, existant
-- **PROBLÈME**: cependant, limite, problème, défi, insuffisant, sans
+- **PROBL�ME**: cependant, limite, probl�me, défi, insuffisant, sans
 - **OBJECTIF**: proposer, objectif, visée, cherche, développer, résoudre
 - **APPROCHE**: méthode, technique, utiliser, basé, architecture, algorithme
 - **APPORT**: résultat, contribution, nouveau, améliorationavantage, performance
@@ -79,43 +79,43 @@ Organise les phrases par pilier
 - Bonus si tous les 5 piliers sont présents (0-100%)
 
 #### 4. **FormaterResumePiliers**
-Génère l'affichage structuré des piliers
+Gén�re l'affichage structuré des piliers
 
 #### 5. **genererNarratifPiliers**
 Crée un texte narratif continu qui relie les piliers
 
 ---
 
-## 📊 Exemple de Sortie
+##  Exemple de Sortie
 
 ```
-╔════════════════════════════════════════════════════════════╗
-║  RÉSUMÉ SCIENTIFIQUE (80.0% complet)                       ║
-╚════════════════════════════════════════════════════════════╝
 
-[PROBLÈME IDENTIFIÉ]
-  • Cependant ces systèmes sont limités par leur latence.
+  R�SUM� SCIENTIFIQUE (80.0% complet)                       
+
+
+[PROBL�ME IDENTIFI�]
+   Cependant ces syst�mes sont limités par leur latence.
 
 [OBJECTIF / BUT]
-  • Notre objectif est de proposer une approche asynchrone.
+   Notre objectif est de proposer une approche asynchrone.
 
-[APPROCHE MÉTHODOLOGIQUE]
-  • Nous utilisons une technologie de résonance atomique.
+[APPROCHE M�THODOLOGIQUE]
+   Nous utilisons une technologie de résonance atomique.
 
-[APPORT / RÉSULTATS]
-  • Les résultats montrent une accélération de 30x.
+[APPORT / R�SULTATS]
+   Les résultats montrent une accélération de 30x.
 
-╔════════════════════════════════════════════════════════════╗
-║  RÉCIT SCIENTIFIQUE CONTINU                               ║
-╚════════════════════════════════════════════════════════════╝
 
-Cependant, il existe une limitation fondamentale : ces systèmes 
+  R�CIT SCIENTIFIQUE CONTINU                               
+
+
+Cependant, il existe une limitation fondamentale : ces syst�mes 
 sont limités par leur latence.
 
-Pour remédier à cette situation, ce travail vise à proposer une 
+Pour remédier � cette situation, ce travail vise � proposer une 
 approche asynchrone.
 
-La stratégie employée consiste à : utiliser une technologie de 
+La stratégie employée consiste � : utiliser une technologie de 
 résonance atomique.
 
 Il en résulte que : les résultats montrent une accélération de 30x.
@@ -123,27 +123,27 @@ Il en résulte que : les résultats montrent une accélération de 30x.
 
 ---
 
-## 🚀 Améliorations Apportées
+##  Améliorations Apportées
 
-### ✅ Avant
+###  Avant
 - Résumé fluide mais flou
-- Structure implicite, difficile à suivre
+- Structure implicite, difficile � suivre
 - Aucune métrique de qualité scientifique
 
-### ✅ Après
+###  Apr�s
 - **Structure explicite** avec les 5 piliers
 - **Score de complétude** (0-100%)
 - **Double sortie**: structure + narratif
 - **Hiérarchie des idées** clairement visible
-- **Cause → Conséquence** explicitement exprimée
+- **Cause  Conséquence** explicitement exprimée
 - **Progression argumentative** logique
 
 ---
 
-## 📈 Prochaines Étapes Recommandées
+##  Prochaines �tapes Recommandées
 
-### ÉTAPE 5 — Réécriture Locale (Clé)
-Après génération, éliminer les phrases redondantes:
+### �TAPE 5  Réécriture Locale (Clé)
+Apr�s génération, éliminer les phrases redondantes:
 ```go
 // Pseudo-code
 for each phrase in resume {
@@ -158,10 +158,10 @@ Créer deux résumés:
 1. **Résumé scientifique strict** (structure 5 piliers)
 2. **Résumé intelligible humain** (narratif libre)
 
-Comparer le recouvrement sémantique → valider la compréhension réelle
+Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ### Amélioration des Mots-Clés
-Étendre les dictionnaires de mots-clés par domaine:
+�tendre les dictionnaires de mots-clés par domaine:
 - Science informatique vs histoire vs médecine...
 - Adapter les poids selon le contexte
 
@@ -172,10 +172,10 @@ Comparer le recouvrement sémantique → valider la compréhension réelle
 
 ---
 
-## 🧪 Utilisation
+##  Utilisation
 
 ```bash
-# Tester le nouveau système
+# Tester le nouveau syst�me
 ./programme text "Votre texte ici"
 
 # Voir les détails du résumé scientifique
@@ -185,33 +185,33 @@ Comparer le recouvrement sémantique → valider la compréhension réelle
 
 ---
 
-## 📊 Métrique de Qualité
+##  Métrique de Qualité
 
-**Score de résumabilité scientifique** = (Nombre de piliers présents) / 5 × 100%
+**Score de résumabilité scientifique** = (Nombre de piliers présents) / 5 � 100%
 
 - **100%**: Résumé parfait (tous les 5 piliers)
-- **80%**: Très bon (4 piliers)
+- **80%**: Tr�s bon (4 piliers)
 - **60%**: Acceptable (3 piliers)
-- **< 60%**: Incomplet, à enrichir
+- **< 60%**: Incomplet, � enrichir
 
 ---
 
-## 🔍 Points d'Attention
+##  Points d'Attention
 
-1. **Classification**: Les mots-clés peuvent se chevaucher (ex: "propose" peut être OBJECTIF ou APPROCHE)
-   → Solution: Ajouter du contexte sémantique
+1. **Classification**: Les mots-clés peuvent se chevaucher (ex: "propose" peut �tre OBJECTIF ou APPROCHE)
+    Solution: Ajouter du contexte sémantique
 
 2. **Ordre des piliers**: Actuellement ils apparaissent dans l'ordre de présence
-   → Solution: Forcer l'ordre CONTEXTE → PROBLÈME → OBJECTIF → APPROCHE → APPORT
+    Solution: Forcer l'ordre CONTEXTE  PROBL�ME  OBJECTIF  APPROCHE  APPORT
 
-3. **Fusion de phrases**: Plusieurs phrases d'un même pilier peuvent être fusionnées
-   → Solution: Ajouter un générateur de fusion intelligente
+3. **Fusion de phrases**: Plusieurs phrases d'un m�me pilier peuvent �tre fusionnées
+    Solution: Ajouter un générateur de fusion intelligente
 
 ---
 
-## 📚 Références
+##  Références
 
 - [Votre recommandation initiale sur la structure scientifique]
 - Implémentation Go: `database/language.go`
-- Intégration: `interaction.go` → `TraiterTexte()`
+- Intégration: `interaction.go`  `TraiterTexte()`
 

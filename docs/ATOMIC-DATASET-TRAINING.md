@@ -1,4 +1,4 @@
-# 🎓 IA-ATOMIQUE: Atomic Dataset Training Guide
+#  IA-ATOMIQUE: Atomic Dataset Training Guide
 
 ## Overview
 
@@ -14,19 +14,19 @@ This guide explains how to create a dataset, extract target atomic states from r
 
 ```
 Reference Image (JPEG/PNG)
-        ↓
+        
     Preprocessing
-        ↓
+        
     Extract Target States:
     - Pixel colors (RGB)
-    - Gradients (∂/∂x, ∂/∂y)
+    - Gradients (/x, /y)
     - Edge strength (magnitude)
     - Curvature (Laplacian)
     - Texture energy
     - Orientation
-        ↓
+        
     Store as TargetAtomicState
-        ↓
+        
     Use for Training
 ```
 
@@ -39,7 +39,7 @@ $$L = \sum_{i,j} \|c_{i,j}^{\text{gen}} - C_{i,j}^*\|^2 + \lambda \sum_{i,j} \su
 Where:
 - **First term**: Color fidelity (how close generated image is to target)
 - **Second term**: Coherence penalty (encourages smooth, locally correlated colors)
-- **λ**: Balance parameter (typically 0.5)
+- **�**: Balance parameter (typically 0.5)
 
 ### Atomic Gradient Descent
 
@@ -48,8 +48,8 @@ Each atom updates independently:
 $$c_{i,j} \leftarrow c_{i,j} - \eta \cdot \frac{\partial L}{\partial c_{i,j}}$$
 
 Where:
-- **η**: Learning rate (typically 0.01)
-- **∇L**: Gradient computed locally (no global synchronization needed)
+- **�**: Learning rate (typically 0.01)
+- **�L**: Gradient computed locally (no global synchronization needed)
 
 ---
 
@@ -59,10 +59,10 @@ Where:
 
 ```
 training_images/
-├── image1.jpg
-├── image2.png
-├── image3.jpg
-└── image4.png
+ image1.jpg
+ image2.png
+ image3.jpg
+ image4.png
 ```
 
 Requirements:
@@ -76,29 +76,29 @@ Requirements:
 **Scenario 1: Natural Photos**
 ```
 landscapes/
-├── sunset_1.jpg
-├── sunset_2.jpg
-├── mountain_1.jpg
-├── ocean_1.jpg
-└── forest_1.jpg
+ sunset_1.jpg
+ sunset_2.jpg
+ mountain_1.jpg
+ ocean_1.jpg
+ forest_1.jpg
 ```
 
 **Scenario 2: Abstract Art**
 ```
 abstract_art/
-├── painting_1.jpg
-├── painting_2.jpg
-├── modern_1.png
-└── texture_1.jpg
+ painting_1.jpg
+ painting_2.jpg
+ modern_1.png
+ texture_1.jpg
 ```
 
 **Scenario 3: Synthetic Patterns**
 ```
 patterns/
-├── grid_1.png
-├── circles_1.png
-├── fractals_1.jpg
-└── noise_1.png
+ grid_1.png
+ circles_1.png
+ fractals_1.jpg
+ noise_1.png
 ```
 
 ---
@@ -113,30 +113,30 @@ patterns/
 
 Output:
 ```
-📁 Loading Dataset
-═══════════════════════════════════════════════════
+ Loading Dataset
+
 Directory: ./training_images
 Dataset: my_dataset
 Patch Size: 8
 
 Loading images...
-✅ Loaded 5 images
+ Loaded 5 images
 
 Computing statistics...
 
-📊 Dataset Statistics: my_dataset
-═══════════════════════════════════════════════════
+ Dataset Statistics: my_dataset
+
 Number of images: 5
-Average size: 512.0 × 512.0
+Average size: 512.0 � 512.0
 Total pixels: 1,310,720
 
-🎨 Image Statistics:
+ Image Statistics:
   Avg gradient magnitude: 0.1234
   Avg edge strength: 0.0856
   Avg texture energy: 0.0923
 
-📈 Color Distribution: 4521 unique colors
-═══════════════════════════════════════════════════
+ Color Distribution: 4521 unique colors
+
 ```
 
 ### View Dataset Statistics
@@ -205,9 +205,9 @@ Total pixels: 1,310,720
 
 **Orientation Mode**
 - Color encodes direction of dominant gradient
-- Red ≈ horizontal edges
-- Blue ≈ vertical edges
-- Purple ≈ diagonal edges
+- Red  horizontal edges
+- Blue  vertical edges
+- Purple  diagonal edges
 
 ---
 
@@ -254,7 +254,7 @@ Defaults:
 100+:   Very detailed learning, risk of overfitting
 ```
 
-#### Learning Rate (η)
+#### Learning Rate (�)
 ```
 0.001:  Very conservative, slow convergence
 0.01:   Recommended default, stable learning
@@ -264,7 +264,7 @@ Defaults:
 
 **Adaptive adjustment**: If loss plateaus, learning rate reduces automatically (0.95x)
 
-#### Coherence Lambda (λ)
+#### Coherence Lambda (�)
 ```
 0.1:   Ignore local coherence, focus on color match
 0.3:   Light coherence enforcement
@@ -276,58 +276,58 @@ Defaults:
 ### Training Output
 
 ```
-🎓 ATOMIC MODEL TRAINING
-═══════════════════════════════════════════════════
+ ATOMIC MODEL TRAINING
+
 Loading dataset: my_dataset
 Loaded 5 images
 
-🔧 Initializing Network
+ Initializing Network
 Dimensions: 512x512
 
-🚀 Starting Training
-═══════════════════════════════════════════════════
+ Starting Training
+
 [Epoch   1/20] Loss: 0.523461 | Best: 0.523461 (ep 0) | Time: 2.34s
 [Epoch   2/20] Loss: 0.412834 | Best: 0.412834 (ep 1) | Time: 2.31s
 [Epoch   3/20] Loss: 0.328956 | Best: 0.328956 (ep 2) | Time: 2.29s
 ...
 [Epoch  20/20] Loss: 0.089234 | Best: 0.087123 (ep 18) | Time: 2.25s
 
-✅ Training Complete
-═══════════════════════════════════════════════════
+ Training Complete
+
 Final Loss: 0.089234
 Best Loss: 0.087123 (epoch 18)
 Total Time: 47s
 Weights Updated: 131072
-═══════════════════════════════════════════════════
 
-✅ Model exported: model_my_dataset_trained.txt
-✅ Generated image: trained_output_my_dataset.png
+
+ Model exported: model_my_dataset_trained.txt
+ Generated image: trained_output_my_dataset.png
 ```
 
 ### Interpreting Loss Convergence
 
 **Healthy convergence**:
 ```
-Loss: 0.500 → 0.400 → 0.350 → 0.300 → 0.280 → 0.270
+Loss: 0.500  0.400  0.350  0.300  0.280  0.270
 ```
 
 **Slow convergence** (learning rate too low):
 ```
-Loss: 0.500 → 0.498 → 0.496 → 0.495 → 0.494
+Loss: 0.500  0.498  0.496  0.495  0.494
 ```
-→ Increase learning rate
+ Increase learning rate
 
 **Divergence** (learning rate too high):
 ```
-Loss: 0.500 → 0.600 → 1.200 → NaN
+Loss: 0.500  0.600  1.200  NaN
 ```
-→ Decrease learning rate
+ Decrease learning rate
 
 **Plateauing** (no improvement):
 ```
-Loss: 0.200 → 0.195 → 0.195 → 0.195 → 0.195
+Loss: 0.200  0.195  0.195  0.195  0.195
 ```
-→ Increase epochs or adjust lambda
+ Increase epochs or adjust lambda
 
 ---
 
@@ -341,8 +341,8 @@ Loss: 0.200 → 0.195 → 0.195 → 0.195 → 0.195
 
 Output:
 ```
-📊 Validating on Dataset
-═════════════════════════════════════════════════
+ Validating on Dataset
+
   [1/5] Loss: 0.1234
   [2/5] Loss: 0.0987
   [3/5] Loss: 0.1102
@@ -457,14 +457,14 @@ For large datasets, train at multiple scales:
 
 ### Problem: Loss not decreasing
 **Causes & Solutions**:
-- Learning rate too low → increase to 0.05 or 0.1
-- Lambda too high → reduce from 0.5 to 0.3
-- Dataset too small → add more reference images
-- Images too different → use more consistent dataset
+- Learning rate too low  increase to 0.05 or 0.1
+- Lambda too high  reduce from 0.5 to 0.3
+- Dataset too small  add more reference images
+- Images too different  use more consistent dataset
 
 ### Problem: Loss diverging (becoming larger)
 **Solutions**:
-- Learning rate too high → reduce to 0.001 or 0.005
+- Learning rate too high  reduce to 0.001 or 0.005
 - Check image formats (must be PNG/JPEG)
 - Verify image quality and colors
 
@@ -489,18 +489,18 @@ For each pixel at position $(x, y)$:
    - $G_y = \frac{I(x,y+1) - I(x,y-1)}{2}$
 3. **Edge Strength**: $\|G\| = \sqrt{G_x^2 + G_y^2}$
 4. **Curvature**: $\nabla^2 I = I_{xx} + I_{yy}$
-5. **Texture Energy**: $\alpha \cdot \|G\| + (1-\alpha) \cdot |\nabla^2 I|$ (α=0.7)
+5. **Texture Energy**: $\alpha \cdot \|G\| + (1-\alpha) \cdot |\nabla^2 I|$ (�=0.7)
 6. **Orientation**: $\theta = \arctan\left(\frac{G_y}{G_x}\right)$
 
 ### Gradient Computation
 
 ```
-∂L/∂c = 2(c - C*) + λ·2·Σ_neighbors(c - c_neighbor)
+L/c = 2(c - C*) + ��2�Σ_neighbors(c - c_neighbor)
 ```
 
 Clipped to prevent explosion:
 ```
-if |∂L/∂c| > clip_value: ∂L/∂c = clip_value · sign(∂L/∂c)
+if |L/c| > clip_value: L/c = clip_value � sign(L/c)
 ```
 
 ### Weight Update
@@ -508,7 +508,7 @@ if |∂L/∂c| > clip_value: ∂L/∂c = clip_value · sign(∂L/∂c)
 Connection weights also update via:
 
 ```
-w_ij ← w_ij · (1 - α·decay) + γ·coherence
+w_ij  w_ij � (1 - ��decay) + γ�coherence
 ```
 
 Where coherence increases when neighboring atoms align well.
@@ -521,15 +521,15 @@ Where coherence increases when neighboring atoms align well.
 
 | Dimensions | Epochs | Time |
 |------------|--------|------|
-| 256×256 | 20 | 5-10s |
-| 512×512 | 20 | 30-45s |
-| 1024×1024 | 20 | 2-3 min |
+| 256�256 | 20 | 5-10s |
+| 512�512 | 20 | 30-45s |
+| 1024�1024 | 20 | 2-3 min |
 
 ### Memory Usage
 
 ```
-Atoms: (width/patch) × (height/patch)
-512×512 with patch=8 → 4,096 atoms
+Atoms: (width/patch) � (height/patch)
+512�512 with patch=8  4,096 atoms
 Memory per atom: ~500 bytes
 Total: ~2 MB
 ```
@@ -537,9 +537,9 @@ Total: ~2 MB
 ### Convergence Speed
 
 ```
-Dataset size:    5 images → convergence in 20 epochs
-Dataset size:   10 images → convergence in 30 epochs
-Dataset size:   50 images → convergence in 50-100 epochs
+Dataset size:    5 images  convergence in 20 epochs
+Dataset size:   10 images  convergence in 30 epochs
+Dataset size:   50 images  convergence in 50-100 epochs
 ```
 
 ---
@@ -575,7 +575,7 @@ The network will use learned weights and color patterns.
 
 1. **Dataset Consistency**: Use images with similar style/content for better results
 2. **Diverse Angles**: Include images from different perspectives
-3. **Start Small**: Test with 256×256 before scaling to 1024×1024
+3. **Start Small**: Test with 256�256 before scaling to 1024�1024
 4. **Monitor Loss**: Watch for convergence patterns
 5. **Validate Regularly**: Check against validation set
 6. **Adjust Parameters**: Use metrics to tune learning rate and lambda

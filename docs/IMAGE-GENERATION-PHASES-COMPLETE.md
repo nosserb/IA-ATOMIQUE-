@@ -1,4 +1,4 @@
-# 🎨 IA-ATOMIQUE: 5-Phase Atomic Image Generation Pipeline
+#  IA-ATOMIQUE: 5-Phase Atomic Image Generation Pipeline
 
 ## Overview
 
@@ -8,7 +8,7 @@ This document describes the complete **5-phase atomic image generation system** 
 
 ---
 
-## Phase 1: Multi-Scale Structuration (Structuration Multi-Échelle)
+## Phase 1: Multi-Scale Structuration (Structuration Multi-�chelle)
 
 ### Objective
 Transform isolated pixels into coherent patterns through **local resonance** at multiple scales (micro, meso, macro).
@@ -21,7 +21,7 @@ $$c_{i,j}(t+1) = c_{i,j}(t) + \alpha \sum_{k \in N(p_{i,j})} w_{i,j,k} \cdot (c_
 
 Where:
 - $c_{i,j}(t)$ = RGB color of pixel at time $t$
-- $\alpha$ = coupling coefficient (influence strength) ≈ 0.7
+- $\alpha$ = coupling coefficient (influence strength)  0.7
 - $w_{i,j,k}$ = weight of influence from neighbor $k$
 - $N(p_{i,j})$ = 8-neighborhood of pixel
 - $c_k(t) - c_{i,j}(t)$ = color difference driving alignment
@@ -30,13 +30,13 @@ Where:
 
 1. **Multi-Scale Layers**
    - **Micro**: Individual pixels (scale = 1)
-   - **Meso**: 4×4 or 8×8 blocks (scale = 4, 8)
+   - **Meso**: 4�4 or 8�8 blocks (scale = 4, 8)
    - **Macro**: Full image patterns (scale = 16+)
 
 2. **Resonance Calculation**
    $$R(s_i, s_j) = \exp\left(-\frac{\|s_i - s_j\|^2}{2\sigma^2}\right)$$
    - Gaussian similarity function
-   - High resonance → colors more similar
+   - High resonance  colors more similar
    - Drives color alignment
 
 3. **Cross-Scale Propagation**
@@ -61,14 +61,14 @@ network.PhaseOne_StructurationMultiEchelle(50)
 
 ### Expected Results
 
-- ✓ Individual pixels cluster into color regions
-- ✓ Smooth transitions between regions
-- ✓ Elimination of random noise
-- ✓ Formation of basic textures
+-  Individual pixels cluster into color regions
+-  Smooth transitions between regions
+-  Elimination of random noise
+-  Formation of basic textures
 
 ---
 
-## Phase 2: Shape Emergence (Émergence de Forme)
+## Phase 2: Shape Emergence (�mergence de Forme)
 
 ### Objective
 Make **primitive shapes** appear (contours, lines, curves) through **capsule-based resonance**.
@@ -81,7 +81,7 @@ $$s_m(t+1) = s_m(t) + \gamma \sum_{n \in N(B_m)} R(s_n(t), s_m(t))$$
 
 Where:
 - $s_m$ = 6D state vector: [texture, intensity, orientation, coherence, entropy, stability]
-- $\gamma$ = reinforcement factor ≈ 0.15
+- $\gamma$ = reinforcement factor  0.15
 - $R(a,b)$ = **motif compatibility function** (Gaussian similarity)
 - Capsules are blocks of atoms organized in a 2D grid
 
@@ -121,10 +121,10 @@ network.PhaseTwo_ShapeEmergence(engine, 50)
 
 ### Expected Results
 
-- ✓ Contours and edges clearly defined
-- ✓ Connected components form recognizable shapes
-- ✓ Orientation fields emerge naturally
-- ✓ Texture coherence within regions
+-  Contours and edges clearly defined
+-  Connected components form recognizable shapes
+-  Orientation fields emerge naturally
+-  Texture coherence within regions
 
 ---
 
@@ -141,9 +141,9 @@ $$c_{i,j}(t+1) = c_{i,j}(t) + \alpha \sum_{k} w_{i,j,k}(c_k - c_{i,j}) + \beta \
 
 Where:
 - $G_{i,j}(P)$ = guidance function based on prompt $P$
-- $\beta$ = guidance strength coefficient ≈ 0.3
+- $\beta$ = guidance strength coefficient  0.3
 - Guidance includes:
-  - Color targets (e.g., "red" → RGB(0.8, -0.4, -0.4))
+  - Color targets (e.g., "red"  RGB(0.8, -0.4, -0.4))
   - Brightness modifiers ("bright", "dark", "night")
   - Texture properties ("smooth", "rough", "detailed")
 
@@ -212,8 +212,8 @@ $$c_{i,j}^{(n+1)} = c_{i,j}^{(n)} + \delta \cdot \text{Laplacian}(c_{i,j}^{(n)})
 
 Where:
 - **Laplacian operator**: $\nabla^2 c = c_{xx} + c_{yy}$ (second derivative, smooths/sharpens)
-- $\delta$ = smoothing strength ≈ 0.1
-- $\epsilon$ = noise strength ≈ 0.08
+- $\delta$ = smoothing strength  0.1
+- $\epsilon$ = noise strength  0.08
 - Laplacian computed from neighbors: $(c_{up} + c_{down} + c_{left} + c_{right} - 4c_{center})$
 
 ### Key Features
@@ -252,11 +252,11 @@ network.PhaseFour_IterativeRefinement(0.1, 0.08, 50)
 
 ### Expected Results
 
-- ✓ Smooth color gradients without visible blocks
-- ✓ Natural texture variation
-- ✓ Fine details and patterns
-- ✓ Reduced aliasing and artifacts
-- ✓ Overall visual quality improved
+-  Smooth color gradients without visible blocks
+-  Natural texture variation
+-  Fine details and patterns
+-  Reduced aliasing and artifacts
+-  Overall visual quality improved
 
 ---
 
@@ -417,8 +417,8 @@ CoherenceReport {
 ### Computational Complexity
 
 - **Per atom, per iteration**: O(8) neighborhood reads + resonance computation
-- **Total per iteration**: O(N) where N = (width/patch) × (height/patch)
-- **Full pipeline**: O(5 × N × iterations)
+- **Total per iteration**: O(N) where N = (width/patch) � (height/patch)
+- **Full pipeline**: O(5 � N � iterations)
 - **Memory**: O(N) atoms + auxiliary structures
 
 ### Parallelization

@@ -1,8 +1,8 @@
-# 📚 Pattern Database & Indexing System
+#  Pattern Database & Indexing System
 
 **Date:** January 9, 2026  
 **Version:** 1.0  
-**Status:** ✅ Complete & Tested
+**Status:**  Complete & Tested
 
 ---
 
@@ -28,11 +28,11 @@ A **pattern discovery and reuse system** that:
 **Phase 1: Indexing**
 ```
 ./programme pattern index input/image
-↓
+
 Scans all .png, .jpg, .jpeg files
-↓
+
 Analyzes colors, complexity, keywords
-↓
+
 Creates patterns.db with metadata
 ```
 
@@ -47,11 +47,11 @@ Creates patterns.db with metadata
 **Phase 3: Reuse**
 ```
 ./programme generate from-prompt 512 512 200 "description"
-↓
+
 System loads patterns.db
-↓
+
 Finds patterns matching detected categories
-↓
+
 Uses pattern data to guide generation
 ```
 
@@ -88,7 +88,7 @@ Uses pattern data to guide generation
 Shows:
 - Pattern ID (from filename)
 - Original file
-- Dimensions (W×H)
+- Dimensions (W�H)
 - Complexity (0-1)
 - Confidence (0-100%)
 - Activated neuron categories
@@ -134,7 +134,7 @@ Displays:
 - `HISTOIRE` - History, medieval, ancient content
 - `BUSINESS` - Commerce, markets, enterprise
 - `ALIMENTATION` - Food, nutrition, cuisine
-- `SANTÉ` - Health, medicine, wellness
+- `SANT�` - Health, medicine, wellness
 - `VERBE` - Actions, movement, dynamics
 
 ---
@@ -221,7 +221,7 @@ Each pattern stores:
 ./programme pattern search category HISTOIRE
 
 # 3. Generate with related prompt
-./programme generate from-prompt 512 512 300 "château ancien"
+./programme generate from-prompt 512 512 300 "ch�teau ancien"
 
 # Result: Generation guided by HISTOIRE patterns found in database
 ```
@@ -264,30 +264,30 @@ Each pattern stores:
 
 ### How Patterns Detect Categories:
 
-**Red/Warm Tones** → HISTOIRE (3), BUSINESS (2)
+**Red/Warm Tones**  HISTOIRE (3), BUSINESS (2)
 ```
 Typical: Historical images, sunset, fire, warm ambiance
 ```
 
-**Green Tones** → ALIMENTATION (3), SANTÉ (2)
+**Green Tones**  ALIMENTATION (3), SANT� (2)
 ```
 Typical: Food photos, nature, plants, health-related
 ```
 
-**Blue Tones** → TECH (4)
+**Blue Tones**  TECH (4)
 ```
 Typical: Technology, water, sky, cool/computational
 ```
 
-**High Complexity** → TECH boost (+2)
+**High Complexity**  TECH boost (+2)
 ```
-Patterns with lots of details suggest complexity → TECH
+Patterns with lots of details suggest complexity  TECH
 ```
 
 **Filename Keywords:**
-- Contains "tech" or "robot" → TECH (4)
-- Contains "food" or "meal" → ALIMENTATION (4)
-- Contains "historic" or "old" → HISTOIRE (4)
+- Contains "tech" or "robot"  TECH (4)
+- Contains "food" or "meal"  ALIMENTATION (4)
+- Contains "historic" or "old"  HISTOIRE (4)
 
 ---
 
@@ -321,7 +321,7 @@ normalized to 0-1 range
 
 **Formula:**
 ```
-confidence = 0.75 + (complexity × 0.25)
+confidence = 0.75 + (complexity � 0.25)
 ```
 
 **Interpretation:**
@@ -336,13 +336,13 @@ confidence = 0.75 + (complexity × 0.25)
 
 Good naming helps keyword extraction:
 ```
-✓ Good:
+ Good:
   dark_forest.png
   technology_circuit.jpg
   medieval_castle.jpg
   fresh_salad.png
 
-✗ Bad:
+ Bad:
   img1.png
   photo.jpg
   abc123.jpg
@@ -357,18 +357,18 @@ GOOD COLLECTION:
   - 3-4 HISTOIRE images
   - 2-3 TECH images
   - 1-2 ALIMENTATION images
-  - 1-2 SANTÉ images
+  - 1-2 SANT� images
 ```
 
 ### 3. **Keep Images Organized**
 
 ```
 input/image/
-├── forest.png
-├── ocean.jpg
-├── technology.jpg
-├── food.png
-└── ...
+ forest.png
+ ocean.jpg
+ technology.jpg
+ food.png
+ ...
 ```
 
 ### 4. **Index Regularly**
@@ -519,12 +519,12 @@ No speed impact on generation
 
 The **Pattern Database System** provides:
 
-✅ **Automatic Pattern Discovery** - Index images in seconds  
-✅ **Smart Analysis** - Detect colors, complexity, categories  
-✅ **Easy Search** - Find patterns by category or keyword  
-✅ **Seamless Reuse** - Automatic integration with generation  
-✅ **Full Control** - View, inspect, and manage your patterns  
-✅ **Zero Overhead** - Generation speed unaffected  
+ **Automatic Pattern Discovery** - Index images in seconds  
+ **Smart Analysis** - Detect colors, complexity, categories  
+ **Easy Search** - Find patterns by category or keyword  
+ **Seamless Reuse** - Automatic integration with generation  
+ **Full Control** - View, inspect, and manage your patterns  
+ **Zero Overhead** - Generation speed unaffected  
 
 Perfect for:
 - Building style libraries

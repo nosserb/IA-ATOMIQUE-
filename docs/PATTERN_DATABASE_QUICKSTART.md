@@ -1,10 +1,10 @@
-# ⚡ Pattern Database - Quick Start (5 Minutes)
+#  Pattern Database - Quick Start (5 Minutes)
 
 ## What You Can Do Now
 
-- **Index images** → Get metadata
-- **Search patterns** → Find by category or keyword
-- **Use patterns** → Influence image generation
+- **Index images**  Get metadata
+- **Search patterns**  Find by category or keyword
+- **Use patterns**  Influence image generation
 
 ---
 
@@ -90,20 +90,20 @@ Examples:
 
 **Output:**
 ```
-📚 PATTERN INDEXING ENGINE
+ PATTERN INDEXING ENGINE
 Scanning input directory: input/image
 Found 7 image(s) to index
 
 [1/7] Processing: forest.png
-  ✓ ID: forest
+   ID: forest
   Size: 512x512
   Categories: HISTOIRE(4) ALIMENTATION(1)
   Complexity: 0.65 | Confidence: 91.2%
 
 [Results shown for all images...]
 
-✓ Indexed 7 pattern(s)
-✓ Database saved to: patterns.db
+ Indexed 7 pattern(s)
+ Database saved to: patterns.db
 ```
 
 ### Step 3: Review
@@ -181,7 +181,7 @@ rm patterns.db
 | HISTOIRE | Historical, medieval, ancient | Warm |
 | BUSINESS | Markets, commerce, enterprise | Mixed |
 | ALIMENTATION | Food, fruits, meals | Green |
-| SANTÉ | Health, medicine, hospitals | Green/Blue |
+| SANT� | Health, medicine, hospitals | Green/Blue |
 
 ---
 
@@ -223,9 +223,9 @@ rm patterns.db
 2. **Keep images organized**
    ```
    input/image/
-   ├── forest.png
-   ├── ocean.jpg
-   └── technology.png
+    forest.png
+    ocean.jpg
+    technology.png
    ```
 
 3. **Index after adding images**
@@ -283,14 +283,14 @@ A: Not directly. Use categories or keywords instead.
 
 ## What Next?
 
-- 📖 Read **[PATTERN_DATABASE_GUIDE.md](PATTERN_DATABASE_GUIDE.md)** for complete reference
-- 🚀 Try generating images with prompts (uses patterns!)
-- 🔍 Explore your patterns with search commands
-- 📊 Check statistics and metadata
+-  Read **[PATTERN_DATABASE_GUIDE.md](PATTERN_DATABASE_GUIDE.md)** for complete reference
+-  Try generating images with prompts (uses patterns!)
+-  Explore your patterns with search commands
+-  Check statistics and metadata
 
 ---
 
-**5-minute tutorial complete!** 🎉
+**5-minute tutorial complete!** 
 
 Start indexing:
 ```bash

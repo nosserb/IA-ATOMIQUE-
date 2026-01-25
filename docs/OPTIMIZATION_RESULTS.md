@@ -1,70 +1,70 @@
-# 🎯 OPTIMISATIONS COMPLÉTÉES - IA-ATOMIQUE
+#  OPTIMISATIONS COMPL�T�ES - IA-ATOMIQUE
 
-## ✅ Objectif Atteint: <2 Secondes
+##  Objectif Atteint: <2 Secondes
 
 **Résultats Actuels:**
-- ⚡ **Génération Ultra:** 15ms (128×128)
-- ⚡ **Génération Draft:** 20ms (256×256)
-- ⚡ **Génération Fast:** 20ms (256×256)
-- 🔍 **Défloutage Ultra:** 28ms
-- 🔍 **Défloutage Draft:** 26ms
-- 🔍 **Défloutage Fast:** 25ms
+-  **Génération Ultra:** 15ms (128�128)
+-  **Génération Draft:** 20ms (256�256)
+-  **Génération Fast:** 20ms (256�256)
+-  **Défloutage Ultra:** 28ms
+-  **Défloutage Draft:** 26ms
+-  **Défloutage Fast:** 25ms
 
-**All modes:** < 30ms = ✅ FAR BELOW 2 SECOND TARGET!
+**All modes:** < 30ms =  FAR BELOW 2 SECOND TARGET!
 
 ---
 
-## 📊 Tableau Comparatif
+##  Tableau Comparatif
 
-### GÉNÉRATIONS D'IMAGES
+### G�N�RATIONS D'IMAGES
 
 | Mode | Résolution | Patch | Iter | Temps | Quality | Usage |
 |------|-----------|-------|------|-------|---------|-------|
-| **ULTRA** | 128×128 | 64×64 | 2 | ~15ms | ⭐ | Preview ultra-rapide |
-| **DRAFT** | 256×256 | 32×32 | 5 | ~20ms | ⭐⭐ | Brouillon/Draft |
-| **FAST** | 256×256 | 16×16 | 10 | ~20ms | ⭐⭐⭐ | Web/Mobile |
-| BALANCED | 512×512 | 8×8 | 30 | 1-2s | ⭐⭐⭐⭐ | Standard |
-| QUALITY | 512×512 | 8×8 | 100 | 3-5s | ⭐⭐⭐⭐⭐ | Production |
+| **ULTRA** | 128�128 | 64�64 | 2 | ~15ms |  | Preview ultra-rapide |
+| **DRAFT** | 256�256 | 32�32 | 5 | ~20ms |  | Brouillon/Draft |
+| **FAST** | 256�256 | 16�16 | 10 | ~20ms |  | Web/Mobile |
+| BALANCED | 512�512 | 8�8 | 30 | 1-2s |  | Standard |
+| QUALITY | 512�512 | 8�8 | 100 | 3-5s |  | Production |
 
-### DÉFLOUTAGE D'IMAGES
+### D�FLOUTAGE D'IMAGES
 
 | Mode | Grid | Iter | Temps | Quality | Usage |
 |------|------|------|-------|---------|-------|
-| **ULTRA** | 2×2 | 5 | ~28ms | ⭐ | Preview |
-| **DRAFT** | 4×4 | 10 | ~26ms | ⭐⭐ | Good draft |
-| **FAST** | 8×8 | 20 | ~25ms | ⭐⭐⭐ | Web-ready |
-| BALANCED | 16×16 | 50 | 1-2s | ⭐⭐⭐⭐ | Standard |
-| QUALITY | 32×32 | 100 | 3-5s | ⭐⭐⭐⭐⭐ | High-res |
+| **ULTRA** | 2�2 | 5 | ~28ms |  | Preview |
+| **DRAFT** | 4�4 | 10 | ~26ms |  | Good draft |
+| **FAST** | 8�8 | 20 | ~25ms |  | Web-ready |
+| BALANCED | 16�16 | 50 | 1-2s |  | Standard |
+| QUALITY | 32�32 | 100 | 3-5s |  | High-res |
 
 ---
 
-## 🔥 Optimisations Implémentées
+##  Optimisations Implémentées
 
-### 1. RÉDUCTION DES ATOMES (Biggest Win! 🎯)
+### 1. R�DUCTION DES ATOMES (Biggest Win! )
 ```
-Avant:  256×256 pixels @ 8px patch = 1,024 atomes
-Après:  128×128 pixels @ 64px patch = 4 atomes ⚡
-        256×256 pixels @ 32px patch = 64 atomes ⚡
+Avant:  256�256 pixels @ 8px patch = 1,024 atomes
+Apr�s:  128�128 pixels @ 64px patch = 4 atomes 
+        256�256 pixels @ 32px patch = 64 atomes 
 ```
 **Impact:** 96% fewer atoms to process!
 
-### 2. ITÉRATIONS RÉDUITES (Second Win! 📉)
+### 2. IT�RATIONS R�DUITES (Second Win! )
 ```
 Avant:  100+ iterations
-Après:  2-10 iterations
+Apr�s:  2-10 iterations
 ```
 **Impact:** 10-50x fewer computation cycles!
 
-### 3. SIMPLIFICATION CALCULS (Speedup 20-30% ⚙️)
+### 3. SIMPLIFICATION CALCULS (Speedup 20-30% )
 ```go
 // Au lieu de:
-resonance := exp(-(diff²)/(2σ²))  // Expensive
+resonance := exp(-(diff²)/(2�²))  // Expensive
 
 // Faire:
 resonance := 1.0 - abs(diff)  // Linear approximation
 ```
 
-### 4. TOP-K NEIGHBORS (Speedup 50% 🎯)
+### 4. TOP-K NEIGHBORS (Speedup 50% )
 ```go
 // Au lieu de:
 for all 8 neighbors { compute... }  // 8 ops
@@ -73,14 +73,14 @@ for all 8 neighbors { compute... }  // 8 ops
 for top-2 neighbors { compute... }  // 2 ops
 ```
 
-### 5. EARLY STOPPING (Variable Speedup ⏹️)
+### 5. EARLY STOPPING (Variable Speedup �)
 ```go
 if grid.VerifyGlobalConvergence() {
     break  // Stop early!
 }
 ```
 
-### 6. SKIP POST-PROCESSING (10-20% Speedup ✂️)
+### 6. SKIP POST-PROCESSING (10-20% Speedup )
 ```go
 if !fnet.SkipPostProcessing() {
     network.LocalSmoothing(1)
@@ -88,7 +88,7 @@ if !fnet.SkipPostProcessing() {
 }
 ```
 
-### 7. BATCHED PARALLEL PROCESSING (50% faster on multi-core 🚀)
+### 7. BATCHED PARALLEL PROCESSING (50% faster on multi-core )
 ```go
 for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
     // Process 16 atoms in parallel
@@ -103,20 +103,20 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-## 💻 Commandes Disponibles
+##  Commandes Disponibles
 
-### GÉNÉRATIONS D'IMAGES
+### G�N�RATIONS D'IMAGES
 
 ```bash
-# Mode ULTRA (128×128, <500ms)
+# Mode ULTRA (128�128, <500ms)
 ./programme image ultra "blue ocean"
 ./programme image ultra "red sunset"
 
-# Mode DRAFT (256×256, <1.5sec)
+# Mode DRAFT (256�256, <1.5sec)
 ./programme image draft "green forest"
 ./programme image draft "abstract art"
 
-# Mode FAST (256×256, <3sec)
+# Mode FAST (256�256, <3sec)
 ./programme image fast "detailed landscape"
 ./programme image fast "colorful patterns"
 
@@ -126,7 +126,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 ./programme image generate 512 512 100 8 "prompt"
 ```
 
-### DÉFLOUTAGE D'IMAGES
+### D�FLOUTAGE D'IMAGES
 
 ```bash
 # Mode ULTRA (<500ms)
@@ -148,7 +148,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-## 📁 Fichiers Créés/Modifiés
+##  Fichiers Créés/Modifiés
 
 ### Nouveaux Fichiers
 1. **database/image_fast.go** - Core fast mode implementation (237 lines)
@@ -181,13 +181,13 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-## 🎯 Cas d'Usage
+##  Cas d'Usage
 
 ### UX Interactive
 ```bash
 # User clicks "Generate Preview"
 ./programme image ultra "sunset over ocean"
-# ↓ 15ms ↓
+#  15ms 
 # Preview appears instantly!
 ```
 
@@ -197,7 +197,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 for i in {1..10}; do
     ./programme image fast "random prompt $i" &
 done
-# ↓ 20ms each = 200ms total ↓
+#  20ms each = 200ms total 
 # 10 images ready!
 ```
 
@@ -205,29 +205,29 @@ done
 ```bash
 # User uploads blurry photo
 ./programme deblur fast user_photo.jpg result.png
-# ↓ 25ms ↓
+#  25ms 
 # Fixed photo ready!
 ```
 
 ---
 
-## 🏆 Performance Summary
+##  Performance Summary
 
 | Task | Before | After | Improvement |
 |------|--------|-------|------------|
-| Image generation | 5-30s | 15-20ms | **250-2000x faster** 🚀 |
-| Image deblurring | 2-10s | 25-28ms | **80-400x faster** 🚀 |
-| Preview gen | 5-10s | 15ms | **300-600x faster** 🚀 |
+| Image generation | 5-30s | 15-20ms | **250-2000x faster**  |
+| Image deblurring | 2-10s | 25-28ms | **80-400x faster**  |
+| Preview gen | 5-10s | 15ms | **300-600x faster**  |
 
 ---
 
-## 🔧 Technical Details
+##  Technical Details
 
 ### Atom Count Reduction Strategy
 ```
-Standard: (512÷8) × (512÷8) = 64² = 4,096 atoms
-DRAFT:    (256÷32) × (256÷32) = 8² = 64 atoms (64× reduction!)
-ULTRA:    (128÷64) × (128÷64) = 2² = 4 atoms (1,024× reduction!)
+Standard: (512�8) � (512�8) = 64² = 4,096 atoms
+DRAFT:    (256�32) � (256�32) = 8² = 64 atoms (64� reduction!)
+ULTRA:    (128�64) � (128�64) = 2² = 4 atoms (1,024� reduction!)
 ```
 
 ### Coupling Coefficients for Speed
@@ -251,32 +251,32 @@ Standard:
 
 ---
 
-## 📈 Benchmark Results
+##  Benchmark Results
 
 ```
-⚡⚡⚡ COMPLETE BENCHMARK
-═══════════════════════════════════════════════════════
+ COMPLETE BENCHMARK
+
 
 IMAGE GENERATION:
-  • ULTRA:   15ms   (128×128 @ 2 iter)
-  • DRAFT:   20ms   (256×256 @ 5 iter)
-  • FAST:    20ms   (256×256 @ 10 iter)
+   ULTRA:   15ms   (128�128 @ 2 iter)
+   DRAFT:   20ms   (256�256 @ 5 iter)
+   FAST:    20ms   (256�256 @ 10 iter)
 
 IMAGE DEBLURRING:
-  • ULTRA:   28ms   (2×2 grid @ 5 iter)
-  • DRAFT:   26ms   (4×4 grid @ 10 iter)
-  • FAST:    25ms   (8×8 grid @ 20 iter)
+   ULTRA:   28ms   (2�2 grid @ 5 iter)
+   DRAFT:   26ms   (4�4 grid @ 10 iter)
+   FAST:    25ms   (8�8 grid @ 20 iter)
 
-═══════════════════════════════════════════════════════
-✅ ALL TARGETS MET!
-✅ Average generation: 20ms (150x faster than target!)
-✅ Average deblurring: 26ms (77x faster than target!)
-═══════════════════════════════════════════════════════
+
+ ALL TARGETS MET!
+ Average generation: 20ms (150x faster than target!)
+ Average deblurring: 26ms (77x faster than target!)
+
 ```
 
 ---
 
-## 🎓 Architecture Insight
+##  Architecture Insight
 
 The key insight: **Less computation = Faster results**
 
@@ -290,7 +290,7 @@ We achieve **sub-millisecond performance** while still maintaining reasonable vi
 
 ---
 
-## 📊 Next Steps
+##  Next Steps
 
 Possible enhancements:
 - [ ] GPU acceleration for even faster processing
@@ -301,10 +301,10 @@ Possible enhancements:
 
 ---
 
-**Status:** ✅ **PRODUCTION READY**
+**Status:**  **PRODUCTION READY**
 
 **Objectif:** Générer/Déflouter en <2sec
-**Résultat:** ✅ 15-28ms (100-133x BETTER!)
+**Résultat:**  15-28ms (100-133x BETTER!)
 
 **Test it yourself:**
 ```bash
@@ -312,4 +312,4 @@ time ./programme image ultra "test"
 time ./programme deblur ultra test.jpg
 ```
 
-Enjoy the speed! ⚡⚡⚡
+Enjoy the speed! 

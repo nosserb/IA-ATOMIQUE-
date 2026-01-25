@@ -1,8 +1,8 @@
-# ⚛️ Atomic Generation - 5-Minute Quick Start
+#  Atomic Generation - 5-Minute Quick Start
 
 ## What It Does
 
-Transforms abstract **wave patterns** → **complete images** using autonomous atomic resonance.
+Transforms abstract **wave patterns**  **complete images** using autonomous atomic resonance.
 
 Each pixel is an "atom" that:
 - Listens to its neighbors
@@ -21,7 +21,7 @@ Already included in the build. Just use:
 
 ## Quick Start: 3 Steps
 
-### 1️⃣ Create a Pattern (Optional)
+### 1� Create a Pattern (Optional)
 
 If you have a reference image, extract its pattern:
 ```bash
@@ -31,7 +31,7 @@ If you have a reference image, extract its pattern:
 
 Or use an existing pattern/test image.
 
-### 2️⃣ Generate Image from Pattern
+### 2� Generate Image from Pattern
 
 **Basic (pattern-only):**
 ```bash
@@ -43,7 +43,7 @@ Or use an existing pattern/test image.
 ./programme generate with-feedback 256 256 200 input/image/reference.jpg
 ```
 
-### 3️⃣ View Results
+### 3� View Results
 
 ```bash
 # Check output
@@ -66,10 +66,10 @@ ls -lh output/atomic_*.png
 # Run speed benchmark
 ./programme generate benchmark
 
-# 256×256 quick test
+# 256�256 quick test
 ./programme generate pattern 256 256 50 output/test.png
 
-# 512×512 quality output
+# 512�512 quality output
 ./programme generate pattern 512 512 300 output/pattern.png
 
 # With target guidance
@@ -80,17 +80,17 @@ ls -lh output/atomic_*.png
 
 | Parameter | Range | Default | Effect |
 |-----------|-------|---------|--------|
-| **α** Resonance | 0.1-0.5 | 0.3 | How much atoms cooperate (higher = smoother) |
+| **�** Resonance | 0.1-0.5 | 0.3 | How much atoms cooperate (higher = smoother) |
 | **β** Pattern | 0.2-0.8 | 0.5 | How strictly atoms follow pattern (higher = more faithful) |
 | **γ** Smoothing | 0.05-0.3 | 0.2 | Local color blending (higher = less blocky) |
 | **δ** Feedback | 0.0-1.0 | 0.3 | Target guidance (higher = closer to target) |
 | **ε** Damping | 0.8-1.0 | 0.9 | Momentum smoothing (higher = more stable) |
 
 **Quick tuning**:
-- Too blocky? → Increase γ to 0.25
-- Doesn't follow pattern? → Increase β to 0.7
-- Too uniform? → Increase pattern better or increase iterations
-- Too chaotic? → Increase α to 0.4
+- Too blocky?  Increase γ to 0.25
+- Doesn't follow pattern?  Increase β to 0.7
+- Too uniform?  Increase pattern better or increase iterations
+- Too chaotic?  Increase � to 0.4
 
 ## Complete Workflow Example
 
@@ -116,7 +116,7 @@ ls -lh output/pattern_final_emerged.png \
 
 **Iterations**: More = better convergence, but with diminishing returns. 200-300 is usually optimal.
 
-**Size**: 512×512 is sweet spot. Larger is slower but higher quality.
+**Size**: 512�512 is sweet spot. Larger is slower but higher quality.
 
 ## Typical Use Cases
 
@@ -140,10 +140,10 @@ ls -lh output/pattern_final_emerged.png \
 
 ### Exploration/Experimentation
 ```bash
-# Vary resonance (α)
-./programme generate pattern 256 256 100 pattern.png  # α=0.3 default
+# Vary resonance (�)
+./programme generate pattern 256 256 100 pattern.png  # �=0.3 default
 # Increase cooperation
-./programme generate pattern 256 256 100 pattern.png  # α=0.5
+./programme generate pattern 256 256 100 pattern.png  # �=0.5
 
 # Vary pattern adherence (β)
 ./programme generate pattern 256 256 100 pattern.png  # β=0.5 default
@@ -160,7 +160,7 @@ ls -lh output/pattern_final_emerged.png \
 - A: Pattern might be too faint. Increase iterations to 300+
 
 **Q: Very slow**
-- A: Use smaller size (256×256) or fewer iterations (100)
+- A: Use smaller size (256�256) or fewer iterations (100)
 
 **Q: Blocky appearance**
 - A: Increase γ (smoothing) to 0.25-0.3
@@ -170,10 +170,10 @@ ls -lh output/pattern_final_emerged.png \
 
 ## Next Steps
 
-- 📖 Read [ATOMIC_GENERATION_GUIDE.md](ATOMIC_GENERATION_GUIDE.md) for complete documentation
-- 🔬 Experiment with parameters: `./programme generate parameters`
-- 📊 Check performance: `./programme generate benchmark`
-- 🎨 Create patterns: `./programme pattern --help`
+-  Read [ATOMIC_GENERATION_GUIDE.md](ATOMIC_GENERATION_GUIDE.md) for complete documentation
+-  Experiment with parameters: `./programme generate parameters`
+-  Check performance: `./programme generate benchmark`
+-  Create patterns: `./programme pattern --help`
 
 ## File Locations
 
@@ -186,5 +186,5 @@ ls -lh output/pattern_final_emerged.png \
 
 ---
 
-**Status**: ✅ Ready to use
+**Status**:  Ready to use
 **Last tested**: January 2025

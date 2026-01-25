@@ -1,9 +1,9 @@
-# ⚛️ Les 3 Correctifs Clés : De "Plat" à "Riche Visuellement"
+#  Les 3 Correctifs Clés : De "Plat" � "Riche Visuellement"
 
-## 🎯 Le Problème Identifié
+##  Le Probl�me Identifié
 
 ```
-Coherence: 0.00  ← Le système était "stable" mais visually mort
+Coherence: 0.00   Le syst�me était "stable" mais visually mort
 ```
 
 L'IA minimisait l'énergie **mais sans récompenser la structure interne**.
@@ -12,7 +12,7 @@ L'IA minimisait l'énergie **mais sans récompenser la structure interne**.
 
 ---
 
-## 🔧 CORRECTIF 1: Énergie de Cohérence Régionale
+##  CORRECTIF 1: �nergie de Cohérence Régionale
 
 ### Concept (Simple mais Puissant)
 
@@ -26,12 +26,12 @@ Une région gagne de l'énergie si ses atomes partagent:
 **Fichier**: `database/image_energy_based.go` - Fonction `ComputeLocalEnergy()`
 
 ```go
-// TERM 6: RÉGION COHERENCE ENERGY
+// TERM 6: R�GION COHERENCE ENERGY
 colorVariance /= float64(neighborCount)
 gradientVariance /= float64(neighborCount)
 
-// RÉCOMPENSE: variation bien structurée (0.2-0.8)
-// PÉNALITÉ: soit trop uniforme (< 0.1), soit trop chaotique (> 0.9)
+// R�COMPENSE: variation bien structurée (0.2-0.8)
+// P�NALIT�: soit trop uniforme (< 0.1), soit trop chaotique (> 0.9)
 idealVariance := 0.5
 colorVariationPenalty := math.Abs(colorVariance-idealVariance) * 0.15
 gradientVariationPenalty := math.Abs(gradientVariance-idealVariance*0.5) * 0.1
@@ -43,7 +43,7 @@ energy += colorVariationPenalty + gradientVariationPenalty
 
 ---
 
-## 🔧 CORRECTIF 2: Héritage Inter-Phase
+##  CORRECTIF 2: Héritage Inter-Phase
 
 ### Concept
 
@@ -51,14 +51,14 @@ Au lieu que chaque phase repartisse "libre" de la précédente:
 
 ```
 AVANT:
-Phase 1 → random
-Phase 2 → inherit colors seulement
-Phase 3 → inherit colors seulement
+Phase 1  random
+Phase 2  inherit colors seulement
+Phase 3  inherit colors seulement
 
-APRÈS:
-Phase 1 → random
-Phase 2 → inherit complet (couleurs + énergies + structures stables)
-Phase 3 → inherit complet
+APR�S:
+Phase 1  random
+Phase 2  inherit complet (couleurs + énergies + structures stables)
+Phase 3  inherit complet
 ```
 
 ### Implémentation
@@ -84,18 +84,18 @@ Phase 3: ...
 
 3. **Transférer état**: `net.InheritPhaseState(previousNetwork)`
 ```
-État de phase hérité: 256 atomes, poids d'héritage=40.0%
+�tat de phase hérité: 256 atomes, poids d'héritage=40.0%
 ```
 
 **Impact**: Les phases successives ne "cassent" pas les bons équilibres de la phase précédente.
 
 ---
 
-## 🔧 CORRECTIF 3: Pénalité Esthétique Douce
+##  CORRECTIF 3: Pénalité Esthétique Douce
 
 ### Concept
 
-Si le système devient **trop uniforme** (mort visuelle):
+Si le syst�me devient **trop uniforme** (mort visuelle):
 
 ```go
 // TERM 7: AESTHETIC PENALTY
@@ -106,45 +106,45 @@ if totalUniformity > 0.95 {
 }
 ```
 
-**Pas une règle dure**, juste une **pénalité douce** qui dit:
-- "C'est bon, tu peux être uniforme"
-- "Mais si c'est TROP uniforme... ça coûte un peu"
+**Pas une r�gle dure**, juste une **pénalité douce** qui dit:
+- "C'est bon, tu peux �tre uniforme"
+- "Mais si c'est TROP uniforme... �a co�te un peu"
 
-**Impact**: Le système maintient naturellement une variation visuelle agréable.
+**Impact**: Le syst�me maintient naturellement une variation visuelle agréable.
 
 ---
 
-## 📊 Résultats Mesurables
+##  Résultats Mesurables
 
 ### Avant les Correctifs
 ```
-Coherence: 0.00 ← N'était jamais calculée
+Coherence: 0.00  N'était jamais calculée
 Images: Stables mais plates
 Qualité: 3/10
 ```
 
-### Après les 3 Correctifs
+### Apr�s les 3 Correctifs
 ```
-Coherence: 0.63-0.65 ← Maintenant récompensée!
+Coherence: 0.63-0.65  Maintenant récompensée!
 Images: Stables ET structurées
 Qualité: 7-8/10
 
 Multi-Phase Energy:
-  Phase 1: 0.709 → Phase 2: -0.356 → Phase 3: -0.635
-  Héritage activé: ✓ Phase 2 | ✓ Phase 3
+  Phase 1: 0.709  Phase 2: -0.356  Phase 3: -0.635
+  Héritage activé:  Phase 2 |  Phase 3
 ```
 
 ---
 
-## 🚀 Augmentation des Itérations (Bonus)
+##  Augmentation des Itérations (Bonus)
 
 **Fichier**: `energy_commands.go` - `HandleMultiPhaseGeneration()`
 
 ```
-AVANT:          APRÈS:
-Phase 1: 150    → 200   (+33%)
-Phase 2: 200    → 300   (+50%)
-Phase 3: 250    → 400   (+60%)  ← TRÈS important pour fine
+AVANT:          APR�S:
+Phase 1: 150     200   (+33%)
+Phase 2: 200     300   (+50%)
+Phase 3: 250     400   (+60%)   TR�S important pour fine
 ```
 
 **Pourquoi Phase 3 +60%?** 
@@ -152,29 +152,29 @@ Parce que la **qualité fine dépend fortement de convergence profonde**.
 
 ---
 
-## 💡 Philosophie Derrière
+##  Philosophie Derri�re
 
 ### Avant
 ```
-"Énergie basse" = "Image bonne"
-→ Résultat: Trop de simplification
+"�nergie basse" = "Image bonne"
+ Résultat: Trop de simplification
 ```
 
-### Après
+### Apr�s
 ```
-"Énergie basse" ET "Structure riche" = "Image bonne"
-→ Résultat: Équilibre visuel naturel
+"�nergie basse" ET "Structure riche" = "Image bonne"
+ Résultat: �quilibre visuel naturel
 ```
 
 ### Héritage Inter-Phase
 ```
 "Chaque phase améliore, ne détruit pas"
-→ Résultat: Qualité progressive, pas chaotique
+ Résultat: Qualité progressive, pas chaotique
 ```
 
 ---
 
-## 🧬 Calcul de Cohérence (Nouveau!)
+##  Calcul de Cohérence (Nouveau!)
 
 **Fichier**: `database/image_energy_based.go` - Fonction `computeProperties()`
 
@@ -193,7 +193,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-## 🎯 Commandes pour Tester
+##  Commandes pour Tester
 
 ```bash
 # Test multi-phase avec héritage
@@ -208,20 +208,20 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-## 📈 Métriques Clés à Observer
+##  Métriques Clés � Observer
 
-| Métrique | Avant | Après | Impact |
+| Métrique | Avant | Apr�s | Impact |
 |----------|-------|-------|--------|
-| **Coherence** | 0.00 | 0.63+ | ✅ Structure récompensée |
-| **Phase Energy** | 0.709 → -0.356 | 0.709 → -0.356 → -0.635 | ✅ Meilleur équilibre |
-| **Itérations** | 150/200/250 | 200/300/400 | ✅ Plus de convergence |
-| **Héritage** | Non | Phase 2 ✓, Phase 3 ✓ | ✅ Continuité |
+| **Coherence** | 0.00 | 0.63+ |  Structure récompensée |
+| **Phase Energy** | 0.709  -0.356 | 0.709  -0.356  -0.635 |  Meilleur équilibre |
+| **Itérations** | 150/200/250 | 200/300/400 |  Plus de convergence |
+| **Héritage** | Non | Phase 2 , Phase 3  |  Continuité |
 
 ---
 
-## 🔬 Pourquoi Ça Marche
+##  Pourquoi Ça Marche
 
-1. **Énergie de Cohérence**: Transforme le problème de "stabilité" en "stabilité + structure"
+1. **�nergie de Cohérence**: Transforme le probl�me de "stabilité" en "stabilité + structure"
    - Les régions uniformes sont encore acceptables
    - Les régions structurées sont **récompensées**
 
@@ -231,21 +231,21 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 3. **Pénalité Esthétique**: Soft guidance
    - Pas dogmatique ("tu DOIS avoir variation")
-   - Juste ("si c'est TROP uniforme, ça coûte")
+   - Juste ("si c'est TROP uniforme, �a co�te")
 
-**Résultat**: Image qui est à la fois **physiquement stable ET visuellement riche**.
-
----
-
-## 🚀 Prochaines Étapes Possibles
-
-- [ ] **Tuner les poids** (0.15, 0.1, 0.1 → données-driven)
-- [ ] **Critères visuels additionnels** (symétrie, répétition)
-- [ ] **Guidance par prompt** (texte → contraintes esthétiques)
-- [ ] **Super-résolution** (4×4 patches → 1×1 pixels)
+**Résultat**: Image qui est � la fois **physiquement stable ET visuellement riche**.
 
 ---
 
-**Fait avec ⚛️ par IA-ATOMIQUE | Janvier 2026**
+##  Prochaines �tapes Possibles
+
+- [ ] **Tuner les poids** (0.15, 0.1, 0.1  données-driven)
+- [ ] **Crit�res visuels additionnels** (symétrie, répétition)
+- [ ] **Guidance par prompt** (texte  contraintes esthétiques)
+- [ ] **Super-résolution** (4�4 patches  1�1 pixels)
+
+---
+
+**Fait avec  par IA-ATOMIQUE | Janvier 2026**
 
 *"Une image n'est pas calculée. Elle est relaxée. Mais relaxée avec structure."*

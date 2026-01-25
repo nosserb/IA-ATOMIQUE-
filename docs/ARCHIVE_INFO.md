@@ -1,6 +1,6 @@
-# 📦 Archive IA-ATOMIQUE - Prête pour Email!
+# � Archive IA-ATOMIQUE - Pr�te pour Email!
 
-## ✅ Fichier Créé
+##  Fichier Créé
 
 ```
 ia-atomique-web.zip (36 KB)
@@ -13,30 +13,30 @@ Located at:
 
 ---
 
-## 📋 Contenu de l'Archive
+## � Contenu de l'Archive
 
 Tous les fichiers de la branche `chore/siteweb`:
 
 ### Code Source
 - `main.go`
 - `interaction.go`
-- `web.go` ← NOUVEAU!
+- `web.go`  NOUVEAU!
 - `database/` - Dossier complet
 
 ### Interface Web
-- `web/index.html` ← NOUVEAU!
-- `web/style.css` ← NOUVEAU!
-- `web/script.js` ← NOUVEAU!
-- `web/demo.html` ← NOUVEAU!
+- `web/index.html`  NOUVEAU!
+- `web/style.css`  NOUVEAU!
+- `web/script.js`  NOUVEAU!
+- `web/demo.html`  NOUVEAU!
 
 ### Scripts Windows
-- `install.bat` ← NOUVEAU!
-- `run-web.bat` ← NOUVEAU!
-- `build.bat` ← NOUVEAU!
-- `verify.bat` ← NOUVEAU!
-- `install.ps1` ← NOUVEAU!
-- `run-web.ps1` ← NOUVEAU!
-- `build.ps1` ← NOUVEAU!
+- `install.bat`  NOUVEAU!
+- `run-web.bat`  NOUVEAU!
+- `build.bat`  NOUVEAU!
+- `verify.bat`  NOUVEAU!
+- `install.ps1`  NOUVEAU!
+- `run-web.ps1`  NOUVEAU!
+- `build.ps1`  NOUVEAU!
 
 ### Scripts Linux/Mac
 - `start-web.sh`
@@ -44,34 +44,34 @@ Tous les fichiers de la branche `chore/siteweb`:
 - `git-push.sh`
 
 ### Configuration
-- `Dockerfile` ← NOUVEAU!
-- `docker-compose.yml` ← NOUVEAU!
-- `Makefile` ← NOUVEAU!
-- `.gitignore` (mis à jour)
+- `Dockerfile`  NOUVEAU!
+- `docker-compose.yml`  NOUVEAU!
+- `Makefile`  NOUVEAU!
+- `.gitignore` (mis � jour)
 - `go.mod`
 
 ### Documentation
-- `README.md` (mis à jour)
-- `INSTALL.md` ← NOUVEAU!
-- `WEB_README.md` ← NOUVEAU!
-- `SETUP_WEB.md` ← NOUVEAU!
-- `WINDOWS_INSTALL.md` ← NOUVEAU!
-- `WINDOWS_SETUP.md` ← NOUVEAU!
-- `WINDOWS_COMPLETE.md` ← NOUVEAU!
-- `GITHUB_CHECKLIST.md` ← NOUVEAU!
-- `GITHUB_READY.md` ← NOUVEAU!
-- `GITHUB_PUSH_GUIDE.md` ← NOUVEAU!
-- `GITHUB_COMPLETE.md` ← NOUVEAU!
+- `README.md` (mis � jour)
+- `INSTALL.md`  NOUVEAU!
+- `WEB_README.md`  NOUVEAU!
+- `SETUP_WEB.md`  NOUVEAU!
+- `WINDOWS_INSTALL.md`  NOUVEAU!
+- `WINDOWS_SETUP.md`  NOUVEAU!
+- `WINDOWS_COMPLETE.md`  NOUVEAU!
+- `GITHUB_CHECKLIST.md`  NOUVEAU!
+- `GITHUB_READY.md`  NOUVEAU!
+- `GITHUB_PUSH_GUIDE.md`  NOUVEAU!
+- `GITHUB_COMPLETE.md`  NOUVEAU!
 
 ---
 
-## 🚀 Comment L'Utiliser
+##  Comment L'Utiliser
 
 ### 1. Télécharger
 Télécharge le fichier `ia-atomique-web.zip` depuis l'email ou le dossier partagé
 
 ### 2. Extraire
-- **Windows:** Clique droit → "Extract All"
+- **Windows:** Clique droit  "Extract All"
 - **Mac:** Double-clique (auto-extract)
 - **Linux:** `unzip ia-atomique-web.zip`
 
@@ -94,30 +94,30 @@ make web
 
 ---
 
-## 📊 Taille
+##  Taille
 
 - **Fichier:** 36 KB
 - **Extraction:** ~200 KB
-- **Facile à envoyer par email!** ✉️
+- **Facile � envoyer par email!** 
 
 ---
 
-## ✨ Contenu Nouveau
+##  Contenu Nouveau
 
 Cette archive contient TOUT ce qui a été créé:
 
-✅ Interface web complète (HTML/CSS/JS)  
-✅ Serveur HTTP intégré (Go)  
-✅ Support Windows complet (Batch + PowerShell)  
-✅ Support Docker (Dockerfile, docker-compose)  
-✅ Makefile pour Linux/Mac  
-✅ 11 fichiers de documentation  
-✅ Scripts d'installation et configuration  
-✅ GitHub Actions CI/CD  
+ Interface web compl�te (HTML/CSS/JS)  
+ Serveur HTTP intégré (Go)  
+ Support Windows complet (Batch + PowerShell)  
+ Support Docker (Dockerfile, docker-compose)  
+ Makefile pour Linux/Mac  
+ 11 fichiers de documentation  
+ Scripts d'installation et configuration  
+ GitHub Actions CI/CD  
 
 ---
 
-## 💡 Prochaine Étape
+##  Prochaine �tape
 
 Une fois extractée et testée, tu peux pusher sur GitHub:
 
@@ -130,4 +130,4 @@ git push origin chore/siteweb
 
 ---
 
-**Archive prête à envoyer! 📧**
+**Archive pr�te � envoyer! **

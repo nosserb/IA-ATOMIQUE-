@@ -1,10 +1,10 @@
-# 🪟 Windows Setup - IA-ATOMIQUE
+#  Windows Setup - IA-ATOMIQUE
 
 Installation ultra-simple pour Windows.
 
-## 🚀 3 Étapes Seulement
+##  3 �tapes Seulement
 
-### 1️⃣ Installer Go (une fois pour toutes)
+### 1� Installer Go (une fois pour toutes)
 
 - **Télécharge:** https://golang.org/dl/
 - **Choisis:** `Windows x86-64` (la version 64-bit pour la plupart)
@@ -18,7 +18,7 @@ Installation ultra-simple pour Windows.
 
 ---
 
-### 2️⃣ Clone le Repo
+### 2� Clone le Repo
 
 ```bash
 git clone https://github.com/TON-USER/ia-atomique.git
@@ -27,7 +27,7 @@ cd ia-atomique
 
 ---
 
-### 3️⃣ Lance l'Installation
+### 3� Lance l'Installation
 
 **Option A: Batch Files (Command Prompt)**
 ```bash
@@ -48,7 +48,7 @@ run-web.bat
 
 ---
 
-## 🎯 Fichiers Disponibles
+##  Fichiers Disponibles
 
 ### Batch Files (.bat) - Command Prompt
 | Fichier | Action |
@@ -67,9 +67,9 @@ run-web.bat
 
 ---
 
-## 📝 Utilisation
+##  Utilisation
 
-### Première Fois
+### Premi�re Fois
 ```bash
 # 1. Double-clique install.bat (ou .\install.ps1)
 # Ça compile tout automatiquement
@@ -83,26 +83,26 @@ run-web.bat
 ### Prochaines Fois
 ```bash
 # Juste: Double-clique run-web.bat
-# Et voilà!
+# Et voil�!
 ```
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
-### ❌ "Go is not recognized"
+###  "Go is not recognized"
 - Go n'est pas installé
 - Télécharge depuis https://golang.org/dl/
-- Redémarre Command Prompt après installation
+- Redémarre Command Prompt apr�s installation
 
-### ❌ "Programme.exe n'existe pas"
+###  "Programme.exe n'existe pas"
 - Lancer `install.bat` ou `build.bat` d'abord
 
-### ❌ Port 8080 occupé
+###  Port 8080 occupé
 - Ferme l'autre application
 - Ou modifie `web.go` ligne 29 pour utiliser port 9000
 
-### ❌ PowerShell dit "Script cannot be run"
+###  PowerShell dit "Script cannot be run"
 - Ouvre PowerShell en tant qu'admin
 - Tape: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 - Tape: `Y` et Enter
@@ -110,7 +110,7 @@ run-web.bat
 
 ---
 
-## 💡 Astuces Windows
+##  Astuces Windows
 
 ### Créer un Raccourci Bureau
 1. Clique droit sur `run-web.bat`
@@ -118,11 +118,11 @@ run-web.bat
 3. Double-clique le raccourci pour lancer!
 
 ### Lancer au Démarrage Windows
-1. Win+R → `shell:startup` → Enter
-2. Copie un raccourci de `run-web.bat` là
-3. À chaque redémarrage, le serveur se lance!
+1. Win+R  `shell:startup`  Enter
+2. Copie un raccourci de `run-web.bat` l�
+3. � chaque redémarrage, le serveur se lance!
 
-### Créer un Fichier VBS (Cache la fenêtre)
+### Créer un Fichier VBS (Cache la fen�tre)
 Crée `run-web-silent.vbs`:
 ```vbs
 Set objShell = CreateObject("WScript.Shell")
@@ -132,7 +132,7 @@ WScript.Quit
 
 ---
 
-## 📚 Voir Aussi
+##  Voir Aussi
 
 - [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) - Guide détaillé Windows
 - [INSTALL.md](INSTALL.md) - Installation générale
@@ -140,4 +140,4 @@ WScript.Quit
 
 ---
 
-**C'est tout! Rien de compliqué! 🎉**
+**C'est tout! Rien de compliqué! **

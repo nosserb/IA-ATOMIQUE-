@@ -1,51 +1,51 @@
-# 🎯 Résumé Complet - Installation Windows
+#  Résumé Complet - Installation Windows
 
-## 📦 Qu'est-ce qui a été créé pour Windows?
+## � Qu'est-ce qui a été créé pour Windows?
 
 ### Scripts d'Installation (Batch)
 ```
-install.bat      ← Installation en 1 clic
-run-web.bat      ← Lancer le serveur en 1 clic
-build.bat        ← Recompiler en 1 clic
-verify.bat       ← Vérifier tout en 1 clic
+install.bat       Installation en 1 clic
+run-web.bat       Lancer le serveur en 1 clic
+build.bat         Recompiler en 1 clic
+verify.bat        Vérifier tout en 1 clic
 ```
 
 ### Scripts PowerShell (Avancé)
 ```
-install.ps1      ← Installation (PowerShell)
-run-web.ps1      ← Lancer le serveur (PowerShell)
-build.ps1        ← Recompiler (PowerShell)
+install.ps1       Installation (PowerShell)
+run-web.ps1       Lancer le serveur (PowerShell)
+build.ps1         Recompiler (PowerShell)
 ```
 
 ### Documentation Windows
 ```
-WINDOWS_INSTALL.md  ← Guide détaillé (tu es ici!)
-WINDOWS_SETUP.md    ← Quick start
-README.md           ← Mis à jour avec section Windows
+WINDOWS_INSTALL.md   Guide détaillé (tu es ici!)
+WINDOWS_SETUP.md     Quick start
+README.md            Mis � jour avec section Windows
 ```
 
 ---
 
-## 🚀 Installation Super Simple (3 étapes)
+##  Installation Super Simple (3 étapes)
 
-### Étape 1: Télécharger Go
+### �tape 1: Télécharger Go
 - Va sur: https://golang.org/dl/
 - Télécharge: `Windows x86-64.msi`
 - Installe: Clique "Next" partout
 - Redémarre: Windows (recommandé)
 
-### Étape 2: Clone le Repo
+### �tape 2: Clone le Repo
 ```
 git clone https://github.com/TON-USER/ia-atomique.git
 cd ia-atomique
 ```
 
-### Étape 3: Lancer
+### �tape 3: Lancer
 **Option A - 1 Clic (Recommandé)**
 ```
 Double-clique: install.bat
 Puis double-clique: run-web.bat
-Fini! 🎉
+Fini! 
 ```
 
 **Option B - Command Prompt**
@@ -64,32 +64,32 @@ PS> .\run-web.ps1
 
 ---
 
-## 📝 Qu'est-ce que chaque script fait?
+##  Qu'est-ce que chaque script fait?
 
 ### install.bat / install.ps1
-- ✅ Vérifie que Go est installé
-- ✅ Compile le projet
-- ✅ Vérifie les fichiers web
-- ✅ Message final "Prêt!"
+-  Vérifie que Go est installé
+-  Compile le projet
+-  Vérifie les fichiers web
+-  Message final "Pr�t!"
 
 ### run-web.bat / run-web.ps1
-- ✅ Vérifie que le binaire existe
-- ✅ Vérifie les fichiers web
-- ✅ Démarre le serveur sur port 8080
-- ✅ Affiche l'URL à ouvrir
+-  Vérifie que le binaire existe
+-  Vérifie les fichiers web
+-  Démarre le serveur sur port 8080
+-  Affiche l'URL � ouvrir
 
 ### build.bat / build.ps1
-- ✅ Compile le projet
-- ✅ Crée `programme.exe`
+-  Compile le projet
+-  Crée `programme.exe`
 
 ### verify.bat
-- ✅ Vérifie la compilation
-- ✅ Vérifie les fichiers web
-- ✅ Vérifie la configuration
+-  Vérifie la compilation
+-  Vérifie les fichiers web
+-  Vérifie la configuration
 
 ---
 
-## 💡 Astuces Pratiques
+##  Astuces Pratiques
 
 ### Créer un Raccourci Bureau
 1. Clique droit sur `run-web.bat`
@@ -97,11 +97,11 @@ PS> .\run-web.ps1
 3. Double-clique le raccourci: Serveur lance!
 
 ### Lancer Automatiquement au Démarrage
-1. Win+R → tape: `shell:startup` → OK
+1. Win+R  tape: `shell:startup`  OK
 2. Copie un raccourci de `run-web.bat` dans le dossier
-3. À chaque démarrage: Serveur lancé!
+3. � chaque démarrage: Serveur lancé!
 
-### Lancer sans Voir la Fenêtre CMD
+### Lancer sans Voir la Fen�tre CMD
 Crée fichier `run-web-hidden.vbs`:
 ```vbs
 Set objShell = CreateObject("WScript.Shell")
@@ -112,7 +112,7 @@ Puis double-clique ce fichier!
 
 ---
 
-## 🔧 Personnaliser le Port
+##  Personnaliser le Port
 
 Si le port 8080 est occupé:
 
@@ -121,22 +121,22 @@ Si le port 8080 est occupé:
 3. Change 8080 en autre port: `go StartWebServer("9000")`
 4. Lance: `build.bat`
 5. Lance: `run-web.bat`
-6. Accède à: `http://localhost:9000`
+6. Acc�de �: `http://localhost:9000`
 
 ---
 
-## ❌ Dépannage
+##  Dépannage
 
-### Problème: "Go is not recognized"
+### Probl�me: "Go is not recognized"
 ```
 Solution:
 1. Télécharge Go: https://golang.org/dl/
 2. Installe le .msi
-3. Redémarre Windows complètement
+3. Redémarre Windows compl�tement
 4. Réessaye
 ```
 
-### Problème: Script PowerShell ne marche pas
+### Probl�me: Script PowerShell ne marche pas
 ```
 Solution:
 1. Clique droit PowerShell
@@ -146,13 +146,13 @@ Solution:
 5. Réessaye le script
 ```
 
-### Problème: Port 8080 déjà utilisé
+### Probl�me: Port 8080 déj� utilisé
 ```
 Solution A: Ferme l'autre application
 Solution B: Change le port dans web.go (voir section Personnaliser)
 ```
 
-### Problème: Fichiers web manquants
+### Probl�me: Fichiers web manquants
 ```
 Solution:
 1. Assure-toi que dossier "web" existe
@@ -162,66 +162,66 @@ Solution:
 
 ---
 
-## 📊 Structure pour Windows
+##  Structure pour Windows
 
 ```
 ia-atomique/
-├── install.bat          ← À double-cliquer en 1er
-├── run-web.bat          ← À double-cliquer ensuite
-├── build.bat
-├── verify.bat
-│
-├── install.ps1          ← Alternative PowerShell
-├── run-web.ps1
-├── build.ps1
-│
-├── WINDOWS_INSTALL.md   ← Tu es ici!
-├── WINDOWS_SETUP.md
-│
-├── programme.exe        ← Créé après install.bat
-├── web/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-│
-└── ... autres fichiers
+ install.bat           � double-cliquer en 1er
+ run-web.bat           � double-cliquer ensuite
+ build.bat
+ verify.bat
+
+ install.ps1           Alternative PowerShell
+ run-web.ps1
+ build.ps1
+
+ WINDOWS_INSTALL.md    Tu es ici!
+ WINDOWS_SETUP.md
+
+ programme.exe         Créé apr�s install.bat
+ web/
+    index.html
+    style.css
+    script.js
+
+ ... autres fichiers
 ```
 
 ---
 
-## 🎯 Workflow Typique Windows
+##  Workflow Typique Windows
 
 ```
-1️⃣ Double-clique install.bat
-   └─ Affiche: "✅ Installation Réussie!"
+1� Double-clique install.bat
+    Affiche: " Installation Réussie!"
 
-2️⃣ Double-clique run-web.bat
-   └─ Lance le serveur
+2� Double-clique run-web.bat
+    Lance le serveur
 
-3️⃣ Une fenêtre CMD s'ouvre avec:
+3� Une fen�tre CMD s'ouvre avec:
    - "Serveur Web Démarré"
    - "URL: http://localhost:8080"
 
-4️⃣ Ouvre navigateur: http://localhost:8080
+4� Ouvre navigateur: http://localhost:8080
 
-5️⃣ Utilise l'interface web! 🎉
+5� Utilise l'interface web! 
 
-6️⃣ Pour arrêter: Ferme la fenêtre CMD
+6� Pour arr�ter: Ferme la fen�tre CMD
 ```
 
 ---
 
-## ✅ Points Importants
+##  Points Importants
 
-✅ **Aucune ligne de commande requise** - Juste double-clique  
-✅ **Automatique** - Install.bat fait tout tout seul  
-✅ **Erreurs claires** - Sait dire exactement ce qui manque  
-✅ **PowerShell aussi** - Pour ceux qui préfèrent  
-✅ **Portable** - Pas de dépendances externes  
+ **Aucune ligne de commande requise** - Juste double-clique  
+ **Automatique** - Install.bat fait tout tout seul  
+ **Erreurs claires** - Sait dire exactement ce qui manque  
+ **PowerShell aussi** - Pour ceux qui préf�rent  
+ **Portable** - Pas de dépendances externes  
 
 ---
 
-## 🚀 Prochaines Étapes
+##  Prochaines �tapes
 
 ### Pour toi (développeur):
 1. Teste les scripts sur Windows
@@ -235,18 +235,18 @@ ia-atomique/
 2. Double-clique `install.bat`
 3. Double-clique `run-web.bat`
 4. Ouvre navigateur
-5. C'est tout! 🎉
+5. C'est tout! 
 
 ---
 
-## 📞 Support Windows
+## � Support Windows
 
 Si quelque chose marche pas:
-1. Relance Windows complètement
+1. Relance Windows compl�tement
 2. Réinstalle Go proprement
 3. Double-clique `verify.bat` pour vérifier
-4. Essaye à nouveau
+4. Essaye � nouveau
 
 ---
 
-**Voilà! Installation super simple pour Windows! 🎉**
+**Voil�! Installation super simple pour Windows! **

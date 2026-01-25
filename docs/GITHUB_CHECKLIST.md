@@ -1,12 +1,12 @@
-# ✅ Checklist Déploiement GitHub
+#  Checklist Déploiement GitHub
 
-## 📋 Avant de pusher
+## � Avant de pusher
 
 ### Code & Compilation
 - [x] `go build` compile sans erreur
 - [x] `go mod tidy` exécuté
 - [x] Pas de fichiers `.DS_Store` ou temporaires
-- [x] `.gitignore` à jour
+- [x] `.gitignore` � jour
 
 ### Fichiers Web
 - [x] `web/index.html` existe
@@ -21,7 +21,7 @@
 - [x] `.github/workflows/build.yml` configuré
 
 ### Documentation
-- [x] `README.md` mis à jour avec section web
+- [x] `README.md` mis � jour avec section web
 - [x] `INSTALL.md` créé avec instructions
 - [x] `SETUP_WEB.md` créé
 - [x] `WEB_README.md` créé
@@ -32,21 +32,21 @@
 
 ---
 
-## 🚀 Commands pour vérifier avant push
+##  Commands pour vérifier avant push
 
 ```bash
 # Vérifier la compilation
-go build -o programme && echo "✓ Build OK"
+go build -o programme && echo " Build OK"
 
 # Vérifier les fichiers web
-test -f web/index.html && test -f web/style.css && test -f web/script.js && echo "✓ Web files OK"
+test -f web/index.html && test -f web/style.css && test -f web/script.js && echo " Web files OK"
 
 # Vérifier Git
 git status
 git add .
 git commit -m "feat: Add web interface for text summarization"
 
-# Vérifier les fichiers qui vont être pushés
+# Vérifier les fichiers qui vont �tre pushés
 git diff --cached --name-status
 
 # Push
@@ -55,7 +55,7 @@ git push origin chore/siteweb
 
 ---
 
-## 🐳 Test avec Docker (optionnel)
+## � Test avec Docker (optionnel)
 
 ```bash
 # Build l'image
@@ -70,25 +70,25 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-## 📊 Fichiers importants à vérifier
+##  Fichiers importants � vérifier
 
 ```
-✓ README.md          - Section web ajoutée
-✓ INSTALL.md         - Instructions de setup
-✓ WEB_README.md      - Docs interface web
-✓ SETUP_WEB.md       - Configuration avancée
-✓ Dockerfile         - Déploiement Docker
-✓ docker-compose.yml - Compose config
-✓ .github/workflows/ - CI/CD
-✓ Makefile           - Build automation
-✓ .gitignore         - Fichiers ignorés
-✓ go.mod            - Dépendances Go
-✓ web/               - Interface web complète
+ README.md          - Section web ajoutée
+ INSTALL.md         - Instructions de setup
+ WEB_README.md      - Docs interface web
+ SETUP_WEB.md       - Configuration avancée
+ Dockerfile         - Déploiement Docker
+ docker-compose.yml - Compose config
+ .github/workflows/ - CI/CD
+ Makefile           - Build automation
+ .gitignore         - Fichiers ignorés
+ go.mod            - Dépendances Go
+ web/               - Interface web compl�te
 ```
 
 ---
 
-## ✨ Après le push
+##  Apr�s le push
 
 1. GitHub Actions va tester la compilation automatiquement
 2. L'interface web sera accessible une fois clonée
@@ -96,7 +96,7 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-## 🎯 Pour les utilisateurs qui clonent le repo
+##  Pour les utilisateurs qui clonent le repo
 
 Ils pourront faire:
 
@@ -123,4 +123,4 @@ go build -o programme && ./programme web
 
 ---
 
-✅ **Prêt pour GitHub!**
+ **Pr�t pour GitHub!**

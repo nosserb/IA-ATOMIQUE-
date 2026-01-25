@@ -1,52 +1,52 @@
-# 🚂 Déploiement sur Railway.app
+#  Déploiement sur Railway.app
 
 Guide complet pour héberger IA-ATOMIQUE sur Railway.
 
-## 🚀 Setup Rapide (5 minutes)
+##  Setup Rapide (5 minutes)
 
-### 1️⃣ Créer un compte Railway
+### 1� Créer un compte Railway
 - Va sur: https://railway.app
 - Clique "Sign Up"
 - Connecte-toi avec GitHub (recommandé)
 
-### 2️⃣ Créer un nouveau projet
+### 2� Créer un nouveau projet
 - Clique "New Project"
 - Choisis "Deploy from GitHub repo"
 - Sélectionne ton repo `IA-ATOMIQUE`
 
-### 3️⃣ Railway détecte automatiquement
+### 3� Railway détecte automatiquement
 - Railway voit `go.mod` et `Procfile`
 - Compile automatiquement
 - Lance le serveur
 
-### 4️⃣ Attendre le déploiement
+### 4� Attendre le déploiement
 - Quelques secondes/minutes
 - Tu vois l'URL en haut:
   ```
   https://ton-projet-xxx.railway.app
   ```
 
-### 5️⃣ Ouvrir l'URL
+### 5� Ouvrir l'URL
 ```
 https://ton-projet-xxx.railway.app
 ```
 
-C'est tout! 🎉
+C'est tout! 
 
 ---
 
-## 📋 Fichiers Nécessaires
+## � Fichiers Nécessaires
 
-✅ `Procfile` - Comment lancer l'app  
-✅ `railway.json` - Configuration Railway  
-✅ `go.mod` - Dépendances Go  
-✅ `web/` - Fichiers statiques  
+ `Procfile` - Comment lancer l'app  
+ `railway.json` - Configuration Railway  
+ `go.mod` - Dépendances Go  
+ `web/` - Fichiers statiques  
 
 **Tous sont dans le repo!**
 
 ---
 
-## 🔧 Configuration Avancée
+##  Configuration Avancée
 
 ### Voir les logs
 ```bash
@@ -55,7 +55,7 @@ railway logs
 
 ### Variables d'environnement
 Railway ajoute automatiquement `PORT`
-(ton code l'utilise déjà!)
+(ton code l'utilise déj�!)
 
 ### Redéployer
 ```bash
@@ -65,18 +65,18 @@ git push origin main
 
 ---
 
-## 🌐 URL Finale
+##  URL Finale
 
 Une fois déployée, ton app sera accessible sur:
 ```
 https://ia-atomique-xxx.railway.app
 ```
 
-Remplace `xxx` par le nom que Railway génère.
+Remplace `xxx` par le nom que Railway gén�re.
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Erreur: "Build failed"
 - Vérifier que `go.mod` existe
@@ -94,7 +94,7 @@ Remplace `xxx` par le nom que Railway génère.
 
 ---
 
-## 📊 Performance
+##  Performance
 
 - Go est ultra-rapide
 - Railway gratuit peut gérer beaucoup de traffic
@@ -102,25 +102,25 @@ Remplace `xxx` par le nom que Railway génère.
 
 ---
 
-## 💰 Coût
+##  Co�t
 
 - Gratuit les premiers crédits ($5/mois)
-- Puis payant (très peu cher)
+- Puis payant (tr�s peu cher)
 
 ---
 
-## ✨ Avantages Railway
+##  Avantages Railway
 
-✅ Déploiement automatique (git push)  
-✅ Zéro configuration requise  
-✅ Logs en temps réel  
-✅ Domaine inclus  
-✅ SSL HTTPS automatique  
-✅ Redémarrage auto si crash  
+ Déploiement automatique (git push)  
+ Zéro configuration requise  
+ Logs en temps réel  
+ Domaine inclus  
+ SSL HTTPS automatique  
+ Redémarrage auto si crash  
 
 ---
 
-## 🎯 Prochaines Étapes
+##  Prochaines �tapes
 
 1. Push ton code sur GitHub
 2. Va sur railway.app
@@ -130,6 +130,6 @@ Remplace `xxx` par le nom que Railway génère.
 
 ---
 
-**C'est simpler que ça en a l'air!** 🚀
+**C'est simpler que �a en a l'air!** 
 
 Besoin d'aide? Dis-moi!

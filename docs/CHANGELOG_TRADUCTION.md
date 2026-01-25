@@ -2,7 +2,7 @@
 
 **Date**: Janvier 7, 2026  
 **Version**: 2.1 - Détection & Traduction  
-**Status**: ✅ Production-Ready
+**Status**:  Production-Ready
 
 ## Modifications effectuées
 
@@ -23,7 +23,7 @@ type Phrase struct {
 }
 ```
 
-**Après**:
+**Apr�s**:
 ```go
 type Phrase struct {
     Contenu         string      // Maintenant potentiellement traduit
@@ -34,9 +34,9 @@ type Phrase struct {
     Score           float64
     MotsClés        []string
     EstFiltrée      bool
-    Langue          string      // ← NOUVEAU: FR/EN/DE/ES
-    EstTraduire     bool        // ← NOUVEAU: Marqueur traduction
-    FacteurConfiance float64    // ← NOUVEAU: γi ∈ [0.7, 1.0]
+    Langue          string      //  NOUVEAU: FR/EN/DE/ES
+    EstTraduire     bool        //  NOUVEAU: Marqueur traduction
+    FacteurConfiance float64    //  NOUVEAU: γi  [0.7, 1.0]
 }
 ```
 
@@ -53,7 +53,7 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 }
 ```
 
-**Après**:
+**Apr�s**:
 ```go
 func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
     const beta = 0.2
@@ -68,29 +68,29 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 }
 ```
 
-### 3. Pipeline ExtrairePhrasesClés() mis à jour
+### 3. Pipeline ExtrairePhrasesClés() mis � jour
 **Fichier**: `database/nlp.go`
 
 **Avant**:
 ```go
 func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
     phrases := DécouperEnPhrases(texte)
-    // Étape 2: Énergie
-    // Étape 3: Cohérence
+    // �tape 2: �nergie
+    // �tape 3: Cohérence
     // ...
 }
 ```
 
-**Après**:
+**Apr�s**:
 ```go
 func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
     phrases := DécouperEnPhrases(texte)
     
-    // ← NOUVEAU - Étape 1.5: Traduction
+    //  NOUVEAU - �tape 1.5: Traduction
     phrases = DetecterEtTraduirePhrases(phrases)
     
-    // Étape 2: Énergie
-    // Étape 3: Cohérence (avec γi appliqué)
+    // �tape 2: �nergie
+    // �tape 3: Cohérence (avec γi appliqué)
     // ...
 }
 ```
@@ -99,10 +99,10 @@ func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
 
 **Fonctions ajoutées**:
 
-1. **`TraductionMap`** - Tables EN↔FR, DE↔FR, ES↔FR (80+ entrées)
+1. **`TraductionMap`** - Tables ENFR, DEFR, ESFR (80+ entrées)
 2. **`DetecterLanguePhrase(phrase string) string`** - Détection simple par mots-clés
 3. **`TraduireSiNecessaire(phrase *Phrase, langue string)`** - Traduction conditionnelle + γi
-4. **`TraduireMotsPar(texte, languageSource string)`** - Traduction mot-à-mot
+4. **`TraduireMotsPar(texte, languageSource string)`** - Traduction mot-�-mot
 5. **`DetecterEtTraduirePhrases(phrases []Phrase)`** - Pipeline complet détection+traduction
 6. **`countKeywords(texte string, keywords []string)`** - Aide détection
 7. **`isLetterOrNumber(r rune)`** - Aide parsing
@@ -110,12 +110,12 @@ func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
 
 **Taille**: ~230 lignes de code
 
-### 5. Documentation complète
-**Fichier**: `TRADUCTION_PIPELINE.md` ← NOUVEAU
+### 5. Documentation compl�te
+**Fichier**: `TRADUCTION_PIPELINE.md`  NOUVEAU
 
 Contient:
 - Vue d'ensemble mathématique
-- Formules complètes (L(Pi), TranslateFR, γi, Etotal, filtrage)
+- Formules compl�tes (L(Pi), TranslateFR, γi, Etotal, filtrage)
 - Pipeline d'exécution visuel
 - Structures de données
 - Tables de traduction
@@ -128,7 +128,7 @@ Contient:
 
 ### 1. Détection de langue
 ```
-L(Pi) ∈ {FR, EN, DE, ES}
+L(Pi)  {FR, EN, DE, ES}
 Basée sur comptage mots-clés typiques
 ```
 
@@ -145,24 +145,24 @@ TranslateFR(Pi) = {
 γi = {
     1.0   si L(Pi) = FR et pas traduit
     0.8   si traduit et longueur(Pi) < 10 mots
-    0.7   si traduit et longueur(Pi) ≥ 10 mots
+    0.7   si traduit et longueur(Pi)  10 mots
 }
 ```
 
-### 4. Énergie totale avec confiance
+### 4. �nergie totale avec confiance
 ```
-E(Pi) = Σ αk·f(wk)  [énergie intrinsèque]
+E(Pi) = Σ �k�f(wk)  [énergie intrins�que]
 
-Etotal(Pi) = E(Pi)·γi + β·Σj≠i sim(Pi, Pj)
+Etotal(Pi) = E(Pi)�γi + β�Σji sim(Pi, Pj)
     où β = 0.2 [coefficient cohérence]
-    et sim(Pi, Pj) = |keywords_i ∩ keywords_j| / |keywords_i ∪ keywords_j|
+    et sim(Pi, Pj) = |keywords_i � keywords_j| / |keywords_i  keywords_j|
 ```
 
 ### 5. Filtrage énergétique
 ```
-ϵ = μ(Etotal) - σ(Etotal)  [seuil dynamique]
+ϵ = μ(Etotal) - �(Etotal)  [seuil dynamique]
 
-Phrases conservées si Etotal(Pi) ≥ ϵ
+Phrases conservées si Etotal(Pi)  ϵ
 ```
 
 ### 6. Résumé final
@@ -173,41 +173,41 @@ Rfinal = Fusion({Pi traduites et filtrées})
 ## Impacte sur les performances
 
 **Avant (v2.0)**:
-- Pipeline: Découpage → Énergie → Cohérence → Filtrage
+- Pipeline: Découpage  �nergie  Cohérence  Filtrage
 - Temps: ~1.1s pour 2035 phrases
 - Compression: 1.9x
 
-**Après (v2.1)**:
-- Pipeline: Découpage → **Traduction** → Énergie → Cohérence → Filtrage
+**Apr�s (v2.1)**:
+- Pipeline: Découpage  **Traduction**  �nergie  Cohérence  Filtrage
 - Temps: ~1.27s pour 2035 phrases (+15% overhead)
 - Compression: 1.8x (identique, mais mieux normalisé)
 - **Overhead traduction**: ~150-200ms (~12%)
 
 ## Capacités nouvelles
 
-✅ Traitement textes multilingues (FR, EN, DE, ES)
-✅ Normalisation automatique vers FR
-✅ Pondération par confiance traduction
-✅ Détection + traduction locale (sans API externe)
-✅ Intégration seamless à l'existant
+ Traitement textes multilingues (FR, EN, DE, ES)
+ Normalisation automatique vers FR
+ Pondération par confiance traduction
+ Détection + traduction locale (sans API externe)
+ Intégration seamless � l'existant
 
 ## Tests validés
 
-✅ **input.txt** (mélange EN/FR):
+ **input.txt** (mélange EN/FR):
   - 2037 phrases découpage
   - 490 phrases conservées (24.1% ratio)
   - 1.8x compression
   - 1.27s traitement
 
-✅ **test_english.txt** (EN pur):
-  - Détection langue: ✓
-  - Traduction: ✓
+ **test_english.txt** (EN pur):
+  - Détection langue: 
+  - Traduction: 
   - Facteur confiance: γi = 0.8
 
-✅ **test_mixed.txt** (EN + FR):
-  - Détection mixte: ✓
-  - Traduction sélective: ✓
-  - Compilation: ✓
+ **test_mixed.txt** (EN + FR):
+  - Détection mixte: 
+  - Traduction sélective: 
+  - Compilation: 
 
 ## Fichiers modifiés vs créés
 
@@ -218,13 +218,13 @@ Rfinal = Fusion({Pi traduites et filtrées})
 
 **Créés**:
 - `database/traduction.go`: ~230 lignes
-- `TRADUCTION_PIPELINE.md`: Documentation complète
+- `TRADUCTION_PIPELINE.md`: Documentation compl�te
 
 **Total ajout**: ~350 lignes code + documentation
 
 ## Backward compatibility
 
-✅ **Entièrement compatible**:
+ **Enti�rement compatible**:
 - Signature `ExtrairePhrasesClés(texte, ratio)` inchangée
 - Type Phrase a champs optionnels seulement
 - Commandes CLI identiques
@@ -232,7 +232,7 @@ Rfinal = Fusion({Pi traduites et filtrées})
 
 ## Prochaines étapes recommandées
 
-1. **Intégration DeepL/LibreTranslate** pour traductions complètes (amélioration 3-4x qualité)
+1. **Intégration DeepL/LibreTranslate** pour traductions compl�tes (amélioration 3-4x qualité)
 2. **Utiliser `DetecterLangue()` robuste** de `interaction.go` (amélioration détection)
 3. **Ajouter support JA, ZH, RU**
 4. **Cache de traductions** pour performance avec textes répétitifs
@@ -247,15 +247,15 @@ git commit -m "feat: pipeline traduction/normalisation linguistique
 - Détection automatique langue (FR/EN/DE/ES)
 - Traduction conditionnelle vers FR
 - Facteur confiance γi pour traductions
-- Énergy totale: Etotal = E·γi + cohérence
+- �nergy totale: Etotal = E�γi + cohérence
 - Tables traduction 80+ mots par langue
-- Documentation complète mathématique
+- Documentation compl�te mathématique
 - +12% overhead performance (-15% qualité bruit)"
 ```
 
 ---
 
-**Status**: ✅ PRODUCTION READY  
-**Tests**: ✅ PASSED  
-**Documentation**: ✅ COMPLETE  
-**Performance**: ✅ ACCEPTABLE
+**Status**:  PRODUCTION READY  
+**Tests**:  PASSED  
+**Documentation**:  COMPLETE  
+**Performance**:  ACCEPTABLE

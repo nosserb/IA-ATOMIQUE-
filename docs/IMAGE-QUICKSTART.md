@@ -1,4 +1,4 @@
-# 🎨 Quickstart - Génération d'Images Atomiques
+#  Quickstart - Génération d'Images Atomiques
 
 ## Installation & Compilation
 
@@ -9,33 +9,33 @@ go build -o programme
 
 ## Premiers pas
 
-### 1️⃣ Génération simple
+### 1� Génération simple
 
 ```bash
 ./programme image generate 256 256 50 8 "blue sky with clouds"
 ```
 
 **Résultat** : `generated_image.png`
-- Dimensions : 256×256 pixels
+- Dimensions : 256�256 pixels
 - Itérations : 50 (plus = plus détaillé)
-- Patch size : 8 (8×8 pixels par atome)
+- Patch size : 8 (8�8 pixels par atome)
 - Résultat en ~50-100ms
 
-### 2️⃣ Génération auto-optimisée
+### 2� Génération auto-optimisée
 
 ```bash
 ./programme image prompt "beautiful sunset over ocean with mountains"
 ```
 
-Le système choisit automatiquement les meilleurs paramètres selon la complexité du prompt.
+Le syst�me choisit automatiquement les meilleurs param�tres selon la complexité du prompt.
 
-### 3️⃣ Génération haute qualité multi-échelle
+### 3� Génération haute qualité multi-échelle
 
 ```bash
 ./programme image multi-scale "detailed fantasy landscape with castles"
 ```
 
-Génère à 3 échelles différentes pour meilleure qualité et plus de détails.
+Gén�re � 3 échelles différentes pour meilleure qualité et plus de détails.
 
 ## Exemples de prompts
 
@@ -67,13 +67,13 @@ Génère à 3 échelles différentes pour meilleure qualité et plus de détails
 ./programme image prompt "blurry misty foggy forest"
 ```
 
-## Paramètres expliqués
+## Param�tres expliqués
 
 ```bash
 ./programme image generate WIDTH HEIGHT ITERATIONS PATCH_SIZE "prompt"
 ```
 
-| Paramètre | Plage | Par défaut | Effet |
+| Param�tre | Plage | Par défaut | Effet |
 |-----------|-------|-----------|-------|
 | WIDTH | 64-2048 | - | Largeur en pixels |
 | HEIGHT | 64-2048 | - | Hauteur en pixels |
@@ -85,12 +85,12 @@ Génère à 3 échelles différentes pour meilleure qualité et plus de détails
 
 **Rapide (< 100ms)** :
 ```bash
-./programme image generate 256 256 30 16 "prompt"  # Patch 16×16
+./programme image generate 256 256 30 16 "prompt"  # Patch 16�16
 ```
 
 **Normal (100-500ms)** :
 ```bash
-./programme image generate 512 512 50 8 "prompt"   # Patch 8×8
+./programme image generate 512 512 50 8 "prompt"   # Patch 8�8
 ```
 
 **Haute qualité (1-5s)** :
@@ -100,31 +100,31 @@ Génère à 3 échelles différentes pour meilleure qualité et plus de détails
 
 ## Résultats typiques
 
-### Après 30 itérations
+### Apr�s 30 itérations
 ```
-État moyenne: 0.456
+�tat moyenne: 0.456
 Intensité moyenne: 0.389
 Atomes actifs: 78.5%
 ```
-→ Image brute, couleurs principales présentes
+ Image brute, couleurs principales présentes
 
-### Après 50 itérations
+### Apr�s 50 itérations
 ```
-État moyenne: 0.512
+�tat moyenne: 0.512
 Intensité moyenne: 0.445
 Atomes actifs: 62.3%
 Atomes gelés: 37.7%
 ```
-→ Image stabilisée, détails émergents
+ Image stabilisée, détails émergents
 
-### Après 100 itérations
+### Apr�s 100 itérations
 ```
-État moyenne: 0.534
+�tat moyenne: 0.534
 Intensité moyenne: 0.478
 Atomes actifs: 45.2%
 Atomes gelés: 54.8%
 ```
-→ Image complète et stable, beaucoup d'atomes en hibernation (efficace)
+ Image compl�te et stable, beaucoup d'atomes en hibernation (efficace)
 
 ## Troubleshooting
 
@@ -138,7 +138,7 @@ Atomes gelés: 54.8%
 
 ### Génération lente
 **Cause** : PATCH_SIZE trop grand, ITERATIONS trop élevées
-**Solution** : Augmenter PATCH_SIZE de 8 à 16 ou 32
+**Solution** : Augmenter PATCH_SIZE de 8 � 16 ou 32
 
 ### Pas de couleur
 **Cause** : Couleurs non reconnues dans le prompt
@@ -148,13 +148,13 @@ Atomes gelés: 54.8%
 
 ```
 Initialisation aléatoire
-         ↓
+         
     [Atomes]
-    ↓  ↓  ↓  (itération 1)
+          (itération 1)
 Résonance locale
-    ↓  ↓  ↓  (itération 2)
+          (itération 2)
 Contraintes du prompt
-    ↓  ↓  ↓  (itération N)
+          (itération N)
 Image cohérente
 ```
 
@@ -165,14 +165,14 @@ Chaque atome influence ses 8 voisins localement, créant une image par émergenc
 ### Timing empirique
 
 ```
-256×256, 50 iter, patch 8:   ~50ms
-512×512, 100 iter, patch 8:  ~200ms
-1024×1024, 100 iter, patch 8: ~800ms
+256�256, 50 iter, patch 8:   ~50ms
+512�512, 100 iter, patch 8:  ~200ms
+1024�1024, 100 iter, patch 8: ~800ms
 ```
 
 ### Comparaison
 
-| Système | Temps | Mémoire | CPU |
+| Syst�me | Temps | Mémoire | CPU |
 |---------|-------|---------|-----|
 | T.R.A. | 50-1000ms | 1-100 MB | Léger |
 | Stable Diffusion | 30-60s | 10-20 GB | GPU |
@@ -192,7 +192,7 @@ generated_multiscale.png  # Pour multi-scale
 ./programme image generate 512 512 100 8 "red orange sunset over blue ocean waves"
 ```
 
-### Forêt mystérieuse
+### For�t mystérieuse
 ```bash
 ./programme image prompt "dark mysterious forest misty foggy trees"
 ```
@@ -211,23 +211,23 @@ generated_multiscale.png  # Pour multi-scale
 
 ```
 database/
-  ├── image_atomic.go        # Moteur d'image atomique
-  │   ├── PixelAtom
-  │   ├── AtomicImageNetwork
-  │   └── Fonctions de génération
-  └── atomic.go              # Moteur textuel (existant)
+   image_atomic.go        # Moteur d'image atomique
+      PixelAtom
+      AtomicImageNetwork
+      Fonctions de génération
+   atomic.go              # Moteur textuel (existant)
 
 image_commands.go            # Interface CLI pour images
-IMAGE-GENERATION-GUIDE.md    # Documentation complète
+IMAGE-GENERATION-GUIDE.md    # Documentation compl�te
 ```
 
 ## Prochains pas
 
 1. **Essayer les exemples** : Coucher de soleil, paysage, abstrait
-2. **Optimiser les paramètres** : Trouver votre équilibre vitesse/qualité
-3. **Explorer les prompts** : Tester les couleurs, textures, lumière
+2. **Optimiser les param�tres** : Trouver votre équilibre vitesse/qualité
+3. **Explorer les prompts** : Tester les couleurs, textures, lumi�re
 4. **Mixer texte+image** : Utiliser le résumé atomique pour l'image
 
 ## Support
 
-Voir `IMAGE-GENERATION-GUIDE.md` pour la documentation technique complète.
+Voir `IMAGE-GENERATION-GUIDE.md` pour la documentation technique compl�te.

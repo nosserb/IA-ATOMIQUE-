@@ -1,19 +1,19 @@
-# 📖 Energy Signature Matching: Practical Examples
+#  Energy Signature Matching: Practical Examples
 
-## 🎯 Cas 1: Générer 10 Variations d'un Style
+##  Cas 1: Générer 10 Variations d'un Style
 
-**Besoin**: J'aime l'aspect de cette image, génère 10 variations différentes
+**Besoin**: J'aime l'aspect de cette image, gén�re 10 variations différentes
 
 ### Commandes
 
 ```bash
-# Étape 1: Générer une image de base (le "style cible")
+# �tape 1: Générer une image de base (le "style cible")
 ./programme energy generate 256 256 200 4 "dark sharp"
 
-# Étape 2: Analyser son énergie
+# �tape 2: Analyser son énergie
 ./programme energy from-image generated_energy_based.png
 
-# Étape 3: Répéter pour générer d'autres variations
+# �tape 3: Répéter pour générer d'autres variations
 ./programme energy from-image generated_energy_based.png > output_1.txt
 ./programme energy from-image generated_energy_based.png > output_2.txt
 ./programme energy from-image generated_energy_based.png > output_3.txt
@@ -22,26 +22,26 @@
 
 ### Résultat
 
-10 fichiers `generated_from_signature.png` **complètement différents**
-Mais tous avec la **même signature énergétique**.
+10 fichiers `generated_from_signature.png` **compl�tement différents**
+Mais tous avec la **m�me signature énergétique**.
 
 ### Données Extraites (Exemple)
 
 ```
-λ_gradient  = 0.1694  (34% gradient)
-λ_local     = 0.1673  (33% cohérence)
-λ_texture   = 0.1108  (22% texture)
-λ_scale     = 0.3774  (75% distribution)
-→ Bimodal histogram: 46% edges, 27% flat regions
+�_gradient  = 0.1694  (34% gradient)
+�_local     = 0.1673  (33% cohérence)
+�_texture   = 0.1108  (22% texture)
+�_scale     = 0.3774  (75% distribution)
+ Bimodal histogram: 46% edges, 27% flat regions
 ```
 
 **Chaque génération respecte ces proportions mais crée une image unique**.
 
 ---
 
-## 🎯 Cas 2: Blender Deux Styles
+##  Cas 2: Blender Deux Styles
 
-**Besoin**: J'aime à la fois Image A (smooth) et Image B (sharp), fusionne!
+**Besoin**: J'aime � la fois Image A (smooth) et Image B (sharp), fusionne!
 
 ### Commandes
 
@@ -56,7 +56,7 @@ Mais tous avec la **même signature énergétique**.
 ./programme energy from-image generated_energy_based.png
 ```
 
-### Code pour Blender (à ajouter dans une fonction future)
+### Code pour Blender (� ajouter dans une fonction future)
 
 ```go
 func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) *ImageEnergyProfile {
@@ -74,18 +74,18 @@ func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) 
 ### Résultat
 
 ```
-α = 0.0 → Image ressemble à B (sharp)
-α = 0.5 → Image est intermédiaire
-α = 1.0 → Image ressemble à A (smooth)
+� = 0.0  Image ressemble � B (sharp)
+� = 0.5  Image est intermédiaire
+� = 1.0  Image ressemble � A (smooth)
 ```
 
-**Chaque génération avec α intermédiaire produit une nouvelle image unique!**
+**Chaque génération avec � intermédiaire produit une nouvelle image unique!**
 
 ---
 
-## 🎯 Cas 3: Extraction de Style d'une Photo
+##  Cas 3: Extraction de Style d'une Photo
 
-**Besoin**: Ma photo préférée a un certain "feel", crée 5 images abstraites avec le même feel
+**Besoin**: Ma photo préférée a un certain "feel", crée 5 images abstraites avec le m�me feel
 
 ### Commandes
 
@@ -104,78 +104,78 @@ convert my_favorite.jpg my_favorite.png
 
 ### Résultat
 
-5 images abstraites **visually very different** mais avec la **même structure énergétique** que ta photo préférée.
+5 images abstraites **visually very different** mais avec la **m�me structure énergétique** que ta photo préférée.
 
 ---
 
-## 🎯 Cas 4: Variant Résolution
+##  Cas 4: Variant Résolution
 
-**Besoin**: Crée 256×256 et 512×512 avec la même énergie
+**Besoin**: Crée 256�256 et 512�512 avec la m�me énergie
 
 ### Commandes
 
 ```bash
-# Générer petit (256×256)
+# Générer petit (256�256)
 ./programme energy generate 256 256 200 4 "dark sharp"
 
 # Analyser
 ./programme energy from-image generated_energy_based.png
 
-# Générer grand (512×512) avec même énergie
+# Générer grand (512�512) avec m�me énergie
 ./programme energy from-image generated_energy_based.png 512 512 400 4
 ```
 
 ### Résultat
 
 Deux images:
-- `generated_from_signature.png` (256×256)
-- `generated_from_signature.png` (512×512, overwrite)
+- `generated_from_signature.png` (256�256)
+- `generated_from_signature.png` (512�512, overwrite)
 
-**Même balance énergétique, différentes résolutions!**
+**M�me balance énergétique, différentes résolutions!**
 
 ---
 
-## 🎯 Cas 5: Texture Scientifique (Advanced)
+##  Cas 5: Texture Scientifique (Advanced)
 
-**Besoin**: J'étudie les patterns, génère 20 images avec texture contrôlée
+**Besoin**: J'étudie les patterns, gén�re 20 images avec texture contrôlée
 
 ### Commandes
 
 ```bash
 # Générer smooth (texture basse)
 ./programme energy generate 256 256 200 4 "smooth"
-# Note λ_texture
+# Note �_texture
 
 # Générer rough (texture haute)
 ./programme energy generate 256 256 200 4 "rough"
-# Note λ_texture
+# Note �_texture
 
 # Créer une série avec texture progressive
-./programme energy from-image smooth_image.png   # λ_texture ≈ 0.05
-./programme energy from-image medium_image.png   # λ_texture ≈ 0.15
-./programme energy from-image rough_image.png    # λ_texture ≈ 0.30
+./programme energy from-image smooth_image.png   # �_texture  0.05
+./programme energy from-image medium_image.png   # �_texture  0.15
+./programme energy from-image rough_image.png    # �_texture  0.30
 ```
 
 ### Données Extraites
 
 ```
 Image 1 (smooth):
-  λ_texture = 0.05
+  �_texture = 0.05
 
 Image 2 (medium):
-  λ_texture = 0.15
+  �_texture = 0.15
 
 Image 3 (rough):
-  λ_texture = 0.30
+  �_texture = 0.30
 ```
 
-**Tu maîtrises précisément chaque aspect énergétique!**
+**Tu ma�trises précisément chaque aspect énergétique!**
 
 ---
 
-## 🧬 Cas 6: Pattern Analysis (Research)
+##  Cas 6: Pattern Analysis (Research)
 
-**Besoin**: Étudier comment les patterns structurés émergent
+**Besoin**: �tudier comment les patterns structurés émergent
 
 ### Commandes
 
@@ -192,13 +192,13 @@ Image 3 (rough):
 ### Output Typique
 
 ```
-📊 Energy Signature:
-   Gradient energy (λ): 0.1694
-   Local coherence (λ): 0.1673
-   Texture energy (λ): 0.1108
-   Scale distribution (λ): 0.3774
+ Energy Signature:
+   Gradient energy (�): 0.1694
+   Local coherence (�): 0.1673
+   Texture energy (�): 0.1108
+   Scale distribution (�): 0.3774
    
-📈 Statistics:
+ Statistics:
    Edge density: 0.4631 (46% of atoms are edges)
    Flat regions: 0.2726 (27% are very smooth)
    Textured regions: 0.7274 (73% have texture)
@@ -206,13 +206,13 @@ Image 3 (rough):
 ```
 
 **Interprétation**: 
-- Dominant term: Scale (0.3774) → Image a beaucoup de structure variée
+- Dominant term: Scale (0.3774)  Image a beaucoup de structure variée
 - Bimodal: Mix distinct entre zones nettes et zones lisses
-- Edge density: 46% → Image est très détaillée
+- Edge density: 46%  Image est tr�s détaillée
 
 ---
 
-## 💻 Script Bash: Générer 10 Variations
+##  Script Bash: Générer 10 Variations
 
 Crée un fichier `generate_variations.sh`:
 
@@ -242,30 +242,30 @@ chmod +x generate_variations.sh
 
 ---
 
-## 📊 Tableau: Paramètres vs Résultat
+##  Tableau: Param�tres vs Résultat
 
 | Objectif | Commande | Résultat |
 |----------|----------|----------|
-| Smooth | `from-image target.png 256 256 300 4` | λ_scale ≈ 0.05 |
-| Balanced | `from-image target.png 256 256 300 4` | λ_scale ≈ 0.25 |
-| Sharp | `from-image target.png 256 256 300 4` | λ_scale ≈ 0.50 |
-| Detail-Rich | `from-image target.png 256 256 400 2` | λ_gradient ≈ 0.30 |
+| Smooth | `from-image target.png 256 256 300 4` | �_scale  0.05 |
+| Balanced | `from-image target.png 256 256 300 4` | �_scale  0.25 |
+| Sharp | `from-image target.png 256 256 300 4` | �_scale  0.50 |
+| Detail-Rich | `from-image target.png 256 256 400 2` | �_gradient  0.30 |
 | Abstract | `from-image target.png 512 512 200 8` | Mixed, high level |
 
 ---
 
-## 🎓 Cas Pédagogique: Comprendre les λ
+##  Cas Pédagogique: Comprendre les �
 
 ### Partie 1: Générer Baselines
 
 ```bash
-# Baseline 1: Très lisse
+# Baseline 1: Tr�s lisse
 ./programme energy generate 128 128 100 8 "smooth"
-# Capture: λ_scale ≈ 0.05
+# Capture: �_scale  0.05
 
-# Baseline 2: Très détaillé
+# Baseline 2: Tr�s détaillé
 ./programme energy generate 128 128 100 2 "detailed"
-# Capture: λ_scale ≈ 0.50
+# Capture: �_scale  0.50
 ```
 
 ### Partie 2: Analyser
@@ -279,23 +279,23 @@ chmod +x generate_variations.sh
 
 ```
 Smooth image:
-  λ_gradient  = 0.05  (peu de contours)
-  λ_scale     = 0.10  (peu de variation)
-  → "Équilibrium avec uniformité"
+  �_gradient  = 0.05  (peu de contours)
+  �_scale     = 0.10  (peu de variation)
+   "�quilibrium avec uniformité"
 
 Detailed image:
-  λ_gradient  = 0.30  (beaucoup de contours)
-  λ_scale     = 0.50  (grande variation)
-  → "Équilibrium avec structure"
+  �_gradient  = 0.30  (beaucoup de contours)
+  �_scale     = 0.50  (grande variation)
+   "�quilibrium avec structure"
 ```
 
-**Conclusion**: Chaque λ capture un aspect physique spécifique!
+**Conclusion**: Chaque � capture un aspect physique spécifique!
 
 ---
 
-## 🚀 Cas Avancé: Interpolation (Future)
+##  Cas Avancé: Interpolation (Future)
 
-Code à implémenter:
+Code � implémenter:
 
 ```go
 // Générer une série interpolée entre deux images
@@ -323,44 +323,44 @@ for i, p := range profiles {
 
 ---
 
-## 📈 Benchmark: Performance
+##  Benchmark: Performance
 
 ```
 Task                          Time      Output Size
-────────────────────────────────────────────────────
-Generate 256×256              0.5 sec   19 KB PNG
-Generate 512×512              2.0 sec   75 KB PNG
+
+Generate 256�256              0.5 sec   19 KB PNG
+Generate 512�512              2.0 sec   75 KB PNG
 Analyze image                 0.1 sec   (in memory)
 Generate from energy          0.5 sec   19 KB PNG
 Blend profiles + generate     0.5 sec   19 KB PNG
 ```
 
-**Total**: Analyse + génération ≈ **0.6 secondes** par image!
+**Total**: Analyse + génération  **0.6 secondes** par image!
 
 ---
 
-## ✅ Checklist: Utiliser Energy Signature Matching
+##  Checklist: Utiliser Energy Signature Matching
 
 - [ ] Générer une image de base avec une contrainte
 - [ ] Analyser sa signature avec `from-image`
-- [ ] Notar les λ extraits
+- [ ] Notar les � extraits
 - [ ] Générer 3-5 variations
 - [ ] Vérifier qu'elles sont visuellement différentes
-- [ ] Mais gardent la même "feel"
+- [ ] Mais gardent la m�me "feel"
 - [ ] Comparer les statistiques
 
 ---
 
-## 💡 Insights Clés
+##  Insights Clés
 
 1. **Pas de Copie Pixel**: Tu extrais l'équilibre, pas les pixels
 2. **Infiniment Variée**: Chaque génération est unique
-3. **100% Interprétable**: Chaque λ a un sens physique
-4. **Légal et Éthique**: Tu respectes les droits d'auteur
-5. **Pas de Training**: Zéro GPU, zéro heure d'entraînement
+3. **100% Interprétable**: Chaque � a un sens physique
+4. **Légal et �thique**: Tu respectes les droits d'auteur
+5. **Pas de Training**: Zéro GPU, zéro heure d'entra�nement
 
 ---
 
-**Fait avec ⚛️ par IA-ATOMIQUE | Janvier 2026**
+**Fait avec  par IA-ATOMIQUE | Janvier 2026**
 
 *"Copy the physics, not the pixels."*

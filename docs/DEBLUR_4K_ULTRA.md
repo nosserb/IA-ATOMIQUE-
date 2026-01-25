@@ -5,9 +5,9 @@
 The **ULTRA 4K DEBLUR** mode combines high-quality deblurring with intelligent 4K upscaling, all in under 200ms.
 
 ```
-Original: 512×512 blurry image
-↓ (Process with quality parameters)
-Output: 3840×2160 deblurred + enhanced
+Original: 512�512 blurry image
+ (Process with quality parameters)
+Output: 3840�2160 deblurred + enhanced
 ```
 
 ## Quick Start
@@ -24,9 +24,9 @@ Output: 3840×2160 deblurred + enhanced
 
 | Parameter | Ultra | Draft | Fast |
 |-----------|-------|-------|------|
-| **Grid** | 4×4 | 8×8 | 16×16 |
+| **Grid** | 4�4 | 8�8 | 16�16 |
 | **Iterations** | 15 | 20 | 40 |
-| **Output Resolution** | **4K (3840×2160)** | Original | Original |
+| **Output Resolution** | **4K (3840�2160)** | Original | Original |
 | **Alpha (deblur)** | 0.6 | 0.5 | 0.45 |
 | **Beta (quality)** | 0.35 | 0.3 | 0.25 |
 | **Learning Rate** | 0.02 | 0.015 | 0.01 |
@@ -38,22 +38,22 @@ Output: 3840×2160 deblurred + enhanced
 ### Real Benchmark Results
 
 ```
-ULTRA 4K DEBLUR (512×512 → 3840×2160)
+ULTRA 4K DEBLUR (512�512  3840�2160)
 Actual Timing: 0.206 seconds
-├─ Load image: ~5ms
-├─ Deblur pipeline (4×4 grid, 15 iter): ~120ms
-├─ Upscale to 4K: ~70ms
-└─ Export PNG: ~10ms
+ Load image: ~5ms
+ Deblur pipeline (4�4 grid, 15 iter): ~120ms
+ Upscale to 4K: ~70ms
+ Export PNG: ~10ms
 
 DRAFT MODE (original size)
 Actual Timing: 0.043 seconds
-├─ Pipeline execution: ~30ms
-└─ Export: ~13ms
+ Pipeline execution: ~30ms
+ Export: ~13ms
 
 FAST MODE (original size)
 Actual Timing: 0.046 seconds
-├─ Pipeline execution: ~33ms
-└─ Export: ~13ms
+ Pipeline execution: ~33ms
+ Export: ~13ms
 ```
 
 **All modes well under 2-second target!**
@@ -63,30 +63,30 @@ Actual Timing: 0.046 seconds
 ### Ultra Mode Pipeline
 
 ```
-Input Image (512×512)
-        ↓
+Input Image (512�512)
+        
 [Grid Initialization]
-  • 4×4 patch grid (4 patches wide, 4 patches tall)
-  • ~10 atoms per patch = ~160 total atoms
-        ↓
+   4�4 patch grid (4 patches wide, 4 patches tall)
+   ~10 atoms per patch = ~160 total atoms
+        
 [Deblurring Relaxation - 15 iterations]
-  • Parallel atomic updates on multi-core
-  • Quality parameters: α=0.6, β=0.35, λ=0.75
-  • Higher learning rate (0.02) for aggressive deblur
-  • Early stopping on convergence
-        ↓
+   Parallel atomic updates on multi-core
+   Quality parameters: �=0.6, β=0.35, �=0.75
+   Higher learning rate (0.02) for aggressive deblur
+   Early stopping on convergence
+        
 [4K Upscaling Export]
-  • Intelligent interpolation to 3840×2160
-  • Preserves deblurring quality
-  • PNG output
-        ↓
-Output: 3840×2160 deblurred image
+   Intelligent interpolation to 3840�2160
+   Preserves deblurring quality
+   PNG output
+        
+Output: 3840�2160 deblurred image
 ```
 
 ### Quality Enhancement Parameters
 
 **Ultra Mode:**
-- **Alpha (α) = 0.6**: Controls deblurring strength
+- **Alpha (�) = 0.6**: Controls deblurring strength
   - Higher = more aggressive deblurring
   - Targets blur removal
   
@@ -94,7 +94,7 @@ Output: 3840×2160 deblurred image
   - Controls how much quality is enhanced during relaxation
   - Balances between blur removal and artifact prevention
 
-- **Lambda (λ) = 0.75**: Atomic coupling strength
+- **Lambda (�) = 0.75**: Atomic coupling strength
   - Controls neighbor interaction strength
   - Higher = faster convergence
 
@@ -105,7 +105,7 @@ Output: 3840×2160 deblurred image
 ### Upscaling Strategy
 
 The 4K upscaling is NOT simple magnification:
-1. **Deblurred Grid**: 4×4 patches contain high-quality local information
+1. **Deblurred Grid**: 4�4 patches contain high-quality local information
 2. **Interpolation**: Each pixel in the 4K output is computed from nearby deblurred patches
 3. **Quality Preservation**: The atomic relaxation ensures smooth, artifact-free upscaling
 
@@ -119,16 +119,16 @@ This makes the 4K output look natural and crisp, not pixelated.
 ./programme deblur ultra blurry_phone_photo.jpg enhanced_4k.png
 ```
 
-**Result:** 3840×2160 deblurred image, ready for high-quality printing or display
+**Result:** 3840�2160 deblurred image, ready for high-quality printing or display
 
 ### Example 2: Quick Preview vs High-Quality Export
 
 ```bash
 # Quick preview during editing
-./programme deblur draft input.jpg preview.png    # ~40ms, 512×512
+./programme deblur draft input.jpg preview.png    # ~40ms, 512�512
 
 # Final high-quality export
-./programme deblur ultra input.jpg final_export.png  # ~200ms, 3840×2160
+./programme deblur ultra input.jpg final_export.png  # ~200ms, 3840�2160
 ```
 
 ### Example 3: Batch Processing
@@ -144,16 +144,16 @@ done
 ### Visual Quality Levels
 
 ```
-ULTRA 4K       │ █████████ │ Maximum quality, 4K output
-FAST           │ ████████░ │ High quality, original res
-DRAFT          │ ███████░░ │ Good preview, original res
+ULTRA 4K          Maximum quality, 4K output
+FAST              High quality, original res
+DRAFT             Good preview, original res
 ```
 
 ### When to Use Each Mode
 
 | Mode | Best For | Output |
 |------|----------|--------|
-| **ULTRA** | Final export, printing, archival | 4K (3840×2160) |
+| **ULTRA** | Final export, printing, archival | 4K (3840�2160) |
 | **FAST** | Web publishing, portfolio | Original size |
 | **DRAFT** | Quick preview, editing | Original size |
 
@@ -174,7 +174,7 @@ When convergence plateaus, the algorithm has found the optimal deblurred state.
 ## Performance Optimization Techniques
 
 ### 1. Reduced Problem Size
-- **4×4 grid**: Only 16 patches to process (vs original 64+ in older system)
+- **4�4 grid**: Only 16 patches to process (vs original 64+ in older system)
 - **~160 atoms**: Minimal computation
 
 ### 2. Parallel Processing
@@ -233,8 +233,8 @@ GridW: 2
 ## File Size Reference
 
 Typical output sizes:
-- Input (512×512): ~50-150 KB
-- Output 4K (3840×2160): ~1-3 MB
+- Input (512�512): ~50-150 KB
+- Output 4K (3840�2160): ~1-3 MB
   - Deblurred images compress well (PNG)
   - Smooth regions = high compression ratio
 
@@ -242,13 +242,13 @@ Typical output sizes:
 
 ### Before (Old System)
 ```
-Input → 2×2 grid → 5 iterations → LOW quality → 512×512
+Input  2�2 grid  5 iterations  LOW quality  512�512
 Time: 500ms+ | Quality: Poor
 ```
 
 ### After (New Ultra Mode)
 ```
-Input → 4×4 grid → 15 iterations → HIGH quality → 3840×2160 upscale
+Input  4�4 grid  15 iterations  HIGH quality  3840�2160 upscale
 Time: 200ms | Quality: Excellent
 ```
 
@@ -270,4 +270,4 @@ For questions or issues:
 
 **Last Updated:** After optimization session
 **Version:** IA-ATOMIQUE Fast Mode v2.0 (4K Ultra)
-**Status:** Production Ready ✅
+**Status:** Production Ready 

@@ -1,4 +1,4 @@
-# 🌊 Pattern Emergence System - Complete Overview
+#  Pattern Emergence System - Complete Overview
 
 ## What Is Pattern Emergence?
 
@@ -9,11 +9,11 @@ The system models an image as a grid of atomic pixels that:
 2. Are anchored to reference values (seeds)
 3. Learn from successful patterns (reinforcement)
 
-Result: **Emergent order from local rules** 🎯
+Result: **Emergent order from local rules** 
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### One Command
 ```bash
@@ -21,7 +21,7 @@ Result: **Emergent order from local rules** 🎯
 ```
 
 ### What Happens
-1. Creates 512×512 pixel grid
+1. Creates 512�512 pixel grid
 2. Adds 15% seeds from your reference image
 3. Runs 200 diffusion iterations
 4. Saves progression in `output/`
@@ -35,46 +35,46 @@ Images showing **evolution from chaos to recognizable pattern**:
 
 ---
 
-## 📐 The Mathematics
+##  The Mathematics
 
 ### Three Core Equations
 
 **1. Local Diffusion**
 ```
-P_ij(t+1) = P_ij(t) + α·Σ W·(P_kl - P_ij)
-             ↓         ↓  ↓              ↓
+P_ij(t+1) = P_ij(t) + ��Σ W�(P_kl - P_ij)
+                                      
           new pixel  current  neighbor  color difference
                      value   weights
 ```
 
 **2. Seed Anchoring**
 ```
-If pixel is a seed point → stay at reference value
-Otherwise              → follow diffusion equation
+If pixel is a seed point  stay at reference value
+Otherwise               follow diffusion equation
 ```
 
 **3. Connection Reinforcement**
 ```
-W(t+1) = W(t) + γ·exp(-||ΔColor||²)
-         ↓        ↓    ↓           ↓
+W(t+1) = W(t) + γ�exp(-||�Color||²)
+                                
       new weight learning  if colors
                     rate   match, strengthen
 ```
 
 ---
 
-## 🎛️ Key Parameters
+##  Key Parameters
 
 | Parameter | Default | Meaning |
 |-----------|---------|---------|
-| **α (alpha)** | 0.15 | How much pixels influence neighbors (0.05-0.30) |
+| **� (alpha)** | 0.15 | How much pixels influence neighbors (0.05-0.30) |
 | **γ (gamma)** | 0.05 | How fast weights learn (0.01-0.10) |
 | **Seed Density** | 0.15 | % of pixels anchored to reference (0.05-0.50) |
 | **Iterations** | 200 | Diffusion steps (50-1000) |
 
 ---
 
-## 📊 Expected Behavior
+##  Expected Behavior
 
 ```
 Iteration 0:     Gray (no structure)
@@ -88,7 +88,7 @@ Loss metric decreases as pattern converges to seeds.
 
 ---
 
-## 🗂️ File Structure
+##  File Structure
 
 ```
 Core Engine:
@@ -114,7 +114,7 @@ Documentation:
 
 ---
 
-## 💡 How It Actually Works
+##  How It Actually Works
 
 ### Pixel Diffusion
 Each pixel "talks" to its 8 neighbors:
@@ -130,16 +130,16 @@ Some pixels are locked to known values:
 
 ### Weight Reinforcement
 Connections between similar pixels get stronger:
-- Similar colors → increase connection weight
-- Different colors → leave weight alone
+- Similar colors  increase connection weight
+- Different colors  leave weight alone
 - Creates stable, reinforcing patterns
 
 ### Combined Effect
-🌊 **Waves** (diffusion) +  📌 **Anchors** (seeds) + 💪 **Learning** (reinforcement) = ✨ **Emergent Patterns**
+ **Waves** (diffusion) +   **Anchors** (seeds) +  **Learning** (reinforcement) =  **Emergent Patterns**
 
 ---
 
-## 🎯 Typical Use Cases
+##  Typical Use Cases
 
 ### 1. Pattern Learning from Reference
 ```bash
@@ -167,31 +167,31 @@ Get accurate copy with high seed density.
 
 ---
 
-## 🔬 What Makes It Special
+##  What Makes It Special
 
-✅ **Local Computation** - No global backpropagation
-✅ **Interpretable** - Can see each step of emergence
-✅ **Fast** - ~100ms per iteration (CPU)
-✅ **Flexible** - Works with any image
-✅ **Scalable** - 256×256 to 2048×2048
-✅ **Mathematical** - Based on physics (diffusion equations)
-✅ **Emergent** - Order from simple local rules
+ **Local Computation** - No global backpropagation
+ **Interpretable** - Can see each step of emergence
+ **Fast** - ~100ms per iteration (CPU)
+ **Flexible** - Works with any image
+ **Scalable** - 256�256 to 2048�2048
+ **Mathematical** - Based on physics (diffusion equations)
+ **Emergent** - Order from simple local rules
 
 ---
 
-## 📈 Performance
+##  Performance
 
 | Resolution | 100 iter | 200 iter | 500 iter |
 |-----------|----------|----------|----------|
-| 256×256   | 1 sec    | 2 sec    | 5 sec    |
-| 512×512   | 4 sec    | 8 sec    | 20 sec   |
-| 1024×1024 | 16 sec   | 32 sec   | 80 sec   |
+| 256�256   | 1 sec    | 2 sec    | 5 sec    |
+| 512�512   | 4 sec    | 8 sec    | 20 sec   |
+| 1024�1024 | 16 sec   | 32 sec   | 80 sec   |
 
 Memory: ~15-50 MB depending on resolution.
 
 ---
 
-## 🧪 Example Outputs
+##  Example Outputs
 
 ### Test: Geometric Shapes
 ```
@@ -208,7 +208,7 @@ All outputs saved to `output/pattern_*.png`
 
 ---
 
-## 📚 Learning Path
+##  Learning Path
 
 1. **Quick Start** (5 min)
    - Run: `./programme pattern emerge 256 256 50 image.png 0.15`
@@ -235,7 +235,7 @@ All outputs saved to `output/pattern_*.png`
 
 ---
 
-## ❓ Common Questions
+##  Common Questions
 
 **Q: Why do I need seeds?**
 A: Seeds anchor waves to reality. Without them, you get pure noise. With them, patterns emerge toward a recognizable target.
@@ -254,17 +254,17 @@ A: This is simpler, faster, interpretable, and works without training data.
 
 ---
 
-## 🎓 What You Learn
+##  What You Learn
 
-- ✓ How local interactions create global structure
-- ✓ Wave propagation and diffusion
-- ✓ Self-organizing systems
-- ✓ Learning through reinforcement
-- ✓ Emergent computation (bottom-up not top-down)
+-  How local interactions create global structure
+-  Wave propagation and diffusion
+-  Self-organizing systems
+-  Learning through reinforcement
+-  Emergent computation (bottom-up not top-down)
 
 ---
 
-## 🚀 Next Steps
+##  Next Steps
 
 1. Copy an image to `input/image/`
 2. Run: `./programme pattern emerge 512 512 200 input/image/your_image.png 0.15`
@@ -274,22 +274,22 @@ A: This is simpler, faster, interpretable, and works without training data.
 
 ---
 
-## 🎉 Summary
+##  Summary
 
 You have a complete **atomic pattern emergence system** that:
 - Models pixels as local autonomous units
 - Implements diffusion equations
 - Uses seeds for guidance
 - Learns through reinforcement
-- Transforms abstract waves → recognizable images
-- Scales from 256×256 to 2048×2048
+- Transforms abstract waves  recognizable images
+- Scales from 256�256 to 2048�2048
 - Is fully documented and tested
 
-**Order emerges from local rules!** 🌊✨
+**Order emerges from local rules!** 
 
 ---
 
-## 📖 Documentation Index
+##  Documentation Index
 
 | Document | Purpose |
 |----------|---------|
@@ -301,8 +301,8 @@ You have a complete **atomic pattern emergence system** that:
 
 ---
 
-**Ready to witness atomic intelligence in action?** 🎨
+**Ready to witness atomic intelligence in action?** 
 
 Run: `./programme pattern emerge 512 512 200 input/image/test.png 0.15`
 
-Done! 🎉
+Done! 

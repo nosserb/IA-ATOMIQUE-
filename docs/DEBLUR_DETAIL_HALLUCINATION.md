@@ -1,58 +1,58 @@
-# Système d'Hallucination de Détails - IA-ATOMIQUE
+# Syst�me d'Hallucination de Détails - IA-ATOMIQUE
 
 **Date**: 13 janvier 2026  
 **Implémentation**: Richardson-Lucy + Amplification Adaptative + Injection de Bruit Structuré
 
 ---
 
-## 🎯 Problème Résolu
+##  Probl�me Résolu
 
-**Avant**: Le système recopiait simplement la structure floue  
-**Maintenant**: Le système **hallucine des détails manquants** via déconvolution physiquement correcte
+**Avant**: Le syst�me recopiait simplement la structure floue  
+**Maintenant**: Le syst�me **hallucine des détails manquants** via déconvolution physiquement correcte
 
 ---
 
-## 🔬 Techniques Implémentées
+##  Techniques Implémentées
 
-### 1️⃣ Richardson-Lucy Déconvolution
+### 1� Richardson-Lucy Déconvolution
 
 **Formule itérative**:
 ```
-I^(n+1) = I^(n) · [(I_blur / (I^(n) * PSF)) * PSF_mirror]
+I^(n+1) = I^(n) � [(I_blur / (I^(n) * PSF)) * PSF_mirror]
 ```
 
 **Avantages vs Unsharp Mask**:
-- ✅ Converge vers la vraie déconvolution
-- ✅ Physiquement correct (maximise la vraisemblance)
-- ✅ Gère mieux le bruit que Wiener simple
-- ✅ Amplifie les détails progressivement
+-  Converge vers la vraie déconvolution
+-  Physiquement correct (maximise la vraisemblance)
+-  G�re mieux le bruit que Wiener simple
+-  Amplifie les détails progressivement
 
 **Implémentation**: `ApplyRichardsonLucyDeconvolution()` (5 itérations par phase)
 
 ---
 
-### 2️⃣ Amplification Adaptative des Gradients
+### 2� Amplification Adaptative des Gradients
 
-**Énergie d'amplification**:
+**�nergie d'amplification**:
 ```
-E_sharp = Σ ||∇I_recon - k·∇I_blur||²
+E_sharp = Σ ||�I_recon - kI_blur||²
 ```
 
 Où **k > 1** amplifie les contours:
 
-| Flou détecté (σ) | k | Résultat |
+| Flou détecté (�) | k | Résultat |
 |------------------|---|----------|
-| σ < 1.0 (léger) | k = 1.5-2.0 | Rehaussement modéré |
-| σ = 1.0-2.0 | k = 2.0-2.5 | Hallucination agressive |
-| σ > 2.0 (fort) | k = 2.5-3.0 | Maximum de détails |
+| � < 1.0 (léger) | k = 1.5-2.0 | Rehaussement modéré |
+| � = 1.0-2.0 | k = 2.0-2.5 | Hallucination agressive |
+| � > 2.0 (fort) | k = 2.5-3.0 | Maximum de détails |
 
-**Clé**: Plus l'image est floue, plus k augmente → détails plus forts
+**Clé**: Plus l'image est floue, plus k augmente  détails plus forts
 
 **Implémentation**: `NewAdaptiveDeconvolutionParams(blur.EstimatedSigma)`
 
 ---
 
-### 3️⃣ Injection de Bruit Structuré
+### 3� Injection de Bruit Structuré
 
 **But**: Créer des textures réalistes (pas du bruit aléatoire)
 
@@ -69,20 +69,20 @@ freq3 := sin(seed * 0.7) * 0.2  // Haute fréquence (grain)
 
 ---
 
-### 4️⃣ Déconvolution Hybride
+### 4� Déconvolution Hybride
 
 **Pipeline par phase**:
 
 ```
-Phase 1 (Coarse, 16×16):
-  1. Richardson-Lucy (5 iter) → déconvolution correcte
-  2. Unsharp mask (k=1.5) → amplification haute-fréquence supplémentaire
+Phase 1 (Coarse, 16�16):
+  1. Richardson-Lucy (5 iter)  déconvolution correcte
+  2. Unsharp mask (k=1.5)  amplification haute-fréquence supplémentaire
   
-Phase 2 (Medium, 8×8):
+Phase 2 (Medium, 8�8):
   1. Richardson-Lucy (5 iter)
   2. Unsharp mask (k=1.5)
   
-Phase 3 (Fine, 4×4):
+Phase 3 (Fine, 4�4):
   1. Richardson-Lucy (5 iter)
   2. Unsharp mask (k=1.5) + bruit structuré
 ```
@@ -91,74 +91,74 @@ Phase 3 (Fine, 4×4):
 
 ---
 
-## 📊 Paramètres Contrôlables
+##  Param�tres Contrôlables
 
 ### `DeconvolutionParams`
 
-| Paramètre | Valeur | Rôle |
+| Param�tre | Valeur | Rôle |
 |-----------|--------|------|
-| `GradientAmplification` | k ∈ [1.5, 3.0] | Facteur d'amplification des gradients |
-| `GaussianSigma` | σ ∈ [0.5, 5.0] | Estimé du flou gaussien (PSF) |
+| `GradientAmplification` | k  [1.5, 3.0] | Facteur d'amplification des gradients |
+| `GaussianSigma` | �  [0.5, 5.0] | Estimé du flou gaussien (PSF) |
 | `SharpeningStrength` | 0.85 | Intensité du rehaussement final (0-1) |
 | `NoiseReduction` | 0.2 | Suppression du bruit (0-1) |
 
 ### Adaptation Automatique
 
 ```go
-// Estimation du flou à partir de std_dev(∇I)
+// Estimation du flou � partir de std_dev(�I)
 blur.EstimatedSigma = max(0.5, (0.10 - gradientStdDev) * 20.0)
 
 // Amplification adaptative
-k = 1.5 + (blur.EstimatedSigma * 0.5)  // k ∈ [1.5, 3.0]
+k = 1.5 + (blur.EstimatedSigma * 0.5)  // k  [1.5, 3.0]
 ```
 
 ---
 
-## 🔥 Comparaison Avant/Après
+##  Comparaison Avant/Apr�s
 
-### **Système Précédent** (Gradient Matching Simple)
+### **Syst�me Précédent** (Gradient Matching Simple)
 
 ```
-E_sharp = Σ ||∇I_recon - ∇I_blur||²
+E_sharp = Σ ||�I_recon - �I_blur||²
 ```
 
-**Problème**: Minimise l'écart → **reproduit le flou**
+**Probl�me**: Minimise l'écart  **reproduit le flou**
 
-**Résultat**: Image identique à l'entrée (conservation de structure uniquement)
+**Résultat**: Image identique � l'entrée (conservation de structure uniquement)
 
 ---
 
-### **Système Actuel** (Hallucination de Détails)
+### **Syst�me Actuel** (Hallucination de Détails)
 
 ```
-E_sharp = Σ ||∇I_recon - k·∇I_blur||² where k > 1
+E_sharp = Σ ||�I_recon - kI_blur||² where k > 1
 + Richardson-Lucy(5 iterations)
 + Structured noise injection
 ```
 
-**Avantage**: Force les gradients à être **k fois plus forts** → **crée des détails**
+**Avantage**: Force les gradients � �tre **k fois plus forts**  **crée des détails**
 
 **Résultat**: 
-- ✅ Contours nets (k=2.2 → 120% plus forts)
-- ✅ Textures réalistes (bruit structuré multi-octave)
-- ✅ Déconvolution physiquement correcte (Richardson-Lucy)
-- ✅ Pas de bruit excessif (suppression adaptative à 20%)
+-  Contours nets (k=2.2  120% plus forts)
+-  Textures réalistes (bruit structuré multi-octave)
+-  Déconvolution physiquement correcte (Richardson-Lucy)
+-  Pas de bruit excessif (suppression adaptative � 20%)
 
 ---
 
-## 📈 Performance
+##  Performance
 
-**Benchmark** (1920×1080, 16×16 grid, 80 itérations):
-- ⏱️ Temps total: **~20ms**
-- 🔄 Richardson-Lucy: 5 iterations × 3 phases = **15 déconvolutions**
-- 🎨 Injection de bruit: **256 patches**
-- 📊 Amplification: **k adaptatif par patch**
+**Benchmark** (1920�1080, 16�16 grid, 80 itérations):
+-  Temps total: **~20ms**
+-  Richardson-Lucy: 5 iterations � 3 phases = **15 déconvolutions**
+-  Injection de bruit: **256 patches**
+-  Amplification: **k adaptatif par patch**
 
-**Scalabilité**: Linéaire O(n×patches×iterations)
+**Scalabilité**: Linéaire O(n�patches�iterations)
 
 ---
 
-## 🚀 Utilisation
+##  Utilisation
 
 ### Commande
 
@@ -195,13 +195,13 @@ func NewDefaultDeconvolutionParams() *DeconvolutionParams {
 
 ---
 
-## 🎓 Fondements Théoriques
+##  Fondements Théoriques
 
 ### Richardson-Lucy Algorithm
 
 **Base**: Maximum de vraisemblance (Bayesian inference)
 
-**Hypothèses**:
+**Hypoth�ses**:
 - Flou modélisable par convolution: `I_blur = I_sharp * PSF`
 - Bruit Poisson (approprié pour images naturelles)
 
@@ -214,18 +214,18 @@ func NewDefaultDeconvolutionParams() *DeconvolutionParams {
 ### Amplification des Gradients
 
 **Intuition**: 
-- Flou gaussien → atténue les hautes fréquences
-- Défloutage → restaure les hautes fréquences
-- k > 1 → **crée des fréquences plus fortes** que l'original estimé
+- Flou gaussien  atténue les hautes fréquences
+- Défloutage  restaure les hautes fréquences
+- k > 1  **crée des fréquences plus fortes** que l'original estimé
 
 **Justification physique**:
 ```
-Si I_blur = I_sharp * G_σ (flou)
-Alors ∇I_blur ≈ ∇I_sharp * G_σ (gradients atténués)
-Donc ∇I_sharp ≈ k·∇I_blur où k > 1
+Si I_blur = I_sharp * G_� (flou)
+Alors �I_blur  �I_sharp * G_� (gradients atténués)
+Donc �I_sharp  kI_blur où k > 1
 ```
 
-**Limite**: k trop grand → amplification du bruit
+**Limite**: k trop grand  amplification du bruit
 
 ---
 
@@ -242,7 +242,7 @@ Donc ∇I_sharp ≈ k·∇I_blur où k > 1
 
 ---
 
-## 🔧 Fonctions Clés
+##  Fonctions Clés
 
 ### Core Deconvolution
 
@@ -260,7 +260,7 @@ generateStructuredNoise(i, j, channel int) float64
 ### Energy Terms
 
 ```go
-// E_sharp = Σ ||∇I_recon - k·∇I_blur||²
+// E_sharp = Σ ||�I_recon - kI_blur||²
 CalculateSharpenEnergyAmplified(atoms [][]PixelAtomV2, targetGrad [3]*GradientField, k float64) float64
 
 // Gradient local avec amplification
@@ -273,32 +273,32 @@ computeLocalSharpenGradientAmplified(atoms, targetGrad, i, j, k)
 // k adaptatif basé sur flou détecté
 NewAdaptiveDeconvolutionParams(blurSigma float64) *DeconvolutionParams
 
-// Estimation σ à partir de std_dev(∇I)
+// Estimation � � partir de std_dev(�I)
 blur.EstimatedSigma = max(0.5, (0.10 - gradientStdDev) * 20.0)
 ```
 
 ---
 
-## ✨ Innovations par Rapport à l'État de l'Art
+##  Innovations par Rapport � l'�tat de l'Art
 
 1. **Déconvolution Hybride**: Richardson-Lucy + Unsharp mask  
-   → Meilleure qualité que chaque méthode seule
+    Meilleure qualité que chaque méthode seule
 
 2. **Amplification Adaptative**: k varie selon le flou détecté  
-   → Pas de sur-amplification sur zones nettes
+    Pas de sur-amplification sur zones nettes
 
 3. **Bruit Structuré**: Perlin multi-octave au lieu de bruit blanc  
-   → Textures réalistes, pas d'artefacts
+    Textures réalistes, pas d'artefacts
 
-4. **Multi-phase**: Coarse→Medium→Fine avec déconvolution à chaque étape  
-   → Détails progressifs, stabilité garantie
+4. **Multi-phase**: CoarseMediumFine avec déconvolution � chaque étape  
+    Détails progressifs, stabilité garantie
 
-5. **Extrêmement Rapide**: 20ms pour 1920×1080  
-   → ~30× plus rapide que méthodes deep learning équivalentes
+5. **Extr�mement Rapide**: 20ms pour 1920�1080  
+    ~30� plus rapide que méthodes deep learning équivalentes
 
 ---
 
-## 📝 Notes Techniques
+##  Notes Techniques
 
 ### Boundaries Handling
 
@@ -321,7 +321,7 @@ ratio[i][j] = blurred[i][j] / (convolved[i][j] + 1e-6)
 
 ### Clamping
 
-Toutes les valeurs RGB sont clampées à [0, 1]:
+Toutes les valeurs RGB sont clampées � [0, 1]:
 ```go
 atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 ```
@@ -330,7 +330,7 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 
 ---
 
-## 🎯 Limitations & Extensions Futures
+##  Limitations & Extensions Futures
 
 ### Limitations Actuelles
 
@@ -346,14 +346,14 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 ### Extensions Possibles
 
 - [ ] **Blind deconvolution**: Estimer PSF automatiquement
-- [ ] **Deep priors**: Intégrer réseau pré-entraîné pour guidance
+- [ ] **Deep priors**: Intégrer réseau pré-entra�né pour guidance
 - [ ] **Multi-échelle adaptatif**: Grid size basé sur contenu local
 - [ ] **Déconvolution anisotrope**: PSF différente par direction
 - [ ] **Correction d'aberration**: Gérer flou chromatique
 
 ---
 
-## 📚 Références
+##  Références
 
 1. **Richardson-Lucy Algorithm**
    - Richardson, W. H. (1972). "Bayesian-Based Iterative Method of Image Restoration"
@@ -372,16 +372,16 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 
 ---
 
-## 🏆 Résumé
+##  Résumé
 
-Le système d'hallucination de détails combine:
+Le syst�me d'hallucination de détails combine:
 
-✅ **Richardson-Lucy** → Déconvolution physiquement correcte  
-✅ **k > 1 adaptatif** → Amplification des gradients basée sur flou détecté  
-✅ **Bruit structuré** → Textures réalistes multi-octave  
-✅ **Multi-phase** → Détails progressifs sans instabilité  
+ **Richardson-Lucy**  Déconvolution physiquement correcte  
+ **k > 1 adaptatif**  Amplification des gradients basée sur flou détecté  
+ **Bruit structuré**  Textures réalistes multi-octave  
+ **Multi-phase**  Détails progressifs sans instabilité  
 
-**Résultat**: Images nettes avec détails hallucinés de manière plausible, **~30× plus rapide** que deep learning équivalent, tout en restant **physiquement justifié**.
+**Résultat**: Images nettes avec détails hallucinés de mani�re plausible, **~30� plus rapide** que deep learning équivalent, tout en restant **physiquement justifié**.
 
 ---
 

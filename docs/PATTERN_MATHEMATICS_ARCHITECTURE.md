@@ -1,90 +1,90 @@
-# 🏗️ ARCHITECTURE PATTERNS MATHÉMATIQUES - Vue Complète
+#  ARCHITECTURE PATTERNS MATH�MATIQUES - Vue Compl�te
 
 **Date**: January 9, 2026  
-**Sujet**: Comment la mécanique mathématique des patterns s'intègre au système entier
+**Sujet**: Comment la mécanique mathématique des patterns s'int�gre au syst�me entier
 
 ---
 
-## 🗺️ ARCHITECTURE GLOBALE
+## � ARCHITECTURE GLOBALE
 
 ### Niveau 1: Foundation (Existing)
 
 ```
-┌─────────────────────────────────┐
-│   database/atomic.go            │
-│   • ComputationalAtom           │
-│   • AtomicNetwork               │
-│   • Résonance R(si, sj)         │
-│   • Itération asynchrone        │
-└────────────────────┬────────────┘
-                     │
-                     ↓
+
+   database/atomic.go            
+    ComputationalAtom           
+    AtomicNetwork               
+    Résonance R(si, sj)         
+    Itération asynchrone        
+�
+                     
+                     
         [Utilisé pour texte depuis Jan 8]
 ```
 
 ### Niveau 2: Image Atomics (Créé)
 
 ```
-┌─────────────────────────────────┐
-│   database/image_atoms.go       │
-│   • PixelAtom                   │
-│   • AtomicImageNetwork (2D)     │
-│   • Itération pixels            │
-│   • Voisinage 8-direction       │
-└────────────────────┬────────────┘
-                     │
-                     ↓
+
+   database/image_atoms.go       
+    PixelAtom                   
+    AtomicImageNetwork (2D)     
+    Itération pixels            
+    Voisinage 8-direction       
+�
+                     
+                     
         [Génération simple depuis Jan 8]
 ```
 
-### Niveau 3: Patterns Mathématiques ← **NOUVEAU**
+### Niveau 3: Patterns Mathématiques  **NOUVEAU**
 
 ```
-┌─────────────────────────────────┐
-│   database/pattern_mathematics.go│
-│   • PatternMathematical         │
-│   • BasisFunctionEvaluator      │
-│   • ExtractPatternFromImage()   │
-│   • CombinePatterns()           │
-│   • PatternSimilarity()         │
-│   • Fourier/Gaussian/Polynomial │
-└────────────────────┬────────────┘
-                     │
-                     ↓
+
+   database/pattern_mathematics.go
+    PatternMathematical         
+    BasisFunctionEvaluator      
+    ExtractPatternFromImage()   
+    CombinePatterns()           
+    PatternSimilarity()         
+    Fourier/Gaussian/Polynomial 
+�
+                     
+                     
         [Apprendre & composer patterns]
 ```
 
 ### Niveau 4: Commands CLI
 
 ```
-┌──────────────────────────────────────────┐
-│   generation_commands.go                  │
-│   • HandleGenerateFromPrompt()            │
-│   • HandleGenerateWithPattern()  ← NEW    │
-└──────────────────┬───────────────────────┘
-         │                    │
-         ↓                    ↓
+
+   generation_commands.go                  
+    HandleGenerateFromPrompt()            
+    HandleGenerateWithPattern()   NEW    
+�
+                             
+                             
     [Pattern DB]      [Applied Pattern]
 ```
 
 ---
 
-## 🔄 FLUX COMPLET: DE L'IMAGE À LA GÉNÉRATION
+##  FLUX COMPLET: DE L'IMAGE � LA G�N�RATION
 
 ### Phase 1: Apprentissage (User Input)
 
 ```
 Input: "Image de coucher de soleil"
-       sunset.png (512×512 pixels)
+       sunset.png (512�512 pixels)
        
-       ↓ ./programme pattern math-extract sunset.png 20
+        ./programme pattern math-extract sunset.png 20
        
        database.ExtractPatternFromImage()
-           ↓
+           
        Pour chaque pixel (x,y):
-           - Récupère couleur C(x,y) = [R, G, B] ∈ [0,1]
+           - Récup�re couleur C(x,y) = [R, G, B]  [0,1]
            - Pour chaque fonction de base gk(x,y):
-               αk += C(x,y) × gk(x,y) / ||gk||²
+               �k += C(x,y) � gk(x,y) / ||gk||²
            
        PatternMathematical {
            PatternID: "sunset",
@@ -94,7 +94,7 @@ Input: "Image de coucher de soleil"
                +0.23, +0.18, ..., (20 pour G)
                +0.38, +0.42, ..., (20 pour B)
            ],
-           Reconstruction MSE: 0.043  ✅
+           Reconstruction MSE: 0.043  
        }
 ```
 
@@ -116,12 +116,12 @@ patterns.db (JSON)
 Commande: ./programme pattern math-compose sunset:0.6 ocean:0.4 512 512 result.png
 
 database.CombinePatterns([sunset, ocean], [0.6, 0.4], 512, 512)
-    ↓
+    
 Pour chaque pixel (x,y):
-    C_sunset = Σ α_sunset,k × g_k(x,y)
-    C_ocean = Σ α_ocean,k × g_k(x,y)
-    C_result = 0.6 × C_sunset + 0.4 × C_ocean
-    ↓
+    C_sunset = Σ �_sunset,k � g_k(x,y)
+    C_ocean = Σ �_ocean,k � g_k(x,y)
+    C_result = 0.6 � C_sunset + 0.4 � C_ocean
+    
 Export PNG
 ```
 
@@ -131,121 +131,121 @@ Export PNG
 Commande: ./programme generate with-math-pattern sunset 512 512 100 "dark forest"
 
 database.ExtractPatternFromImage() chargé
-    ↓
+    
 database.NewAtomicImageNetwork(512, 512, 8)
-    ↓
+    
 Pour chaque atome:
-    C_target = Σ α_sunset,k × g_k(x,y)  [Pattern]
+    C_target = Σ �_sunset,k � g_k(x,y)  [Pattern]
     + prompt_influence("forest")           [Texte]
-    ↓
+    
 database.ApplyPatternToAtomicNetwork(network, pattern)
-    ↓
+    
 Pour 100 itérations:
     Chaque atome:
         s_i(t+1) = s_i(t)
-                 + β × (C_target - C_i)           [Pattern force]
-                 + α × Σ_j w_ij × R(s_i, s_j)    [Résonance]
-    ↓
-Convergence → Image finale
+                 + β � (C_target - C_i)           [Pattern force]
+                 + � � Σ_j w_ij � R(s_i, s_j)    [Résonance]
+    
+Convergence  Image finale
 ```
 
 ---
 
-## 📐 MATHÉMATIQUES IMPLÉMENTÉES
+##  MATH�MATIQUES IMPL�MENT�ES
 
 ### Foundation: Décomposition Fourier
 
 ```
-gk(x,y) = cos(2π·kx·x/W) × cos(2π·ky·y/H)
+gk(x,y) = cos(2��kx�x/W) � cos(2��ky�y/H)
 
 Où:
   W, H = dimensions image
-  kx, ky = indices fréquence (0 à √N-1)
+  kx, ky = indices fréquence (0 � N-1)
   N = nombre de composantes (20)
 
 Exemple avec N=4:
-  g0(x,y) = cos(0) × cos(0) = 1        [DC, moyenne]
-  g1(x,y) = cos(2πx/W) × cos(0)        [Horizontal 1x]
-  g2(x,y) = cos(0) × cos(2πy/H)        [Vertical 1x]
-  g3(x,y) = cos(2πx/W) × cos(2πy/H)   [Diagonal 1x]
+  g0(x,y) = cos(0) � cos(0) = 1        [DC, moyenne]
+  g1(x,y) = cos(2�x/W) � cos(0)        [Horizontal 1x]
+  g2(x,y) = cos(0) � cos(2�y/H)        [Vertical 1x]
+  g3(x,y) = cos(2�x/W) � cos(2�y/H)   [Diagonal 1x]
 ```
 
 ### Extraction: Projection Orthogonale
 
 ```
-min ||C - Σ αk·gk||²  (Erreur quadratique)
-   αk
+min ||C - Σ �k�gk||²  (Erreur quadratique)
+   �k
 
 Solution (Gram-Schmidt):
-  αk = (Σ_{x,y} C(x,y)·gk(x,y)) / (Σ_{x,y} gk(x,y)²)
+  �k = (Σ_{x,y} C(x,y)�gk(x,y)) / (Σ_{x,y} gk(x,y)²)
 
 Implémentation:
   coeff = 0.0
   normalization = 0.0
   Pour (x,y) chaque pixel:
-      coeff += pixel[x,y] × gk(x,y)
+      coeff += pixel[x,y] � gk(x,y)
       normalization += gk(x,y)²
-  αk = coeff / normalization
+  �k = coeff / normalization
 ```
 
 ### Reconstruction: Inverse
 
 ```
-C_reconstructed(x,y) = Σ αk · gk(x,y)
+C_reconstructed(x,y) = Σ �k � gk(x,y)
 
 Pour chaque pixel:
     Pour chaque fonction:
-        C[x,y] += α[k] × gk(x,y)
+        C[x,y] += �[k] � gk(x,y)
 ```
 
 ### Validation: MSE
 
 ```
-MSE = √(Σ_{x,y,c} (C_original[x,y,c] - C_reconstructed[x,y,c])²)
-      / (W × H × 3)
+MSE = (Σ_{x,y,c} (C_original[x,y,c] - C_reconstructed[x,y,c])²)
+      / (W � H � 3)
 
-MSE < 0.05  → ✅ Excellent (95% du pattern capturé)
-MSE 0.05-0.1 → ✅ Bon (90-95%)
-MSE > 0.15   → ❌ Pas assez (< 85%)
+MSE < 0.05    Excellent (95% du pattern capturé)
+MSE 0.05-0.1   Bon (90-95%)
+MSE > 0.15     Pas assez (< 85%)
 ```
 
 ---
 
-## 🎯 INTÉGRATION AVEC ATOMIC NETWORK
+##  INT�GRATION AVEC ATOMIC NETWORK
 
-### Mise à Jour Atomique avec Pattern
+### Mise � Jour Atomique avec Pattern
 
 **Formule standard** (sans pattern):
 ```
 s_i(t+1) = s_i(t) 
-         + α × Σ_j∈N(i) w_ij × R(s_i, s_j)
+         + � � Σ_jN(i) w_ij � R(s_i, s_j)
 ```
 
 **Formule avec pattern** (ce qu'on veut faire):
 ```
 s_i(t+1) = s_i(t)
-         + β × (f(x_i, y_i) - s_i(t))        ← Pattern guidé
-         + α × Σ_j∈N(i) w_ij × R(s_i, s_j)  ← Résonance locale
+         + β � (f(x_i, y_i) - s_i(t))         Pattern guidé
+         + � � Σ_jN(i) w_ij � R(s_i, s_j)   Résonance locale
 ```
 
 Où:
 - **β** = force du pattern (0.0-1.0)
-- **f(x_i, y_i)** = couleur cible du pattern = Σ αk × gk(x_i, y_i)
+- **f(x_i, y_i)** = couleur cible du pattern = Σ �k � gk(x_i, y_i)
 
 ### Implementation (pseudocode)
 
 ```go
-// ÉTAPE 1: Charger pattern
+// �TAPE 1: Charger pattern
 pattern := LoadPattern("sunset")
 
-// ÉTAPE 2: Créer réseau
+// �TAPE 2: Créer réseau
 network := NewAtomicImageNetwork(512, 512, 8)
 
-// ÉTAPE 3: Appliquer pattern
+// �TAPE 3: Appliquer pattern
 for i := 0; i < len(network.Atoms); i++ {
     atom := network.Atoms[i]
     
-    // Évaluer f(x, y)
+    // �valuer f(x, y)
     colorTarget := [3]float64{0, 0, 0}
     for channel := 0; channel < 3; channel++ {
         for k := 0; k < pattern.BasisFunctions; k++ {
@@ -259,7 +259,7 @@ for i := 0; i < len(network.Atoms); i++ {
     atom.ConstraintStrength = 0.8      // β
 }
 
-// ÉTAPE 4: Itérer
+// �TAPE 4: Itérer
 for iter := 0; iter < 100; iter++ {
     for i := 0; i < len(network.Atoms); i++ {
         atom := network.Atoms[i]
@@ -272,36 +272,36 @@ for iter := 0; iter < 100; iter++ {
             resonanceInfluence += atom.ConnectionWeights[j] * resonance
         }
         
-        // Mise à jour avec pattern
+        // Mise � jour avec pattern
         atom.State += β * (colorTarget - atom.State)
-                   + α * resonanceInfluence
+                   + � * resonanceInfluence
         
         // Clamp [0, 1]
         atom.State = Clamp(atom.State, 0, 1)
     }
 }
 
-// ÉTAPE 5: Export
+// �TAPE 5: Export
 ExportToPNG(network)
 ```
 
 ---
 
-## 🔀 COMPOSITION DE PATTERNS
+##  COMPOSITION DE PATTERNS
 
 ### Mathématique
 
 ```
-f_composed(x,y) = w1 × f1(x,y) + w2 × f2(x,y) + ... + wN × fN(x,y)
+f_composed(x,y) = w1 � f1(x,y) + w2 � f2(x,y) + ... + wN � fN(x,y)
 
 Où Σ wi = 1 (normalisé)
 
 Exemple:
-    f_composed = 0.6 × f_sunset + 0.4 × f_ocean
+    f_composed = 0.6 � f_sunset + 0.4 � f_ocean
     
     Pour chaque pixel (x,y):
-        C = 0.6 × (Σ α_sunset,k × gk(x,y))
-          + 0.4 × (Σ α_ocean,k × gk(x,y))
+        C = 0.6 � (Σ �_sunset,k � gk(x,y))
+          + 0.4 � (Σ �_ocean,k � gk(x,y))
 ```
 
 ### Implémentation
@@ -323,7 +323,7 @@ func CombinePatterns(patterns []*Pattern, weights []float64) [][][3]float64 {
                 pattern := patterns[p]
                 weight := weights[p]
                 
-                // Évaluer f_p(x, y)
+                // �valuer f_p(x, y)
                 for c := 0; c < 3; c++ {
                     for k := 0; k < pattern.BasisFunctions; k++ {
                         basis := EvaluateBasis(k, x, y, pattern.BasisType)
@@ -341,12 +341,12 @@ func CombinePatterns(patterns []*Pattern, weights []float64) [][][3]float64 {
 
 ---
 
-## ⚡ PERFORMANCES
+##  PERFORMANCES
 
 ### Extraction (une fois)
 
 ```
-Image: 512×512
+Image: 512�512
 BasisCount: 20
 Channels: 3
 
@@ -354,31 +354,31 @@ Opérations:
   Pour chaque pixel (262,144):
     Pour chaque canal (3):
       Pour chaque base (20):
-        αk += C × gk
+        �k += C � gk
         
-Total: 262,144 × 3 × 20 = 15.7M opérations
+Total: 262,144 � 3 � 20 = 15.7M opérations
 Temps: ~50-100ms
 ```
 
 ### Application (par génération)
 
 ```
-Image: 512×512
+Image: 512�512
 BasisCount: 20
 Channels: 3
 
-Opérations: 15.7M (même)
+Opérations: 15.7M (m�me)
 Temps: ~10ms
 ```
 
 ### Atomic Iteration (100x)
 
 ```
-Réseau: 512×512 atomes
+Réseau: 512�512 atomes
 Itérations: 100
 Opérations par atome: ~50 (reads neighbors, compute, update)
 
-Total: 262,144 × 100 × 50 = 1.3B opérations
+Total: 262,144 � 100 � 50 = 1.3B opérations
 Temps: 100-500ms (sur CPU moderne)
 ```
 
@@ -389,15 +389,15 @@ Extraction:        (first time only) 50-100ms
 Pattern loading:   <1ms
 Atomic iteration:  100-500ms
 Export PNG:        ~20ms
-─────────────────────────────
+
 Total:             100-520ms
 vs Stable Diffusion: 30-60 seconds
-Gain:              60-600x plus rapide ✅
+Gain:              60-600x plus rapide 
 ```
 
 ---
 
-## 🎓 INSIGHTS
+##  INSIGHTS
 
 ### Pourquoi Fourier?
 
@@ -405,7 +405,7 @@ Gain:              60-600x plus rapide ✅
 2. **Efficace**: Seulement N=20 composantes capture 95%
 3. **Orthogonal**: Les fonctions sont indépendantes
 4. **Rapide**: Calcul simple cos() au lieu de FFT
-5. **Scalable**: Fonctionne à n'importe quelle résolution
+5. **Scalable**: Fonctionne � n'importe quelle résolution
 
 ### Pourquoi 3 types de bases?
 
@@ -418,59 +418,59 @@ Gain:              60-600x plus rapide ✅
 ### Déterminisme
 
 ```
-Avantage clé: DÉTERMINISTE
+Avantage clé: D�TERMINISTE
     
 Fourier décomposition:
-    C(x,y) → αk (déterministe)
-    f(x,y) = Σ αk × gk(x,y) (déterministe)
+    C(x,y)  �k (déterministe)
+    f(x,y) = Σ �k � gk(x,y) (déterministe)
     
 Atomic iteration:
-    s_i(t) → s_i(t+1) (déterministe, pas de randomness)
+    s_i(t)  s_i(t+1) (déterministe, pas de randomness)
     
-Résultat: MÊME IMAGE À CHAQUE FOIS
+Résultat: M�ME IMAGE � CHAQUE FOIS
     (vs Stable Diffusion: aléatoire!)
 ```
 
 ---
 
-## 🚀 FLUX RÉEL (Prêt pour impl.)
+##  FLUX R�EL (Pr�t pour impl.)
 
 ```
 User: "./programme generate with-math-pattern sunset 512 512 100 "dark forest""
-       ↓
+       
 GenerateCommand() router
-       ↓
+       
 HandleGenerateWithMathPattern()
-       ├─ ValidateArgs() ✓
-       ├─ LoadPattern("sunset") from patterns.db
-       ├─ NewAtomicImageNetwork(512, 512, 8)
-       ├─ ParsePrompt("dark forest")
-       │  └─ GREEN influence
-       ├─ ApplyPatternToAtomicNetwork()
-       │  └─ Pour chaque atome: C_target = f_sunset(x,y)
-       ├─ ApplyPromptConstraints()
-       │  └─ Modifier C_target avec prompt
-       │
-       ├─ FOR iter=0 TO 100:
-       │  FOR atom in network.Atoms:
-       │    1. Lire 8 voisins (pas de lock!)
-       │    2. Calculate resonance
-       │    3. Update state with pattern + resonance
-       │    4. Clamp [0, 1]
-       │    5. Update connection weights
-       │    6. Check freeze state
-       │
-       ├─ ConvertToImage()
-       │  └─ Chaque pixel = couleur de son atome
-       └─ ExportToPNG("generated_image.png")
+        ValidateArgs() 
+        LoadPattern("sunset") from patterns.db
+        NewAtomicImageNetwork(512, 512, 8)
+        ParsePrompt("dark forest")
+          GREEN influence
+        ApplyPatternToAtomicNetwork()
+          Pour chaque atome: C_target = f_sunset(x,y)
+        ApplyPromptConstraints()
+          Modifier C_target avec prompt
+       
+        FOR iter=0 TO 100:
+         FOR atom in network.Atoms:
+           1. Lire 8 voisins (pas de lock!)
+           2. Calculate resonance
+           3. Update state with pattern + resonance
+           4. Clamp [0, 1]
+           5. Update connection weights
+           6. Check freeze state
+       
+        ConvertToImage()
+          Chaque pixel = couleur de son atome
+        ExportToPNG("generated_image.png")
 
 OUTPUT: Image guidée par pattern sunset + prompt "dark forest"
-TIME: 100-200ms ✅
+TIME: 100-200ms 
 ```
 
 ---
 
-## ✅ VALIDATION CHECKLIST
+##  VALIDATION CHECKLIST
 
 - [x] PatternMathematical struct
 - [x] BasisFunctionEvaluator
@@ -481,14 +481,14 @@ TIME: 100-200ms ✅
 - [x] CombinePatterns()
 - [x] PatternSimilarity()
 - [x] PrintPatternAnalysis()
-- [x] Compilation ✅ CLEAN
+- [x] Compilation  CLEAN
 - [ ] CLI Integration (next phase)
 - [ ] Database persistence (next phase)
 - [ ] Real testing with images (next phase)
 
 ---
 
-## 📚 Fichiers de Référence
+##  Fichiers de Référence
 
 - `database/pattern_mathematics.go` - Implémentation
 - `PATTERN_MATHEMATICS_EXPLAINED.md` - Mathématiques
@@ -496,5 +496,5 @@ TIME: 100-200ms ✅
 
 ---
 
-**Status**: ✅ Fondations mathématiques solides, prêt pour intégration CLI!
+**Status**:  Fondations mathématiques solides, pr�t pour intégration CLI!
 

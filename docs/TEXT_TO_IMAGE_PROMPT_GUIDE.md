@@ -1,4 +1,4 @@
-# 🧠 Text-to-Image Generation via Neural Prompts
+#  Text-to-Image Generation via Neural Prompts
 
 ## Overview
 
@@ -9,20 +9,20 @@ Generate images directly from **natural language prompts** using the neural netw
 3. **Creates** a pattern from neural activations
 4. **Generates** a final image through atomic resonance
 
-This bridges language understanding and visual generation—what you describe in words becomes visual structure through neural activation.
+This bridges language understanding and visual generationwhat you describe in words becomes visual structure through neural activation.
 
 ## How It Works
 
-### Step 1: Prompt Analysis 🧠
+### Step 1: Prompt Analysis 
 ```
-Input: "une forêt mystérieuse avec des arbres luminescents"
-         ↓
-Tokenization → [forêt, mystérieuse, arbres, luminescents]
-         ↓
-Neuron Activation → Category 1 (TECH): 2 neurons
-                  → Category 2 (HISTOIRE): 0 neurons
-                  → etc.
-         ↓
+Input: "une for�t mystérieuse avec des arbres luminescents"
+         
+Tokenization  [for�t, mystérieuse, arbres, luminescents]
+         
+Neuron Activation  Category 1 (TECH): 2 neurons
+                   Category 2 (HISTOIRE): 0 neurons
+                   etc.
+         
 Semantic Confidence: 100%
 ```
 
@@ -33,7 +33,7 @@ The neural system:
 - Maps words to neuron categories
 - Calculates confidence score
 
-### Step 2: Pattern Injection 📌
+### Step 2: Pattern Injection 
 Neural activations become spatial color patterns:
 - Each activated neuron influences a color region
 - Activation strength determines saturation
@@ -41,14 +41,14 @@ Neural activations become spatial color patterns:
 - Confidence determines lightness
 - Distributed across the grid with variation
 
-### Step 3: Atomic Generation ⚛️
+### Step 3: Atomic Generation 
 Standard atomic resonance with neural-injected pattern:
-- Atoms propagate states locally (resonance α)
+- Atoms propagate states locally (resonance �)
 - Follow neural pattern (pattern β)
 - Smooth colors locally (smoothing γ)
 - Stabilize to final image
 
-### Step 4: Output 🖼️
+### Step 4: Output �
 Final PNG image reflecting the semantic content of your prompt.
 
 ## Command Syntax
@@ -64,7 +64,7 @@ Final PNG image reflecting the semantic content of your prompt.
 | **width** | 128-1024 | 512 |
 | **height** | 128-1024 | 512 |
 | **iterations** | 50-500 | 200 |
-| **prompt** | Any French/English text | "forêt mystérieuse" |
+| **prompt** | Any French/English text | "for�t mystérieuse" |
 
 ## Examples
 
@@ -84,7 +84,7 @@ Final PNG image reflecting the semantic content of your prompt.
 
 ### Complex Scene
 ```bash
-./programme generate from-prompt 512 512 200 "château médiéval dans la brume avec des torches"
+./programme generate from-prompt 512 512 200 "ch�teau médiéval dans la brume avec des torches"
 # Activates: HISTOIRE (castle), mixed semantic content
 # Output: Complex spatial patterns reflecting multiple concepts
 ```
@@ -103,10 +103,10 @@ The system recognizes these semantic categories:
 | Category | ID | Keywords |
 |----------|----|----|
 | **TECH** | 1 | technologie, algorithme, circuit, code, digital, futuriste, robot |
-| **HISTOIRE** | 2 | histoire, château, medieval, roi, empire, politique, ancien |
+| **HISTOIRE** | 2 | histoire, ch�teau, medieval, roi, empire, politique, ancien |
 | **BUSINESS** | 3 | commerce, économie, marché, entreprise, vente, affaires |
-| **ALIMENTATION** | 4 | nourriture, fruit, cuisine, restaurant, manger, pain, gâteau |
-| **SANTÉ** | 5 | médecine, santé, hôpital, docteur, maladie, cure |
+| **ALIMENTATION** | 4 | nourriture, fruit, cuisine, restaurant, manger, pain, g�teau |
+| **SANT�** | 5 | médecine, santé, hôpital, docteur, maladie, cure |
 | **VERBE** | 6 | actions detected from verb forms |
 
 **Keywords are extracted** from your prompt and mapped to these categories. More keywords in a category = stronger activation.
@@ -116,61 +116,61 @@ The system recognizes these semantic categories:
 The generation shows:
 
 ```
-🧠 Phase 1: Analyze Prompt
+ Phase 1: Analyze Prompt
    Input: "your prompt text"
    Keywords extracted: [word1, word2, ...]
    Semantic confidence: XX%
    N categories activated
    
    Top activations:
-      • CATEGORY_NAME: N neurons
+       CATEGORY_NAME: N neurons
 
-🔧 Phase 2: Initialize Grid (256x256)
+ Phase 2: Initialize Grid (256x256)
    65536 atoms initialized
 
-📌 Phase 3: Inject Pattern
+ Phase 3: Inject Pattern
    Neural activations injected as pattern
 
-⚛️ Phase 4: Generation (100 iterations)
+ Phase 4: Generation (100 iterations)
    Progress at 25%, 50%, 75%, 100%
 
-✅ Complete
+ Complete
    Output: output/atomic_prompt_256x256_100iter.png
 ```
 
 ## Tips for Better Results
 
 ### Keywords Matter
-✅ **Good**: "forêt sombre avec des arbres anciens"
+ **Good**: "for�t sombre avec des arbres anciens"
    - Multiple descriptive keywords
    - Clear visual concepts
    
-❌ **Less Good**: "la forêt"
+ **Less Good**: "la for�t"
    - Too generic, few keywords extracted
 
 ### Be Descriptive
-✅ **Good**: "océan tempétueux avec vagues géantes et tempête"
+ **Good**: "océan tempétueux avec vagues géantes et temp�te"
    - More activation from multiple keywords
    - Stronger pattern injection
    
-❌ **Less Good**: "mer"
+ **Less Good**: "mer"
    - Single word, minimal activation
 
 ### Mixing Categories
-✅ "technologie futuriste dans un château médiéval"
+ "technologie futuriste dans un ch�teau médiéval"
    - Mixes TECH + HISTOIRE
    - Creates complex pattern interplay
    
-✅ "restaurant avec nourriture saine"
-   - Mixes ALIMENTATION + SANTÉ
+ "restaurant avec nourriture saine"
+   - Mixes ALIMENTATION + SANT�
    - Blended semantic influence
 
 ### Emotion & Adjectives
-✅ "forêt sombre, mystérieuse, ancienne"
+ "for�t sombre, mystérieuse, ancienne"
    - Adjectives create stronger activation
    - Mood influences pattern density
    
-✅ "technologie brillante et futuriste"
+ "technologie brillante et futuriste"
    - Color descriptors enhance pattern
 
 ## Parameter Tuning for Prompts
@@ -181,9 +181,9 @@ The generation shows:
 - **Quality** (300+): Fine details, slow
 
 ### Resolution
-- **Small** (256×256): 2-3 seconds, fast iteration
-- **Medium** (512×512): 10-15 seconds, good quality
-- **Large** (1024×1024): 30s+, very detailed
+- **Small** (256�256): 2-3 seconds, fast iteration
+- **Medium** (512�512): 10-15 seconds, good quality
+- **Large** (1024�1024): 30s+, very detailed
 
 ### Typical Workflow
 ```bash
@@ -201,16 +201,16 @@ The generation shows:
 
 The generated image is determined by:
 
-1. **Prompt Keywords** → Neuron activation pattern
-2. **Category Mix** → Which neuron categories light up
-3. **Iterations** → How much atoms stabilize
-4. **Resolution** → Detail level possible
-5. **Atomic Parameters** → Local resonance/smoothing
+1. **Prompt Keywords**  Neuron activation pattern
+2. **Category Mix**  Which neuron categories light up
+3. **Iterations**  How much atoms stabilize
+4. **Resolution**  Detail level possible
+5. **Atomic Parameters**  Local resonance/smoothing
 
 If result seems weak:
 - Add more descriptive words to prompt
 - Increase iterations (use 200+ instead of 100)
-- Use larger resolution (512×512 instead of 256×256)
+- Use larger resolution (512�512 instead of 256�256)
 
 If result is too uniform/smooth:
 - Your prompt may activate only one category
@@ -221,10 +221,10 @@ If result is too uniform/smooth:
 
 ### Combining with Other Modes
 
-**Prompt → Pattern → Atomic Generation**
+**Prompt  Pattern  Atomic Generation**
 ```bash
 # 1. Generate from prompt
-./programme generate from-prompt 512 512 150 "forêt mystérieuse"
+./programme generate from-prompt 512 512 150 "for�t mystérieuse"
 
 # 2. Use output as pattern for more iterations
 ./programme generate pattern 512 512 200 output/atomic_prompt_512x512_150iter.png
@@ -248,13 +248,13 @@ If result is too uniform/smooth:
 ### Experimenting with Keywords
 ```bash
 # Test 1: Just location
-./programme generate from-prompt 256 256 100 "forêt"
+./programme generate from-prompt 256 256 100 "for�t"
 
 # Test 2: Location + mood
-./programme generate from-prompt 256 256 100 "forêt sombre mystérieuse"
+./programme generate from-prompt 256 256 100 "for�t sombre mystérieuse"
 
 # Test 3: Location + mood + elements  
-./programme generate from-prompt 256 256 100 "forêt sombre avec arbres anciens"
+./programme generate from-prompt 256 256 100 "for�t sombre avec arbres anciens"
 
 # Compare outputs to see how keywords influence pattern
 ```
@@ -270,13 +270,13 @@ If result is too uniform/smooth:
 
 ### Pattern Generation
 - For each neuron category with activation:
-  - Hue ← Category ID (maps to 0-1 range)
-  - Saturation ← Activation strength (0-1)
-  - Lightness ← Overall confidence
+  - Hue  Category ID (maps to 0-1 range)
+  - Saturation  Activation strength (0-1)
+  - Lightness  Overall confidence
   - Distributed spatially with pseudo-random variation (deterministic)
 
 ### Atomic Parameters (Fixed)
-- α (resonance) = 0.3 (moderate cooperation)
+- � (resonance) = 0.3 (moderate cooperation)
 - β (pattern) = 0.5 (balance pattern/emergence)
 - γ (smoothing) = 0.2 (moderate smoothing)
 - ε (damping) = 0.9 (stable convergence)
@@ -288,21 +288,21 @@ These are optimized for prompt-based generation. Adjust in code if needed.
 ### Nature Prompts
 ```bash
 ./programme generate from-prompt 512 512 200 "montagne enneigée sous la lune"
-→ Likely activates: HISTOIRE (medieval connotation)
+ Likely activates: HISTOIRE (medieval connotation)
    Result: Spatial structures reflecting mountain concept
 ```
 
 ### Tech Prompts
 ```bash
 ./programme generate from-prompt 512 512 200 "réseau de neurones et algorithmes"
-→ Likely activates: TECH
+ Likely activates: TECH
    Result: Pattern reflecting computational structures
 ```
 
 ### Food Prompts
 ```bash
 ./programme generate from-prompt 256 256 100 "festin médiéval avec pain et fruits"
-→ Likely activates: ALIMENTATION + HISTOIRE
+ Likely activates: ALIMENTATION + HISTOIRE
    Result: Mixed patterns from both categories
 ```
 
@@ -322,7 +322,7 @@ These are optimized for prompt-based generation. Adjust in code if needed.
 
 **Q: Very slow**
 - A: Likely using large resolution
-- Try: Test with 256×256 first, scale up later
+- Try: Test with 256�256 first, scale up later
 
 **Q: Keywords not extracted**
 - A: Your words may be stopwords (a, de, le, etc.)
@@ -340,6 +340,6 @@ output/
 
 ---
 
-**Feature Status**: ✅ Complete & Tested
+**Feature Status**:  Complete & Tested
 **Latest Test**: January 9, 2025
 **Language Support**: French & English keywords

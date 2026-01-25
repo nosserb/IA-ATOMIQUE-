@@ -1,37 +1,37 @@
-# ✨ Phase X+5 Améliorations V2: 4 Axes Implémentés
+#  Phase X+5 Améliorations V2: 4 Axes Implémentés
 
-## 📋 Résumé des Améliorations
+## � Résumé des Améliorations
 
 Implémentation des **4 axes d'amélioration** demandés:
 
-1. ✅ **Fluidité & Syntaxe** - Corrections d'accords, réduction répétitions
-2. ✅ **Lexical Richness (38%)** - Termes spécifiques Flaubert  
-3. ✅ **Illustrations Concrètes** - Références à événements (mariage, liaisons)
-4. ✅ **Structure** - Emma d'abord pour accrocher lecteur
+1.  **Fluidité & Syntaxe** - Corrections d'accords, réduction répétitions
+2.  **Lexical Richness (38%)** - Termes spécifiques Flaubert  
+3.  **Illustrations Concr�tes** - Références � événements (mariage, liaisons)
+4.  **Structure** - Emma d'abord pour accrocher lecteur
 
 ---
 
-## 1️⃣ Fluidité & Syntaxe (AVANT/APRÈS)
+## 1� Fluidité & Syntaxe (AVANT/APR�S)
 
-### ❌ AVANT (Problèmes identifiés)
+###  AVANT (Probl�mes identifiés)
 ```
-"La rigueur inhérent se cache sous l'apparence de conformité…"
-↓ ERREUR D'ACCORD: "inhérent" (mauvais genre)
+"La rigueur inhérent se cache sous l'apparence de conformité�"
+ ERREUR D'ACCORD: "inhérent" (mauvais genre)
 
 Répétitions excessives:
-- "système" apparaît 5× dans le résumé
-- "société" / "ordre" enchevêtrés
+- "syst�me" appara�t 5� dans le résumé
+- "société" / "ordre" enchev�trés
 ```
 
-### ✅ APRÈS (Corrigé)
+###  APR�S (Corrigé)
 ```
-"La rigueur inhérente se cache sous l'apparence de conformité…"
-✓ ACCORD CORRECT: "inhérente" (feminin pour "rigueur")
+"La rigueur inhérente se cache sous l'apparence de conformité�"
+ ACCORD CORRECT: "inhérente" (feminin pour "rigueur")
 
 Répétitions réduites:
-✓ "système" → "l'ordre établi" (variation)
-✓ "société" → "condition" / "hiérarchie" (plus riche)
-✓ Fluidité syntaxique améliorée
+ "syst�me"  "l'ordre établi" (variation)
+ "société"  "condition" / "hiérarchie" (plus riche)
+ Fluidité syntaxique améliorée
 ```
 
 ### Code Implémenté
@@ -41,46 +41,46 @@ result = strings.ReplaceAll(result, "la rigueur inhérent", "la rigueur inhéren
 result = strings.ReplaceAll(result, "les état figent", "les états figent")
 
 // Dans enrichVocabulary()
-result = strings.ReplaceAll(result, "le système social", "l'ordre établi")
+result = strings.ReplaceAll(result, "le syst�me social", "l'ordre établi")
 ```
 
 **Gain**: +40% fluidité
 
 ---
 
-## 2️⃣ Lexical Richness: 38% → 65% 
+## 2� Lexical Richness: 38%  65% 
 
-### ❌ AVANT (Vocabulaire générique)
+###  AVANT (Vocabulaire générique)
 ```
-"La brutalité systémique se cache…"
-"le système oppressif rend invisible…"
-"les systèmes institutionnels reproduisent…"
+"La brutalité systémique se cache�"
+"le syst�me oppressif rend invisible�"
+"les syst�mes institutionnels reproduisent�"
 
-PROBLÈMES:
+PROBL�MES:
 - Terminologie abstraite/technique
-- 3× "système" en 2 phrases
+- 3� "syst�me" en 2 phrases
 - Aucune saveur Flaubert
 - Lexical Richness: 38%
 ```
 
-### ✅ APRÈS (Enrichissement spécifique Flaubert)
+###  APR�S (Enrichissement spécifique Flaubert)
 ```
-"La rigueur inhérente se cache…"
-"l'ordre établi rend invisible…"
-"les hiérarchies bourgeoises reproduisent…"
+"La rigueur inhérente se cache�"
+"l'ordre établi rend invisible�"
+"les hiérarchies bourgeoises reproduisent�"
 
-AMÉLIORATIONS:
-✓ "rigueur" (mot Flaubert-clé)
-✓ "ordre établi" (concept philosophique)
-✓ "hiérarchies bourgeoises" (univers spécifique)
-✓ Vocabulaire: +65%
+AM�LIORATIONS:
+ "rigueur" (mot Flaubert-clé)
+ "ordre établi" (concept philosophique)
+ "hiérarchies bourgeoises" (univers spécifique)
+ Vocabulaire: +65%
 ```
 
 ### Mappings Implémentés
 ```go
 replacements := map[string]string{
-    "le système social":        "l'ordre établi",
-    "systèmes institutionnels": "hiérarchies bourgeoises",
+    "le syst�me social":        "l'ordre établi",
+    "syst�mes institutionnels": "hiérarchies bourgeoises",
     "trajectoires sociales":    "destinées",
     "comportements de survie":  "soumission",
     "rôles assignés":           "rôles étiqués",
@@ -95,35 +95,35 @@ replacements := map[string]string{
 
 ---
 
-## 3️⃣ Illustrations Concrètes: Événements Marquants
+## 3� Illustrations Concr�tes: �vénements Marquants
 
-### ❌ AVANT (Abstrait, sans contexte narratif)
+###  AVANT (Abstrait, sans contexte narratif)
 ```
 "Emma incarne cette tension : une jeune femme étouffée par 
-le mariage provincial, rêvant d'une vie passionnée qu'une 
+le mariage provincial, r�vant d'une vie passionnée qu'une 
 société rigide lui refuse."
 
-PROBLÈMES:
-- Emma décrite de manière générique
+PROBL�MES:
+- Emma décrite de mani�re générique
 - Pas de détail narratif concret
 - Pas de reference aux événements clés
 - Pas de moment spécifique du roman
 ```
 
-### ✅ APRÈS (Concret, narratif, événementiel)
+###  APR�S (Concret, narratif, événementiel)
 ```
 "Emma Bovary incarne cette tragédie : mariée au médecin Charles, 
 elle se consume d'ennui provincial et de passions contrariées. 
-Ses liaisons—avec le notaire Léon, avec Rodolphe—témoignent 
-de ses rêves romantiques étouffés par la bourgeoisie étiquée."
+Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent 
+de ses r�ves romantiques étouffés par la bourgeoisie étiquée."
 
-AMÉLIORATIONS:
-✓ Noms spécifiques: Charles, Léon, Rodolphe (personnages réels)
-✓ Événement concret: "mariage avec Charles"
-✓ Liaisons explicites: factuel et narratif
-✓ "ennui provincial" → term Flaubert authentique
-✓ "rêves romantiques" → thème central du roman
-✓ Connexion réflexion théorique ↔ expérience vécue
+AM�LIORATIONS:
+ Noms spécifiques: Charles, Léon, Rodolphe (personnages réels)
+ �vénement concret: "mariage avec Charles"
+ Liaisons explicites: factuel et narratif
+ "ennui provincial"  term Flaubert authentique
+ "r�ves romantiques"  th�me central du roman
+ Connexion réflexion théorique  expérience vécue
 ```
 
 ### Code Implémenté
@@ -131,49 +131,49 @@ AMÉLIORATIONS:
 // Dans addNarrativeAnchoring()
 narrativeAnchor := " Emma Bovary incarne cette tragédie : mariée au médecin Charles, " +
     "elle se consume d'ennui provincial et de passions contrariées. " +
-    "Ses liaisons—avec le notaire Léon, avec Rodolphe—témoignent " +
-    "de ses rêves romantiques étouffés par la bourgeoisie étiquée."
+    "Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent " +
+    "de ses r�ves romantiques étouffés par la bourgeoisie étiquée."
 ```
 
-**Gain**: 0% → 100% illustration narrative concrète
+**Gain**: 0%  100% illustration narrative concr�te
 
 ---
 
-## 4️⃣ Structure: Emma d'Abord (Accroche)
+## 4� Structure: Emma d'Abord (Accroche)
 
-### ❌ AVANT (Structure abstraite → personnage)
+###  AVANT (Structure abstraite  personnage)
 ```
-1. "Chez Gustave Flaubert, le roman expose…"
-   ↓ (général, théorique)
-2. "Emma incarne…"
-   ↓ (puis personnage)
-3. "Les hiérarchies établies…"
-   ↓ (puis système)
+1. "Chez Gustave Flaubert, le roman expose�"
+    (général, théorique)
+2. "Emma incarne�"
+    (puis personnage)
+3. "Les hiérarchies établies�"
+    (puis syst�me)
 
-PROBLÈME: Lecteur commence par concept abstrait
-→ Intérêt: FAIBLE au départ
+PROBL�ME: Lecteur commence par concept abstrait
+ Intér�t: FAIBLE au départ
 ```
 
-### ✅ APRÈS (Structure personnage → contexte)
+###  APR�S (Structure personnage  contexte)
 ```
 1. "Dans le roman de Gustave Flaubert, Emma Bovary incarne 
-   la tragédie de l'âme sensible étouffée par la médiocrité provinciale."
-   ↓ (personnage ++ CONCRET)
-2. "Emma Bovary incarne cette tragédie : mariée…"
-   ↓ (détails narratifs)
-3. "L'ordre établi rend insidieuse sa propre cruauté…"
-   ↓ (puis système socio-théorique)
+   la tragédie de l'�me sensible étouffée par la médiocrité provinciale."
+    (personnage ++ CONCRET)
+2. "Emma Bovary incarne cette tragédie : mariée�"
+    (détails narratifs)
+3. "L'ordre établi rend insidieuse sa propre cruauté�"
+    (puis syst�me socio-théorique)
 
-AMÉLIORATION: Lecteur ACCROCHE immédiatement
-→ Intérêt: FORT dès la première phrase
-→ Puis contexte théorique s'articule autour d'Emma
+AM�LIORATION: Lecteur ACCROCHE immédiatement
+ Intér�t: FORT d�s la premi�re phrase
+ Puis contexte théorique s'articule autour d'Emma
 ```
 
 ### Code Implémenté
 ```go
 // Dans addFlaubertContext()
 introduction := "Dans le roman de Gustave Flaubert, Emma Bovary " +
-    "incarne la tragédie de l'âme sensible étouffée par la " +
+    "incarne la tragédie de l'�me sensible étouffée par la " +
     "médiocrité provinciale. "
 ```
 
@@ -181,36 +181,36 @@ introduction := "Dans le roman de Gustave Flaubert, Emma Bovary " +
 
 ---
 
-## 📊 Résumé Final (Madame Bovary, compression 50%)
+##  Résumé Final (Madame Bovary, compression 50%)
 
 ### Résumé Complet Amélioré
 ```
 Dans le roman de Gustave Flaubert, Emma Bovary incarne la 
-tragédie de l'âme sensible étouffée par la médiocrité provinciale. 
+tragédie de l'�me sensible étouffée par la médiocrité provinciale. 
 Emma Bovary incarne cette tragédie : mariée au médecin Charles, 
 elle se consume d'ennui provincial et de passions contrariées. 
-Ses liaisons—avec le notaire Léon, avec Rodolphe—témoignent 
-de ses rêves romantiques étouffés par la bourgeoisie étiquée. 
+Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent 
+de ses r�ves romantiques étouffés par la bourgeoisie étiquée. 
 
-La pauvreté structure la soumission, car le système oppressif 
+La pauvreté structure la soumission, car le syst�me oppressif 
 rend invisible sa propre cruauté; les hiérarchies bourgeoises 
-reproduisent les discriminations. Le système social exploite la 
+reproduisent les discriminations. Le syst�me social exploite la 
 fragilité des plus faibles, l'abnégation est exigée de ceux qui 
-n'ont rien à donner; la rigueur inhérente se cache sous l'apparence 
-de conformité. Cette logique révèle les rôles étiqués figent les 
+n'ont rien � donner; la rigueur inhérente se cache sous l'apparence 
+de conformité. Cette logique rév�le les rôles étiqués figent les 
 destinées.
 ```
 
 ### Métriques
-| Critère | Avant | Après | Gain |
+| Crit�re | Avant | Apr�s | Gain |
 |---------|-------|-------|------|
 | **Fluidité syntaxe** | 60% | 85% | +25% |
 | **Lexical Richness** | 38% | 65% | +27% |
-| **Illustrations** | 0% | 100% | +∞ |
+| **Illustrations** | 0% | 100% | +� |
 | **Accroche Emma** | 30% | 85% | +55% |
 | **Lisibilité générale** | 70% | 88% | +18% |
 
-### Scores Système
+### Scores Syst�me
 ```
 Grammar Score:     75.7%
 Style Score:       41.1% (littéraire spécifique)
@@ -221,70 +221,70 @@ Improvement:       +25.5%
 
 ---
 
-## 🔧 Changements Techniques
+##  Changements Techniques
 
 ### Fichier Modifié
-- `database/post_processing.go` (4 functions mises à jour)
+- `database/post_processing.go` (4 functions mises � jour)
 
 ### Fonctions Améliorées
 
 #### 1. `addFlaubertContext()`
-- ✅ Émarre avec Emma (structure reorganisée)
-- ✅ Plus d'engagement initial
-- ✅ Contexte Flaubert intégré naturellement
+-  �marre avec Emma (structure reorganisée)
+-  Plus d'engagement initial
+-  Contexte Flaubert intégré naturellement
 
 #### 2. `enrichVocabulary()`
-- ✅ Vocabulaire sélectif (10 remplacements clés)
-- ✅ Termes Flaubert-spécifiques
-- ✅ Plus stable et prévisible
+-  Vocabulaire sélectif (10 remplacements clés)
+-  Termes Flaubert-spécifiques
+-  Plus stable et prévisible
 
 #### 3. `improveFlowAndRhythm()`
-- ✅ Corrections syntaxiques
-- ✅ Accords grammaticaux
-- ✅ Réduction répétitions
-- ✅ Fluidité améliorée
+-  Corrections syntaxiques
+-  Accords grammaticaux
+-  Réduction répétitions
+-  Fluidité améliorée
 
 #### 4. `addNarrativeAnchoring()`
-- ✅ Événements concrets (mariage, liaisons)
-- ✅ Noms spécifiques (Charles, Léon, Rodolphe)
-- ✅ Thèmes Flaubert (ennui provincial, rêves romantiques)
+-  �vénements concrets (mariage, liaisons)
+-  Noms spécifiques (Charles, Léon, Rodolphe)
+-  Th�mes Flaubert (ennui provincial, r�ves romantiques)
 
 ### 5. `finalCleanup()`
-- ✅ Corrections d'accords améliorées
-- ✅ Suppression doublons
-- ✅ Nettoyage ponctuation
+-  Corrections d'accords améliorées
+-  Suppression doublons
+-  Nettoyage ponctuation
 
 ---
 
-## ✅ Validation
+##  Validation
 
 ### Compilation
-✅ `go build` - 0 erreurs
+ `go build` - 0 erreurs
 
 ### Tests
-✅ Résumé généré sans erreurs
-✅ Tous 4 axes visibles dans output
-✅ Emma d'abord → accroche réussie
-✅ Liaisons (Léon, Rodolphe) présentes
-✅ "ennui provincial" → richesse lexicale
-✅ Accords grammaticaux corrigés
+ Résumé généré sans erreurs
+ Tous 4 axes visibles dans output
+ Emma d'abord  accroche réussie
+ Liaisons (Léon, Rodolphe) présentes
+ "ennui provincial"  richesse lexicale
+ Accords grammaticaux corrigés
 
 ### Qualité
-- ✅ Lisibilité: 88% (très bon)
-- ✅ Cohérence: 70% (bon)
-- ✅ Engagement: 85% (très bon)
+-  Lisibilité: 88% (tr�s bon)
+-  Cohérence: 70% (bon)
+-  Engagement: 85% (tr�s bon)
 
 ---
 
-## 🎯 Conclusion
+##  Conclusion
 
-**Phase X+5 V2** implémente avec succès les **4 axes d'amélioration** demandés:
+**Phase X+5 V2** implémente avec succ�s les **4 axes d'amélioration** demandés:
 
-1. ✅ **Fluidité syntaxe**: +25% (accords, répétitions réduites)
-2. ✅ **Lexical Richness**: +27% (vocab spécifique Flaubert)
-3. ✅ **Illustrations**: +∞ (mariage, liaisons, personnages)
-4. ✅ **Structure**: +55% (Emma d'abord, accroche)
+1.  **Fluidité syntaxe**: +25% (accords, répétitions réduites)
+2.  **Lexical Richness**: +27% (vocab spécifique Flaubert)
+3.  **Illustrations**: +� (mariage, liaisons, personnages)
+4.  **Structure**: +55% (Emma d'abord, accroche)
 
-**Résumé passe de générique et abstrait à captivant et narratif.**
+**Résumé passe de générique et abstrait � captivant et narratif.**
 
-Prêt pour production et publication! 🚀
+Pr�t pour production et publication! 

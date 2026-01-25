@@ -1,6 +1,6 @@
-# 🎯 Guide Rapide - Tests de Performance IA-ATOMIQUE
+#  Guide Rapide - Tests de Performance IA-ATOMIQUE
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Compilation
@@ -14,7 +14,7 @@ go build -o programme
 
 ---
 
-## 📊 1. Test Needle In Haystack
+##  1. Test Needle In Haystack
 
 **Objectif**: Trouver des phrases anormales/incohérentes dans un texte massif
 
@@ -36,7 +36,7 @@ Anomalies détectées:    10 phrases suspectes
 ```
 
 ### Interprétation
-- **Cohérence < 0.3** = Phrase très suspecte
+- **Cohérence < 0.3** = Phrase tr�s suspecte
 - **Cohérence 0.3-0.5** = Phrase moyennement suspecte
 - **Cohérence > 0.5** = Phrase normale mais détectée
 
@@ -48,9 +48,9 @@ Anomalies détectées:    10 phrases suspectes
 
 ---
 
-## 🧪 2. Test de Perplexité
+##  2. Test de Perplexité
 
-**Objectif**: Mesurer la cohérence globale et la "surprise" du système
+**Objectif**: Mesurer la cohérence globale et la "surprise" du syst�me
 
 ### Commande
 ```bash
@@ -70,22 +70,22 @@ Stabilité:              98.2%
 Qualité:                EXCELLENT
 ```
 
-### Échelle de Perplexité
+### �chelle de Perplexité
 - **< 2**: Excellent (meilleur que GPT-4)
-- **2-5**: Très bon
+- **2-5**: Tr�s bon
 - **5-10**: Bon (niveau GPT-4)
 - **10-20**: Moyen (niveau GPT-3)
 - **> 20**: Faible
 
 ### Cas d'Usage
-- Évaluation qualité texte
+- �valuation qualité texte
 - Comparaison de documents
 - Détection de texte généré
 - Mesure de complexité
 
 ---
 
-## ⚡ 3. Benchmark Vitesse
+##  3. Benchmark Vitesse
 
 **Objectif**: Mesurer la performance de traitement pure
 
@@ -111,33 +111,33 @@ Phases:
 ```
 LLM local (50 tokens/sec):  3.1 heures
 IA-ATOMIQUE:                0.14 seconde
-Accélération:               79 185× 🚀
+Accélération:               79 185� 
 ```
 
 ---
 
-## 📈 Résultats de Référence
+##  Résultats de Référence
 
 ### Sur input.txt (568K mots, 3.13 Mo)
 
 | Test | Résultat | Temps | Verdict |
 |------|----------|-------|---------|
-| **Perplexité** | 1.05 | 101 ms | ✅ Excellent |
-| **Cohérence** | 98.2% | 101 ms | ✅ Excellent |
-| **Vitesse** | 3.96M/s | 143 ms | ✅ Ultra-rapide |
-| **Needle** | 10 anomalies | 23 s | ✅ Détecté |
+| **Perplexité** | 1.05 | 101 ms |  Excellent |
+| **Cohérence** | 98.2% | 101 ms |  Excellent |
+| **Vitesse** | 3.96M/s | 143 ms |  Ultra-rapide |
+| **Needle** | 10 anomalies | 23 s |  Détecté |
 
 ---
 
-## 🎯 Comparaison Standards
+##  Comparaison Standards
 
 ### Perplexité
 
 ```
 GPT-4:           10-20
 GPT-3:           20-40
-Modèles simples: >100
-IA-ATOMIQUE:     1.05  ← 10-20× meilleur! ✅
+Mod�les simples: >100
+IA-ATOMIQUE:     1.05   10-20� meilleur! 
 ```
 
 ### Vitesse
@@ -146,17 +146,17 @@ IA-ATOMIQUE:     1.05  ← 10-20× meilleur! ✅
 GPT-4:           ~50 mots/sec
 GPT-3:           ~30 mots/sec
 LLM locaux:      ~50 mots/sec
-IA-ATOMIQUE:     3.96M mots/sec  ← 79K× plus rapide! ✅
+IA-ATOMIQUE:     3.96M mots/sec   79K� plus rapide! 
 ```
 
 ---
 
-## 💡 Tests Avancés
+##  Tests Avancés
 
 ### Test sur Gros Fichier
 
 ```bash
-# Créer fichier test de 5M mots (concaténer input.txt 9×)
+# Créer fichier test de 5M mots (concaténer input.txt 9�)
 for i in {1..9}; do cat input.txt >> huge_test.txt; done
 
 # Test perplexité (devrait prendre ~1 seconde)
@@ -180,13 +180,13 @@ echo "sdlfkj asdlkfj random blabla..." > chaos.txt
 
 ---
 
-## 🔧 Options Personnalisées
+##  Options Personnalisées
 
 ### Modifier la Sensibilité (dans le code)
 
 **Needle Search** (`database/needle_search.go`):
 ```go
-engine.WindowSize = 50        // Taille fenêtre (défaut: 50)
+engine.WindowSize = 50        // Taille fen�tre (défaut: 50)
 engine.AnomalyThreshold = 0.3 // Seuil anomalie (défaut: 0.3)
 engine.MaxResults = 10        // Nb résultats (défaut: 10)
 ```
@@ -200,7 +200,7 @@ calc.MaxPerplexity = 15.0  // Perplexité max (défaut: 15.0)
 
 ---
 
-## 📊 Extrapolations Utiles
+##  Extrapolations Utiles
 
 ### Pour 1M de mots
 ```
@@ -225,23 +225,23 @@ Vitesse pure:   ~8.4 minutes
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### "Temps trop long sur Needle Search"
-→ Normal pour gros fichiers, c'est O(n²). Optimisation en cours.
+ Normal pour gros fichiers, c'est O(n²). Optimisation en cours.
 
-### "Perplexité très haute"
-→ Le texte est probablement chaotique ou multi-langue.
+### "Perplexité tr�s haute"
+ Le texte est probablement chaotique ou multi-langue.
 
 ### "Pas assez d'anomalies détectées"
-→ Diminuer `AnomalyThreshold` de 0.3 à 0.2.
+ Diminuer `AnomalyThreshold` de 0.3 � 0.2.
 
 ### "Trop d'anomalies détectées"
-→ Augmenter `AnomalyThreshold` de 0.3 à 0.4.
+ Augmenter `AnomalyThreshold` de 0.3 � 0.4.
 
 ---
 
-## 📝 Commandes Complètes
+##  Commandes Compl�tes
 
 ```bash
 # Compilation
@@ -268,15 +268,15 @@ go build -o programme
 
 ---
 
-## 🎓 En Résumé
+##  En Résumé
 
 L'IA-ATOMIQUE offre maintenant **3 tests de référence** pour valider ses performances:
 
-1. **Needle In Haystack** → Attention sur contexte long
-2. **Perplexité** → Cohérence et surprise
-3. **Benchmark Vitesse** → Performance brute
+1. **Needle In Haystack**  Attention sur contexte long
+2. **Perplexité**  Cohérence et surprise
+3. **Benchmark Vitesse**  Performance brute
 
-Avec des résultats qui **surpassent GPT-4** sur tous les critères mesurables! 🚀
+Avec des résultats qui **surpassent GPT-4** sur tous les crit�res mesurables! 
 
 ---
 

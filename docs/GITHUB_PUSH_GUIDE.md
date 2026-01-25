@@ -1,19 +1,19 @@
-# 📋 Guide: Créer et Pusher sur GitHub
+# � Guide: Créer et Pusher sur GitHub
 
-## Étape 1: Créer le repo sur GitHub
+## �tape 1: Créer le repo sur GitHub
 
 1. Va sur [github.com](https://github.com)
-2. Clique sur **"New"** (ou **"+"** en haut à droite)
+2. Clique sur **"New"** (ou **"+"** en haut � droite)
 3. Crée un nouveau repository:
    - **Repository name**: `IA-ATOMIQUE`
    - **Description**: `Neural network for text analysis and summarization with web interface`
-   - **Public** ou **Private** (à toi de choisir)
-   - NE coche PAS "Initialize with README" (tu en as déjà un)
+   - **Public** ou **Private** (� toi de choisir)
+   - NE coche PAS "Initialize with README" (tu en as déj� un)
    - Clique **"Create repository"**
 
 ---
 
-## Étape 2: Configuration Git Locale
+## �tape 2: Configuration Git Locale
 
 ### Si tu n'as pas encore configuré Git globalement:
 
@@ -27,7 +27,7 @@ git config --global user.email "ton.email@example.com"
 ```bash
 cd "/home/student/autre projets/IA-ATOMIQUE-"
 
-# Initialiser le repo si ce n'est pas déjà fait
+# Initialiser le repo si ce n'est pas déj� fait
 git init
 
 # Ajouter l'URL du repo GitHub
@@ -40,7 +40,7 @@ git remote add origin https://github.com/USERNAME/ia-atomique.git
 
 ---
 
-## Étape 3: Ajouter les Fichiers
+## �tape 3: Ajouter les Fichiers
 
 ```bash
 # Vérifier le statut
@@ -65,7 +65,7 @@ git commit -m "feat: Add web interface for text summarization
 
 ---
 
-## Étape 4: Configurer la Branche
+## �tape 4: Configurer la Branche
 
 ### Option A: Push vers main directement
 
@@ -79,7 +79,7 @@ git push -u origin main
 
 ### Option B: Créer une PR (recommandé)
 
-Ton code est déjà sur la branche `chore/siteweb`, donc:
+Ton code est déj� sur la branche `chore/siteweb`, donc:
 
 ```bash
 # Vérifier la branche actuelle
@@ -97,18 +97,18 @@ git push -u origin chore/siteweb
 
 ---
 
-## Étape 5: Vérification
+## �tape 5: Vérification
 
-Après le push, va sur GitHub et vérifie:
+Apr�s le push, va sur GitHub et vérifie:
 
-✅ Tous les fichiers sont présents  
-✅ README.md s'affiche bien  
-✅ Les workflows GitHub Actions tournent  
-✅ Les tests passent  
+ Tous les fichiers sont présents  
+ README.md s'affiche bien  
+ Les workflows GitHub Actions tournent  
+ Les tests passent  
 
 ---
 
-## 🚀 Après le Push
+##  Apr�s le Push
 
 ### Partager le Repo
 
@@ -133,9 +133,9 @@ make web
 
 ---
 
-## 🔑 Configuration SSH (optionnel mais recommandé)
+##  Configuration SSH (optionnel mais recommandé)
 
-Pour éviter de taper le mot de passe à chaque fois:
+Pour éviter de taper le mot de passe � chaque fois:
 
 ```bash
 # Générer une clé SSH
@@ -157,12 +157,12 @@ git remote set-url origin git@github.com:USERNAME/ia-atomique.git
 
 ---
 
-## 🆘 Dépannage
+## � Dépannage
 
 ### Erreur: "fatal: not a git repository"
 
 ```bash
-# Tu dois être dans le répertoire du projet
+# Tu dois �tre dans le répertoire du projet
 cd "/home/student/autre projets/IA-ATOMIQUE-"
 
 # Puis initialiser git
@@ -171,8 +171,8 @@ git init
 
 ### Erreur: "Permission denied (publickey)"
 
-C'est un problème SSH. Soit:
-1. Utilise HTTPS à la place
+C'est un probl�me SSH. Soit:
+1. Utilise HTTPS � la place
 2. Configure les clés SSH correctement
 
 ### Erreur: "failed to authenticate"
@@ -182,29 +182,29 @@ C'est un problème SSH. Soit:
 git remote set-url origin https://YOUR_USERNAME:YOUR_TOKEN@github.com/USERNAME/ia-atomique.git
 ```
 
-Génère un token sur GitHub: Settings > Developer settings > Personal access tokens
+Gén�re un token sur GitHub: Settings > Developer settings > Personal access tokens
 
 ---
 
-## 📊 Fichiers Importants
+##  Fichiers Importants
 
 ```
-✅ web/                    - Interface web
-✅ Dockerfile              - Docker
-✅ docker-compose.yml      - Compose
-✅ README.md              - Documentation principale
-✅ INSTALL.md             - Installation
-✅ Makefile               - Build helpers
-✅ .github/workflows/     - CI/CD automatisé
-✅ go.mod                 - Dépendances
-✅ *.go                   - Code source
+ web/                    - Interface web
+ Dockerfile              - Docker
+ docker-compose.yml      - Compose
+ README.md              - Documentation principale
+ INSTALL.md             - Installation
+ Makefile               - Build helpers
+ .github/workflows/     - CI/CD automatisé
+ go.mod                 - Dépendances
+ *.go                   - Code source
 ```
 
-Tout est prêt! 🚀
+Tout est pr�t! 
 
 ---
 
-## 💬 Message de Commit Détaillé
+##  Message de Commit Détaillé
 
 Si tu veux un message plus détaillé:
 
@@ -242,4 +242,4 @@ Closes #XX (if you have an issue)"
 
 ---
 
-**Tu es prêt! Bon push! 🎉**
+**Tu es pr�t! Bon push! **

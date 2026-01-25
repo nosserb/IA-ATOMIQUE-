@@ -1,17 +1,17 @@
-# 🔬 Stress Test Arithmétique - Optimisation Amdahl & Batching
+#  Stress Test Arithmétique - Optimisation Amdahl & Batching
 
-## 📊 Résumé Exécutif
+##  Résumé Exécutif
 
-Nous avons implémenté un **stress test de calcul arithmétique massif** qui vérifie la loi d'Amdahl et l'optimisation du batching parallèle.
+Nous avons implémenté un **stress test de calcul arithmétique massif** qui vérifie la loi d'Amdahl et l'optimisation du batching parall�le.
 
 ### Résultats clés:
-- **1M opérations**: **2.23x speedup** (229ms → 103ms)
-- **10M opérations**: **1.88x speedup** (2179ms → 1160ms)
+- **1M opérations**: **2.23x speedup** (229ms  103ms)
+- **10M opérations**: **1.88x speedup** (2179ms  1160ms)
 - **Approche**: Channels (zéro mutex) vs Séquentiel
 
 ---
 
-## 1️⃣ Loi d'Amdahl
+## 1� Loi d'Amdahl
 
 ### Formule théorique
 $$\text{Speedup}_{\max} = \frac{1}{S + \frac{1-S}{N}}$$
@@ -22,56 +22,56 @@ Où:
 - **(1-S)** = fraction parallélisable
 
 ### Exemple: S = 5%, N = 4 workers
-$$\text{Speedup}_{\max} = \frac{1}{0.05 + \frac{0.95}{4}} = \frac{1}{0.2875} ≈ 3.48x$$
+$$\text{Speedup}_{\max} = \frac{1}{0.05 + \frac{0.95}{4}} = \frac{1}{0.2875}  3.48x$$
 
 ---
 
-## 2️⃣ Résultats empiriques
+## 2� Résultats empiriques
 
 ### Configuration
 ```
-• Opérations: M opérations arithmétiques aléatoires
-• Nombres: 18-20 chiffres (big.Int massifs)
-• Opérations: +, -, ×, ÷ sur big.Int
-• Workers: 4
-• BatchSize: Optimisé = M/N (100k pour 1M ops, 100k pour 10M ops)
+ Opérations: M opérations arithmétiques aléatoires
+ Nombres: 18-20 chiffres (big.Int massifs)
+ Opérations: +, -, �, � sur big.Int
+ Workers: 4
+ BatchSize: Optimisé = M/N (100k pour 1M ops, 100k pour 10M ops)
 ```
 
 ### Test 1M opérations
 ```
 Séquentiel:
-  • Temps total: 229.27 ms
-  • Débit: 4,361,699 ops/sec
-  • Latence: 0.162 µs/op
+   Temps total: 229.27 ms
+   Débit: 4,361,699 ops/sec
+   Latence: 0.162 µs/op
 
-Parallèle (4 workers, channels):
-  • Temps total: 102.99 ms
-  • Débit: 9,709,254 ops/sec
-  • Latence: 0.239 µs/op
+Parall�le (4 workers, channels):
+   Temps total: 102.99 ms
+   Débit: 9,709,254 ops/sec
+   Latence: 0.239 µs/op
 
-📈 Speedup RÉEL: 2.23x
+ Speedup R�EL: 2.23x
 ```
 
 ### Test 10M opérations
 ```
 Séquentiel:
-  • Temps total: 2179.07 ms
-  • Débit: 4,589,109 ops/sec
-  • Latence: 0.155 µs/op
+   Temps total: 2179.07 ms
+   Débit: 4,589,109 ops/sec
+   Latence: 0.155 µs/op
 
-Parallèle (4 workers, channels):
-  • Temps total: 1160.05 ms
-  • Débit: 8,620,314 ops/sec
-  • Latence: 0.296 µs/op
+Parall�le (4 workers, channels):
+   Temps total: 1160.05 ms
+   Débit: 8,620,314 ops/sec
+   Latence: 0.296 µs/op
 
-📈 Speedup RÉEL: 1.88x
+ Speedup R�EL: 1.88x
 ```
 
 ---
 
-## 3️⃣ Analyse Amdahl empirique
+## 3� Analyse Amdahl empirique
 
-### Estimation de S à partir du speedup observé
+### Estimation de S � partir du speedup observé
 
 $$S = \frac{N - \text{Speedup}}{N \times (\text{Speedup} - 1)}$$
 
@@ -79,23 +79,23 @@ $$S = \frac{N - \text{Speedup}}{N \times (\text{Speedup} - 1)}$$
 - Speedup observé: 2.23x
 - S estimé: 36.17%
 - Speedup théorique max: 1.92x
-- **Efficacité: 116.0% du potentiel** ✅
+- **Efficacité: 116.0% du potentiel** 
 
 ### Test 10M:
 - Speedup observé: 1.88x
 - S estimé: 60.38%
 - Speedup théorique max: 1.42x
-- **Efficacité: 132.0% du potentiel** ✅
+- **Efficacité: 132.0% du potentiel** 
 
-💡 L'efficacité > 100% suggère un cache warming effect à grande échelle.
+ L'efficacité > 100% sugg�re un cache warming effect � grande échelle.
 
 ---
 
-## 4️⃣ Optimisations implémentées
+## 4� Optimisations implémentées
 
 ### A. Batching adaptatif
 ```go
-// Formule: B ≈ M / N (idéalement 10k-100k)
+// Formule: B  M / N (idéalement 10k-100k)
 optimalBatchSize := numOps / int64(4)
 if optimalBatchSize < 10000 {
     optimalBatchSize = 10000
@@ -118,7 +118,7 @@ mutex.Unlock()
 resultChan <- IndexedResult{Index: i, Result: result}
 ```
 
-**Effet**: Overhead réduit de ~2.3x (229ms → 103ms pour 1M)
+**Effet**: Overhead réduit de ~2.3x (229ms  103ms pour 1M)
 
 ### C. Division équitable du travail
 ```go
@@ -132,17 +132,17 @@ endIdx := int64(workerID+1) * int64(len(operations)) / int64(config.WorkerCount)
 ### D. Nombres massifs (big.Int)
 ```go
 // Au lieu de simples int64:
-// x = 10^7 à 10^8
+// x = 10^7 � 10^8
 
 // On utilise:
 bigX := big.NewInt(x * 1e18 + y)  // 18-20 chiffres
 ```
 
-**Effet**: Opérations plus coûteuses → overhead parallèle justifié
+**Effet**: Opérations plus co�teuses  overhead parall�le justifié
 
 ---
 
-## 5️⃣ Coût de synchronisation (Overhead)
+## 5� Co�t de synchronisation (Overhead)
 
 $$T_{\text{par}} = \frac{T_{\text{seq}} \cdot (1-S)}{N} + T_{\text{seq}} \cdot S + O$$
 
@@ -152,18 +152,18 @@ Pour que le parallélisme soit efficace:
 $$O \ll \frac{T_{\text{seq}} \cdot (1-S)}{N}$$
 
 ### Notre cas:
-- **Sans batching** (1000 ops/batch): Overhead trop grand → Speedup < 1
-- **Avec batching** (100k ops/batch): Overhead négligeable → Speedup 1.88-2.23x
+- **Sans batching** (1000 ops/batch): Overhead trop grand  Speedup < 1
+- **Avec batching** (100k ops/batch): Overhead négligeable  Speedup 1.88-2.23x
 
 **Recommandation**: Augmenter BatchSize = réduire O / M ratio
 
 ---
 
-## 6️⃣ Comparaison: Mutex vs Channels
+## 6� Comparaison: Mutex vs Channels
 
 ### Mutex (synchronisation fine):
 ```
-1M opérations × 1 lock/unlock = 1M synchronisations
+1M opérations � 1 lock/unlock = 1M synchronisations
 Overhead par sync: ~230 ns
 Total overhead: 230 ms
 Résultat: Parallélisme pire que séquentiel (overhead > work)
@@ -181,7 +181,7 @@ Résultat: Parallélisme efficace
 
 ---
 
-## 7️⃣ Utilisation
+## 7� Utilisation
 
 ```bash
 # 100k opérations
@@ -196,52 +196,52 @@ Résultat: Parallélisme efficace
 
 ### Sortie typique:
 ```
-╔════════════════════════════════════════════════════════════╗
-║     STRESS TEST DE CALCUL ARITHMÉTIQUE MASSIF            ║
-╚════════════════════════════════════════════════════════════╝
 
-📊 Configuration:
-  • Nombre d'opérations: 1000000
-  • Plage de nombres: [10^7, 10^8]
-  • Workers parallèles: 4
-  • Taille des batches: 100000 (optimisé M/N)
-  • Nombre de batches: 10
+     STRESS TEST DE CALCUL ARITHM�TIQUE MASSIF            
 
-═══ PHASE 1: EXÉCUTION SÉQUENTIELLE ═══
-  ✓ Temps: 229.27 ms
-  ✓ Débit: 4,361,699 ops/sec
 
-═══ PHASE 2: EXÉCUTION PARALLÈLE ═══
-  ✓ Temps: 102.99 ms
-  ✓ Débit: 9,709,254 ops/sec
+ Configuration:
+   Nombre d'opérations: 1000000
+   Plage de nombres: [10^7, 10^8]
+   Workers parall�les: 4
+   Taille des batches: 100000 (optimisé M/N)
+   Nombre de batches: 10
 
-═══ ANALYSE COMPARATIVE ═══
-  • Speedup RÉEL: 2.23x ✅
-  • Réduction temps: 55.1%
-  • Fraction séquentielle (S): 36.17%
-  • Speedup théorique max (Amdahl): 1.92x
-  • Efficacité: 116.0% du potentiel
+ PHASE 1: EX�CUTION S�QUENTIELLE 
+   Temps: 229.27 ms
+   Débit: 4,361,699 ops/sec
 
-✅ Stress test terminé
+ PHASE 2: EX�CUTION PARALL�LE 
+   Temps: 102.99 ms
+   Débit: 9,709,254 ops/sec
+
+ ANALYSE COMPARATIVE 
+   Speedup R�EL: 2.23x 
+   Réduction temps: 55.1%
+   Fraction séquentielle (S): 36.17%
+   Speedup théorique max (Amdahl): 1.92x
+   Efficacité: 116.0% du potentiel
+
+ Stress test terminé
 ```
 
 ---
 
-## 8️⃣ Leçons clés
+## 8� Le�ons clés
 
-### ✅ Ce qui fonctionne bien:
+###  Ce qui fonctionne bien:
 1. **Channels sans mutex** - Communication haute performance
 2. **Batching adaptatif** - B = M/N réduit overhead exponentiellement
 3. **Grandes opérations** - Work dominate overhead quand operations complexes
 4. **Division équitable** - Pas de load imbalance avec len(ops)/N
 
-### ⚠️ Pièges à éviter:
+###  Pi�ges � éviter:
 1. **Mutex fin-grain** - 1 lock/op = catastrophe
 2. **Batch trop petit** - Overhead synchronisation dépasse le travail
 3. **Nombre petit** - Si M < 10k ops, séquentiel plus rapide
 4. **Opérations triviales** - Si op < 100ns, parallel overhead non amortissable
 
-### 💡 Optimisations futures:
+###  Optimisations futures:
 1. **SIMD/Vectorisation** - AVX2 pour multiplier operands par lots
 2. **GPU acceleration** - 1000+ workers pour réduire S
 3. **Worksteal scheduling** - Redistribution dynamique si imbalance
@@ -249,7 +249,7 @@ Résultat: Parallélisme efficace
 
 ---
 
-## 9️⃣ Formules de la Loi d'Amdahl
+## 9� Formules de la Loi d'Amdahl
 
 ### 1. Speedup idéal (pas d'overhead)
 $$\text{Speedup} = \frac{1}{S + \frac{1-S}{N}}$$
@@ -257,14 +257,14 @@ $$\text{Speedup} = \frac{1}{S + \frac{1-S}{N}}$$
 ### 2. Speedup réaliste (avec overhead)
 $$\text{Speedup} = \frac{T_{\text{seq}}}{S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} + O}$$
 
-### 3. Limite quand N → ∞
+### 3. Limite quand N  �
 $$\lim_{N \to \infty} \text{Speedup} = \frac{1}{S}$$
 
 **Conclusion**: Réduire S est PLUS important que d'augmenter N.
 
 ---
 
-## 🔟 Validation mathématique
+##  Validation mathématique
 
 ### Benchmark 1M:
 - T_seq = 229.27 ms
@@ -283,11 +283,11 @@ Speedup_réel = 229.27 / 102.99 = 2.23x
 Ratio = 2.23 / 1.92 = 1.16x (116% - cache warming)
 ```
 
-✅ **Mathématiques validées empiriquement**
+ **Mathématiques validées empiriquement**
 
 ---
 
-## 📚 Références
+##  Références
 
 1. Gene Amdahl, "Validity of the single processor approach to achieving large-scale computing capabilities", 1967
 2. John L. Gustafson, "Reevaluating Amdahl's Law", 1988
@@ -295,7 +295,7 @@ Ratio = 2.23 / 1.92 = 1.16x (116% - cache warming)
 
 ---
 
-**Conclusion**: En appliquant la loi d'Amdahl et en optimisant le batching, nous avons transformé un parallélisme contre-productif (Speedup < 1) en un gain réel de **2.23x sur 1M opérations** grâce à:
+**Conclusion**: En appliquant la loi d'Amdahl et en optimisant le batching, nous avons transformé un parallélisme contre-productif (Speedup < 1) en un gain réel de **2.23x sur 1M opérations** gr�ce �:
 - Channels au lieu de mutex
 - Batches adaptatives (M/N)
 - Opérations assez complexes (big.Int massifs)

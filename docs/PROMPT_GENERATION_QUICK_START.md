@@ -1,10 +1,10 @@
-# ⚡ Neural Prompt Generation - Quick Reference
+#  Neural Prompt Generation - Quick Reference
 
 ## One-Liner Examples
 
 ```bash
 # Simple prompt
-./programme generate from-prompt 256 256 100 "forêt mystérieuse"
+./programme generate from-prompt 256 256 100 "for�t mystérieuse"
 
 # Quality output  
 ./programme generate from-prompt 512 512 200 "océan tempétueux avec vagues"
@@ -13,14 +13,14 @@
 ./programme generate from-prompt 256 256 100 "technologie futuriste et néons"
 
 # Mixed concepts
-./programme generate from-prompt 512 512 200 "château médiéval dans la brume"
+./programme generate from-prompt 512 512 200 "ch�teau médiéval dans la brume"
 ```
 
-## Input → Output Mapping
+## Input  Output Mapping
 
 | Prompt | Keywords | Likely Category | Result |
 |--------|----------|-----------------|--------|
-| "forêt mystérieuse" | forêt, mystérieuse | HISTOIRE | Pattern with historical vibes |
+| "for�t mystérieuse" | for�t, mystérieuse | HISTOIRE | Pattern with historical vibes |
 | "technologie futuriste" | technologie, futuriste | TECH | Computational pattern structure |
 | "restaurant gastronomique" | restaurant, gastronomie | ALIMENTATION | Food-themed pattern |
 | "montagne enneigée" | montagne, enneigée | HISTOIRE | Landscape pattern |
@@ -48,28 +48,28 @@ PROMPT = Natural language description
 
 ## Pro Tips
 
-✅ **Use descriptive adjectives**
-- "forêt sombre ancienne mystérieuse"
+ **Use descriptive adjectives**
+- "for�t sombre ancienne mystérieuse"
 
-✅ **Mix concepts for complex patterns**
-- "château médiéval avec technologie futuriste"
+ **Mix concepts for complex patterns**
+- "ch�teau médiéval avec technologie futuriste"
 
-✅ **Mention feelings/moods**
+ **Mention feelings/moods**
 - "paysage paisible et serein"
 
-❌ **Avoid single vague words**
+ **Avoid single vague words**
 - "chose", "truc", "machin"
 
-❌ **Don't use only stopwords**
+ **Don't use only stopwords**
 - "le de la avec"
 
 ## Neuron Categories Quick Map
 
 - **TECH** (1): technologie, algorithme, digital, robot, circuit, code
-- **HISTOIRE** (2): château, roi, ancien, médiéval, empire, politique
+- **HISTOIRE** (2): ch�teau, roi, ancien, médiéval, empire, politique
 - **BUSINESS** (3): commerce, marché, entreprise, affaires, économie
-- **ALIMENTATION** (4): nourriture, fruit, cuisine, pain, gâteau, restaurant
-- **SANTÉ** (5): médecine, santé, docteur, hôpital, maladie
+- **ALIMENTATION** (4): nourriture, fruit, cuisine, pain, g�teau, restaurant
+- **SANT�** (5): médecine, santé, docteur, hôpital, maladie
 - **VERBE** (6): actions, mouvement, dynamique
 
 ## Output Files
@@ -83,7 +83,7 @@ output/atomic_prompt_512x512_200iter.png
 
 ```bash
 # Step 1: Generate from prompt
-./programme generate from-prompt 512 512 150 "forêt enchantée"
+./programme generate from-prompt 512 512 150 "for�t enchantée"
 
 # Step 2: Use as pattern for more iterations
 ./programme generate pattern 512 512 200 output/atomic_prompt_512x512_150iter.png
@@ -96,15 +96,15 @@ ls -lh output/atomic_prompt_512x512_150iter.png output/atomic_generated_512x512_
 
 ```bash
 ./programme generate from-prompt
-# → Shows usage examples
+#  Shows usage examples
 
 ./programme generate
-# → Shows all commands
+#  Shows all commands
 
 ./programme generate parameters  
-# → Explains all parameters
+#  Explains all parameters
 ```
 
 ---
 
-**Status**: Ready to use ✅
+**Status**: Ready to use 

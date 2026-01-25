@@ -1,4 +1,4 @@
-# 🌊 Pattern Emergence Guide - From Waves to Recognizable Images
+#  Pattern Emergence Guide - From Waves to Recognizable Images
 
 ## Overview
 
@@ -10,9 +10,9 @@
 
 ---
 
-## 🧠 Mathematical Foundation
+##  Mathematical Foundation
 
-### 1️⃣ Pixel Grid Representation
+### 1� Pixel Grid Representation
 
 Each image is modeled as a grid of pixels with RGB values:
 
@@ -20,14 +20,14 @@ $$P_{i,j}(t) = \text{pixel color at position } (i,j) \text{ at time } t$$
 
 Where $P_{i,j} \in [0,1]^3$ for RGB channels.
 
-### 2️⃣ Local Diffusion Equation
+### 2� Local Diffusion Equation
 
 Each pixel updates based on its neighbors' influence:
 
 $$P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} \cdot (P_{k,l}(t) - P_{i,j}(t))$$
 
 **Parameters:**
-- $\alpha$ ∈ [0.0, 1.0]: **Diffusion coefficient** (neighbor influence strength)
+- $\alpha$  [0.0, 1.0]: **Diffusion coefficient** (neighbor influence strength)
 - $W_{i,j;k,l}$: **Connection weight** from neighbor $(k,l)$ to pixel $(i,j)$
 - $N(i,j)$: **8-neighborhood** (surrounding pixels)
 
@@ -36,7 +36,7 @@ $$P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} \cdot (
 - Pixel color shifts toward neighbors' average (diffusion effect)
 - Creates smooth transitions and wave propagation
 
-### 3️⃣ Seed Point Anchoring
+### 3� Seed Point Anchoring
 
 Known pixels constrain the system to follow reality:
 
@@ -47,14 +47,14 @@ $$P_{i,j}(t+1) = \begin{cases} P_{i,j}^{\text{real}} & \text{if } (i,j) \in \tex
 - Prevents the system from drifting into unreality
 - Forces emergence of specific patterns
 
-### 4️⃣ Connection Reinforcement
+### 4� Connection Reinforcement
 
 Weights strengthen when pixels have similar colors (learned alignment):
 
 $$W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp(-\|P_{i,j} - P_{k,l}\|^2)$$
 
 **Parameters:**
-- $\gamma$ ∈ [0.0, 0.1]: **Reinforcement rate**
+- $\gamma$  [0.0, 0.1]: **Reinforcement rate**
 - Gaussian function peaks when pixels are similar
 - Incorrect connections naturally weaken
 
@@ -62,7 +62,7 @@ $$W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp(-\|P_{i,j} - P_{k,l}\|^2
 - Cooperative pixels strengthen mutual influence
 - Patterns stabilize and become more recognizable
 
-### 5️⃣ Loss Function for Guidance
+### 5� Loss Function for Guidance
 
 Measure error between generated and reference pixels:
 
@@ -72,7 +72,7 @@ Where $S$ is the set of sampled/seed pixels.
 
 ---
 
-## 🚀 Commands Overview
+##  Commands Overview
 
 ### Pattern Creation
 
@@ -119,7 +119,7 @@ Where $S$ is the set of sampled/seed pixels.
 ### Full Emergence Cycle
 
 ```bash
-# Complete pipeline: init → diffuse → reinforce
+# Complete pipeline: init  diffuse  reinforce
 ./programme pattern emerge 512 512 200 input/image/face.png 0.2
 
 # Parameters:
@@ -131,7 +131,7 @@ Where $S$ is the set of sampled/seed pixels.
 
 ---
 
-## 📊 Workflow Example
+##  Workflow Example
 
 ### Step 1: Prepare Reference Image
 
@@ -170,9 +170,9 @@ ls -lh output/pattern_*.png
 
 ---
 
-## 🎛️ Parameter Tuning
+##  Parameter Tuning
 
-### Diffusion Coefficient (α)
+### Diffusion Coefficient (�)
 
 Controls how much pixels are influenced by neighbors:
 
@@ -224,7 +224,7 @@ Number of diffusion steps:
 
 ---
 
-## 💡 Interpretation of Loss
+##  Interpretation of Loss
 
 The `Average Loss` metric shows how far generated pixels drift from seeds:
 
@@ -232,23 +232,23 @@ $$\text{Loss} = \sqrt{\text{Mean squared error from seeds}}$$
 
 **Behavior:**
 
-- **Decreasing loss**: Waves converging toward seed values ✅
+- **Decreasing loss**: Waves converging toward seed values 
 - **Flat/oscillating loss**: Convergence plateau (consider stopping)
-- **Increasing loss**: Divergence (reduce α or increase γ)
+- **Increasing loss**: Divergence (reduce � or increase γ)
 
 **Example output:**
 ```
-✓ Iteration 50: Loss 0.45623
-✓ Iteration 100: Loss 0.28934  ← Improving
-✓ Iteration 150: Loss 0.27891  ← Still improving
-✓ Iteration 200: Loss 0.27845  ← Nearly flat (convergence)
+ Iteration 50: Loss 0.45623
+ Iteration 100: Loss 0.28934   Improving
+ Iteration 150: Loss 0.27891   Still improving
+ Iteration 200: Loss 0.27845   Nearly flat (convergence)
 ```
 
-→ Stop around iteration 200 in this case.
+ Stop around iteration 200 in this case.
 
 ---
 
-## 🎯 Expected Progression
+##  Expected Progression
 
 ### Pure Diffusion (No Seeds)
 
@@ -287,7 +287,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-## 📈 Advanced Techniques
+##  Advanced Techniques
 
 ### Multi-Scale Emergence
 
@@ -323,7 +323,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-## 🔧 Performance Considerations
+##  Performance Considerations
 
 ### Memory Usage
 
@@ -334,8 +334,8 @@ Iteration 200:   Clear recognition possible
 
 ### Time Complexity
 
-- Per iteration: O(width × height × neighbors)
-- Typical: 256×256 pixel = ~100ms per iteration
+- Per iteration: O(width � height � neighbors)
+- Typical: 256�256 pixel = ~100ms per iteration
 - 200 iterations: ~20 seconds
 
 ### Optimization Tips
@@ -347,33 +347,33 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Issue: Pattern won't emerge
 
 **Symptoms:** Loss doesn't decrease, abstract noise persists
 
 **Solutions:**
-- Increase seed density (0.1 → 0.2)
-- Increase diffusion coefficient (0.15 → 0.25)
+- Increase seed density (0.1  0.2)
+- Increase diffusion coefficient (0.15  0.25)
 - Use reference image with clear structure
-- Run more iterations (100 → 300)
+- Run more iterations (100  300)
 
 ### Issue: Pattern converges too fast
 
 **Symptoms:** Patterns lock in place after 50 iterations
 
 **Solutions:**
-- Decrease seed density (0.3 → 0.1)
-- Decrease reinforcement rate (0.05 → 0.02)
-- Increase diffusion α (0.15 → 0.20)
+- Decrease seed density (0.3  0.1)
+- Decrease reinforcement rate (0.05  0.02)
+- Increase diffusion � (0.15  0.20)
 
 ### Issue: Generated image looks blocky
 
 **Symptoms:** Clear pixels but low smoothness
 
 **Solutions:**
-- Increase iterations (200 → 500)
+- Increase iterations (200  500)
 - Enable reinforcement more frequently
 - Use lower seed density
 - Check reference image quality
@@ -384,12 +384,12 @@ Iteration 200:   Clear recognition possible
 
 **Solutions:**
 - Seed constraint not being applied
-- Try reducing diffusion α
+- Try reducing diffusion �
 - Check seed point coordinates
 
 ---
 
-## 🎨 Creative Applications
+##  Creative Applications
 
 ### 1. Image Style Transfer
 
@@ -426,7 +426,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-## 📚 Mathematical Intuition
+##  Mathematical Intuition
 
 ### Why It Works
 
@@ -453,11 +453,11 @@ The system models several real phenomena:
 | Pattern formation | Turing patterns |
 | Self-assembly | Emergent structure |
 
-This is why the mathematical formulation works—it mirrors nature.
+This is why the mathematical formulation worksit mirrors nature.
 
 ---
 
-## 📋 Quick Reference
+## � Quick Reference
 
 ```bash
 # Show help
@@ -479,13 +479,13 @@ This is why the mathematical formulation works—it mirrors nature.
 
 ---
 
-## 🔬 Experimental Variations
+##  Experimental Variations
 
 ### Variable Alpha Over Time
 Decrease diffusion as iterations progress:
-- Early (0-100): α = 0.25 (fast spreading)
-- Middle (100-200): α = 0.15 (stabilizing)
-- Late (200+): α = 0.05 (fine-tuning)
+- Early (0-100): � = 0.25 (fast spreading)
+- Middle (100-200): � = 0.15 (stabilizing)
+- Late (200+): � = 0.05 (fine-tuning)
 
 ### Adaptive Gamma
 Increase reinforcement as patterns stabilize.
@@ -495,7 +495,7 @@ Start with few seeds, gradually add more as iterations progress.
 
 ---
 
-## 📖 References
+##  References
 
 Mathematical foundations:
 - Turing patterns in reaction-diffusion systems
@@ -511,50 +511,50 @@ Practical applications:
 
 ---
 
-## 🎓 Learning Outcomes
+##  Learning Outcomes
 
 After working with Pattern Emergence, you understand:
 
-✅ How local interactions create global structure
-✅ Why seed points are essential for guided learning
-✅ How weights adapt through reinforcement
-✅ The interplay between diffusion and anchoring
-✅ Pattern formation without central control
+ How local interactions create global structure
+ Why seed points are essential for guided learning
+ How weights adapt through reinforcement
+ The interplay between diffusion and anchoring
+ Pattern formation without central control
 
 This is **atomic intelligence**: intelligence emerges from local rules, not top-down computation.
 
 ---
 
-## 📞 Example Session
+## � Example Session
 
 ```bash
 $ ./programme pattern emerge 512 512 250 input/image/face.png 0.15
 
-✨ PATTERN EMERGENCE CYCLE
-═══════════════════════════════════════
-Transforming abstract waves → recognizable structures
+ PATTERN EMERGENCE CYCLE
 
-🎨 Phase 1: Initialize Engine (512x512)
-   ✓ Created pixel grid with uniform connections
+Transforming abstract waves  recognizable structures
 
-📌 Phase 2: Load Reference Seeds (density: 15.0%)
-  📌 Added 1234 seed points at density 0.15
-   ✓ Seeds saved to visualization
+ Phase 1: Initialize Engine (512x512)
+    Created pixel grid with uniform connections
 
-🌊 Phase 3: Pixel Diffusion (250 iterations)
-   P_ij(t+1) = P_ij(t) + α·Σ W·(neighbor_colors - P_ij)
-   ✓ Iter 62: Loss 0.12345
-   ✓ Iter 125: Loss 0.08912
-   ✓ Iter 187: Loss 0.07654
-   ✓ Iter 250: Loss 0.07543
+ Phase 2: Load Reference Seeds (density: 15.0%)
+   Added 1234 seed points at density 0.15
+    Seeds saved to visualization
 
-💪 Phase 4: Connection Reinforcement (10 cycles)
-   ✓ Weights strengthened for stable patterns
+ Phase 3: Pixel Diffusion (250 iterations)
+   P_ij(t+1) = P_ij(t) + ��Σ W�(neighbor_colors - P_ij)
+    Iter 62: Loss 0.12345
+    Iter 125: Loss 0.08912
+    Iter 187: Loss 0.07654
+    Iter 250: Loss 0.07543
 
-✅ EMERGENCE COMPLETE
-═══════════════════════════════════════
+ Phase 4: Connection Reinforcement (10 cycles)
+    Weights strengthened for stable patterns
 
-📊 Pattern Emergence Statistics
+ EMERGENCE COMPLETE
+
+
+ Pattern Emergence Statistics
 Iterations:     250
 Average Loss:   0.0754
 Seed Points:    1234
@@ -564,4 +564,4 @@ Final image: output/pattern_final_emerged.png
 
 ---
 
-**Enjoy your atomic pattern emergence! 🌊✨**
+**Enjoy your atomic pattern emergence! **

@@ -8,31 +8,31 @@ The Cellular Emergence System is now fully integrated into the image generation 
 
 ```
 IMAGE GENERATION PIPELINE
-│
-├─ STEP 1: Load Image & Extract Energy Signature
-│  └─ NewImageEnergyProfile(imagePath)
-│
-├─ STEP 2: Create Atomic Network
-│  └─ NewConstraintRelaxationNetwork(512, 512, patchSize)
-│     └─ Atoms form 256×256 grid
-│
-├─ STEP 3: Apply Energy Constraints
-│  └─ Network.RelaxationStep() in loop
-│     └─ Atoms relax under energy constraints
-│
-├─ STEP 4: CELLULAR EMERGENCE (NEW!)
-│  ├─ Create Detector
-│  │  └─ CellularClusterDetector(atoms)
-│  │
-│  ├─ Every N iterations:
-│  │  ├─ DetectCells() → finds stable clusters
-│  │  ├─ Create CellularNetwork from cells
-│  │  └─ IterateCells() → cell interactions
-│  │
-│  └─ Result: Perfect hierarchical structure
-│
-└─ STEP 5: Render Perfect Image
-   └─ Hierarchical coherence guarantees quality
+
+ STEP 1: Load Image & Extract Energy Signature
+   NewImageEnergyProfile(imagePath)
+
+ STEP 2: Create Atomic Network
+   NewConstraintRelaxationNetwork(512, 512, patchSize)
+      Atoms form 256�256 grid
+
+ STEP 3: Apply Energy Constraints
+   Network.RelaxationStep() in loop
+      Atoms relax under energy constraints
+
+ STEP 4: CELLULAR EMERGENCE (NEW!)
+   Create Detector
+     CellularClusterDetector(atoms)
+  
+   Every N iterations:
+     DetectCells()  finds stable clusters
+     Create CellularNetwork from cells
+     IterateCells()  cell interactions
+  
+   Result: Perfect hierarchical structure
+
+ STEP 5: Render Perfect Image
+    Hierarchical coherence guarantees quality
 ```
 
 ## How to Use in Your Code
@@ -168,9 +168,9 @@ type DetectionCriteria struct {
 }
 
 // A cell is created when ALL of these are met:
-// 1. Cluster has ≥ 9 atoms
-// 2. Each atom in cluster has ≥ 2 connections to other atoms in cluster
-// 3. All atoms have Confidence ≥ 0.90
+// 1. Cluster has  9 atoms
+// 2. Each atom in cluster has  2 connections to other atoms in cluster
+// 3. All atoms have Confidence  0.90
 // 4. Internal state variance is low
 // 5. Cluster forms one connected graph
 ```
@@ -178,24 +178,24 @@ type DetectionCriteria struct {
 ## Performance Characteristics
 
 ### Time Complexity
-- **Per atomic iteration**: O(n_atoms × neighbors) ≈ O(n_atoms) for local interactions
-- **Cell detection**: O(n_atoms × 8) = O(n_atoms) for flood-fill
-- **Cellular iteration**: O(n_cells × neighboring_cells) ≈ O(n_cells)
+- **Per atomic iteration**: O(n_atoms � neighbors)  O(n_atoms) for local interactions
+- **Cell detection**: O(n_atoms � 8) = O(n_atoms) for flood-fill
+- **Cellular iteration**: O(n_cells � neighboring_cells)  O(n_cells)
 - **Overall**: Linear with atom count
 
 ### Memory Usage
-- **Atomic network**: 256×256 × sizeof(PixelAtomV2) ≈ 100 MB
-- **Cells detected**: Typically 40-100 cells × ~100 atoms each
+- **Atomic network**: 256�256 � sizeof(PixelAtomV2)  100 MB
+- **Cells detected**: Typically 40-100 cells � ~100 atoms each
 - **Cell network**: O(n_cells²) for adjacency, but sparse
 
 ### Example Performance
 ```
-256×256 atoms, 500 iterations:
-  • Time: 10-15 seconds
-  • Atoms per second: 256×256×500 / 12 = ~2.7M atoms/sec
-  • Detection calls: 500/20 = 25 times
-  • Cells created: ~47
-  • Final coherence: 94%
+256�256 atoms, 500 iterations:
+   Time: 10-15 seconds
+   Atoms per second: 256�256�500 / 12 = ~2.7M atoms/sec
+   Detection calls: 500/20 = 25 times
+   Cells created: ~47
+   Final coherence: 94%
 ```
 
 ## Troubleshooting Guide
@@ -234,7 +234,7 @@ if len(hierarchy.CellNetwork.Cells) > 0 {
 ### Primary Metrics
 1. **Atomic Coherence** (0-100%)
    - Measures alignment of all atoms
-   - Should increase from 20% → 90%
+   - Should increase from 20%  90%
    - Indicates atomic-level stability
 
 2. **Number of Cells**
@@ -316,10 +316,10 @@ for scale := 0; scale < len(pipeline.Scales); scale++ {
 
 ```go
 func FullPipelineWithCells(imagePath string) {
-    fmt.Println("🔄 Starting full pipeline with cellular emergence...")
+    fmt.Println(" Starting full pipeline with cellular emergence...")
     
     // PHASE 1: Energy extraction
-    fmt.Println("📸 Analyzing source image...")
+    fmt.Println(" Analyzing source image...")
     energyProfile, err := database.NewImageEnergyProfile(imagePath)
     if err != nil {
         fmt.Printf("Error loading image: %v\n", err)
@@ -327,16 +327,16 @@ func FullPipelineWithCells(imagePath string) {
     }
     
     // PHASE 2: Atomic network creation
-    fmt.Println("⚛️  Creating 256×256 atom network...")
+    fmt.Println("  Creating 256�256 atom network...")
     atomNetwork := database.NewConstraintRelaxationNetwork(512, 512, 2)
     atomNetwork.EnergyProfile = energyProfile
     
     // PHASE 3: Hierarchical setup
-    fmt.Println("🔗 Setting up hierarchical layers...")
+    fmt.Println(" Setting up hierarchical layers...")
     hierarchy := database.NewHierarchicalLayers(atomNetwork, 20)
     
     // PHASE 4: Convergence
-    fmt.Println("⏳ Running convergence (500 iterations)...")
+    fmt.Println("� Running convergence (500 iterations)...")
     
     startTime := time.Now()
     for i := 0; i < 500; i++ {
@@ -354,11 +354,11 @@ func FullPipelineWithCells(imagePath string) {
     }
     
     // PHASE 5: Final report
-    fmt.Println("\n✨ Convergence complete!")
+    fmt.Println("\n Convergence complete!")
     fmt.Println(hierarchy.PrintCellularStatus())
     
     // PHASE 6: Render
-    fmt.Println("\n🎨 Rendering with perfect hierarchical structure...")
+    fmt.Println("\n Rendering with perfect hierarchical structure...")
     // ... render the network
 }
 ```
@@ -440,10 +440,10 @@ for i := 0; i < iterations; i++ {
 
 The Cellular Emergence System is now ready to integrate into your image generation pipeline. It provides:
 
-✅ Automatic cell detection based on 5 strict criteria  
-✅ Hierarchical organization without manual configuration  
-✅ Perfect rendering through cellular stabilization  
-✅ Flexible parameters for different quality/speed trade-offs  
-✅ Comprehensive monitoring and metrics  
+ Automatic cell detection based on 5 strict criteria  
+ Hierarchical organization without manual configuration  
+ Perfect rendering through cellular stabilization  
+ Flexible parameters for different quality/speed trade-offs  
+ Comprehensive monitoring and metrics  
 
-**Ready for production-quality image generation!** 🚀
+**Ready for production-quality image generation!** 

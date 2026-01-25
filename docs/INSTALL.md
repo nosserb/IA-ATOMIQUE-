@@ -1,4 +1,4 @@
-# 🚀 Installation & Utilisation Rapide
+#  Installation & Utilisation Rapide
 
 ## Installation depuis GitHub
 
@@ -6,13 +6,13 @@
 - **Go 1.22+** ou **Docker**
 - **Git**
 
-### 1️⃣ Cloner le repo
+### 1� Cloner le repo
 ```bash
 git clone https://github.com/ton-user/IA-ATOMIQUE.git
 cd IA-ATOMIQUE
 ```
 
-### 2️⃣ Compiler et Lancer
+### 2� Compiler et Lancer
 
 #### Option A: Avec Go (recommandé)
 ```bash
@@ -40,17 +40,17 @@ docker run -p 8080:8080 ia-atomique
 docker-compose up
 ```
 
-### 3️⃣ Accéder à l'interface
+### 3� Accéder � l'interface
 ```
 http://localhost:8080
 ```
 
-## 📖 Modes d'utilisation
+##  Modes d'utilisation
 
 ### Mode Web (Interface)
 ```bash
 ./programme web
-# Accède à http://localhost:8080
+# Acc�de � http://localhost:8080
 ```
 
 ### Mode Fichier
@@ -60,7 +60,7 @@ http://localhost:8080
 
 ### Mode Texte
 ```bash
-./programme text "Votre texte à analyser"
+./programme text "Votre texte � analyser"
 ```
 
 ### Mode Interactif
@@ -68,9 +68,9 @@ http://localhost:8080
 ./programme interactive
 ```
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
-### Port 8080 déjà utilisé
+### Port 8080 déj� utilisé
 ```bash
 # Modifier le port dans web.go ligne 29:
 # go StartWebServer("9000")
@@ -80,7 +80,7 @@ go build -o programme
 
 ### Erreur de compilation
 ```bash
-# Mettre à jour les dépendances
+# Mettre � jour les dépendances
 go mod tidy
 go mod download
 go build -o programme
@@ -92,27 +92,27 @@ Vérifier que le répertoire `web/` existe avec:
 - `style.css`
 - `script.js`
 
-## 📊 Fichiers importants
+##  Fichiers importants
 
 ```
-├── web.go              # Serveur HTTP
-├── main.go             # Entrée principale
-├── interaction.go      # CLI
-├── database/
-│   ├── phrase_analysis.go
-│   ├── nlp.go
-│   ├── language.go
-│   └── data.go
-├── web/                # Interface web
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-├── Dockerfile          # Pour Docker
-├── docker-compose.yml  # Compose config
-└── go.mod             # Dépendances Go
+ web.go              # Serveur HTTP
+ main.go             # Entrée principale
+ interaction.go      # CLI
+ database/
+    phrase_analysis.go
+    nlp.go
+    language.go
+    data.go
+ web/                # Interface web
+    index.html
+    style.css
+    script.js
+ Dockerfile          # Pour Docker
+ docker-compose.yml  # Compose config
+ go.mod             # Dépendances Go
 ```
 
-## 🎯 Exemple de texte à tester
+##  Exemple de texte � tester
 
 ```
 L'intelligence artificielle transforme le monde. 
@@ -124,4 +124,4 @@ Colle ce texte dans l'interface et clique "Résumer"!
 
 ---
 
-📖 Pour plus d'infos: voir [WEB_README.md](WEB_README.md) et [SETUP_WEB.md](SETUP_WEB.md)
+ Pour plus d'infos: voir [WEB_README.md](WEB_README.md) et [SETUP_WEB.md](SETUP_WEB.md)

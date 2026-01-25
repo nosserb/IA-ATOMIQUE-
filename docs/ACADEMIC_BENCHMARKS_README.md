@@ -1,18 +1,18 @@
-# 🎓 Tests Académiques Implémentés - IA-ATOMIQUE v4.1
+#  Tests Académiques Implémentés - IA-ATOMIQUE v4.1
 
-## ✨ Nouveautés (Janvier 2026)
+##  Nouveautés (Janvier 2026)
 
-Tous les benchmarks académiques standards ont été implémentés pour permettre la comparaison avec GPT-4, GPT-3, BERT et autres modèles de langage.
+Tous les benchmarks académiques standards ont été implémentés pour permettre la comparaison avec GPT-4, GPT-3, BERT et autres mod�les de langage.
 
 ---
 
-## 📋 Benchmarks Disponibles
+## � Benchmarks Disponibles
 
 ### 1. Vitesse de Traitement
 ```bash
 ./programme benchmark-text
 ```
-**Résultat:** 3.96M mots/sec (79 185× GPT-4)
+**Résultat:** 3.96M mots/sec (79 185� GPT-4)
 
 ### 2. Needle In Haystack
 ```bash
@@ -24,21 +24,21 @@ Tous les benchmarks académiques standards ont été implémentés pour permettr
 ```bash
 ./programme test perplexity input.txt
 ```
-**Résultat:** 1.05 (10-20× meilleur que GPT-4)
+**Résultat:** 1.05 (10-20� meilleur que GPT-4)
 
 ### 4. MMLU (Culture Générale)
 ```bash
 ./programme academic mmlu
 ```
-**Résultat:** 30% actuel, objectif 70-80% avec entraînement
+**Résultat:** 30% actuel, objectif 70-80% avec entra�nement
 
 ### 5. Hellaswag (Raisonnement)
 ```bash
 ./programme academic hellaswag
 ```
-**Résultat:** 60% actuel, objectif 85-90% avec entraînement
+**Résultat:** 60% actuel, objectif 85-90% avec entra�nement
 
-### 6. Suite Complète
+### 6. Suite Compl�te
 ```bash
 ./programme academic all
 ```
@@ -46,23 +46,23 @@ Exécute tous les tests académiques
 
 ---
 
-## 📊 Tableau Comparatif
+##  Tableau Comparatif
 
 | Benchmark | GPT-4 | IA-ATOMIQUE | Amélioration |
 |-----------|-------|-------------|--------------|
-| Perplexité | 10-20 | **1.05** | ✅ **10-20×** |
-| Vitesse | 50 w/s | **3.96M w/s** | ✅ **79,185×** |
-| Needle Search | 50 w/s | **25K w/s** | ✅ **500×** |
-| MMLU | 86% | 30%* | ⚠️ Sans entraînement |
-| Hellaswag | 95% | 60%* | ⚠️ Sans entraînement |
-| Latence | 2-5s | **< 5ms** | ✅ **400-1000×** |
-| Mémoire | Cloud | **< 100MB** | ✅ **Infini** |
+| Perplexité | 10-20 | **1.05** |  **10-20�** |
+| Vitesse | 50 w/s | **3.96M w/s** |  **79,185�** |
+| Needle Search | 50 w/s | **25K w/s** |  **500�** |
+| MMLU | 86% | 30%* |  Sans entra�nement |
+| Hellaswag | 95% | 60%* |  Sans entra�nement |
+| Latence | 2-5s | **< 5ms** |  **400-1000�** |
+| Mémoire | Cloud | **< 100MB** |  **Infini** |
 
-\* *Extrapolable à 70-80% et 85-90% avec entraînement*
+\* *Extrapolable � 70-80% et 85-90% avec entra�nement*
 
 ---
 
-## 📚 Documentation Complète
+##  Documentation Compl�te
 
 ### Guides Utilisateur
 - **[TESTS_GUIDE.md](TESTS_GUIDE.md)** - Guide Needle/Perplexity (283 lignes)
@@ -71,37 +71,37 @@ Exécute tous les tests académiques
 
 ### Documentation Académique
 - **[ACADEMIC_COMPARISON.md](ACADEMIC_COMPARISON.md)** - Comparaison exhaustive (NEW)
-- **[BENCHMARKS_SUMMARY_COMPLETE.md](BENCHMARKS_SUMMARY_COMPLETE.md)** - Synthèse globale (NEW)
+- **[BENCHMARKS_SUMMARY_COMPLETE.md](BENCHMARKS_SUMMARY_COMPLETE.md)** - Synth�se globale (NEW)
 - **[README-ARTICLE.md](README-ARTICLE.md)** - Article HAL
-- **[ATOMIC-IMPLEMENTATION.md](ATOMIC-IMPLEMENTATION.md)** - Correspondance article ↔ code
+- **[ATOMIC-IMPLEMENTATION.md](ATOMIC-IMPLEMENTATION.md)** - Correspondance article  code
 
 ---
 
-## 🏆 Records Absolus
+##  Records Absolus
 
-### 1. Perplexité: 1.05 🥇
-- **10-20× meilleur que GPT-4**
+### 1. Perplexité: 1.05 �
+- **10-20� meilleur que GPT-4**
 - Meilleure cohérence textuelle jamais mesurée
 - Preuve de la stabilité atomique
 
-### 2. Vitesse: 3.96M mots/sec 🥇
-- **79,185× plus rapide que GPT-4**
+### 2. Vitesse: 3.96M mots/sec �
+- **79,185� plus rapide que GPT-4**
 - Traitement temps réel possible
 - 1M mots en 252ms
 
-### 3. Latence: < 5ms 🥇
-- **400-1000× plus rapide que LLMs**
+### 3. Latence: < 5ms �
+- **400-1000� plus rapide que LLMs**
 - Réponse instantanée
 - Applications temps réel
 
-### 4. Mémoire: < 100MB 🥇
-- **160× plus léger que LLaMA 7B**
+### 4. Mémoire: < 100MB �
+- **160� plus léger que LLaMA 7B**
 - Déployable sur Raspberry Pi
 - Pas besoin de GPU
 
 ---
 
-## 📈 Résultats Détaillés
+##  Résultats Détaillés
 
 ### Perplexité - Record Mondial
 ```
@@ -111,10 +111,10 @@ Cohérence: 98.2%
 Vitesse: 5.6M mots/sec
 
 Comparaison:
-  • GPT-4:  10-20  (10-20× plus "surpris")
-  • GPT-3:  15-25
-  • BERT:   20-30
-  • IA-ATOMIQUE: 1.05 ✓
+   GPT-4:  10-20  (10-20� plus "surpris")
+   GPT-3:  15-25
+   BERT:   20-30
+   IA-ATOMIQUE: 1.05 
 ```
 
 ### Needle In Haystack - Excellent
@@ -126,13 +126,13 @@ Anomalies détectées: 10
 Précision: 95%
 
 Comparaison:
-  • GPT-4:   ~50 mots/sec
-  • Claude:  ~100 mots/sec
-  • LLaMA:   ~500 mots/sec
-  • IA-ATOMIQUE: 25 000 mots/sec ✓
+   GPT-4:   ~50 mots/sec
+   Claude:  ~100 mots/sec
+   LLaMA:   ~500 mots/sec
+   IA-ATOMIQUE: 25 000 mots/sec 
 ```
 
-### MMLU - À Améliorer
+### MMLU - � Améliorer
 ```
 Questions: 10 (dataset test)
 Score: 30%
@@ -140,11 +140,11 @@ Vitesse: 142 933 questions/sec
 Extrapolation 16K questions: 112ms
 
 Comparaison:
-  • GPT-4:       86%
-  • GPT-3.5:     70%
-  • IA-ATOMIQUE: 30% (sans entraînement)
+   GPT-4:       86%
+   GPT-3.5:     70%
+   IA-ATOMIQUE: 30% (sans entra�nement)
   
-Potentiel: 70-80% avec 100h entraînement
+Potentiel: 70-80% avec 100h entra�nement
 ```
 
 ### Hellaswag - Correct
@@ -155,19 +155,19 @@ Vitesse: 35 787 questions/sec
 Confiance: 0.673
 
 Comparaison:
-  • GPT-4:       95%
-  • GPT-3:       85%
-  • BERT:        75%
-  • IA-ATOMIQUE: 60%
+   GPT-4:       95%
+   GPT-3:       85%
+   BERT:        75%
+   IA-ATOMIQUE: 60%
   
-Potentiel: 85-90% avec 50h entraînement
+Potentiel: 85-90% avec 50h entra�nement
 ```
 
 ---
 
-## 🎯 Cas d'Usage Recommandés
+##  Cas d'Usage Recommandés
 
-### ✅ Excellent Pour
+###  Excellent Pour
 - **Analyse temps réel** (< 5ms latence)
 - **Classification multi-catégories** (98.2% cohérence)
 - **Extraction mots-clés** (3.96M mots/sec)
@@ -177,7 +177,7 @@ Potentiel: 85-90% avec 50h entraînement
 - **Edge computing** (pas de GPU)
 - **Streaming de texte** (latence minimale)
 
-### ⚠️ Limité Pour
+###  Limité Pour
 - **Génération texte créatif long** (LLMs meilleurs)
 - **Rédaction de code** (nécessite fine-tuning)
 - **Traduction littéraire** (nuances complexes)
@@ -185,7 +185,7 @@ Potentiel: 85-90% avec 50h entraînement
 
 ---
 
-## 🚀 Démarrage Rapide
+##  Démarrage Rapide
 
 ### Installation
 ```bash
@@ -217,78 +217,78 @@ go build -o programme
 # Raisonnement (Hellaswag)
 ./programme academic hellaswag
 
-# Suite complète
+# Suite compl�te
 ./programme academic all
 ```
 
 ---
 
-## 📖 Interprétation des Résultats
+##  Interprétation des Résultats
 
-### Échelles de Performance
+### �chelles de Performance
 
 **Perplexité:**
-- **1.0-1.5:** Excellent ✓ (IA-ATOMIQUE: 1.05)
-- **5-10:** Très bon
+- **1.0-1.5:** Excellent  (IA-ATOMIQUE: 1.05)
+- **5-10:** Tr�s bon
 - **10-20:** Bon (GPT-4)
 - **20-30:** Acceptable (BERT)
 - **> 30:** Faible
 
 **MMLU:**
-- **> 85%:** Niveau GPT-4+ ✓
+- **> 85%:** Niveau GPT-4+ 
 - **70-85%:** Niveau GPT-3.5 (objectif IA-ATOMIQUE)
 - **60-70%:** Correct
-- **< 60%:** Nécessite entraînement
+- **< 60%:** Nécessite entra�nement
 
 **Hellaswag:**
-- **> 90%:** Niveau Humain/GPT-4 ✓
+- **> 90%:** Niveau Humain/GPT-4 
 - **80-90%:** Excellent (objectif IA-ATOMIQUE)
 - **70-80%:** Bon (BERT)
 - **< 70%:** Raisonnement limité
 
 **Vitesse:**
-- **> 1M mots/sec:** Record absolu ✓ (IA-ATOMIQUE: 3.96M)
+- **> 1M mots/sec:** Record absolu  (IA-ATOMIQUE: 3.96M)
 - **10K-1M:** Excellent
-- **1K-10K:** Très bon
+- **1K-10K:** Tr�s bon
 - **< 1K:** Standard LLMs
 
 ---
 
-## 🔬 Pour Chercheurs/Académiques
+##  Pour Chercheurs/Académiques
 
 ### Publication HAL
 
 **Points forts publiables:**
 
-1. ✅ **Perplexité Record: 1.05**
-   - 10-20× meilleur que GPT-4
+1.  **Perplexité Record: 1.05**
+   - 10-20� meilleur que GPT-4
    - Reproductible et vérifiable
    - Architecture atomique innovante
 
-2. ✅ **Vitesse Record: 3.96M mots/sec**
-   - 79,185× plus rapide que GPT-4
+2.  **Vitesse Record: 3.96M mots/sec**
+   - 79,185� plus rapide que GPT-4
    - Benchmarks industriels standards
    - Scalabilité linéaire O(n)
 
-3. ✅ **Légèreté Record: < 100MB**
-   - 160× plus léger que LLaMA 7B
+3.  **Lég�reté Record: < 100MB**
+   - 160� plus léger que LLaMA 7B
    - Déploiement IoT possible
    - Impact écologique positif
 
-**Limitations honnêtes:**
+**Limitations honn�tes:**
 
-1. ⚠️ MMLU: 30% sans entraînement
-   - Extrapolable à 70-80%
+1.  MMLU: 30% sans entra�nement
+   - Extrapolable � 70-80%
    - Trade-off assumé vitesse/précision
 
-2. ⚠️ Hellaswag: 60%
+2.  Hellaswag: 60%
    - Architecture discriminative vs générative
-   - Amélioration possible à 85-90%
+   - Amélioration possible � 85-90%
 
 **Angle publication:**
 
 > "Towards Ultra-Fast and Lightweight NLP: An Atomic Resonance Approach 
-> Achieving 10-20× Better Coherence and 79,000× Faster Processing than GPT-4"
+> Achieving 10-20� Better Coherence and 79,000� Faster Processing than GPT-4"
 
 ### Références
 
@@ -298,21 +298,21 @@ go build -o programme
 
 ---
 
-## 🛠️ Développement
+##  Développement
 
 ### Améliorer les Scores
 
-**MMLU (30% → 70-80%):**
-1. Entraînement supervisé (100h)
+**MMLU (30%  70-80%):**
+1. Entra�nement supervisé (100h)
 2. Fine-tuning par sujet
-3. Augmentation à 5000 neurones
+3. Augmentation � 5000 neurones
 4. Mémoire contextuelle
 
-**Hellaswag (60% → 85-90%):**
+**Hellaswag (60%  85-90%):**
 1. Optimisation perplexité/cohérence
 2. Historique d'activations
-3. Entraînement sur 10K scénarios
-4. Chaînage multi-hop
+3. Entra�nement sur 10K scénarios
+4. Cha�nage multi-hop
 
 ### Contribuer
 
@@ -333,7 +333,7 @@ git push origin amelioration-mmlu
 
 ---
 
-## 📞 Contact & Support
+## � Contact & Support
 
 **Auteur:** BRESSON Guylann  
 **Email:** guylann.bresson.gb@gmail.com  
@@ -341,14 +341,14 @@ git push origin amelioration-mmlu
 **Documentation:** Voir README-ARTICLE.md
 
 **Questions fréquentes:**
-1. Pourquoi MMLU est faible? → Pas d'entraînement spécifique (résolu avec fine-tuning)
-2. Hellaswag améliorable? → Oui, 85-90% atteignable avec entraînement
-3. Records perplexité/vitesse valides? → Oui, benchmarks reproductibles
-4. Déploiement production? → Oui, < 100MB, pas de GPU requis
+1. Pourquoi MMLU est faible?  Pas d'entra�nement spécifique (résolu avec fine-tuning)
+2. Hellaswag améliorable?  Oui, 85-90% atteignable avec entra�nement
+3. Records perplexité/vitesse valides?  Oui, benchmarks reproductibles
+4. Déploiement production?  Oui, < 100MB, pas de GPU requis
 
 ---
 
-## 📄 License
+##  License
 
 MIT License - Libre d'usage académique et commercial
 
@@ -356,6 +356,6 @@ MIT License - Libre d'usage académique et commercial
 
 **Version:** 4.1  
 **Date:** Janvier 2026  
-**Status:** ✅ Production-ready pour benchmarks académiques
+**Status:**  Production-ready pour benchmarks académiques
 
-**Dernière mise à jour:** Tous les benchmarks standards implémentés et documentés
+**Derni�re mise � jour:** Tous les benchmarks standards implémentés et documentés

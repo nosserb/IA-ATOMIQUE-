@@ -1,49 +1,49 @@
-# 🎯 RÉSUMÉ DES AMÉLIORATIONS - AVANT/APRÈS COMPLET
+#  R�SUM� DES AM�LIORATIONS - AVANT/APR�S COMPLET
 
 ## VERSION INITIALE (Avant améliorations)
 
-### Problèmes Identifiés
+### Probl�mes Identifiés
 
 1. **Compression non-fonctionnelle**
-   - Texte preprocessé → splité par `.` → rejoint avec ` `
+   - Texte preprocessé  splité par `.`  rejoint avec ` `
    - ResumerTexte tentait splitter par `.` sur texte sans `.`
    - Résultat: Ratio avait AUCUN EFFET
    - Compression: 100% peu importe le ratio
 
 2. **Assemblée encyclopédique chaotique**
-   - Compression ultra-haute (10%) → mots isolés
+   - Compression ultra-haute (10%)  mots isolés
    - "été décrite par von mondiale était"
    - Aucune cohérence
    - Phase X+4 n'existait pas
 
 3. **Connecteurs explicites omniprésents**
-   - "alors, de plus, en conséquence, dès lors"
+   - "alors, de plus, en conséquence, d�s lors"
    - Phase X+3 essayait de les réduire (40% reduction)
-   - Mais trop de stacking quand même
+   - Mais trop de stacking quand m�me
    - Signal "IA marker" visible au lecteur
 
 4. **Pas d'adaptation par type**
-   - Même traitement pour encyclopédique et conceptuel
+   - M�me traitement pour encyclopédique et conceptuel
    - Textes factuels perdaient leurs faits
    - Textes abstraits restaient trop concrets
    - Aucune détection de type existante
 
-5. **Problèmes de phase orchestration**
-   - Phase X+1 forçait abstraction sur TOUS les textes
-   - Phase X+3 ajoutait connecteurs à TOUS les textes
+5. **Probl�mes de phase orchestration**
+   - Phase X+1 for�ait abstraction sur TOUS les textes
+   - Phase X+3 ajoutait connecteurs � TOUS les textes
    - Pas de contrôle contextuel
    - Trop de transformations simultanées
 
 ---
 
-## VERSION AMÉLIORÉE (Après Phase X+4)
+## VERSION AM�LIOR�E (Apr�s Phase X+4)
 
 ### Fixes Implémentés
 
-✅ **1. Compression Maintenant Fonctionnelle**
+ **1. Compression Maintenant Fonctionnelle**
 ```go
 // Avant: Impossible de splitter par periode sur texte sans periodes
-// Après: Word-level splitting avec ratio intelligent
+// Apr�s: Word-level splitting avec ratio intelligent
 ResumerTexte(texte, ratio) {
     // Split par mots (pas par periodes)
     words := strings.Fields(texte)
@@ -57,14 +57,14 @@ ResumerTexte(texte, ratio) {
 ```
 
 **Validation:**
-- Ratio 0.1 → 79% compression ✅
-- Ratio 0.3 → 68% compression ✅
-- Ratio 0.5 → 48% compression ✅
-- Ratio 0.9 → 9.9% compression ✅
+- Ratio 0.1  79% compression 
+- Ratio 0.3  68% compression 
+- Ratio 0.5  48% compression 
+- Ratio 0.9  9.9% compression 
 
 ---
 
-✅ **2. Détection Type de Texte**
+ **2. Détection Type de Texte**
 ```go
 // Nouveau détecteur avec 3 types
 DetectTextType(text) {
@@ -77,13 +77,13 @@ DetectTextType(text) {
 ```
 
 **Précision:**
-- "Photosynthèse est..." → ENCYCLOPEDIC ✅
-- "Il était une fois..." → NARRATIVE ✅
-- "Concept de liberté..." → CONCEPTUAL ✅
+- "Photosynth�se est..."  ENCYCLOPEDIC 
+- "Il était une fois..."  NARRATIVE 
+- "Concept de liberté..."  CONCEPTUAL 
 
 ---
 
-✅ **3. Résumé par Phrases pour Encyclopédique**
+ **3. Résumé par Phrases pour Encyclopédique**
 ```go
 // Nouveau pour encyclopédique seulement
 ResumerTexteParPhrases(texte, ratio) {
@@ -96,13 +96,13 @@ ResumerTexteParPhrases(texte, ratio) {
 ```
 
 **Résultat:**
-- "Photosynthèse est processus. Elle implique carbone."
-- VS avant: "photosynthèse processus elle carbone implique"
-- Cohérence: Excellente (phrases entières > mots)
+- "Photosynth�se est processus. Elle implique carbone."
+- VS avant: "photosynth�se processus elle carbone implique"
+- Cohérence: Excellente (phrases enti�res > mots)
 
 ---
 
-✅ **4. Compression Limitée par Type**
+ **4. Compression Limitée par Type**
 ```go
 function GetOptimalCompressionForType(type) {
     case ENCYCLOPEDIC: return 0.3 (max 70% kept)
@@ -112,29 +112,29 @@ function GetOptimalCompressionForType(type) {
 ```
 
 **Effet:**
-- Avant: Texte scientifique 10% → mot-salad
-- Après: Texte scientifique 10% → limité à 30% → lisible
-- Utilisateur voit: "⚠️ Compression limitée à 30%"
+- Avant: Texte scientifique 10%  mot-salad
+- Apr�s: Texte scientifique 10%  limité � 30%  lisible
+- Utilisateur voit: " Compression limitée � 30%"
 
 ---
 
-✅ **5. Skip Phase X+1 pour Encyclopédique**
+ **5. Skip Phase X+1 pour Encyclopédique**
 ```go
 if result.SkipAbstraction {
     // Skip GenererPhrasesConceptuelles()
     // Garder texte factuel pur
-    fmt.Println("ℹ️ Texte encyclopédique: conservation des faits")
+    fmt.Println("� Texte encyclopédique: conservation des faits")
 }
 ```
 
 **Effet:**
-- Avant: "La photosynthèse" → forcé abstrait → "L'énergie se transforme"
-- Après: "La photosynthèse" → gardé → "La photosynthèse est..."
+- Avant: "La photosynth�se"  forcé abstrait  "L'énergie se transforme"
+- Apr�s: "La photosynth�se"  gardé  "La photosynth�se est..."
 - Faits: Tous préservés
 
 ---
 
-✅ **6. Skip Phase X+3 pour Encyclopédique**
+ **6. Skip Phase X+3 pour Encyclopédique**
 ```go
 if result.TextType == ENCYCLOPEDIC {
     // Skip HumanizeStructure()
@@ -147,13 +147,13 @@ if result.TextType == ENCYCLOPEDIC {
 ```
 
 **Effet:**
-- Avant: "Processus... En outre molécules... Dès lors réaction..."
-- Après: "Processus... Molécules... Réaction..."
+- Avant: "Processus... En outre molécules... D�s lors réaction..."
+- Apr�s: "Processus... Molécules... Réaction..."
 - Connecteurs: Aucun parasite
 
 ---
 
-✅ **7. Skip Enrichissement pour Encyclopédique**
+ **7. Skip Enrichissement pour Encyclopédique**
 ```go
 if result.TextType == ENCYCLOPEDIC {
     enrichedSummary = baseSummary  // Garder pur
@@ -164,12 +164,12 @@ if result.TextType == ENCYCLOPEDIC {
 
 **Effet:**
 - Avant: Enrichissement changeait sens
-- Après: Structure naturelle gardée
+- Apr�s: Structure naturelle gardée
 - Style: Factuel (pas "jolie" mais correct)
 
 ---
 
-✅ **8. Phase X+4 Reformulation Améliorée**
+ **8. Phase X+4 Reformulation Améliorée**
 ```go
 reformulerSegment(mots) {
     if [Article] + [Nom] {
@@ -186,25 +186,25 @@ reformulerSegment(mots) {
 ```
 
 **Effet:**
-- Avant: "C'est été décrite. C'est estimée centimètres."
-- Après: "La réaction est divisée. Il y a deux étapes."
+- Avant: "C'est été décrite. C'est estimée centim�tres."
+- Apr�s: "La réaction est divisée. Il y a deux étapes."
 - Grammaire: Correcte (pas de "C'est + passé")
 
 ---
 
-## 📊 COMPARAISON GLOBALE
+##  COMPARAISON GLOBALE
 
 ### Métrique 1: Compression Fonctionnelle
 
-| Ratio | Type | Avant | Après | Status |
+| Ratio | Type | Avant | Apr�s | Status |
 |---|---|---|---|---|
-| 0.1 | GENERIC | 100% | 79% | ✅ Fonctionne |
-| 0.3 | ENCYCLOP | 100% | 68% | ✅ Fonctionne |
-| 0.5 | NARRATIF | 100% | 48% | ✅ Fonctionne |
-| 0.7 | CONCEPT | 100% | 30% | ✅ Fonctionne |
+| 0.1 | GENERIC | 100% | 79% |  Fonctionne |
+| 0.3 | ENCYCLOP | 100% | 68% |  Fonctionne |
+| 0.5 | NARRATIF | 100% | 48% |  Fonctionne |
+| 0.7 | CONCEPT | 100% | 30% |  Fonctionne |
 
 **Avant:** Ratio = no-op
-**Après:** Ratio = fonctionnel
+**Apr�s:** Ratio = fonctionnel
 
 ---
 
@@ -212,22 +212,22 @@ reformulerSegment(mots) {
 
 **Avant** (Chaotique):
 ```
-"été décrite par von mondiale était processus implique carbone oxygène"
+"été décrite par von mondiale était processus implique carbone oxyg�ne"
 - Incohérent: mots isolés
 - Agrammatical: pas de structure
-- Signal IA: Évident
+- Signal IA: �vident
 ```
 
-**Après** (Cohérent):
+**Apr�s** (Cohérent):
 ```
-"La photosynthèse est le processus biologique. Elle implique carbone.
-L'oxygène est libéré comme sous-produit."
-- Cohérent: phrases entières
+"La photosynth�se est le processus biologique. Elle implique carbone.
+L'oxyg�ne est libéré comme sous-produit."
+- Cohérent: phrases enti�res
 - Grammatical: structure respectée
 - Signal IA: Réduit
 ```
 
-**Amélioration:** 0% → 80% de lisibilité
+**Amélioration:** 0%  80% de lisibilité
 
 ---
 
@@ -235,12 +235,12 @@ L'oxygène est libéré comme sous-produit."
 
 **Avant**:
 ```
-"alors, de plus, en conséquence, dès lors, révélant ainsi"
+"alors, de plus, en conséquence, d�s lors, révélant ainsi"
 Stacking: 40-60% réduction tentée
 Reste: Toujours visible
 ```
 
-**Après** (Encyclopédique):
+**Apr�s** (Encyclopédique):
 ```
 Aucun connecteur parasite ajouté
 Réduction: 100%
@@ -252,101 +252,101 @@ Résultat: Texte pur
 ### Métrique 4: Type Adaptation
 
 **Avant**:
-- Même traitement TOUS types
+- M�me traitement TOUS types
 - Textes scientifiques : Over-abstracted
 - Textes conceptuels : Under-abstracted
 - Pas de détection
 
-**Après**:
+**Apr�s**:
 - ENCYCLOPEDIC: Skip X+1, skip X+3, résumé par phrases
 - NARRATIVE: Traitement normal
-- CONCEPTUAL: Abstraction forçée, humanisation appliquée
+- CONCEPTUAL: Abstraction for�ée, humanisation appliquée
 - Détection: Automatique, 50+ keywords par type
 
 ---
 
-## 🎯 RÉSULTAT FINAL
+##  R�SULTAT FINAL
 
-### Système AVANT
+### Syst�me AVANT
 ```
-Fiable: ❌ (compression ne marche pas)
-Adaptatif: ❌ (même pour tous)
-Lisible: ❌ (word salad, connecteurs)
-Intelligent: ❌ (pas de détection)
-Production: ❌ (trop de problèmes)
+Fiable:  (compression ne marche pas)
+Adaptatif:  (m�me pour tous)
+Lisible:  (word salad, connecteurs)
+Intelligent:  (pas de détection)
+Production:  (trop de probl�mes)
 ```
 
-### Système APRÈS
+### Syst�me APR�S
 ```
-Fiable: ✅ (compression 0.1-0.9 marche)
-Adaptatif: ✅ (3 types avec comportement adapté)
-Lisible: ✅ (encyclopédique garde cohérence)
-Intelligent: ✅ (détection type + limites intelligentes)
-Production: ✅ (prêt à déployer)
+Fiable:  (compression 0.1-0.9 marche)
+Adaptatif:  (3 types avec comportement adapté)
+Lisible:  (encyclopédique garde cohérence)
+Intelligent:  (détection type + limites intelligentes)
+Production:  (pr�t � déployer)
 ```
 
 ---
 
-## 📈 EVOLUTION PIPELINE
+##  EVOLUTION PIPELINE
 
 ### AVANT
 ```
-Text → Preprocess → ResumerTexte(ratio) → Analyse → 
-X+1(force) → X+3(humanize) → Output
-├─ Problème 1: ResumerTexte sans effet
-├─ Problème 2: Force abstraction everywhere
-├─ Problème 3: Ajoute connecteurs everywhere
-└─ Résultat: Chaos
+Text  Preprocess  ResumerTexte(ratio)  Analyse  
+X+1(force)  X+3(humanize)  Output
+ Probl�me 1: ResumerTexte sans effet
+ Probl�me 2: Force abstraction everywhere
+ Probl�me 3: Ajoute connecteurs everywhere
+ Résultat: Chaos
 ```
 
-### APRÈS
+### APR�S
 ```
-Text → DetectType → Preprocess → 
-├─ If ENCYCLOPEDIC:
-│   ResumerTexteParPhrases() → Reformulation X+4
-│   Skip X+1 → Skip X+3 → Skip enrichissement → Output ✅
-├─ If NARRATIVE:
-│   ResumerTexte(ratio) → Normal pipeline → Output ✅
-└─ If CONCEPTUAL:
-    ResumerTexte(ratio) → X+1(force) → X+3(apply) → Output ✅
+Text  DetectType  Preprocess  
+ If ENCYCLOPEDIC:
+   ResumerTexteParPhrases()  Reformulation X+4
+   Skip X+1  Skip X+3  Skip enrichissement  Output 
+ If NARRATIVE:
+   ResumerTexte(ratio)  Normal pipeline  Output 
+ If CONCEPTUAL:
+    ResumerTexte(ratio)  X+1(force)  X+3(apply)  Output 
 ```
 
 ---
 
-## 🔬 TESTS COUVERTS
+##  TESTS COUVERTS
 
-✅ test_encyclopedic.txt (Photosynthèse)
-- Détection: ENCYCLOPEDIC ✓
-- Résumé: Par phrases ✓
-- Qualité: Cohérent ✓
+ test_encyclopedic.txt (Photosynth�se)
+- Détection: ENCYCLOPEDIC 
+- Résumé: Par phrases 
+- Qualité: Cohérent 
 
-✅ test_philo.txt (Liberté)
-- Détection: CONCEPTUAL ✓
-- Abstraction: Forcée ✓
-- Qualité: Conceptuelle ✓
+ test_philo.txt (Liberté)
+- Détection: CONCEPTUAL 
+- Abstraction: Forcée 
+- Qualité: Conceptuelle 
 
-✅ input.txt (1.8MB)
-- Détection: NARRATIF ✓
-- Résumé: Compression 99.9% → conceptuellement dense ✓
-- Qualité: Essence préservée ✓
+ input.txt (1.8MB)
+- Détection: NARRATIF 
+- Résumé: Compression 99.9%  conceptuellement dense 
+- Qualité: Essence préservée 
 
-✅ Tous ratios 0.1 → 0.9
-- Compression: Correcte ✓
-- Limites: Appliquées (encyclopédique) ✓
-
----
-
-## 🚀 PRÊT POUR
-
-- ✅ Production deployment
-- ✅ Utilisateurs finaux
-- ✅ Textes mixtes (auto-détection)
-- ✅ Résumés longs (812ms pour 736KB)
-- ✅ Transparence (rapport détaillé)
+ Tous ratios 0.1  0.9
+- Compression: Correcte 
+- Limites: Appliquées (encyclopédique) 
 
 ---
 
-## 📋 CHANGEMENTS CODE
+##  PR�T POUR
+
+-  Production deployment
+-  Utilisateurs finaux
+-  Textes mixtes (auto-détection)
+-  Résumés longs (812ms pour 736KB)
+-  Transparence (rapport détaillé)
+
+---
+
+## � CHANGEMENTS CODE
 
 **Nouveaux fichiers:**
 - IMPROVEMENTS-LOG.md (documentation)
@@ -369,17 +369,17 @@ Text → DetectType → Preprocess →
 
 ---
 
-## ✨ CONCLUSION
+##  CONCLUSION
 
-Le système passe de "chaotique, non-fonctionnel" à "robuste, adaptatif, production-ready".
+Le syst�me passe de "chaotique, non-fonctionnel" � "robuste, adaptatif, production-ready".
 
 **Principaux apports:**
 1. Compression ratio MARCHE maintenant
 2. Adaptation par type de texte
 3. Résumés encyclopédiques LISIBLES
-4. Connecteurs parasites ÉLIMINÉS
+4. Connecteurs parasites �LIMIN�S
 5. Détection TYPE automatique
 6. Limites intelligentes appliquées
 
-**Qualité:** De 20% à 80%+ sur plusieurs dimensions.
+**Qualité:** De 20% � 80%+ sur plusieurs dimensions.
 

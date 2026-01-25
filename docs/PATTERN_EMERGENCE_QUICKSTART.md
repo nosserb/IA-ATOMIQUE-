@@ -1,4 +1,4 @@
-# ✨ Pattern Emergence - Quick Start
+#  Pattern Emergence - Quick Start
 
 ## One-Command Magic
 
@@ -12,40 +12,40 @@ That's it! Check `output/` for results.
 
 ---
 
-## 🌊 What Actually Happens
+##  What Actually Happens
 
 ### Mathematical Magic
 
 Each pixel talks to its neighbors through local rules:
 
 ```
-P_ij(t+1) = P_ij(t) + α·Σ W·(neighbor_colors - P_ij)
-            ↓
+P_ij(t+1) = P_ij(t) + ��Σ W�(neighbor_colors - P_ij)
+            
      (pixel updates based on neighbors)
 
 + "Seed" constraints anchor waves to reality
 + Weights reinforce when pixels work together
-+ → Emerges recognizable patterns naturally
++  Emerges recognizable patterns naturally
 ```
 
 ### Visual Progression
 
 ```
 Iteration 0     50              100             150             200
-│               │               │               │               │
-├───────────────┼───────────────┼───────────────┼───────────────┤
-│ Gray          │ Waves        │ Pattern       │ Recognizable  │ Final
-│ (no          │ spreading    │ forming       │ structure     │ (detailed)
-│  structure)  │ from seeds   │ around        │ visible       │
-│              │              │ anchors       │               │
-└───────────────┴───────────────┴───────────────┴───────────────┘
+                                                            
+����
+ Gray           Waves         Pattern        Recognizable   Final
+ (no           spreading     forming        structure      (detailed)
+  structure)   from seeds    around         visible       
+                             anchors                      
+����
 ```
 
 Each saved image shows the progression from chaos to order.
 
 ---
 
-## 🎯 Quick Examples
+##  Quick Examples
 
 ### Example 1: Basic Pattern Emergence
 
@@ -54,7 +54,7 @@ Each saved image shows the progression from chaos to order.
 ```
 
 **Result:** 
-- Starts with 512×512 gray pixels
+- Starts with 512�512 gray pixels
 - Adds ~15% seed points from face.png
 - Runs 200 diffusion iterations
 - Final output: `pattern_final_emerged.png`
@@ -90,38 +90,38 @@ Each saved image shows the progression from chaos to order.
 
 ---
 
-## 📊 Output Explained
+##  Output Explained
 
 After running emergence, you get:
 
 ```
 output/
-├── pattern_emerge_0001.png     ← Initial state (gray waves)
-├── pattern_emerge_0050.png     ← Early diffusion
-├── pattern_emerge_0100.png     ← Pattern structure forming
-├── pattern_emerge_0150.png     ← Recognition emerging
-├── pattern_emerge_0200.png     ← Good detail
-└── pattern_final_emerged.png   ← Final result (high-res)
+ pattern_emerge_0001.png      Initial state (gray waves)
+ pattern_emerge_0050.png      Early diffusion
+ pattern_emerge_0100.png      Pattern structure forming
+ pattern_emerge_0150.png      Recognition emerging
+ pattern_emerge_0200.png      Good detail
+ pattern_final_emerged.png    Final result (high-res)
 ```
 
 **Watch the sequence** to see pattern emergence in action!
 
 ---
 
-## 🎛️ Key Parameters (Defaults)
+##  Key Parameters (Defaults)
 
 | Parameter | Default | Effect |
 |-----------|---------|--------|
-| **Width/Height** | 512×512 | Output resolution |
+| **Width/Height** | 512�512 | Output resolution |
 | **Iterations** | 200 | Diffusion steps (more = better) |
 | **Seed Image** | (optional) | Reference to guide patterns |
 | **Seed Density** | 0.15 | 15% of pixels as anchors |
-| **Alpha (α)** | 0.15 | Neighbor influence (0.05-0.3) |
+| **Alpha (�)** | 0.15 | Neighbor influence (0.05-0.3) |
 | **Gamma (γ)** | 0.05 | Reinforcement strength (0.01-0.1) |
 
 ---
 
-## 🚀 Getting Started (5 minutes)
+##  Getting Started (5 minutes)
 
 ### Step 1: Prepare Images
 ```bash
@@ -154,25 +154,25 @@ ls output/pattern_*.png
 
 ---
 
-## 💡 Understanding the Progression
+##  Understanding the Progression
 
 ### Loss Metric
 
 You'll see lines like:
 ```
-✓ Iter 50: Loss 0.45623
-✓ Iter 100: Loss 0.28934  ← Better!
-✓ Iter 200: Loss 0.27891  ← Converging
+ Iter 50: Loss 0.45623
+ Iter 100: Loss 0.28934   Better!
+ Iter 200: Loss 0.27891   Converging
 ```
 
 **Interpretation:**
-- **Decreasing loss** = Pattern improving ✅
+- **Decreasing loss** = Pattern improving 
 - **Flat loss** = Good point to stop
 - **Increasing loss** = Something wrong
 
 ---
 
-## 🎨 Visual Modes
+##  Visual Modes
 
 ### Mode 1: Wave Visualization
 ```bash
@@ -194,7 +194,7 @@ Complete transformation pipeline.
 
 ---
 
-## ❓ Common Questions
+##  Common Questions
 
 **Q: Why do I need seed images?**
 A: Seeds anchor the abstract waves to reality. Without seeds, you get pure noise. Seeds guide emergence.
@@ -202,7 +202,7 @@ A: Seeds anchor the abstract waves to reality. Without seeds, you get pure noise
 **Q: How many iterations?**
 A: 
 - 50: Quick, basic patterns
-- 200: **Good balance** ⭐
+- 200: **Good balance** 
 - 500: Ultra-detailed
 - 2000+: Diminishing returns
 
@@ -226,7 +226,7 @@ A: Yes! Works best with:
 
 ---
 
-## 🔥 Advanced Moves
+##  Advanced Moves
 
 ### Multi-Pass (Higher Quality)
 
@@ -255,7 +255,7 @@ A: Yes! Works best with:
 
 ---
 
-## 🎯 Typical Results
+##  Typical Results
 
 After running emergence on a face image with 0.15 density:
 
@@ -275,41 +275,41 @@ Output:
 
 ---
 
-## 🛠️ Troubleshooting
+##  Troubleshooting
 
 **Pattern doesn't look right?**
-- Try more iterations: 200 → 400
-- Increase seed density: 0.15 → 0.25
+- Try more iterations: 200  400
+- Increase seed density: 0.15  0.25
 - Use clearer reference image
 
 **Converges too fast?**
-- Reduce seeds: 0.15 → 0.05
-- Reduce iterations: 200 → 100
-- Decrease α or γ in code
+- Reduce seeds: 0.15  0.05
+- Reduce iterations: 200  100
+- Decrease � or γ in code
 
 **Takes too long?**
-- Use smaller resolution: 512 → 256
-- Fewer iterations: 200 → 50
+- Use smaller resolution: 512  256
+- Fewer iterations: 200  50
 - Lower seed density
 
 ---
 
-## 📈 Performance
+##  Performance
 
 **Typical timings:**
 
 | Resolution | Iterations | Time |
 |-----------|-----------|------|
-| 256×256   | 100       | ~5 sec |
-| 256×256   | 300       | ~15 sec |
-| 512×512   | 100       | ~15 sec |
-| 512×512   | 200       | ~30 sec ⭐ |
-| 512×512   | 500       | ~80 sec |
-| 1024×1024 | 200       | ~2 min |
+| 256�256   | 100       | ~5 sec |
+| 256�256   | 300       | ~15 sec |
+| 512�512   | 100       | ~15 sec |
+| 512�512   | 200       | ~30 sec  |
+| 512�512   | 500       | ~80 sec |
+| 1024�1024 | 200       | ~2 min |
 
 ---
 
-## 🎓 Learning Path
+##  Learning Path
 
 1. **Start here**: Run basic emergence
    ```bash
@@ -335,56 +335,56 @@ Output:
 
 ---
 
-## 📚 Files & Locations
+##  Files & Locations
 
 ```
 Project Root/
-├── input/image/          ← PUT YOUR IMAGES HERE
-├── output/               ← RESULTS APPEAR HERE
-├── database/atomic_pattern_emergence.go  (engine)
-├── pattern_commands.go   (CLI)
-├── PATTERN_EMERGENCE_GUIDE.md  (full docs)
-└── PATTERN_EMERGENCE_QUICKSTART.md (this file)
+ input/image/           PUT YOUR IMAGES HERE
+ output/                RESULTS APPEAR HERE
+ database/atomic_pattern_emergence.go  (engine)
+ pattern_commands.go   (CLI)
+ PATTERN_EMERGENCE_GUIDE.md  (full docs)
+ PATTERN_EMERGENCE_QUICKSTART.md (this file)
 ```
 
 ---
 
-## 🚀 One-Liner for Beginners
+##  One-Liner for Beginners
 
 Copy your image to `input/image/test.png`, then run:
 
 ```bash
-./programme pattern emerge 512 512 200 input/image/test.png 0.15 && echo "✅ Check output/ for results!"
+./programme pattern emerge 512 512 200 input/image/test.png 0.15 && echo " Check output/ for results!"
 ```
 
-Done! 🎉
+Done! 
 
 ---
 
-## 🎨 Creative Inspiration
+##  Creative Inspiration
 
 Try these parameter combinations:
 
 | Goal | Command |
 |------|---------|
 | **Faithful reproduction** | `emerge 512 512 100 img.png 0.30` |
-| **Balanced quality** | `emerge 512 512 200 img.png 0.15` ⭐ |
+| **Balanced quality** | `emerge 512 512 200 img.png 0.15`  |
 | **Creative variation** | `emerge 512 512 300 img.png 0.05` |
 | **Abstract art** | `emerge 512 512 200 - 0` |
 | **High detail** | `emerge 1024 1024 500 img.png 0.1` |
 
 ---
 
-## 💬 Next Steps
+##  Next Steps
 
-- ✅ Understand pattern emergence math
-- ✅ Run your first emergence
-- ✅ Tweak parameters for your style
-- ✅ Read PATTERN_EMERGENCE_GUIDE.md for advanced topics
-- ✅ Experiment with different images
+-  Understand pattern emergence math
+-  Run your first emergence
+-  Tweak parameters for your style
+-  Read PATTERN_EMERGENCE_GUIDE.md for advanced topics
+-  Experiment with different images
 
-**The atomic system learns from local rules. Watch patterns emerge from waves!** 🌊✨
+**The atomic system learns from local rules. Watch patterns emerge from waves!** 
 
 ---
 
-**Happy pattern emergence!** 🎨
+**Happy pattern emergence!** 

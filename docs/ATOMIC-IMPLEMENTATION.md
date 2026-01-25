@@ -1,6 +1,6 @@
 # Détails d'Implémentation - IA-ATOMIQUE v1.0
 
-## Correspondance Article ↔ Code
+## Correspondance Article  Code
 
 Ce document établit la correspondance entre l'article académique "IA atomique : un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique (T.R.A.)" et son implémentation en Go.
 
@@ -8,7 +8,7 @@ Ce document établit la correspondance entre l'article académique "IA atomique 
 
 ## 1. Fondements de l'IA Atomique
 
-### 1.1 Unités Élémentaires (Atomes Computationnels)
+### 1.1 Unités �lémentaires (Atomes Computationnels)
 
 **Article (Section "Fondements"):**
 > "L'IA atomique se positionne comme une rupture conceptuelle majeure, proposant de considérer l'intelligence non pas comme le produit d'un calcul global, mais comme l'émergence de dynamiques locales entre unités élémentaires, appelées atomes computationnels."
@@ -19,7 +19,7 @@ Ce document établit la correspondance entre l'article académique "IA atomique 
 type ComputationalAtom struct {
     ID              int                   // Identifiant unique
     InternalState   float64               // si - état interne
-    LocalRules      map[string]float64    // Ri - règles locales
+    LocalRules      map[string]float64    // Ri - r�gles locales
     Perceptions     map[int]float64       // pi - perceptions
     Neighbors       []int                 // Liste des voisins
     ConnectionWeights map[int]float64     // wij - poids des connexions
@@ -30,11 +30,11 @@ type ComputationalAtom struct {
 ```
 
 **Propriétés:**
-- ✅ Autonome (sans dépendance d'une unité centrale)
-- ✅ État interne dynamique (`InternalState`)
-- ✅ Perceptions locales (`Perceptions`)
-- ✅ Règles simples (`LocalRules`)
-- ✅ Interactions avec voisins immédiats (`Neighbors`, `ConnectionWeights`)
+-  Autonome (sans dépendance d'une unité centrale)
+-  �tat interne dynamique (`InternalState`)
+-  Perceptions locales (`Perceptions`)
+-  R�gles simples (`LocalRules`)
+-  Interactions avec voisins immédiats (`Neighbors`, `ConnectionWeights`)
 
 ---
 
@@ -42,7 +42,7 @@ type ComputationalAtom struct {
 
 **Article (Section "Résonance Atomique"):**
 > "La résonance est formalisée par la fonction:
-> R(si, sj) = exp(-||si - sj||² / 2σ²)"
+> R(si, sj) = exp(-||si - sj||² / 2�²)"
 
 **Implémentation:**
 
@@ -63,18 +63,18 @@ func (atom *ComputationalAtom) ComputeResonance(neighborState float64, sigma flo
 ```
 
 **Vérification:**
-- ✅ Utilise la distance euclidienne entre états
-- ✅ Applique l'exponentielle décroissante
-- ✅ Sensibilité paramétrée par σ
-- ✅ Retourne valeur dans [0, 1]
-- ✅ Mesure l'alignement/compatibilité entre deux atomes
+-  Utilise la distance euclidienne entre états
+-  Applique l'exponentielle décroissante
+-  Sensibilité paramétrée par �
+-  Retourne valeur dans [0, 1]
+-  Mesure l'alignement/compatibilité entre deux atomes
 
 ---
 
-### 1.3 Mise à Jour d'État Avec Résonance
+### 1.3 Mise � Jour d'�tat Avec Résonance
 
-**Article (Équation de mise à jour):**
-> "si(t+1) = si(t) + α * Σ(wij * Rij) + β * (Ri + pi)"
+**Article (�quation de mise � jour):**
+> "si(t+1) = si(t) + � * Σ(wij * Rij) + β * (Ri + pi)"
 
 **Implémentation:**
 
@@ -91,7 +91,7 @@ func (atom *ComputationalAtom) UpdateState(neighbors map[int]float64,
         resonanceInfluence += weight * resonance * (neighborState - atom.InternalState)
     }
     
-    // Phase 2: Règles locales et perceptions
+    // Phase 2: R�gles locales et perceptions
     localInfluence := 0.0
     if rules, ok := atom.LocalRules["activation"]; ok {
         localInfluence += rules
@@ -100,7 +100,7 @@ func (atom *ComputationalAtom) UpdateState(neighbors map[int]float64,
         localInfluence += perception * 0.5
     }
     
-    // Phase 3: Mise à jour de l'état
+    // Phase 3: Mise � jour de l'état
     atom.InternalState += alpha*resonanceInfluence + beta*localInfluence
     
     // Clamp to [0, 1]
@@ -113,12 +113,12 @@ func (atom *ComputationalAtom) UpdateState(neighbors map[int]float64,
 ```
 
 **Termes Correspondants:**
-- ✅ `α` (alpha) = `CouplingCoefficient` - influence des voisins
-- ✅ `wij` = `ConnectionWeights[neighborID]` - poids des connexions
-- ✅ `Rij` = `ComputeResonance(...)` - fonction de résonance
-- ✅ `β` (beta) = `LocalRulesCoefficient` - impact des règles
-- ✅ `Ri` = `LocalRules` - règles locales
-- ✅ `pi` = `Perceptions` - perceptions de l'environnement
+-  `�` (alpha) = `CouplingCoefficient` - influence des voisins
+-  `wij` = `ConnectionWeights[neighborID]` - poids des connexions
+-  `Rij` = `ComputeResonance(...)` - fonction de résonance
+-  `β` (beta) = `LocalRulesCoefficient` - impact des r�gles
+-  `Ri` = `LocalRules` - r�gles locales
+-  `pi` = `Perceptions` - perceptions de l'environnement
 
 ---
 
@@ -141,7 +141,7 @@ func (atom *ComputationalAtom) UpdateConnections(neighbors map[int]float64,
                 coherence = 0
             }
             
-            // Mise à jour du poids: renforcement cohérent, décroissance faible
+            // Mise � jour du poids: renforcement cohérent, décroissance faible
             deltaW := gamma*coherence - delta*weight
             atom.ConnectionWeights[neighborID] = weight + deltaW
             
@@ -157,25 +157,25 @@ func (atom *ComputationalAtom) UpdateConnections(neighbors map[int]float64,
 ```
 
 **Termes Correspondants:**
-- ✅ `γ` (gamma) = `ReinforcementFactor` - renforcement de cohérence
-- ✅ `δ` (delta) = `DecayFactor` - décroissance des poids
-- ✅ `cohérence(si, sj)` = `1.0 - |si - sj|` - mesure d'alignement
-- ✅ Renforcement des connexions cohérentes (terme γ)
-- ✅ Décroissance des connexions faibles (terme δ)
+-  `γ` (gamma) = `ReinforcementFactor` - renforcement de cohérence
+-  `δ` (delta) = `DecayFactor` - décroissance des poids
+-  `cohérence(si, sj)` = `1.0 - |si - sj|` - mesure d'alignement
+-  Renforcement des connexions cohérentes (terme γ)
+-  Décroissance des connexions faibles (terme δ)
 
 ---
 
 ## 3. Asynchronisme Total
 
 **Article (Section "Fondements"):**
-> "L'asynchronisme total constitue le second pilier fondamental de l'IA atomique. Chaque unité évolue à son propre rythme, sans dépendre d'une horloge centrale."
+> "L'asynchronisme total constitue le second pilier fondamental de l'IA atomique. Chaque unité évolue � son propre rythme, sans dépendre d'une horloge centrale."
 
 **Implémentation:**
 
 ```go
 func (network *AtomicNetwork) IterateNetwork() {
-    // Chaque atome opère indépendamment
-    // Les états des voisins sont lus de manière asynchrone
+    // Chaque atome op�re indépendamment
+    // Les états des voisins sont lus de mani�re asynchrone
     
     // Lecture asynchrone des états des voisins
     neighborStates := make([]map[int]float64, len(network.Atoms))
@@ -186,7 +186,7 @@ func (network *AtomicNetwork) IterateNetwork() {
         }
     }
     
-    // Chaque atome se met à jour sans attendre les autres
+    // Chaque atome se met � jour sans attendre les autres
     for i := range network.Atoms {
         network.Atoms[i].UpdateState(
             neighborStates[i],
@@ -200,29 +200,29 @@ func (network *AtomicNetwork) IterateNetwork() {
 ```
 
 **Caractéristiques:**
-- ✅ Pas d'horloge centrale
-- ✅ Chaque atome agit indépendamment
-- ✅ Les interactions sont locales uniquement
-- ✅ Pas de synchronisation globale
-- ✅ Résilience aux perturbations locales
+-  Pas d'horloge centrale
+-  Chaque atome agit indépendamment
+-  Les interactions sont locales uniquement
+-  Pas de synchronisation globale
+-  Résilience aux perturbations locales
 
 ---
 
 ## 4. Réseau Atomique Complet
 
 **Article (Section "Implémentation"):**
-> "La mise en œuvre pratique de l'IA atomique repose sur la combinaison de sa modularité, de sa distribution complète et de sa capacité à apprendre en continu à partir des interactions locales."
+> "La mise en �uvre pratique de l'IA atomique repose sur la combinaison de sa modularité, de sa distribution compl�te et de sa capacité � apprendre en continu � partir des interactions locales."
 
 **Implémentation:**
 
 ```go
 type AtomicNetwork struct {
     Atoms                     []ComputationalAtom
-    CouplingCoefficient       float64  // α
+    CouplingCoefficient       float64  // �
     LocalRulesCoefficient     float64  // β
     ReinforcementFactor       float64  // γ
     DecayFactor              float64  // δ
-    ResonanceSensitivity     float64  // σ
+    ResonanceSensitivity     float64  // �
     GlobalIteration          int
     TotalEnergy              float64
     mutex                    sync.RWMutex
@@ -243,18 +243,18 @@ func NewAtomicNetwork(numAtoms int) *AtomicNetwork {
 ```
 
 **Propriétés du Réseau:**
-- ✅ Collection d'atomes autonomes
-- ✅ Paramètres contrôlables (α, β, γ, δ, σ)
-- ✅ Métriques de cohérence globale
-- ✅ Support asynchrone thread-safe
-- ✅ Modularité complète
+-  Collection d'atomes autonomes
+-  Param�tres contrôlables (�, β, γ, δ, �)
+-  Métriques de cohérence globale
+-  Support asynchrone thread-safe
+-  Modularité compl�te
 
 ---
 
-## 5. Cohérence et Émergence
+## 5. Cohérence et �mergence
 
 **Article (Section "Résultats Expérimentaux"):**
-> "Dès les premières itérations, nous avons observé la formation de zones locales de cohérence, où des groupes d'atomes commencent à s'aligner sur leurs voisins immédiats."
+> "D�s les premi�res itérations, nous avons observé la formation de zones locales de cohérence, où des groupes d'atomes commencent � s'aligner sur leurs voisins immédiats."
 
 **Implémentation:**
 
@@ -297,51 +297,51 @@ func (network *AtomicNetwork) ExtractEmergentBehavior() map[string]interface{} {
 ```
 
 **Mesures:**
-- ✅ Cohérence globale du réseau (0-1)
-- ✅ Activation moyenne des atomes
-- ✅ Identification des comportements émergents
-- ✅ Clusters d'atomes synchronisés
+-  Cohérence globale du réseau (0-1)
+-  Activation moyenne des atomes
+-  Identification des comportements émergents
+-  Clusters d'atomes synchronisés
 
 ---
 
-## 6. Paramètres de Configuration
+## 6. Param�tres de Configuration
 
-| Paramètre | Code | Article | Défaut | Plage |
+| Param�tre | Code | Article | Défaut | Plage |
 |-----------|------|---------|--------|-------|
-| Coefficient de couplage | `α` (CouplingCoefficient) | $\alpha$ | 0.7 | [0, 1] |
-| Coeff. règles locales | `β` (LocalRulesCoefficient) | $\beta$ | 0.3 | [0, 1] |
+| Coefficient de couplage | `�` (CouplingCoefficient) | $\alpha$ | 0.7 | [0, 1] |
+| Coeff. r�gles locales | `β` (LocalRulesCoefficient) | $\beta$ | 0.3 | [0, 1] |
 | Facteur renforcement | `γ` (ReinforcementFactor) | $\gamma$ | 0.15 | [0, 1] |
 | Facteur décroissance | `δ` (DecayFactor) | $\delta$ | 0.05 | [0, 1] |
-| Sensibilité résonance | `σ` (ResonanceSensitivity) | $\sigma$ | 0.8 | [0.1, 2.0] |
+| Sensibilité résonance | `�` (ResonanceSensitivity) | $\sigma$ | 0.8 | [0.1, 2.0] |
 
 ---
 
 ## 7. Garanties et Propriétés
 
 ### Asynchronisme
-- ✅ Chaque atome peut être mis à jour indépendamment
-- ✅ Pas de deadlock ou de synchronisation forcée
-- ✅ Latence bornée par atome
+-  Chaque atome peut �tre mis � jour indépendamment
+-  Pas de deadlock ou de synchronisation forcée
+-  Latence bornée par atome
 
 ### Convergence
-- ✅ Configurations cohérentes se renforcent
-- ✅ Configurations instables s'effacent
-- ✅ Convergence vers états stables observée
+-  Configurations cohérentes se renforcent
+-  Configurations instables s'effacent
+-  Convergence vers états stables observée
 
 ### Résilience
-- ✅ Défaillance d'un atome ne paralyse pas le réseau
-- ✅ Récupération automatique après perturbations
-- ✅ Dégradation gracieuse avec atomes défaillants
+-  Défaillance d'un atome ne paralyse pas le réseau
+-  Récupération automatique apr�s perturbations
+-  Dégradation gracieuse avec atomes défaillants
 
 ### Scalabilité
-- ✅ Ajout d'atomes n'affecte pas la performance
-- ✅ Complexité par itération: O(n * neighbors)
-- ✅ Déployable sur milliers d'atomes
+-  Ajout d'atomes n'affecte pas la performance
+-  Complexité par itération: O(n * neighbors)
+-  Déployable sur milliers d'atomes
 
 ### Sobriété Computationnelle
-- ✅ Par atome: O(1) mémoire (état, règles, connexions)
-- ✅ Par itération: O(neighbors) calculs
-- ✅ Pas d'apprentissage centralisé lourd
+-  Par atome: O(1) mémoire (état, r�gles, connexions)
+-  Par itération: O(neighbors) calculs
+-  Pas d'apprentissage centralisé lourd
 
 ---
 
@@ -363,11 +363,11 @@ func (network *AtomicNetwork) ExtractEmergentBehavior() map[string]interface{} {
 // Coordination collective = résonance atomique
 ```
 
-### Systèmes IoT Distribués
+### Syst�mes IoT Distribués
 ```go
 // Chaque appareil = 1 atome
 // Capteurs = perceptions
-// Actions = mise à jour état
+// Actions = mise � jour état
 // Optimisation globale = émergence
 ```
 
@@ -383,18 +383,18 @@ func (network *AtomicNetwork) ExtractEmergentBehavior() map[string]interface{} {
 
 ---
 
-## 10. Références aux Équations de l'Article
+## 10. Références aux �quations de l'Article
 
-| Équation | Location Code | Propriété |
+| �quation | Location Code | Propriété |
 |----------|---------------|-----------|
 | Résonance atomique | `ComputeResonance()` | Alignement local |
-| Mise à jour état | `UpdateState()` | Evolution dynamique |
+| Mise � jour état | `UpdateState()` | Evolution dynamique |
 | Dynamique poids | `UpdateConnections()` | Apprentissage local |
-| Métrique cohérence | `GetNetworkCoherence()` | Émergence mesurable |
+| Métrique cohérence | `GetNetworkCoherence()` | �mergence mesurable |
 | Itération réseau | `IterateNetwork()` | Asynchronisme global |
 
 ---
 
 **Document Version:** 1.0  
 **Date:** Janvier 2026  
-**Correspondance Article:** Complète et fidèle aux équations et principes présentés
+**Correspondance Article:** Compl�te et fid�le aux équations et principes présentés

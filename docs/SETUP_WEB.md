@@ -1,21 +1,21 @@
-# 🎉 Interface Web IA-ATOMIQUE - Configuration Terminée
+#  Interface Web IA-ATOMIQUE - Configuration Terminée
 
-## ✨ Qu'est-ce qui a été créé?
+##  Qu'est-ce qui a été créé?
 
-### 📁 Fichiers créés:
+###  Fichiers créés:
 ```
 web/
-├── index.html      # Interface principale
-├── style.css       # Styles modernes et épurés
-├── script.js       # Logique côté client
-└── demo.html       # Page de démonstration
+ index.html      # Interface principale
+ style.css       # Styles modernes et épurés
+ script.js       # Logique côté client
+ demo.html       # Page de démonstration
 
 web.go             # Serveur HTTP et API Go
 start-web.sh       # Script de lancement facile
-WEB_README.md      # Documentation complète
+WEB_README.md      # Documentation compl�te
 ```
 
-## 🚀 Démarrage Rapide
+##  Démarrage Rapide
 
 ### Lancer le serveur:
 ```bash
@@ -27,32 +27,32 @@ Ou directement:
 ./programme web
 ```
 
-### Accéder à l'interface:
+### Accéder � l'interface:
 ```
 http://localhost:8080
 ```
 
-## 🎨 Caractéristiques
+##  Caractéristiques
 
-✅ **Interface intuitive** - Une seule page pour résumer  
-✅ **Design moderne** - Gradient violet, animation fluide  
-✅ **Responsive** - Adapté aux mobiles et desktop  
-✅ **Analyse en temps réel** - API intégrée à votre IA  
-✅ **Statistiques** - Affiche confiance, catégories, phrases  
-✅ **Accessibilité** - Raccourci Ctrl+Entrée pour envoyer  
+ **Interface intuitive** - Une seule page pour résumer  
+ **Design moderne** - Gradient violet, animation fluide  
+ **Responsive** - Adapté aux mobiles et desktop  
+ **Analyse en temps réel** - API intégrée � votre IA  
+ **Statistiques** - Affiche confiance, catégories, phrases  
+ **Accessibilité** - Raccourci Ctrl+Entrée pour envoyer  
 
-## 📊 Comment ça fonctionne?
+##  Comment �a fonctionne?
 
 1. L'utilisateur tape du texte dans la zone gauche
 2. Clique sur "Résumer" ou appuie sur Ctrl+Entrée
-3. Le texte est envoyé à l'API `/api/summarize`
+3. Le texte est envoyé � l'API `/api/summarize`
 4. Votre IA analyse le texte phrase par phrase
 5. Le résumé et les statistiques s'affichent en temps réel
 
-## 🔧 Personnalisation
+##  Personnalisation
 
 ### Modifier les couleurs:
-Éditez `web/style.css`:
+�ditez `web/style.css`:
 ```css
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 /* Change ces valeurs pour tes couleurs préférées */
@@ -70,13 +70,13 @@ go StartWebServer("9000")  // Utilise le port 9000 au lieu de 8080
 - Historique: utiliser localStorage
 - Mode sombre: ajouter CSS
 
-## 🧠 API
+##  API
 
 ### POST /api/summarize
 ```json
 Request:
 {
-  "text": "Votre texte à résumer..."
+  "text": "Votre texte � résumer..."
 }
 
 Response:
@@ -90,7 +90,7 @@ Response:
 }
 ```
 
-## 🧪 Tests
+##  Tests
 
 Voici des textes de test recommandés:
 
@@ -101,27 +101,27 @@ Voici des textes de test recommandés:
 > "L'intelligence artificielle révolutionne le monde. Les réseaux neuronaux permettent l'apprentissage automatique. La technologie évolue chaque jour."
 
 **Long:**  
-> Collez un article entier et regardez l'analyse complète!
+> Collez un article entier et regardez l'analyse compl�te!
 
-## 💡 Astuces
+##  Astuces
 
-- 🖱️ Ctrl+A pour sélectionner tout rapidement
-- ⏱️ Les requêtes sont instantanées
-- 📱 Testez sur mobile aussi!
-- 🎯 Le résumé affiche les catégories dominantes
+-  Ctrl+A pour sélectionner tout rapidement
+-  Les requ�tes sont instantanées
+-  Testez sur mobile aussi!
+-  Le résumé affiche les catégories dominantes
 
-## 🐛 Si ça ne marche pas
+##  Si �a ne marche pas
 
-| Problème | Solution |
+| Probl�me | Solution |
 |----------|----------|
 | Page blanche | Vérifier que les fichiers web/ existent |
 | Port 8080 occupé | Changer le port dans web.go |
 | Erreur de compilation | Lancer `go mod tidy` |
 | API ne répond pas | Vérifier que database/ est accessible |
 
-## 📚 Prochaines étapes optionnelles
+##  Prochaines étapes optionnelles
 
-- [ ] Ajouter un système d'upload de fichiers
+- [ ] Ajouter un syst�me d'upload de fichiers
 - [ ] Créer un historique des résumés
 - [ ] Exporter en PDF/Word
 - [ ] Ajouter un mode sombre
@@ -131,4 +131,4 @@ Voici des textes de test recommandés:
 
 ---
 
-**Ton interface web est prête! Bon résumé!** 🎉
+**Ton interface web est pr�te! Bon résumé!** 

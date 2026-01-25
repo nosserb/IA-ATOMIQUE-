@@ -1,10 +1,10 @@
-# 🪟 IA-ATOMIQUE sur Windows
+#  IA-ATOMIQUE sur Windows
 
 Guide d'installation simple pour Windows.
 
-## ⚡ Installation Rapide (2 étapes)
+##  Installation Rapide (2 étapes)
 
-### Étape 1: Installer Go (une seule fois)
+### �tape 1: Installer Go (une seule fois)
 
 1. **Télécharge Go** depuis https://golang.org/dl/
 2. **Choisir la version Windows** (msi):
@@ -18,11 +18,11 @@ Guide d'installation simple pour Windows.
 - Tape: `go version`
 - Tu dois voir quelque chose comme: `go version go1.22.2 windows/amd64`
 
-Si ça marche pas, redémarre ton PC et réessaye.
+Si �a marche pas, redémarre ton PC et réessaye.
 
 ---
 
-### Étape 2: Lancer le projet
+### �tape 2: Lancer le projet
 
 1. **Clone le repo GitHub**
    ```
@@ -37,21 +37,21 @@ Si ça marche pas, redémarre ton PC et réessaye.
 
 3. **Double-clique sur `run-web.bat`**
    - Le serveur démarre
-   - Une fenêtre s'ouvre
+   - Une fen�tre s'ouvre
 
 4. **Ouvre ton navigateur**
-   - Accède à: http://localhost:8080
-   - Et voilà! 🎉
+   - Acc�de �: http://localhost:8080
+   - Et voil�! 
 
 ---
 
-## 📁 Fichiers Disponibles
+##  Fichiers Disponibles
 
 ### Scripts Windows
 
 | Fichier | Fonction |
 |---------|----------|
-| `install.bat` | Installation initiale (à faire une seule fois) |
+| `install.bat` | Installation initiale (� faire une seule fois) |
 | `run-web.bat` | Lancer le serveur web |
 | `build.bat` | Recompiler le projet |
 | `verify.bat` | Vérifier que tout est OK |
@@ -70,11 +70,11 @@ verify.bat
 
 ---
 
-## 🖥️ Mode Command Prompt/PowerShell
+##  Mode Command Prompt/PowerShell
 
-Si tu préfères la ligne de commande:
+Si tu préf�res la ligne de commande:
 
-### Première utilisation
+### Premi�re utilisation
 ```bash
 # Ouvre Command Prompt (Cmd.exe)
 # Navigue vers le répertoire:
@@ -96,28 +96,28 @@ programme.exe web
 
 ---
 
-## 🎯 Résolution des Problèmes
+##  Résolution des Probl�mes
 
-### ❌ "Go is not recognized"
+###  "Go is not recognized"
 
-**Problème:** Go n'est pas installé ou trouvable
+**Probl�me:** Go n'est pas installé ou trouvable
 
 **Solution:**
 1. Installe Go depuis https://golang.org/dl/
-2. Redémarre ton PC complètement
+2. Redémarre ton PC compl�tement
 3. Réessaye
 
-### ❌ "web\index.html n'existe pas"
+###  "web\index.html n'existe pas"
 
-**Problème:** Fichiers web manquants
+**Probl�me:** Fichiers web manquants
 
 **Solution:**
 - Assure-toi que le dossier `web/` existe
 - Avec les fichiers: `index.html`, `style.css`, `script.js`
 
-### ❌ Port 8080 déjà utilisé
+###  Port 8080 déj� utilisé
 
-**Problème:** Un autre programme utilise le port 8080
+**Probl�me:** Un autre programme utilise le port 8080
 
 **Solution 1:**
 - Ferme l'autre application
@@ -129,18 +129,18 @@ programme.exe web
   ```
 - Recompile: `build.bat`
 - Lance avec: `programme.exe web`
-- Accède à: http://localhost:9000
+- Acc�de �: http://localhost:9000
 
-### ❌ "programme.exe n'existe pas"
+###  "programme.exe n'existe pas"
 
-**Problème:** Pas compilé
+**Probl�me:** Pas compilé
 
 **Solution:**
 - Double-clique `build.bat` ou `install.bat`
 
 ---
 
-## 💡 Astuces Windows
+##  Astuces Windows
 
 ### Créer un raccourci sur le Bureau
 
@@ -148,7 +148,7 @@ programme.exe web
 2. **Envoyer vers > Bureau (créer un raccourci)**
 3. **Double-clique le raccourci pour lancer!**
 
-### Lancer dans une vraie fenêtre (pas CMD)
+### Lancer dans une vraie fen�tre (pas CMD)
 
 Pour une expérience plus fluide:
 
@@ -160,37 +160,37 @@ objShell.Run "cmd /c run-web.bat", 0
 WScript.Quit
 ```
 
-2. **Sauvegarde dans le même dossier**
-3. **Double-clique pour lancer sans fenêtre CMD**
+2. **Sauvegarde dans le m�me dossier**
+3. **Double-clique pour lancer sans fen�tre CMD**
 
 ### Ajouter au menu Démarrer
 
 1. **Appuie sur Win+R**
 2. **Tape: `shell:startup`**
-3. **Mets un raccourci de `run-web.bat` là**
-4. **À chaque démarrage, le serveur se lance!**
+3. **Mets un raccourci de `run-web.bat` l�**
+4. **� chaque démarrage, le serveur se lance!**
 
 ---
 
-## 🔄 Workflow Typique
+##  Workflow Typique
 
 ```
-1. Double-clique install.bat (première fois seulement)
-   ↓
+1. Double-clique install.bat (premi�re fois seulement)
+   
 2. Double-clique run-web.bat
-   ↓
-3. Une fenêtre s'ouvre avec le serveur
-   ↓
+   
+3. Une fen�tre s'ouvre avec le serveur
+   
 4. Ouvre navigateur: http://localhost:8080
-   ↓
+   
 5. Utilise l'interface!
-   ↓
-6. Pour arrêter: Ferme la fenêtre CMD
+   
+6. Pour arr�ter: Ferme la fen�tre CMD
 ```
 
 ---
 
-## 🚀 Pour Développeurs
+##  Pour Développeurs
 
 Si tu modifies le code:
 
@@ -204,7 +204,7 @@ run-web.bat
 
 ---
 
-## ✅ Avant de Pusher sur GitHub
+##  Avant de Pusher sur GitHub
 
 ```bash
 # Vérifier que tout compile
@@ -218,7 +218,7 @@ git push origin main
 
 ---
 
-## 📞 Support
+## � Support
 
 Si quelque chose ne marche pas:
 
@@ -227,11 +227,11 @@ Si quelque chose ne marche pas:
 3. **Vérification:** `verify.bat`
 4. **Réessaye:** `run-web.bat`
 
-Si ça marche toujours pas:
+Si �a marche toujours pas:
 - Redémarre ton PC
 - Réinstalle Go proprement
-- Essaye à nouveau
+- Essaye � nouveau
 
 ---
 
-**C'est simple! Bon résumé! 🎉**
+**C'est simple! Bon résumé! **

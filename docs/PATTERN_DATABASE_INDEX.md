@@ -1,14 +1,14 @@
-# 📚 Pattern Database System - Documentation Index
+#  Pattern Database System - Documentation Index
 
 **Version:** 1.0  
-**Status:** ✅ Complete and Production Ready  
+**Status:**  Complete and Production Ready  
 **Date:** January 9, 2026
 
 ---
 
-## 📖 Documentation Files
+##  Documentation Files
 
-### 1. **PATTERN_DATABASE_QUICKSTART.md** ⚡
+### 1. **PATTERN_DATABASE_QUICKSTART.md** 
 **5-minute introduction**
 - Quick overview
 - One-liner examples
@@ -16,7 +16,7 @@
 - FAQ
 - Best for: Getting started quickly
 
-### 2. **PATTERN_DATABASE_GUIDE.md** 📚
+### 2. **PATTERN_DATABASE_GUIDE.md** 
 **Complete reference manual**
 - Full feature documentation
 - All commands explained
@@ -25,7 +25,7 @@
 - Integration points
 - Best for: Comprehensive understanding
 
-### 3. **PATTERN_DATABASE_TECHNICAL.md** 🔧
+### 3. **PATTERN_DATABASE_TECHNICAL.md** 
 **Implementation details**
 - Architecture overview
 - Code structure
@@ -35,7 +35,7 @@
 - Testing results
 - Best for: Developers, technical details
 
-### 4. **PATTERN_DATABASE_SUMMARY.txt** 📋
+### 4. **PATTERN_DATABASE_SUMMARY.txt** �
 **Complete overview**
 - What was built
 - How it works (3 phases)
@@ -45,7 +45,7 @@
 - Quality assurance checklist
 - Best for: Full project understanding
 
-### 5. **PATTERN_DATABASE_INDEX.md** (this file) 🗺️
+### 5. **PATTERN_DATABASE_INDEX.md** (this file) �
 **Navigation guide**
 - All documents overview
 - Quick reference
@@ -53,10 +53,10 @@
 
 ---
 
-## 🎯 Quick Start by Use Case
+##  Quick Start by Use Case
 
 ### "I want to start using it right now"
-→ Read: **PATTERN_DATABASE_QUICKSTART.md**
+ Read: **PATTERN_DATABASE_QUICKSTART.md**
 
 ```bash
 ./programme pattern index input/image
@@ -65,23 +65,23 @@
 ```
 
 ### "I need complete reference documentation"
-→ Read: **PATTERN_DATABASE_GUIDE.md**
+ Read: **PATTERN_DATABASE_GUIDE.md**
 
 All commands, parameters, and features explained in detail.
 
 ### "I'm a developer and want technical details"
-→ Read: **PATTERN_DATABASE_TECHNICAL.md**
+ Read: **PATTERN_DATABASE_TECHNICAL.md**
 
 Architecture, code structure, algorithms, and implementation.
 
 ### "I want the complete project overview"
-→ Read: **PATTERN_DATABASE_SUMMARY.txt**
+ Read: **PATTERN_DATABASE_SUMMARY.txt**
 
 Everything about what was built and how it works.
 
 ---
 
-## 📋 All Commands
+## � All Commands
 
 ```bash
 # INDEX (scan and analyze images)
@@ -102,7 +102,7 @@ Everything about what was built and how it works.
 
 ---
 
-## 🔑 Key Concepts
+##  Key Concepts
 
 ### Pattern
 A metadata record about an image including:
@@ -117,7 +117,7 @@ Neuron categories that patterns can activate:
 - **HISTOIRE** - History, medieval, ancient
 - **BUSINESS** - Commerce, markets, enterprise
 - **ALIMENTATION** - Food, nutrition, cuisine
-- **SANTÉ** - Health, medicine, wellness
+- **SANT�** - Health, medicine, wellness
 - **VERBE** - Actions, movement, dynamics
 
 ### Database
@@ -140,48 +140,48 @@ Reliability of pattern analysis (0.75-1.0):
 
 ---
 
-## 📊 What Gets Indexed
+##  What Gets Indexed
 
 For each image, the system stores:
 
 ```
-ID              → Filename without extension
-Filename        → Original filename
-Width, Height   → Image dimensions
-Complexity      → Color diversity (0-1)
-Confidence      → Analysis reliability (0.75-1.0)
-AverageColor    → RGB average
-Categories      → Activated neuron categories
-Keywords        → Extracted from filename
-ContentSummary  → Generated description
-PatternDataHash → Content hash
+ID               Filename without extension
+Filename         Original filename
+Width, Height    Image dimensions
+Complexity       Color diversity (0-1)
+Confidence       Analysis reliability (0.75-1.0)
+AverageColor     RGB average
+Categories       Activated neuron categories
+Keywords         Extracted from filename
+ContentSummary   Generated description
+PatternDataHash  Content hash
 ```
 
 ---
 
-## 🚀 Three-Phase System
+##  Three-Phase System
 
 ### Phase 1: Indexing
 ```
-Images in /input → Analyze → patterns.db
+Images in /input  Analyze  patterns.db
 ```
 One command: `./programme pattern index input/image`
 
 ### Phase 2: Discovery
 ```
-patterns.db → View/Search → Results
+patterns.db  View/Search  Results
 ```
 Commands: `list`, `info`, `search`, `stats`
 
 ### Phase 3: Reuse
 ```
-patterns.db → Generation System → Guided Images
+patterns.db  Generation System  Guided Images
 ```
 Automatic: `./programme generate from-prompt ...`
 
 ---
 
-## 📈 Performance
+##  Performance
 
 ```
 Indexing:     ~7 images/minute
@@ -193,19 +193,19 @@ Database:     ~400-600B per pattern
 
 ---
 
-## ✅ Tested Features
+##  Tested Features
 
-- ✅ Index 7 real images
-- ✅ List all patterns
-- ✅ Get pattern details
-- ✅ Search by category
-- ✅ Show statistics
-- ✅ Clean compilation
-- ✅ All commands working
+-  Index 7 real images
+-  List all patterns
+-  Get pattern details
+-  Search by category
+-  Show statistics
+-  Clean compilation
+-  All commands working
 
 ---
 
-## 📁 Related Files
+##  Related Files
 
 **Code:**
 - `database/pattern_indexer.go` - Core logic (452 lines)
@@ -219,7 +219,7 @@ Database:     ~400-600B per pattern
 
 ---
 
-## 🎓 Learning Path
+##  Learning Path
 
 1. **Start here:** PATTERN_DATABASE_QUICKSTART.md (5 min)
 2. **Try it:** `./programme pattern index input/image`
@@ -229,23 +229,23 @@ Database:     ~400-600B per pattern
 
 ---
 
-## 🔍 Troubleshooting
+##  Troubleshooting
 
 **"No patterns in database"**
-→ Run: `./programme pattern index input/image`
+ Run: `./programme pattern index input/image`
 
 **"Pattern not found"**
-→ Run: `./programme pattern list` to see available IDs
+ Run: `./programme pattern list` to see available IDs
 
 **"Wrong categories detected"**
-→ Better filename keywords help. Reindex: `./programme pattern index input/image`
+ Better filename keywords help. Reindex: `./programme pattern index input/image`
 
 **"Database corrupted"**
-→ Rebuild: `rm patterns.db && ./programme pattern index input/image`
+ Rebuild: `rm patterns.db && ./programme pattern index input/image`
 
 ---
 
-## 📞 Quick Reference
+## � Quick Reference
 
 | Task | Command |
 |------|---------|
@@ -259,18 +259,18 @@ Database:     ~400-600B per pattern
 
 ---
 
-## 🌟 Features
+##  Features
 
-✅ Automatic scanning  
-✅ Intelligent analysis  
-✅ Persistent storage  
-✅ Flexible search  
-✅ Semantic mapping  
-✅ Zero overhead  
+ Automatic scanning  
+ Intelligent analysis  
+ Persistent storage  
+ Flexible search  
+ Semantic mapping  
+ Zero overhead  
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - Database is human-readable JSON
 - No image data stored (only metadata)
@@ -282,7 +282,7 @@ Database:     ~400-600B per pattern
 
 ---
 
-## 🎉 Ready to Use
+##  Ready to Use
 
 The Pattern Database System is **complete, tested, and production-ready**.
 
@@ -295,4 +295,4 @@ Start now:
 
 ---
 
-**Version 1.0** | January 9, 2026 | ✅ Complete
+**Version 1.0** | January 9, 2026 |  Complete

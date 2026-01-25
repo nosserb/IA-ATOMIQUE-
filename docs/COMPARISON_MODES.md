@@ -1,11 +1,11 @@
-# 📊 Comparaison Visuelle des 3 Modes
+#  Comparaison Visuelle des 3 Modes
 
 ## Exemple 1: Texte Technique
 
 ### Texte Original
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent très souvent cette technologie pour améliorer 
+Les organisations utilisent tr�s souvent cette technologie pour améliorer 
 la productivité. De nombreux chercheurs travaillent sans relache pour 
 faire progresser ce domaine fascinant.
 ```
@@ -13,7 +13,7 @@ faire progresser ce domaine fascinant.
 ### Mode Standard
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent très souvent cette technologie pour améliorer 
+Les organisations utilisent tr�s souvent cette technologie pour améliorer 
 la productivité. Ensuite, de nombreux chercheurs travaillent sans relache 
 pour faire progresser ce domaine fascinant.
 ```
@@ -22,36 +22,36 @@ pour faire progresser ce domaine fascinant.
 ### Mode Professionnel
 ```
 L'intelligence artificielle constitue une transformation considérable 
-dans l'environnement mondial. Les organisations déploient régulièrement 
+dans l'environnement mondial. Les organisations déploient réguli�rement 
 cette technologie pour optimiser la productivité. De nombreux chercheurs 
 s'engagent continuellement pour faire avancer ce domaine déterminant.
 ```
 **Changements**:
-- "fait" → "constitue"
-- "difference" → "transformation"
-- "dans le monde" → "dans l'environnement mondial"
-- "très souvent" → "régulièrement"
-- "améliorer" → "optimiser"
-- "sans relache" → "continuellement"
-- "fascinant" → "déterminant"
+- "fait"  "constitue"
+- "difference"  "transformation"
+- "dans le monde"  "dans l'environnement mondial"
+- "tr�s souvent"  "réguli�rement"
+- "améliorer"  "optimiser"
+- "sans relache"  "continuellement"
+- "fascinant"  "déterminant"
 
 ### Mode Avancé
 ```
 L'intelligence artificielle constitue une difference majeure dans le 
-contexte mondial. Les organisations emploient extrêmement régulièrement 
+contexte mondial. Les organisations emploient extr�mement réguli�rement 
 cette technologie pour perfectionner la productivité. De nombreux 
 chercheurs s'accomplissent constamment pour faire avancer ce domaine 
 exceptionnel.
 ```
 **Changements**:
-- "fait" → "constitue"
-- "immense" → "majeure"
-- "monde" → "contexte"
-- "utilisent très souvent" → "emploient extrêmement régulièrement"
-- "améliorer" → "perfectionner"
-- "travaillent" → "s'accomplissent"
-- "sans relache" → "constamment"
-- "fascinant" → "exceptionnel"
+- "fait"  "constitue"
+- "immense"  "majeure"
+- "monde"  "contexte"
+- "utilisent tr�s souvent"  "emploient extr�mement réguli�rement"
+- "améliorer"  "perfectionner"
+- "travaillent"  "s'accomplissent"
+- "sans relache"  "constamment"
+- "fascinant"  "exceptionnel"
 
 ---
 
@@ -59,54 +59,54 @@ exceptionnel.
 
 ### Texte Original
 ```
-Notre entreprise a fait beaucoup de progrès cette année. 
-Les ventes augmentent rapidement et le marché montre de l'intérêt. 
-Nous devons continuer à faire des efforts pour rester compétitifs dans 
-ce secteur très difficile.
+Notre entreprise a fait beaucoup de progr�s cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intér�t. 
+Nous devons continuer � faire des efforts pour rester compétitifs dans 
+ce secteur tr�s difficile.
 ```
 
 ### Mode Standard
 ```
-Notre entreprise a fait beaucoup de progrès cette année. 
-Les ventes augmentent rapidement et le marché montre de l'intérêt. 
-Ensuite, nous devons continuer à faire des efforts pour rester compétitifs 
-dans ce secteur très difficile.
+Notre entreprise a fait beaucoup de progr�s cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intér�t. 
+Ensuite, nous devons continuer � faire des efforts pour rester compétitifs 
+dans ce secteur tr�s difficile.
 ```
 **Changements**: + Connecteur "Ensuite"
 
 ### Mode Professionnel
 ```
 Notre organisation a effectué des avancées considérables cette année. 
-Les revenus progressent fortement et le marché manifeste de l'intérêt. 
+Les revenus progressent fortement et le marché manifeste de l'intér�t. 
 Nous devons poursuivre nos efforts pour demeurer compétitifs dans ce 
-secteur extrêmement complexe.
+secteur extr�mement complexe.
 ```
 **Changements**:
-- "entreprise" → "organisation"
-- "a fait" → "a effectué"
-- "beaucoup" → "considérables"
-- "augmentent rapidement" → "progressent fortement"
-- "montre" → "manifeste"
-- "continuer à faire" → "poursuivre"
-- "rester" → "demeurer"
-- "très difficile" → "extrêmement complexe"
+- "entreprise"  "organisation"
+- "a fait"  "a effectué"
+- "beaucoup"  "considérables"
+- "augmentent rapidement"  "progressent fortement"
+- "montre"  "manifeste"
+- "continuer � faire"  "poursuivre"
+- "rester"  "demeurer"
+- "tr�s difficile"  "extr�mement complexe"
 
 ### Mode Avancé
 ```
-Notre entreprise a réalisé énormément de progrès cette année. 
-Les ventes progressent rapidement et le marché affiche de l'intérêt. 
-Nous devons persévérer à exécuter des efforts pour demeurer compétitifs 
-dans ce secteur particulièrement ardu.
+Notre entreprise a réalisé énormément de progr�s cette année. 
+Les ventes progressent rapidement et le marché affiche de l'intér�t. 
+Nous devons persévérer � exécuter des efforts pour demeurer compétitifs 
+dans ce secteur particuli�rement ardu.
 ```
 **Changements**:
-- "fait" → "réalisé"
-- "beaucoup" → "énormément"
-- "augmentent" → "progressent"
-- "montre" → "affiche"
-- "continuer" → "persévérer"
-- "faire" → "exécuter"
-- "rester" → "demeurer"
-- "très difficile" → "particulièrement ardu"
+- "fait"  "réalisé"
+- "beaucoup"  "énormément"
+- "augmentent"  "progressent"
+- "montre"  "affiche"
+- "continuer"  "persévérer"
+- "faire"  "exécuter"
+- "rester"  "demeurer"
+- "tr�s difficile"  "particuli�rement ardu"
 
 ---
 
@@ -116,7 +116,7 @@ dans ce secteur particulièrement ardu.
 |--------|----------|---------------|--------|
 | **Connecteurs** | Ajoute ("Ensuite") | Aucun | Aucun |
 | **Vocabulaire** | Naturel | Formal | Paraphrasé |
-| **Adverbes** | "très", "beaucoup" | "particulièrement", "considérablement" | "extrêmement", "énormément" |
+| **Adverbes** | "tr�s", "beaucoup" | "particuli�rement", "considérablement" | "extr�mement", "énormément" |
 | **Verbes** | Original | Upgraded | Synonymisé |
 | **Longueur max** | 40 mots | 30 mots | Flexible |
 | **Substitution** | Lemmatique | Professionnelle | Contextuelle |
@@ -135,15 +135,15 @@ dans ce secteur particulièrement ardu.
 | avoir | avoir | disposer | posséder |
 | aller | aller | progresser, avancer | se diriger |
 | venir | venir | arriver | survenir |
-| être | être | exister | constituer |
+| �tre | �tre | exister | constituer |
 
 ### Adverbes
 | Original | Standard | Professionnel | Avancé |
 |----------|----------|----------------|--------|
-| très | très | particulièrement | extrêmement |
+| tr�s | tr�s | particuli�rement | extr�mement |
 | beaucoup | beaucoup | considérablement | énormément |
-| peu | peu | faiblement | légèrement |
-| souvent | souvent | régulièrement | fréquemment |
+| peu | peu | faiblement | lég�rement |
+| souvent | souvent | réguli�rement | fréquemment |
 | toujours | toujours | constamment | continuellement |
 
 ### Adjectifs
@@ -165,33 +165,33 @@ dans ce secteur particulièrement ardu.
 
 **Exemple**:
 ```
-Original: "Les données sont très volumineuses"
+Original: "Les données sont tr�s volumineuses"
 Avancé tente: "Les informations constituent énormément massives"
-Score: 0.45 (< 0.6) → Trop de changement
-Fallback: "Les données sont très volumineuses"
+Score: 0.45 (< 0.6)  Trop de changement
+Fallback: "Les données sont tr�s volumineuses"
 ```
 
 ---
 
 ## Conseil d'Utilisation
 
-### ✅ Utilisez Mode STANDARD pour:
+###  Utilisez Mode STANDARD pour:
 - Emails
 - Présentations générales
 - Textes conversationnels
 - Contenu blog
 - Communication interne
 
-### ✅ Utilisez Mode PROFESSIONNEL pour:
+###  Utilisez Mode PROFESSIONNEL pour:
 - Rapports
 - Documentation technique
 - Propositions commerciales
 - Contrats
 - Textes officiels
 
-### ✅ Utilisez Mode AVANCÉ pour:
+###  Utilisez Mode AVANC� pour:
 - Réécriture créative
-- Éviter répétitions
+- �viter répétitions
 - Améliorer lisibilité
 - Paraphrasing pour originalité
 - Textes avec variations styliques
@@ -212,4 +212,4 @@ Fallback: "Les données sont très volumineuses"
 
 ---
 
-**Dernière mise à jour**: 2 janvier 2025
+**Derni�re mise � jour**: 2 janvier 2025

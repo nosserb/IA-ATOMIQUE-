@@ -1,19 +1,19 @@
 # IA-ATOMIQUE v5.0 - Génération par Résonance Atomique Autonome
 
-## 🧬 Architecture
+##  Architecture
 
 ### Trois méthodes de génération coexistent:
 
 #### 1. **Génération Vectorielle (Originale)**
-- Sélection greedy: `rk = argmax[sim(vw, VR(k)) + η·aw(k-1)]`
-- Vecteur cible VR = Σ E(Pi)·vi / Σ E(Pi)
-- Avantages: Très cohérent (91%), rapide (237µs), déterministe
+- Sélection greedy: `rk = argmax[sim(vw, VR(k)) + ��aw(k-1)]`
+- Vecteur cible VR = Σ E(Pi)�vi / Σ E(Pi)
+- Avantages: Tr�s cohérent (91%), rapide (237µs), déterministe
 - Parfait pour: Résumés serrés, textes formels
 
 #### 2. **Génération Atomique Autonome (NEW!)**
-- Résonance distribuée: `aj(t+1) = f(aj(t), Σ αjk·ak(t), βj·VR)`
+- Résonance distribuée: `aj(t+1) = f(aj(t), Σ �jk�ak(t), βj�VR)`
 - Chaque atome = idée autonome avec activation propre
-- Émission quand activation > σ_wake (seuil de résonance)
+- �mission quand activation > �_wake (seuil de résonance)
 - Avantages: Exploratif, moins répétitif, naturel
 - Parfait pour: Textes créatifs, exploration sémantique
 
@@ -25,24 +25,24 @@
 
 ---
 
-## 📊 Formules Mathématiques
+##  Formules Mathématiques
 
-### Mise à jour atomique
+### Mise � jour atomique
 ```
-aj(t+1) = σ(aj(t) + Σ_{k∈voisins} αjk·ak(t) + βj·VR)
+aj(t+1) = �(aj(t) + Σ_{kvoisins} �jk�ak(t) + βj�VR)
 ```
-- σ = sigmoïde (activation)
-- αjk ∈ [0.2, 1.0] = couplage semblant aux voisins
-- βj = influence du vecteur cible (β ≈ 0.75)
+- � = sigmo�de (activation)
+- �jk  [0.2, 1.0] = couplage semblant aux voisins
+- βj = influence du vecteur cible (β  0.75)
 
-### Émission d'un mot
+### �mission d'un mot
 ```
-Si aj(t+1) ≥ σ_wake  alors  rj = concept(j)
+Si aj(t+1)  �_wake  alors  rj = concept(j)
 ```
-- σ_wake ≈ 0.70 = seuil de résonance
-- Après émission: aj ← 0.2 (reset) et EtatFreeze=true
+- �_wake  0.70 = seuil de résonance
+- Apr�s émission: aj  0.2 (reset) et EtatFreeze=true
 
-### Énergie et freeze
+### �nergie et freeze
 ```
 Energie(j) += Activation(j)
 Si Activation(j) < FreezeThreshold  alors  EtatFreeze(j)=true
@@ -52,12 +52,12 @@ Si Activation(j) < FreezeThreshold  alors  EtatFreeze(j)=true
 
 ### Vecteur cible d'un sous-réseau
 ```
-VR_chunk = Σ_{i=1}^N E(Pi)·Ai / Σ_{i=1}^N E(Pi)
+VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
 ```
 
 ---
 
-## 🛠️ Commandes
+##  Commandes
 
 ### Générer avec méthode vectorielle (existant)
 ```bash
@@ -76,7 +76,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)·Ai / Σ_{i=1}^N E(Pi)
 
 ---
 
-## 📈 Résultats Comparatifs (test.txt)
+##  Résultats Comparatifs (test.txt)
 
 | Métrique | Vectoriel | Atomique |
 |----------|-----------|----------|
@@ -89,28 +89,28 @@ VR_chunk = Σ_{i=1}^N E(Pi)·Ai / Σ_{i=1}^N E(Pi)
 
 ---
 
-## 🎯 Quand utiliser quelle méthode?
+##  Quand utiliser quelle méthode?
 
 ### Utiliser **VECTORIEL** (generate):
-- ✅ Résumés de documents techniques
-- ✅ Textes à forte cohérence requise
-- ✅ Performance critique (temps réel)
-- ✅ Contexte formel/professionnel
+-  Résumés de documents techniques
+-  Textes � forte cohérence requise
+-  Performance critique (temps réel)
+-  Contexte formel/professionnel
 
 ### Utiliser **ATOMIQUE** (atomic):
-- ✅ Génération créative, exploration sémantique
-- ✅ Textes avec variété thématique
-- ✅ Apprentissage des patterns distribués
-- ✅ Textes longs (multi-réseaux + résonance globale)
+-  Génération créative, exploration sémantique
+-  Textes avec variété thématique
+-  Apprentissage des patterns distribués
+-  Textes longs (multi-réseaux + résonance globale)
 
 ### Utiliser **COMPARAISON** (compare):
-- ✅ Tester différentes stratégies
-- ✅ Analyser le comportement du système
-- ✅ Benchmark performance
+-  Tester différentes stratégies
+-  Analyser le comportement du syst�me
+-  Benchmark performance
 
 ---
 
-## 🧠 Insight Théorique
+##  Insight Théorique
 
 La génération atomique implémente le concept fondamental de T.R.A. (Technologie de Résonance Atomique):
 
@@ -118,21 +118,21 @@ La génération atomique implémente le concept fondamental de T.R.A. (Technolog
 
 Chaque atome:
 - Maintient son propre état d'activation
-- N'interagit qu'avec ses voisins (couplage αjk)
-- Est influencé par l'idée centrale (βj·VR)
-- Émet quand la résonance atteint σ_wake
+- N'interagit qu'avec ses voisins (couplage �jk)
+- Est influencé par l'idée centrale (βj�VR)
+- �met quand la résonance atteint �_wake
 
-Le texte émerge comme un motif stable dans le réseau, plutôt que d'être construit word-by-word de manière greedy.
+Le texte émerge comme un motif stable dans le réseau, plutôt que d'�tre construit word-by-word de mani�re greedy.
 
 ---
 
-## 🔧 Paramètres Configurables
+##  Param�tres Configurables
 
 ```go
 type ReseauAtomiquePourGeneration struct {
-    Couplage         float64 // α = 0.25 (interaction locale)
+    Couplage         float64 // � = 0.25 (interaction locale)
     InfluenceCible   float64 // β = 0.75 (pertinence globale)
-    SeuilResonance   float64 // σ_wake = 0.70 (seuil d'émission)
+    SeuilResonance   float64 // �_wake = 0.70 (seuil d'émission)
     TauxDecroissance float64 // = 0.15 (oubli)
     FreezeThreshold  float64 // = 0.20 (gel automatique)
 }
@@ -140,22 +140,22 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-## 💾 Intégration avec le système existant
+##  Intégration avec le syst�me existant
 
-- ✅ Compatible avec vectorisation 11D existante
-- ✅ Utilise le lexique et catégories du système
-- ✅ Respecte la hiérarchie des phrases (énergie E(Pi))
-- ✅ Peut combiner avec translation/humanization
+-  Compatible avec vectorisation 11D existante
+-  Utilise le lexique et catégories du syst�me
+-  Respecte la hiérarchie des phrases (énergie E(Pi))
+-  Peut combiner avec translation/humanization
 
 ---
 
-## 📝 Exemple d'utilisation
+##  Exemple d'utilisation
 
 ```bash
 # Générer résumé 30% avec résonance atomique
 ./programme atomic document.txt 0.3
 
-# Comparer vectoriel vs atomique sur même fichier
+# Comparer vectoriel vs atomique sur m�me fichier
 ./programme compare document.txt 0.2
 
 # Puis humaniser le résumé atomique
@@ -164,6 +164,6 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-**Status**: ✅ Implémenté et fonctionnel
+**Status**:  Implémenté et fonctionnel
 **Performance**: Optimisé (2ms pour 15 phrases)
 **Scalabilité**: Multi-réseaux pour 1000+ phrases
