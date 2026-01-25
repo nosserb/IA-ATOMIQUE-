@@ -46,14 +46,14 @@ netstat -an | grep 8080
 
 ### Search First
 
-1. Check existing GitHub issues
+1. Check [existing GitHub issues](https://github.com/nosserb/IA-ATOMIQUE/issues)
 2. Review documentation in `/docs`
 3. See Common Issues above
 
 ### Ask a Question
 
-- Create a GitHub Discussion (preferred)
-- Open a GitHub Issue with tag `question`
+- Create a [GitHub Discussion](https://github.com/nosserb/IA-ATOMIQUE/discussions) (preferred)
+- Open a [GitHub Issue](https://github.com/nosserb/IA-ATOMIQUE/issues/new) with tag `question`
 - Include:
   - IA-ATOMIQUE version
   - Go version
@@ -63,7 +63,7 @@ netstat -an | grep 8080
 
 ### Report a Bug
 
-Create a GitHub Issue with:
+Create a [GitHub Issue](https://github.com/nosserb/IA-ATOMIQUE/issues/new) with:
 
 - Clear title describing the bug
 - Steps to reproduce
@@ -92,7 +92,7 @@ For sensitive matters:
 
 - Security issues: See [SECURITY.md](SECURITY.md)
 - Code of Conduct violations: See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- Other concerns: Contact maintainers via email
+- Other concerns: Contact **[nosserb](https://github.com/nosserb)** on GitHub
 
 ---
 

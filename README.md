@@ -4,7 +4,7 @@ Advanced neural network system with Atomic Resonance Technology (T.R.A.)
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
 [![License MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Latest Release](https://img.shields.io/badge/release-v5.2-blue?style=flat-square)](https://github.com/yourrepo/releases)
+[![Latest Release](https://img.shields.io/badge/release-v5.2-blue?style=flat-square)](https://github.com/nosserb/IA-ATOMIQUE/releases)
 
 ---
 

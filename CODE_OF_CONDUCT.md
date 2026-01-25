@@ -32,7 +32,7 @@ Unacceptable behavior includes:
 If you witness or experience unacceptable behavior:
 
 1. **Document the incident** - Note dates, times, and details
-2. **Report privately** - Email conduct@ia-atomique.local or open a private issue
+2. **Report privately** - Contact **[nosserb](https://github.com/nosserb)** or open a private issue
 3. **Provide context** - Include relevant details without identifying individuals if possible
 
 All reports will be:

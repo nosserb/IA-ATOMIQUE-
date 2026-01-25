@@ -20,7 +20,7 @@ If you find a bug or have a suggestion for improvement:
 
 ### Making Changes
 
-1. **Fork the repository** and create a feature branch from `main`
+1. **Fork the repository** to `nosserb/IA-ATOMIQUE` and create a feature branch from `main`
 2. **Write clean, idiomatic Go code** following [Effective Go](https://golang.org/doc/effective_go) guidelines
 3. **Add tests** for new functionality
 4. **Update documentation** if behavior changes

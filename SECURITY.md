@@ -15,9 +15,9 @@ We maintain security updates for the following versions:
 
 **Do not** create public issues for security vulnerabilities.
 
-Instead:
+Instead, contact **[nosserb](https://github.com/nosserb)** directly:
 
-1. Email: `security@ia-atomique.local` with details:
+1. GitHub Profile: [github.com/nosserb](https://github.com/nosserb)
    - Type of vulnerability
    - Location in code (file, line number)
    - Description and impact

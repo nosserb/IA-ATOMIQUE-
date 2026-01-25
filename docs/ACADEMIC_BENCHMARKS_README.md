@@ -190,7 +190,7 @@ Potentiel: 85-90% avec 50h entraπnement
 ### Installation
 ```bash
 # Cloner le repo
-git clone https://github.com/Guylann/IA-ATOMIQUE
+git clone https://github.com/nosserb/IA-ATOMIQUE
 cd IA-ATOMIQUE
 
 # Compiler
