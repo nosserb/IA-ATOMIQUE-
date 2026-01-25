@@ -1,7 +1,7 @@
 # IA-ATOMIQUE v5.2
 
 <p align="center">
-<a href="https://ibb.co/99Ktdy4Y"><img src="https://i.ibb.co/N6DSGWNY/NEUROPULSE.png" alt="NEUROPULSE" border="0" /></a>
+<a href="https://ibb.co/5QTzvfj"><img src="https://i.ibb.co/kLKr0WD/NEUROPULSE-2.png" alt="NEUROPULSE-2" border="0" /></a>
 </p>
 
 > Advanced Neural Network System with Atomic Resonance Technology
