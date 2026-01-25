@@ -1,4 +1,4 @@
-#  Rï¿½SUMï¿½ RAPIDE: Terme d'ï¿½nergie de Nettete
+#  RÃSUMÃ RAPIDE: Terme d'Ãnergie de NettetÃ©
 
 **Date**: 13 janvier 2026
 
@@ -6,38 +6,38 @@
 
 ##  En 30 Secondes
 
-### Ajout Realise
+### Ajout RÃ©alisÃ©
 
-Nouveau terme dans l'energie totale de relaxation atomique:
+Nouveau terme dans l'Ã©nergie totale de relaxation atomique:
 
 $$E_{edge} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
 ### Effet
 
-- **Signe negatif**  Systï¿½me minimise -E = **Maximise gradients**
-- **ï¿½ adaptatif**  0.3 ï¿½ 1.0 selon flou detecte
+- **Signe nÃ©gatif**  SystÃme minimise -E = **Maximise gradients**
+- **Î adaptatif**  0.3 Ã 1.0 selon flou dÃ©tectÃ©
 - **Sobel simple**  G_x = I[i+1,j] - I[i-1,j], idem G_y
 
-### Resultat
+### RÃ©sultat
 
-Atomes se repositionnent pour creer/amplifier contours nets
+Atomes se repositionnent pour crÃ©er/amplifier contours nets
 
 ---
 
-##  Implementation (4 Fonctions)
+##  ImplÃ©mentation (4 Fonctions)
 
-### 1. ï¿½nergie Globale
+### 1. Ãnergie Globale
 
 ```go
 CalculateEdgeEnhancementEnergy(atoms, lambda)
-// Somme: -ï¿½ï¿½(G_x^2 + G_y^2) pour tous pixels
+// Somme: -ÎÂ(G_xÂ² + G_yÂ²) pour tous pixels
 ```
 
 ### 2. Magnitude Local
 
 ```go
 ComputeLocalEdgeStrength(atoms, i, j)
-// Retourne: G_x^2 + G_y^2 ï¿½ position (i,j)
+// Retourne: G_xÂ² + G_yÂ² Ã position (i,j)
 ```
 
 ### 3. Gradient de Descente
@@ -48,34 +48,34 @@ ComputeLocalEdgeGradient(atoms, i, j, lambda)
 // Comment modifier I pour augmenter gradient local
 ```
 
-### 4. Integration
+### 4. IntÃ©gration
 
 ```go
-RelaxWithEnergyTerms()  // Mise ï¿½ jour
-// Ajoute edgeGrad au calcul de mise ï¿½ jour RGB
+RelaxWithEnergyTerms()  // Mise Ã jour
+// Ajoute edgeGrad au calcul de mise Ã jour RGB
 ```
 
 ---
 
-##  Formule Complï¿½te
+##  Formule ComplÃte
 
 $$E_{total} = \alpha E_{struct} + \beta E_{constraint} + \gamma E_{interaction} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
-Ou:
-- **Trois premiers**: Stabilite structure
-- **ï¿½ï¿½E_sharpen**: Amplification (k=2.2)
-- **0.5ï¿½E_edge**: Recompense nettete  **NOUVEAU**
+OÃ¹:
+- **Trois premiers**: StabilitÃ© structure
+- **ÎÂE_sharpen**: Amplification (k=2.2)
+- **0.5ÂE_edge**: RÃ©compense nettetÃ©  **NOUVEAU**
 
 ---
 
-##  Paramï¿½tres
+##  ParamÃtres
 
-| Paramï¿½tre | Valeur | Plage |
+| ParamÃtre | Valeur | Plage |
 |-----------|--------|-------|
-| ï¿½ (defaut) | 0.4 | [0.3, 1.0] |
-| ï¿½ (adaptatif) | blur_ï¿½ï¿½0.15 | Auto |
+| Î (dÃ©faut) | 0.4 | [0.3, 1.0] |
+| Î (adaptatif) | blur_ÏÂ0.15 | Auto |
 | Sobel | Simple 2-point | O(1) rapide |
-| Poids E_edge | 0.5 | Modere |
+| Poids E_edge | 0.5 | ModÃ©rÃ© |
 
 ---
 
@@ -106,33 +106,33 @@ Overhead: ~5% (acceptable)
 
 **Sans E_edge**: Amplifier gradients existants (Richardson-Lucy + k=2.2)
 
-**Avec E_edge**: Amplifier + **Creer activement** gradients (minimiser -E)
+**Avec E_edge**: Amplifier + **CrÃ©er activement** gradients (minimiser -E)
 
-**Resultat**: Plus net, moins "flou residuel"
-
----
-
-##  Cles de Succï¿½s
-
-1. **Signe negatif**: Force maximisation via minimisation
-2. **Sobel simplifie**: O(1) rapide, suffisant
-3. **Adaptatif ï¿½**: Fort flou  ï¿½ fort  plus d'amplification
-4. **Poids modere**: 0.5 balance avec autres termes
-5. **Clamping RGB**: ï¿½vite debordement
+**RÃ©sultat**: Plus net, moins "flou rÃ©siduel"
 
 ---
 
-##  Fichier Modifie
+##  ClÃ©s de SuccÃs
+
+1. **Signe nÃ©gatif**: Force maximisation via minimisation
+2. **Sobel simplifiÃ©**: O(1) rapide, suffisant
+3. **Adaptatif Î**: Fort flou  Î fort  plus d'amplification
+4. **Poids modÃ©rÃ©**: 0.5 balance avec autres termes
+5. **Clamping RGB**: Ãvite dÃ©bordement
+
+---
+
+##  Fichier ModifiÃ©
 
 **`database/deblur_system.go`** (+200 lignes)
 
 - `DeconvolutionParams`: Ajout `EdgeEnhancementLambda`
-- `NewDefaultDeconvolutionParams()`: ï¿½ = 0.4
-- `NewAdaptiveDeconvolutionParams()`: ï¿½ adaptatif
-- `CalculateEdgeEnhancementEnergy()`: E_edge = -ï¿½ï¿½Î£||ï¿½I||^2
-- `ComputeLocalEdgeStrength()`: ||ï¿½I||^2
+- `NewDefaultDeconvolutionParams()`: Î = 0.4
+- `NewAdaptiveDeconvolutionParams()`: Î adaptatif
+- `CalculateEdgeEnhancementEnergy()`: E_edge = -ÎÂÎ£||‡I||Â²
+- `ComputeLocalEdgeStrength()`: ||‡I||Â²
 - `ComputeLocalEdgeGradient()`: E/I pour R,G,B
-- `RelaxWithEnergyTerms()`: Integration dans relaxation
+- `RelaxWithEnergyTerms()`: IntÃ©gration dans relaxation
 
 ---
 
@@ -142,34 +142,34 @@ Overhead: ~5% (acceptable)
 ./programme deblur image.jpg 16 16 100 1920 1080 output.jpg
 ```
 
-**Auto**: ï¿½ adaptatif selon image (0.3-1.0)
+**Auto**: Î adaptatif selon image (0.3-1.0)
 
 ---
 
 ##  Cas d'Usage
 
- Flou ï¿½ reduire activement  
- Texte, documents (nettete essentielle)  
- Images naturelles (details fins)  
- Haute resolution (plus de pixels = plus de gradient)  
+ Flou Ã rÃ©duire activement  
+ Texte, documents (nettetÃ© essentielle)  
+ Images naturelles (dÃ©tails fins)  
+ Haute rÃ©solution (plus de pixels = plus de gradient)  
 
- Pas pour images trï¿½s bruitees (amplifierait bruit)  
- Pas sans Richardson-Lucy (details artificiels)  
+ Pas pour images trÃs bruitÃ©es (amplifierait bruit)  
+ Pas sans Richardson-Lucy (dÃ©tails artificiels)  
 
 ---
 
-##  Avant vs Aprï¿½s
+##  Avant vs AprÃs
 
-| Aspect | Avant | Aprï¿½s |
+| Aspect | Avant | AprÃs |
 |--------|-------|-------|
-| **Deconvolution** |  RL+Unsharp |  RL+Unsharp |
+| **DÃ©convolution** |  RL+Unsharp |  RL+Unsharp |
 | **Amplification** |  k=2.2 |  k=2.2 |
-| **Nettete active** |  |  E_edge |
+| **NettetÃ© active** |  |  E_edge |
 | **Time overhead** | 0% | 5% |
-| **Qualite** | Bonne | **Excellent** |
+| **QualitÃ©** | Bonne | **Excellent** |
 
 ---
 
-**Status**:  **COMPLET & TESTï¿½**
+**Status**:  **COMPLET & TESTÃ**
 
-Systï¿½me maintenant avec **recompense active des contours** via E_edge = -ï¿½ï¿½Î£||ï¿½I||^2
+SystÃme maintenant avec **rÃ©compense active des contours** via E_edge = -ÎÂÎ£||‡I||Â²

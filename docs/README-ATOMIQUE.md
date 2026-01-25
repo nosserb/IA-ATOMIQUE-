@@ -1,4 +1,4 @@
-# IA-ATOMIQUE: Moteur d'Inference Asynchrone Fonde sur la Technologie de Resonance Atomique (T.R.A.)
+# IA-ATOMIQUE: Moteur d'Inférence Asynchrone Fondé sur la Technologie de Résonance Atomique (T.R.A.)
 
 <div align="center">
 
@@ -8,7 +8,7 @@
 ![Status](https://img.shields.io/badge/Status-Academic%20Implementation-orange?style=flat-square)
 
 **Auteur:** BRESSON Guylann  
-**Affiliation:** Independant / �tudiant en informatique  
+**Affiliation:** Indépendant / �tudiant en informatique  
 **Contact:** guylann.bresson.gb@gmail.com
 
 </div>
@@ -17,96 +17,96 @@
 
 ##  Vue d'Ensemble
 
-**IA-ATOMIQUE** est une implementation en Go d'un moteur d'inference revolutionnaire base sur la **Technologie de Resonance Atomique (T.R.A.)**, presente dans l'article scientifique:
+**IA-ATOMIQUE** est une implémentation en Go d'un moteur d'inférence révolutionnaire basé sur la **Technologie de Résonance Atomique (T.R.A.)**, présenté dans l'article scientifique:
 
-> "IA atomique : un moteur d'inference asynchrone fonde sur la Technologie de Resonance Atomique (T.R.A.)"
+> "IA atomique : un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique (T.R.A.)"
 
 ### Concept Fondamental
 
-Plutot que de reposer sur une architecture centralisee et synchrone, IA-ATOMIQUE implemente un reseau distribue d'**unites elementaires autonomes** (atomes computationnels) qui interagissent selon des mecanismes inspires de la **resonance atomique**. Ces interactions locales et asynchrones produisent des structures stables et des comportements emergents complexes, sans necessiter de controle central.
+Plutôt que de reposer sur une architecture centralisée et synchrone, IA-ATOMIQUE implémente un réseau distribué d'**unités élémentaires autonomes** (atomes computationnels) qui interagissent selon des mécanismes inspirés de la **résonance atomique**. Ces interactions locales et asynchrones produisent des structures stables et des comportements émergents complexes, sans nécessiter de contrôle central.
 
 ---
 
-##  Caracteristiques Principales
+##  Caractéristiques Principales
 
-### 1. **Architecture Enti�rement Distribuee**
-- Pas de serveur central ou d'unite de controle superviseur
-- Chaque atome computationnel agit de mani�re autonome
-- Les interactions sont strictement locales (entre voisins immediats)
+### 1. **Architecture Enti�rement Distribuée**
+- Pas de serveur central ou d'unité de contrôle superviseur
+- Chaque atome computationnel agit de mani�re autonome
+- Les interactions sont strictement locales (entre voisins immédiats)
 
 ### 2. **Asynchronisme Total**
-- Chaque atome evolue � son propre rythme
-- Pas de dependance envers une horloge globale
-- Resilience exceptionnelle aux perturbations et aux flux irreguliers
+- Chaque atome évolue � son propre rythme
+- Pas de dépendance envers une horloge globale
+- Résilience exceptionnelle aux perturbations et aux flux irréguliers
 
-### 3. **Resonance Atomique**
-Formalisee par l'equation:
+### 3. **Résonance Atomique**
+Formalisée par l'équation:
 
 $$R(s_i, s_j) = \exp\left(-\frac{\|s_i - s_j\|^2}{2\sigma^2}\right)$$
 
-Ou:
-- $s_i$, $s_j$ : etats internes de deux atomes voisins
+Où:
+- $s_i$, $s_j$ : états internes de deux atomes voisins
 - $\|\cdot\|$ : distance euclidienne
-- $\sigma$ : sensibilite de la resonance
+- $\sigma$ : sensibilité de la résonance
 
-Permet aux atomes de s'aligner spontanement lorsque leurs etats sont compatibles.
+Permet aux atomes de s'aligner spontanément lorsque leurs états sont compatibles.
 
 ### 4. **Dynamique Adaptative des Poids**
-Gouvernee par l'equation:
+Gouvernée par l'équation:
 
-$$\frac{dw_{ij}}{dt} = \gamma \cdot \text{coherence}(s_i, s_j) - \delta \cdot w_{ij}$$
+$$\frac{dw_{ij}}{dt} = \gamma \cdot \text{cohérence}(s_i, s_j) - \delta \cdot w_{ij}$$
 
-Ou:
+Où:
 - $w_{ij}$ : poids de la connexion entre atomes $i$ et $j$
 - $\gamma$ : coefficient de renforcement
-- $\delta$ : coefficient de decroissance
-- Les connexions coherentes se renforcent, les instables s'effacent
+- $\delta$ : coefficient de décroissance
+- Les connexions cohérentes se renforcent, les instables s'effacent
 
 ### 5. **Apprentissage Continu et Local**
-- Pas d'entra�nement centralise lourd
-- Ajustements en temps reel bases sur les interactions locales
-- Plasticite permanente permettant l'adaptation autonome
+- Pas d'entra�nement centralisé lourd
+- Ajustements en temps réel basés sur les interactions locales
+- Plasticité permanente permettant l'adaptation autonome
 
-### 6. **Sobriete Computationnelle**
+### 6. **Sobriété Computationnelle**
 - Chaque atome est volontairement simple
-- Ressources memoire et calcul minimales
-- L'intelligence globale emerge de la richesse des interactions collectives
-- Deployable sur microcontroleurs, capteurs autonomes, syst�mes embarques
+- Ressources mémoire et calcul minimales
+- L'intelligence globale émerge de la richesse des interactions collectives
+- Déployable sur microcontrôleurs, capteurs autonomes, syst�mes embarqués
 
 ---
 
-##  Fondements Theoriques
+##  Fondements Théoriques
 
-### �tat Interne et Mise � Jour
+### �tat Interne et Mise � Jour
 
-La mise � jour de l'etat interne suit:
+La mise � jour de l'état interne suit:
 
 $$s_i(t+1) = s_i(t) + \alpha \cdot \sum_{j \in N(i)} w_{ij} \cdot R(s_i, s_j) + \beta \cdot (R_i + p_i)$$
 
-Ou:
+Où:
 - $\alpha$ : coefficient de couplage (influence des voisins)
 - $N(i)$ : ensemble des voisins de l'atome $i$
-- $R_i$ : r�gles locales de l'atome
+- $R_i$ : r�gles locales de l'atome
 - $p_i$ : perceptions locales
-- $\beta$ : coefficient d'impact des r�gles locales
+- $\beta$ : coefficient d'impact des r�gles locales
 
-### �mergence et Auto-Organisation
+### �mergence et Auto-Organisation
 
-Des structures globales stables emergent naturellement de:
+Des structures globales stables émergent naturellement de:
 1. Interactions locales simples entre voisins
-2. Resonance atomique favorisant l'harmonisation
-3. Renforcement des configurations coherentes
+2. Résonance atomique favorisant l'harmonisation
+3. Renforcement des configurations cohérentes
 4. Affaiblissement des structures instables
 
-Aucune orchestration centrale n'est necessaire.
+Aucune orchestration centrale n'est nécessaire.
 
 ---
 
 ##  Installation et Utilisation
 
-### Prerequis
+### Prérequis
 
-- **Go** 1.22 ou superieur
+- **Go** 1.22 ou supérieur
 - Linux, macOS, ou Windows
 
 ### Compilation
@@ -116,16 +116,16 @@ Aucune orchestration centrale n'est necessaire.
 go build -o programme main.go
 ```
 
-### Execution
+### Exécution
 
 ```bash
-# Mode interactif (demonstration du reseau atomique)
+# Mode interactif (démonstration du réseau atomique)
 ./programme
 
-# Mode simulation avec N iterations
+# Mode simulation avec N itérations
 ./programme simulate 1000
 
-# Mode analyse de reseau
+# Mode analyse de réseau
 ./programme network-stats
 
 # Mode benchmarks
@@ -134,164 +134,164 @@ go build -o programme main.go
 
 ---
 
-##  Architecture du Syst�me
+##  Architecture du Syst�me
 
 ### Structure des Fichiers
 
 ```
 /database/
-   atomic.go              # Implementation des atomes computationnels et reseau
-   data.go                # Gestion des donnees et persistance
+   atomic.go              # Implémentation des atomes computationnels et réseau
+   data.go                # Gestion des données et persistance
    language.go            # Traitement du langage naturel
    nlp.go                 # Outils de traitement NLP
    phrase_analysis.go     # Analyse des phrases
 
 /
-   main.go                # Point d'entree et orchestration
+   main.go                # Point d'entrée et orchestration
    interaction.go         # Interface utilisateur et interactions
-   go.mod                 # Gestion des dependances
+   go.mod                 # Gestion des dépendances
 ```
 
-### Composants Cles
+### Composants Clés
 
 #### `ComputationalAtom`
-Unite elementaire autonome representant un n�ud du reseau:
-- **InternalState** : etat continu $s_i \in [0, 1]$
+Unité élémentaire autonome représentant un n�ud du réseau:
+- **InternalState** : état continu $s_i \in [0, 1]$
 - **Neighbors** : liste des atomes voisins
 - **ConnectionWeights** : poids des connexions $w_{ij}$
-- **LocalRules** : r�gles de comportement local
-- **Perceptions** : signaux de l'environnement immediat
+- **LocalRules** : r�gles de comportement local
+- **Perceptions** : signaux de l'environnement immédiat
 
 #### `AtomicNetwork`
-Reseau distribue d'atomes computationnels:
-- G�re l'ensemble des atomes
-- Coordonne les iterations asynchrones
-- Calcule les metriques de coherence globale
-- Detecte les comportements emergents
+Réseau distribué d'atomes computationnels:
+- G�re l'ensemble des atomes
+- Coordonne les itérations asynchrones
+- Calcule les métriques de cohérence globale
+- Détecte les comportements émergents
 
 ---
 
-##  Resultats Experimentaux
+##  Résultats Expérimentaux
 
-### �mergence Observee
+### �mergence Observée
 
-Les experiences confirment que:
+Les expériences confirment que:
 
-1. **Interactions locales simples** + **Resonance atomique** + **Dynamique adaptative** 
-    **Structures globales stables et coherentes**
+1. **Interactions locales simples** + **Résonance atomique** + **Dynamique adaptative** 
+    **Structures globales stables et cohérentes**
 
-2. **Resilience remarquable**: 
-   - Tolerance aux perturbations locales
-   - Recuperation automatique sans recalibrage central
-   - Performance maintenue m�me avec unites defaillantes
+2. **Résilience remarquable**: 
+   - Tolérance aux perturbations locales
+   - Récupération automatique sans recalibrage central
+   - Performance maintenue m�me avec unités défaillantes
 
-3. **Efficacite energetique**:
-   - Consommation minimale par rapport aux architectures centralisees
-   - Scalabilite naturelle: l'ajout d'atomes ameliore les performances
+3. **Efficacité énergétique**:
+   - Consommation minimale par rapport aux architectures centralisées
+   - Scalabilité naturelle: l'ajout d'atomes améliore les performances
 
-4. **Plasticite continue**:
+4. **Plasticité continue**:
    - Adaptation autonome aux changements environnementaux
-   - Apprentissage decentralise sans supervision
+   - Apprentissage décentralisé sans supervision
 
-### Metriques de Performance
+### Métriques de Performance
 
-- **Coherence reseau** : mesure d'alignement global (0-1)
-- **Activation moyenne** : niveau moyen d'activite des atomes
-- **Consommation energetique** : energie totale du syst�me
-- **Iterations de convergence** : cycles necessaires pour stabilisation
+- **Cohérence réseau** : mesure d'alignement global (0-1)
+- **Activation moyenne** : niveau moyen d'activité des atomes
+- **Consommation énergétique** : énergie totale du syst�me
+- **Itérations de convergence** : cycles nécessaires pour stabilisation
 
 ---
 
 ##  Applications Potentielles
 
 ### Villes Intelligentes
-- Gestion du trafic decentralisee
+- Gestion du trafic décentralisée
 - Surveillance de la pollution sans serveur central
-- Optimisation de l'energie urbaine
-- Detection d'evenements anormaux
+- Optimisation de l'énergie urbaine
+- Détection d'événements anormaux
 
 ### Robotique Collaborative
 - Essaims de robots autonomes
 - Coordination sans chef d'orchestre
-- Adaptation en temps reel aux obstacles
-- Apprentissage distribue des strategies
+- Adaptation en temps réel aux obstacles
+- Apprentissage distribué des stratégies
 
-### Syst�mes Industriels & IoT
-- Reseaux de capteurs distribues
-- Maintenance predictive locale
-- Optimisation des processus sans goulot d'etranglement
-- Detection d'anomalies en temps reel
+### Syst�mes Industriels & IoT
+- Réseaux de capteurs distribués
+- Maintenance prédictive locale
+- Optimisation des processus sans goulot d'étranglement
+- Détection d'anomalies en temps réel
 
-### Reseaux Sensoriels Urbains
-- Capteurs de bruit distribues
-- Detection de patterns environnementaux
-- Agregation d'information sans transmission centralisee
-- Reduction du bruit par resonance locale
+### Réseaux Sensoriels Urbains
+- Capteurs de bruit distribués
+- Détection de patterns environnementaux
+- Agrégation d'information sans transmission centralisée
+- Réduction du bruit par résonance locale
 
 ---
 
 ##  Principes de Conception
 
-### 1. �mergence par Interactions Locales
-L'ordre global na�t de r�gles locales simples, sans intervention externe.
+### 1. �mergence par Interactions Locales
+L'ordre global na�t de r�gles locales simples, sans intervention externe.
 
-### 2. Resonance Atomique
-L'harmonisation spontanee permet la coordination sans orchestration centrale.
+### 2. Résonance Atomique
+L'harmonisation spontanée permet la coordination sans orchestration centrale.
 
 ### 3. Asynchronisme Total
-Chaque unite op�re independamment, garantissant resilience et reactivite.
+Chaque unité op�re indépendamment, garantissant résilience et réactivité.
 
-### 4. Plasticite Continue
-Le syst�me s'adapte en permanence via l'apprentissage decentralise.
+### 4. Plasticité Continue
+Le syst�me s'adapte en permanence via l'apprentissage décentralisé.
 
-### 5. Sobriete Computationnelle
-Intelligence massive avec ressources minimales par unite.
+### 5. Sobriété Computationnelle
+Intelligence massive avec ressources minimales par unité.
 
 ---
 
-##  References Academiques
+##  Références Académiques
 
 Cet article s'appuie sur les travaux fondamentaux en:
-- **Syst�mes multi-agents** (Wooldridge)
+- **Syst�mes multi-agents** (Wooldridge)
 - **Architecture de subsomption** (Brooks)
-- **Auto-organisation** et syst�mes complexes
-- **Reseaux de neurones biologiques**
+- **Auto-organisation** et syst�mes complexes
+- **Réseaux de neurones biologiques**
 - **Synchronisation et dynamiques collectives**
 
 ---
 
-##  Considerations �thiques et de Securite
+##  Considérations �thiques et de Sécurité
 
-- **Transparence**: Interactions locales simples et comprehensibles
-- **Responsabilite**: Comportements emergeants verifiables et tra�ables
-- **Robustesse**: Pas de point de defaillance unique
-- **�quite**: Pas de centralisation du pouvoir decisionnel
-- **Confidentialite**: Traitement decentralise des donnees
+- **Transparence**: Interactions locales simples et compréhensibles
+- **Responsabilité**: Comportements émergeants vérifiables et tra�ables
+- **Robustesse**: Pas de point de défaillance unique
+- **�quité**: Pas de centralisation du pouvoir décisionnel
+- **Confidentialité**: Traitement décentralisé des données
 
 ---
 
 ##  License
 
-MIT License - Libre d'usage dans contextes academiques et commerciaux
+MIT License - Libre d'usage dans contextes académiques et commerciaux
 
 ---
 
 ##  Auteur
 
 **BRESSON Guylann**
-- Independant / �tudiant en informatique
+- Indépendant / �tudiant en informatique
 - Email: guylann.bresson.gb@gmail.com
-- Specialite: Intelligence Artificielle Distribuee, Syst�mes Autonomes
+- Spécialité: Intelligence Artificielle Distribuée, Syst�mes Autonomes
 
 ---
 
-## � Support et Feedback
+## � Support et Feedback
 
-Pour questions, suggestions ou signalements de bugs relatifs � cette implementation de la Technologie de Resonance Atomique:
+Pour questions, suggestions ou signalements de bugs relatifs � cette implémentation de la Technologie de Résonance Atomique:
 
 Contactez: guylann.bresson.gb@gmail.com
 
 ---
 
-**Derni�re mise � jour:** Janvier 2026  
-**Statut:** Implementation academique v1.0 - Conforme � l'article publie sur HAL
+**Derni�re mise � jour:** Janvier 2026  
+**Statut:** Implémentation académique v1.0 - Conforme � l'article publié sur HAL

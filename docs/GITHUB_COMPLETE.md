@@ -1,56 +1,56 @@
-#  TOUT EST PR�T POUR GITHUB!
+#  TOUT EST PR�T POUR GITHUB!
 
-## Resume: Qu'est-ce qui a ete prepare?
+## Résumé: Qu'est-ce qui a été préparé?
 
-Ton projet **IA-ATOMIQUE** est maintenant **100% pr�t** pour GitHub. Voici ce qui a ete ajoute:
+Ton projet **IA-ATOMIQUE** est maintenant **100% pr�t** pour GitHub. Voici ce qui a été ajouté:
 
 ---
 
-## � Fichiers Crees / Modifies
+## � Fichiers Créés / Modifiés
 
 ### Interface Web (3 fichiers)
  `web/index.html` - Interface moderne avec zones input/output  
- `web/style.css` - Design epure avec gradient violet  
- `web/script.js` - Logique JavaScript pour les requ�tes API  
+ `web/style.css` - Design épuré avec gradient violet  
+ `web/script.js` - Logique JavaScript pour les requ�tes API  
 
 ### Serveur (1 fichier)
  `web.go` - Serveur HTTP avec endpoint `/api/summarize`
 
-### Deploiement (2 fichiers)
+### Déploiement (2 fichiers)
  `Dockerfile` - Configuration Docker multi-stage  
  `docker-compose.yml` - Service orchestration facile
 
 ### Build & Automation (5 fichiers)
  `Makefile` - Commandes: `make web`, `make docker-build`, etc.
  `start-web.sh` - Script de lancement simple  
- `verify-github.sh` - Verifie que tout est OK avant push  
+ `verify-github.sh` - Vérifie que tout est OK avant push  
  `git-push.sh` - Helper pour les commits/push  
- `.github/workflows/build.yml` - CI/CD automatise sur GitHub
+ `.github/workflows/build.yml` - CI/CD automatisé sur GitHub
 
 ### Documentation (7 fichiers)
- `README.md` - Section web ajoutee  
- `INSTALL.md` - Guide d'installation detaille  
+ `README.md` - Section web ajoutée  
+ `INSTALL.md` - Guide d'installation détaillé  
  `WEB_README.md` - Configuration de l'interface web  
- `SETUP_WEB.md` - Details avances  
- `GITHUB_CHECKLIST.md` - Checklist pre-deploiement  
- `GITHUB_READY.md` - Status de la preparation  
- `GITHUB_PUSH_GUIDE.md` - Guide pas � pas pour GitHub  
+ `SETUP_WEB.md` - Détails avancés  
+ `GITHUB_CHECKLIST.md` - Checklist pré-déploiement  
+ `GITHUB_READY.md` - Status de la préparation  
+ `GITHUB_PUSH_GUIDE.md` - Guide pas � pas pour GitHub  
 
 ### Configuration (2 fichiers)
- `.gitignore` - Mis � jour avec tous les fichiers � ignorer  
- `go.mod` - Dependances Go (dej� existant)
+ `.gitignore` - Mis � jour avec tous les fichiers � ignorer  
+ `go.mod` - Dépendances Go (déj� existant)
 
 ---
 
-##  Comment �a Marche
+##  Comment �a Marche
 
-### Pour toi (developpeur)
+### Pour toi (développeur)
 
 ```bash
-# Verifie que tout est OK
+# Vérifie que tout est OK
 ./verify-github.sh
 
-# Cree un commit avec message
+# Crée un commit avec message
 git add .
 git commit -m "feat: Add web interface"
 
@@ -94,7 +94,7 @@ go build -o programme
 
 ##  Qu'est-ce Qu'on Peut Faire Avec?
 
-### Sur localhost (developpement)
+### Sur localhost (développement)
 ```bash
 # Lancer le serveur
 ./programme web
@@ -103,7 +103,7 @@ make web
 # ou
 ./start-web.sh
 
-# Accedez � http://localhost:8080
+# Accédez � http://localhost:8080
 ```
 
 ### Avec Docker (production)
@@ -115,26 +115,26 @@ docker-compose up
 docker run -p 8080:8080 ia-atomique
 ```
 
-### Integration Continue
-GitHub Actions verifiera automatiquement:
+### Intégration Continue
+GitHub Actions vérifiera automatiquement:
 -  La compilation fonctionne
--  Les fichiers web sont presents
--  Le serveur demarre sans erreur
+-  Les fichiers web sont présents
+-  Le serveur démarre sans erreur
 
 ---
 
-##  Interface Web - Fonctionnalites
+##  Interface Web - Fonctionnalités
 
-**Cote utilisateur:**
+**Côté utilisateur:**
 1. Colle ton texte dans la zone gauche
-2. Clique "Resumer" (ou Ctrl+Entree)
-3. Vois le resume appara�tre � droite
-4. Consulte les statistiques (confiance, categories)
+2. Clique "Résumer" (ou Ctrl+Entrée)
+3. Vois le résumé appara�tre � droite
+4. Consulte les statistiques (confiance, catégories)
 
-**Cote serveur:**
-- Re�oit le texte via API POST
+**Côté serveur:**
+- Re�oit le texte via API POST
 - Utilise ton IA neuronale pour analyser
-- Retourne un JSON avec le resume et stats
+- Retourne un JSON avec le résumé et stats
 
 ---
 
@@ -149,7 +149,7 @@ IA-ATOMIQUE/
     demo.html
 
  web.go                          Serveur HTTP
- main.go                         Entree principale
+ main.go                         Entrée principale
  interaction.go                  CLI
  database/                       Logique IA
     phrase_analysis.go
@@ -161,29 +161,29 @@ IA-ATOMIQUE/
  docker-compose.yml              Compose
  Makefile                        Build helpers
  start-web.sh                    Launcher
- verify-github.sh                Verification
+ verify-github.sh                Vérification
  git-push.sh                     Git helper
 
  .github/workflows/
     build.yml                   CI/CD
 
- README.md                       Doc principale (mise � jour)
+ README.md                       Doc principale (mise � jour)
  INSTALL.md                      Installation
  WEB_README.md                   Web config
- SETUP_WEB.md                    Setup avance
+ SETUP_WEB.md                    Setup avancé
  GITHUB_CHECKLIST.md             Checklist
  GITHUB_READY.md                 Status
  GITHUB_PUSH_GUIDE.md            Guide push
 
- go.mod                          Dependances
- .gitignore                      Config Git (mise � jour)
+ go.mod                          Dépendances
+ .gitignore                      Config Git (mise � jour)
  LICENSE
  README.fr.md
 ```
 
 ---
 
-##  Points Cles
+##  Points Clés
 
 ### Compilation
 ```bash
@@ -196,16 +196,16 @@ Interface: http://localhost:8080
 API: POST http://localhost:8080/api/summarize
 ```
 
-### Fichiers Ignores
+### Fichiers Ignorés
 Le `.gitignore` ignore:
-- `programme` (binaire compile)
-- `dashboard`, `temp.txt` (fichiers generes)
+- `programme` (binaire compilé)
+- `dashboard`, `temp.txt` (fichiers générés)
 - `.vscode`, `.idea` (IDE files)
 - Autres fichiers temporaires
 
 ### Documentation
 Chaque document a un objectif:
-- **README.md** - Vue d'ensemble generale
+- **README.md** - Vue d'ensemble générale
 - **INSTALL.md** - "Comment installer?"
 - **WEB_README.md** - "Comment configurer l'interface?"
 - **GITHUB_PUSH_GUIDE.md** - "Comment pusher?"
@@ -215,26 +215,26 @@ Chaque document a un objectif:
 ##  Checklist Finale
 
 - [x] Code compile sans erreur
-- [x] Interface web compl�te et testee
-- [x] Serveur HTTP integre
-- [x] Docker et Compose configures
+- [x] Interface web compl�te et testée
+- [x] Serveur HTTP intégré
+- [x] Docker et Compose configurés
 - [x] Makefile pour automation
 - [x] CI/CD GitHub Actions
-- [x] Documentation compl�te (7 fichiers)
+- [x] Documentation compl�te (7 fichiers)
 - [x] Scripts helpers (verify, git-push)
 - [x] .gitignore correct
-- [x] README.md mis � jour
-- [x] Tests de compilation reussis
+- [x] README.md mis � jour
+- [x] Tests de compilation réussis
 
 ---
 
-##  Prochaine �tape?
+##  Prochaine �tape?
 
-### Creer le repo GitHub:
+### Créer le repo GitHub:
 1. Va sur github.com
 2. Clique "New Repository"
 3. Nomme-le `ia-atomique`
-4. Cree-le
+4. Crée-le
 
 ### Puis pousse ton code:
 ```bash
@@ -252,7 +252,7 @@ git push -u origin main
 git push -u origin chore/siteweb
 ```
 
-Voir [GITHUB_PUSH_GUIDE.md](GITHUB_PUSH_GUIDE.md) pour plus de details.
+Voir [GITHUB_PUSH_GUIDE.md](GITHUB_PUSH_GUIDE.md) pour plus de détails.
 
 ---
 
@@ -265,9 +265,9 @@ make docker-run    # Construit et lance le Docker
 make test          # Teste la compilation
 ```
 
-### Pour verifier avant push
+### Pour vérifier avant push
 ```bash
-./verify-github.sh  # Checklist compl�te
+./verify-github.sh  # Checklist compl�te
 ```
 
 ### Pour pusher facilement
@@ -279,7 +279,7 @@ make test          # Teste la compilation
 
 ##  C'est Tout!
 
-Ton projet est **100% pr�t** pour �tre heberge sur GitHub. Les utilisateurs vont pouvoir:
+Ton projet est **100% pr�t** pour �tre hébergé sur GitHub. Les utilisateurs vont pouvoir:
 
  Cloner ton repo  
  Installer facilement (3 options: make, docker, manuel)  

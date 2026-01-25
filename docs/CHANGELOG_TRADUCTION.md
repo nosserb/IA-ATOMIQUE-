@@ -1,10 +1,10 @@
 # CHANGELOG - Pipeline de Traduction et Normalisation Linguistique
 
 **Date**: Janvier 7, 2026  
-**Version**: 2.1 - Detection & Traduction  
+**Version**: 2.1 - Détection & Traduction  
 **Status**:  Production-Ready
 
-## Modifications effectuees
+## Modifications effectuées
 
 ### 1. Structure Phrase enrichie
 **Fichier**: `database/nlp.go`
@@ -18,12 +18,12 @@ type Phrase struct {
     Energie      float64
     EnergieTotal float64
     Score        float64
-    MotsCles     []string
-    EstFiltree   bool
+    MotsClés     []string
+    EstFiltrée   bool
 }
 ```
 
-**Apr�s**:
+**Apr�s**:
 ```go
 type Phrase struct {
     Contenu         string      // Maintenant potentiellement traduit
@@ -32,15 +32,15 @@ type Phrase struct {
     Energie         float64
     EnergieTotal    float64     // Inclut facteur confiance
     Score           float64
-    MotsCles        []string
-    EstFiltree      bool
+    MotsClés        []string
+    EstFiltrée      bool
     Langue          string      //  NOUVEAU: FR/EN/DE/ES
     EstTraduire     bool        //  NOUVEAU: Marqueur traduction
-    FacteurConfiance float64    //  NOUVEAU: gammai  [0.7, 1.0]
+    FacteurConfiance float64    //  NOUVEAU: γi  [0.7, 1.0]
 }
 ```
 
-### 2. Fonction AjouterCoherence() modifiee
+### 2. Fonction AjouterCoherence() modifiée
 **Fichier**: `database/nlp.go`
 
 **Avant**:
@@ -53,7 +53,7 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
 }
 ```
 
-**Apr�s**:
+**Apr�s**:
 ```go
 func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
     const beta = 0.2
@@ -63,73 +63,73 @@ func AjouterCoherence(phrase *Phrase, toutesLesPhotrases []Phrase) float64 {
     if facteur == 0 {
         facteur = 1.0
     }
-    // Etotal(Pi) = E(Pi) * gammai + beta * Σ sim(Pi, Pj)
+    // Etotal(Pi) = E(Pi) * γi + β * Σ sim(Pi, Pj)
     return phrase.Energie*facteur + beta*coherence
 }
 ```
 
-### 3. Pipeline ExtrairePhrasesCles() mis � jour
+### 3. Pipeline ExtrairePhrasesClés() mis � jour
 **Fichier**: `database/nlp.go`
 
 **Avant**:
 ```go
-func ExtrairePhrasesCles(texte string, ratioConservation float64) []Phrase {
-    phrases := DecouperEnPhrases(texte)
-    // �tape 2: �nergie
-    // �tape 3: Coherence
+func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
+    phrases := DécouperEnPhrases(texte)
+    // �tape 2: �nergie
+    // �tape 3: Cohérence
     // ...
 }
 ```
 
-**Apr�s**:
+**Apr�s**:
 ```go
-func ExtrairePhrasesCles(texte string, ratioConservation float64) []Phrase {
-    phrases := DecouperEnPhrases(texte)
+func ExtrairePhrasesClés(texte string, ratioConservation float64) []Phrase {
+    phrases := DécouperEnPhrases(texte)
     
-    //  NOUVEAU - �tape 1.5: Traduction
+    //  NOUVEAU - �tape 1.5: Traduction
     phrases = DetecterEtTraduirePhrases(phrases)
     
-    // �tape 2: �nergie
-    // �tape 3: Coherence (avec gammai applique)
+    // �tape 2: �nergie
+    // �tape 3: Cohérence (avec γi appliqué)
     // ...
 }
 ```
 
 ### 4. Nouveau fichier: `database/traduction.go`
 
-**Fonctions ajoutees**:
+**Fonctions ajoutées**:
 
-1. **`TraductionMap`** - Tables ENFR, DEFR, ESFR (80+ entrees)
-2. **`DetecterLanguePhrase(phrase string) string`** - Detection simple par mots-cles
-3. **`TraduireSiNecessaire(phrase *Phrase, langue string)`** - Traduction conditionnelle + gammai
-4. **`TraduireMotsPar(texte, languageSource string)`** - Traduction mot-�-mot
-5. **`DetecterEtTraduirePhrases(phrases []Phrase)`** - Pipeline complet detection+traduction
-6. **`countKeywords(texte string, keywords []string)`** - Aide detection
+1. **`TraductionMap`** - Tables ENFR, DEFR, ESFR (80+ entrées)
+2. **`DetecterLanguePhrase(phrase string) string`** - Détection simple par mots-clés
+3. **`TraduireSiNecessaire(phrase *Phrase, langue string)`** - Traduction conditionnelle + γi
+4. **`TraduireMotsPar(texte, languageSource string)`** - Traduction mot-�-mot
+5. **`DetecterEtTraduirePhrases(phrases []Phrase)`** - Pipeline complet détection+traduction
+6. **`countKeywords(texte string, keywords []string)`** - Aide détection
 7. **`isLetterOrNumber(r rune)`** - Aide parsing
 8. **`isUpperCase(b byte)`** - Aide parsing
 
 **Taille**: ~230 lignes de code
 
-### 5. Documentation compl�te
+### 5. Documentation compl�te
 **Fichier**: `TRADUCTION_PIPELINE.md`  NOUVEAU
 
 Contient:
-- Vue d'ensemble mathematique
-- Formules compl�tes (L(Pi), TranslateFR, gammai, Etotal, filtrage)
-- Pipeline d'execution visuel
-- Structures de donnees
+- Vue d'ensemble mathématique
+- Formules compl�tes (L(Pi), TranslateFR, γi, Etotal, filtrage)
+- Pipeline d'exécution visuel
+- Structures de données
 - Tables de traduction
-- Detection de langue
-- Exemples d'execution
-- Limitations et ameliorations futures
-- Benchmarks reels
+- Détection de langue
+- Exemples d'exécution
+- Limitations et améliorations futures
+- Benchmarks réels
 
-## Formules mathematiques integrees
+## Formules mathématiques intégrées
 
-### 1. Detection de langue
+### 1. Détection de langue
 ```
 L(Pi)  {FR, EN, DE, ES}
-Basee sur comptage mots-cles typiques
+Basée sur comptage mots-clés typiques
 ```
 
 ### 2. Traduction conditionnelle
@@ -142,115 +142,115 @@ TranslateFR(Pi) = {
 
 ### 3. Facteur de confiance
 ```
-gammai = {
+γi = {
     1.0   si L(Pi) = FR et pas traduit
     0.8   si traduit et longueur(Pi) < 10 mots
     0.7   si traduit et longueur(Pi)  10 mots
 }
 ```
 
-### 4. �nergie totale avec confiance
+### 4. �nergie totale avec confiance
 ```
-E(Pi) = Σ �k�f(wk)  [energie intrins�que]
+E(Pi) = Σ �k�f(wk)  [énergie intrins�que]
 
-Etotal(Pi) = E(Pi)�gammai + beta�Σji sim(Pi, Pj)
-    ou beta = 0.2 [coefficient coherence]
-    et sim(Pi, Pj) = |keywords_i � keywords_j| / |keywords_i  keywords_j|
-```
-
-### 5. Filtrage energetique
-```
-ϵ = μ(Etotal) - �(Etotal)  [seuil dynamique]
-
-Phrases conservees si Etotal(Pi)  ϵ
+Etotal(Pi) = E(Pi)�γi + β�Σji sim(Pi, Pj)
+    où β = 0.2 [coefficient cohérence]
+    et sim(Pi, Pj) = |keywords_i � keywords_j| / |keywords_i  keywords_j|
 ```
 
-### 6. Resume final
+### 5. Filtrage énergétique
 ```
-Rfinal = Fusion({Pi traduites et filtrees})
+ϵ = μ(Etotal) - �(Etotal)  [seuil dynamique]
+
+Phrases conservées si Etotal(Pi)  ϵ
+```
+
+### 6. Résumé final
+```
+Rfinal = Fusion({Pi traduites et filtrées})
 ```
 
 ## Impacte sur les performances
 
 **Avant (v2.0)**:
-- Pipeline: Decoupage  �nergie  Coherence  Filtrage
+- Pipeline: Découpage  �nergie  Cohérence  Filtrage
 - Temps: ~1.1s pour 2035 phrases
 - Compression: 1.9x
 
-**Apr�s (v2.1)**:
-- Pipeline: Decoupage  **Traduction**  �nergie  Coherence  Filtrage
+**Apr�s (v2.1)**:
+- Pipeline: Découpage  **Traduction**  �nergie  Cohérence  Filtrage
 - Temps: ~1.27s pour 2035 phrases (+15% overhead)
-- Compression: 1.8x (identique, mais mieux normalise)
+- Compression: 1.8x (identique, mais mieux normalisé)
 - **Overhead traduction**: ~150-200ms (~12%)
 
-## Capacites nouvelles
+## Capacités nouvelles
 
  Traitement textes multilingues (FR, EN, DE, ES)
  Normalisation automatique vers FR
- Ponderation par confiance traduction
- Detection + traduction locale (sans API externe)
- Integration seamless � l'existant
+ Pondération par confiance traduction
+ Détection + traduction locale (sans API externe)
+ Intégration seamless � l'existant
 
-## Tests valides
+## Tests validés
 
- **input.txt** (melange EN/FR):
-  - 2037 phrases decoupage
-  - 490 phrases conservees (24.1% ratio)
+ **input.txt** (mélange EN/FR):
+  - 2037 phrases découpage
+  - 490 phrases conservées (24.1% ratio)
   - 1.8x compression
   - 1.27s traitement
 
  **test_english.txt** (EN pur):
-  - Detection langue: 
+  - Détection langue: 
   - Traduction: 
-  - Facteur confiance: gammai = 0.8
+  - Facteur confiance: γi = 0.8
 
  **test_mixed.txt** (EN + FR):
-  - Detection mixte: 
-  - Traduction selective: 
+  - Détection mixte: 
+  - Traduction sélective: 
   - Compilation: 
 
-## Fichiers modifies vs crees
+## Fichiers modifiés vs créés
 
-**Modifies**:
-- `database/nlp.go`: Struct Phrase +3 champs, AjouterCoherence() reecrit
+**Modifiés**:
+- `database/nlp.go`: Struct Phrase +3 champs, AjouterCoherence() réécrit
 - `main.go`: Aucun changement (CLI backwards-compatible)
-- `go.mod`: Aucun changement (zero dependance externe)
+- `go.mod`: Aucun changement (zéro dépendance externe)
 
-**Crees**:
+**Créés**:
 - `database/traduction.go`: ~230 lignes
-- `TRADUCTION_PIPELINE.md`: Documentation compl�te
+- `TRADUCTION_PIPELINE.md`: Documentation compl�te
 
 **Total ajout**: ~350 lignes code + documentation
 
 ## Backward compatibility
 
- **Enti�rement compatible**:
-- Signature `ExtrairePhrasesCles(texte, ratio)` inchangee
+ **Enti�rement compatible**:
+- Signature `ExtrairePhrasesClés(texte, ratio)` inchangée
 - Type Phrase a champs optionnels seulement
 - Commandes CLI identiques
-- Aucune dependance externe ajoutee
+- Aucune dépendance externe ajoutée
 
-## Prochaines etapes recommandees
+## Prochaines étapes recommandées
 
-1. **Integration DeepL/LibreTranslate** pour traductions compl�tes (amelioration 3-4x qualite)
-2. **Utiliser `DetecterLangue()` robuste** de `interaction.go` (amelioration detection)
+1. **Intégration DeepL/LibreTranslate** pour traductions compl�tes (amélioration 3-4x qualité)
+2. **Utiliser `DetecterLangue()` robuste** de `interaction.go` (amélioration détection)
 3. **Ajouter support JA, ZH, RU**
-4. **Cache de traductions** pour performance avec textes repetitifs
-5. **Eval sur corpus multilingue** pour optimiser gammai par langue
+4. **Cache de traductions** pour performance avec textes répétitifs
+5. **Eval sur corpus multilingue** pour optimiser γi par langue
 
-## Commits git recommandes
+## Commits git recommandés
 
 ```bash
 git add database/nlp.go database/traduction.go TRADUCTION_PIPELINE.md
 git commit -m "feat: pipeline traduction/normalisation linguistique
 
-- Detection automatique langue (FR/EN/DE/ES)
+- Détection automatique langue (FR/EN/DE/ES)
 - Traduction conditionnelle vers FR
-- Facteur confiance gammai pour traductions
-- �nergy totale: Etotal = E�gammai + coherence
+- Facteur confiance γi pour traductions
+- �nergy totale: Etotal = E�γi + cohérence
 - Tables traduction 80+ mots par langue
-- Documentation compl�te mathematique
-- +12% overhead performance (-15% qualite bruit)"
+- Documentation compl�te mathématique
+- +12% overhead performance (-15% qualité bruit)"
 ```
 
 ---

@@ -12,7 +12,7 @@
 
 ##  Mathematical Foundation
 
-### 1ï¿½ Pixel Grid Representation
+### 1£ Pixel Grid Representation
 
 Each image is modeled as a grid of pixels with RGB values:
 
@@ -20,7 +20,7 @@ $$P_{i,j}(t) = \text{pixel color at position } (i,j) \text{ at time } t$$
 
 Where $P_{i,j} \in [0,1]^3$ for RGB channels.
 
-### 2ï¿½ Local Diffusion Equation
+### 2£ Local Diffusion Equation
 
 Each pixel updates based on its neighbors' influence:
 
@@ -36,7 +36,7 @@ $$P_{i,j}(t+1) = P_{i,j}(t) + \alpha \sum_{(k,l) \in N(i,j)} W_{i,j;k,l} \cdot (
 - Pixel color shifts toward neighbors' average (diffusion effect)
 - Creates smooth transitions and wave propagation
 
-### 3ï¿½ Seed Point Anchoring
+### 3£ Seed Point Anchoring
 
 Known pixels constrain the system to follow reality:
 
@@ -47,7 +47,7 @@ $$P_{i,j}(t+1) = \begin{cases} P_{i,j}^{\text{real}} & \text{if } (i,j) \in \tex
 - Prevents the system from drifting into unreality
 - Forces emergence of specific patterns
 
-### 4ï¿½ Connection Reinforcement
+### 4£ Connection Reinforcement
 
 Weights strengthen when pixels have similar colors (learned alignment):
 
@@ -62,7 +62,7 @@ $$W_{i,j;k,l}(t+1) = W_{i,j;k,l}(t) + \gamma \cdot \exp(-\|P_{i,j} - P_{k,l}\|^2
 - Cooperative pixels strengthen mutual influence
 - Patterns stabilize and become more recognizable
 
-### 5ï¿½ Loss Function for Guidance
+### 5£ Loss Function for Guidance
 
 Measure error between generated and reference pixels:
 
@@ -172,7 +172,7 @@ ls -lh output/pattern_*.png
 
 ##  Parameter Tuning
 
-### Diffusion Coefficient (ï¿½)
+### Diffusion Coefficient (Î)
 
 Controls how much pixels are influenced by neighbors:
 
@@ -184,7 +184,7 @@ Controls how much pixels are influenced by neighbors:
 
 **How to adjust:** Modify `engine.DiffusionAlpha` in code or add CLI flag.
 
-### Reinforcement Rate (gamma)
+### Reinforcement Rate (Î³)
 
 Controls how strongly weights strengthen:
 
@@ -234,7 +234,7 @@ $$\text{Loss} = \sqrt{\text{Mean squared error from seeds}}$$
 
 - **Decreasing loss**: Waves converging toward seed values 
 - **Flat/oscillating loss**: Convergence plateau (consider stopping)
-- **Increasing loss**: Divergence (reduce ï¿½ or increase gamma)
+- **Increasing loss**: Divergence (reduce Î or increase Î³)
 
 **Example output:**
 ```
@@ -334,8 +334,8 @@ Iteration 200:   Clear recognition possible
 
 ### Time Complexity
 
-- Per iteration: O(width ï¿½ height ï¿½ neighbors)
-- Typical: 256ï¿½256 pixel = ~100ms per iteration
+- Per iteration: O(width Ã height Ã neighbors)
+- Typical: 256Ã256 pixel = ~100ms per iteration
 - 200 iterations: ~20 seconds
 
 ### Optimization Tips
@@ -366,7 +366,7 @@ Iteration 200:   Clear recognition possible
 **Solutions:**
 - Decrease seed density (0.3  0.1)
 - Decrease reinforcement rate (0.05  0.02)
-- Increase diffusion ï¿½ (0.15  0.20)
+- Increase diffusion Î (0.15  0.20)
 
 ### Issue: Generated image looks blocky
 
@@ -384,7 +384,7 @@ Iteration 200:   Clear recognition possible
 
 **Solutions:**
 - Seed constraint not being applied
-- Try reducing diffusion ï¿½
+- Try reducing diffusion Î
 - Check seed point coordinates
 
 ---
@@ -457,7 +457,7 @@ This is why the mathematical formulation worksit mirrors nature.
 
 ---
 
-## ï¿½ Quick Reference
+## ‹ Quick Reference
 
 ```bash
 # Show help
@@ -483,9 +483,9 @@ This is why the mathematical formulation worksit mirrors nature.
 
 ### Variable Alpha Over Time
 Decrease diffusion as iterations progress:
-- Early (0-100): ï¿½ = 0.25 (fast spreading)
-- Middle (100-200): ï¿½ = 0.15 (stabilizing)
-- Late (200+): ï¿½ = 0.05 (fine-tuning)
+- Early (0-100): Î = 0.25 (fast spreading)
+- Middle (100-200): Î = 0.15 (stabilizing)
+- Late (200+): Î = 0.05 (fine-tuning)
 
 ### Adaptive Gamma
 Increase reinforcement as patterns stabilize.
@@ -525,7 +525,7 @@ This is **atomic intelligence**: intelligence emerges from local rules, not top-
 
 ---
 
-## ï¿½ Example Session
+## ž Example Session
 
 ```bash
 $ ./programme pattern emerge 512 512 250 input/image/face.png 0.15
@@ -542,7 +542,7 @@ Transforming abstract waves  recognizable structures
     Seeds saved to visualization
 
  Phase 3: Pixel Diffusion (250 iterations)
-   P_ij(t+1) = P_ij(t) + ï¿½ï¿½Î£ Wï¿½(neighbor_colors - P_ij)
+   P_ij(t+1) = P_ij(t) + ÎÂÎ£ WÂ(neighbor_colors - P_ij)
     Iter 62: Loss 0.12345
     Iter 125: Loss 0.08912
     Iter 187: Loss 0.07654

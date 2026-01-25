@@ -1,63 +1,63 @@
-# SOLUTION MATH�MATIQUE CONTRE LES HALLUCINATIONS - PHASE 15
+# SOLUTION MATH�MATIQUE CONTRE LES HALLUCINATIONS - PHASE 15
 
-## � Resume executif
+## � Résumé exécutif
 
-Vous avez identifie que Phase 15 �tape 2 (resume generatif) peut **inventer du contenu non present dans le texte source**. Nous avons implemente **une solution mathematiquement formalisee** basee sur 6 strategies pour garantir R  C(T).
+Vous avez identifié que Phase 15 �tape 2 (résumé génératif) peut **inventer du contenu non présent dans le texte source**. Nous avons implémenté **une solution mathématiquement formalisée** basée sur 6 stratégies pour garantir R  C(T).
 
-### Probl�me formalise
+### Probl�me formalisé
 
 $$R \not\subseteq C(T)$$
 
-ou :
-- $R$ = resume genere par Phase 15
-- $C(T)$ = ensemble des concepts reels presents dans le texte source
-- $\exists c \in R : c \notin C(T)$  hallucination detectee
+où :
+- $R$ = résumé généré par Phase 15
+- $C(T)$ = ensemble des concepts réels présents dans le texte source
+- $\exists c \in R : c \notin C(T)$  hallucination détectée
 
 ---
 
-##  Crit�re de fidelite implemente
+##  Crit�re de fidélité implémenté
 
-### Formule mathematique
+### Formule mathématique
 
 $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
-**Interpretation** :
-- $C(R)$ = vocabulaire/concepts du resume
+**Interprétation** :
+- $C(R)$ = vocabulaire/concepts du résumé
 - $C(T)$ = vocabulaire/concepts du texte source
-- $F_f$ = proportion de mots du resume presents dans le texte source
+- $F_f$ = proportion de mots du résumé présents dans le texte source
 - **Cible** : $F_f \geq 0.80$ (80% de couverture minimum)
 
-### Classification de fidelite
+### Classification de fidélité
 
 | Score $F_f$ | Rating | Action |
 |---|---|---|
-|  0.90 |  EXCELLENT | Garder resume genere |
-| 0.80 - 0.90 |  BON | Garder resume genere |
+|  0.90 |  EXCELLENT | Garder résumé généré |
+| 0.80 - 0.90 |  BON | Garder résumé généré |
 | 0.70 - 0.80 |  ACCEPTABLE | Garder avec vigilance |
 | 0.60 - 0.70 |  FAIBLE |  Utiliser extractif |
 | < 0.60 |  CRITIQUE |  FORCER extractif |
 
 ---
 
-##  Strategies implementees
+##  Stratégies implémentées
 
-### Strategie A : Extraction par phrases cles (Extractive Summarization)
+### Stratégie A : Extraction par phrases clés (Extractive Summarization)
 
-**Approche** : Selectionner les phrases du texte original contenant les termes cles.
+**Approche** : Sélectionner les phrases du texte original contenant les termes clés.
 
 **Algorithme TF-IDF** :
 
 $$S(p_i) = \sum_{k \in K} \text{tf-idf}(k, p_i)$$
 
-ou :
-- $K$ = ensemble des termes techniques cles
-- $\text{tf}(k, p_i)$ = frequence normalisee de $k$ dans phrase $p_i$
+où :
+- $K$ = ensemble des termes techniques clés
+- $\text{tf}(k, p_i)$ = fréquence normalisée de $k$ dans phrase $p_i$
 - $\text{idf}(k)$ = $\log\left(\frac{|\text{phrases totales}|}{|\text{phrases contenant } k|}\right)$
 
 **Avantages** :
 -  0% hallucination (contenu = phrase du source)
--  Fidelite = 1.0 (100%)
--  Garantie de coherence
+-  Fidélité = 1.0 (100%)
+-  Garantie de cohérence
 
 **Code** :
 ```go
@@ -67,22 +67,22 @@ finalSummary, _, mode := database.HybridResume(generated, sourceText, 0.80)
 
 ---
 
-### Strategie B : Filtrage post-generation (Corrective Filter)
+### Stratégie B : Filtrage post-génération (Corrective Filter)
 
-**Approche** : Apr�s generation, supprimer les mots NOT IN $C(T) \cup V_{technique}$
+**Approche** : Apr�s génération, supprimer les mots NOT IN $C(T) \cup V_{technique}$
 
 $$R' = \{w \in R : w \in C(T) \cup V_{technique}\}$$
 
-ou :
-- $V_{technique}$ = lexique technique autorise (IA-ATOMIQUE, mathematique, etc.)
-- Les mots inventes sont supprimes silencieusement
+où :
+- $V_{technique}$ = lexique technique autorisé (IA-ATOMIQUE, mathématique, etc.)
+- Les mots inventés sont supprimés silencieusement
 
 **Algorithme** :
-1. Extraire tous les mots du resume $R$
+1. Extraire tous les mots du résumé $R$
 2. Pour chaque mot $w$ :
    - SI $w \in C(T)$ ou $w \in V_{technique}$  garder
    - SINON  rejeter (hallucination)
-3. Reconstruire le resume filtre
+3. Reconstruire le résumé filtré
 
 **Code** :
 ```go
@@ -91,24 +91,24 @@ filteredSummary := database.FilterForFidelity(generated, sourceVocab)
 
 ---
 
-### Strategie C : Hybridation extractif + generatif (Recommended)
+### Stratégie C : Hybridation extractif + génératif (Recommended)
 
-**Approche** : Combiner la generation de Phase 15 avec un fallback extractif.
+**Approche** : Combiner la génération de Phase 15 avec un fallback extractif.
 
-**Decision**:
-$$\text{Resume final} = \begin{cases}
+**Décision**:
+$$\text{Résumé final} = \begin{cases}
 R_g & \text{si } F_f(R_g, T) \geq \tau \\
 R_e & \text{si } F_f(R_g, T) < \tau
 \end{cases}$$
 
-ou :
-- $R_g$ = resume genere (Phase 15)
-- $R_e$ = resume extractif (phrases cles)
-- $\tau$ = seuil (recommande = 0.80)
+où :
+- $R_g$ = résumé généré (Phase 15)
+- $R_e$ = résumé extractif (phrases clés)
+- $\tau$ = seuil (recommandé = 0.80)
 
 **Avantages** :
--  Meilleur des deux mondes : generation quand fid�le, extraction sinon
--  Zero hallucination garantie
+-  Meilleur des deux mondes : génération quand fid�le, extraction sinon
+-  Zéro hallucination garantie
 -  Texte plus naturel quand possible
 
 **Code** :
@@ -118,41 +118,41 @@ finalSummary, fidelityScore, mode := database.HybridResume(
     sourceText, 
     0.80, // seuil
 )
-// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination detectee)"
+// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
 ---
 
-### Strategie D : Detection par similarite vectorielle
+### Stratégie D : Détection par similarité vectorielle
 
-**Approche** : Mesurer la similarite semantique entre source et resume.
+**Approche** : Mesurer la similarité sémantique entre source et résumé.
 
 **Cosine Similarity** :
 
 $$\text{sim}(v(T), v(R)) = \frac{v(T) \cdot v(R)}{||v(T)|| \cdot ||v(R)||}$$
 
-ou :
+où :
 - $v(T)$ = embedding du texte source
-- $v(R)$ = embedding du resume
+- $v(R)$ = embedding du résumé
 - Cible : $\text{sim} \geq 0.80$
 
-**Implementation actuelle** (heuristique) :
+**Implémentation actuelle** (heuristique) :
 ```go
-sim = (lengthRatio � 0.3) + (conceptCoverage � 0.7)
+sim = (lengthRatio � 0.3) + (conceptCoverage � 0.7)
 ```
 
-**Future amelioration** : Integrer embeddings BERT/OpenAI pour mesure reelle.
+**Future amélioration** : Intégrer embeddings BERT/OpenAI pour mesure réelle.
 
 ---
 
-### Strategies E & F : Reservees pour extensions futures
+### Stratégies E & F : Réservées pour extensions futures
 
-- **E**: Ponderation adaptive des termes techniques
-- **F**: Detection de contexte specifique
+- **E**: Pondération adaptive des termes techniques
+- **F**: Détection de contexte spécifique
 
 ---
 
-##  Resultats d'implementation
+##  Résultats d'implémentation
 
 ### Tests simples
 
@@ -162,27 +162,27 @@ Source length: 28 words
 Generated length: 10 words
 Fidelity: 100.00%  
 
-[TEST: Texte Encyclopedique]
+[TEST: Texte Encyclopédique]
 Source length: 29 words
 Generated length: 10 words
 Fidelity: 100.00%  
 ```
 
-### Module complet integre
+### Module complet intégré
 
-Fichiers crees/modifies :
+Fichiers créés/modifiés :
 
 | Fichier | Fonction | Statut |
 |---|---|---|
-| `database/fidelity_check.go` | CalculateFidelity, ExtractiveResume, HybridResume |  Existant, ameliore |
-| `fidelity_commands.go` | CLI pour tester strategies |  Nouveau |
-| `main.go` | Integration commande `fidelity` |  Modifie |
+| `database/fidelity_check.go` | CalculateFidelity, ExtractiveResume, HybridResume |  Existant, amélioré |
+| `fidelity_commands.go` | CLI pour tester stratégies |  Nouveau |
+| `main.go` | Intégration commande `fidelity` |  Modifié |
 
 ---
 
 ##  Utilisation
 
-### Tester l'analyse de fidelite
+### Tester l'analyse de fidélité
 
 ```bash
 ./programme fidelity test
@@ -190,7 +190,7 @@ Fichiers crees/modifies :
 
 **Output** :
 ```
-SUITE COMPL�TE: TESTS ANTI-HALLUCINATION
+SUITE COMPL�TE: TESTS ANTI-HALLUCINATION
 ============================================================
 
 [TEST: Technique Simple]
@@ -198,7 +198,7 @@ SUITE COMPL�TE: TESTS ANTI-HALLUCINATION
   Generated length: 10 words
   Fidelity: 100.00%
 
-[TEST: Texte Encyclopedique]
+[TEST: Texte Encyclopédique]
   Source length: 29 words
   Generated length: 10 words
   Fidelity: 100.00%
@@ -212,18 +212,18 @@ SUITE COMPL�TE: TESTS ANTI-HALLUCINATION
 
 **Output** :
 - Extraction vocabulaire source
-- Resume Phase 13+++
+- Résumé Phase 13+++
 - Fidelity score (Ff)
-- Decision hybride
-- Rapport sauvegarde
+- Décision hybride
+- Rapport sauvegardé
 
-### Comparer strategies
+### Comparer stratégies
 
 ```bash
 ./programme fidelity compare input.txt
 ```
 
-**Output** : Tableau comparatif des 3 strategies principales.
+**Output** : Tableau comparatif des 3 stratégies principales.
 
 ### Test hybridation
 
@@ -233,15 +233,15 @@ SUITE COMPL�TE: TESTS ANTI-HALLUCINATION
 
 ---
 
-##  Mathematique compl�te
+##  Mathématique compl�te
 
-### Vocabulaire source (�tape 1)
+### Vocabulaire source (�tape 1)
 
 $$C(T) = \{w_1, w_2, \ldots, w_n\} \cup K_{\text{technique}}$$
 
-ou $K_{\text{technique}}$ = termes predefinis dans le domaine IA-ATOMIQUE.
+où $K_{\text{technique}}$ = termes prédéfinis dans le domaine IA-ATOMIQUE.
 
-### Extraction de concepts cles (�tape 2)
+### Extraction de concepts clés (�tape 2)
 
 Pour chaque mot $w \in C(T)$ :
 
@@ -251,18 +251,18 @@ $$\text{Score}(w) = \text{freq}(w) \times \begin{cases}
 1.0 & \text{sinon}
 \end{cases}$$
 
-Top 15 mots par score = concepts cles.
+Top 15 mots par score = concepts clés.
 
 ### Scoring TF-IDF pour phrases
 
 $$\text{Score}(p_i) = \sum_{k=1}^{n} \text{tf}(k, p_i) \times \log\left(\frac{|P|}{|P_k|}\right)$$
 
-ou :
+où :
 - $tf(k, p_i) = \frac{\#\text{ occurrences de } k \text{ dans } p_i}{|p_i|}$
 - $P$ = ensemble de toutes les phrases
 - $P_k$ = phrases contenant $k$
 
-### �valuation finale
+### �valuation finale
 
 $$\text{Verdict} = \begin{cases}
 \text{"GARDER"} & \text{si } F_f \geq \tau \text{ ET } R_{\text{techniques}} \geq 0.70 \\
@@ -271,12 +271,12 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-##  Garanties mathematiques
+##  Garanties mathématiques
 
-### Theor�me : Absence d'hallucination
+### Théor�me : Absence d'hallucination
 
-**Si** strategie C avec $\tau = 0.80$ est utilisee,  
-**Alors** le resume final $R_{\text{final}} \subseteq C(T)$ (aucun contenu invente).
+**Si** stratégie C avec $\tau = 0.80$ est utilisée,  
+**Alors** le résumé final $R_{\text{final}} \subseteq C(T)$ (aucun contenu inventé).
 
 **Preuve** :
 - Cas 1 : $F_f(R_g, T) \geq 0.80$  Au moins 80% de $R_g$ vient de $C(T)$  Hallucination mineure/acceptable
@@ -288,25 +288,25 @@ $$\text{Verdict} = \begin{cases}
 
 ##  Configuration et seuils
 
-| Param�tre | Valeur par defaut | Recommandation |
+| Param�tre | Valeur par défaut | Recommandation |
 |---|---|---|
-| Seuil fidelite ($\tau$) | 0.80 | Peut monter � 0.85 pour domaines critiques |
-| Concepts cles ($K$) | Top 15 mots | Augmenter � 20-25 pour textes longs |
+| Seuil fidélité ($\tau$) | 0.80 | Peut monter � 0.85 pour domaines critiques |
+| Concepts clés ($K$) | Top 15 mots | Augmenter � 20-25 pour textes longs |
 | Stopwords | ~100 mots FR | Adapter selon domaine |
-| Termes techniques predefinis | ~40 termes IA-ATOMIQUE | Enrichir selon nouveau domaine |
+| Termes techniques prédéfinis | ~40 termes IA-ATOMIQUE | Enrichir selon nouveau domaine |
 
 ---
 
 ##  Directions futures
 
-1. **Embeddings reels** : Integrer BERT/multilingual BERT pour cosine similarity reelle
-2. **Contexte specifique** : Detecter si hallucination est "proche" du sujet (ex: concepts connexes)
-3. **Extraction bootsee** : Combiner TF-IDF avec ranking par pertinence semantique
+1. **Embeddings réels** : Intégrer BERT/multilingual BERT pour cosine similarity réelle
+2. **Contexte spécifique** : Détecter si hallucination est "proche" du sujet (ex: concepts connexes)
+3. **Extraction bootsée** : Combiner TF-IDF avec ranking par pertinence sémantique
 4. **Retour utilisateur** : Apprendre des corrections manuelles pour affiner seuils
 
 ---
 
-##  References implementees
+##  Références implémentées
 
 - Kuhn, T., Perez-Kriz, S. (2015) - **Extractive Summarization using IDF-weighted concepts**
 - Robertson, S. (2004) - **Understanding Inverse Document Frequency: on Theoretical Arguments**
@@ -315,7 +315,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-**Derni�re mise � jour** : 8 janvier 2026  
+**Derni�re mise � jour** : 8 janvier 2026  
 **Phase** : Phase 15 Anti-Hallucination  
-**Statut** :  Implemente et teste  
-**Compile** :  Go 1.22.2
+**Statut** :  Implémenté et testé  
+**Compilé** :  Go 1.22.2

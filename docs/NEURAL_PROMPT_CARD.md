@@ -8,18 +8,18 @@
 ## Quick Examples
 ```bash
 # Fast (2-3s)
-./programme generate from-prompt 256 256 100 "for�t mysterieuse"
+./programme generate from-prompt 256 256 100 "for�t mystérieuse"
 
 # Quality (10-15s)
-./programme generate from-prompt 512 512 200 "ocean tempetueux"
+./programme generate from-prompt 512 512 200 "océan tempétueux"
 
 # High quality (15-20s)
-./programme generate from-prompt 512 512 300 "ch�teau medieval avec technologie"
+./programme generate from-prompt 512 512 300 "ch�teau médiéval avec technologie"
 ```
 
 ## How It Works
 1. **Analyze** prompt with neuron network
-2. **Extract** keywords (for�t, arbre, etc.)
+2. **Extract** keywords (for�t, arbre, etc.)
 3. **Activate** neuron categories (HISTOIRE, TECH, etc.)
 4. **Create** pattern from neural activation
 5. **Generate** image through atomic resonance
@@ -30,25 +30,25 @@
 - Example: `output/atomic_prompt_512x512_200iter.png`
 
 ## Best Prompts
- Use adjectives: "for�t **sombre** **ancienne** **mysterieuse**"
- Mix concepts: "ch�teau **et** technologie"
- Be specific: "ocean **tempetueux** avec **vagues geantes**"
+ Use adjectives: "for�t **sombre** **ancienne** **mystérieuse**"
+ Mix concepts: "ch�teau **et** technologie"
+ Be specific: "océan **tempétueux** avec **vagues géantes**"
 
 ## Categories
 - **TECH** (1): technologie, algorithme, robot, circuit, code
-- **HISTOIRE** (2): ch�teau, roi, medieval, ancien, empire
-- **BUSINESS** (3): commerce, marche, entreprise
+- **HISTOIRE** (2): ch�teau, roi, médiéval, ancien, empire
+- **BUSINESS** (3): commerce, marché, entreprise
 - **ALIMENTATION** (4): nourriture, fruit, cuisine, pain
-- **SANT�** (5): medecine, docteur, hopital
+- **SANT�** (5): médecine, docteur, hôpital
 - **VERBE** (6): action, mouvement
 
 ## Speed Reference
 | Size | Iter | Time | Use |
 |------|------|------|-----|
-| 256^2 | 80 | 2s | Test |
-| 256^2 | 150 | 5s | Good |
-| 512^2 | 200 | 12s | Quality |
-| 512^2 | 300 | 18s | Premium |
+| 256² | 80 | 2s | Test |
+| 256² | 150 | 5s | Good |
+| 512² | 200 | 12s | Quality |
+| 512² | 300 | 18s | Premium |
 
 ## Show Help
 ```bash
@@ -62,7 +62,7 @@
 - Longer descriptions = better results
 - Mix categories for complexity
 - Increase iterations for detail
-- Use 512�512 for standard work
+- Use 512�512 for standard work
 
 ## Full Documentation
  **TEXT_TO_IMAGE_PROMPT_GUIDE.md** - Complete reference

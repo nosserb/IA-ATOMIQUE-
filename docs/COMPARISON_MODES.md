@@ -5,41 +5,41 @@
 ### Texte Original
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent tr�s souvent cette technologie pour ameliorer 
-la productivite. De nombreux chercheurs travaillent sans relache pour 
+Les organisations utilisent tr�s souvent cette technologie pour améliorer 
+la productivité. De nombreux chercheurs travaillent sans relache pour 
 faire progresser ce domaine fascinant.
 ```
 
 ### Mode Standard
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent tr�s souvent cette technologie pour ameliorer 
-la productivite. Ensuite, de nombreux chercheurs travaillent sans relache 
+Les organisations utilisent tr�s souvent cette technologie pour améliorer 
+la productivité. Ensuite, de nombreux chercheurs travaillent sans relache 
 pour faire progresser ce domaine fascinant.
 ```
 **Changements**: + Connecteur "Ensuite" entre phrases 2-3
 
 ### Mode Professionnel
 ```
-L'intelligence artificielle constitue une transformation considerable 
-dans l'environnement mondial. Les organisations deploient reguli�rement 
-cette technologie pour optimiser la productivite. De nombreux chercheurs 
-s'engagent continuellement pour faire avancer ce domaine determinant.
+L'intelligence artificielle constitue une transformation considérable 
+dans l'environnement mondial. Les organisations déploient réguli�rement 
+cette technologie pour optimiser la productivité. De nombreux chercheurs 
+s'engagent continuellement pour faire avancer ce domaine déterminant.
 ```
 **Changements**:
 - "fait"  "constitue"
 - "difference"  "transformation"
 - "dans le monde"  "dans l'environnement mondial"
-- "tr�s souvent"  "reguli�rement"
-- "ameliorer"  "optimiser"
+- "tr�s souvent"  "réguli�rement"
+- "améliorer"  "optimiser"
 - "sans relache"  "continuellement"
-- "fascinant"  "determinant"
+- "fascinant"  "déterminant"
 
-### Mode Avance
+### Mode Avancé
 ```
 L'intelligence artificielle constitue une difference majeure dans le 
-contexte mondial. Les organisations emploient extr�mement reguli�rement 
-cette technologie pour perfectionner la productivite. De nombreux 
+contexte mondial. Les organisations emploient extr�mement réguli�rement 
+cette technologie pour perfectionner la productivité. De nombreux 
 chercheurs s'accomplissent constamment pour faire avancer ce domaine 
 exceptionnel.
 ```
@@ -47,8 +47,8 @@ exceptionnel.
 - "fait"  "constitue"
 - "immense"  "majeure"
 - "monde"  "contexte"
-- "utilisent tr�s souvent"  "emploient extr�mement reguli�rement"
-- "ameliorer"  "perfectionner"
+- "utilisent tr�s souvent"  "emploient extr�mement réguli�rement"
+- "améliorer"  "perfectionner"
 - "travaillent"  "s'accomplissent"
 - "sans relache"  "constamment"
 - "fascinant"  "exceptionnel"
@@ -59,116 +59,116 @@ exceptionnel.
 
 ### Texte Original
 ```
-Notre entreprise a fait beaucoup de progr�s cette annee. 
-Les ventes augmentent rapidement et le marche montre de l'inter�t. 
-Nous devons continuer � faire des efforts pour rester competitifs dans 
-ce secteur tr�s difficile.
+Notre entreprise a fait beaucoup de progr�s cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intér�t. 
+Nous devons continuer � faire des efforts pour rester compétitifs dans 
+ce secteur tr�s difficile.
 ```
 
 ### Mode Standard
 ```
-Notre entreprise a fait beaucoup de progr�s cette annee. 
-Les ventes augmentent rapidement et le marche montre de l'inter�t. 
-Ensuite, nous devons continuer � faire des efforts pour rester competitifs 
-dans ce secteur tr�s difficile.
+Notre entreprise a fait beaucoup de progr�s cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intér�t. 
+Ensuite, nous devons continuer � faire des efforts pour rester compétitifs 
+dans ce secteur tr�s difficile.
 ```
 **Changements**: + Connecteur "Ensuite"
 
 ### Mode Professionnel
 ```
-Notre organisation a effectue des avancees considerables cette annee. 
-Les revenus progressent fortement et le marche manifeste de l'inter�t. 
-Nous devons poursuivre nos efforts pour demeurer competitifs dans ce 
-secteur extr�mement complexe.
+Notre organisation a effectué des avancées considérables cette année. 
+Les revenus progressent fortement et le marché manifeste de l'intér�t. 
+Nous devons poursuivre nos efforts pour demeurer compétitifs dans ce 
+secteur extr�mement complexe.
 ```
 **Changements**:
 - "entreprise"  "organisation"
-- "a fait"  "a effectue"
-- "beaucoup"  "considerables"
+- "a fait"  "a effectué"
+- "beaucoup"  "considérables"
 - "augmentent rapidement"  "progressent fortement"
 - "montre"  "manifeste"
-- "continuer � faire"  "poursuivre"
+- "continuer � faire"  "poursuivre"
 - "rester"  "demeurer"
-- "tr�s difficile"  "extr�mement complexe"
+- "tr�s difficile"  "extr�mement complexe"
 
-### Mode Avance
+### Mode Avancé
 ```
-Notre entreprise a realise enormement de progr�s cette annee. 
-Les ventes progressent rapidement et le marche affiche de l'inter�t. 
-Nous devons perseverer � executer des efforts pour demeurer competitifs 
-dans ce secteur particuli�rement ardu.
+Notre entreprise a réalisé énormément de progr�s cette année. 
+Les ventes progressent rapidement et le marché affiche de l'intér�t. 
+Nous devons persévérer � exécuter des efforts pour demeurer compétitifs 
+dans ce secteur particuli�rement ardu.
 ```
 **Changements**:
-- "fait"  "realise"
-- "beaucoup"  "enormement"
+- "fait"  "réalisé"
+- "beaucoup"  "énormément"
 - "augmentent"  "progressent"
 - "montre"  "affiche"
-- "continuer"  "perseverer"
-- "faire"  "executer"
+- "continuer"  "persévérer"
+- "faire"  "exécuter"
 - "rester"  "demeurer"
-- "tr�s difficile"  "particuli�rement ardu"
+- "tr�s difficile"  "particuli�rement ardu"
 
 ---
 
-## Tableau Recapitulatif
+## Tableau Récapitulatif
 
-| Aspect | Standard | Professionnel | Avance |
+| Aspect | Standard | Professionnel | Avancé |
 |--------|----------|---------------|--------|
 | **Connecteurs** | Ajoute ("Ensuite") | Aucun | Aucun |
-| **Vocabulaire** | Naturel | Formal | Paraphrase |
-| **Adverbes** | "tr�s", "beaucoup" | "particuli�rement", "considerablement" | "extr�mement", "enormement" |
-| **Verbes** | Original | Upgraded | Synonymise |
+| **Vocabulaire** | Naturel | Formal | Paraphrasé |
+| **Adverbes** | "tr�s", "beaucoup" | "particuli�rement", "considérablement" | "extr�mement", "énormément" |
+| **Verbes** | Original | Upgraded | Synonymisé |
 | **Longueur max** | 40 mots | 30 mots | Flexible |
 | **Substitution** | Lemmatique | Professionnelle | Contextuelle |
-| **Validation** | Basique | Basique | Semantique |
-| **Score qualite** | N/A | N/A | Affiche |
-| **Cas d'usage** | General | Rapports, docs | Reecriture creative |
+| **Validation** | Basique | Basique | Sémantique |
+| **Score qualité** | N/A | N/A | Affiché |
+| **Cas d'usage** | Général | Rapports, docs | Réécriture créative |
 
 ---
 
 ## Matrices de Transformation
 
 ### Verbes Courants
-| Original | Standard | Professionnel | Avance |
+| Original | Standard | Professionnel | Avancé |
 |----------|----------|----------------|--------|
-| faire | faire | effectuer, realiser | accomplir, executer |
-| avoir | avoir | disposer | posseder |
+| faire | faire | effectuer, réaliser | accomplir, exécuter |
+| avoir | avoir | disposer | posséder |
 | aller | aller | progresser, avancer | se diriger |
 | venir | venir | arriver | survenir |
-| �tre | �tre | exister | constituer |
+| �tre | �tre | exister | constituer |
 
 ### Adverbes
-| Original | Standard | Professionnel | Avance |
+| Original | Standard | Professionnel | Avancé |
 |----------|----------|----------------|--------|
-| tr�s | tr�s | particuli�rement | extr�mement |
-| beaucoup | beaucoup | considerablement | enormement |
-| peu | peu | faiblement | leg�rement |
-| souvent | souvent | reguli�rement | frequemment |
+| tr�s | tr�s | particuli�rement | extr�mement |
+| beaucoup | beaucoup | considérablement | énormément |
+| peu | peu | faiblement | lég�rement |
+| souvent | souvent | réguli�rement | fréquemment |
 | toujours | toujours | constamment | continuellement |
 
 ### Adjectifs
-| Original | Standard | Professionnel | Avance |
+| Original | Standard | Professionnel | Avancé |
 |----------|----------|----------------|--------|
 | bon | bon | excellent | satisfaisant |
-| mauvais | mauvais | mediocre | insatisfaisant |
-| grand | grand | vaste | considerable |
+| mauvais | mauvais | médiocre | insatisfaisant |
+| grand | grand | vaste | considérable |
 | difficile | difficile | complexe | ardu |
 | important | important | essentiel | crucial |
 
 ---
 
-## Cas Speciaux
+## Cas Spéciaux
 
-### Quand le Mode Avance Fallback au Standard
+### Quand le Mode Avancé Fallback au Standard
 
-**Condition**: Si score de qualite < 0.6
+**Condition**: Si score de qualité < 0.6
 
 **Exemple**:
 ```
-Original: "Les donnees sont tr�s volumineuses"
-Avance tente: "Les informations constituent enormement massives"
+Original: "Les données sont tr�s volumineuses"
+Avancé tente: "Les informations constituent énormément massives"
 Score: 0.45 (< 0.6)  Trop de changement
-Fallback: "Les donnees sont tr�s volumineuses"
+Fallback: "Les données sont tr�s volumineuses"
 ```
 
 ---
@@ -177,7 +177,7 @@ Fallback: "Les donnees sont tr�s volumineuses"
 
 ###  Utilisez Mode STANDARD pour:
 - Emails
-- Presentations generales
+- Présentations générales
 - Textes conversationnels
 - Contenu blog
 - Communication interne
@@ -189,11 +189,11 @@ Fallback: "Les donnees sont tr�s volumineuses"
 - Contrats
 - Textes officiels
 
-###  Utilisez Mode AVANC� pour:
-- Reecriture creative
-- �viter repetitions
-- Ameliorer lisibilite
-- Paraphrasing pour originalite
+###  Utilisez Mode AVANC� pour:
+- Réécriture créative
+- �viter répétitions
+- Améliorer lisibilité
+- Paraphrasing pour originalité
 - Textes avec variations styliques
 
 ---
@@ -203,13 +203,13 @@ Fallback: "Les donnees sont tr�s volumineuses"
 ### Exemple Corpus (100 phrases)
 - **Standard**: 5-10% de modification (connecteurs)
 - **Professionnel**: 20-30% de modification (vocabulaire)
-- **Avance**: 10-25% de modification (paraphrase)
+- **Avancé**: 10-25% de modification (paraphrase)
 
 ### Taux de Conservation des Concepts
 - **Standard**: 99% (minimal change)
 - **Professionnel**: 95% (vocabulary shift)
-- **Avance**: 90-95% (paraphrase acceptable)
+- **Avancé**: 90-95% (paraphrase acceptable)
 
 ---
 
-**Derni�re mise � jour**: 2 janvier 2025
+**Derni�re mise � jour**: 2 janvier 2025

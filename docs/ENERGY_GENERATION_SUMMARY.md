@@ -1,120 +1,120 @@
-#   PARADIGME DE RELAXATION D'�NERGIE POUR G�N�RATION D'IMAGES
+#   PARADIGME DE RELAXATION D'�NERGIE POUR G�N�RATION D'IMAGES
 
-##  Resume Executif
+##  Résumé Exécutif
 
-**Nous avons pive d'une approche "dessin" � une approche "physique".**
+**Nous avons pivé d'une approche "dessin" � une approche "physique".**
 
-Au lieu de dire � une IA "dessine une image avec ces proprietes", nous disons: "Voici un syst�me d'atomes interagissant localement. Minimisez l'energie jusqu'� equilibre."
+Au lieu de dire � une IA "dessine une image avec ces propriétés", nous disons: "Voici un syst�me d'atomes interagissant localement. Minimisez l'énergie jusqu'� équilibre."
 
-### Les resultats?
- **Instantane** (pas de forward pass reseau geant)  
- **Interpretable** (fonction d'energie explicite)  
- **Adaptable** (changez les contraintes en temps reel)  
- **Parallelisable** (atomes independants)  
+### Les résultats?
+ **Instantané** (pas de forward pass réseau géant)  
+ **Interpretable** (fonction d'énergie explicite)  
+ **Adaptable** (changez les contraintes en temps réel)  
+ **Parallelisable** (atomes indépendants)  
  **No GPU needed** (CPU suffit)  
- **Auto-Improving** (l'IA evalue et ameliore ses propres generations)  
+ **Auto-Improving** (l'IA évalue et améliore ses propres générations)  
 
 ---
 
 ##  Architecture en 3 Niveaux
 
 ### Niveau 1: Atomes (Micro)
-- **Unite**: Chaque pixel/patch = 1 atome autonome
-- **�tat**: couleur RGB, intensite, orientation, confiance
-- **Interaction**: Uniquement avec 8 voisins immediats
+- **Unité**: Chaque pixel/patch = 1 atome autonome
+- **�tat**: couleur RGB, intensité, orientation, confiance
+- **Interaction**: Uniquement avec 8 voisins immédiats
 - **Physique**: Minimise tension locale via gradient descent
 
 ### Niveau 2: Motifs (Meso)
-- **Detection**: Regions coherentes emergent automatiquement
-- **Proprietes**: Edges, gradients, textures, symetries
-- **Pas programme**: �merge naturellement de l'equilibre
-- **BFS clustering**: Trouve regions de couleur similaire
+- **Détection**: Régions cohérentes émergent automatiquement
+- **Propriétés**: Edges, gradients, textures, symétries
+- **Pas programmé**: �merge naturellement de l'équilibre
+- **BFS clustering**: Trouve régions de couleur similaire
 
 ### Niveau 3: Champ Global (Macro)
 - **Influence faible**: 5-15% seulement
 - **Pas de commande directe**: Juste une "pression" statistique
 - **Exemple**: "Les ombres vont vers le haut-gauche"  oriente graduellement les gradients
-- **Adaptable**: Changez en temps reel sans retraining
+- **Adaptable**: Changez en temps réel sans retraining
 
 ---
 
-##  Fonction d'�nergie Locale
+##  Fonction d'�nergie Locale
 
 Chaque atome minimise:
 
 ```
-E_i = continuite + gradients + texture + confiance + champ_global
+E_i = continuité + gradients + texture + confiance + champ_global
 
-continuite:    _j ||color_i - color_j||^2          (cohesion spatiale)
+continuité:    _j ||color_i - color_j||²          (cohésion spatiale)
 gradients:     _j |orientation_i - orientation_j|  (alignement)
-texture:       |texture_i - moyenne_voisinage|      (coherence)
-confiance:     (1 - confidence_i)                   (stabilite)
-champ_global:  faible attrait vers proprietes globales
+texture:       |texture_i - moyenne_voisinage|      (cohérence)
+confiance:     (1 - confidence_i)                   (stabilité)
+champ_global:  faible attrait vers propriétés globales
 ```
 
-**Resultat**: Les atomes se trouvent naturellement dans des etats stables.
+**Résultat**: Les atomes se trouvent naturellement dans des états stables.
 
 ---
 
-##  Cycle de Generation
+##  Cycle de Génération
 
 ```
-�TAPE 1: Initialisation
-   Couleurs aleatoires
+�TAPE 1: Initialisation
+   Couleurs aléatoires
    Confiance basse
-   �nergie TR�S HAUTE
+   �nergie TR�S HAUTE
 
-�TAPE 2: Relaxation
-   Chaque atome reduit son energie
+�TAPE 2: Relaxation
+   Chaque atome réduit son énergie
    Atomes se synchronisent progressivement
-   Patterns commencent � emerger
+   Patterns commencent � émerger
   
-�TAPE 3: Convergence
-   Plateau en energie totale
-   Stabilite atteinte
-   Arr�t automatique
+�TAPE 3: Convergence
+   Plateau en énergie totale
+   Stabilité atteinte
+   Arr�t automatique
 
-�TAPE 4: Auto-Reevaluation
-   Detection d'oscillations
+�TAPE 4: Auto-Réévaluation
+   Détection d'oscillations
    Suppression des mauvaises configurations
-   Ajustement automatique des param�tres
-   Qualite s'ameliore d'elle-m�me
+   Ajustement automatique des param�tres
+   Qualité s'améliore d'elle-m�me
 ```
 
 ---
 
-##  Exemple: Trois Phases pour Meilleure Qualite
+##  Exemple: Trois Phases pour Meilleure Qualité
 
 **Paradigme: Coarse-to-Fine Progressive**
 
 ```
-Phase 1: Patches 16�16 (100 iterations)
-    Structure globale grossi�re
-    �nergie: ~1.0
+Phase 1: Patches 16�16 (100 itérations)
+    Structure globale grossi�re
+    �nergie: ~1.0
     Base pour la phase suivante
 
-     Upscale 2�
+     Upscale 2�
 
-Phase 2: Patches 8�8 (200 iterations)
-    Details intermediaires
-    �nergie: ~0.5
+Phase 2: Patches 8�8 (200 itérations)
+    Détails intermédiaires
+    �nergie: ~0.5
     Base pour la phase suivante
 
-     Upscale 2�
+     Upscale 2�
 
-Phase 3: Patches 4�4 (250 iterations)
+Phase 3: Patches 4�4 (250 itérations)
     Micro-structure fine
-    �nergie: ~0.3
-    Resultat final haute resolution
+    �nergie: ~0.3
+    Résultat final haute résolution
 ```
 
-**Avantage cle**: Chaque phase commence pr�s d'une solution viable, donc converge **3-5� plus vite** que une seule longue phase.
+**Avantage clé**: Chaque phase commence pr�s d'une solution viable, donc converge **3-5� plus vite** que une seule longue phase.
 
 ---
 
-##  Metriques de Suivi en Temps Reel
+##  Métriques de Suivi en Temps Réel
 
-Pendant la generation, on affiche:
+Pendant la génération, on affiche:
 
 ```
 Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
@@ -127,14 +127,14 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 ```
 
 - **Energy**: Tension globale (baisse = mieux)
-- **Stability**: -1 (chaos) � +1 (equilibre) 
+- **Stability**: -1 (chaos) � +1 (équilibre) 
 - **Oscillating%**: Atomes qui changent de direction (bas = stable)
 
 ---
 
 ##  Commandes Disponibles
 
-### Generation Simple
+### Génération Simple
 ```bash
 ./programme energy generate <w> <h> <iter> <patch>
 # Ex: ./programme energy generate 256 256 200 8
@@ -146,62 +146,62 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 # Contraintes: dark/bright, smooth/sharp, rough/clean, symmetric, top/side
 ```
 
-### Multi-Phase (Meilleure Qualite)
+### Multi-Phase (Meilleure Qualité)
 ```bash
 ./programme energy multi-phase
-# Gen�re automatiquement 3 phases: 16�16  8�8  4�4
+# Gén�re automatiquement 3 phases: 16�16  8�8  4�4
 ```
 
-### Analyse du Paysage �nergetique
+### Analyse du Paysage �nergétique
 ```bash
 ./programme energy analyze
-# Montre l'evolution de l'energie et stabilite
+# Montre l'évolution de l'énergie et stabilité
 ```
 
 ### Relaxation Continue
 ```bash
 ./programme energy relax 200
-# Continue depuis un etat existant
+# Continue depuis un état existant
 ```
 
 ---
 
-##  Auto-Reevaluation: La Cle de la Qualite
+##  Auto-Réévaluation: La Clé de la Qualité
 
-**L'IA se juge elle-m�me et s'ameliore en temps reel.**
+**L'IA se juge elle-m�me et s'améliore en temps réel.**
 
 ```go
 // Pseudo-algorithme
 for iteration := 0; iteration < maxIterations; iteration++ {
-    // 1. Mettre � jour tous les atomes
+    // 1. Mettre � jour tous les atomes
     for atom := range atoms {
         atom.MinimizeLocalEnergy()
     }
     
-    // 2. AUTO-�VALUATION
+    // 2. AUTO-�VALUATION
     if TotalEnergy > PreviousTotalEnergy {
-        // L'energie a augmente = MAUVAIS
-        // Penaliser les oscillations
+        // L'énergie a augmenté = MAUVAIS
+        // Pénaliser les oscillations
         IncreaseAtomDamping()
         ReduceGlobalFieldInfluence()
     }
     
-    // 3. Detection des atomes oscillants
+    // 3. Détection des atomes oscillants
     oscillatingAtoms := CountOscillatingAtoms()
     if oscillatingAtoms > 30% {
         // Trop d'atomes changent de direction
-        // Reduire l'influence externe
+        // Réduire l'influence externe
         ReduceGlobalFieldInfluence()
     }
     
-    // 4. Arr�t si convergence
+    // 4. Arr�t si convergence
     if EnergyPlateau > 200_iterations && Stability > 0.8 {
         break  // Converged!
     }
 }
 ```
 
-**Resultat**: Une boucle d'auto-amelioration **sans dataset externe**.
+**Résultat**: Une boucle d'auto-amélioration **sans dataset externe**.
 
 ---
 
@@ -212,9 +212,9 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 |--------|-----|---|
 | Training | 100+ GPU hours | Aucun |
 | Vitesse | 10-100ms | < 1ms |
-| Interpretabilite | 0% | 100% |
-| Adaptabilite | Retraining complet | Instant |
-| Photorealism | Excellent | Bon (procedural) |
+| Interprétabilité | 0% | 100% |
+| Adaptabilité | Retraining complet | Instant |
+| Photorealism | Excellent | Bon (procédural) |
 | Hallucinations | Possibles | Aucune |
 
 ### vs Diffusion
@@ -222,33 +222,33 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 |--------|-----------|---|
 | Training | 1000+ GPU hours | Aucun |
 | Vitesse | 1-10 secondes | < 1ms |
-| Interpretabilite | ~5% | 100% |
+| Interprétabilité | ~5% | 100% |
 | GPU Required | Oui (indispensable) | Non |
-| Adaptabilite | Retraining | Instant |
-| Procedural | Non | Oui |
+| Adaptabilité | Retraining | Instant |
+| Procédural | Non | Oui |
 
 ---
 
-##  Ou Nous Excellons
+##  Où Nous Excellons
 
- **Generation procedurale** (jeux, terrain, worlds)  
- **Art abstrait** (motifs, geometrie)  
- **Temps reel** (interactive, responsive)  
+ **Génération procédurale** (jeux, terrain, worlds)  
+ **Art abstrait** (motifs, géométrie)  
+ **Temps réel** (interactive, responsive)  
  **Embedded** (edge devices, no GPU)  
- **Securite** (no data, no hallucinations)  
- **Control creatif** (constraints en live)  
+ **Sécurité** (no data, no hallucinations)  
+ **Control créatif** (constraints en live)  
  **Adaptation** (change constraints = change output)  
 
 ---
 
-##   Limitations Honn�tes
+##   Limitations Honn�tes
 
- **Photorealism** (style ultra-realiste)  
- **Faces** (details complexes)  
- **Texte** (symboles precis)  
- **Imitation d'artiste** (style tr�s specifique)  
+ **Photorealism** (style ultra-réaliste)  
+ **Faces** (détails complexes)  
+ **Texte** (symboles précis)  
+ **Imitation d'artiste** (style tr�s spécifique)  
 
-**BUT**: Nous pouvons combiner avec des couches apprises pour ameliorer.
+**BUT**: Nous pouvons combiner avec des couches apprises pour améliorer.
 
 ---
 
@@ -256,20 +256,20 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ### Court Terme (Mois)
 - [ ] Ajout d'une couche de features apprises (patterns reconnus)
-- [ ] Guidance par texte (transformer prompt  champ spatialise)
-- [ ] Multi-scale adaptative (raffiner regions instables)
+- [ ] Guidance par texte (transformer prompt  champ spatialisé)
+- [ ] Multi-scale adaptative (raffiner régions instables)
 - [ ] Real-time visualization (voir relaxation en direct)
 
 ### Moyen Terme (Trimestres)
 - [ ] Neurons plastiques (apprentissage sans retraining)
-- [ ] Generation 30+ FPS (streaming video)
-- [ ] �dition interactive (modifier contraintes, voir changement live)
-- [ ] Super-resolution atomique
+- [ ] Génération 30+ FPS (streaming video)
+- [ ] �dition interactive (modifier contraintes, voir changement live)
+- [ ] Super-résolution atomique
 
-### Long Terme (Annees)
-- [ ] Fusion avec mod�les specialises
+### Long Terme (Années)
+- [ ] Fusion avec mod�les spécialisés
 - [ ] Photorealism via couches apprises
-- [ ] Vision adaptative (feedback camera temps reel)
+- [ ] Vision adaptative (feedback caméra temps réel)
 - [ ] Applications robotique/tactile
 
 ---
@@ -278,39 +278,39 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 > **Une image n'est pas une somme de pixels.**
 > 
-> **C'est un syst�me d'interactions locales en equilibre.**
+> **C'est un syst�me d'interactions locales en équilibre.**
 > 
-> **Generez par relaxation, pas par simulation d'un reseau neurone.**
+> **Générez par relaxation, pas par simulation d'un réseau neurone.**
 > 
-> **Laissez emerger la structure globale de r�gles locales simples.**
+> **Laissez émerger la structure globale de r�gles locales simples.**
 
 C'est le principe sous-jacent:
 - Croissance cristalline
 - Formation de motifs biologiques
-- Syst�mes complexes auto-organises
+- Syst�mes complexes auto-organisés
 - Physique statistique
 
 ---
 
-##  References & Inspiration
+##  Références & Inspiration
 
 - **Ising Model**: Statistique des interactions locales
-- **Markov Random Fields**: Probabilite d'equilibre
-- **Energy-Based Models**: Minimisation d'energie libre
-- **Pattern Formation**: Reactions-diffusion (Turing)
-- **Self-Organization**: Syst�mes complexes
+- **Markov Random Fields**: Probabilité d'équilibre
+- **Energy-Based Models**: Minimisation d'énergie libre
+- **Pattern Formation**: Réactions-diffusion (Turing)
+- **Self-Organization**: Syst�mes complexes
 
 ---
 
-## � Fichiers Cles
+## � Fichiers Clés
 
-- `database/image_energy_based.go` - Implementation du moteur
+- `database/image_energy_based.go` - Implémentation du moteur
 - `energy_commands.go` - Commandes CLI
-- `ENERGY_PARADIGM.md` - Documentation detaillee (cette file)
+- `ENERGY_PARADIGM.md` - Documentation détaillée (cette file)
 
 ---
 
-**Cree par**: IA-ATOMIQUE (Technologie de Resonance Atomique)  
+**Créé par**: IA-ATOMIQUE (Technologie de Résonance Atomique)  
 **Date**: Janvier 2026  
 **Paradigme**: Energy-Based Constraint Relaxation  
 **Philosophie**: Local Interactions  Global Coherence Emerges

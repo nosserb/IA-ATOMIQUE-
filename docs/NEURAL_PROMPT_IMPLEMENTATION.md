@@ -63,7 +63,7 @@ func HandleGenerateFromPrompt(args []string)
 // Internally uses existing functions:
   database.ProcesserTexte()        // Analyze text
   database.TokeniserTexte()        // Tokenize
-  database.ExtraireMotsCles()      // Extract keywords
+  database.ExtraireMotsCl√©s()      // Extract keywords
   database.ActiverCategoriesParTexte() // Activate neurons
 ```
 
@@ -83,10 +83,10 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Test 1: Simple Forest Prompt 
 ```bash
-./programme generate from-prompt 256 256 100 "une forÔøΩt mysterieuse avec des arbres luminescents"
+./programme generate from-prompt 256 256 100 "une for√t myst√©rieuse avec des arbres luminescents"
 ```
 **Results**:
-- Keywords extracted: [forÔøΩt, arbres, mysterieuse, luminescents]
+- Keywords extracted: [for√t, arbres, myst√©rieuse, luminescents]
 - Confidence: 100%
 - Category activated: HISTOIRE
 - Generation: 100 iterations in ~3 seconds
@@ -94,20 +94,20 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Test 2: Ocean Tempest 
 ```bash
-./programme generate from-prompt 256 256 80 "ocean tempetueux avec des vagues geantes"
+./programme generate from-prompt 256 256 80 "oc√©an temp√©tueux avec des vagues g√©antes"
 ```
 **Results**:
-- Keywords: [ocean, tempetueux, vagues, geantes]
+- Keywords: [oc√©an, temp√©tueux, vagues, g√©antes]
 - Confidence: 0% (specialized keywords)
 - Generation: 80 iterations completed
 - Output: 1.1 KB PNG
 
 ### Test 3: Technology Prompt 
 ```bash
-./programme generate from-prompt 256 256 80 "technologie futuriste avec des algorithmes et neons"
+./programme generate from-prompt 256 256 80 "technologie futuriste avec des algorithmes et n√©ons"
 ```
 **Results**:
-- Keywords: [technologie, futuriste, algorithmes, neons]
+- Keywords: [technologie, futuriste, algorithmes, n√©ons]
 - Confidence: 100%
 - Category activated: TECH (3 neurons)
 - Output: Successful PNG generation
@@ -148,31 +148,31 @@ func HandleGenerateFromPrompt(args []string)
 | Category | ID | Example Keywords |
 |----------|----|----|
 | TECH | 1 | technologie, algorithme, digital, robot, circuit, code |
-| HISTOIRE | 2 | chÔøΩteau, roi, ancien, medieval, empire, politique |
-| BUSINESS | 3 | commerce, marche, entreprise, affaires |
+| HISTOIRE | 2 | ch√teau, roi, ancien, m√©di√©val, empire, politique |
+| BUSINESS | 3 | commerce, march√©, entreprise, affaires |
 | ALIMENTATION | 4 | nourriture, fruit, cuisine, pain, restaurant |
-| SANTÔøΩ | 5 | medecine, sante, hopital, docteur |
+| SANT√ | 5 | m√©decine, sant√©, h√¥pital, docteur |
 | VERBE | 6 | actions, verbes, mouvement |
 
 ## Example Prompts & Results
 
 ### Nature-Focused
 ```bash
-./programme generate from-prompt 512 512 200 "forÔøΩt sombre avec des arbres anciens"
+./programme generate from-prompt 512 512 200 "for√t sombre avec des arbres anciens"
  Activates: HISTOIRE
  Output: Spatial patterns reflecting historical/natural concepts
 ```
 
 ### Technology-Focused
 ```bash
-./programme generate from-prompt 512 512 200 "technologie futuriste avec neons et circuits"
+./programme generate from-prompt 512 512 200 "technologie futuriste avec n√©ons et circuits"
  Activates: TECH (high activation count)
  Output: Pattern reflecting computational concepts
 ```
 
 ### Mixed Concepts
 ```bash
-./programme generate from-prompt 512 512 200 "chÔøΩteau medieval avec technologie futuriste"
+./programme generate from-prompt 512 512 200 "ch√teau m√©di√©val avec technologie futuriste"
  Activates: HISTOIRE + TECH
  Output: Blended pattern from multiple categories
 ```
@@ -188,13 +188,13 @@ func HandleGenerateFromPrompt(args []string)
 
 | Size | Iterations | Time | Category |
 |------|-----------|------|----------|
-| 256ÔøΩ256 | 80 | ~2s | Fast test |
-| 256ÔøΩ256 | 150 | ~5s | Good quality |
-| 512ÔøΩ512 | 150 | ~10s | Standard |
-| 512ÔøΩ512 | 200 | ~12s | Quality |
-| 512ÔøΩ512 | 300 | ~18s | High quality |
+| 256√256 | 80 | ~2s | Fast test |
+| 256√256 | 150 | ~5s | Good quality |
+| 512√512 | 150 | ~10s | Standard |
+| 512√512 | 200 | ~12s | Quality |
+| 512√512 | 300 | ~18s | High quality |
 
-**Scaling**: ~80ms per iteration for 256ÔøΩ256
+**Scaling**: ~80ms per iteration for 256√256
 
 ## Documentation Provided
 
@@ -218,10 +218,10 @@ func HandleGenerateFromPrompt(args []string)
 
 ### Phase 1: Neural Analysis
 ```go
-// Input: "une forÔøΩt mysterieuse avec des arbres luminescents"
+// Input: "une for√t myst√©rieuse avec des arbres luminescents"
 
 // Tokenize
-tokens := []string{"forÔøΩt", "mysterieuse", "arbres", "luminescents"}
+tokens := []string{"for√t", "myst√©rieuse", "arbres", "luminescents"}
 
 // Activate categories
 catActivation := map[int]int{
@@ -272,7 +272,7 @@ grid.SaveImage(output)
  **Uses Existing Systems**:
 - `database.ProcesserTexte()` - text analysis
 - `database.TokeniserTexte()` - tokenization
-- `database.ExtraireMotsCles()` - keyword extraction
+- `database.ExtraireMotsCl√©s()` - keyword extraction
 - `database.ActiverCategoriesParTexte()` - neuron activation
 - `database.NewGenerationGrid()` - atomic generation
 - `database.NewPatternEmergenceEngine()` - pattern creation
@@ -359,7 +359,7 @@ ls -lh output/atomic_prompt_256x256_100iter.png
 ./programme generate from-prompt 512 512 300 "description with many keywords"
 
 # Long description
-./programme generate from-prompt 512 512 200 "un chÔøΩteau medieval abandonne dans la brume avec des tours ecroulees et des lumiÔøΩres mysterieuses"
+./programme generate from-prompt 512 512 200 "un ch√teau m√©di√©val abandonn√© dans la brume avec des tours √©croul√©es et des lumi√res myst√©rieuses"
 
 # Show all available commands
 ./programme generate

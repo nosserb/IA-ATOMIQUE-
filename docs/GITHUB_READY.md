@@ -1,54 +1,54 @@
-#  Pr�t pour GitHub!
+#  Pr�t pour GitHub!
 
-##  Configuration Compl�te
+##  Configuration Compl�te
 
-Ton projet **IA-ATOMIQUE** est maintenant enti�rement configure pour �tre heberge sur GitHub avec l'interface web!
+Ton projet **IA-ATOMIQUE** est maintenant enti�rement configuré pour �tre hébergé sur GitHub avec l'interface web!
 
 ---
 
-## � Qu'est-ce qui a ete prepare
+## � Qu'est-ce qui a été préparé
 
-### 1. **Interface Web Compl�te**
+### 1. **Interface Web Compl�te**
 ```
 web/
  index.html    - Interface moderne et responsive
- style.css     - Design elegant avec gradient
- script.js     - Logique JavaScript integree
- demo.html     - Page de demonstration
+ style.css     - Design élégant avec gradient
+ script.js     - Logique JavaScript intégrée
+ demo.html     - Page de démonstration
 ```
 
-### 2. **Serveur HTTP Integre**
+### 2. **Serveur HTTP Intégré**
 - `web.go` - Serveur Go avec API `/api/summarize`
-- Port 8080 par defaut
-- Compile directement avec le projet
+- Port 8080 par défaut
+- Compilé directement avec le projet
 
-### 3. **Deploiement et Installation**
-- `Dockerfile` - Pour deployer en conteneur Docker
+### 3. **Déploiement et Installation**
+- `Dockerfile` - Pour déployer en conteneur Docker
 - `docker-compose.yml` - Pour lancer facilement avec Docker Compose
-- `Makefile` - Commandes de build et run simplifiees
+- `Makefile` - Commandes de build et run simplifiées
 - `start-web.sh` - Script de lancement rapide
 
-### 4. **Documentation Compl�te**
-- `README.md` - Section web ajoutee
+### 4. **Documentation Compl�te**
+- `README.md` - Section web ajoutée
 - `INSTALL.md` - Instructions d'installation
 - `WEB_README.md` - Guide de configuration
-- `SETUP_WEB.md` - Details avances
+- `SETUP_WEB.md` - Détails avancés
 - `GITHUB_CHECKLIST.md` - Checklist avant push
 
-### 5. **CI/CD Automatise**
-- `.github/workflows/build.yml` - Tests automatiques � chaque push
-- Compilation verifiee automatiquement
-- Fichiers web verifies automatiquement
+### 5. **CI/CD Automatisé**
+- `.github/workflows/build.yml` - Tests automatiques � chaque push
+- Compilation vérifiée automatiquement
+- Fichiers web vérifiés automatiquement
 
 ### 6. **Configuration Git**
-- `.gitignore` - Mis � jour pour ignorer les fichiers temporaires
-- Scripts executables - `start-web.sh` et `verify-github.sh`
+- `.gitignore` - Mis � jour pour ignorer les fichiers temporaires
+- Scripts exécutables - `start-web.sh` et `verify-github.sh`
 
 ---
 
 ##  Comment utiliser
 
-### Option 1: Installation simple (Recommande)
+### Option 1: Installation simple (Recommandé)
 ```bash
 git clone https://github.com/ton-user/IA-ATOMIQUE.git
 cd IA-ATOMIQUE
@@ -75,21 +75,21 @@ go build -o programme
 
 ---
 
-##  Fonctionnalites de l'Interface Web
+##  Fonctionnalités de l'Interface Web
 
- **Texte en entree** - Zone de saisie large et confortable  
- **Resume en sortie** - Affichage immediat des resultats  
- **Statistiques** - Confiance, categories, nombre de phrases  
- **Design moderne** - Gradient violet, interface epuree  
+ **Texte en entrée** - Zone de saisie large et confortable  
+ **Résumé en sortie** - Affichage immédiat des résultats  
+ **Statistiques** - Confiance, catégories, nombre de phrases  
+ **Design moderne** - Gradient violet, interface épurée  
  **Responsive** - Fonctionne sur mobile et desktop  
- **Clavier** - Ctrl+Entree pour soumettre rapidement  
+ **Clavier** - Ctrl+Entrée pour soumettre rapidement  
 
 ---
 
 ##  Avant de Pusher
 
 ```bash
-# Verifier que tout est OK
+# Vérifier que tout est OK
 ./verify-github.sh
 
 # Si tout est , tu peux pusher
@@ -119,15 +119,15 @@ IA-ATOMIQUE/
  WEB_README.md              # Web docs (NEW!)
  SETUP_WEB.md               # Setup (NEW!)
  GITHUB_CHECKLIST.md        # Checklist (NEW!)
- verify-github.sh           # Verification (NEW!)
+ verify-github.sh           # Vérification (NEW!)
  start-web.sh               # Lancer (NEW!)
  main.go
  interaction.go
  go.mod
- README.md                  # Mis � jour
+ README.md                  # Mis � jour
  database/
     *.go
- .gitignore                 # Mis � jour
+ .gitignore                 # Mis � jour
 ```
 
 ---
@@ -139,12 +139,12 @@ L'interface utilise l'API `/api/summarize` (POST):
 ```json
 REQUEST:
 {
-  "text": "Votre texte � resumer..."
+  "text": "Votre texte � résumer..."
 }
 
 RESPONSE:
 {
-  "summary": "Resume genere...",
+  "summary": "Résumé généré...",
   "stats": {
     "phrases": 5,
     "confidence": "85.3",
@@ -155,7 +155,7 @@ RESPONSE:
 
 ---
 
-##  Prochaines �tapes
+##  Prochaines �tapes
 
 1. **Pusher sur GitHub** - Utilise la branche `chore/siteweb`
 2. **Faire un PR** - Vers main/develop
@@ -178,11 +178,11 @@ Tout fonctionne out-of-the-box!
 
 ##  Troubleshooting Rapide
 
-| Probl�me | Solution |
+| Probl�me | Solution |
 |----------|----------|
-| Port 8080 occupe | `make web PORT=9000` |
-| Compilation echoue | `go mod tidy && go build` |
-| Fichiers web manquants | Verifier le repertoire `web/` |
+| Port 8080 occupé | `make web PORT=9000` |
+| Compilation échoue | `go mod tidy && go build` |
+| Fichiers web manquants | Vérifier le répertoire `web/` |
 | Docker ne marche pas | `docker-compose up` |
 
 ---
@@ -190,15 +190,15 @@ Tout fonctionne out-of-the-box!
 ##  Checklist Finale
 
 - [x] Code compile sans erreur
-- [x] Fichiers web presents
-- [x] Docker configure
-- [x] Documentation compl�te
-- [x] CI/CD configure
+- [x] Fichiers web présents
+- [x] Docker configuré
+- [x] Documentation compl�te
+- [x] CI/CD configuré
 - [x] .gitignore correct
-- [x] Scripts executables
-- [x] README.md mis � jour
+- [x] Scripts exécutables
+- [x] README.md mis � jour
 - [x] Installation facile pour utilisateurs
 
 **READY TO PUSH! **
 
-Bon deploiement! 
+Bon déploiement! 

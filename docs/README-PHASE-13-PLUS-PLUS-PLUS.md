@@ -19,11 +19,11 @@ Repetitions: ~0
 
 | # | Strategy | Location | Effect |
 |---|----------|----------|--------|
-| 1ÔøΩ | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
-| 2ÔøΩ | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
-| 3ÔøΩ | **FenÔøΩtrage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
-| 4ÔøΩ | **Anti-Repetition** | coherence.go | Eliminate words repeated <5 words apart |
-| 5ÔøΩ | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
+| 1£ | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
+| 2£ | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
+| 3£ | **Fen√trage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
+| 4£ | **Anti-R√©p√©tition** | coherence.go | Eliminate words repeated <5 words apart |
+| 5£ | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
 
 ---
 
@@ -101,7 +101,7 @@ go build -o programme
 ```
 For each block:
   - Count word occurrences
-  - Penalty = (count-2) ÔøΩ 0.1 for words appearing >2x
+  - Penalty = (count-2) √ 0.1 for words appearing >2x
   - Apply penalty to selection score
 ```
 
@@ -112,7 +112,7 @@ For words with IDF > 0.5 AND TF > 0.05:
   - Prevents repetitive words from dominating scores
 ```
 
-### 3. Strict FenÔøΩtrage
+### 3. Strict Fen√trage
 ```
 For consecutive selected blocks:
   - Calculate Jaccard similarity of vocabularies
@@ -120,7 +120,7 @@ For consecutive selected blocks:
   - Force diversity between adjacent blocks
 ```
 
-### 4. Anti-Repetition
+### 4. Anti-R√©p√©tition
 ```
 During text generation:
   - Track position of each word
@@ -140,24 +140,24 @@ For frequent words:
 
 ##  Configuration Profiles
 
-### Quality Profile (Zero Repetitions)
+### Quality Profile (Z√©ro R√©p√©titions)
 ```
 Longueur: 400-500 mots
-Qualite: Ultra-high (zero detectable repetitions)
+Qualit√©: Ultra-high (zero detectable repetitions)
 Cas: Critical reading, premium content
 ```
 
-### Balanced Profile (Recommande)
+### Balanced Profile (Recommand√©)
 ```
 Longueur: 600-800 mots
-Qualite: Excellent (95% coherence)
+Qualit√©: Excellent (95% coherence)
 Cas: Most use cases (default)
 ```
 
 ### Coverage Profile (Plus Contenu)
 ```
 Longueur: 1000-1200 mots
-Qualite: Good (90-92% coherence)
+Qualit√©: Good (90-92% coherence)
 Cas: Maximum information coverage
 ```
 
@@ -170,14 +170,14 @@ database/resumeur_coherence.go  (+150 lines)
  NormaliserRepetitionsBlocs()
  CalculerSimilarityVocabLexical()
  RepetitionsBloc field
- FenÔøΩtrage strict logic
+ Fen√trage strict logic
 
 database/generation.go           (+15 lines)
  TF-IDF penalty 0.8x
 
 database/coherence.go            (+80 lines)
  SynonymsDict (20+ entries)
- Anti-repetition filter
+ Anti-r√©p√©tition filter
  Synonym replacement
 ```
 
@@ -211,17 +211,17 @@ database/coherence.go            (+80 lines)
 
 **Before**:
 ```
-"...donne que les systÔøΩmes donnent resultats...
-...dans ce cas, plusieurs cas differents...
+"...donn√© que les syst√mes donnent r√©sultats...
+...dans ce cas, plusieurs cas diff√©rents...
 ...le monde du digital, un monde qui change..."
 ```
- Obvious repetitions: "donne/donnent", "cas", "monde"
+ Obvious repetitions: "donn√©/donnent", "cas", "monde"
 
 **After**:
 ```
-"...donne que les systÔøΩmes fournissent resultats...
-...dans cette situation, plusieurs contextes differents...
-...l'univers du digital, une sphÔøΩre qui change..."
+"...donn√© que les syst√mes fournissent r√©sultats...
+...dans cette situation, plusieurs contextes diff√©rents...
+...l'univers du digital, une sph√re qui change..."
 ```
  Zero repetitions, natural vocabulary variation
 
@@ -310,7 +310,7 @@ database/coherence.go            (+80 lines)
 
 ---
 
-## ÔøΩ FAQ
+## ò FAQ
 
 **Q: Should I upgrade from Phase 13++?**  
 A: Yes. Phase 13+++ is faster (6.3x), better quality (zero repetitions), and 100% backward compatible.
@@ -356,7 +356,7 @@ A: Yes. Tested, documented, validated.  DEPLOY.
 ~0 repetitions
 6.3x faster
 $0 implementation cost
-ÔøΩ% production readiness
+û% production readiness
 ```
 
 ---
@@ -369,7 +369,7 @@ $0 implementation cost
 
 ---
 
-## ÔøΩ Support
+## û Support
 
 - **Configuration**: See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)
 - **Troubleshooting**: See [PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md)

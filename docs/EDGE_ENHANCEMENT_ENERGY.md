@@ -1,33 +1,33 @@
-# Amelioration du Syst�me de Defloutage avec Terme d'�nergie de Nettete
+# Amélioration du Syst�me de Défloutage avec Terme d'�nergie de Netteté
 
 **Date**: 13 janvier 2026  
-**Implementation**: Ajout du terme E_sharpness = -� Σ ||�I||^2  
+**Implémentation**: Ajout du terme E_sharpness = -� Σ ||�I||²  
 
 ---
 
 ##  Objectif
 
-**Avant**: Le syst�me s'appuyait sur la deconvolution (Richardson-Lucy) et l'amplification des gradients  
-**Maintenant**: En plus de la deconvolution, le syst�me **recompense activement les contours** via une energie de nettete
+**Avant**: Le syst�me s'appuyait sur la déconvolution (Richardson-Lucy) et l'amplification des gradients  
+**Maintenant**: En plus de la déconvolution, le syst�me **récompense activement les contours** via une énergie de netteté
 
 ---
 
-##  Formulation Mathematique
+##  Formulation Mathématique
 
-### �nergie Totale
+### �nergie Totale
 
 $$E_{total} = \alpha E_{structure} + \beta E_{constraint} + \gamma E_{interaction} + E_{sharpness}$$
 
-### Terme de Nettete (Edge Enhancement)
+### Terme de Netteté (Edge Enhancement)
 
 $$E_{sharpness} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
-Ou:
-- **$\lambda > 0$**: Coefficient de recompense des contours (0.3-1.0)
-- **$\|\nabla I\|^2 = G_x^2 + G_y^2$**: Magnitude du gradient au carre
-- **Signe negatif**: Le syst�me minimise $-E_{sharpness}$, maximisant les gradients
+Où:
+- **$\lambda > 0$**: Coefficient de récompense des contours (0.3-1.0)
+- **$\|\nabla I\|^2 = G_x^2 + G_y^2$**: Magnitude du gradient au carré
+- **Signe négatif**: Le syst�me minimise $-E_{sharpness}$, maximisant les gradients
 
-### Gradient Local Simplifie (Sobel)
+### Gradient Local Simplifié (Sobel)
 
 $$G_x = I_{i+1,j} - I_{i-1,j}$$
 $$G_y = I_{i,j+1} - I_{i,j-1}$$
@@ -36,38 +36,38 @@ $$G_y = I_{i,j+1} - I_{i,j-1}$$
 
 ##  Intuition Physique
 
-1. **Zones lisses** (bas gradient): $E_{sharpness}$ proche de 0, peu de recompense
-2. **Contours nets** (haut gradient): $E_{sharpness}$ tr�s negatif, **forte recompense**
-3. **Gradient descent**: Le syst�me est "attire" vers les configurations avec contours nets
+1. **Zones lisses** (bas gradient): $E_{sharpness}$ proche de 0, peu de récompense
+2. **Contours nets** (haut gradient): $E_{sharpness}$ tr�s négatif, **forte récompense**
+3. **Gradient descent**: Le syst�me est "attiré" vers les configurations avec contours nets
 
-**Resultat**: Les atomes se repositionnent pour creer des bords plutot que des transitions lisses
+**Résultat**: Les atomes se repositionnent pour créer des bords plutôt que des transitions lisses
 
 ---
 
-##  Implementation
+##  Implémentation
 
 ### Structure `DeconvolutionParams`
 
 ```go
 type DeconvolutionParams struct {
     GradientAmplification float64 // k > 1 (amplification)
-    GaussianSigma         float64 // � du flou
-    SharpeningStrength    float64 // Intensite du rehaussement (0-1)
+    GaussianSigma         float64 // � du flou
+    SharpeningStrength    float64 // Intensité du rehaussement (0-1)
     NoiseReduction        float64 // Suppression du bruit (0-1)
-    EdgeEnhancementLambda float64 // � = coefficient de nettete (0.3-1.0)
+    EdgeEnhancementLambda float64 // � = coefficient de netteté (0.3-1.0)
 }
 ```
 
 ### Adaptation Automatique
 
 ```go
-// Plus l'image est floue, plus � augmente
-� = 0.3 + (blur_sigma * 0.15)  // �  [0.3, 1.0]
+// Plus l'image est floue, plus � augmente
+� = 0.3 + (blur_sigma * 0.15)  // �  [0.3, 1.0]
 ```
 
-### Fonctions Cles
+### Fonctions Clés
 
-#### 1. Calcul de l'�nergie Totale
+#### 1. Calcul de l'�nergie Totale
 
 ```go
 edgeEnergy := CalculateEdgeEnhancementEnergy(patch.Atoms, lambdaEdge)
@@ -85,7 +85,7 @@ func CalculateEdgeEnhancementEnergy(atoms [][]PixelAtomV2, lambda float64) float
             gy := atoms[i][j+1].Intensity - atoms[i][j-1].Intensity
             
             gradMag := gx*gx + gy*gy
-            totalEnergy -= lambda * gradMag  // Negatif: recompense
+            totalEnergy -= lambda * gradMag  // Négatif: récompense
         }
     }
     return totalEnergy / float64(count)
@@ -105,13 +105,13 @@ func ComputeLocalEdgeGradient(atoms [][]PixelAtomV2, i, j int, lambda float64) [
 }
 ```
 
-### Mise � Jour des Atomes
+### Mise � Jour des Atomes
 
 ```go
 // Trois termes de gradient:
 // 1. Base gradient (structure)
 // 2. Sharpen gradient (amplification kI_blur)
-// 3. Edge gradient (recompense des hauts gradients)
+// 3. Edge gradient (récompense des hauts gradients)
 
 patch.Atoms[i][j].R -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad)
 patch.Atoms[i][j].G -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad)
@@ -120,15 +120,15 @@ patch.Atoms[i][j].B -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGra
 
 ---
 
-##  Comparaison Avant/Apr�s
+##  Comparaison Avant/Apr�s
 
-| Aspect | Avant | Apr�s |
+| Aspect | Avant | Apr�s |
 |--------|-------|-------|
-| **Deconvolution** |  Richardson-Lucy (5 iter) |  Richardson-Lucy (5 iter) |
+| **Déconvolution** |  Richardson-Lucy (5 iter) |  Richardson-Lucy (5 iter) |
 | **Amplification** |  kI_blur (k=2.2) |  kI_blur + E_sharpness |
-| **Bruit structure** |  3% Perlin multi-octave |  3% Perlin multi-octave |
-| **Nettete active** |  Passif |  Actif: E_sharpness = -� Σ\|\|�I\|\|^2 |
-| **Adaptation �** | N/A |  � adaptatif (0.3-1.0) |
+| **Bruit structuré** |  3% Perlin multi-octave |  3% Perlin multi-octave |
+| **Netteté active** |  Passif |  Actif: E_sharpness = -� Σ\|\|�I\|\|² |
+| **Adaptation �** | N/A |  � adaptatif (0.3-1.0) |
 
 ---
 
@@ -136,52 +136,52 @@ patch.Atoms[i][j].B -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGra
 
 ### Avec E_sharpness
 
-1. **Contours plus nets**: Les transitions pixel-�-pixel augmentent
-2. **Moins de flou residuel**: Le syst�me "fuit" les zones lisses
-3. **Texture plus riche**: Les micro-details sont encourages
-4. **Pas de suramplification**: � = 0.4 par defaut (modere)
+1. **Contours plus nets**: Les transitions pixel-�-pixel augmentent
+2. **Moins de flou résiduel**: Le syst�me "fuit" les zones lisses
+3. **Texture plus riche**: Les micro-détails sont encouragés
+4. **Pas de suramplification**: � = 0.4 par défaut (modéré)
 
 ### Zones d'Impact
 
-- **Bords d'objets**: Fortement affectes (|�I| eleve)
-- **Transitions graduelles**: Moins affectees (|�I| bas)
-- **Zones texturees**: Moyennement affectees
+- **Bords d'objets**: Fortement affectés (|�I| élevé)
+- **Transitions graduelles**: Moins affectées (|�I| bas)
+- **Zones texturées**: Moyennement affectées
 
 ---
 
-##  Param�tres Ajustables
+##  Param�tres Ajustables
 
-### Par Defaut
+### Par Défaut
 
 ```go
-EdgeEnhancementLambda: 0.4  // Modere
+EdgeEnhancementLambda: 0.4  // Modéré
 ```
 
 ### Gamme de Valeurs
 
-| � | Effet |
+| � | Effet |
 |---|-------|
-| 0.0 | Aucune amelioration (comme avant) |
-| 0.2 | Tr�s leger (contours subtils) |
-| 0.4 | **Modere (par defaut)** |
-| 0.6 | Agressif (contours marques) |
-| 1.0 | Tr�s agressif (risque de halo) |
+| 0.0 | Aucune amélioration (comme avant) |
+| 0.2 | Tr�s léger (contours subtils) |
+| 0.4 | **Modéré (par défaut)** |
+| 0.6 | Agressif (contours marqués) |
+| 1.0 | Tr�s agressif (risque de halo) |
 
 ### Adaptation Automatique
 
 ```go
-// En fonction du flou detecte:
-blurSigma = 0.0   � = 0.3  (image nette: peu d'amplification)
-blurSigma = 1.0   � = 0.45 (flou modere)
-blurSigma = 3.0   � = 0.75 (flou fort: grosse amplification)
-blurSigma = 5.0   � = 1.0  (flou extr�me: maximum)
+// En fonction du flou détecté:
+blurSigma = 0.0   � = 0.3  (image nette: peu d'amplification)
+blurSigma = 1.0   � = 0.45 (flou modéré)
+blurSigma = 3.0   � = 0.75 (flou fort: grosse amplification)
+blurSigma = 5.0   � = 1.0  (flou extr�me: maximum)
 ```
 
 ---
 
 ##  Performance
 
-**Benchmark** (1920�1080, 16�16 grid, 100 iterations):
+**Benchmark** (1920�1080, 16�16 grid, 100 itérations):
 
 ```
 Time: 26.9ms
@@ -189,33 +189,33 @@ Overhead vs without E_sharpness: ~5% (calcul gradient local minimal)
 Throughput: ~7100 pixels/ms
 ```
 
-**Scalabilite**: O(n) ou n = nombre total de pixels
+**Scalabilité**: O(n) où n = nombre total de pixels
 
 ---
 
-##  Precautions
+##  Précautions
 
-### �viter les Artefacts
+### �viter les Artefacts
 
-1. **Ne pas trop augmenter �**:
-   - � > 0.8  risque de halo autour des bords
-   - � > 1.0  sursharpening, bruit apparent
+1. **Ne pas trop augmenter �**:
+   - � > 0.8  risque de halo autour des bords
+   - � > 1.0  sursharpening, bruit apparent
 
-2. **Combiner avec deconvolution**:
-   - E_sharpness seul  details artificiels
-   - + Richardson-Lucy  deconvolution physiquement correcte
-   - + k-amplification  amplification justifiee
-   - **Ensemble**  equilibre optimal
+2. **Combiner avec déconvolution**:
+   - E_sharpness seul  détails artificiels
+   - + Richardson-Lucy  déconvolution physiquement correcte
+   - + k-amplification  amplification justifiée
+   - **Ensemble**  équilibre optimal
 
 3. **Clamping RGB**:
    ```go
    atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
    ```
-   �vite debordement numerique
+   �vite débordement numérique
 
 ### Masque de Modification (Futur)
 
-Pour appliquer E_sharpness uniquement ou c'est necessaire:
+Pour appliquer E_sharpness uniquement où c'est nécessaire:
 
 ```go
 if shouldEnhanceEdges[i][j] {  // Masque local
@@ -230,11 +230,11 @@ if shouldEnhanceEdges[i][j] {  // Masque local
 ### Pour Image Peu Floue
 
 ```go
-EdgeEnhancementLambda: 0.2  // Leger enhancement
+EdgeEnhancementLambda: 0.2  // Léger enhancement
 // Commande: ./programme deblur slight_blur.jpg 12 12 50 1920 1080 output.jpg
 ```
 
-### Pour Image Tr�s Floue
+### Pour Image Tr�s Floue
 
 ```go
 // Lambda adaptatif montrera automatiquement 0.75-1.0
@@ -246,39 +246,39 @@ EdgeEnhancementLambda: 0.8
 ### Pour Texte/Documents
 
 ```go
-EdgeEnhancementLambda: 0.6  // Fort (texte necessite nettete)
+EdgeEnhancementLambda: 0.6  // Fort (texte nécessite netteté)
 // Documents: bords nets essentiels
 ```
 
 ---
 
-##  Formule Compl�te Integree
+##  Formule Compl�te Intégrée
 
-### �nergie Locale par Patch
+### �nergie Locale par Patch
 
 $$E_{patch} = \alpha E_{struct} + \beta E_{constraint} + \gamma E_{interaction} + \lambda E_{gradient\_ampl} + 0.5 E_{edge}$$
 
-Ou:
-- **$E_{struct}$**: Coherence des atomes
+Où:
+- **$E_{struct}$**: Cohérence des atomes
 - **$E_{constraint}$**: Respect des contraintes globales
 - **$E_{interaction}$**: Influence des voisins
 - **$E_{gradient\_ampl}$**: Amplification k-gradient (hallucination)
-- **$E_{edge} = -\lambda \sum \|\nabla I\|^2$**: Recompense des contours
+- **$E_{edge} = -\lambda \sum \|\nabla I\|^2$**: Récompense des contours
 
 ### Descente de Gradient
 
 $$\vec{I}^{n+1} = \vec{I}^n - \eta \nabla E_{patch}$$
 
-Ou $\eta$ = learning rate adaptatif
+Où $\eta$ = learning rate adaptatif
 
 ---
 
 ##  Avantages de cette Approche
 
- **Interpretabilite**: �nergie negative = attraction vers gradients eleves  
- **Controle**: � parametre et adaptatif  
- **Stabilite**: Pas de sursharpening excessif par defaut  
- **Efficacite**: O(n) sans transformation FFT  
+ **Interprétabilité**: �nergie négative = attraction vers gradients élevés  
+ **Contrôle**: � paramétré et adaptatif  
+ **Stabilité**: Pas de sursharpening excessif par défaut  
+ **Efficacité**: O(n) sans transformation FFT  
  **Combinaison**: Synergy avec Richardson-Lucy + k-amplification  
 
 ---
@@ -291,19 +291,19 @@ Ou $\eta$ = learning rate adaptatif
 ./programme deblur image_floue.jpg 16 16 100 1920 1080 resultat.jpg
 ```
 
-**Automatique**: � adaptatif selon flou detecte
+**Automatique**: � adaptatif selon flou détecté
 
-### Pour Resultats Plus Nets
+### Pour Résultats Plus Nets
 
-Augmentez les iterations (plus de relaxation = plus de temps � minimiser E_edge):
+Augmentez les itérations (plus de relaxation = plus de temps � minimiser E_edge):
 
 ```bash
 ./programme deblur blurry.jpg 16 16 200 1920 1080 sharper.jpg
 ```
 
-### Pour Resultats Plus Doux
+### Pour Résultats Plus Doux
 
-Reduisez les iterations:
+Réduisez les itérations:
 
 ```bash
 ./programme deblur blurry.jpg 16 16 50 1920 1080 gentler.jpg
@@ -311,82 +311,82 @@ Reduisez les iterations:
 
 ---
 
-##  Integration avec Autres Termes
+##  Intégration avec Autres Termes
 
 ### Pipeline Complet d'Atome
 
-Pour chaque atome, � chaque iteration:
+Pour chaque atome, � chaque itération:
 
-1. **Calcul des energies** (4 termes)
-2. **Calcul des gradients** (4 derivees)
-3. **Descente de gradient** (mise � jour RGB)
-4. **Clamping** (assure validite [0,1])
-5. **Synchronisation d'intensite** (I = (R+G+B)/3)
+1. **Calcul des énergies** (4 termes)
+2. **Calcul des gradients** (4 dérivées)
+3. **Descente de gradient** (mise � jour RGB)
+4. **Clamping** (assure validité [0,1])
+5. **Synchronisation d'intensité** (I = (R+G+B)/3)
 
 ### Poids Relatifs
 
 ```
 baseGradient:     100% (structure)
 sharpenGradient:  50% (amplification)
-edgeGradient:     30% (nettete)
+edgeGradient:     30% (netteté)
 ```
 
-Ces poids peuvent �tre ajustes pour favoriser un aspect ou l'autre.
+Ces poids peuvent �tre ajustés pour favoriser un aspect ou l'autre.
 
 ---
 
-##  Fondements Theoriques
+##  Fondements Théoriques
 
-### Gradient Descent avec �nergie
+### Gradient Descent avec �nergie
 
-**Principe general**: Minimiser E pousse le syst�me vers etats de basse energie
+**Principe général**: Minimiser E pousse le syst�me vers états de basse énergie
 
 **Application ici**: 
 - Minimiser $E_{total}$ = Minimiser $\alpha E_{struct} + ... - \lambda \sum \|\nabla I\|^2$
 - = Minimiser les premiers termes + **Maximiser les gradients**
-- **Resultat**: Image nette avec structure preservee
+- **Résultat**: Image nette avec structure préservée
 
-### Sobel Simplifie vs Full Sobel
+### Sobel Simplifié vs Full Sobel
 
-**Notre approche**: Difference directe (simple)
+**Notre approche**: Différence directe (simple)
 ```
 G_x = I[i+1,j] - I[i-1,j]
 ```
 
-**Full Sobel**: Convolution 3�3 avec poids
+**Full Sobel**: Convolution 3�3 avec poids
 ```
 G_x = -1*I[i-1,j-1] + 0*I[i-1,j] + 1*I[i-1,j+1]
       -2*I[i,j-1]   + 0*I[i,j]   + 2*I[i,j+1]
       -1*I[i+1,j-1] + 0*I[i+1,j] + 1*I[i+1,j+1]
 ```
 
-**Difference**: Notre version est 8� plus rapide, moins sensible au bruit
+**Différence**: Notre version est 8� plus rapide, moins sensible au bruit
 
 ---
 
-##  Resume Conceptuel
+##  Résumé Conceptuel
 
-| Composant | Role | Formule |
+| Composant | Rôle | Formule |
 |-----------|------|---------|
-| **Structure** | Coherence spatiale | E_struct = Σ\|(I-I_neighbor)\| |
-| **Deconvolution** | Inverse flou gaussien | Richardson-Lucy iterative |
-| **Amplification** | Gradients plus forts | E = Σ\|\|�I_recon - kI_blur\|\|^2 |
-| **Nettete** | Recompense contours | E_edge = **-� Σ \|\|�I\|\|^2** |
+| **Structure** | Cohérence spatiale | E_struct = Σ\|(I-I_neighbor)\| |
+| **Déconvolution** | Inverse flou gaussien | Richardson-Lucy itérative |
+| **Amplification** | Gradients plus forts | E = Σ\|\|�I_recon - kI_blur\|\|² |
+| **Netteté** | Récompense contours | E_edge = **-� Σ \|\|�I\|\|²** |
 | **Descente** | Optimisation | I := I - ·E |
 
 ---
 
 ##  Extensions Futures
 
-- [ ] **Masque adaptatif**: Appliquer � uniquement ou necessaire
-- [ ] **Sobel complet**: Passer � Sobel 3�3 pour meilleure detection
-- [ ] **Anisotrope**: Gradients differents par direction (horizontal/vertical)
-- [ ] **Multi-echelle**: � different par phase (coarse/medium/fine)
-- [ ] **Histogramme**: Preserver distribution tonale globale
+- [ ] **Masque adaptatif**: Appliquer � uniquement où nécessaire
+- [ ] **Sobel complet**: Passer � Sobel 3�3 pour meilleure détection
+- [ ] **Anisotrope**: Gradients différents par direction (horizontal/vertical)
+- [ ] **Multi-échelle**: � différent par phase (coarse/medium/fine)
+- [ ] **Histogramme**: Préserver distribution tonale globale
 
 ---
 
 **Auteur**: BRESSON Guylann  
 **Projet**: IA-ATOMIQUE v1.0 + Edge Enhancement  
 **Date**: Janvier 2026  
-**Statut**:  Implemente et teste
+**Statut**:  Implémenté et testé

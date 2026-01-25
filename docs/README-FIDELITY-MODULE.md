@@ -1,25 +1,25 @@
 # IA-ATOMIQUE Phase 15 : Module Anti-Hallucination
 
-## � Resume
+## � Résumé
 
-Ce module implemente **6 strategies mathematiquement formalisees** pour emp�cher Phase 15 d'inventer du contenu non present dans le texte source.
+Ce module implémente **6 stratégies mathématiquement formalisées** pour emp�cher Phase 15 d'inventer du contenu non présent dans le texte source.
 
-**Probl�me resolu** : 
-- Phase 15 �tape 2 generait du contenu hallucin (inventa concepts)
-- Aucune verification de fidelite au texte source
+**Probl�me résolu** : 
+- Phase 15 �tape 2 générait du contenu hallucin (inventa concepts)
+- Aucune vérification de fidélité au texte source
 
 **Solution** :
-- Score de fidelite Ff(R,T) = |C(R)�C(T)| / |C(R)|
-- Hybridation automatique : generation si fid�le (Ff  80%), sinon extraction garantie
+- Score de fidélité Ff(R,T) = |C(R)�C(T)| / |C(R)|
+- Hybridation automatique : génération si fid�le (Ff  80%), sinon extraction garantie
 
 ---
 
-##  Caracteristiques principales
+##  Caractéristiques principales
 
- **Zero hallucination garantie** (via fallback extractif)  
- **Decision automatique** (hybridation intelligente)  
- **Mathematiquement formalise** (6 strategies, theor�me de garantie)  
- **Performant** (< 100ms par resume)  
+ **Zéro hallucination garantie** (via fallback extractif)  
+ **Décision automatique** (hybridation intelligente)  
+ **Mathématiquement formalisé** (6 stratégies, théor�me de garantie)  
+ **Performant** (< 100ms par résumé)  
  **Production-ready** (5 fichiers, 500+ lignes de code, tests passants)  
 
 ---
@@ -29,10 +29,10 @@ Ce module implemente **6 strategies mathematiquement formalisees** pour emp�ch
 ```
 IA-ATOMIQUE-/
  database/
-    fidelity_check.go           Implementation core
+    fidelity_check.go           Implémentation core
  fidelity_commands.go            CLI commands
- main.go                         Integration
- PHASE-15-ANTI-HALLUCINATION.md  Doc mathematique
+ main.go                         Intégration
+ PHASE-15-ANTI-HALLUCINATION.md  Doc mathématique
  FIDELITY_QUICKSTART.md          Guide utilisateur
  CHANGELOG-PHASE-15...md         Changelog
  INTEGRATION-EXAMPLES.go         Exemples code
@@ -40,7 +40,7 @@ IA-ATOMIQUE-/
 
 ---
 
-##  Demarrage 30 secondes
+##  Démarrage 30 secondes
 
 ### 1. Compiler
 ```bash
@@ -52,7 +52,7 @@ go build -o programme
 ./programme fidelity test
 ```
 
-**Resultat** :
+**Résultat** :
 ```
 [TEST: Technique Simple]
   Fidelity: 100.00% 
@@ -63,49 +63,49 @@ go build -o programme
 ./programme fidelity file mon_texte.txt
 ```
 
-**Resultat** : Rapport genere avec decision hybride
+**Résultat** : Rapport généré avec décision hybride
 
 ---
 
-##  Formule fidelite
+##  Formule fidélité
 
 $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
-**Interpretation** :
-- 0.90+ :  EXCELLENT  Garder resume genere
-- 0.80-0.90 :  BON  Garder resume genere
+**Interprétation** :
+- 0.90+ :  EXCELLENT  Garder résumé généré
+- 0.80-0.90 :  BON  Garder résumé généré
 - 0.70-0.80 :  ACCEPTABLE  Vigilance
 - 0.60-0.70 :  FAIBLE  Utiliser extractif
 - < 0.60 :  CRITIQUE  FORCER extractif
 
 ---
 
-##  6 Strategies
+##  6 Stratégies
 
 ### A. Extraction TF-IDF (Extractive)
--  Fidelite : 100%
--  Zero hallucination
+-  Fidélité : 100%
+-  Zéro hallucination
 -  Moins naturel
 
 ### B. Filtrage (Corrective Filter)
--  Simplifie
+-  Simplifié
 -  Peut fragmenter le texte
--  Fidelite variable
+-  Fidélité variable
 
-### C. Hybridation (RECOMMAND�E )
--  Meilleur des deux : generation si fid�le, extraction sinon
--  Zero hallucination garantie
+### C. Hybridation (RECOMMAND�E )
+-  Meilleur des deux : génération si fid�le, extraction sinon
+-  Zéro hallucination garantie
 -  Texte plus naturel
 - **UTILISER CELLE-CI**
 
-### D. Similarite vectorielle
--  Basee sur embeddings
--  Implementation heuristique actuellement
--  Future : integrer BERT
+### D. Similarité vectorielle
+-  Basée sur embeddings
+-  Implémentation heuristique actuellement
+-  Future : intégrer BERT
 
-### E & F. Reservees futures
-- Ponderation adaptive
-- Detection contexte specifique
+### E & F. Réservées futures
+- Pondération adaptive
+- Détection contexte spécifique
 
 ---
 
@@ -115,62 +115,62 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 ```go
 import "IA-ATOMIQUE/database"
 
-// Generer resume Phase 15
+// Générer résumé Phase 15
 summary := database.ResumerTexte(text, 0.3)
 
-// Appliquer verification fidelite avec fallback
+// Appliquer vérification fidelité avec fallback
 final, fidelity, mode := database.HybridResume(
     summary,
     originalText,
-    0.80, // seuil fidelite
+    0.80, // seuil fidélité
 )
 
-// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination detectee)"
+// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
-### Approche personnalisee : Extraction pure
+### Approche personnalisée : Extraction pure
 ```go
-// 100% zero hallucination
+// 100% zéro hallucination
 extracted := database.ExtractiveResume(text, 0.3)
 ```
 
 ---
 
-##  Resultats de tests
+##  Résultats de tests
 
-| Test | Texte | Source | Generated | Fidelite | Mode |
+| Test | Texte | Source | Generated | Fidélité | Mode |
 |---|---|---|---|---|---|
-| 1 | Technique simple | 28 mots | 10 mots | 100% |  Genere |
-| 2 | Encyclopedie | 29 mots | 10 mots | 100% |  Genere |
+| 1 | Technique simple | 28 mots | 10 mots | 100% |  Généré |
+| 2 | Encyclopédie | 29 mots | 10 mots | 100% |  Généré |
 | 3 | IA-ATOMIQUE | 167 mots | 50 mots | 38% |  Extractif |
-| 4 | Mesange huppee | 8080 mots | 2374 mots | 1.42% |  Extractif |
+| 4 | Mésange huppée | 8080 mots | 2374 mots | 1.42% |  Extractif |
 
-**Interpretation** : Tests 3 & 4 montrent la detection d'hallucination fonctionnant correctement !
+**Interprétation** : Tests 3 & 4 montrent la détection d'hallucination fonctionnant correctement !
 
 ---
 
-##  Metriques
+##  Métriques
 
-| Metrique | Valeur |
+| Métrique | Valeur |
 |---|---|
 | Temps analyse | < 100ms |
-| Memoire | < 10 MB |
-| Precision detection | 100% |
+| Mémoire | < 10 MB |
+| Précision détection | 100% |
 | Faux positifs | 0 |
-| Faux negatifs | 0 |
-| Performance scalabilite | O(n log m) |
+| Faux négatifs | 0 |
+| Performance scalabilité | O(n log m) |
 
 ---
 
 ##  Configuration
 
-### Seuil fidelite (recommandation)
+### Seuil fidélité (recommandation)
 
 ```go
-// Production generale
+// Production générale
 tau := 0.80
 
-// Domaines critiques (medical, legal)
+// Domaines critiques (médical, légal)
 tau := 0.90
 
 // Domaines flexibles (fiction)
@@ -193,9 +193,9 @@ technicalPatterns := []string{
 - [ ] Compiler : `go build -o programme`
 - [ ] Tester : `./programme fidelity test`
 - [ ] Analyser fichier : `./programme fidelity file input.txt`
-- [ ] Integrer dans Phase 15 (voir INTEGRATION-EXAMPLES.go)
-- [ ] Valider sur corpus reel
-- [ ] Ajuster seuil si necessaire
+- [ ] Intégrer dans Phase 15 (voir INTEGRATION-EXAMPLES.go)
+- [ ] Valider sur corpus réel
+- [ ] Ajuster seuil si nécessaire
 
 ---
 
@@ -203,47 +203,47 @@ technicalPatterns := []string{
 
 | Document | Contenu |
 |---|---|
-| **PHASE-15-ANTI-HALLUCINATION.md** | Mathematique compl�te + theor�me |
+| **PHASE-15-ANTI-HALLUCINATION.md** | Mathématique compl�te + théor�me |
 | **FIDELITY_QUICKSTART.md** | Guide utilisateur simple |
-| **CHANGELOG-PHASE-15...md** | Detail des changements |
-| **INTEGRATION-EXAMPLES.go** | Exemples code d'integration |
+| **CHANGELOG-PHASE-15...md** | Détail des changements |
+| **INTEGRATION-EXAMPLES.go** | Exemples code d'intégration |
 | **Ce README** | Vue d'ensemble |
 
 ---
 
 ##  Important
 
-### Garanties mathematiques
+### Garanties mathématiques
 
-**Theor�me** : Si strategie C (hybridation) avec � = 0.80 :
-- Alors resume final = 0% hallucination garantie
-- (Extraction pure si aucune fidelite)
+**Théor�me** : Si stratégie C (hybridation) avec � = 0.80 :
+- Alors résumé final = 0% hallucination garantie
+- (Extraction pure si aucune fidélité)
 
 **Preuve** : Voir PHASE-15-ANTI-HALLUCINATION.md
 
 ### Limitations
 
-- Vocabulaire technique limite � domaine IA-ATOMIQUE (enrichissable)
+- Vocabulaire technique limité � domaine IA-ATOMIQUE (enrichissable)
 - Embeddings actuellement heuristiques (BERT future)
-- Necessite texte en fran�ais ou compatible
+- Nécessite texte en fran�ais ou compatible
 
 ---
 
-##  Futures ameliorations
+##  Futures améliorations
 
-- [ ] BERT embeddings reels
+- [ ] BERT embeddings réels
 - [ ] Support multi-langue (EN, DE, ES)
 - [ ] Dashboard UI
-- [ ] ML prediction avant generation
+- [ ] ML prediction avant génération
 - [ ] Feedback loop utilisateur
 
 ---
 
-## � Questions ?
+## � Questions ?
 
 **Consulter** :
 1. `FIDELITY_QUICKSTART.md`  utilisation basique
-2. `PHASE-15-ANTI-HALLUCINATION.md`  theorie compl�te
+2. `PHASE-15-ANTI-HALLUCINATION.md`  théorie compl�te
 3. `INTEGRATION-EXAMPLES.go`  exemples code
 4. Source : `database/fidelity_check.go`
 
@@ -251,12 +251,12 @@ technicalPatterns := []string{
 
 ##  Licence
 
-M�me que IA-ATOMIQUE
+M�me que IA-ATOMIQUE
 
 ---
 
 **Statut** :  Production-ready  
 **Version** : 1.0 (8 janvier 2026)  
-**Compile** : Go 1.22.2  
+**Compilé** : Go 1.22.2  
 **Tests** :  Tous passants  
 **Maintenance** : Actif

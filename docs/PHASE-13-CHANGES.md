@@ -1,7 +1,7 @@
 # Phase 13+++ - Code Changes Summary
 
 ##  Overview
-This document lists all code modifications made for Phase 13+++: Normalisation Lexicale Avancee.
+This document lists all code modifications made for Phase 13+++: Normalisation Lexicale Avancée.
 
 **Total Lines Added**: ~250  
 **Files Modified**: 3  
@@ -157,7 +157,7 @@ return result
 
 **After**:
 ```go
-// === PHASE 13+++: Fen�trage strict - Force lexical diversity between consecutive blocks ===
+// === PHASE 13+++: Fen�trage strict - Force lexical diversity between consecutive blocks ===
 result := []BlocVectoriel{}
 for i, bloc := range r.Blocs {
     if selectedIndices[i] {
@@ -217,7 +217,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
         }
     }
 
-    // Calculate Jaccard similarity: |A � B| / |A  B|
+    // Calculate Jaccard similarity: |A � B| / |A  B|
     intersection := 0
     for mot := range vocab1 {
         if vocab2[mot] {
@@ -247,7 +247,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
 
 **Before**:
 ```go
-// TF-IDF = TF � IDF
+// TF-IDF = TF � IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -262,7 +262,7 @@ for _, mot := range vocab {
 
 **After**:
 ```go
-// TF-IDF = TF � IDF
+// TF-IDF = TF � IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -323,26 +323,26 @@ import (
 ```go
 // === PHASE 13+++: Contextual synonyms dictionary ===
 var SynonymsDict = map[string][]string{
-    "malheureux":   {"regrettable", "desole", "f�cheux", "malheureux"},
-    "changer":      {"modifier", "transformer", "alterer", "changer"},
+    "malheureux":   {"regrettable", "désolé", "f�cheux", "malheureux"},
+    "changer":      {"modifier", "transformer", "altérer", "changer"},
     "important":    {"crucial", "essentiel", "vital", "important"},
-    "different":    {"distinct", "varie", "divers", "different"},
-    "donne":        {"gen�re", "fournit", "conduit", "donne"},
-    "avoir":        {"posseder", "detenir", "disposer de", "avoir"},
-    "�tre":         {"constituer", "representer", "figurer", "�tre"},
-    "faire":        {"effectuer", "realiser", "accomplir", "faire"},
-    "donner":       {"attribuer", "procurer", "conferer", "donner"},
-    "montrer":      {"demontrer", "reveler", "illustrer", "montrer"},
-    "monde":        {"univers", "domaine", "sph�re", "monde"},
-    "jour":         {"epoque", "periode", "moment", "jour"},
-    "suivant":      {"ulterieur", "posterieur", "subsequent", "suivant"},
-    "simple":       {"elementaire", "basique", "rudimentaire", "simple"},
-    "nouveau":      {"inedit", "recent", "moderne", "nouveau"},
+    "différent":    {"distinct", "varié", "divers", "différent"},
+    "donne":        {"gén�re", "fournit", "conduit", "donne"},
+    "avoir":        {"posséder", "détenir", "disposer de", "avoir"},
+    "�tre":         {"constituer", "représenter", "figurer", "�tre"},
+    "faire":        {"effectuer", "réaliser", "accomplir", "faire"},
+    "donner":       {"attribuer", "procurer", "conférer", "donner"},
+    "montrer":      {"démontrer", "révéler", "illustrer", "montrer"},
+    "monde":        {"univers", "domaine", "sph�re", "monde"},
+    "jour":         {"époque", "période", "moment", "jour"},
+    "suivant":      {"ultérieur", "postérieur", "subséquent", "suivant"},
+    "simple":       {"élémentaire", "basique", "rudimentaire", "simple"},
+    "nouveau":      {"inédit", "récent", "moderne", "nouveau"},
     "certain":      {"quelque", "divers", "maints", "certain"},
     "cas":          {"situation", "contexte", "occurrence", "cas"},
-    "nombre":       {"quantite", "multitude", "plusieurs", "nombre"},
+    "nombre":       {"quantité", "multitude", "plusieurs", "nombre"},
     "fois":         {"occasion", "moment", "instant", "fois"},
-    "realite":      {"verite", "fait", "actualite", "realite"},
+    "réalité":      {"vérité", "fait", "actualité", "réalité"},
 }
 ```
 
@@ -427,7 +427,7 @@ mots = motsFiltres
 2.  Added call to `NormaliserRepetitionsBlocs()` in `Decouper()`
 3.  Implemented `NormaliserRepetitionsBlocs()` function
 4.  Modified scoring in `SelectionnerBlocsAvecFenetrageGlissant()`
-5.  Added strict fen�trage logic
+5.  Added strict fen�trage logic
 6.  Implemented `CalculerSimilarityVocabLexical()` function
 
 ### generation.go (1 change, ~15 lines)

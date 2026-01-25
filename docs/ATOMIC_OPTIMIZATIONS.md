@@ -5,9 +5,9 @@
 
 ---
 
-## ï¿½ Overview
+## ‹ Overview
 
-Implementation complï¿½te du **modï¿½le mathematique optimise** pour les interactions atomiques avec 4 optimisations majeures:
+Implementation complÃte du **modÃle mathÃ©matique optimisÃ©** pour les interactions atomiques avec 4 optimisations majeures:
 
 | Optimization | Reduction | Speedup | Implementation |
 |--------------|-----------|---------|-----------------|
@@ -18,7 +18,7 @@ Implementation complï¿½te du **modï¿½le mathematique optimise** pour les interac
 
 ---
 
-## 1ï¿½ MATHEMATICAL FOUNDATION
+## 1£ MATHEMATICAL FOUNDATION
 
 ### Core Equations Implemented
 
@@ -43,7 +43,7 @@ $$R(s_i(t), s_j(t)) \approx R(s_i(t-1), s_j(t-1)) + \Delta s_i + \Delta s_j$$
 
 ---
 
-## 2ï¿½ OPTIMIZATION STRATEGIES
+## 2£ OPTIMIZATION STRATEGIES
 
 ### A) Top-K Neighbor Selection
 
@@ -87,8 +87,8 @@ func VectorizedStateUpdate(network *AtomicNetwork, alpha, beta, sigma float64,
 
 **Solution**: 8-bit states, 16-bit weights
 ```go
-// Before: 100 atoms ï¿½ 100 neighbors ï¿½ (8 + 8 + 8 bytes) = ~240 KB
-// After:  100 atoms ï¿½ 100 neighbors ï¿½ (1 + 2 bytes) = ~30 KB (87.5% reduction)
+// Before: 100 atoms Ã 100 neighbors Ã (8 + 8 + 8 bytes) = ~240 KB
+// After:  100 atoms Ã 100 neighbors Ã (1 + 2 bytes) = ~30 KB (87.5% reduction)
 
 QuantizeState(float64) uint8       // [0,1]  [0,255]
 QuantizeWeight(float64) int16      // [0,1]  [0,32767]
@@ -110,7 +110,7 @@ func CalculateResonanceIncremental(prevResonance, deltaStateI, deltaStateJ, sigm
 
 ---
 
-## 3ï¿½ FILE STRUCTURE
+## 3£ FILE STRUCTURE
 
 ### New Files Created
 
@@ -146,7 +146,7 @@ case "atomic-optimized":
 
 ---
 
-## 4ï¿½ USAGE & COMMANDS
+## 4£ USAGE & COMMANDS
 
 ### Optimized Simulation
 ```bash
@@ -181,7 +181,7 @@ Example:
 
 ---
 
-## 5ï¿½ PERFORMANCE RESULTS
+## 5£ PERFORMANCE RESULTS
 
 ### Test 1: Basic Simulation (100 atoms, 100 iter)
 ```
@@ -211,7 +211,7 @@ REDUCTION: 95.5% (from 110  5)
 ### Test 3: Benchmark (300 atoms, 100 iter)
 ```
  k    Time (ms)  Speedup 
-ï¿½ï¿½ï¿½
+¼¼¤
   2     155.81    1.00x  
   5     141.86    1.10x  
  10     144.14    1.08x  
@@ -223,7 +223,7 @@ Recommendation: k=5-10 for best balance
 
 ---
 
-## 6ï¿½ THEORETICAL ANALYSIS
+## 6£ THEORETICAL ANALYSIS
 
 ### Computational Complexity
 
@@ -249,8 +249,8 @@ Savings: 87.5%
 
 #### Weights Quantization
 ```
-Float64: 8 bytes/weight ï¿½ 110 neighbors = 88 KB per atom
-Int16:   2 bytes/weight ï¿½ 110 neighbors = 22 KB per atom  
+Float64: 8 bytes/weight Ã 110 neighbors = 88 KB per atom
+Int16:   2 bytes/weight Ã 110 neighbors = 22 KB per atom  
 Savings: 75%
 ```
 
@@ -261,7 +261,7 @@ Savings: 75%
 
 ---
 
-## 7ï¿½ KEY INSIGHTS
+## 7£ KEY INSIGHTS
 
 ### Why It Works
 
@@ -293,7 +293,7 @@ Savings: 75%
 
 ---
 
-## 8ï¿½ FUTURE OPTIMIZATIONS
+## 8£ FUTURE OPTIMIZATIONS
 
 ### Possible Enhancements
 1. **GPU Acceleration** (CUDA/OpenCL)
@@ -315,7 +315,7 @@ Savings: 75%
 
 ---
 
-## 9ï¿½ ACADEMIC FRAMING
+## 9£ ACADEMIC FRAMING
 
 ### Publication-Ready Statement
 

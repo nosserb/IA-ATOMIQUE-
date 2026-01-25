@@ -1,36 +1,36 @@
-#  SYNTH�SE: Reorientation Paradigmatique Compl�te
+#  SYNTH�SE: Réorientation Paradigmatique Compl�te
 
-## Ce Que Nous Avons Transforme
+## Ce Que Nous Avons Transformé
 
 ###  AVANT: "Pixel-by-pixel Generation"
-- Pensee: "Chaque pixel = decision independante"
-- Approche: Reseau neuronal geant (GAN/Diffusion)
-- Resultat: Bo�te noire, co�teux, lent, necessite GPU
-- Probl�me: **Vous ne savez pas comment �a marche**
+- Pensée: "Chaque pixel = décision indépendante"
+- Approche: Réseau neuronal géant (GAN/Diffusion)
+- Résultat: Bo�te noire, co�teux, lent, nécessite GPU
+- Probl�me: **Vous ne savez pas comment �a marche**
 
-###  APR�S: "Constraint Relaxation Physics"
-- Pensee: "Chaque atome minimise sa tension locale"
-- Approche: Syst�me physique en equilibre
-- Resultat: Transparence totale, rapide, aucun GPU
-- Avantage: **Vous pouvez comprendre et modifier en temps reel**
+###  APR�S: "Constraint Relaxation Physics"
+- Pensée: "Chaque atome minimise sa tension locale"
+- Approche: Syst�me physique en équilibre
+- Résultat: Transparence totale, rapide, aucun GPU
+- Avantage: **Vous pouvez comprendre et modifier en temps réel**
 
 ---
 
-## Le Saut Conceptuel Cle
+## Le Saut Conceptuel Clé
 
 ### L'Ancienne Vision
 ```
-Image =  decisions de pixels independants
-       = sortie d'un reseau neural P(image | prompt)
+Image =  décisions de pixels indépendants
+       = sortie d'un réseau neural P(image | prompt)
 ```
-**Probl�me**: Pas de garantie de coherence globale.
+**Probl�me**: Pas de garantie de cohérence globale.
 
 ### La Nouvelle Vision
 ```
-Image = equilibre minimisant l'energie libre locale
+Image = équilibre minimisant l'énergie libre locale
       = solution de E/state_i = 0 pour tous les atomes
 ```
-**Avantage**: Coherence **garantie par la physique**.
+**Avantage**: Cohérence **garantie par la physique**.
 
 ---
 
@@ -39,66 +39,66 @@ Image = equilibre minimisant l'energie libre locale
 ```
 
   NIVEAU 3: CHAMP GLOBAL (Faible influence 5%)  
-   Luminosite moyenne                           
+   Luminosité moyenne                           
    Direction des ombres                         
-   Symetrie cible                               
-   Coherence texture                            
+   Symétrie cible                               
+   Cohérence texture                            
    N'impose rien, juste "pression"            
-�
+�
                influence 
 
-  NIVEAU 2: MOTIFS (�mergents)                   
-   Regions coherentes (BFS clustering)          
-   Bords detectes                               
+  NIVEAU 2: MOTIFS (�mergents)                   
+   Régions cohérentes (BFS clustering)          
+   Bords détectés                               
    Gradients locaux                             
-   Symetries observees                          
-   �merge naturellement, pas programme        
-�
+   Symétries observées                          
+   �merge naturellement, pas programmé        
+�
                contraintes 
 
   NIVEAU 1: ATOMES (Interactions Locales)        
-   256^2 ou 512^2 atomes (pixels/patches)         
-   �tat: {R,G,B, intensity, orientation, ...}  
+   256² ou 512² atomes (pixels/patches)         
+   �tat: {R,G,B, intensity, orientation, ...}  
    Chacun minimise E_local uniquement            
    Interagit avec 8 voisins                     
-   Les briques de base du syst�me             
-�
+   Les briques de base du syst�me             
+�
 ```
 
 ---
 
-## Fonction d'�nergie: Le C�ur du Syst�me
+## Fonction d'�nergie: Le C�ur du Syst�me
 
 Chaque atome i minimise:
 
-$$E_i = E_{continuite} + E_{gradient} + E_{texture} + E_{confiance} + E_{champ}$$
+$$E_i = E_{continuité} + E_{gradient} + E_{texture} + E_{confiance} + E_{champ}$$
 
 **Terme par terme**:
 
-### 1. Continuite (Cohesion spatiale)
-$$E_{continuite} = \sum_{j \in N(i)} ||C_i - C_j||^2 + |I_i - I_j|$$
-- Penalise les couleurs trop differentes des voisins
+### 1. Continuité (Cohésion spatiale)
+$$E_{continuité} = \sum_{j \in N(i)} ||C_i - C_j||^2 + |I_i - I_j|$$
+- Pénalise les couleurs trop différentes des voisins
 - Favorise les transitions lisses (sauf aux bords)
 
 ### 2. Gradients (Alignement)
 $$E_{gradient} = \sum_{j} |\theta_i - \theta_j|$$
 - Aligne les orientations locales
-- Cree des structures coherentes
+- Crée des structures cohérentes
 
-### 3. Texture (Homogeneite)
+### 3. Texture (Homogénéité)
 $$E_{texture} = |T_i - \text{moyenne}(T_j)|$$
 - Texture ne saute pas brutalement
-- Regularise les micro-variations
+- Régularise les micro-variations
 
-### 4. Confiance (Stabilite)
+### 4. Confiance (Stabilité)
 $$E_{confiance} = (1 - c_i)$$
-- Favorise les etats stables
-- Augmente confiance si energie baisse
+- Favorise les états stables
+- Augmente confiance si énergie baisse
 
 ### 5. Champ Global (Influence faible)
 $$E_{champ} = w_{global} \times \left( |B_i - B_{global}| + |\theta_i - \theta_{shadow}| \right)$$
-- $w_{global} = 0.05-0.15$ (tr�s faible!)
-- Attrait doux vers proprietes globales
+- $w_{global} = 0.05-0.15$ (tr�s faible!)
+- Attrait doux vers propriétés globales
 - Pas une contrainte rigide
 
 ---
@@ -107,44 +107,44 @@ $$E_{champ} = w_{global} \times \left( |B_i - B_{global}| + |\theta_i - \theta_{
 
 ```go
 for iteration := 0; iteration < maxIterations; iteration++ {
-    // Phase 1: Chaque atome calcule son energie locale
+    // Phase 1: Chaque atome calcule son énergie locale
     for atom := range atoms {
         energy := ComputeLocalEnergy(atom)
         atom.LastEnergy = energy
     }
     
-    // Phase 2: Gradient descent - reduire l'energie
-    for atom := range atoms {  // Parallelisable!
-        deltaColor := -� * E/Color        // Gradient
-        deltaOrientation := -� * E/�      // Gradient
+    // Phase 2: Gradient descent - réduire l'énergie
+    for atom := range atoms {  // Parallélisable!
+        deltaColor := -� * E/Color        // Gradient
+        deltaOrientation := -� * E/�      // Gradient
         
         atom.Color += deltaColor
         atom.Orientation += deltaOrientation
         atom.Clamp()  // [0, 1]
     }
     
-    // Phase 3: AUTO-R��VALUATION
+    // Phase 3: AUTO-R��VALUATION
     totalEnergy := SumAllEnergies()
     if totalEnergy > previousEnergy {
-        // Mauvaise direction! Penaliser
+        // Mauvaise direction! Pénaliser
         IncreaseAtomDamping()
         ReduceGlobalFieldInfluence()
     }
     
-    // Phase 4: Detection d'oscillations
+    // Phase 4: Détection d'oscillations
     oscillating := CountAtomsThatChangedDirection()
     if oscillating > 30% {
         ReduceGlobalFieldInfluence()
     }
     
-    // Phase 5: Arr�t si convergence
+    // Phase 5: Arr�t si convergence
     if EnergyChange < 0.001 && PlateauIterations > 200 {
-        break  // �quilibre atteint!
+        break  // �quilibre atteint!
     }
 }
 ```
 
-**Cle importante**: **Tout est parallelisable** (atomes independants en Phase 2).
+**Clé importante**: **Tout est parallélisable** (atomes indépendants en Phase 2).
 
 ---
 
@@ -153,51 +153,51 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 ### Pourquoi c'est plus rapide et meilleur?
 
 ```
-Phase 1: Patches 16�16 (200 atomes)
- Peu d'atomes = converge TR�S vite
- 100-150 iterations seulement
- Structure globale etablie
+Phase 1: Patches 16�16 (200 atomes)
+ Peu d'atomes = converge TR�S vite
+ 100-150 itérations seulement
+ Structure globale établie
 
-Phase 2: Patches 8�8 (1000 atomes)
- Initialise � partir de Phase 1 (dej� bien organise)
- Commence pr�s d'une solution viable
- 200 iterations suffisent
- Details intermediaires
+Phase 2: Patches 8�8 (1000 atomes)
+ Initialise � partir de Phase 1 (déj� bien organisé)
+ Commence pr�s d'une solution viable
+ 200 itérations suffisent
+ Détails intermédiaires
 
-Phase 3: Patches 4�4 (4000 atomes)
- Initialise � partir de Phase 2 (excellent point de depart)
+Phase 3: Patches 4�4 (4000 atomes)
+ Initialise � partir de Phase 2 (excellent point de départ)
  Converge rapidement vers raffinement final
- 250 iterations pour qualite
- Resultat haute resolution
+ 250 itérations pour qualité
+ Résultat haute résolution
 ```
 
-**Resultat**: ~3-5� plus rapide qu'une seule phase longue.
+**Résultat**: ~3-5� plus rapide qu'une seule phase longue.
 
 ---
 
-## Mesures Quantitatives en Temps Reel
+## Mesures Quantitatives en Temps Réel
 
 ### Total Energy
-- Diminue reguli�rement (signe de convergence)
-- Plateu = equilibre trouve
-- Plus bas = meilleur equilibre
+- Diminue réguli�rement (signe de convergence)
+- Plateu = équilibre trouvé
+- Plus bas = meilleur équilibre
 
 ### Average Local Energy
 - Moyenne des tensions par atome
 - Doit tendre vers un stable ~0.3-0.5
-- Si trop bas = syst�me trop rigide
+- Si trop bas = syst�me trop rigide
 - Si trop haut = encore du chaos
 
 ### Stability Score
 - **-1.0**: Oscillations massives (atomes changent direction)
-- **0.0**: Leg�rement instable
+- **0.0**: Lég�rement instable
 - **+0.5**: Stable
-- **+1.0**: Tr�s stable (plateau atteint)
+- **+1.0**: Tr�s stable (plateau atteint)
 
 ### Oscillating Atoms %
 - Atomes qui changent de direction = mauvais signe
 - Doit chuter de 90%+  proche 0%
-- Si reste haut = reduire global field influence
+- Si reste haut = réduire global field influence
 
 ---
 
@@ -217,35 +217,35 @@ Phase 3: Patches 4�4 (4000 atomes)
 
 ---
 
-## Cas d'Usage Ideals
+## Cas d'Usage Idéals
 
- **Generation procedurale** (jeux, mondes, textures)  
- **Art mathematique** (fractales, geometrie)  
- **Visualisation temps reel** (modification live)  
- **Edge/Embedded** (telephones, robots)  
- **Securite** (pas de dataset, aucun biais)  
+ **Génération procédurale** (jeux, mondes, textures)  
+ **Art mathématique** (fractales, géométrie)  
+ **Visualisation temps réel** (modification live)  
+ **Edge/Embedded** (téléphones, robots)  
+ **Sécurité** (pas de dataset, aucun biais)  
  **Adaptation** (contraintes changent  image change)  
- **Controle creatif** (ajustement fin des param�tres)  
+ **Contrôle créatif** (ajustement fin des param�tres)  
 
- **Photorealism ultra** (style hyper-realiste)  
- **Portraits complexes** (details fins d'expression)  
- **Imitation d'artiste** (apprentissage de style tr�s specifique)  
+ **Photorealism ultra** (style hyper-réaliste)  
+ **Portraits complexes** (détails fins d'expression)  
+ **Imitation d'artiste** (apprentissage de style tr�s spécifique)  
 
 ---
 
 ## Commandes Principales
 
 ```bash
-# Generation basique
+# Génération basique
 ./programme energy generate 256 256 200 8
 
 # Avec contraintes
 ./programme energy generate 512 512 300 8 "dark sharp"
 
-# Multi-phase (meilleure qualite)
+# Multi-phase (meilleure qualité)
 ./programme energy multi-phase
 
-# Analyse detaillee
+# Analyse détaillée
 ./programme energy analyze
 
 # Relaxation continue
@@ -254,11 +254,11 @@ Phase 3: Patches 4�4 (4000 atomes)
 
 ---
 
-## Performance Reelle
+## Performance Réelle
 
 ```
 Hardware: CPU (pas de GPU)
-Image: 256�256 (32�32 grid @ 8�8 patches)
+Image: 256�256 (32�32 grid @ 8�8 patches)
 Time: 0.387 seconds
 Atoms: 1024
 Iterations: 100
@@ -268,76 +268,76 @@ Iterations: 100
  Total: ~0.4 sec for convergence
 ```
 
-**Conclusion**: Assez rapide pour temps reel, assez beau pour inter�t visuel.
+**Conclusion**: Assez rapide pour temps réel, assez beau pour intér�t visuel.
 
 ---
 
-## La Revolution Conceptuelle
+## La Révolution Conceptuelle
 
-### Ce qu'on a inverse:
+### Ce qu'on a inversé:
 
 **Avant**:
 ```
-Problem: "Generez une image"
-Solution: Train enorme reseau sur donnees
-Result: Bo�te noire, co�teux, lent
+Problem: "Générez une image"
+Solution: Train énorme réseau sur données
+Result: Bo�te noire, co�teux, lent
 ```
 
 **Maintenant**:
 ```
-Problem: "Relaxez un syst�me vers equilibre"
-Solution: Definissez fonction d'energie, iterez
+Problem: "Relaxez un syst�me vers équilibre"
+Solution: Définissez fonction d'énergie, itérez
 Result: Transparent, rapide, adaptable
 ```
 
-### Pourquoi c'est revolutionnaire?
+### Pourquoi c'est révolutionnaire?
 
-1. **Physique, pas empirisme** - Repose sur des lois d'equilibre, pas sur pattern matching
-2. **Adaptation instantanee** - Changez contraintes  changement immediat
-3. **Pas de training** - Aucune donnee necessaire, c'est juste de la physique
-4. **Explainabilite totale** - Vous comprenez chaque decision
-5. **Scalabilite** - Fonctionne � toute resolution
+1. **Physique, pas empirisme** - Repose sur des lois d'équilibre, pas sur pattern matching
+2. **Adaptation instantanée** - Changez contraintes  changement immédiat
+3. **Pas de training** - Aucune donnée nécessaire, c'est juste de la physique
+4. **Explainabilité totale** - Vous comprenez chaque décision
+5. **Scalabilité** - Fonctionne � toute résolution
 
 ---
 
-## Prochaines �tapes
+## Prochaines �tapes
 
-### Immediat (Semaines)
--  Implementer relaxation d'energie de base
+### Immédiat (Semaines)
+-  Implémenter relaxation d'énergie de base
 -  Multi-phase coarse-to-fine
--  Detection de patterns
-- [ ] Visualiser la relaxation en temps reel
+-  Détection de patterns
+- [ ] Visualiser la relaxation en temps réel
 - [ ] Ajouter plus de types de contraintes
 
 ### Court Terme (Mois)
 - [ ] Couches de features apprises (pour photorealism)
-- [ ] Guidance par texte (prompt  champ spatialise)
-- [ ] �dition interactive (voir changements live)
-- [ ] Super-resolution atomique
+- [ ] Guidance par texte (prompt  champ spatialisé)
+- [ ] �dition interactive (voir changements live)
+- [ ] Super-résolution atomique
 
-### Long Terme (Annees)
-- [ ] Fusion avec mod�les specialises
-- [ ] Vision adaptative (feedback camera)
-- [ ] Generation temps reel 30+ FPS
+### Long Terme (Années)
+- [ ] Fusion avec mod�les spécialisés
+- [ ] Vision adaptative (feedback caméra)
+- [ ] Génération temps réel 30+ FPS
 - [ ] Applications robotique
 
 ---
 
 ## Philosophie Finale
 
-> **Une image n'est pas calculee.**
+> **Une image n'est pas calculée.**
 > 
-> **Elle est relaxee.**
+> **Elle est relaxée.**
 > 
-> **Des contraintes locales creent une coherence globale.**
+> **Des contraintes locales créent une cohérence globale.**
 > 
-> **Les atomes trouvent naturellement leur equilibre.**
+> **Les atomes trouvent naturellement leur équilibre.**
 
-C'est la m�me physique que:
+C'est la m�me physique que:
 - Cristaux croissant
 - Motifs biologiques
-- Syst�mes complexes auto-organises
-- Univers lui-m�me
+- Syst�mes complexes auto-organisés
+- Univers lui-m�me
 
 ---
 
@@ -345,10 +345,10 @@ C'est la m�me physique que:
 
 Nous ne sommes pas au niveau de DALL-E pour le photorealism.
 
-**MAIS**: Nous avons quelque chose de bien plus interessant.
+**MAIS**: Nous avons quelque chose de bien plus intéressant.
 
-Une approche **physique** plutot qu'empirique.  
-Une approche **comprehensible** plutot que bo�te noire.  
+Une approche **physique** plutôt qu'empirique.  
+Une approche **compréhensible** plutôt que bo�te noire.  
 Une approche **adaptable** sans retraining.  
 Une approche **embedded-friendly** sans GPU.  
 
@@ -358,5 +358,5 @@ Quelque chose que **personne d'autre ne fait**.
 
 **Date**: Janvier 2026  
 **Paradigme**: Energy-Based Constraint Relaxation  
-**Status**:  Operationnel et teste  
+**Status**:  Opérationnel et testé  
 **Philosophie**: Local Interactions  Global Coherence Emerges

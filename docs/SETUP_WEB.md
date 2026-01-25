@@ -1,21 +1,21 @@
-#  Interface Web IA-ATOMIQUE - Configuration Terminee
+#  Interface Web IA-ATOMIQUE - Configuration Terminée
 
-##  Qu'est-ce qui a ete cree?
+##  Qu'est-ce qui a été créé?
 
-###  Fichiers crees:
+###  Fichiers créés:
 ```
 web/
  index.html      # Interface principale
- style.css       # Styles modernes et epures
- script.js       # Logique cote client
- demo.html       # Page de demonstration
+ style.css       # Styles modernes et épurés
+ script.js       # Logique côté client
+ demo.html       # Page de démonstration
 
 web.go             # Serveur HTTP et API Go
 start-web.sh       # Script de lancement facile
-WEB_README.md      # Documentation compl�te
+WEB_README.md      # Documentation compl�te
 ```
 
-##  Demarrage Rapide
+##  Démarrage Rapide
 
 ### Lancer le serveur:
 ```bash
@@ -27,35 +27,35 @@ Ou directement:
 ./programme web
 ```
 
-### Acceder � l'interface:
+### Accéder � l'interface:
 ```
 http://localhost:8080
 ```
 
-##  Caracteristiques
+##  Caractéristiques
 
- **Interface intuitive** - Une seule page pour resumer  
+ **Interface intuitive** - Une seule page pour résumer  
  **Design moderne** - Gradient violet, animation fluide  
- **Responsive** - Adapte aux mobiles et desktop  
- **Analyse en temps reel** - API integree � votre IA  
- **Statistiques** - Affiche confiance, categories, phrases  
- **Accessibilite** - Raccourci Ctrl+Entree pour envoyer  
+ **Responsive** - Adapté aux mobiles et desktop  
+ **Analyse en temps réel** - API intégrée � votre IA  
+ **Statistiques** - Affiche confiance, catégories, phrases  
+ **Accessibilité** - Raccourci Ctrl+Entrée pour envoyer  
 
-##  Comment �a fonctionne?
+##  Comment �a fonctionne?
 
 1. L'utilisateur tape du texte dans la zone gauche
-2. Clique sur "Resumer" ou appuie sur Ctrl+Entree
-3. Le texte est envoye � l'API `/api/summarize`
+2. Clique sur "Résumer" ou appuie sur Ctrl+Entrée
+3. Le texte est envoyé � l'API `/api/summarize`
 4. Votre IA analyse le texte phrase par phrase
-5. Le resume et les statistiques s'affichent en temps reel
+5. Le résumé et les statistiques s'affichent en temps réel
 
 ##  Personnalisation
 
 ### Modifier les couleurs:
-�ditez `web/style.css`:
+�ditez `web/style.css`:
 ```css
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-/* Change ces valeurs pour tes couleurs preferees */
+/* Change ces valeurs pour tes couleurs préférées */
 ```
 
 ### Modifier le port:
@@ -64,7 +64,7 @@ Dans `web.go`, ligne ~29:
 go StartWebServer("9000")  // Utilise le port 9000 au lieu de 8080
 ```
 
-### Ajouter des fonctionnalites:
+### Ajouter des fonctionnalités:
 - Upload de fichiers: modifier `script.js`
 - Export PDF: ajouter une librairie
 - Historique: utiliser localStorage
@@ -76,12 +76,12 @@ go StartWebServer("9000")  // Utilise le port 9000 au lieu de 8080
 ```json
 Request:
 {
-  "text": "Votre texte � resumer..."
+  "text": "Votre texte � résumer..."
 }
 
 Response:
 {
-  "summary": "Resume genere...",
+  "summary": "Résumé généré...",
   "stats": {
     "phrases": 5,
     "confidence": "85.3",
@@ -92,43 +92,43 @@ Response:
 
 ##  Tests
 
-Voici des textes de test recommandes:
+Voici des textes de test recommandés:
 
 **Court:**  
 > "Python est un langage de programmation. Go est aussi un langage."
 
 **Moyen:**  
-> "L'intelligence artificielle revolutionne le monde. Les reseaux neuronaux permettent l'apprentissage automatique. La technologie evolue chaque jour."
+> "L'intelligence artificielle révolutionne le monde. Les réseaux neuronaux permettent l'apprentissage automatique. La technologie évolue chaque jour."
 
 **Long:**  
-> Collez un article entier et regardez l'analyse compl�te!
+> Collez un article entier et regardez l'analyse compl�te!
 
 ##  Astuces
 
--  Ctrl+A pour selectionner tout rapidement
--  Les requ�tes sont instantanees
+-  Ctrl+A pour sélectionner tout rapidement
+-  Les requ�tes sont instantanées
 -  Testez sur mobile aussi!
--  Le resume affiche les categories dominantes
+-  Le résumé affiche les catégories dominantes
 
-##  Si �a ne marche pas
+##  Si �a ne marche pas
 
-| Probl�me | Solution |
+| Probl�me | Solution |
 |----------|----------|
-| Page blanche | Verifier que les fichiers web/ existent |
-| Port 8080 occupe | Changer le port dans web.go |
+| Page blanche | Vérifier que les fichiers web/ existent |
+| Port 8080 occupé | Changer le port dans web.go |
 | Erreur de compilation | Lancer `go mod tidy` |
-| API ne repond pas | Verifier que database/ est accessible |
+| API ne répond pas | Vérifier que database/ est accessible |
 
-##  Prochaines etapes optionnelles
+##  Prochaines étapes optionnelles
 
-- [ ] Ajouter un syst�me d'upload de fichiers
-- [ ] Creer un historique des resumes
+- [ ] Ajouter un syst�me d'upload de fichiers
+- [ ] Créer un historique des résumés
 - [ ] Exporter en PDF/Word
 - [ ] Ajouter un mode sombre
 - [ ] Traductions automatiques
 - [ ] Graphiques de statistiques
-- [ ] Integration WebSocket pour live updates
+- [ ] Intégration WebSocket pour live updates
 
 ---
 
-**Ton interface web est pr�te! Bon resume!** 
+**Ton interface web est pr�te! Bon résumé!** 
