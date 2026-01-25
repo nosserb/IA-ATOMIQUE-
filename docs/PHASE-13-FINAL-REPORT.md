@@ -37,14 +37,14 @@ Phase 13+++ successfully implements **5 complementary strategies** to eliminate 
    - Code: ~15 lines
    - Status:  COMPLETE
 
-3. **Fen√trage Strict** (Level: Block Selection)
+3. **FenÔøΩtrage Strict** (Level: Block Selection)
    - File: `database/resumeur_coherence.go`
    - Functions: `CalculerSimilarityVocabLexical()`, modified selection logic
    - Effect: Force lexical diversity (>40% vocabulary difference) between consecutive blocks
    - Code: ~50 lines
    - Status:  COMPLETE
 
-4. **Anti-R√©p√©tition <5 Mots** (Level: Text Generation)
+4. **Anti-Repetition <5 Mots** (Level: Text Generation)
    - File: `database/coherence.go`
    - Location: `PostTraiterResume()` function
    - Effect: Eliminate words repeated within 5-word distance
@@ -96,7 +96,7 @@ Repetitions: 0
 
 ##  Comparison: Phase 13++ vs Phase 13+++
 
-| Metric | Phase 13++ | Phase 13+++ | Œ | Status |
+| Metric | Phase 13++ | Phase 13+++ | ÔøΩ | Status |
 |--------|-----------|-----------|---|--------|
 | Words | 1297 | 679 | -48% | Better quality |
 | Coherence | 94.83% | 95.00% | +0.17% |  Better |
@@ -119,7 +119,7 @@ Repetitions: 0
 
 ### Data Added
 - `RepetitionsBloc` field in `BlocVectoriel` struct
-- `SynonymsDict` with 20 words √ 3-4 synonyms
+- `SynonymsDict` with 20 words ÔøΩ 3-4 synonyms
 
 ### Total Implementation
 - ~250 lines of code
@@ -329,7 +329,7 @@ $ go build -o programme
 
 ---
 
-## û Support & Maintenance
+## ÔøΩ Support & Maintenance
 
 ### For Configuration Issues
  See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)
@@ -345,7 +345,7 @@ $ go build -o programme
 
 ---
 
-## ã Final Checklist
+## ÔøΩ Final Checklist
 
 Before deployment, verify:
 - [ ] Build successful: `go build -o programme` 
@@ -389,7 +389,7 @@ The implementation is:
 6.9x performance improvement
 8 documentation files
 100% backward compatibility
-û% confidence for deployment
+ÔøΩ% confidence for deployment
 ```
 
 ---

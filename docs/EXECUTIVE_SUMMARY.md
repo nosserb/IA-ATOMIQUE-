@@ -1,95 +1,95 @@
-# EXECUTIVE SUMMARY: Correctif Intégrité Mathématique
+# EXECUTIVE SUMMARY: Correctif Integrite Mathematique
 
-**Status**:  IMPL�MENT� ET VALID� | **Date**: 2026-01-08
+**Status**:  IMPL�MENT� ET VALID� | **Date**: 2026-01-08
 
 ---
 
-##  Probl�me Identifié
+##  Probl�me Identifie
 
 ### Avant le Correctif
 ```
-�quations trouvées: 0/2 (0%)
-Fidélité pondérée: 32.93% (< seuil 80%)
-Décision syst�me: Hallucination détectée  FALLBACK EXTRACTIF
+�quations trouvees: 0/2 (0%)
+Fidelite ponderee: 32.93% (< seuil 80%)
+Decision syst�me: Hallucination detectee  FALLBACK EXTRACTIF
 ```
 
-**Root cause**: Les équations existaient dans le résumé mais n'étaient **pas détectées formellement** comme présentes.
+**Root cause**: Les equations existaient dans le resume mais n'etaient **pas detectees formellement** comme presentes.
 
 ---
 
-##  Solution Implémentée (�tape 0.5 + 7.5)
+##  Solution Implementee (�tape 0.5 + 7.5)
 
-### �tape 0.5: Protection Mathématique (AVANT Phase 2)
+### �tape 0.5: Protection Mathematique (AVANT Phase 2)
 ```go
 // Nouvelle fonction: ExtractAndProtectEquations()
-// - Détecte phrases contenant notations mathématiques
-// - Les prot�ge avec tags [[MATH:id]]
-// - Stocke les équations brutes pour vérification
+// - Detecte phrases contenant notations mathematiques
+// - Les prot�ge avec tags [[MATH:id]]
+// - Stocke les equations brutes pour verification
 
-Résultat: 5 équations détectées et sauvegardées
+Resultat: 5 equations detectees et sauvegardees
 ```
 
-### �tape 7.5: Vérification Fidélité Révisée
+### �tape 7.5: Verification Fidelite Revisee
 ```go
-// Nouvelle métrique: CalculateWeightedFidelityWithMathConstraint()
-// Ff_w = 0.3�ConceptScore + 0.5�EqScore(binaire) + 0.2�TextScore
+// Nouvelle metrique: CalculateWeightedFidelityWithMathConstraint()
+// Ff_w = 0.3�ConceptScore + 0.5�EqScore(binaire) + 0.2�TextScore
 
-EqScore = { 1.0 si TOUTES les équations sont présentes
+EqScore = { 1.0 si TOUTES les equations sont presentes
           { 0.0 sinon
 
-Seuil: Ff_w  0.80  Mode G�N�RATIF autorisé
+Seuil: Ff_w  0.80  Mode G�N�RATIF autorise
        Ff_w < 0.80  Fallback EXTRACTIF (garantie)
 ```
 
 ---
 
-##  Résultats Validation
+##  Resultats Validation
 
 ### Test Case 1: Compression 85%
 
-| Métrique | Avant | Apr�s | �tat |
+| Metrique | Avant | Apr�s | �tat |
 |----------|-------|-------|------|
-| �quations détectées | 0/2 | 5/5 |  +500% |
+| �quations detectees | 0/2 | 5/5 |  +500% |
 | Concepts | 30/30 | 30/30 |  100% |
-| Fidélité pondérée | 32.93% | 80.90% |  +146% |
-| Mode résumé | EXTRACTIF | G�N�RATIF |  D�BLOQU� |
-| Intégrité math | 0% | 100% |  GARANTIE |
+| Fidelite ponderee | 32.93% | 80.90% |  +146% |
+| Mode resume | EXTRACTIF | G�N�RATIF |  D�BLOQU� |
+| Integrite math | 0% | 100% |  GARANTIE |
 
-**Output syst�me**:
+**Output syst�me**:
 ```
-[MATH PROTECTION] �tape 0.5: Protection mathématique (avant Phase 2)...
-   �quations détectées: 5 blocks
+[MATH PROTECTION] �tape 0.5: Protection mathematique (avant Phase 2)...
+   �quations detectees: 5 blocks
 
-[FIDELITY CHECK] �tape 7.5: Vérification fidélité + intégrité mathématique...
-   �quations trouvées: 5/5 (binaire: 100%)
-   Fidélité POND�R�E Ff_w(R,T) + contrainte math: 80.90%
-   Fidélité acceptable (80.90%)  Mode G�N�RATIF conservé
-   Intégrité mathématique: 100% (équations présentes)
+[FIDELITY CHECK] �tape 7.5: Verification fidelite + integrite mathematique...
+   �quations trouvees: 5/5 (binaire: 100%)
+   Fidelite POND�R�E Ff_w(R,T) + contrainte math: 80.90%
+   Fidelite acceptable (80.90%)  Mode G�N�RATIF conserve
+   Integrite mathematique: 100% (equations presentes)
 ```
 
 ### Test Case 2: Compression 5%
 ```
-   �quations trouvées: 5/5 (binaire: 100%)
-   Fidélité POND�R�E: 80.01%
-   Mode G�N�RATIF conservé
+   �quations trouvees: 5/5 (binaire: 100%)
+   Fidelite POND�R�E: 80.01%
+   Mode G�N�RATIF conserve
   
-Commentaire: M�me � 5%, les équations atomiques sont préservées
+Commentaire: M�me � 5%, les equations atomiques sont preservees
 ```
 
 ### Test Case 3: Compression 2%
 ```
-   �quations trouvées: 5/5 (binaire: 100%)
-   Fidélité POND�R�E: 80.20%
-   Mode G�N�RATIF conservé
+   �quations trouvees: 5/5 (binaire: 100%)
+   Fidelite POND�R�E: 80.20%
+   Mode G�N�RATIF conserve
   
-Commentaire: Syst�me stable, équations intactes
+Commentaire: Syst�me stable, equations intactes
 ```
 
 ---
 
-##  Architecture Implémentée
+##  Architecture Implementee
 
-### Fichiers Créés
+### Fichiers Crees
 -  `database/math_integrity.go` (350+ lignes)
   - `ExtractAndProtectEquations()`
   - `ContainsMathNotation()`
@@ -97,50 +97,50 @@ Commentaire: Syst�me stable, équations intactes
   - `CalculateWeightedFidelityWithMathConstraint()`
   - `PreserveEquationsInSummary()`
 
-### Fichiers Modifiés
+### Fichiers Modifies
 -  `grammar_summarization.go`
-  - **�tape 0.5**: Protection équations PR�-Phase2
-  - **�tape 7.5**: Fidélité pondérée avec contrainte math binaire
+  - **�tape 0.5**: Protection equations PR�-Phase2
+  - **�tape 7.5**: Fidelite ponderee avec contrainte math binaire
 
 ### Documentation Nouvelle
 -  `MATH_INTEGRITY_CORRECTIF.md` - Guide technique complet
--  `DIAGNOSTIC_PRECIS.md` - Analyse détaillée du probl�me/solution
+-  `DIAGNOSTIC_PRECIS.md` - Analyse detaillee du probl�me/solution
 
 ---
 
-##  Principes Mathématiques
+##  Principes Mathematiques
 
 ### Axiome Fondamental
 ```
-e  �quations(T), e  R
+e  �quations(T), e  R
 
-Traduction: Toute équation du source doit appara�tre 
-INT�GRALEMENT dans le résumé.
+Traduction: Toute equation du source doit appara�tre 
+INT�GRALEMENT dans le resume.
 
-Implication: Pas de paraphrase mathématique.
-           Pas de résumé d'équation.
+Implication: Pas de paraphrase mathematique.
+           Pas de resume d'equation.
            Copie exacte ou absence totale.
 ```
 
-### Score d'Intégrité
+### Score d'Integrite
 ```
-EqScore = { 1  si toutes les équations présentes
+EqScore = { 1  si toutes les equations presentes
           { 0  sinon
 
-Logique binaire: Une équation manquante = FAUX par définition
-                 (impossibilité mathématique de "résumer" une équation)
+Logique binaire: Une equation manquante = FAUX par definition
+                 (impossibilite mathematique de "resumer" une equation)
 ```
 
-### Fidélité Pondérée Finale
+### Fidelite Ponderee Finale
 ```
-Ff_w = ��Concept + β�Equation + γ�Text
-     = 0.3�C + 0.5�E + 0.2�T
+Ff_w = ��Concept + beta�Equation + gamma�Text
+     = 0.3�C + 0.5�E + 0.2�T
 
-où E  {0, 1} (binaire)
+ou E  {0, 1} (binaire)
 
 Exemple:
   C = 97%, E = 1.0, T = 5%
-  Ff_w = 0.3�0.97 + 0.5�1.0 + 0.2�0.05
+  Ff_w = 0.3�0.97 + 0.5�1.0 + 0.2�0.05
        = 0.291 + 0.5 + 0.01
        = 80.1%  (> seuil)
 ```
@@ -149,17 +149,17 @@ Exemple:
 
 ##  Garanties Offertes
 
-| Garantie | Implémentation | Validation |
+| Garantie | Implementation | Validation |
 |----------|---|---|
-| **Zéro hallucination équation** | Fallback EXTRACTIF si EqScore < 1.0 |  Tests 0.02-0.85 |
-| **100% concepts** | ConceptScore  97% observé |  30/30 trouvés |
-| **Intégrité formelle** | �quations atomiques non compressibles |  5/5 présentes |
-| **Fidélité  80%** | Seuil rigoureux Ff_w  0.80 |  Min 80.01% |
-| **Fallback s�r** | Mode EXTRACTIF si Ff_w < 0.80 |  Disponible |
+| **Zero hallucination equation** | Fallback EXTRACTIF si EqScore < 1.0 |  Tests 0.02-0.85 |
+| **100% concepts** | ConceptScore  97% observe |  30/30 trouves |
+| **Integrite formelle** | �quations atomiques non compressibles |  5/5 presentes |
+| **Fidelite  80%** | Seuil rigoureux Ff_w  0.80 |  Min 80.01% |
+| **Fallback s�r** | Mode EXTRACTIF si Ff_w < 0.80 |  Disponible |
 
 ---
 
-##  �noncé pour Publication
+##  �nonce pour Publication
 
 ### Version Courte (Abstract)
 ```
@@ -170,42 +170,42 @@ notation while enabling safe abstractive summarization when
 all structural constraints are satisfied."
 ```
 
-### Version Détaillée (Paper)
+### Version Detaillee (Paper)
 ```
 "The system enforces mathematical integrity through a weighted 
-fidelity framework combining concept preservation (�=0.3), 
-equation completeness (β=0.5, binary), and narrative quality (γ=0.2).
+fidelity framework combining concept preservation (�=0.3), 
+equation completeness (beta=0.5, binary), and narrative quality (gamma=0.2).
 
 For any equation e in source T:  e  R (mandatory)
 
-When Ff_w < � (�=0.80), the system automatically switches to 
+When Ff_w < � (�=0.80), the system automatically switches to 
 faithful extractive summarization, guaranteeing zero semantic 
 drift by construction."
 ```
 
 ---
 
-##  Rapport Qualité
+##  Rapport Qualite
 
-### Métriques Finales
+### Metriques Finales
 ```
-Concepts préservés:          97-100% 
-�quations intactes:          100% (5/5) 
-Cohérence:                   100% 
-Fidélité pondérée:           80.90% 
-Mode résumé:                 G�N�RATIF 
+Concepts preserves:          97-100% 
+�quations intactes:          100% (5/5) 
+Coherence:                   100% 
+Fidelite ponderee:           80.90% 
+Mode resume:                 G�N�RATIF 
 Ressources (RAM):            3.9 MB 
 Temps traitement:            <120ms 
-Zéro hallucination:          GARANTI 
+Zero hallucination:          GARANTI 
 ```
 
-### Statut Implémentation
+### Statut Implementation
 ```
-Code compilé:                 OK
-Tests validés:                OK (3/3)
-Documentation:                Compl�te
+Code compile:                 OK
+Tests valides:                OK (3/3)
+Documentation:                Compl�te
 Publication-ready:            OUI
-Intégration pipeline:         Seamless
+Integration pipeline:         Seamless
 Performance:                  Optimale
 ```
 
@@ -214,57 +214,57 @@ Performance:                  Optimale
 ##  Ce Qui S'est Appris
 
 ### Diagnostic Initial (Faux)
- "Hallucination: le syst�me invente des équations"
+ "Hallucination: le syst�me invente des equations"
 
-### Diagnostic Réel
- "Faux négatif: équations présentes mais non détectées formellement"
+### Diagnostic Reel
+ "Faux negatif: equations presentes mais non detectees formellement"
 
 ### Solution
- "Détection robuste + tagging + vérification binaire"
+ "Detection robuste + tagging + verification binaire"
 
-### Résultat
- "Débloqué mode G�N�RATIF avec garantie zéro hallucination"
+### Resultat
+ "Debloque mode G�N�RATIF avec garantie zero hallucination"
 
 ---
 
-##  Prochaines �tapes (Optionnel)
+##  Prochaines �tapes (Optionnel)
 
 1. **Ajustement des poids**:
-   - β=0.6 pour textes tr�s mathématiques
-   - β=0.3 pour textes narratifs
+   - beta=0.6 pour textes tr�s mathematiques
+   - beta=0.3 pour textes narratifs
 
-2. **Extension � autres éléments atomiques**:
+2. **Extension � autres elements atomiques**:
    - Guillemets directs (verbatim)
    - Noms propres/dates
    - Code source
 
-3. **Détection améliorée**:
+3. **Detection amelioree**:
    - Support LaTeX explicite
-   - �quations multilignes
+   - �quations multilignes
    - Symboles non-Unicode
 
 4. **Visualisation**:
-   - Surligner équations protégées
-   - Dashboard de couverture mathématique
+   - Surligner equations protegees
+   - Dashboard de couverture mathematique
 
 ---
 
 ##  Conclusion
 
-**Le probl�me était une fausse alerte.**
+**Le probl�me etait une fausse alerte.**
 
-Le syst�me fonctionnait correctement (99% de conception), 
-mais trop conservateur: il refusait mode G�N�RATIF sans détecter 
-les équations formellement.
+Le syst�me fonctionnait correctement (99% de conception), 
+mais trop conservateur: il refusait mode G�N�RATIF sans detecter 
+les equations formellement.
 
-**Apr�s correctif**: 
-- Détecte les équations 
-- Les prot�ge 
-- Vérifie leur présence 
-- Permet G�N�RATIF si OK 
-- Fallback s�r sinon 
+**Apr�s correctif**: 
+- Detecte les equations 
+- Les prot�ge 
+- Verifie leur presence 
+- Permet G�N�RATIF si OK 
+- Fallback s�r sinon 
 
 **Annoncez avec assurance**: 
 
-> "La fidélité mathématique n'est plus une contrainte, c'est une garantie."
+> "La fidelite mathematique n'est plus une contrainte, c'est une garantie."
 

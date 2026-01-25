@@ -1,62 +1,62 @@
 #  Energy Signature Matching: Practical Examples
 
-##  Cas 1: G√©n√©rer 10 Variations d'un Style
+##  Cas 1: Generer 10 Variations d'un Style
 
-**Besoin**: J'aime l'aspect de cette image, g√©n√re 10 variations diff√©rentes
+**Besoin**: J'aime l'aspect de cette image, genÔøΩre 10 variations differentes
 
 ### Commandes
 
 ```bash
-# √tape 1: G√©n√©rer une image de base (le "style cible")
+# ÔøΩtape 1: Generer une image de base (le "style cible")
 ./programme energy generate 256 256 200 4 "dark sharp"
 
-# √tape 2: Analyser son √©nergie
+# ÔøΩtape 2: Analyser son energie
 ./programme energy from-image generated_energy_based.png
 
-# √tape 3: R√©p√©ter pour g√©n√©rer d'autres variations
+# ÔøΩtape 3: Repeter pour generer d'autres variations
 ./programme energy from-image generated_energy_based.png > output_1.txt
 ./programme energy from-image generated_energy_based.png > output_2.txt
 ./programme energy from-image generated_energy_based.png > output_3.txt
-# ... (r√©p√©ter 10 fois)
+# ... (repeter 10 fois)
 ```
 
-### R√©sultat
+### Resultat
 
-10 fichiers `generated_from_signature.png` **compl√tement diff√©rents**
-Mais tous avec la **m√me signature √©nerg√©tique**.
+10 fichiers `generated_from_signature.png` **complÔøΩtement differents**
+Mais tous avec la **mÔøΩme signature energetique**.
 
-### Donn√©es Extraites (Exemple)
+### Donnees Extraites (Exemple)
 
 ```
-Œ_gradient  = 0.1694  (34% gradient)
-Œ_local     = 0.1673  (33% coh√©rence)
-Œ_texture   = 0.1108  (22% texture)
-Œ_scale     = 0.3774  (75% distribution)
+ÔøΩ_gradient  = 0.1694  (34% gradient)
+ÔøΩ_local     = 0.1673  (33% coherence)
+ÔøΩ_texture   = 0.1108  (22% texture)
+ÔøΩ_scale     = 0.3774  (75% distribution)
  Bimodal histogram: 46% edges, 27% flat regions
 ```
 
-**Chaque g√©n√©ration respecte ces proportions mais cr√©e une image unique**.
+**Chaque generation respecte ces proportions mais cree une image unique**.
 
 ---
 
 ##  Cas 2: Blender Deux Styles
 
-**Besoin**: J'aime √ la fois Image A (smooth) et Image B (sharp), fusionne!
+**Besoin**: J'aime ÔøΩ la fois Image A (smooth) et Image B (sharp), fusionne!
 
 ### Commandes
 
 ```bash
-# G√©n√©rer Image A (style smooth)
+# Generer Image A (style smooth)
 ./programme energy generate 256 256 200 4 "smooth"
 
-# G√©n√©rer Image B (style sharp)
+# Generer Image B (style sharp)
 ./programme energy generate 256 256 200 4 "sharp"
 
 # Analyser les deux
 ./programme energy from-image generated_energy_based.png
 ```
 
-### Code pour Blender (√ ajouter dans une fonction future)
+### Code pour Blender (ÔøΩ ajouter dans une fonction future)
 
 ```go
 func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) *ImageEnergyProfile {
@@ -71,21 +71,21 @@ func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) 
 }
 ```
 
-### R√©sultat
+### Resultat
 
 ```
-Œ = 0.0  Image ressemble √ B (sharp)
-Œ = 0.5  Image est interm√©diaire
-Œ = 1.0  Image ressemble √ A (smooth)
+ÔøΩ = 0.0  Image ressemble ÔøΩ B (sharp)
+ÔøΩ = 0.5  Image est intermediaire
+ÔøΩ = 1.0  Image ressemble ÔøΩ A (smooth)
 ```
 
-**Chaque g√©n√©ration avec Œ interm√©diaire produit une nouvelle image unique!**
+**Chaque generation avec ÔøΩ intermediaire produit une nouvelle image unique!**
 
 ---
 
 ##  Cas 3: Extraction de Style d'une Photo
 
-**Besoin**: Ma photo pr√©f√©r√©e a un certain "feel", cr√©e 5 images abstraites avec le m√me feel
+**Besoin**: Ma photo preferee a un certain "feel", cree 5 images abstraites avec le mÔøΩme feel
 
 ### Commandes
 
@@ -94,7 +94,7 @@ func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) 
 # (Converter en PNG d'abord)
 convert my_favorite.jpg my_favorite.png
 
-# Analyser et g√©n√©rer
+# Analyser et generer
 ./programme energy from-image my_favorite.png 512 512 400 4
 ./programme energy from-image my_favorite.png 512 512 400 4
 ./programme energy from-image my_favorite.png 512 512 400 4
@@ -102,85 +102,85 @@ convert my_favorite.jpg my_favorite.png
 ./programme energy from-image my_favorite.png 512 512 400 4
 ```
 
-### R√©sultat
+### Resultat
 
-5 images abstraites **visually very different** mais avec la **m√me structure √©nerg√©tique** que ta photo pr√©f√©r√©e.
+5 images abstraites **visually very different** mais avec la **mÔøΩme structure energetique** que ta photo preferee.
 
 ---
 
-##  Cas 4: Variant R√©solution
+##  Cas 4: Variant Resolution
 
-**Besoin**: Cr√©e 256√256 et 512√512 avec la m√me √©nergie
+**Besoin**: Cree 256ÔøΩ256 et 512ÔøΩ512 avec la mÔøΩme energie
 
 ### Commandes
 
 ```bash
-# G√©n√©rer petit (256√256)
+# Generer petit (256ÔøΩ256)
 ./programme energy generate 256 256 200 4 "dark sharp"
 
 # Analyser
 ./programme energy from-image generated_energy_based.png
 
-# G√©n√©rer grand (512√512) avec m√me √©nergie
+# Generer grand (512ÔøΩ512) avec mÔøΩme energie
 ./programme energy from-image generated_energy_based.png 512 512 400 4
 ```
 
-### R√©sultat
+### Resultat
 
 Deux images:
-- `generated_from_signature.png` (256√256)
-- `generated_from_signature.png` (512√512, overwrite)
+- `generated_from_signature.png` (256ÔøΩ256)
+- `generated_from_signature.png` (512ÔøΩ512, overwrite)
 
-**M√me balance √©nerg√©tique, diff√©rentes r√©solutions!**
+**MÔøΩme balance energetique, differentes resolutions!**
 
 ---
 
 ##  Cas 5: Texture Scientifique (Advanced)
 
-**Besoin**: J'√©tudie les patterns, g√©n√re 20 images avec texture contr√¥l√©e
+**Besoin**: J'etudie les patterns, genÔøΩre 20 images avec texture controlee
 
 ### Commandes
 
 ```bash
-# G√©n√©rer smooth (texture basse)
+# Generer smooth (texture basse)
 ./programme energy generate 256 256 200 4 "smooth"
-# Note Œ_texture
+# Note ÔøΩ_texture
 
-# G√©n√©rer rough (texture haute)
+# Generer rough (texture haute)
 ./programme energy generate 256 256 200 4 "rough"
-# Note Œ_texture
+# Note ÔøΩ_texture
 
-# Cr√©er une s√©rie avec texture progressive
-./programme energy from-image smooth_image.png   # Œ_texture  0.05
-./programme energy from-image medium_image.png   # Œ_texture  0.15
-./programme energy from-image rough_image.png    # Œ_texture  0.30
+# Creer une serie avec texture progressive
+./programme energy from-image smooth_image.png   # ÔøΩ_texture  0.05
+./programme energy from-image medium_image.png   # ÔøΩ_texture  0.15
+./programme energy from-image rough_image.png    # ÔøΩ_texture  0.30
 ```
 
-### Donn√©es Extraites
+### Donnees Extraites
 
 ```
 Image 1 (smooth):
-  Œ_texture = 0.05
+  ÔøΩ_texture = 0.05
 
 Image 2 (medium):
-  Œ_texture = 0.15
+  ÔøΩ_texture = 0.15
 
 Image 3 (rough):
-  Œ_texture = 0.30
+  ÔøΩ_texture = 0.30
 ```
 
-**Tu ma√trises pr√©cis√©ment chaque aspect √©nerg√©tique!**
+**Tu maÔøΩtrises precisement chaque aspect energetique!**
 
 ---
 
 ##  Cas 6: Pattern Analysis (Research)
 
-**Besoin**: √tudier comment les patterns structur√©s √©mergent
+**Besoin**: ÔøΩtudier comment les patterns structures emergent
 
 ### Commandes
 
 ```bash
-# G√©n√©rer avec beaucoup d'it√©rations (convergence profonde)
+# Generer avec beaucoup d'iterations (convergence profonde)
 ./programme energy generate 256 256 500 4 "sharp"
 
 # Analyser
@@ -193,10 +193,10 @@ Image 3 (rough):
 
 ```
  Energy Signature:
-   Gradient energy (Œ): 0.1694
-   Local coherence (Œ): 0.1673
-   Texture energy (Œ): 0.1108
-   Scale distribution (Œ): 0.3774
+   Gradient energy (ÔøΩ): 0.1694
+   Local coherence (ÔøΩ): 0.1673
+   Texture energy (ÔøΩ): 0.1108
+   Scale distribution (ÔøΩ): 0.3774
    
  Statistics:
    Edge density: 0.4631 (46% of atoms are edges)
@@ -205,25 +205,25 @@ Image 3 (rough):
    Histogram shape: bimodal
 ```
 
-**Interpr√©tation**: 
-- Dominant term: Scale (0.3774)  Image a beaucoup de structure vari√©e
+**Interpretation**: 
+- Dominant term: Scale (0.3774)  Image a beaucoup de structure variee
 - Bimodal: Mix distinct entre zones nettes et zones lisses
-- Edge density: 46%  Image est tr√s d√©taill√©e
+- Edge density: 46%  Image est trÔøΩs detaillee
 
 ---
 
-##  Script Bash: G√©n√©rer 10 Variations
+##  Script Bash: Generer 10 Variations
 
-Cr√©e un fichier `generate_variations.sh`:
+Cree un fichier `generate_variations.sh`:
 
 ```bash
 #!/bin/bash
 
-# G√©n√©rer image de base
+# Generer image de base
 echo "Generating base image..."
 ./programme energy generate 256 256 200 4 "dark sharp"
 
-# G√©n√©rer 10 variations
+# Generer 10 variations
 echo "Generating 10 variations..."
 for i in {1..10}; do
     echo "Variation $i..."
@@ -234,7 +234,7 @@ done
 echo "Done! Generated variation_1.png to variation_10.png"
 ```
 
-Ex√©cute:
+Execute:
 ```bash
 chmod +x generate_variations.sh
 ./generate_variations.sh
@@ -242,30 +242,30 @@ chmod +x generate_variations.sh
 
 ---
 
-##  Tableau: Param√tres vs R√©sultat
+##  Tableau: ParamÔøΩtres vs Resultat
 
-| Objectif | Commande | R√©sultat |
+| Objectif | Commande | Resultat |
 |----------|----------|----------|
-| Smooth | `from-image target.png 256 256 300 4` | Œ_scale  0.05 |
-| Balanced | `from-image target.png 256 256 300 4` | Œ_scale  0.25 |
-| Sharp | `from-image target.png 256 256 300 4` | Œ_scale  0.50 |
-| Detail-Rich | `from-image target.png 256 256 400 2` | Œ_gradient  0.30 |
+| Smooth | `from-image target.png 256 256 300 4` | ÔøΩ_scale  0.05 |
+| Balanced | `from-image target.png 256 256 300 4` | ÔøΩ_scale  0.25 |
+| Sharp | `from-image target.png 256 256 300 4` | ÔøΩ_scale  0.50 |
+| Detail-Rich | `from-image target.png 256 256 400 2` | ÔøΩ_gradient  0.30 |
 | Abstract | `from-image target.png 512 512 200 8` | Mixed, high level |
 
 ---
 
-##  Cas P√©dagogique: Comprendre les Œ
+##  Cas Pedagogique: Comprendre les ÔøΩ
 
-### Partie 1: G√©n√©rer Baselines
+### Partie 1: Generer Baselines
 
 ```bash
-# Baseline 1: Tr√s lisse
+# Baseline 1: TrÔøΩs lisse
 ./programme energy generate 128 128 100 8 "smooth"
-# Capture: Œ_scale  0.05
+# Capture: ÔøΩ_scale  0.05
 
-# Baseline 2: Tr√s d√©taill√©
+# Baseline 2: TrÔøΩs detaille
 ./programme energy generate 128 128 100 2 "detailed"
-# Capture: Œ_scale  0.50
+# Capture: ÔøΩ_scale  0.50
 ```
 
 ### Partie 2: Analyser
@@ -275,30 +275,30 @@ chmod +x generate_variations.sh
 ./programme energy from-image baseline_detailed.png
 ```
 
-### Partie 3: Interpr√©ter
+### Partie 3: Interpreter
 
 ```
 Smooth image:
-  Œ_gradient  = 0.05  (peu de contours)
-  Œ_scale     = 0.10  (peu de variation)
-   "√quilibrium avec uniformit√©"
+  ÔøΩ_gradient  = 0.05  (peu de contours)
+  ÔøΩ_scale     = 0.10  (peu de variation)
+   "ÔøΩquilibrium avec uniformite"
 
 Detailed image:
-  Œ_gradient  = 0.30  (beaucoup de contours)
-  Œ_scale     = 0.50  (grande variation)
-   "√quilibrium avec structure"
+  ÔøΩ_gradient  = 0.30  (beaucoup de contours)
+  ÔøΩ_scale     = 0.50  (grande variation)
+   "ÔøΩquilibrium avec structure"
 ```
 
-**Conclusion**: Chaque Œ capture un aspect physique sp√©cifique!
+**Conclusion**: Chaque ÔøΩ capture un aspect physique specifique!
 
 ---
 
-##  Cas Avanc√©: Interpolation (Future)
+##  Cas Avance: Interpolation (Future)
 
-Code √ impl√©menter:
+Code ÔøΩ implementer:
 
 ```go
-// G√©n√©rer une s√©rie interpol√©e entre deux images
+// Generer une serie interpolee entre deux images
 func InterpolateEnergyProfiles(profileA, profileB *ImageEnergyProfile, steps int) []*ImageEnergyProfile {
     var results []*ImageEnergyProfile
     for i := 0; i <= steps; i++ {
@@ -319,7 +319,7 @@ for i, p := range profiles {
 }
 ```
 
-**R√©sultat**: Une s√©rie d'images qui transition smoothly du style A au style B!
+**Resultat**: Une serie d'images qui transition smoothly du style A au style B!
 
 ---
 
@@ -328,36 +328,36 @@ for i, p := range profiles {
 ```
 Task                          Time      Output Size
 
-Generate 256√256              0.5 sec   19 KB PNG
-Generate 512√512              2.0 sec   75 KB PNG
+Generate 256ÔøΩ256              0.5 sec   19 KB PNG
+Generate 512ÔøΩ512              2.0 sec   75 KB PNG
 Analyze image                 0.1 sec   (in memory)
 Generate from energy          0.5 sec   19 KB PNG
 Blend profiles + generate     0.5 sec   19 KB PNG
 ```
 
-**Total**: Analyse + g√©n√©ration  **0.6 secondes** par image!
+**Total**: Analyse + generation  **0.6 secondes** par image!
 
 ---
 
 ##  Checklist: Utiliser Energy Signature Matching
 
-- [ ] G√©n√©rer une image de base avec une contrainte
+- [ ] Generer une image de base avec une contrainte
 - [ ] Analyser sa signature avec `from-image`
-- [ ] Notar les Œ extraits
-- [ ] G√©n√©rer 3-5 variations
-- [ ] V√©rifier qu'elles sont visuellement diff√©rentes
-- [ ] Mais gardent la m√me "feel"
+- [ ] Notar les ÔøΩ extraits
+- [ ] Generer 3-5 variations
+- [ ] Verifier qu'elles sont visuellement differentes
+- [ ] Mais gardent la mÔøΩme "feel"
 - [ ] Comparer les statistiques
 
 ---
 
-##  Insights Cl√©s
+##  Insights Cles
 
-1. **Pas de Copie Pixel**: Tu extrais l'√©quilibre, pas les pixels
-2. **Infiniment Vari√©e**: Chaque g√©n√©ration est unique
-3. **100% Interpr√©table**: Chaque Œ a un sens physique
-4. **L√©gal et √thique**: Tu respectes les droits d'auteur
-5. **Pas de Training**: Z√©ro GPU, z√©ro heure d'entra√nement
+1. **Pas de Copie Pixel**: Tu extrais l'equilibre, pas les pixels
+2. **Infiniment Variee**: Chaque generation est unique
+3. **100% Interpretable**: Chaque ÔøΩ a un sens physique
+4. **Legal et ÔøΩthique**: Tu respectes les droits d'auteur
+5. **Pas de Training**: Zero GPU, zero heure d'entraÔøΩnement
 
 ---
 

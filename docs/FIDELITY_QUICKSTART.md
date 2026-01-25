@@ -1,6 +1,6 @@
 # GUIDE UTILISATEUR - MODULE ANTI-HALLUCINATION PHASE 15
 
-##  Démarrage rapide
+##  Demarrage rapide
 
 ### 1. Compiler le projet
 ```bash
@@ -8,45 +8,45 @@ cd "/home/student/autre projets/IA-ATOMIQUE-"
 go build -o programme
 ```
 
-### 2. Tester les fonctionnalités
+### 2. Tester les fonctionnalites
 
 #### Test automatique complet
 ```bash
 ./programme fidelity test
 ```
 
-**Résultat attendu** :
+**Resultat attendu** :
 ```
 [TEST: Technique Simple]
   Source length: 28 words
   Generated length: 10 words
   Fidelity: 100.00%  
 
-[TEST: Texte Encyclopédique]
+[TEST: Texte Encyclopedique]
   Source length: 29 words
   Generated length: 10 words
   Fidelity: 100.00%  
 ```
 
-#### Analyser un fichier spécifique
+#### Analyser un fichier specifique
 ```bash
 ./programme fidelity file input.txt
 ```
 
 **Sortie** :
-1.  Termes clés extraits
-2. Résumé Phase 13+++
-3. Score fidélité (Ff) calculé
-4. Décision : G�N�RATIF ou EXTRACTIF
-5. Résumé final
-6. Rapport sauvegardé
+1.  Termes cles extraits
+2. Resume Phase 13+++
+3. Score fidelite (Ff) calcule
+4. Decision : G�N�RATIF ou EXTRACTIF
+5. Resume final
+6. Rapport sauvegarde
 
-#### Comparer les stratégies
+#### Comparer les strategies
 ```bash
 ./programme fidelity compare test_atomique_technique.txt
 ```
 
-**Affiche** : Tableau comparatif des 3 stratégies principales
+**Affiche** : Tableau comparatif des 3 strategies principales
 
 #### Test hybridation avec seuil custom
 ```bash
@@ -55,145 +55,145 @@ go build -o programme
 
 ---
 
-##  Résultat attendus
+##  Resultat attendus
 
-### Cas 1 : Texte technique ( BONNE FID�LIT�)
+### Cas 1 : Texte technique ( BONNE FID�LIT�)
 
 ```
 Texte original (167 mots):
-"Un atome computationnel est une unité autonome du réseau atomique T.R.A..."
+"Un atome computationnel est une unite autonome du reseau atomique T.R.A..."
 
-[ANALYSE FID�LIT�]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 38-42%
-Mode sélectionné: EXTRACTIF
+Mode selectionne: EXTRACTIF
 
 Raison: Score < 80%  Basculer automatiquement sur extraction TF-IDF
 ```
 
-### Cas 2 : Texte général ( HALLUCINATION D�TECT�E)
+### Cas 2 : Texte general ( HALLUCINATION D�TECT�E)
 
 ```
 Texte original (8080 mots):
-"La Mésange huppée (Lophophanes cristatus)..."
+"La Mesange huppee (Lophophanes cristatus)..."
 
-[ANALYSE FID�LIT�]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 1.42%
-Mode sélectionné: EXTRACTIF
+Mode selectionne: EXTRACTIF
 
 Raison: Termes techniques IA-ATOMIQUE ne correspondent pas
 ```
 
-### Cas 3 : Texte bien aligné ( TEXTE G�N�R� ACCEPT�)
+### Cas 3 : Texte bien aligne ( TEXTE G�N�R� ACCEPT�)
 
 ```
-[ANALYSE FID�LIT�]
+[ANALYSE FID�LIT�]
 Coverage (Ff): 85%
-Mode sélectionné: G�N�RATIF (fid�le)
+Mode selectionne: G�N�RATIF (fid�le)
 
-Raison: Score >= 80%  Texte généré est assez fid�le
+Raison: Score >= 80%  Texte genere est assez fid�le
 ```
 
 ---
 
-##  Interprétation des scores
+##  Interpretation des scores
 
-| Score Ff | Interprétation | Action |
+| Score Ff | Interpretation | Action |
 |---|---|---|
-| ** 90%** | Excellent |  Garder résumé généré |
-| **80-90%** | Bon |  Garder résumé généré |
+| ** 90%** | Excellent |  Garder resume genere |
+| **80-90%** | Bon |  Garder resume genere |
 | **70-80%** | Acceptable |  Garder avec vigilance |
 | **60-70%** | Faible |  Utiliser extractif |
 | **< 60%** | Critique |  FORCER extractif |
 
 ---
 
-##  Stratégies utilisables
+##  Strategies utilisables
 
-### Stratégie A : Extraction pure (TF-IDF)
-**Approche** : Sélectionner les meilleures phrases du texte original
+### Strategie A : Extraction pure (TF-IDF)
+**Approche** : Selectionner les meilleures phrases du texte original
 
 ```go
 extractedSummary := database.ExtractiveResume(sourceText, compressionRatio)
 ```
 
-**Fidélité** : 100% (aucune hallucination possible)
-**Avantage** : Garantie de cohérence
-**Inconvénient** : Moins naturel que la génération
+**Fidelite** : 100% (aucune hallucination possible)
+**Avantage** : Garantie de coherence
+**Inconvenient** : Moins naturel que la generation
 
 ---
 
-### Stratégie B : Filtrage post-génération
-**Approche** : Supprimer les mots inventés du résumé généré
+### Strategie B : Filtrage post-generation
+**Approche** : Supprimer les mots inventes du resume genere
 
 ```go
 filteredSummary := database.FilterForFidelity(generated, sourceVocab)
 ```
 
-**Fidélité** : Dépend du filtrage
-**Avantage** : Garde la génération Phase 15 quand possible
-**Inconvénient** : Peut créer des textes fragmentés
+**Fidelite** : Depend du filtrage
+**Avantage** : Garde la generation Phase 15 quand possible
+**Inconvenient** : Peut creer des textes fragmentes
 
 ---
 
-### Stratégie C : Hybridation (RECOMMAND�E)
-**Approche** : Utiliser génération si fid�le, sinon extractif
+### Strategie C : Hybridation (RECOMMAND�E)
+**Approche** : Utiliser generation si fid�le, sinon extractif
 
 ```go
 finalSummary, fidelity, mode := database.HybridResume(
     generatedSummary,
     sourceText,
-    0.80, // seuil fidélité
+    0.80, // seuil fidelite
 )
 
-// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
+// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination detectee)"
 ```
 
-**Fidélité** : Garantie  80%
+**Fidelite** : Garantie  80%
 **Avantage** : Meilleur des deux mondes
-**Inconvénient** : Aucun !
+**Inconvenient** : Aucun !
 
 ---
 
-##  Mesures mathématiques
+##  Mesures mathematiques
 
-### Formule fidélité
+### Formule fidelite
 
-$$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total mots du résumé}|}$$
+$$F_f(R,T) = \frac{|\text{mots du resume en commun avec source}|}{|\text{total mots du resume}|}$$
 
 **Exemple** :
-- Résumé généré: "Le réseau converge via résonance"
-- Source contient: { réseau, converge, résonance, ... }
-- Fidélité = 3/5 = 60%
+- Resume genere: "Le reseau converge via resonance"
+- Source contient: { reseau, converge, resonance, ... }
+- Fidelite = 3/5 = 60%
 
 ### Seuil hybride
 
-- **Par défaut** : � = 0.80 (80%)
-- **Ajustable** : Augmentez � 0.85-0.90 pour domaines critiques
+- **Par defaut** : � = 0.80 (80%)
+- **Ajustable** : Augmentez � 0.85-0.90 pour domaines critiques
 
 ---
 
-##  Dépannage
+##  Depannage
 
-### "Coverage tr�s bas (< 10%)"
+### "Coverage tr�s bas (< 10%)"
 
 **Cause probable** : Vocabulaire source incompatible avec termes techniques du projet
 
 **Solution** : 
-1. Vérifier que texte source utilise terminologie IA-ATOMIQUE
+1. Verifier que texte source utilise terminologie IA-ATOMIQUE
 2. Enrichir `database/fidelity_check.go` avec nouveaux termes techniques
 
-### "Résumé fragmenté apr�s filtrage"
+### "Resume fragmente apr�s filtrage"
 
-**Cause** : Trop de mots rejetés par stratégie B
+**Cause** : Trop de mots rejetes par strategie B
 
-**Solution** : Utiliser stratégie C (hybridation) � la place
+**Solution** : Utiliser strategie C (hybridation) � la place
 
-### "Mode EXTRACTIF quand je veux génération"
+### "Mode EXTRACTIF quand je veux generation"
 
-**Cause** : Fidélité < seuil
+**Cause** : Fidelite < seuil
 
 **Solution** : Soit
-1. Rel�cher le seuil : `database.HybridResume(..., 0.70)`
+1. Rel�cher le seuil : `database.HybridResume(..., 0.70)`
 2. Soit enrichir le vocabulaire source pour meilleure couverture
 
 ---
@@ -203,21 +203,21 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 - [ ] Compiler le projet : `go build -o programme`
 - [ ] Tester basique : `./programme fidelity test`
 - [ ] Tester sur fichier : `./programme fidelity file test_atomique_technique.txt`
-- [ ] Vérifier décision hybride : Mode = EXTRACTIF ou G�N�RATIF ?
+- [ ] Verifier decision hybride : Mode = EXTRACTIF ou G�N�RATIF ?
 - [ ] Consulter rapport : `test_atomique_technique_fidelity_report_*.txt`
 
 ---
 
-##  Fichiers clés
+##  Fichiers cles
 
 | Fichier | Description |
 |---|---|
-| `database/fidelity_check.go` | Implémentation du scoring Ff et stratégies |
-| `fidelity_commands.go` | CLI pour tester les stratégies |
-| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathématique compl�te |
+| `database/fidelity_check.go` | Implementation du scoring Ff et strategies |
+| `fidelity_commands.go` | CLI pour tester les strategies |
+| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathematique compl�te |
 
 ---
 
-**Statut** :  Opérationnel  
-**Derni�re mise � jour** : 8 janvier 2026  
+**Statut** :  Operationnel  
+**Derni�re mise � jour** : 8 janvier 2026  
 **Contact** : IA-ATOMIQUE Project Team

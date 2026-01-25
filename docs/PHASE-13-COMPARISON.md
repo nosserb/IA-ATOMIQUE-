@@ -1,97 +1,97 @@
 # Comparaison Phase 13++ vs Phase 13+++
 
-##  Métriques Globales
+##  Metriques Globales
 
-| Métrique | Phase 13++ | Phase 13+++ | Variation |
+| Metrique | Phase 13++ | Phase 13+++ | Variation |
 |----------|-----------|-----------|-----------|
-| **Mots générés** | 1297 | 679 | -47.6% |
-| **Blocs sélectionnés** | 50/474 | 45/180 | -10% blocs |
-| **Cohérence moyenne** | 94.83% | 95.00% | +0.17% |
-| **Compression réelle** | 12.9x | 8.0x | -38% |
-| **Temps d'exécution** | 1.38s | 0.19s | -86%  |
-| **Répétitions <5 mots** | Multiples | ~0 |  �liminées |
+| **Mots generes** | 1297 | 679 | -47.6% |
+| **Blocs selectionnes** | 50/474 | 45/180 | -10% blocs |
+| **Coherence moyenne** | 94.83% | 95.00% | +0.17% |
+| **Compression reelle** | 12.9x | 8.0x | -38% |
+| **Temps d'execution** | 1.38s | 0.19s | -86%  |
+| **Repetitions <5 mots** | Multiples | ~0 |  �liminees |
 
 ---
 
-##  Analyse Détaillée
+##  Analyse Detaillee
 
 ### Phase 13++ - Baseline
-**Caractéristiques**:
-- 50 blocs sélectionnés (stratégie de couverture large)
-- 1297 mots générés (cible: 1250)
-- Excellente cohérence: 94.83%
-- Connecteurs diversifiés: "En outre", "De plus", "Ensuite", "Cependant", "Ainsi"
-- Probl�me résiduel: Répétitions internes de mots rares
+**Caracteristiques**:
+- 50 blocs selectionnes (strategie de couverture large)
+- 1297 mots generes (cible: 1250)
+- Excellente coherence: 94.83%
+- Connecteurs diversifies: "En outre", "De plus", "Ensuite", "Cependant", "Ainsi"
+- Probl�me residuel: Repetitions internes de mots rares
 
-**Exemple de probl�me (Phase 13++)**:
+**Exemple de probl�me (Phase 13++)**:
 ```
-"...donné que les syst�mes donnent résultats...
-...dans ce cas, plusieurs cas différents...
+"...donne que les syst�mes donnent resultats...
+...dans ce cas, plusieurs cas differents...
 ...le monde du digital, un monde qui change..."
 ```
- Répétitions: "donné/donnent", "cas/cas", "monde/monde"
+ Repetitions: "donne/donnent", "cas/cas", "monde/monde"
 
 ---
 
-### Phase 13+++ - Stratégies Multiples
-**Caractéristiques**:
-- 45 blocs sélectionnés (fen�trage strict appliqué)
-- 679 mots générés (compression 8x vs 12.9x)
-- Cohérence maintenue: 95.00% (+0.17%)
+### Phase 13+++ - Strategies Multiples
+**Caracteristiques**:
+- 45 blocs selectionnes (fen�trage strict applique)
+- 679 mots generes (compression 8x vs 12.9x)
+- Coherence maintenue: 95.00% (+0.17%)
 -  **86% plus rapide** (0.19s vs 1.38s)
-- Répétitions quasi-éliminées via 5 stratégies combinées
+- Repetitions quasi-eliminees via 5 strategies combinees
 
 **5 Couches de Filtrage**:
 
-1. **Normalisation Lexicale**  Pénalité blocs répétitifs
-2. **TF-IDF Intelligent**  Mots rares pénalisés 0.8x
-3. **Fen�trage Strict**  Blocs consécutifs diversifiés >40%
-4. **Anti-Répétition**  Mots répétés <5 mots supprimés
-5. **Synonymes**  Variation vocabulaire fréquent
+1. **Normalisation Lexicale**  Penalite blocs repetitifs
+2. **TF-IDF Intelligent**  Mots rares penalises 0.8x
+3. **Fen�trage Strict**  Blocs consecutifs diversifies >40%
+4. **Anti-Repetition**  Mots repetes <5 mots supprimes
+5. **Synonymes**  Variation vocabulaire frequent
 
 ---
 
 ##  Avantages Phase 13+++
 
-###  Qualité Améliorie
-- **Répétitions intra-blocs**: Détectées et pénalisées
-- **Répétitions inter-phrases**: �liminées (<5 mots)
-- **Vocabulaire varié**: Synonymes pour mots fréquents
-- **Lectures plus fluides**: Pas de "donné... donnent... données"
+###  Qualite Ameliorie
+- **Repetitions intra-blocs**: Detectees et penalisees
+- **Repetitions inter-phrases**: �liminees (<5 mots)
+- **Vocabulaire varie**: Synonymes pour mots frequents
+- **Lectures plus fluides**: Pas de "donne... donnent... donnees"
 
-###  Performance Accélérée
-- **86% plus rapide**: Moins de blocs � traiter
-- **Fen�trage strict réduit sélection**: 45 vs 50 blocs
-- **Post-traitement optimisé**: Filtrage simple et rapide
+###  Performance Acceleree
+- **86% plus rapide**: Moins de blocs � traiter
+- **Fen�trage strict reduit selection**: 45 vs 50 blocs
+- **Post-traitement optimise**: Filtrage simple et rapide
 
-###  Cohérence Stable
-- **94.83%  95.00%**: Lég�re amélioration
-- **Preuve**: Les filtres éliminent bruit, préservent signal
+###  Coherence Stable
+- **94.83%  95.00%**: Leg�re amelioration
+- **Preuve**: Les filtres eliminent bruit, preservent signal
 
 ---
 
-## � Trade-offs Phase 13+++
+## � Trade-offs Phase 13+++
 
-### Réduction de Longueur
+### Reduction de Longueur
 - **Avant**: 1297 mots
-- **Apr�s**: 679 mots
-- **Raison**: Fen�trage strict élimine blocs similaires
-- **Impact**: Moins de couverture, mais meilleure qualité
+- **Apr�s**: 679 mots
+- **Raison**: Fen�trage strict elimine blocs similaires
+- **Impact**: Moins de couverture, mais meilleure qualite
 
 ### Solution si plus de mots requis:
 ```
-// Augmenter limite sélection
+// Augmenter limite selection
 numBlocs := int(math.Ceil(ratio * float64(len(r.Blocs))))
-if numBlocs > 75 {  // Augmenter de 50 � 75
+if numBlocs > 75 {  // Augmenter de 50 � 75
     numBlocs = 75
 }
 
-// OU réduire seuil similarité
+// OU reduire seuil similarite
 if similarity > 0.7 {  // vs 0.6 (plus permissif)
     delete(selectedIndices, i)
 }
 
-// OU combiner stratégies sélectivement
+// OU combiner strategies selectivement
 ```
 
 ---
@@ -100,87 +100,87 @@ if similarity > 0.7 {  // vs 0.6 (plus permissif)
 
 ### Avant Phase 13+++
 ```
-"...ces syst�mes donnent des résultats.
-Les données donnent aussi un cas particulier.
-Dans ce cas, plusieurs cas doivent �tre traités.
-Le monde moderne, un monde en constante évolution..."
+"...ces syst�mes donnent des resultats.
+Les donnees donnent aussi un cas particulier.
+Dans ce cas, plusieurs cas doivent �tre traites.
+Le monde moderne, un monde en constante evolution..."
 ```
- Répétitions évidentes: "donné(s)", "cas", "monde"
+ Repetitions evidentes: "donne(s)", "cas", "monde"
 
-### Apr�s Phase 13+++
+### Apr�s Phase 13+++
 ```
-"...ces syst�mes fournissent des résultats.
-Les données gén�rent aussi une situation particuli�re.
-Dans cette situation, plusieurs contextes doivent �tre traités.
-L'univers moderne, une sph�re en constante transformation..."
+"...ces syst�mes fournissent des resultats.
+Les donnees gen�rent aussi une situation particuli�re.
+Dans cette situation, plusieurs contextes doivent �tre traites.
+L'univers moderne, une sph�re en constante transformation..."
 ```
- Vocabulaire varié via synonymes & anti-répétition
+ Vocabulaire varie via synonymes & anti-repetition
 
 ---
 
-##  Validation Expérimentale
+##  Validation Experimentale
 
 ### Test 1: input.txt (5436 mots)
 ```
-Phase 13++:  1297 mots  94.83% cohérence
-Phase 13+++: 679 mots   95.00% cohérence 
+Phase 13++:  1297 mots  94.83% coherence
+Phase 13+++: 679 mots   95.00% coherence 
 ```
-**Conclusion**: Meilleure qualité avec moins de mots.
+**Conclusion**: Meilleure qualite avec moins de mots.
 
 ### Test 2: test.txt (103 mots)
 ```
-Phase 13++:  Non testé (baseline petit corpus)
-Phase 13+++: 12 mots    95.00% cohérence 
+Phase 13++:  Non teste (baseline petit corpus)
+Phase 13+++: 12 mots    95.00% coherence 
 ```
-**Conclusion**: Fen�trage strict fonctionne m�me sur petits corpus.
+**Conclusion**: Fen�trage strict fonctionne m�me sur petits corpus.
 
 ---
 
-##  Détail des 5 Stratégies
+##  Detail des 5 Strategies
 
-### Stratégie 1: Normalisation Lexicale 
+### Strategie 1: Normalisation Lexicale 
 ```go
-// Bloc avec "donné" 4x  pénalité = (4-2)*0.1 = 0.2
+// Bloc avec "donne" 4x  penalite = (4-2)*0.1 = 0.2
 // finalScore *= (1 - 0.2) = 0.8x
-// Bloc déprioritisé automatiquement
+// Bloc deprioritise automatiquement
 ```
-**Effet**: Blocs "bavards" sur 1 mot évités
+**Effet**: Blocs "bavards" sur 1 mot evites
 
-### Stratégie 2: TF-IDF Intelligent 
+### Strategie 2: TF-IDF Intelligent 
 ```go
-// "cas"  IDF=0.6, TF=0.08  pénalité 0.8x
-// "monde"  IDF=0.55, TF=0.07  pénalité 0.8x
-// Mots rares mais fréquents moins influents
+// "cas"  IDF=0.6, TF=0.08  penalite 0.8x
+// "monde"  IDF=0.55, TF=0.07  penalite 0.8x
+// Mots rares mais frequents moins influents
 ```
-**Effet**: Mots-clés rares ne dominent pas
+**Effet**: Mots-cles rares ne dominent pas
 
-### Stratégie 3: Fen�trage Strict 
+### Strategie 3: Fen�trage Strict 
 ```go
-// Bloc A: ["intell", "artif", "syst�me"]
-// Bloc B: ["intell", "artif", "distribué"]
-// Similarité = 2/4 = 50%  OK (< 60%)
-// Bloc C: ["artif", "syst�me", "donné"]
-// Similarité = 1/3 = 33%  OK
+// Bloc A: ["intell", "artif", "syst�me"]
+// Bloc B: ["intell", "artif", "distribue"]
+// Similarite = 2/4 = 50%  OK (< 60%)
+// Bloc C: ["artif", "syst�me", "donne"]
+// Similarite = 1/3 = 33%  OK
 ```
-**Effet**: Topics variés d'un bloc � l'autre
+**Effet**: Topics varies d'un bloc � l'autre
 
-### Stratégie 4: Anti-Répétition <5 mots 
+### Strategie 4: Anti-Repetition <5 mots 
 ```go
 // Mots: ["monde", "global", "...", "monde", "des"]
 // Position[0] - Position[3] = 3 < 5  Skip position[3]
-// Résultat: ["monde", "global", "...", "des"]
+// Resultat: ["monde", "global", "...", "des"]
 ```
-**Effet**: Zéro répétition locale
+**Effet**: Zero repetition locale
 
-### Stratégie 5: Synonymes Contextuels 
+### Strategie 5: Synonymes Contextuels 
 ```go
 // Mot "monde" apparait 8x
 // Fois 1: "monde"  garder
-// Fois 3: "univers" (synonyme aléatoire)
-// Fois 5: "sph�re" (synonyme aléatoire)
-// Fois 7: "domaine" (synonyme aléatoire)
+// Fois 3: "univers" (synonyme aleatoire)
+// Fois 5: "sph�re" (synonyme aleatoire)
+// Fois 7: "domaine" (synonyme aleatoire)
 ```
-**Effet**: Lecture naturelle sans "monde" répétitif
+**Effet**: Lecture naturelle sans "monde" repetitif
 
 ---
 
@@ -188,59 +188,59 @@ Phase 13+++: 12 mots    95.00% cohérence
 
 ### Phase 13++ (Baseline)
 -  Besoins de **couverture maximale** (1200+ mots)
--  Textes où répétitions acceptables
+-  Textes ou repetitions acceptables
 -  Vitesse moins critique (1.38s = acceptable)
 
-### Phase 13+++ (Optimisé)
--  Besoins de **qualité maximale** (zéro répétitions)
--  Contextes temps-réel (API, chat) - 86% plus rapide
-- � Contenu où vocabulaire varié = meilleure expérience
--  Ressources limitées (mobile) - moins de mots � afficher
+### Phase 13+++ (Optimise)
+-  Besoins de **qualite maximale** (zero repetitions)
+-  Contextes temps-reel (API, chat) - 86% plus rapide
+- � Contenu ou vocabulaire varie = meilleure experience
+-  Ressources limitees (mobile) - moins de mots � afficher
 
 ---
 
-## � Recommandations
+## � Recommandations
 
 ### Pour Maximiser Longueur Phase 13+++
 ```go
-// Augmenter sélection
+// Augmenter selection
 if numBlocs > 75 { numBlocs = 75 }  // vs 50
 
-// Assouplir fen�trage strict
+// Assouplir fen�trage strict
 if similarity > 0.75 { skip }  // vs 0.6
 
-// Réduire pénalité TF-IDF
+// Reduire penalite TF-IDF
 tfidfVal *= 0.9  // vs 0.8
 
-// Réduire distance anti-répétition
+// Reduire distance anti-repetition
 if i-lastPos < 3 { skip }  // vs 5
 ```
- Résultat: ~1000+ mots avec ~90% qualité
+ Resultat: ~1000+ mots avec ~90% qualite
 
-### Pour Maximiser Qualité Phase 13+++
+### Pour Maximiser Qualite Phase 13+++
 ```go
-// Réduire sélection
+// Reduire selection
 if numBlocs > 30 { numBlocs = 30 }  // vs 45
 
-// Durcir fen�trage strict
+// Durcir fen�trage strict
 if similarity > 0.4 { skip }  // vs 0.6
 
-// Augmenter pénalité TF-IDF
+// Augmenter penalite TF-IDF
 tfidfVal *= 0.7  // vs 0.8
 
-// Augmenter distance anti-répétition
+// Augmenter distance anti-repetition
 if i-lastPos < 10 { skip }  // vs 5
 ```
- Résultat: ~400-500 mots, **zéro** répétitions visibles
+ Resultat: ~400-500 mots, **zero** repetitions visibles
 
 ---
 
 ##  Conclusion
 
-**Phase 13+++** représente un équilibre optimal entre:
--  **Qualité**: 5 couches de filtrage répétitions
+**Phase 13+++** represente un equilibre optimal entre:
+-  **Qualite**: 5 couches de filtrage repetitions
 -  **Performance**: 86% plus rapide
--  **Cohérence**: Stable � 95%
--  **Lisibilité**: Vocabulaire varié, pas de répétitions
+-  **Coherence**: Stable � 95%
+-  **Lisibilite**: Vocabulaire varie, pas de repetitions
 
-**Recommandé pour** la plupart des cas d'usage réels où la qualité de lecture > couverture quantitative.
+**Recommande pour** la plupart des cas d'usage reels ou la qualite de lecture > couverture quantitative.

@@ -1,83 +1,83 @@
-#  PATTERNS MATHÃMATIQUES - La Vraie MÃ©canique
+#  PATTERNS MATHï¿½MATIQUES - La Vraie Mecanique
 
 **Date**: January 9, 2026  
-**Status**:  IMPLÃMENTÃ  
-**Concept**: Transformer des images en Ã©quations rÃ©utilisables
+**Status**:  IMPLï¿½MENTï¿½  
+**Concept**: Transformer des images en equations reutilisables
 
 ---
 
-##  LE PROBLÃME QUE Ã‡A RÃSOUT
+##  LE PROBLï¿½ME QUE Ã‡A Rï¿½SOUT
 
 Avant:
 ```
 Pattern = metadata
   - couleur moyenne: [0.6, 0.3, 0.2]
-  - complexitÃ©: 0.45
-  - catÃ©gorie: HISTOIRE
+  - complexite: 0.45
+  - categorie: HISTOIRE
    Comment l'utiliser? "Applique rouge" - trop vague
 ```
 
-AprÃs:
+Aprï¿½s:
 ```
-Pattern = Ã©quation mathÃ©matique
-  f(x,y) = Î£ Îk Â gk(x,y)  pour k=1..20
+Pattern = equation mathematique
+  f(x,y) = Î£ ï¿½k ï¿½ gk(x,y)  pour k=1..20
    Chaque pixel sait EXACTEMENT sa couleur cible
-   RÃ©utilisable sur n'importe quelle taille
+   Reutilisable sur n'importe quelle taille
    Combinable avec d'autres patterns
 ```
 
 ---
 
-##  FONDATIONS MATHÃMATIQUES
+##  FONDATIONS MATHï¿½MATIQUES
 
-### 1£ ReprÃ©sentation d'un Pattern
+### 1ï¿½ Representation d'un Pattern
 
 Chaque pixel dans une image a:
 - **Position**: (x, y)
 - **Couleur cible**: C_target(x,y) = [R, G, B]
 
-Pour que ce pattern soit **mathÃ©matiquement codable**, on le reprÃ©sente comme:
+Pour que ce pattern soit **mathematiquement codable**, on le represente comme:
 
 $$C_{target}(x,y) = f(x,y) = \sum_{k=1}^{N} \alpha_k \cdot g_k(x,y)$$
 
-OÃ¹:
+Ou:
 - **N** = nombre de composantes (ex: 20)
-- **Îk** = coefficient d'importance (ce qu'on APPREND)
+- **ï¿½k** = coefficient d'importance (ce qu'on APPREND)
 - **gk(x,y)** = fonction de base (sinus, cos, Fourier, Gaussian, etc.)
 
-**Analogie**: C'est comme dÃ©crire une image avec une recette musicale!
-- Les gk sont les "instruments" (bas frÃ©quence, moyen frÃ©quence, haute frÃ©quence)
-- Les Îk sont les "volumes" de chaque instrument
-- La somme crÃ©e la "composition finale"
+**Analogie**: C'est comme decrire une image avec une recette musicale!
+- Les gk sont les "instruments" (bas frequence, moyen frequence, haute frequence)
+- Les ï¿½k sont les "volumes" de chaque instrument
+- La somme cree la "composition finale"
 
-### 2£ Choix des Fonctions de Base
+### 2ï¿½ Choix des Fonctions de Base
 
-Nous implÃ©mentons **3 types**:
+Nous implementons **3 types**:
 
-#### **Type 1: Fourier (dÃ©composition frÃ©quentielle)**
+#### **Type 1: Fourier (decomposition frequentielle)**
 
 $$g_k(x,y) = \cos\left(\frac{2\pi k_x x}{W}\right) \cdot \cos\left(\frac{2\pi k_y y}{H}\right)$$
 
-- kx, ky = indices de frÃ©quence
+- kx, ky = indices de frequence
 - W, H = largeur, hauteur
-- DÃ©tecte les patterns rÃ©pÃ©titifs, les gradients
--  Parfait pour couchers de soleil, ciel, ocÃ©an
+- Detecte les patterns repetitifs, les gradients
+-  Parfait pour couchers de soleil, ciel, ocean
 
-**Exemple**: g(x,y) = cos(2Ïx/W) Ã cos(2Ïy/H)
+**Exemple**: g(x,y) = cos(2ï¿½x/W) ï¿½ cos(2ï¿½y/H)
 ```
-  C_target = ÎÂ[basique ondulation]
-           + ÎÂ[ondulation plus rapide]  
-           + ÎÂ[ondulation diagonale]
+  C_target = ï¿½ï¿½[basique ondulation]
+           + ï¿½ï¿½[ondulation plus rapide]  
+           + ï¿½ï¿½[ondulation diagonale]
            + ...
 ```
 
-#### **Type 2: Gaussian (blobs localisÃ©s)**
+#### **Type 2: Gaussian (blobs localises)**
 
 $$g_k(x,y) = \exp\left(-\frac{(x-c_x)^2 + (y-c_y)^2}{2\sigma^2}\right)$$
 
-- DÃ©tecte les zones localisÃ©es (arbres, nuages, objets)
--  Parfait pour textures structurÃ©es
-- Chaque fonction = un "blob" gaussien Ã une position
+- Detecte les zones localisees (arbres, nuages, objets)
+-  Parfait pour textures structurees
+- Chaque fonction = un "blob" gaussien ï¿½ une position
 
 **Exemple**: g est un blob au coin haut-gauche, g au centre, etc.
 
@@ -85,14 +85,14 @@ $$g_k(x,y) = \exp\left(-\frac{(x-c_x)^2 + (y-c_y)^2}{2\sigma^2}\right)$$
 
 $$g_k(x,y) = \left(\frac{x}{W}\right)^{k_x} \cdot \left(\frac{y}{H}\right)^{k_y}$$
 
-- DÃ©tecte les gradients et transitions lisses
--  Parfait pour les dÃ©gradÃ©s (ciel  horizon)
+- Detecte les gradients et transitions lisses
+-  Parfait pour les degrades (ciel  horizon)
 
 ---
 
 ##  EXTRACTION D'UN PATTERN DEPUIS UNE IMAGE
 
-### Ãtape 1: Normalisation
+### ï¿½tape 1: Normalisation
 
 ```
 Image brute:
@@ -101,41 +101,41 @@ Image brute:
   [0.50, 0.25, 0.75]  (0-1)
 ```
 
-### Ãtape 2: SÃ©lectionner N fonctions de base
+### ï¿½tape 2: Selectionner N fonctions de base
 
 ```
 N = 20 fonctions Fourier:
-  g(x,y) = cos(2ÏÂ0Âx/W) Ã cos(2ÏÂ0Ây/H)  [DC, moyenne globale]
-  g(x,y) = cos(2ÏÂ1Âx/W) Ã cos(2ÏÂ0Ây/H)  [horizontal 1x]
-  g(x,y) = cos(2ÏÂ0Âx/W) Ã cos(2ÏÂ1Ây/H)  [vertical 1x]
-  g(x,y) = cos(2ÏÂ1Âx/W) Ã cos(2ÏÂ1Ây/H)  [diagonal 1x]
+  g(x,y) = cos(2ï¿½ï¿½0ï¿½x/W) ï¿½ cos(2ï¿½ï¿½0ï¿½y/H)  [DC, moyenne globale]
+  g(x,y) = cos(2ï¿½ï¿½1ï¿½x/W) ï¿½ cos(2ï¿½ï¿½0ï¿½y/H)  [horizontal 1x]
+  g(x,y) = cos(2ï¿½ï¿½0ï¿½x/W) ï¿½ cos(2ï¿½ï¿½1ï¿½y/H)  [vertical 1x]
+  g(x,y) = cos(2ï¿½ï¿½1ï¿½x/W) ï¿½ cos(2ï¿½ï¿½1ï¿½y/H)  [diagonal 1x]
   ...
-  g(x,y) = cos(2ÏÂ4Âx/W) Ã cos(2ÏÂ4Ây/H) [haute frÃ©quence]
+  g(x,y) = cos(2ï¿½ï¿½4ï¿½x/W) ï¿½ cos(2ï¿½ï¿½4ï¿½y/H) [haute frequence]
 ```
 
-### Ãtape 3: RÃ©soudre pour les coefficients Îk
+### ï¿½tape 3: Resoudre pour les coefficients ï¿½k
 
-**ProblÃme de moindres carrÃ©s**:
+**Problï¿½me de moindres carres**:
 
 $$\min_{\alpha_k} \sum_{i,j} \left\| C(i,j) - \sum_k \alpha_k g_k(i,j) \right\|^2$$
 
-En clair: "Trouve les Îk qui rendent les fonctions de base aussi proches que possible de l'image rÃ©elle"
+En clair: "Trouve les ï¿½k qui rendent les fonctions de base aussi proches que possible de l'image reelle"
 
 ```
-ImplÃ©mentation:
+Implementation:
   Pour chaque canal RGB:
-    Î = Î£_{i,j} C(i,j) Ã g(i,j) / Î£_{i,j} g(i,j)Â²
-    Î = Î£_{i,j} C(i,j) Ã g(i,j) / Î£_{i,j} g(i,j)Â²
+    ï¿½ = Î£_{i,j} C(i,j) ï¿½ g(i,j) / Î£_{i,j} g(i,j)^2
+    ï¿½ = Î£_{i,j} C(i,j) ï¿½ g(i,j) / Î£_{i,j} g(i,j)^2
     ...
-    Î = Î£_{i,j} C(i,j) Ã g(i,j) / Î£_{i,j} g(i,j)Â²
+    ï¿½ = Î£_{i,j} C(i,j) ï¿½ g(i,j) / Î£_{i,j} g(i,j)^2
 ```
 
-### Ãtape 4: Valider avec Reconstruction Error
+### ï¿½tape 4: Valider avec Reconstruction Error
 
 ```
-MSE = (moyenne((C_original - C_reconstructed)Â²))
+MSE = (moyenne((C_original - C_reconstructed)^2))
 
-MSE < 0.05  Excellent (on a capturÃ© 95% du pattern)
+MSE < 0.05  Excellent (on a capture 95% du pattern)
 MSE 0.05-0.1  Bon
 MSE > 0.15  Augmenter N (plus de fonctions)
 ```
@@ -146,36 +146,36 @@ MSE > 0.15  Augmenter N (plus de fonctions)
 
 ### Mode 1: Application Simple
 
-Une fois les Îk extraits, pour GÃNÃRER une nouvelle image:
+Une fois les ï¿½k extraits, pour Gï¿½Nï¿½RER une nouvelle image:
 
 ```
-ÃTAPE A: CrÃ©er rÃ©seau atomique
+ï¿½TAPE A: Creer reseau atomique
   network = NewAtomicImageNetwork(512, 512, 8)
 
-ÃTAPE B: Appliquer le pattern comme contrainte
+ï¿½TAPE B: Appliquer le pattern comme contrainte
   Pour chaque atome (x,y):
-    C_target = Î£ Îk Â gk(x,y)
+    C_target = Î£ ï¿½k ï¿½ gk(x,y)
     atom.Color = C_target
     atom.ExternalConstraint = 0.8  (force: 80%)
 
-ÃTAPE C: ItÃ©rer (rÃ©sonance + apprentissage)
+ï¿½TAPE C: Iterer (resonance + apprentissage)
   Pour 100 iterations:
     Chaque atome lit ses 8 voisins
-    RÃ©sonance: si s_i  s_j  s_ij augmente
-    Mise Ã jour: s_i(t+1) = s_i(t) + Î²(C_target - C_i) + ÎÂÎ£_j w_ijÂR_ij
+    Resonance: si s_i  s_j  s_ij augmente
+    Mise ï¿½ jour: s_i(t+1) = s_i(t) + beta(C_target - C_i) + ï¿½ï¿½Î£_j w_ijï¿½R_ij
     
-ÃTAPE D: Export PNG
+ï¿½TAPE D: Export PNG
 ```
 
-**Formule complÃte de mise Ã jour avec pattern**:
+**Formule complï¿½te de mise ï¿½ jour avec pattern**:
 
 $$s_i(t+1) = s_i(t) + \beta \cdot (f(x_i,y_i) - C_i(t)) + \alpha \sum_{j \in N(i)} w_{ij} \cdot R(s_i, s_j)$$
 
-OÃ¹:
-- **Î²** = force du pattern (combien on la respecte)
+Ou:
+- **beta** = force du pattern (combien on la respecte)
 - **f(x_i,y_i)** = couleur cible du pattern
-- **Î** = force de rÃ©sonance (alignement local)
-- **R(s_i, s_j)** = rÃ©sonance (exp(-||s_i - s_j||Â²))
+- **ï¿½** = force de resonance (alignement local)
+- **R(s_i, s_j)** = resonance (exp(-||s_i - s_j||^2))
 
 ### Mode 2: Combinaison de Patterns
 
@@ -183,16 +183,16 @@ Pour mixer 2-3 patterns:
 
 $$C_{mixed}(x,y) = w_1 \cdot f_1(x,y) + w_2 \cdot f_2(x,y) + w_3 \cdot f_3(x,y)$$
 
-OÃ¹ w + w + w = 1 (poids normalisÃ©s)
+Ou w + w + w = 1 (poids normalises)
 
 **Exemple**: Sunset (60%) + Ocean (40%)
 ```
 Pour chaque pixel (x,y):
-  C_target = 0.6 Ã Î£ Î_sunset,k Â g_k(x,y)
-           + 0.4 Ã Î£ Î_ocean,k Â g_k(x,y)
+  C_target = 0.6 ï¿½ Î£ ï¿½_sunset,k ï¿½ g_k(x,y)
+           + 0.4 ï¿½ Î£ ï¿½_ocean,k ï¿½ g_k(x,y)
 ```
 
-### Mode 3: InterprÃ©tation + Prompt
+### Mode 3: Interpretation + Prompt
 
 Combiner le pattern avec un prompt naturel:
 
@@ -200,15 +200,15 @@ $$C_{final}(x,y) = f_{pattern}(x,y) + prompt\_influence(x,y)$$
 
 **Exemple**: Pattern "ocean" + Prompt "dark"
 ```
-C_base = Î£ Î_ocean,k Â gk(x,y)  [couleurs de l'ocÃ©an du pattern]
-C_dark = C_base Ã 0.6  [rendre 40% plus sombre]
+C_base = Î£ ï¿½_ocean,k ï¿½ gk(x,y)  [couleurs de l'ocean du pattern]
+C_dark = C_base ï¿½ 0.6  [rendre 40% plus sombre]
 ```
 
 ---
 
-##  STOCKAGE DANS LA BASE DE DONNÃES
+##  STOCKAGE DANS LA BASE DE DONNï¿½ES
 
-Chaque pattern stockÃ© = 3 informations:
+Chaque pattern stocke = 3 informations:
 
 ```json
 {
@@ -232,45 +232,45 @@ Chaque pattern stockÃ© = 3 informations:
 
 ##  EXEMPLE COMPLET: COUCHER DE SOLEIL
 
-### Ãtape 1: Image source
+### ï¿½tape 1: Image source
 
 ```
-Photo sunset.png (512Ã512)
-  - Haut: ciel bleu-rose dÃ©gradÃ©
+Photo sunset.png (512ï¿½512)
+  - Haut: ciel bleu-rose degrade
   - Milieu: orange-rouge vif
   - Bas: orange sombre
 ```
 
-### Ãtape 2: Extraction
+### ï¿½tape 2: Extraction
 
 ```bash
 ./programme pattern extract input/sunset.png 20
 ```
 
-**RÃ©sultat**:
+**Resultat**:
 ```
 Fonctions de base: 20 Fourier
 Red channel:
-  Î = +0.6234  (bas frÃ©quence: rouge dominant)
-  Î = +0.2341  (transition horizontale)
-  Î = -0.1523  (transition verticale)
-  Î = +0.0456  (variation diagonale)
+  ï¿½ = +0.6234  (bas frequence: rouge dominant)
+  ï¿½ = +0.2341  (transition horizontale)
+  ï¿½ = -0.1523  (transition verticale)
+  ï¿½ = +0.0456  (variation diagonale)
   ...
   
 Green channel:
-  Î = +0.3456
-  Î = +0.1234
+  ï¿½ = +0.3456
+  ï¿½ = +0.1234
   ...
 
 Blue channel:
-  Î = +0.2123
-  Î = +0.4892  (contraste bleu-ciel haut)
+  ï¿½ = +0.2123
+  ï¿½ = +0.4892  (contraste bleu-ciel haut)
   ...
 
 Reconstruction MSE: 0.038   (excellent!)
 ```
 
-### Ãtape 3: RÃ©utilisation
+### ï¿½tape 3: Reutilisation
 
 ```bash
 ./programme generate with-pattern sunset 1024 1024 150 "dark forest"
@@ -279,31 +279,31 @@ Reconstruction MSE: 0.038   (excellent!)
 **Ce qui se passe**:
 ```
 Pour chaque pixel (x,y):
-  C_sunset_target = 0.62Âcos(...) + 0.23Âcos(...) - 0.15Âcos(...) + ...
+  C_sunset_target = 0.62ï¿½cos(...) + 0.23ï¿½cos(...) - 0.15ï¿½cos(...) + ...
   C_forest_prompt = GREEN influence de "forest"
-  C_final = 0.7 Ã C_sunset_target + 0.3 Ã C_forest_prompt
+  C_final = 0.7 ï¿½ C_sunset_target + 0.3 ï¿½ C_forest_prompt
   
-Puis itÃ©ration atomique:
+Puis iteration atomique:
   Atomes s'alignent avec C_final
-  RÃ©sonance renforce la cohÃ©rence
-  RÃ©sultat: "Forest avec couleurs/style de sunset"
+  Resonance renforce la coherence
+  Resultat: "Forest avec couleurs/style de sunset"
 ```
 
 ---
 
 ##  INTERPOLATION: TRANSITION ENTRE PATTERNS
 
-Pour crÃ©er une animation douce de pattern1  pattern2:
+Pour creer une animation douce de pattern1  pattern2:
 
 $$f_t(x,y) = (1-t) \cdot f_1(x,y) + t \cdot f_2(x,y)$$
 
-OÃ¹ t  [0, 1]
+Ou t  [0, 1]
 
 ```
 ./programme pattern interpolate sunset ocean 10 ./anim/
 ```
 
-GÃ©nÃre 10 images intermÃ©diaires:
+Genï¿½re 10 images intermediaires:
 ```
 t=0.0: Pur sunset
 t=0.11: 90% sunset, 10% ocean
@@ -317,16 +317,16 @@ t=1.0: Pur ocean
 
 ##  AVANTAGES DE CETTE APPROCHE
 
-| Aspect | Avant (metadata) | AprÃs (math) |
+| Aspect | Avant (metadata) | Aprï¿½s (math) |
 |--------|---|---|
 | **Stockage** | Couleur moyenne | 60 coefficients |
 | **Taille** | 100 bytes | 500 bytes |
-| **RÃ©utilisation** | "Appliquer rouge" | Ãquation mathÃ©matique prÃ©cise |
-| **Combinaison** | Impossible | Additionner les Îk |
-| **Interpolation** | Impossible | Trivial (lerp entre Îk) |
-| **ScalabilitÃ©** | 256Ã256 seulement | N'importe quelle taille |
+| **Reutilisation** | "Appliquer rouge" | ï¿½quation mathematique precise |
+| **Combinaison** | Impossible | Additionner les ï¿½k |
+| **Interpolation** | Impossible | Trivial (lerp entre ï¿½k) |
+| **Scalabilite** | 256ï¿½256 seulement | N'importe quelle taille |
 | **Compression** | 0% | 95% (MSE <0.05) |
-| **Hallucination** | Possible | 0% (dÃ©terministe) |
+| **Hallucination** | Possible | 0% (deterministe) |
 
 ---
 
@@ -338,23 +338,23 @@ t=1.0: Pur ocean
 ```
 Apprend le pattern, affiche l'analyse.
 
-### GÃ©nÃ©ration avec pattern
+### Generation avec pattern
 ```bash
 ./programme generate with-pattern sunset 512 512 100 "dark forest"
 ```
-Utilise le pattern comme guidance pour la gÃ©nÃ©ration.
+Utilise le pattern comme guidance pour la generation.
 
 ### Composition
 ```bash
 ./programme pattern compose sunset:0.6 ocean:0.4 512 512 result.png
 ```
-MÃ©lange plusieurs patterns avec des poids.
+Melange plusieurs patterns avec des poids.
 
 ### Interpolation
 ```bash
 ./programme pattern interpolate sunset ocean 10 ./animations/
 ```
-CrÃ©e 10 images intermÃ©diaires.
+Cree 10 images intermediaires.
 
 ### Matching
 ```bash
@@ -366,48 +366,48 @@ Trouve les patterns les plus similaires au prompt.
 ```bash
 ./programme pattern analyze coefficients sunset_001
 ```
-Affiche tous les Îk avec interprÃ©tation.
+Affiche tous les ï¿½k avec interpretation.
 
 ---
 
-##  INSIGHTS MATHÃMATIQUES
+##  INSIGHTS MATHï¿½MATIQUES
 
-### 1. Pourquoi la dÃ©composition Fourier?
+### 1. Pourquoi la decomposition Fourier?
 
--  ReprÃ©sentation efficace des patterns rÃ©pÃ©titifs
--  TransformÃ©e rapide (FFT possiblefutur)
--  SÃ©paration naturelle basse/moyen/haute frÃ©quence
+-  Representation efficace des patterns repetitifs
+-  Transformee rapide (FFT possiblefutur)
+-  Separation naturelle basse/moyen/haute frequence
 -  20 composantes = capture 95%+ du contenu visuel
 
 ### 2. Nombre de composantes N
 
 ```
-N = 10:   TrÃs rapide, patterns trÃs lisses (MS E  0.15)
-N = 20:   Bon compromis (MSE  0.04)  RecommandÃ©
-N = 50:   TrÃs dÃ©taillÃ© (MSE  0.01)
+N = 10:   Trï¿½s rapide, patterns trï¿½s lisses (MS E  0.15)
+N = 20:   Bon compromis (MSE  0.04)  Recommande
+N = 50:   Trï¿½s detaille (MSE  0.01)
 N = 100:  Parfait (MSE < 0.005)
 ```
 
-### 3. StabilitÃ© de la gÃ©nÃ©ration
+### 3. Stabilite de la generation
 
-Avec pattern mathÃ©matique:
--  DÃ©terministe (mÃme entrÃ©e = mÃme sortie)
+Avec pattern mathematique:
+-  Deterministe (mï¿½me entree = mï¿½me sortie)
 -  Pas de hallucinations (pas de sampling)
--  Converge rapidement (50-100 itÃ©rations)
--  Stable mÃme avec N grand
+-  Converge rapidement (50-100 iterations)
+-  Stable mï¿½me avec N grand
 
 ---
 
 ##  FLUX GLOBAL
 
 ```
-Image  Extraction  Coefficients Îk  Database
+Image  Extraction  Coefficients ï¿½k  Database
                                             
                                     [patterns.db]
                                             
-Prompt + Pattern  DÃ©codage  f(x,y)  AtomicNetwork  Image
+Prompt + Pattern  Decodage  f(x,y)  AtomicNetwork  Image
                              
-                        RÃ©sonance (100 iter)
+                        Resonance (100 iter)
 ```
 
 ---
@@ -416,12 +416,12 @@ Prompt + Pattern  DÃ©codage  f(x,y)  AtomicNetwork  Image
 
 Cette approche est:
 
-1. **DÃ©terministe** - ZÃ©ro randomness, pur math
-2. **Compressible** - 512Ã512 image  500 bytes
+1. **Deterministe** - Zero randomness, pur math
+2. **Compressible** - 512ï¿½512 image  500 bytes
 3. **Composable** - Î£ patterns fonctionne
-4. **Scalable** - Fonctionne Ã n'importe quelle rÃ©solution
-5. **Rapide** - Pas de GPU, <1s pour 1024Ã1024
-6. **Explicable** - Chaque coefficient = quelque chose de prÃ©cis
+4. **Scalable** - Fonctionne ï¿½ n'importe quelle resolution
+5. **Rapide** - Pas de GPU, <1s pour 1024ï¿½1024
+6. **Explicable** - Chaque coefficient = quelque chose de precis
 
 C'est un **nouveau paradigme** entre:
 -  Pure random sampling (Stable Diffusion)
@@ -430,6 +430,6 @@ C'est un **nouveau paradigme** entre:
 
 ---
 
-**Status**:  ImplÃ©mentÃ© et prÃt Ã utiliser
+**Status**:  Implemente et prï¿½t ï¿½ utiliser
 
-Prochaine Ã©tape: Tester avec les vrais patterns!
+Prochaine etape: Tester avec les vrais patterns!

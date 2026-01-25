@@ -4,26 +4,26 @@
 
 ```bash
 # Simple prompt
-./programme generate from-prompt 256 256 100 "for�t mystérieuse"
+./programme generate from-prompt 256 256 100 "for�t mysterieuse"
 
 # Quality output  
-./programme generate from-prompt 512 512 200 "océan tempétueux avec vagues"
+./programme generate from-prompt 512 512 200 "ocean tempetueux avec vagues"
 
 # Tech concept
-./programme generate from-prompt 256 256 100 "technologie futuriste et néons"
+./programme generate from-prompt 256 256 100 "technologie futuriste et neons"
 
 # Mixed concepts
-./programme generate from-prompt 512 512 200 "ch�teau médiéval dans la brume"
+./programme generate from-prompt 512 512 200 "ch�teau medieval dans la brume"
 ```
 
 ## Input  Output Mapping
 
 | Prompt | Keywords | Likely Category | Result |
 |--------|----------|-----------------|--------|
-| "for�t mystérieuse" | for�t, mystérieuse | HISTOIRE | Pattern with historical vibes |
+| "for�t mysterieuse" | for�t, mysterieuse | HISTOIRE | Pattern with historical vibes |
 | "technologie futuriste" | technologie, futuriste | TECH | Computational pattern structure |
 | "restaurant gastronomique" | restaurant, gastronomie | ALIMENTATION | Food-themed pattern |
-| "montagne enneigée" | montagne, enneigée | HISTOIRE | Landscape pattern |
+| "montagne enneigee" | montagne, enneigee | HISTOIRE | Landscape pattern |
 | "robot intelligent" | robot, intelligent | TECH | Tech-focused pattern |
 
 ## Command Syntax
@@ -49,10 +49,10 @@ PROMPT = Natural language description
 ## Pro Tips
 
  **Use descriptive adjectives**
-- "for�t sombre ancienne mystérieuse"
+- "for�t sombre ancienne mysterieuse"
 
  **Mix concepts for complex patterns**
-- "ch�teau médiéval avec technologie futuriste"
+- "ch�teau medieval avec technologie futuriste"
 
  **Mention feelings/moods**
 - "paysage paisible et serein"
@@ -66,10 +66,10 @@ PROMPT = Natural language description
 ## Neuron Categories Quick Map
 
 - **TECH** (1): technologie, algorithme, digital, robot, circuit, code
-- **HISTOIRE** (2): ch�teau, roi, ancien, médiéval, empire, politique
-- **BUSINESS** (3): commerce, marché, entreprise, affaires, économie
-- **ALIMENTATION** (4): nourriture, fruit, cuisine, pain, g�teau, restaurant
-- **SANT�** (5): médecine, santé, docteur, hôpital, maladie
+- **HISTOIRE** (2): ch�teau, roi, ancien, medieval, empire, politique
+- **BUSINESS** (3): commerce, marche, entreprise, affaires, economie
+- **ALIMENTATION** (4): nourriture, fruit, cuisine, pain, g�teau, restaurant
+- **SANT�** (5): medecine, sante, docteur, hopital, maladie
 - **VERBE** (6): actions, mouvement, dynamique
 
 ## Output Files
@@ -83,7 +83,7 @@ output/atomic_prompt_512x512_200iter.png
 
 ```bash
 # Step 1: Generate from prompt
-./programme generate from-prompt 512 512 150 "for�t enchantée"
+./programme generate from-prompt 512 512 150 "for�t enchantee"
 
 # Step 2: Use as pattern for more iterations
 ./programme generate pattern 512 512 200 output/atomic_prompt_512x512_150iter.png

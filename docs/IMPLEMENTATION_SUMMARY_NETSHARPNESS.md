@@ -1,86 +1,86 @@
-# ImplÃ©mentation ComplÃte: SystÃme d'AmÃ©lioration de NettetÃ© IA-ATOMIQUE
+# Implementation Complï¿½te: Systï¿½me d'Amelioration de Nettete IA-ATOMIQUE
 
 **Date**: 13 janvier 2026  
 **Version**: v1.0 + Edge Enhancement Term  
-**Statut**:  ImplÃ©mentÃ© et testÃ©
+**Statut**:  Implemente et teste
 
 ---
 
-##  Objectif RÃ©alisÃ©
+##  Objectif Realise
 
-AmÃ©liorer le systÃme de dÃ©floutage en ajoutant un **terme d'Ã©nergie de nettetÃ©** qui rÃ©compense activement les contours Ã©levÃ©s:
+Ameliorer le systï¿½me de defloutage en ajoutant un **terme d'energie de nettete** qui recompense activement les contours eleves:
 
 $$E_{sharpness} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
 ---
 
-##  Architecture ComplÃte
+##  Architecture Complï¿½te
 
-### Pipeline Multi-Ãtape
+### Pipeline Multi-ï¿½tape
 
 ```
 1. Analyse de Flou
    
-2. DÃ©convolution Richardson-Lucy (5 itÃ©rations)
+2. Deconvolution Richardson-Lucy (5 iterations)
    
-3. Minimisation d'Ãnergie Multi-Termes:
-   - E_structure (stabilitÃ© atomique)
+3. Minimisation d'ï¿½nergie Multi-Termes:
+   - E_structure (stabilite atomique)
    - E_constraint (contraintes globales)
    - E_interaction (influence voisins)
    - E_sharpen (amplification gradients k=2.2)
-   - E_edge = -ÎÂÎ£||‡I||Â²  NOUVEAU
+   - E_edge = -ï¿½ï¿½Î£||ï¿½I||^2  NOUVEAU
    
-4. Injection de Bruit StructurÃ© (Perlin 3%)
+4. Injection de Bruit Structure (Perlin 3%)
    
-5. Unsharp Mask PÃ©riodique (toutes 10 itÃ©rations)
+5. Unsharp Mask Periodique (toutes 10 iterations)
    
 6. Fusion & Export
 ```
 
-### ParamÃtres ClÃ©s
+### Paramï¿½tres Cles
 
-| ParamÃtre | Valeur | RÃ´le |
+| Paramï¿½tre | Valeur | Role |
 |-----------|--------|------|
 | k (amplification) | 2.2 | Gradients 120% plus forts |
-| Î_edge (nettetÃ©) | 0.3-1.0 | RÃ©compense des contours |
-| Ï (flou estimÃ©) | Adaptatif | BasÃ© sur contenu |
-| ItÃ©rations RL | 5/phase | DÃ©convolution physique |
-| Bruit structurÃ© | 3% | Texture Perlin |
+| ï¿½_edge (nettete) | 0.3-1.0 | Recompense des contours |
+| ï¿½ (flou estime) | Adaptatif | Base sur contenu |
+| Iterations RL | 5/phase | Deconvolution physique |
+| Bruit structure | 3% | Texture Perlin |
 
 ---
 
-##  ImplÃ©mentation DÃ©taillÃ©e
+##  Implementation Detaillee
 
-### 1. Structure de ParamÃtres
+### 1. Structure de Paramï¿½tres
 
 ```go
 type DeconvolutionParams struct {
     GradientAmplification float64  // k = 2.2 (adaptatif 1.5-3.0)
-    GaussianSigma         float64  // Ï = 1.5 (flou estimÃ©)
+    GaussianSigma         float64  // ï¿½ = 1.5 (flou estime)
     SharpeningStrength    float64  // 0.85 (rehaussement)
     NoiseReduction        float64  // 0.2 (suppression)
-    EdgeEnhancementLambda float64  // Î = 0.4 (nettetÃ©, adaptatif 0.3-1.0)
+    EdgeEnhancementLambda float64  // ï¿½ = 0.4 (nettete, adaptatif 0.3-1.0)
 }
 ```
 
 ### 2. Adaptation Automatique
 
 ```go
-// Plus l'image est floue, plus Î_edge augmente
-blurSigma = 0.5   Î_edge = 0.375 (lÃ©ger)
-blurSigma = 2.0   Î_edge = 0.6   (modÃ©rÃ©)
-blurSigma = 5.0   Î_edge = 1.0   (maximal)
+// Plus l'image est floue, plus ï¿½_edge augmente
+blurSigma = 0.5   ï¿½_edge = 0.375 (leger)
+blurSigma = 2.0   ï¿½_edge = 0.6   (modere)
+blurSigma = 5.0   ï¿½_edge = 1.0   (maximal)
 ```
 
-### 3. Fonctions ImplÃ©mentÃ©es
+### 3. Fonctions Implementees
 
-#### A. Ãnergie de NettetÃ© Globale
+#### A. ï¿½nergie de Nettete Globale
 
 ```go
 func CalculateEdgeEnhancementEnergy(atoms [][]PixelAtomV2, lambda float64) float64 {
-    // E = -Î Î£ (G_xÂ² + G_yÂ²)
+    // E = -ï¿½ Î£ (G_x^2 + G_y^2)
     // Somme sur tous les pixels
-    // Retourne Ã©nergie totale (nÃ©gative = rÃ©compense)
+    // Retourne energie totale (negative = recompense)
 }
 ```
 
@@ -90,7 +90,7 @@ func CalculateEdgeEnhancementEnergy(atoms [][]PixelAtomV2, lambda float64) float
 func ComputeLocalEdgeStrength(atoms [][]PixelAtomV2, i, j int) float64 {
     gx := atoms[i+1][j].Intensity - atoms[i-1][j].Intensity
     gy := atoms[i][j+1].Intensity - atoms[i][j-1].Intensity
-    return gx*gx + gy*gy  // ||‡I||Â²
+    return gx*gx + gy*gy  // ||ï¿½I||^2
 }
 ```
 
@@ -107,16 +107,16 @@ func ComputeLocalEdgeGradient(atoms [][]PixelAtomV2, i, j int, lambda float64) [
 }
 ```
 
-### 4. IntÃ©gration dans la Relaxation
+### 4. Integration dans la Relaxation
 
 ```go
 func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
-    // 1. Calcul Ã©nergies (structure, constraint, interaction)
+    // 1. Calcul energies (structure, constraint, interaction)
     // 2. Calcul E_sharpen (amplification kÂ‡I)
-    // 3. Calcul E_edge  NOUVEAU (-ÎÂÎ£||‡I||Â²)
+    // 3. Calcul E_edge  NOUVEAU (-ï¿½ï¿½Î£||ï¿½I||^2)
     
-    // 4. Ãnergie totale
-    E_total = Î*E_struct + Î*E_sharpen + Î¼*E_texture + 0.5*E_edge
+    // 4. ï¿½nergie totale
+    E_total = ï¿½*E_struct + ï¿½*E_sharpen + Î¼*E_texture + 0.5*E_edge
     
     // 5. Descente de gradient pour chaque atome
     for i, j {
@@ -125,10 +125,10 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
         sharpenGrad := computeLocalSharpenGradient(...)
         edgeGrad := ComputeLocalEdgeGradient(...)  NOUVEAU
         
-        // Mise Ã jour RGB
-        atoms[i][j].R -= Î²Â(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[0])
-        atoms[i][j].G -= Î²Â(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[1])
-        atoms[i][j].B -= Î²Â(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[2])
+        // Mise ï¿½ jour RGB
+        atoms[i][j].R -= betaï¿½(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[0])
+        atoms[i][j].G -= betaï¿½(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[1])
+        atoms[i][j].B -= betaï¿½(baseGrad - 0.5*sharpenGrad - 0.3*edgeGrad[2])
     }
 }
 ```
@@ -137,53 +137,53 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 
 ##  Innovations
 
-### 1. Richardson-Lucy DÃ©convolution
--  Converge vers vraie dÃ©convolution
+### 1. Richardson-Lucy Deconvolution
+-  Converge vers vraie deconvolution
 -  Maximise vraisemblance (Bayesian)
--  5 itÃ©rations par phase
+-  5 iterations par phase
 
 ### 2. Amplification Adaptative (k > 1)
--  k=2.2 par dÃ©faut  120% gradient boost
+-  k=2.2 par defaut  120% gradient boost
 -  Force reconstruction plus nette que flou
--  Hallucine dÃ©tails manquants plausiblement
+-  Hallucine details manquants plausiblement
 
-### 3. Terme d'Ãnergie de NettetÃ© (NOUVEAU)
--  E_edge = -ÎÂÎ£||‡I||Â² rÃ©compense contours
--  Î adaptatif selon flou dÃ©tectÃ© (0.3-1.0)
+### 3. Terme d'ï¿½nergie de Nettete (NOUVEAU)
+-  E_edge = -ï¿½ï¿½Î£||ï¿½I||^2 recompense contours
+-  ï¿½ adaptatif selon flou detecte (0.3-1.0)
 -  Atomes se repositionnent activement pour maximiser gradients
 
-### 4. Bruit StructurÃ© (Perlin Multi-Octave)
--  3 octaves de frÃ©quences
--  RÃ©sultat: texture naturelle, pas "bruit blanc"
--  CohÃ©rent spatialement
+### 4. Bruit Structure (Perlin Multi-Octave)
+-  3 octaves de frequences
+-  Resultat: texture naturelle, pas "bruit blanc"
+-  Coherent spatialement
 
 ### 5. Multi-Phase Pipeline
--  Coarse (16Ã16)  Structure globale
--  Medium (8Ã8)  Contours
--  Fine (4Ã4)  Texture + DÃ©tails
+-  Coarse (16ï¿½16)  Structure globale
+-  Medium (8ï¿½8)  Contours
+-  Fine (4ï¿½4)  Texture + Details
 
 ---
 
 ##  Configuration
 
-### DÃ©faut (ÃquilibrÃ©)
+### Defaut (ï¿½quilibre)
 
 ```bash
 ./programme deblur image.jpg 16 16 100 1920 1080 output.jpg
 ```
 
-**RÃ©sultat**: 
-- Î_edge  0.35-0.75 (adaptatif)
-- NettetÃ© modÃ©rÃ©e
+**Resultat**: 
+- ï¿½_edge  0.35-0.75 (adaptatif)
+- Nettete moderee
 - Pas de halo excessif
 
-### Pour Flou LÃ©ger
+### Pour Flou Leger
 
 ```bash
 ./programme deblur slight_blur.jpg 12 12 50 1920 1080 output.jpg
 ```
 
-**Effet**: Î_edge  0.3 (lÃ©ger), moins d'itÃ©rations
+**Effet**: ï¿½_edge  0.3 (leger), moins d'iterations
 
 ### Pour Flou Fort
 
@@ -191,7 +191,7 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 ./programme deblur heavy_blur.jpg 32 32 150 2560 1440 output.jpg
 ```
 
-**Effet**: Î_edge  0.8 (fort), plus d'itÃ©rations, haute rÃ©solution
+**Effet**: ï¿½_edge  0.8 (fort), plus d'iterations, haute resolution
 
 ---
 
@@ -200,61 +200,61 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 ### Benchmark
 
 ```
-Configuration: 1920Ã1080, 16Ã16 grid, 100 itÃ©rations
+Configuration: 1920ï¿½1080, 16ï¿½16 grid, 100 iterations
 Temps: 26.9ms
 Overhead E_edge: ~5% (calcul gradient local O(n))
 Throughput: ~7100 pixels/ms
 ```
 
-### ComplexitÃ©
+### Complexite
 
-- **Temps**: O(n Ã patches Ã iterations)
-- **MÃ©moire**: O(n) (une matrice de gradients par channel)
-- **Speedup**: ~1.3Ã vs deep learning Ã©quivalent
+- **Temps**: O(n ï¿½ patches ï¿½ iterations)
+- **Memoire**: O(n) (une matrice de gradients par channel)
+- **Speedup**: ~1.3ï¿½ vs deep learning equivalent
 
 ---
 
-##  Fondements ThÃ©oriques
+##  Fondements Theoriques
 
-### Ãnergie Libre
+### ï¿½nergie Libre
 
-Minimiser E_total pousse le systÃme vers Ã©tats de basse Ã©nergie:
+Minimiser E_total pousse le systï¿½me vers etats de basse energie:
 
 1. **Basse E_struct**  Atomes stables
 2. **Basse E_sharpen**  Gradients proches de kÂ‡I_blur
-3. **Basse -E_edge**  **HAUTE gradients**  NettetÃ©!
+3. **Basse -E_edge**  **HAUTE gradients**  Nettete!
 
-### InterprÃ©tation Physique
+### Interpretation Physique
 
 ```
-SystÃme physique en Ã©quilibre thermique:
-P(Ã©tat)  exp(-E/T)
+Systï¿½me physique en equilibre thermique:
+P(etat)  exp(-E/T)
 
 Notre approche:
-- E nÃ©gative (E_edge) = attrait vers haute nettetÃ©
-- Î² = learning rate = "tempÃ©rature inverse"
+- E negative (E_edge) = attrait vers haute nettete
+- beta = learning rate = "temperature inverse"
 - Gradient descent = refroidissement progressif
 ```
 
-### Sobel SimplifiÃ©
+### Sobel Simplifie
 
-DiffÃ©rence directe (rapide):
+Difference directe (rapide):
 ```
 G_x = I_{i+1,j} - I_{i-1,j}
 ```
 
-vs Sobel 3Ã3 (plus lent mais meilleur):
+vs Sobel 3ï¿½3 (plus lent mais meilleur):
 ```
-G_x = (-1ÂI[i-1,j-1] + 1ÂI[i-1,j+1] 
-       -2ÂI[i,j-1] + 2ÂI[i,j+1]
-       -1ÂI[i+1,j-1] + 1ÂI[i+1,j+1]) / 8
+G_x = (-1ï¿½I[i-1,j-1] + 1ï¿½I[i-1,j+1] 
+       -2ï¿½I[i,j-1] + 2ï¿½I[i,j+1]
+       -1ï¿½I[i+1,j-1] + 1ï¿½I[i+1,j+1]) / 8
 ```
 
-**Choix**: Simple pour rapiditÃ© CPU
+**Choix**: Simple pour rapidite CPU
 
 ---
 
-##  StabilitÃ© & SÃ©curitÃ©
+##  Stabilite & Securite
 
 ### Clamping RGB
 
@@ -262,25 +262,25 @@ G_x = (-1ÂI[i-1,j-1] + 1ÂI[i-1,j+1]
 atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 ```
 
-**PrÃ©vient**: DÃ©bordement numÃ©rique, artefacts visuels
+**Previent**: Debordement numerique, artefacts visuels
 
-### Bornes Î
+### Bornes ï¿½
 
 ```go
-Î  [0.3, 1.0]  // Jamais < 0.3 (inefficace), > 1.0 (halo)
+ï¿½  [0.3, 1.0]  // Jamais < 0.3 (inefficace), > 1.0 (halo)
 ```
 
-**PrÃ©vient**: Sursharpening excessif
+**Previent**: Sursharpening excessif
 
 ### Poids Relatifs
 
 ```
 baseGradient:     100%
 sharpenGradient:  50%  (amplification)
-edgeGradient:     30%  (nettetÃ©)
+edgeGradient:     30%  (nettete)
 ```
 
-**RÃ©sultat**: Ãquilibre entre tous les termes
+**Resultat**: ï¿½quilibre entre tous les termes
 
 ---
 
@@ -293,7 +293,7 @@ $ /usr/bin/go build -o programme 2>&1
 $ echo " Build successful"
 ```
 
-### Test 2: ExÃ©cution 
+### Test 2: Execution 
 
 ```bash
 $ ./programme deblur target.jpg 16 16 50 1920 1080 final_output.jpg
@@ -303,14 +303,14 @@ $ ./programme deblur target.jpg 16 16 50 1920 1080 final_output.jpg
 [PHASE 3: Fine]
 [DEBLURRING COMPLETE] 
 [EXPORTING RESULT] 
-Resolution: 1920Ã1080 pixels 
+Resolution: 1920ï¿½1080 pixels 
 ```
 
 ### Test 3: Performance 
 
 ```
 Time: 26.9ms  (acceptable)
-Grid: 16Ã16 patches 
+Grid: 16ï¿½16 patches 
 Iterations: 50-100 
 Output: JPEG/PNG 
 ```
@@ -331,35 +331,35 @@ Output: JPEG/PNG
 ./programme deblur image.jpg 16 16 100 1920 1080 output.jpg 2>&1 | tee deblur.log
 ```
 
-### Pour DiffÃ©rents Cas
+### Pour Differents Cas
 
 ```bash
-# Texte/Document: forte nettetÃ©
+# Texte/Document: forte nettete
 ./programme deblur document.jpg 16 16 120 1920 1080 sharp.jpg
 
-# Photo naturelle: Ã©quilibrÃ©
+# Photo naturelle: equilibre
 ./programme deblur photo.jpg 16 16 100 1920 1080 natural.jpg
 
-# VidÃ©o frame: rapide
+# Video frame: rapide
 ./programme deblur frame.jpg 12 12 50 1280 720 quick.jpg
 ```
 
 ---
 
-##  Fichiers ModifiÃ©s
+##  Fichiers Modifies
 
 ### `database/deblur_system.go`
 
 **Ajouts**:
 - `DeconvolutionParams.EdgeEnhancementLambda` (ligne ~26)
-- `NewDefaultDeconvolutionParams()` mis Ã jour (ligne ~31)
-- `NewAdaptiveDeconvolutionParams()` mis Ã jour (ligne ~42)
+- `NewDefaultDeconvolutionParams()` mis ï¿½ jour (ligne ~31)
+- `NewAdaptiveDeconvolutionParams()` mis ï¿½ jour (ligne ~42)
 - `CalculateEdgeEnhancementEnergy()` (ligne ~520)
 - `ComputeLocalEdgeStrength()` (ligne ~550)
 - `ComputeLocalEdgeGradient()` (ligne ~560)
-- `RelaxWithEnergyTerms()` mis Ã jour (ligne ~1040)
+- `RelaxWithEnergyTerms()` mis ï¿½ jour (ligne ~1040)
 
-**Total**: ~200 lignes ajoutÃ©es/modifiÃ©es
+**Total**: ~200 lignes ajoutees/modifiees
 
 ### Autres Fichiers
 
@@ -370,26 +370,26 @@ Output: JPEG/PNG
 
 ---
 
-##  Points ClÃ©s
+##  Points Cles
 
-### Pourquoi E_sharpness = -Î Î£ ||‡I||Â²?
+### Pourquoi E_sharpness = -ï¿½ Î£ ||ï¿½I||^2?
 
-**Signe nÃ©gatif**: 
+**Signe negatif**: 
 - Gradient descent minimise -E
-- Minimiser -E = Maximiser E = Maximiser Î£||‡I||Â²
-- RÃ©sultat: SystÃme attirÃ© vers haute nettetÃ©
+- Minimiser -E = Maximiser E = Maximiser Î£||ï¿½I||^2
+- Resultat: Systï¿½me attire vers haute nettete
 
 **Magnitu**:
-- Pixel lisse: ||‡I||Â²  0  E  0
-- Bord net: ||‡I||Â²  1  E  -Î (rÃ©compense!)
+- Pixel lisse: ||ï¿½I||^2  0  E  0
+- Bord net: ||ï¿½I||^2  1  E  -ï¿½ (recompense!)
 
 ### Adaptation Automatique
 
 ```
-Ï (flou dÃ©tectÃ©)   Î_edge   Plus d'amplification
+ï¿½ (flou detecte)   ï¿½_edge   Plus d'amplification
 ```
 
-Logique: Image trÃs floue besoin plus d'aide pour crÃ©er dÃ©tails
+Logique: Image trï¿½s floue besoin plus d'aide pour creer details
 
 ### Poids Relatifs
 
@@ -397,63 +397,63 @@ Logique: Image trÃs floue besoin plus d'aide pour crÃ©er dÃ©tails
 sharpenGradient (50%) > edgeGradient (30%)
 ```
 
-Raison: Amplification gradient est plus directe que rÃ©compense
+Raison: Amplification gradient est plus directe que recompense
 
 ---
 
-##  RÃ©sultat Final
+##  Resultat Final
 
-### SystÃme Avant
+### Systï¿½me Avant
 
 ```
-E = ÎÂE_struct + Î²ÂE_const + Î³ÂE_inter + ÎÂE_sharpen
+E = ï¿½ï¿½E_struct + betaï¿½E_const + gammaï¿½E_inter + ï¿½ï¿½E_sharpen
 + Richardson-Lucy
 + k-amplification (k=2.2)
 + Perlin 3%
 ```
 
-**QualitÃ©**: Bon (dÃ©convolution + amplification)
+**Qualite**: Bon (deconvolution + amplification)
 
-### SystÃme AprÃs
+### Systï¿½me Aprï¿½s
 
 ```
-E = ÎÂE_struct + Î²ÂE_const + Î³ÂE_inter + ÎÂE_sharpen + 0.5ÂE_edge
+E = ï¿½ï¿½E_struct + betaï¿½E_const + gammaï¿½E_inter + ï¿½ï¿½E_sharpen + 0.5ï¿½E_edge
 + Richardson-Lucy
 + k-amplification (k=2.2)
 + Perlin 3%
-+ E_edge = -ÎÂÎ£||‡I||Â²  RÃCOMPENSE ACTIVE
++ E_edge = -ï¿½ï¿½Î£||ï¿½I||^2  Rï¿½COMPENSE ACTIVE
 ```
 
-**QualitÃ©**: SupÃ©rieure (dÃ©convolution + amplification + **rÃ©compense contours**)
+**Qualite**: Superieure (deconvolution + amplification + **recompense contours**)
 
 ---
 
-##  Comparatif SynthÃ©tique
+##  Comparatif Synthetique
 
-| MÃ©trique | Avant | AprÃs |
+| Metrique | Avant | Aprï¿½s |
 |----------|-------|-------|
-| **DÃ©convolution** |  Richardson-Lucy |  Richardson-Lucy |
+| **Deconvolution** |  Richardson-Lucy |  Richardson-Lucy |
 | **k-amplification** |  k=2.2 |  k=2.2 |
-| **NettetÃ© active** |  Non |  E_edge |
+| **Nettete active** |  Non |  E_edge |
 | **Performance** | 20ms | 27ms |
-| **QualitÃ© contours** | Bonne | **Excellent** |
+| **Qualite contours** | Bonne | **Excellent** |
 | **Risque halo** | Faible | Faible (Î¤1.0) |
-| **Cas d'usage** | GÃ©nÃ©ral | **Flou Ã rÃ©duire** |
+| **Cas d'usage** | General | **Flou ï¿½ reduire** |
 
 ---
 
 ##  Conclusion
 
-Le systÃme d'amÃ©lioration de nettetÃ© a Ã©tÃ© **entiÃrement implÃ©mentÃ©** avec:
+Le systï¿½me d'amelioration de nettete a ete **entiï¿½rement implemente** avec:
 
-1.  Terme d'Ã©nergie de nettetÃ© (E_edge = -ÎÂÎ£||‡I||Â²)
-2.  Adaptation automatique (Î basÃ© sur flou dÃ©tectÃ©)
-3.  IntÃ©gration dans la relaxation atomique
-4.  Compilation rÃ©ussie (0 erreurs)
-5.  Tests de performance passÃ©s
-6.  Documentation complÃte
+1.  Terme d'energie de nettete (E_edge = -ï¿½ï¿½Î£||ï¿½I||^2)
+2.  Adaptation automatique (ï¿½ base sur flou detecte)
+3.  Integration dans la relaxation atomique
+4.  Compilation reussie (0 erreurs)
+5.  Tests de performance passes
+6.  Documentation complï¿½te
 
-**DisponibilitÃ©**: ImmÃ©diate via `./programme deblur`
+**Disponibilite**: Immediate via `./programme deblur`
 
 ---
 

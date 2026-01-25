@@ -8,7 +8,7 @@
 
 ##  Documentation Map
 
-### Phase 13+++: Normalisation Lexicale Avancée
+### Phase 13+++: Normalisation Lexicale Avancee
 
 #### Core Documentation
 
@@ -92,12 +92,12 @@ INPUT BLOCS (180)
      Penalize 0.8x during vectorization
      Prevent repetitive words from dominating
     
-[3] Fen�trage Strict
+[3] Fen�trage Strict
      Calculate lexical similarity (Jaccard)
      Skip consecutive blocks with >60% overlap
      Force vocabulary diversity
      (SELECTION: 45 blocs)
-[4] Anti-Répétition <5 mots
+[4] Anti-Repetition <5 mots
      Track word positions in generated text
      If word repeated <5 words apart: skip 2nd
      Zero close-range repetitions
@@ -114,23 +114,23 @@ OUTPUT TEXT (95% coherence, ~0 repetitions)
 
 ##  Key Concepts
 
-### Pénalité de Répétition (Strategy 1)
+### Penalite de Repetition (Strategy 1)
 ```
 If word appears N times in bloc (N > 2):
-    Penalty = (N - 2) � 0.1
+    Penalty = (N - 2) � 0.1
     finalScore *= (1 - Penalty)
 ```
 
-### TF-IDF Ajusté (Strategy 2)
+### TF-IDF Ajuste (Strategy 2)
 ```
 For rare but frequent words:
     If IDF > 0.5 AND TF > 0.05:
         tfidf *= 0.8  (penalty)
 ```
 
-### Similarité Lexicale Jaccard (Strategy 3)
+### Similarite Lexicale Jaccard (Strategy 3)
 ```
-Similarity = |A � B| / |A  B|
+Similarity = |A � B| / |A  B|
 If Similarity > 0.6:
     Skip this block (too similar to previous)
 ```
@@ -228,14 +228,14 @@ database/resumeur_coherence.go
  NormaliserRepetitionsBlocs() function
  CalculerSimilarityVocabLexical() function
  RepetitionsBloc field in BlocVectoriel
- Fen�trage strict logic
+ Fen�trage strict logic
 
 database/generation.go
  TF-IDF penalty 0.8x for rare-frequent words
 
 database/coherence.go
  SynonymsDict map (20+ entries)
- Anti-répétition <5 words filter
+ Anti-repetition <5 words filter
  Synonym replacement logic
 ```
 
@@ -265,7 +265,7 @@ Total changes: ~250 lines of code.
 
 ---
 
-## � Support
+## � Support
 
 ### Common Questions
 

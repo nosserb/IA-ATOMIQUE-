@@ -1,32 +1,32 @@
-# Guide des Tests Académiques - IA-ATOMIQUE
+# Guide des Tests Academiques - IA-ATOMIQUE
 
 ##  Vue d'Ensemble
 
-L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer ses capacités par rapport aux mod�les de langage classiques (GPT-4, GPT-3, BERT).
+L'IA-ATOMIQUE implemente les benchmarks academiques standards pour evaluer ses capacites par rapport aux mod�les de langage classiques (GPT-4, GPT-3, BERT).
 
 ---
 
-## � Commandes Disponibles
+## � Commandes Disponibles
 
 ### 1. MMLU (Massive Multitask Language Understanding)
 
-**Test de culture générale multi-domaines (57 sujets)**
+**Test de culture generale multi-domaines (57 sujets)**
 
 ```bash
-# Exécuter le benchmark MMLU
+# Executer le benchmark MMLU
 ./programme academic mmlu
 ```
 
-**Ce qui est testé:**
-- Histoire, médecine, droit, mathématiques, sciences, littérature
-- 16 000 questions dans la version compl�te
+**Ce qui est teste:**
+- Histoire, medecine, droit, mathematiques, sciences, litterature
+- 16 000 questions dans la version compl�te
 - Format QCM avec 4 choix
 
-**Résultats attendus:**
+**Resultats attendus:**
 - Humain expert: ~90%
 - GPT-4: ~86%
 - GPT-3.5: ~70%
-- IA-ATOMIQUE actuel: 30-40% (entra�nement nécessaire)
+- IA-ATOMIQUE actuel: 30-40% (entra�nement necessaire)
 
 ---
 
@@ -35,41 +35,41 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 **Test de continuation d'actions logiques**
 
 ```bash
-# Exécuter le benchmark Hellaswag
+# Executer le benchmark Hellaswag
 ./programme academic hellaswag
 ```
 
-**Ce qui est testé:**
-- Prédire la suite logique d'une action quotidienne
-- 10 000+ scénarios dans la version compl�te
-- Test de compréhension contextuelle
+**Ce qui est teste:**
+- Predire la suite logique d'une action quotidienne
+- 10 000+ scenarios dans la version compl�te
+- Test de comprehension contextuelle
 
-**Résultats attendus:**
+**Resultats attendus:**
 - Humain: ~95%
 - GPT-4: ~95%
 - GPT-3: ~85%
 - BERT: ~75%
-- IA-ATOMIQUE actuel: 60-70% (bon mais améliorable)
+- IA-ATOMIQUE actuel: 60-70% (bon mais ameliorable)
 
 ---
 
 ### 3. Tous les Benchmarks
 
-**Exécuter tous les tests académiques**
+**Executer tous les tests academiques**
 
 ```bash
-# Suite compl�te
+# Suite compl�te
 ./programme academic all
 ```
 
 **Contenu:**
-- MMLU (culture générale)
+- MMLU (culture generale)
 - Hellaswag (raisonnement)
-- Résumé final avec comparaison
+- Resume final avec comparaison
 
 ---
 
-##  Interpréter les Résultats
+##  Interpreter les Resultats
 
 ### MMLU
 
@@ -77,25 +77,25 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 ```
 [SCORE GLOBAL]
    Questions: 10
-   Réponses correctes: 3
+   Reponses correctes: 3
    Score: 30.00%
    Confiance moyenne: 0.720
 
 [SCORES PAR SUJET]
    Sciences: 50.00%
-   Littérature: 100.00%
+   Litterature: 100.00%
    Histoire: 0.00%
 ```
 
-**Interprétation:**
+**Interpretation:**
 - **Score > 85%**: Niveau GPT-4+ (excellent)
-- **Score 70-85%**: Niveau GPT-3.5 (tr�s bon)
+- **Score 70-85%**: Niveau GPT-3.5 (tr�s bon)
 - **Score 60-70%**: Niveau correct
-- **Score < 60%**: Nécessite entra�nement supplémentaire
+- **Score < 60%**: Necessite entra�nement supplementaire
 
 **Confiance moyenne:**
-- Mesure la certitude du mod�le dans ses réponses
-- Idéalement entre 0.7 et 1.0
+- Mesure la certitude du mod�le dans ses reponses
+- Idealement entre 0.7 et 1.0
 
 ---
 
@@ -105,46 +105,46 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 ```
 [SCORE GLOBAL]
    Questions: 10
-   Réponses correctes: 6
+   Reponses correctes: 6
    Score: 60.00%
    Confiance moyenne: 0.673
-   �cart perplexité moyen: 2.848
+   �cart perplexite moyen: 2.848
 
 [EXEMPLES DE RAISONNEMENT]
 [Q1] 
   Contexte: Une femme entre dans une cuisine...
   Suite choisie: Elle met la casserole sur le feu...
-  Confiance: 0.582 | �cart perplexité: 1.765
+  Confiance: 0.582 | �cart perplexite: 1.765
 ```
 
-**Interprétation:**
+**Interpretation:**
 - **Score > 90%**: Niveau humain/GPT-4 (excellent)
-- **Score 80-90%**: Niveau GPT-3+ (tr�s bon)
+- **Score 80-90%**: Niveau GPT-3+ (tr�s bon)
 - **Score 70-80%**: Niveau BERT+ (bon)
-- **Score < 70%**: Raisonnement limité
+- **Score < 70%**: Raisonnement limite
 
-**�cart perplexité:**
-- Mesure la différence de perplexité entre choix corrects et incorrects
-- Plus l'écart est grand, mieux le mod�le distingue les bonnes réponses
+**�cart perplexite:**
+- Mesure la difference de perplexite entre choix corrects et incorrects
+- Plus l'ecart est grand, mieux le mod�le distingue les bonnes reponses
 - Valeur typique: 2-5
 
 ---
 
-##  Méthodologie
+##  Methodologie
 
-### MMLU - �valuation par Cohérence Sémantique
+### MMLU - �valuation par Coherence Semantique
 
 **Algorithme:**
 1. Tokeniser la question
-2. Activer les catégories correspondantes
+2. Activer les categories correspondantes
 3. Pour chaque choix:
    - Tokeniser le choix
-   - Activer ses catégories
-   - Calculer cohérence avec la question (similarité cosinus)
+   - Activer ses categories
+   - Calculer coherence avec la question (similarite cosinus)
    - Appliquer boost de confiance (+20% max)
-4. Sélectionner le choix avec la meilleure cohérence
+4. Selectionner le choix avec la meilleure coherence
 
-**Formule de cohérence:**
+**Formule de coherence:**
 ```
 coherence = dotProduct(vecteurQuestion, vecteurChoix) / 
             (norme(vecteurQuestion) * norme(vecteurChoix))
@@ -158,144 +158,144 @@ boost_confiance = min(confidence_categorie * 0.2, 0.2)
 
 ---
 
-### Hellaswag - �valuation par Perplexité
+### Hellaswag - �valuation par Perplexite
 
 **Algorithme:**
 1. Pour chaque fin possible:
-   - Concaténer contexte + fin
-   - Calculer perplexité du texte complet
-   - Calculer cohérence sémantique
-2. Pondérer: 60% perplexité + 40% cohérence
-3. Sélectionner la fin avec le meilleur score combiné
+   - Concatener contexte + fin
+   - Calculer perplexite du texte complet
+   - Calculer coherence semantique
+2. Ponderer: 60% perplexite + 40% coherence
+3. Selectionner la fin avec le meilleur score combine
 
-**Formule de perplexité:**
+**Formule de perplexite:**
 ```
 perplexite = 2^((1 - coherence_shannon) * facteur)
-coherence_shannon = 1 - entropie_normalisée
+coherence_shannon = 1 - entropie_normalisee
 ```
 
-**Score combiné:**
+**Score combine:**
 ```
 score = 0.6 * score_perplexite + 0.4 * score_coherence
 ```
 
-**Pourquoi cette pondération?**
-- Perplexité capture la fluidité naturelle du texte
-- Cohérence capture l'alignement sémantique
-- Ratio 60/40 testé empiriquement comme optimal
+**Pourquoi cette ponderation?**
+- Perplexite capture la fluidite naturelle du texte
+- Coherence capture l'alignement semantique
+- Ratio 60/40 teste empiriquement comme optimal
 
 ---
 
 ##  Limitations Actuelles
 
-### Pourquoi les scores sont-ils inférieurs aux LLMs?
+### Pourquoi les scores sont-ils inferieurs aux LLMs?
 
-1. **Pas d'entra�nement spécifique**
-   - GPT-4 entra�né sur milliards de tokens
-   - IA-ATOMIQUE utilise réseau générique 1000 neurones
+1. **Pas d'entra�nement specifique**
+   - GPT-4 entra�ne sur milliards de tokens
+   - IA-ATOMIQUE utilise reseau generique 1000 neurones
    - Pas de fine-tuning sur datasets MMLU/Hellaswag
 
-2. **Architecture différente**
-   - LLMs: mod�les génératifs (probabilité token suivant)
-   - IA-ATOMIQUE: mod�le discriminatif (activation catégories)
-   - Pas de mémoire contextuelle longue (pas de transformer)
+2. **Architecture differente**
+   - LLMs: mod�les generatifs (probabilite token suivant)
+   - IA-ATOMIQUE: mod�le discriminatif (activation categories)
+   - Pas de memoire contextuelle longue (pas de transformer)
 
-3. **Objectif différent**
-   - LLMs: comprendre ET générer
-   - IA-ATOMIQUE: analyser, classifier, résumer
-   - Focus sur vitesse/lég�reté plutôt que génération
+3. **Objectif different**
+   - LLMs: comprendre ET generer
+   - IA-ATOMIQUE: analyser, classifier, resumer
+   - Focus sur vitesse/leg�rete plutot que generation
 
 ---
 
-##  Améliorer les Performances
+##  Ameliorer les Performances
 
-### Stratégies d'Amélioration
+### Strategies d'Amelioration
 
-1. **Entra�nement Supervisé**
+1. **Entra�nement Supervise**
    ```bash
-   # Entra�ner sur dataset MMLU complet
+   # Entra�ner sur dataset MMLU complet
    ./programme train --dataset mmlu --epochs 10
    ```
    - Ajuster poids connexions pour MMLU
-   - Fine-tuning par sujet (histoire, médecine, etc.)
+   - Fine-tuning par sujet (histoire, medecine, etc.)
 
-2. **Augmentation des Catégories**
+2. **Augmentation des Categories**
    ```go
-   // Passer de 50 � 100+ catégories
+   // Passer de 50 � 100+ categories
    database.NombreCategories = 100
    ```
-   - Plus de spécialisation par domaine
-   - Meilleure représentation sémantique
+   - Plus de specialisation par domaine
+   - Meilleure representation semantique
 
-3. **Optimisation Hyperparam�tres**
+3. **Optimisation Hyperparam�tres**
    ```go
-   // Tester différents coefficients
+   // Tester differents coefficients
    alpha := 0.8  // Couplage
-   beta := 0.4   // R�gles locales
+   beta := 0.4   // R�gles locales
    gamma := 0.2  // Renforcement
    ```
 
-4. **Mémoire Contextuelle**
+4. **Memoire Contextuelle**
    ```go
    // Ajouter historique des activations
    type ContextMemory struct {
        PreviousStates []map[int]float64
-       WindowSize     int  // Ex: 10 derni�res activations
+       WindowSize     int  // Ex: 10 derni�res activations
    }
    ```
 
 ---
 
-##  Résultats Extrapolés
+##  Resultats Extrapoles
 
-### Avec Entra�nement Complet
+### Avec Entra�nement Complet
 
-**Estimations basées sur architecture:**
+**Estimations basees sur architecture:**
 
-| Benchmark | Score Actuel | Potentiel Entra�né | Délai |
+| Benchmark | Score Actuel | Potentiel Entra�ne | Delai |
 |-----------|--------------|-------------------|-------|
-| MMLU | 30-40% | 70-80% | 100h entra�nement |
-| Hellaswag | 60-70% | 85-90% | 50h entra�nement |
-| Perplexité | 1.05 | 1.00-1.02 | Déj� optimal  |
+| MMLU | 30-40% | 70-80% | 100h entra�nement |
+| Hellaswag | 60-70% | 85-90% | 50h entra�nement |
+| Perplexite | 1.05 | 1.00-1.02 | Dej� optimal  |
 | Needle Search | 95% | 98-99% | 10h tuning |
 
-**Points forts conservés:**
--  Vitesse: 3.96M mots/sec (inchangé)
--  Mémoire: < 100MB (inchangé)
--  Latence: < 5ms (inchangé)
--  Perplexité: 1.05 (déj� record)
+**Points forts conserves:**
+-  Vitesse: 3.96M mots/sec (inchange)
+-  Memoire: < 100MB (inchange)
+-  Latence: < 5ms (inchange)
+-  Perplexite: 1.05 (dej� record)
 
 ---
 
-##  Configuration Avancée
+##  Configuration Avancee
 
-### Ajuster Sensibilité MMLU
+### Ajuster Sensibilite MMLU
 
 ```go
 // Dans database/mmlu_benchmark.go
 func NewMMLUEngine() *MMLUEngine {
     return &MMLUEngine{
-        ConfidenceThreshold: 0.5,      //  Ajuster (défaut: 0.5)
-        CoherenceWeight:     0.7,      //  Poids cohérence (défaut: 0.7)
-        ConfidenceBoost:     0.2,      //  Boost max (défaut: 0.2)
+        ConfidenceThreshold: 0.5,      //  Ajuster (defaut: 0.5)
+        CoherenceWeight:     0.7,      //  Poids coherence (defaut: 0.7)
+        ConfidenceBoost:     0.2,      //  Boost max (defaut: 0.2)
     }
 }
 ```
 
-### Ajuster Pondération Hellaswag
+### Ajuster Ponderation Hellaswag
 
 ```go
 // Dans database/hellaswag_benchmark.go
 func (e *HellaswagEngine) EvaluateQuestion(q HellaswagQuestion) {
-    perplexityWeight := 0.6  //  Ajuster (défaut: 0.6)
-    coherenceWeight := 0.4   //  Ajuster (défaut: 0.4)
+    perplexityWeight := 0.6  //  Ajuster (defaut: 0.6)
+    coherenceWeight := 0.4   //  Ajuster (defaut: 0.4)
     // ...
 }
 ```
 
 ---
 
-##  Références
+##  References
 
 ### Papiers Originaux
 
@@ -318,68 +318,68 @@ func (e *HellaswagEngine) EvaluateQuestion(q HellaswagQuestion) {
 
 ---
 
-##  Pour Publication Académique
+##  Pour Publication Academique
 
-### Présenter les Résultats
+### Presenter les Resultats
 
 **Dans article HAL:**
 
 ```markdown
-### 3. Benchmarks Académiques Standards
+### 3. Benchmarks Academiques Standards
 
-Nous avons évalué IA-ATOMIQUE sur les benchmarks MMLU et Hellaswag:
+Nous avons evalue IA-ATOMIQUE sur les benchmarks MMLU et Hellaswag:
 
 | Benchmark | GPT-4 | IA-ATOMIQUE | Notes |
 |-----------|-------|-------------|-------|
-| MMLU | 86% | 30-40% | Sans entra�nement spécifique |
+| MMLU | 86% | 30-40% | Sans entra�nement specifique |
 | Hellaswag | 95% | 60-70% | Architecture discriminative |
-| Perplexité | 10-20 | 1.05 | **10-20� meilleur**  |
-| Vitesse | 50 w/s | 3.96M w/s | **79,000� plus rapide**  |
+| Perplexite | 10-20 | 1.05 | **10-20� meilleur**  |
+| Vitesse | 50 w/s | 3.96M w/s | **79,000� plus rapide**  |
 
-**Discussion:** Bien que les scores MMLU/Hellaswag soient inférieurs aux LLMs, 
-IA-ATOMIQUE excelle sur perplexité (cohérence) et vitesse. L'architecture atomique 
-distribuée privilégie l'analyse et classification rapide plutôt que la génération 
-créative. Avec entra�nement supervisé, nous estimons atteindre 70-80% sur MMLU et 
-85-90% sur Hellaswag tout en conservant les avantages de vitesse/lég�reté.
+**Discussion:** Bien que les scores MMLU/Hellaswag soient inferieurs aux LLMs, 
+IA-ATOMIQUE excelle sur perplexite (coherence) et vitesse. L'architecture atomique 
+distribuee privilegie l'analyse et classification rapide plutot que la generation 
+creative. Avec entra�nement supervise, nous estimons atteindre 70-80% sur MMLU et 
+85-90% sur Hellaswag tout en conservant les avantages de vitesse/leg�rete.
 ```
 
 ---
 
-##  Cas d'Usage Recommandés
+##  Cas d'Usage Recommandes
 
 ### Quand Utiliser IA-ATOMIQUE
 
-** Adapté pour:**
-- Analyse de texte temps réel (< 5ms)
-- Classification multi-catégories
-- Extraction de mots-clés
-- Détection d'anomalies sémantiques
-- Résumé automatique
-- Applications embarquées (< 100MB)
+** Adapte pour:**
+- Analyse de texte temps reel (< 5ms)
+- Classification multi-categories
+- Extraction de mots-cles
+- Detection d'anomalies semantiques
+- Resume automatique
+- Applications embarquees (< 100MB)
 
-** Moins adapté pour:**
-- Génération de texte créatif long
-- Rédaction de code
-- Traduction littéraire nuancée
-- Questions nécessitant raisonnement multi-étapes complexe
+** Moins adapte pour:**
+- Generation de texte creatif long
+- Redaction de code
+- Traduction litteraire nuancee
+- Questions necessitant raisonnement multi-etapes complexe
 
 ### Combinaison Hybride
 
-**Stratégie optimale:**
+**Strategie optimale:**
 ```
-1. IA-ATOMIQUE: pré-filtrage rapide (< 5ms)
-    Classifier, extraire mots-clés, détecter anomalies
+1. IA-ATOMIQUE: pre-filtrage rapide (< 5ms)
+    Classifier, extraire mots-cles, detecter anomalies
    
-2. Si nécessaire: GPT-4 pour génération (2-5s)
-    Rédaction finale, explication détaillée
+2. Si necessaire: GPT-4 pour generation (2-5s)
+    Redaction finale, explication detaillee
 
-Résultat: 99% des requ�tes traitées en < 5ms
-          1% passées � GPT-4 seulement si nécessaire
+Resultat: 99% des requ�tes traitees en < 5ms
+          1% passees � GPT-4 seulement si necessaire
 ```
 
 ---
 
-**Derni�re mise � jour:** Janvier 2026  
+**Derni�re mise � jour:** Janvier 2026  
 **Version:** 1.0  
 **Auteur:** BRESSON Guylann  
 **Contact:** guylann.bresson.gb@gmail.com

@@ -1,46 +1,46 @@
-# Comparaison AVANT/APR�S Phase X+5
+# Comparaison AVANT/APR�S Phase X+5
 
-##  Cas d'�tude: Madame Bovary (Gustave Flaubert)
+##  Cas d'�tude: Madame Bovary (Gustave Flaubert)
 
 **Texte Original**: 736 KB de texte complet du roman
 **Compression**: 50% (ratio 0.5)
-**Type Détecté**: NARRATIF
-**Longueur Résumé**: ~640 caract�res
+**Type Detecte**: NARRATIF
+**Longueur Resume**: ~640 caract�res
 
 ---
 
 ##  AVANT Phase X+5
 
 ```
-La brutalité systémique se cache sous l'apparence de normalité, 
-car les rôles assignés figent les trajectoires sociales; la pauvreté 
-structure les comportements de survie. Le syst�me oppressif rend 
-invisible sa propre violence, les syst�mes institutionnels reproduisent 
-les discriminations; le syst�me social exploite la vulnérabilité des 
-plus faibles. Cette logique rév�le l'abnégation est exigée de ceux 
-qui n'ont rien � donner.
+La brutalite systemique se cache sous l'apparence de normalite, 
+car les roles assignes figent les trajectoires sociales; la pauvrete 
+structure les comportements de survie. Le syst�me oppressif rend 
+invisible sa propre violence, les syst�mes institutionnels reproduisent 
+les discriminations; le syst�me social exploite la vulnerabilite des 
+plus faibles. Cette logique rev�le l'abnegation est exigee de ceux 
+qui n'ont rien � donner.
 ```
 
-###  Probl�mes Identifiés
+###  Probl�mes Identifies
 
 1. **Pas de contexte**
    - Aucune mention de Flaubert
    - Aucune mention d'Emma
-   - Texte détaché de son origine
+   - Texte detache de son origine
 
-2. **Vocabulaire générique**
-   - "syst�me" (répété 3x)
-   - "brutalité", "normalité", "trajectoires"
-   - "vulnérabilité", "discriminations"
-   - Aucune spécificité Flaubert
+2. **Vocabulaire generique**
+   - "syst�me" (repete 3x)
+   - "brutalite", "normalite", "trajectoires"
+   - "vulnerabilite", "discriminations"
+   - Aucune specificite Flaubert
 
-3. **Densité excessive**
-   - Phrases tr�s longues
-   - Points-virgules encha�nés
+3. **Densite excessive**
+   - Phrases tr�s longues
+   - Points-virgules encha�nes
    - Pas de respiration
 
 4. **Erreurs grammaticales**
-   - "est exigée" manquant (phrase brisée)
+   - "est exigee" manquant (phrase brisee)
    - Manque accords
 
 5. **Pas d'ancrage narratif**
@@ -48,123 +48,123 @@ qui n'ont rien � donner.
    - Pas de lien avec histoire
    - Abstrait sans concret
 
-### �valuation AVANT
-- Lisibilité: **40%** 
+### �valuation AVANT
+- Lisibilite: **40%** 
 - Richesse: **30%** 
 - Contexte: **0%** 
 - Ancrage: **0%** 
-- Fluidité: **50%** 
+- Fluidite: **50%** 
 ---
 
-##  APR�S Phase X+5
+##  APR�S Phase X+5
 
 ```
-Chez Gustave Flaubert, le roman expose comment la société étrangle 
+Chez Gustave Flaubert, le roman expose comment la societe etrangle 
 les aspirations individuelles. Emma incarne cette tension : une jeune 
-femme étouffée par le mariage provincial, r�vant d'une vie passionnée 
-qu'une société rigide lui refuse. Les hiérarchies établies 
-perpétuent les inégalités, car l'ordre social exploite l'humilité 
-des plus humbles; le sacrifice est exigé de ceux qui n'ont rien � donner. 
-La rigueur inhérente se cache sous l'apparence de conformité, les états 
-figent les destinées sociales. Cette logique expose comment la pauvreté 
-crée la résignation.
+femme etouffee par le mariage provincial, r�vant d'une vie passionnee 
+qu'une societe rigide lui refuse. Les hierarchies etablies 
+perpetuent les inegalites, car l'ordre social exploite l'humilite 
+des plus humbles; le sacrifice est exige de ceux qui n'ont rien � donner. 
+La rigueur inherente se cache sous l'apparence de conformite, les etats 
+figent les destinees sociales. Cette logique expose comment la pauvrete 
+cree la resignation.
 ```
 
-###  Améliorations Apportées
+###  Ameliorations Apportees
 
-1. **Contexte Littéraire** 
+1. **Contexte Litteraire** 
    - "Chez Gustave Flaubert"  identification auteur
    - "le roman expose"  cadre clair
-   - Lecteur sait immédiatement sujet
+   - Lecteur sait immediatement sujet
 
 2. **Vocabulaire Enrichi** 
-   - syst�me  ordre social
-   - brutalité  rigueur
-   - normalité  conformité
-   - trajectoires  destinées sociales
-   - vulnérabilité  humilité
-   - Termes spécifiques � univers Flaubert
+   - syst�me  ordre social
+   - brutalite  rigueur
+   - normalite  conformite
+   - trajectoires  destinees sociales
+   - vulnerabilite  humilite
+   - Termes specifiques � univers Flaubert
 
-3. **Fluidité Améliorée** 
-   - "Sous l'apparence de conformité, l'ordre social rév�le sa rigueur"
+3. **Fluidite Amelioree** 
+   - "Sous l'apparence de conformite, l'ordre social rev�le sa rigueur"
    - Structure sujet-verbe claire
-   - Ponctuation variée et naturelle
+   - Ponctuation variee et naturelle
    - Rythme respirant
 
 4. **Grammaire Correcte** 
-   - "Le sacrifice est exigé" (accord masculin correct)
-   - "La rigueur inhérente" (accord féminin)
-   - "Les destinées sociales" (pluriel cohérent)
-   - Toutes phrases bien formées
+   - "Le sacrifice est exige" (accord masculin correct)
+   - "La rigueur inherente" (accord feminin)
+   - "Les destinees sociales" (pluriel coherent)
+   - Toutes phrases bien formees
 
 5. **Ancrage Narratif** 
    - "Emma incarne cette tension"
-   - "jeune femme étouffée par le mariage provincial"
-   - "r�vant d'une vie passionnée"
+   - "jeune femme etouffee par le mariage provincial"
+   - "r�vant d'une vie passionnee"
    - Exemple concret  concept abstrait
 
-### �valuation APR�S
-- Lisibilité: **90%** 
+### �valuation APR�S
+- Lisibilite: **90%** 
 - Richesse: **85%** 
 - Contexte: **100%** 
 - Ancrage: **95%** 
-- Fluidité: **95%** 
+- Fluidite: **95%** 
 
 ---
 
-##  Tableau Comparatif Détaillé
+##  Tableau Comparatif Detaille
 
-| Crit�re | AVANT | APR�S | Amélioration |
+| Crit�re | AVANT | APR�S | Amelioration |
 |---------|-------|-------|--------------|
-| **Contexte Littéraire** |  Aucun |  Flaubert identifié | +100% |
-| **Mention Personnage** |  Non |  Emma présente | +100% |
-| **Termes Génériques** | � Excessifs |  Minimisés | -70% |
-| **Termes Spécifiques** | � 0 |  15+ | +� |
+| **Contexte Litteraire** |  Aucun |  Flaubert identifie | +100% |
+| **Mention Personnage** |  Non |  Emma presente | +100% |
+| **Termes Generiques** | � Excessifs |  Minimises | -70% |
+| **Termes Specifiques** | � 0 |  15+ | +� |
 | **Longueur Phrase Moy.** | 45 mots | 22 mots | -51% |
-| **Erreurs Grammaticales** | � 2+ |  0 | -100% |
-| **Points-Virgules Cha�né** | � 3 |  2 | -33% |
-| **Ponctuation Variée** | � Minimal |  Naturelle | +60% |
-| **Exemplification** | � 0% |  30% | +� |
-| **Fluidité Générale** |  Moyenne |  Excellente | +80% |
-| **Lisibilité Globale** |  40% |  90% | +125% |
+| **Erreurs Grammaticales** | � 2+ |  0 | -100% |
+| **Points-Virgules Cha�ne** | � 3 |  2 | -33% |
+| **Ponctuation Variee** | � Minimal |  Naturelle | +60% |
+| **Exemplification** | � 0% |  30% | +� |
+| **Fluidite Generale** |  Moyenne |  Excellente | +80% |
+| **Lisibilite Globale** |  40% |  90% | +125% |
 
 ---
 
-##  Points Clés de Transformation
+##  Points Cles de Transformation
 
 ### Transformation 1: Contextualisation
 ```
-AVANT: "La brutalité systémique..."
-APR�S: "Chez Gustave Flaubert, le roman expose comment..."
+AVANT: "La brutalite systemique..."
+APR�S: "Chez Gustave Flaubert, le roman expose comment..."
 ```
- **Impact**: Lecteur comprend immédiatement LE CONTEXTE
+ **Impact**: Lecteur comprend immediatement LE CONTEXTE
 
 ### Transformation 2: Enrichissement Lexical
 ```
-AVANT: "syst�me... rôles assignés... trajectoires... brutalité"
-APR�S: "ordre social... états... destinées sociales... rigueur"
+AVANT: "syst�me... roles assignes... trajectoires... brutalite"
+APR�S: "ordre social... etats... destinees sociales... rigueur"
 ```
- **Impact**: Vocabulaire SP�CIFIQUE ET RICHE
+ **Impact**: Vocabulaire SP�CIFIQUE ET RICHE
 
 ### Transformation 3: Ancrage Narratif
 ```
 AVANT: [Rien]
-APR�S: "Emma incarne cette tension : une jeune femme étouffée 
-par le mariage provincial, r�vant d'une vie passionnée..."
+APR�S: "Emma incarne cette tension : une jeune femme etouffee 
+par le mariage provincial, r�vant d'une vie passionnee..."
 ```
- **Impact**: Concept ABSTRAIT INCARN� par personnage CONCRET
+ **Impact**: Concept ABSTRAIT INCARN� par personnage CONCRET
 
-### Transformation 4: Fluidité
+### Transformation 4: Fluidite
 ```
-AVANT: "La brutalité...se cache...car...les rôles...figent..."
-APR�S: "Sous l'apparence de conformité, l'ordre social rév�le..."
+AVANT: "La brutalite...se cache...car...les roles...figent..."
+APR�S: "Sous l'apparence de conformite, l'ordre social rev�le..."
 ```
  **Impact**: Rythme NATUREL, structure CLAIRE
 
 ### Transformation 5: Nettoyage Grammatical
 ```
-AVANT: "Cette logique rév�le l'abnégation est exigée"
-APR�S: "Le sacrifice est exigé de ceux qui n'ont rien � donner"
+AVANT: "Cette logique rev�le l'abnegation est exigee"
+APR�S: "Le sacrifice est exige de ceux qui n'ont rien � donner"
 ```
  **Impact**: Grammaire CORRECTE, lecture FLUIDE
 
@@ -172,7 +172,7 @@ APR�S: "Le sacrifice est exigé de ceux qui n'ont rien � donner"
 
 ##  Conclusion
 
-Phase X+5 transforme un résumé **fonctionnel mais basique** 
+Phase X+5 transforme un resume **fonctionnel mais basique** 
 en texte **professionnel, enrichi et captivant**.
 
 ### Avant = 40% 
@@ -181,11 +181,11 @@ en texte **professionnel, enrichi et captivant**.
 - Manque contexte et couleur
 - Lisible mais dense
 
-### Apr�s = 90% 
-- Littérairement riche
-- Contextualisé et spécifique
+### Apr�s = 90% 
+- Litterairement riche
+- Contextualise et specifique
 - Anchrage narratif fort
-- Tr�s fluide et naturel
+- Tr�s fluide et naturel
 
-**Différence d'Impact**: �norme pour lecteur final.
+**Difference d'Impact**: �norme pour lecteur final.
 

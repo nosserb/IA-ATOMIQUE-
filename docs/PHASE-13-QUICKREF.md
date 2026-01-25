@@ -1,7 +1,7 @@
 #  Phase 13+++ Quick Reference
 
 ## One-Liner
-**5 stratégies imbriquées** (normalisation lexicale, TF-IDF intelligent, fen�trage strict, anti-répétition, synonymes)  **95% cohérence** sans répétitions, **86% plus rapide**.
+**5 strategies imbriquees** (normalisation lexicale, TF-IDF intelligent, fen�trage strict, anti-repetition, synonymes)  **95% coherence** sans repetitions, **86% plus rapide**.
 
 ---
 
@@ -9,11 +9,11 @@
 
 | # | Nom | Fichier | Effet | Code |
 |---|-----|---------|-------|------|
-| 1� | Normalisation Lexicale | resumeur_coherence.go | Pénalité blocs répétitifs | `penalite = (count-2) � 0.1` |
-| 2� | TF-IDF Intelligent | generation.go | Mots rares moins influents | `tfidf *= 0.8` si IDF>0.5 |
-| 3� | Fen�trage Strict | resumeur_coherence.go | Blocs consécutifs diversifiés | `skip si similarity > 0.6` |
-| 4� | Anti-Répétition | coherence.go | Zéro répétition <5 mots | `skip si position_gap < 5` |
-| 5� | Synonymes | coherence.go | Vocabulaire varié | `remplace 1/3 occurrences` |
+| 1� | Normalisation Lexicale | resumeur_coherence.go | Penalite blocs repetitifs | `penalite = (count-2) � 0.1` |
+| 2� | TF-IDF Intelligent | generation.go | Mots rares moins influents | `tfidf *= 0.8` si IDF>0.5 |
+| 3� | Fen�trage Strict | resumeur_coherence.go | Blocs consecutifs diversifies | `skip si similarity > 0.6` |
+| 4� | Anti-Repetition | coherence.go | Zero repetition <5 mots | `skip si position_gap < 5` |
+| 5� | Synonymes | coherence.go | Vocabulaire varie | `remplace 1/3 occurrences` |
 
 ---
 
@@ -24,7 +24,7 @@ Phase 13++     Phase 13+++
 
 1297 mots     679-847 mots
 50 blocs      45 blocs
-94.83%        95.00% cohérence
+94.83%        95.00% coherence
 1384ms        219ms (6.3x faster) 
 ```
 
@@ -32,31 +32,31 @@ Phase 13++     Phase 13+++
 
 ## Configuration Profiles
 
-###  Maximum Quality (Zéro répétitions)
+###  Maximum Quality (Zero repetitions)
 ```go
 penalite += count-2 * 0.2           // Fort
 similarity > 0.4                     // Strict
-tfidf *= 0.7                         // Tr�s pénalisant
+tfidf *= 0.7                         // Tr�s penalisant
 distance < 7                         // Long
-% 2 synonymes                        // Fréquent
- 400-500 mots, ultra-qualité
+% 2 synonymes                        // Frequent
+ 400-500 mots, ultra-qualite
 ```
 
-###  Balanced (Recommandé)
+###  Balanced (Recommande)
 ```go
 penalite += count-2 * 0.1           // Standard
-similarity > 0.6                     // Modéré
+similarity > 0.6                     // Modere
 tfidf *= 0.8                         // Standard
 distance < 5                         // Standard
-% 3 synonymes                        // Modéré
- 600-800 mots, qualité optimale
+% 3 synonymes                        // Modere
+ 600-800 mots, qualite optimale
 ```
 
 ###  Maximum Coverage (Plus contenu)
 ```go
 penalite += count-2 * 0.05          // Faible
 similarity > 0.75                    // Permissif
-tfidf *= 0.9                         // Moins pénalisant
+tfidf *= 0.9                         // Moins penalisant
 distance < 3                         // Court
 % 5 synonymes                        // Discret
  1000-1200 mots, couverture max
@@ -67,11 +67,11 @@ distance < 3                         // Court
 ## Tuning Checklist
 
 - [ ] Test config default
-- [ ] Mesurer: longueur, cohérence, vitesse
-- [ ] Choisir métrique cible
-- [ ] Sélectionner profil (Quality/Balanced/Coverage)
-- [ ] Ajuster 1 param � la fois
-- [ ] Re-tester apr�s chaque change
+- [ ] Mesurer: longueur, coherence, vitesse
+- [ ] Choisir metrique cible
+- [ ] Selectionner profil (Quality/Balanced/Coverage)
+- [ ] Ajuster 1 param � la fois
+- [ ] Re-tester apr�s chaque change
 - [ ] Valider sur multi-textes
 - [ ] Documenter config finale
 
@@ -84,7 +84,7 @@ database/resumeur_coherence.go  (+150 lines)
  RepetitionsBloc field
  NormaliserRepetitionsBlocs()
  Scoring formula update
- Fen�trage strict
+ Fen�trage strict
  CalculerSimilarityVocabLexical()
 
 database/generation.go           (+15 lines)
@@ -92,7 +92,7 @@ database/generation.go           (+15 lines)
 
 database/coherence.go            (+80 lines)
  SynonymsDict
- Anti-répétition <5 mots
+ Anti-repetition <5 mots
  Synonym replacement
 ```
 
@@ -115,7 +115,7 @@ database/coherence.go            (+80 lines)
 | Issue | Cause | Fix |
 |-------|-------|-----|
 | Too many repetitions | Distance too short | Increase distance from 5 to 7 |
-| Summary too short | Fen�trage too strict | Increase similarity from 0.6 to 0.7 |
+| Summary too short | Fen�trage too strict | Increase similarity from 0.6 to 0.7 |
 | Weird synonyms | Wrong dictionary | Extend SynonymsDict for domain |
 | Coherence drops | Filtering too aggressive | Reduce penalty 0.1  0.05 |
 | Slow execution | Too many blocks | Reduce max blocks from 50 to 30 |
@@ -162,7 +162,7 @@ Vocab:  Natural variation (was repetitive)
 1. **Extend SynonymsDict**: 20  50+ entries
 2. **Context-aware synonyms**: Vary by category
 3. **Bigram checking**: Check word pairs too
-4. **Lemmatization**: donné/donnent/donnée = same
+4. **Lemmatization**: donne/donnent/donnee = same
 5. **Incremental caching**: Pre-compute for recurrent texts
 
 ---

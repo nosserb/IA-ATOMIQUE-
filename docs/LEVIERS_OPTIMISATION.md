@@ -1,21 +1,21 @@
-#  LES 7 LEVIERS D'OPTIMISATION - IMPLÃMENTATION
+#  LES 7 LEVIERS D'OPTIMISATION - IMPLï¿½MENTATION
 
-##  Levier nÂ1: UX InstantanÃ©e <230ms (IMPLÃMENTÃ)
+##  Levier nï¿½1: UX Instantanee <230ms (IMPLï¿½MENTï¿½)
 
-### Concept: RÃ©ponse Partielle ImmÃ©diate + Fond Asynchrone
+### Concept: Reponse Partielle Immediate + Fond Asynchrone
 
-L'humain ne voit **que la rÃ©ponse immÃ©diate**, pas l'end-to-end.
+L'humain ne voit **que la reponse immediate**, pas l'end-to-end.
 
 **Formule Psychologique**
 ```
-T_UX = T_rÃ©ponse_visible ¤ 230ms
+T_UX = T_reponse_visible ï¿½ 230ms
 T_total = T_UX + T_fond_async (invisible)
 ```
 
-### ImplÃ©mentation Go
+### Implementation Go
 
 ```go
-// PHASE 1: Calcul immÃ©diat visible (5% = 500k ops)
+// PHASE 1: Calcul immediat visible (5% = 500k ops)
 immediateStart := time.Now()
 for i := 0; i < immediateOps; i++ {
     ExecuteOperation(operations[i], results[i])
@@ -29,43 +29,43 @@ go func() {
     }
 }()
 
-// Retour utilisateur IMMÃDIAT (53ms)
+// Retour utilisateur IMMï¿½DIAT (53ms)
 // Fond continue silencieusement
 ```
 
-### RÃ©sultats Empiriques (10M opÃ©rations)
+### Resultats Empiriques (10M operations)
 
 ```
 
  Phase                Temps     Perception  
-¼¼¤
- Calcul immÃ©diat (5%) 53ms       VISIBLE  
+ï¿½ï¿½ï¿½
+ Calcul immediat (5%) 53ms       VISIBLE  
  Calcul fond (95%)    235ms      INVISIBLE
  Total                1778ms    = 53ms pour 
                                   l'humain! 
-´´˜
+ï¿½ï¿½ï¿½
 
-Speedup perÃu: 1778ms / 53ms = **33x plus rapide**
+Speedup perï¿½u: 1778ms / 53ms = **33x plus rapide**
 ```
 
-### Pourquoi Ãa fonctionne
+### Pourquoi ï¿½a fonctionne
 
-1. **Limite psychologique**: 230ms = seuil d'instantanÃ©itÃ© perÃue
-2. **Feedback immÃ©diat**: L'utilisateur voit du contenu TOUT DE SUITE
+1. **Limite psychologique**: 230ms = seuil d'instantaneite perï¿½ue
+2. **Feedback immediat**: L'utilisateur voit du contenu TOUT DE SUITE
 3. **Transparence**: Le fond se termine silencieusement
-4. **Cas rÃ©el**: Tous les navigateurs, OS, apps IA font Ãa
-   - Gmail: affiche l'email immÃ©diatement, met Ã jour les labels en fond
-   - Google Maps: montre la carte tout de suite, charge les dÃ©tails en fond
-   - VS Code: parse le fichier immÃ©diatement, index linguistic en fond
+4. **Cas reel**: Tous les navigateurs, OS, apps IA font ï¿½a
+   - Gmail: affiche l'email immediatement, met ï¿½ jour les labels en fond
+   - Google Maps: montre la carte tout de suite, charge les details en fond
+   - VS Code: parse le fichier immediatement, index linguistic en fond
 
 ---
 
-##  Levier nÂ2: Batch Adaptatif Dynamique (IMPLÃMENTÃ)
+##  Levier nï¿½2: Batch Adaptatif Dynamique (IMPLï¿½MENTï¿½)
 
-### Concept: Batch optimal calculÃ© dynamiquement
+### Concept: Batch optimal calcule dynamiquement
 
-Au lieu d'un batch fixe, on calcule le batch optimal basÃ© sur:
-1. Temps par opÃ©ration (mesurÃ© par sampling)
+Au lieu d'un batch fixe, on calcule le batch optimal base sur:
+1. Temps par operation (mesure par sampling)
 2. Cible UX (230ms)
 3. Nombre de workers
 
@@ -74,12 +74,12 @@ Au lieu d'un batch fixe, on calcule le batch optimal basÃ© sur:
 B_optimal = min((T_cible_Âµs / T_op_Âµs) / N_workers, B_max)
 ```
 
-Avec les valeurs rÃ©elles (10M ops):
+Avec les valeurs reelles (10M ops):
 ```
 T_cible = 230ms = 230,000Âµs
-T_op = 0.06Âµs (mesurÃ©)
+T_op = 0.06Âµs (mesure)
 N = 8 workers
-B_max = 500,000 (limitÃ© pratique)
+B_max = 500,000 (limite pratique)
 
 B_optimal = min((230,000 / 0.06) / 8, 500k)
           = min(479,166, 500k)
@@ -87,16 +87,16 @@ B_optimal = min((230,000 / 0.06) / 8, 500k)
           = 21 batches totaux
 ```
 
-### ImplÃ©mentation Go
+### Implementation Go
 
 ```go
-// Ãtape 1: Estimer le temps par opÃ©ration
+// ï¿½tape 1: Estimer le temps par operation
 opTimeUs := EstimateOperationTime(operations, 1000)  // ~0.06Âµs
 
-// Ãtape 2: Calculer batch adaptatif
+// ï¿½tape 2: Calculer batch adaptatif
 adaptiveBatch := CalculateAdaptiveBatch(opTimeUs, 8, 230.0)  // 479k
 
-// Ãtape 3: ExÃ©cuter par batch
+// ï¿½tape 3: Executer par batch
 for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
     batchEnd := min(batchStart + adaptiveBatch, len(ops))
     for i := batchStart; i < batchEnd; i++ {
@@ -105,43 +105,43 @@ for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
 }
 ```
 
-### RÃ©sultats Empiriques (10M ops + Levier 1)
+### Resultats Empiriques (10M ops + Levier 1)
 
 ```
  Batch Adaptatif:
-   T_op estimÃ©: 0.06Âµs (benchmark real)
+   T_op estime: 0.06Âµs (benchmark real)
    B_optimal: 479,689 ops/batch
    Nombre de batches: 21
    Overhead: 0.000ms (0.00% )
 
- RÃSULTATS LEVIERS 1+2:
-   RÃ©ponse visible (5%): 74ms  < 230ms
+ Rï¿½SULTATS LEVIERS 1+2:
+   Reponse visible (5%): 74ms  < 230ms
    Calcul fond (95%): 242ms (async)
    Total: 1522ms
-   Speedup perÃu: 20x!
+   Speedup perï¿½u: 20x!
   
   Comparaison:
   
    Sans levier       Avec leviers 1+2 
-  ¼¤
+  ï¿½ï¿½
    2268ms (seq)      74ms (visible)    
-   850ms (8 workers) 20x perÃu!        
-   2.68x speedup     InstantanÃ©        
-  ´˜
+   850ms (8 workers) 20x perï¿½u!        
+   2.68x speedup     Instantane        
+  ï¿½ï¿½
 ```
 
 ### Pourquoi 0% overhead?
 
-1. **Batch Ã©norme** (480k ops): Une seule synchronisation par batch
+1. **Batch enorme** (480k ops): Une seule synchronisation par batch
 2. **Channels** (pas mutex): Communication ultra-rapide
-3. **Pas de lock contention**: Chaque worker indÃ©pendant
-4. **Calcul prÃ©-allouÃ©**: Pas d'allocation dans boucle
+3. **Pas de lock contention**: Chaque worker independant
+4. **Calcul pre-alloue**: Pas d'allocation dans boucle
 
 ---
 
 ---
 
-##  Levier nÂ3: Ãlimination d'OpÃ©rations Inutiles
+##  Levier nï¿½3: ï¿½limination d'Operations Inutiles
 
 ### Concept: Beaucoup de calculs sont redondants
 
@@ -153,10 +153,10 @@ x + 0    Redondant
 x * 1    Redondant
 x - 0    Redondant
 x / 1    Redondant
-f(0)     Peut Ãtre cachÃ©isÃ©
+f(0)     Peut ï¿½tre cacheise
 ```
 
-### ImplÃ©mentation
+### Implementation
 
 ```go
 func IsOperationRedundant(op ArithmeticOperation) bool {
@@ -169,27 +169,27 @@ func IsOperationRedundant(op ArithmeticOperation) bool {
     return false
 }
 
-// PrÃ©-traitement
+// Pre-traitement
 ops, removed := OptimizeOperations(operations)
-fmt.Printf("Ops eliminÃ©es: %d (%.1f%%)\n", removed, float64(removed)*100/float64(len(operations)))
+fmt.Printf("Ops eliminees: %d (%.1f%%)\n", removed, float64(removed)*100/float64(len(operations)))
 ```
 
-**Gain**: 30-70% rÃ©duction de M effectif
+**Gain**: 30-70% reduction de M effectif
 
 ---
 
-##  Levier nÂ4: Optimisation MÃ©moire
+##  Levier nï¿½4: Optimisation Memoire
 
-### Concept: MÃ©moire > CPU
+### Concept: Memoire > CPU
 
 ```
 1 CPU cycle = 1ns
 1 cache miss = 100-300 cycles = 100-300ns
 
-CPU est 100-300x plus rapide que mÃ©moire!
+CPU est 100-300x plus rapide que memoire!
 ```
 
-### ProblÃme
+### Problï¿½me
 
 ```go
 //  LENT: Chaque op fait un cache miss
@@ -198,28 +198,28 @@ type ArithmeticOperation struct {
     Y      *big.Int  // Pointeur indirection
     OpType int
 }
-// AccÃs: big.Int[0]  cache miss  200ns
+// Accï¿½s: big.Int[0]  cache miss  200ns
 
-//  RAPIDE: Structure contiguÃ« (SoA)
+//  RAPIDE: Structure contigue (SoA)
 type OpBatch struct {
-    Xs     []uint64  // ContiguÃ«, cache-friendly
+    Xs     []uint64  // Contigue, cache-friendly
     Ys     []uint64
     OpTypes []int
 }
-// AccÃs: Xs[0]  cache hit  1ns
+// Accï¿½s: Xs[0]  cache hit  1ns
 ```
 
-### ImplÃ©mentation
+### Implementation
 
 ```go
 // Structure of Arrays (SoA) au lieu de Array of Structures (AoS)
 type OptimizedBatch struct {
-    Xs      []*big.Int  // Bloc contiguÃ«
+    Xs      []*big.Int  // Bloc contigue
     Ys      []*big.Int
     OpTypes []OperationType
 }
 
-// Parcours linÃ©aire = cache-friendly
+// Parcours lineaire = cache-friendly
 for i := range batch.Xs {
     ExecuteOperation(batch.Xs[i], batch.Ys[i], batch.OpTypes[i])
 }
@@ -229,18 +229,18 @@ for i := range batch.Xs {
 
 ---
 
-##  Levier nÂ5: RÃ©duire S (Fraction SÃ©quentielle)
+##  Levier nï¿½5: Reduire S (Fraction Sequentielle)
 
-### Concept: Ãliminer tout ce qui bloque parallÃ©lisation
+### Concept: ï¿½liminer tout ce qui bloque parallelisation
 
 Loi d'Amdahl:
 ```
 Speedup_max = 1 / (S + (1-S)/N)
 
-Donc: rÃ©duire S = augmenter speedup linÃ©airement
+Donc: reduire S = augmenter speedup lineairement
 ```
 
-### Actions ConcrÃtes
+### Actions Concrï¿½tes
 
 ```go
 //  MAUVAIS: Logging dans boucle = bloque
@@ -249,7 +249,7 @@ for i := range operations {
     ExecuteOperation(i)
 }
 
-//  BON: Logging aprÃs
+//  BON: Logging aprï¿½s
 numProcessed := 0
 for i := range operations {
     ExecuteOperation(i)
@@ -266,7 +266,7 @@ for i := range operations {
     ExecuteOperation(i)
 }
 
-//  BON: Stats par worker (agrÃ©gation aprÃs)
+//  BON: Stats par worker (agregation aprï¿½s)
 workerStats := make([]int, numWorkers)
 for w := 0; w < numWorkers; w++ {
     go func(id int) {
@@ -276,18 +276,18 @@ for w := 0; w < numWorkers; w++ {
         }
     }(w)
 }
-// AgrÃ©gation aprÃs: total := sum(workerStats)
+// Agregation aprï¿½s: total := sum(workerStats)
 ```
 
-**Cible**: `S ¤ 0.10` (10%) pour "instantanÃ© perÃu"
+**Cible**: `S ï¿½ 0.10` (10%) pour "instantane perï¿½u"
 
 ---
 
-##  Levier nÂ6: SIMD (Optionnel, Complexe)
+##  Levier nï¿½6: SIMD (Optionnel, Complexe)
 
 ### Concept: Vectorisation CPU (AVX2, AVX-512)
 
-Gain thÃ©orique:
+Gain theorique:
 ```
 T_SIMD = T_seq / W
 
@@ -296,19 +296,19 @@ Avec W = largeur SIMD
 - AVX-512:  W=8    8x plus rapide
 ```
 
-### CoÃt
+### Coï¿½t
 
-- ComplexitÃ©: **TRÃS ÃLEVÃE**
-- PortabilitÃ©: **Fragile** (dÃ©pend du CPU)
+- Complexite: **TRï¿½S ï¿½LEVï¿½E**
+- Portabilite: **Fragile** (depend du CPU)
 - Maintenance: **Lourd** (CGO, Rust binding)
 
 ### Timing
 
 ```go
-//  TROP TÃT: Faire SIMD avant leviers 1-5 = gaspillage
-// SIMD rend code opaque, difficile Ã debugger
+//  TROP Tï¿½T: Faire SIMD avant leviers 1-5 = gaspillage
+// SIMD rend code opaque, difficile ï¿½ debugger
 
-//  BON: AprÃs tous les leviers
+//  BON: Aprï¿½s tous les leviers
 // Si toujours besoin d'optimisation, alors SIMD + libGMP
 ```
 
@@ -319,46 +319,46 @@ Avec W = largeur SIMD
 ```
 
  Levier           Gain         Effort    Statut  
-¼¼¼¤
- 1. UX ImmÃ©diate  33x perÃu!            DONE 
+ï¿½ï¿½ï¿½ï¿½
+ 1. UX Immediate  33x perï¿½u!            DONE 
  2. Batch Dyn     0% overhead           TODO 
  3. Fusion Ops    30-70%              TODO 
  4. Cache Opt     2-3x                TODO 
- 5. RÃ©duire S     LinÃ©aire              TODO 
+ 5. Reduire S     Lineaire              TODO 
  6. SIMD          4-8x            OPT  
-´´´˜
+ï¿½ï¿½ï¿½ï¿½
 ```
 
 ---
 
-##  Ordre d'ImplÃ©mentation RecommandÃ©
+##  Ordre d'Implementation Recommande
 
-1.  **Levier 1**: RÃ©ponse instantanÃ©e <230ms (FAIT)
+1.  **Levier 1**: Reponse instantanee <230ms (FAIT)
 2.  **Levier 2**: Batch adaptatif (1 heure)
 3.  **Levier 3**: Fusion d'ops (2 heures)
 4.  **Levier 4**: Cache optimization (2 heures)
-5.  **Levier 5**: RÃ©duire S (1 heure)
-6.  **Levier 6**: SIMD (si nÃ©cessaire, +1 jour)
+5.  **Levier 5**: Reduire S (1 heure)
+6.  **Levier 6**: SIMD (si necessaire, +1 jour)
 
 ---
 
-## Ordre d'ImplÃ©mentation RecommandÃ©
+## Ordre d'Implementation Recommande
 
-1.  **Levier 1+2**: RÃ©ponse instantanÃ©e <230ms + batch adaptatif (FAIT)
+1.  **Levier 1+2**: Reponse instantanee <230ms + batch adaptatif (FAIT)
 2.  **Levier 3**: Fusion d'ops (1-2 heures)
 3.  **Levier 4**: Cache optimization (2 heures)
-4.  **Levier 5**: RÃ©duire S (1 heure)
-5.  **Levier 6**: SIMD (si nÃ©cessaire, +1 jour)
+4.  **Levier 5**: Reduire S (1 heure)
+5.  **Levier 6**: SIMD (si necessaire, +1 jour)
 
 ---
 
-##  Prochaine Ãtape
+##  Prochaine ï¿½tape
 
-**Continuons avec Levier nÂ3: Ãlimination d'OpÃ©rations Inutiles**
+**Continuons avec Levier nï¿½3: ï¿½limination d'Operations Inutiles**
 
-Objective: DÃ©tecter et Ã©liminer 30-70% des opÃ©rations redondantes.
+Objective: Detecter et eliminer 30-70% des operations redondantes.
 
 Commande:
 ```bash
-./programme stest 10000000 --levier3  # (Ã implÃ©menter)
+./programme stest 10000000 --levier3  # (ï¿½ implementer)
 ```

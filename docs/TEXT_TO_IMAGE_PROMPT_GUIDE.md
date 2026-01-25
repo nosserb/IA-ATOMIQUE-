@@ -15,9 +15,9 @@ This bridges language understanding and visual generationwhat you describe in wo
 
 ### Step 1: Prompt Analysis 
 ```
-Input: "une forÃt mystÃ©rieuse avec des arbres luminescents"
+Input: "une forï¿½t mysterieuse avec des arbres luminescents"
          
-Tokenization  [forÃt, mystÃ©rieuse, arbres, luminescents]
+Tokenization  [forï¿½t, mysterieuse, arbres, luminescents]
          
 Neuron Activation  Category 1 (TECH): 2 neurons
                    Category 2 (HISTOIRE): 0 neurons
@@ -43,12 +43,12 @@ Neural activations become spatial color patterns:
 
 ### Step 3: Atomic Generation 
 Standard atomic resonance with neural-injected pattern:
-- Atoms propagate states locally (resonance Î)
-- Follow neural pattern (pattern Î²)
-- Smooth colors locally (smoothing Î³)
+- Atoms propagate states locally (resonance ï¿½)
+- Follow neural pattern (pattern beta)
+- Smooth colors locally (smoothing gamma)
 - Stabilize to final image
 
-### Step 4: Output ¼
+### Step 4: Output ï¿½
 Final PNG image reflecting the semantic content of your prompt.
 
 ## Command Syntax
@@ -64,27 +64,27 @@ Final PNG image reflecting the semantic content of your prompt.
 | **width** | 128-1024 | 512 |
 | **height** | 128-1024 | 512 |
 | **iterations** | 50-500 | 200 |
-| **prompt** | Any French/English text | "forÃt mystÃ©rieuse" |
+| **prompt** | Any French/English text | "forï¿½t mysterieuse" |
 
 ## Examples
 
 ### Fast Generation (Low Detail)
 ```bash
-./programme generate from-prompt 256 256 100 "une montagne enneigÃ©e"
+./programme generate from-prompt 256 256 100 "une montagne enneigee"
 # Time: ~2-3 seconds
 # Output: output/atomic_prompt_256x256_100iter.png
 ```
 
 ### Quality Generation (High Detail)
 ```bash
-./programme generate from-prompt 512 512 300 "ocÃ©an tempÃ©tueux avec des vagues"
+./programme generate from-prompt 512 512 300 "ocean tempetueux avec des vagues"
 # Time: ~12-15 seconds
 # Output: output/atomic_prompt_512x512_300iter.png
 ```
 
 ### Complex Scene
 ```bash
-./programme generate from-prompt 512 512 200 "chÃteau mÃ©diÃ©val dans la brume avec des torches"
+./programme generate from-prompt 512 512 200 "chï¿½teau medieval dans la brume avec des torches"
 # Activates: HISTOIRE (castle), mixed semantic content
 # Output: Complex spatial patterns reflecting multiple concepts
 ```
@@ -103,10 +103,10 @@ The system recognizes these semantic categories:
 | Category | ID | Keywords |
 |----------|----|----|
 | **TECH** | 1 | technologie, algorithme, circuit, code, digital, futuriste, robot |
-| **HISTOIRE** | 2 | histoire, chÃteau, medieval, roi, empire, politique, ancien |
-| **BUSINESS** | 3 | commerce, Ã©conomie, marchÃ©, entreprise, vente, affaires |
-| **ALIMENTATION** | 4 | nourriture, fruit, cuisine, restaurant, manger, pain, gÃteau |
-| **SANTÃ** | 5 | mÃ©decine, santÃ©, hÃ´pital, docteur, maladie, cure |
+| **HISTOIRE** | 2 | histoire, chï¿½teau, medieval, roi, empire, politique, ancien |
+| **BUSINESS** | 3 | commerce, economie, marche, entreprise, vente, affaires |
+| **ALIMENTATION** | 4 | nourriture, fruit, cuisine, restaurant, manger, pain, gï¿½teau |
+| **SANTï¿½** | 5 | medecine, sante, hopital, docteur, maladie, cure |
 | **VERBE** | 6 | actions detected from verb forms |
 
 **Keywords are extracted** from your prompt and mapped to these categories. More keywords in a category = stronger activation.
@@ -141,15 +141,15 @@ The generation shows:
 ## Tips for Better Results
 
 ### Keywords Matter
- **Good**: "forÃt sombre avec des arbres anciens"
+ **Good**: "forï¿½t sombre avec des arbres anciens"
    - Multiple descriptive keywords
    - Clear visual concepts
    
- **Less Good**: "la forÃt"
+ **Less Good**: "la forï¿½t"
    - Too generic, few keywords extracted
 
 ### Be Descriptive
- **Good**: "ocÃ©an tempÃ©tueux avec vagues gÃ©antes et tempÃte"
+ **Good**: "ocean tempetueux avec vagues geantes et tempï¿½te"
    - More activation from multiple keywords
    - Stronger pattern injection
    
@@ -157,16 +157,16 @@ The generation shows:
    - Single word, minimal activation
 
 ### Mixing Categories
- "technologie futuriste dans un chÃteau mÃ©diÃ©val"
+ "technologie futuriste dans un chï¿½teau medieval"
    - Mixes TECH + HISTOIRE
    - Creates complex pattern interplay
    
  "restaurant avec nourriture saine"
-   - Mixes ALIMENTATION + SANTÃ
+   - Mixes ALIMENTATION + SANTï¿½
    - Blended semantic influence
 
 ### Emotion & Adjectives
- "forÃt sombre, mystÃ©rieuse, ancienne"
+ "forï¿½t sombre, mysterieuse, ancienne"
    - Adjectives create stronger activation
    - Mood influences pattern density
    
@@ -181,9 +181,9 @@ The generation shows:
 - **Quality** (300+): Fine details, slow
 
 ### Resolution
-- **Small** (256Ã256): 2-3 seconds, fast iteration
-- **Medium** (512Ã512): 10-15 seconds, good quality
-- **Large** (1024Ã1024): 30s+, very detailed
+- **Small** (256ï¿½256): 2-3 seconds, fast iteration
+- **Medium** (512ï¿½512): 10-15 seconds, good quality
+- **Large** (1024ï¿½1024): 30s+, very detailed
 
 ### Typical Workflow
 ```bash
@@ -210,7 +210,7 @@ The generated image is determined by:
 If result seems weak:
 - Add more descriptive words to prompt
 - Increase iterations (use 200+ instead of 100)
-- Use larger resolution (512Ã512 instead of 256Ã256)
+- Use larger resolution (512ï¿½512 instead of 256ï¿½256)
 
 If result is too uniform/smooth:
 - Your prompt may activate only one category
@@ -224,7 +224,7 @@ If result is too uniform/smooth:
 **Prompt  Pattern  Atomic Generation**
 ```bash
 # 1. Generate from prompt
-./programme generate from-prompt 512 512 150 "forÃt mystÃ©rieuse"
+./programme generate from-prompt 512 512 150 "forï¿½t mysterieuse"
 
 # 2. Use output as pattern for more iterations
 ./programme generate pattern 512 512 200 output/atomic_prompt_512x512_150iter.png
@@ -248,13 +248,13 @@ If result is too uniform/smooth:
 ### Experimenting with Keywords
 ```bash
 # Test 1: Just location
-./programme generate from-prompt 256 256 100 "forÃt"
+./programme generate from-prompt 256 256 100 "forï¿½t"
 
 # Test 2: Location + mood
-./programme generate from-prompt 256 256 100 "forÃt sombre mystÃ©rieuse"
+./programme generate from-prompt 256 256 100 "forï¿½t sombre mysterieuse"
 
 # Test 3: Location + mood + elements  
-./programme generate from-prompt 256 256 100 "forÃt sombre avec arbres anciens"
+./programme generate from-prompt 256 256 100 "forï¿½t sombre avec arbres anciens"
 
 # Compare outputs to see how keywords influence pattern
 ```
@@ -276,10 +276,10 @@ If result is too uniform/smooth:
   - Distributed spatially with pseudo-random variation (deterministic)
 
 ### Atomic Parameters (Fixed)
-- Î (resonance) = 0.3 (moderate cooperation)
-- Î² (pattern) = 0.5 (balance pattern/emergence)
-- Î³ (smoothing) = 0.2 (moderate smoothing)
-- Îµ (damping) = 0.9 (stable convergence)
+- ï¿½ (resonance) = 0.3 (moderate cooperation)
+- beta (pattern) = 0.5 (balance pattern/emergence)
+- gamma (smoothing) = 0.2 (moderate smoothing)
+- epsilon (damping) = 0.9 (stable convergence)
 
 These are optimized for prompt-based generation. Adjust in code if needed.
 
@@ -287,21 +287,21 @@ These are optimized for prompt-based generation. Adjust in code if needed.
 
 ### Nature Prompts
 ```bash
-./programme generate from-prompt 512 512 200 "montagne enneigÃ©e sous la lune"
+./programme generate from-prompt 512 512 200 "montagne enneigee sous la lune"
  Likely activates: HISTOIRE (medieval connotation)
    Result: Spatial structures reflecting mountain concept
 ```
 
 ### Tech Prompts
 ```bash
-./programme generate from-prompt 512 512 200 "rÃ©seau de neurones et algorithmes"
+./programme generate from-prompt 512 512 200 "reseau de neurones et algorithmes"
  Likely activates: TECH
    Result: Pattern reflecting computational structures
 ```
 
 ### Food Prompts
 ```bash
-./programme generate from-prompt 256 256 100 "festin mÃ©diÃ©val avec pain et fruits"
+./programme generate from-prompt 256 256 100 "festin medieval avec pain et fruits"
  Likely activates: ALIMENTATION + HISTOIRE
    Result: Mixed patterns from both categories
 ```
@@ -322,7 +322,7 @@ These are optimized for prompt-based generation. Adjust in code if needed.
 
 **Q: Very slow**
 - A: Likely using large resolution
-- Try: Test with 256Ã256 first, scale up later
+- Try: Test with 256ï¿½256 first, scale up later
 
 **Q: Keywords not extracted**
 - A: Your words may be stopwords (a, de, le, etc.)

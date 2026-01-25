@@ -39,7 +39,7 @@ $$L = \sum_{i,j} \|c_{i,j}^{\text{gen}} - C_{i,j}^*\|^2 + \lambda \sum_{i,j} \su
 Where:
 - **First term**: Color fidelity (how close generated image is to target)
 - **Second term**: Coherence penalty (encourages smooth, locally correlated colors)
-- **Î**: Balance parameter (typically 0.5)
+- **ï¿½**: Balance parameter (typically 0.5)
 
 ### Atomic Gradient Descent
 
@@ -48,8 +48,8 @@ Each atom updates independently:
 $$c_{i,j} \leftarrow c_{i,j} - \eta \cdot \frac{\partial L}{\partial c_{i,j}}$$
 
 Where:
-- **Î**: Learning rate (typically 0.01)
-- **‡L**: Gradient computed locally (no global synchronization needed)
+- **ï¿½**: Learning rate (typically 0.01)
+- **ï¿½L**: Gradient computed locally (no global synchronization needed)
 
 ---
 
@@ -127,7 +127,7 @@ Computing statistics...
  Dataset Statistics: my_dataset
 
 Number of images: 5
-Average size: 512.0 Ã 512.0
+Average size: 512.0 ï¿½ 512.0
 Total pixels: 1,310,720
 
  Image Statistics:
@@ -254,7 +254,7 @@ Defaults:
 100+:   Very detailed learning, risk of overfitting
 ```
 
-#### Learning Rate (Î)
+#### Learning Rate (ï¿½)
 ```
 0.001:  Very conservative, slow convergence
 0.01:   Recommended default, stable learning
@@ -264,7 +264,7 @@ Defaults:
 
 **Adaptive adjustment**: If loss plateaus, learning rate reduces automatically (0.95x)
 
-#### Coherence Lambda (Î)
+#### Coherence Lambda (ï¿½)
 ```
 0.1:   Ignore local coherence, focus on color match
 0.3:   Light coherence enforcement
@@ -489,18 +489,18 @@ For each pixel at position $(x, y)$:
    - $G_y = \frac{I(x,y+1) - I(x,y-1)}{2}$
 3. **Edge Strength**: $\|G\| = \sqrt{G_x^2 + G_y^2}$
 4. **Curvature**: $\nabla^2 I = I_{xx} + I_{yy}$
-5. **Texture Energy**: $\alpha \cdot \|G\| + (1-\alpha) \cdot |\nabla^2 I|$ (Î=0.7)
+5. **Texture Energy**: $\alpha \cdot \|G\| + (1-\alpha) \cdot |\nabla^2 I|$ (ï¿½=0.7)
 6. **Orientation**: $\theta = \arctan\left(\frac{G_y}{G_x}\right)$
 
 ### Gradient Computation
 
 ```
-L/c = 2(c - C*) + ÎÂ2ÂÎ£_neighbors(c - c_neighbor)
+L/c = 2(c - C*) + ï¿½ï¿½2ï¿½Î£_neighbors(c - c_neighbor)
 ```
 
 Clipped to prevent explosion:
 ```
-if |L/c| > clip_value: L/c = clip_value Â sign(L/c)
+if |L/c| > clip_value: L/c = clip_value ï¿½ sign(L/c)
 ```
 
 ### Weight Update
@@ -508,7 +508,7 @@ if |L/c| > clip_value: L/c = clip_value Â sign(L/c)
 Connection weights also update via:
 
 ```
-w_ij  w_ij Â (1 - ÎÂdecay) + Î³Âcoherence
+w_ij  w_ij ï¿½ (1 - ï¿½ï¿½decay) + gammaï¿½coherence
 ```
 
 Where coherence increases when neighboring atoms align well.
@@ -521,15 +521,15 @@ Where coherence increases when neighboring atoms align well.
 
 | Dimensions | Epochs | Time |
 |------------|--------|------|
-| 256Ã256 | 20 | 5-10s |
-| 512Ã512 | 20 | 30-45s |
-| 1024Ã1024 | 20 | 2-3 min |
+| 256ï¿½256 | 20 | 5-10s |
+| 512ï¿½512 | 20 | 30-45s |
+| 1024ï¿½1024 | 20 | 2-3 min |
 
 ### Memory Usage
 
 ```
-Atoms: (width/patch) Ã (height/patch)
-512Ã512 with patch=8  4,096 atoms
+Atoms: (width/patch) ï¿½ (height/patch)
+512ï¿½512 with patch=8  4,096 atoms
 Memory per atom: ~500 bytes
 Total: ~2 MB
 ```
@@ -575,7 +575,7 @@ The network will use learned weights and color patterns.
 
 1. **Dataset Consistency**: Use images with similar style/content for better results
 2. **Diverse Angles**: Include images from different perspectives
-3. **Start Small**: Test with 256Ã256 before scaling to 1024Ã1024
+3. **Start Small**: Test with 256ï¿½256 before scaling to 1024ï¿½1024
 4. **Monitor Loss**: Watch for convergence patterns
 5. **Validate Regularly**: Check against validation set
 6. **Adjust Parameters**: Use metrics to tune learning rate and lambda

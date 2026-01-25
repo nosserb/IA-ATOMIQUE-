@@ -1,32 +1,32 @@
-#  Déploiement sur Railway.app
+#  Deploiement sur Railway.app
 
-Guide complet pour héberger IA-ATOMIQUE sur Railway.
+Guide complet pour heberger IA-ATOMIQUE sur Railway.
 
 ##  Setup Rapide (5 minutes)
 
-### 1� Créer un compte Railway
+### 1� Creer un compte Railway
 - Va sur: https://railway.app
 - Clique "Sign Up"
-- Connecte-toi avec GitHub (recommandé)
+- Connecte-toi avec GitHub (recommande)
 
-### 2� Créer un nouveau projet
+### 2� Creer un nouveau projet
 - Clique "New Project"
 - Choisis "Deploy from GitHub repo"
-- Sélectionne ton repo `IA-ATOMIQUE`
+- Selectionne ton repo `IA-ATOMIQUE`
 
-### 3� Railway détecte automatiquement
+### 3� Railway detecte automatiquement
 - Railway voit `go.mod` et `Procfile`
 - Compile automatiquement
 - Lance le serveur
 
-### 4� Attendre le déploiement
+### 4� Attendre le deploiement
 - Quelques secondes/minutes
 - Tu vois l'URL en haut:
   ```
   https://ton-projet-xxx.railway.app
   ```
 
-### 5� Ouvrir l'URL
+### 5� Ouvrir l'URL
 ```
 https://ton-projet-xxx.railway.app
 ```
@@ -35,18 +35,18 @@ C'est tout!
 
 ---
 
-## � Fichiers Nécessaires
+## � Fichiers Necessaires
 
  `Procfile` - Comment lancer l'app  
  `railway.json` - Configuration Railway  
- `go.mod` - Dépendances Go  
+ `go.mod` - Dependances Go  
  `web/` - Fichiers statiques  
 
 **Tous sont dans le repo!**
 
 ---
 
-##  Configuration Avancée
+##  Configuration Avancee
 
 ### Voir les logs
 ```bash
@@ -55,33 +55,33 @@ railway logs
 
 ### Variables d'environnement
 Railway ajoute automatiquement `PORT`
-(ton code l'utilise déj�!)
+(ton code l'utilise dej�!)
 
-### Redéployer
+### Redeployer
 ```bash
 git push origin main
-# Railway détecte et redéploie auto
+# Railway detecte et redeploie auto
 ```
 
 ---
 
 ##  URL Finale
 
-Une fois déployée, ton app sera accessible sur:
+Une fois deployee, ton app sera accessible sur:
 ```
 https://ia-atomique-xxx.railway.app
 ```
 
-Remplace `xxx` par le nom que Railway gén�re.
+Remplace `xxx` par le nom que Railway gen�re.
 
 ---
 
 ##  Troubleshooting
 
 ### Erreur: "Build failed"
-- Vérifier que `go.mod` existe
-- Vérifier que `Procfile` existe
-- Vérifier les logs: `railway logs`
+- Verifier que `go.mod` existe
+- Verifier que `Procfile` existe
+- Verifier les logs: `railway logs`
 
 ### Port error
 - Railway assigne le port automatiquement
@@ -90,37 +90,37 @@ Remplace `xxx` par le nom que Railway gén�re.
 
 ### Fichiers web manquants
 - Assurer que `web/` existe avec les fichiers
-- Vérifier que c'est commit sur GitHub
+- Verifier que c'est commit sur GitHub
 
 ---
 
 ##  Performance
 
 - Go est ultra-rapide
-- Railway gratuit peut gérer beaucoup de traffic
+- Railway gratuit peut gerer beaucoup de traffic
 - Le serveur tourne 24/7
 
 ---
 
-##  Co�t
+##  Co�t
 
-- Gratuit les premiers crédits ($5/mois)
-- Puis payant (tr�s peu cher)
+- Gratuit les premiers credits ($5/mois)
+- Puis payant (tr�s peu cher)
 
 ---
 
 ##  Avantages Railway
 
- Déploiement automatique (git push)  
- Zéro configuration requise  
- Logs en temps réel  
+ Deploiement automatique (git push)  
+ Zero configuration requise  
+ Logs en temps reel  
  Domaine inclus  
  SSL HTTPS automatique  
- Redémarrage auto si crash  
+ Redemarrage auto si crash  
 
 ---
 
-##  Prochaines �tapes
+##  Prochaines �tapes
 
 1. Push ton code sur GitHub
 2. Va sur railway.app
@@ -130,6 +130,6 @@ Remplace `xxx` par le nom que Railway gén�re.
 
 ---
 
-**C'est simpler que �a en a l'air!** 
+**C'est simpler que �a en a l'air!** 
 
 Besoin d'aide? Dis-moi!

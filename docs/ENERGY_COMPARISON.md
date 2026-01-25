@@ -1,58 +1,58 @@
-# Comparaison des SystÃmes de DÃ©floutage
+# Comparaison des Systï¿½mes de Defloutage
 
 **Date**: 13 janvier 2026  
-**Comparaison**: Avant vs AprÃs ajout du terme E_sharpness
+**Comparaison**: Avant vs Aprï¿½s ajout du terme E_sharpness
 
 ---
 
-##  Architecture ÃnergÃ©tique
+##  Architecture ï¿½nergetique
 
 ### Phase 1: Avant (Amplification Gradient Simple)
 
 ```
-E_total = ÎÂE_structure + Î²ÂE_constraint + Î³ÂE_interaction + ÎÂE_sharpen_amplified
+E_total = ï¿½ï¿½E_structure + betaï¿½E_constraint + gammaï¿½E_interaction + ï¿½ï¿½E_sharpen_amplified
 
-OÃ¹:
-- E_sharpen_amplified = Î£ ||‡I_recon - kÂ‡I_blur||Â²
+Ou:
+- E_sharpen_amplified = Î£ ||ï¿½I_recon - kÂ‡I_blur||^2
 - k  [1.5, 3.0] (adaptatif selon flou)
-- DÃ©convolution: Richardson-Lucy (5 itÃ©rations par phase)
-- Bruit structurÃ©: Perlin multi-octave (3%)
+- Deconvolution: Richardson-Lucy (5 iterations par phase)
+- Bruit structure: Perlin multi-octave (3%)
 ```
 
-**RÃ©sultat**: Amplification des gradients existants seulement
+**Resultat**: Amplification des gradients existants seulement
 
 ---
 
-### Phase 2: AprÃs (Amplification + RÃ©compense Active des Contours)
+### Phase 2: Aprï¿½s (Amplification + Recompense Active des Contours)
 
 ```
-E_total = ÎÂE_struct + Î²ÂE_constraint + Î³ÂE_interaction 
-        + ÎÂE_sharpen_amplified + 0.5ÂE_edge
+E_total = ï¿½ï¿½E_struct + betaï¿½E_constraint + gammaï¿½E_interaction 
+        + ï¿½ï¿½E_sharpen_amplified + 0.5ï¿½E_edge
 
-OÃ¹:
-- E_sharpen_amplified = Î£ ||‡I_recon - kÂ‡I_blur||Â²
-- E_edge = -Î_edge Â Î£ ||‡I||Â²  NOUVEAU
-- Î_edge  [0.3, 1.0] (adaptatif selon flou)
+Ou:
+- E_sharpen_amplified = Î£ ||ï¿½I_recon - kÂ‡I_blur||^2
+- E_edge = -ï¿½_edge ï¿½ Î£ ||ï¿½I||^2  NOUVEAU
+- ï¿½_edge  [0.3, 1.0] (adaptatif selon flou)
 ```
 
-**RÃ©sultat**: 
+**Resultat**: 
 -  Amplification des gradients existants
--  CrÃ©ation ACTIVE de nouveaux contours
+-  Creation ACTIVE de nouveaux contours
 -  Atomes se repositionnent pour maximiser gradients
 
 ---
 
-##  DiffÃ©rences ClÃ©s
+##  Differences Cles
 
-| Aspect | Avant | AprÃs |
+| Aspect | Avant | Aprï¿½s |
 |--------|-------|-------|
-| **DÃ©convolution** | Richardson-Lucy + Unsharp |  Richardson-Lucy + Unsharp |
+| **Deconvolution** | Richardson-Lucy + Unsharp |  Richardson-Lucy + Unsharp |
 | **Amplification k** | kÂ‡I_blur (k=2.2) |  kÂ‡I_blur (k=2.2) |
-| **Ãnergie de nettetÃ©** |  Passif |  -Î Î£ \|\|‡I\|\|Â² |
+| **ï¿½nergie de nettete** |  Passif |  -ï¿½ Î£ \|\|ï¿½I\|\|^2 |
 | **Dynamique atomique** | Minimise erreur de gradient |  Minimise erreur + Maximise gradients |
-| **Bruit structurÃ©** | 3% Perlin |  3% Perlin |
-| **ItÃ©rations typiques** | 80-100 |  80-100 (mÃme coÃt) |
-| **Performance** | 20-30ms (1920Ã1080) |  26-30ms (overhead ~5%) |
+| **Bruit structure** | 3% Perlin |  3% Perlin |
+| **Iterations typiques** | 80-100 |  80-100 (mï¿½me coï¿½t) |
+| **Performance** | 20-30ms (1920ï¿½1080) |  26-30ms (overhead ~5%) |
 
 ---
 
@@ -63,20 +63,20 @@ OÃ¹:
 ```
 Atomes se repositionnent pour:
 1. Respecter structure globale
-2. Minimiser ||‡I_recon - kÂ‡I_blur||Â²
+2. Minimiser ||ï¿½I_recon - kÂ‡I_blur||^2
 
-RÃ©sultat: Amplifient gradients existants
+Resultat: Amplifient gradients existants
 ```
 
-### AprÃs
+### Aprï¿½s
 
 ```
 Atomes se repositionnent pour:
 1. Respecter structure globale
-2. Minimiser ||‡I_recon - kÂ‡I_blur||Â²
-3. Minimiser -ÎÂÎ£||‡I||Â²  MAXIMISER gradients!
+2. Minimiser ||ï¿½I_recon - kÂ‡I_blur||^2
+3. Minimiser -ï¿½ï¿½Î£||ï¿½I||^2  MAXIMISER gradients!
 
-RÃ©sultat: Amplifient ET crÃ©ent des gradients
+Resultat: Amplifient ET creent des gradients
 ```
 
 ---
@@ -86,73 +86,73 @@ RÃ©sultat: Amplifient ET crÃ©ent des gradients
 ### Avant (Sans E_edge)
 
 ```
-Zone lisse  peut rester lisse ou lÃ©gÃrement rehaussÃ©e
-Bord existant  amplifiÃ© via Richardson-Lucy + k
-Texture  crÃ©Ã©e par Perlin 3%
+Zone lisse  peut rester lisse ou legï¿½rement rehaussee
+Bord existant  amplifie via Richardson-Lucy + k
+Texture  creee par Perlin 3%
 ```
 
-**QualitÃ©**: Bonne pour dÃ©convolution, mais passive
+**Qualite**: Bonne pour deconvolution, mais passive
 
-### AprÃs (Avec E_edge)
+### Aprï¿½s (Avec E_edge)
 
 ```
-Zone lisse  repoussÃ©e vers contours (Î rÃ©compense gradients)
-Bord existant  amplifiÃ© + renforcÃ© via E_edge
-Texture  crÃ©Ã©e par Perlin + gradients locaux attirÃ©s
+Zone lisse  repoussee vers contours (ï¿½ recompense gradients)
+Bord existant  amplifie + renforce via E_edge
+Texture  creee par Perlin + gradients locaux attires
 ```
 
-**QualitÃ©**: Meilleure nettetÃ©, moins "flou rÃ©siduel"
+**Qualite**: Meilleure nettete, moins "flou residuel"
 
 ---
 
 ##  Configuration Comparative
 
-### Test 1: Image LÃ©gÃrement Floue
+### Test 1: Image Legï¿½rement Floue
 
 ```bash
 # Avant (sans E_edge)
 ./programme deblur slight_blur.jpg 16 16 100 1920 1080 before.jpg
-# Î_edge = 0 (absent)
+# ï¿½_edge = 0 (absent)
 
-# AprÃs (avec E_edge)
+# Aprï¿½s (avec E_edge)
 ./programme deblur slight_blur.jpg 16 16 100 1920 1080 after.jpg
-# Î_edge = 0.35 (adaptatif)
+# ï¿½_edge = 0.35 (adaptatif)
 ```
 
-**DiffÃ©rence attendue**: Contours lÃ©gÃrement plus nets avec E_edge
+**Difference attendue**: Contours legï¿½rement plus nets avec E_edge
 
-### Test 2: Image TrÃs Floue
+### Test 2: Image Trï¿½s Floue
 
 ```bash
 # Avant
-# Î_edge = 0
+# ï¿½_edge = 0
 
-# AprÃs
-# Î_edge = 0.75 (forte adaptation)
+# Aprï¿½s
+# ï¿½_edge = 0.75 (forte adaptation)
 ```
 
-**DiffÃ©rence attendue**: AmÃ©lioration perceptible de la nettetÃ©
+**Difference attendue**: Amelioration perceptible de la nettete
 
 ---
 
-##  MÃ©triques
+##  Metriques
 
 ### Speedup
 
 ```
-Avant: 20ms (rÃ©fÃ©rence)
-AprÃs: 26.9ms (avec 100 itÃ©rations et E_edge)
+Avant: 20ms (reference)
+Aprï¿½s: 26.9ms (avec 100 iterations et E_edge)
 Overhead: ~6ms  5% (acceptable)
 ```
 
-**Raison**: Calcul supplÃ©mentaire de gradients locaux
+**Raison**: Calcul supplementaire de gradients locaux
 
-### QualitÃ©
+### Qualite
 
-Pas de mÃ©trique absolue (dÃ©pend du contenu), mais:
+Pas de metrique absolue (depend du contenu), mais:
 
 -  Contours plus nets (visuellement)
--  Moins de halo (Î modÃ©rÃ© par dÃ©faut)
+-  Moins de halo (ï¿½ modere par defaut)
 -  Texture plus riche (E_edge favorise variation)
 
 ---
@@ -161,74 +161,74 @@ Pas de mÃ©trique absolue (dÃ©pend du contenu), mais:
 
 ### Avant: Meilleur Pour
 
-- DÃ©convolution mathÃ©matiquement pure
+- Deconvolution mathematiquement pure
 - Images sans bruit
-- Cas oÃ¹ nettetÃ© maximale n'est pas l'objectif
+- Cas ou nettete maximale n'est pas l'objectif
 
-### AprÃs: Meilleur Pour
+### Aprï¿½s: Meilleur Pour
 
-- **Flou Ã rÃ©duire activement**  NOUVEAU
-- Texte, documents (nettetÃ© essentielle)
-- Images naturelles avec dÃ©tails fins
-- Cas oÃ¹ contours nets sont importants
+- **Flou ï¿½ reduire activement**  NOUVEAU
+- Texte, documents (nettete essentielle)
+- Images naturelles avec details fins
+- Cas ou contours nets sont importants
 
 ---
 
 ##  Avantages de Phase 2
 
-1. **Plus adaptatif**: Î_edge varie selon flou dÃ©tectÃ©
-2. **Moins passif**: Force crÃ©ation de contours, pas juste amplification
-3. **ÃquilibrÃ©**: Pas de sursharpening excessif (Î ¤ 1.0)
-4. **Physiquement justifiÃ©**: Ãnergie nÃ©gative = attrait vers Ã©tats de haute nettetÃ©
-5. **Performance acceptable**: Overhead ~5% pour meilleure qualitÃ©
+1. **Plus adaptatif**: ï¿½_edge varie selon flou detecte
+2. **Moins passif**: Force creation de contours, pas juste amplification
+3. **ï¿½quilibre**: Pas de sursharpening excessif (ï¿½ ï¿½ 1.0)
+4. **Physiquement justifie**: ï¿½nergie negative = attrait vers etats de haute nettete
+5. **Performance acceptable**: Overhead ~5% pour meilleure qualite
 
 ---
 
-##  PrÃ©cautions
+##  Precautions
 
-### Ãviter Avec Phase 2
+### ï¿½viter Avec Phase 2
 
- Î_edge > 1.0  Halo autour des bords  
- Appliquer Ã images trÃs bruitÃ©es  Amplifie bruit aussi  
- Sans Richardson-Lucy  DÃ©tails artificiels
+ ï¿½_edge > 1.0  Halo autour des bords  
+ Appliquer ï¿½ images trï¿½s bruitees  Amplifie bruit aussi  
+ Sans Richardson-Lucy  Details artificiels
 
 ### Mieux Utiliser
 
- Î_edge  [0.3, 0.8]  Gamme sÃre  
- + Richardson-Lucy  DÃ©convolution correcte  
- + k-amplification  Gradients justifiÃ©s  
- + Perlin 3%  Texture rÃ©aliste  
+ ï¿½_edge  [0.3, 0.8]  Gamme sï¿½re  
+ + Richardson-Lucy  Deconvolution correcte  
+ + k-amplification  Gradients justifies  
+ + Perlin 3%  Texture realiste  
 
 ---
 
-##  Formule ComplÃte (Phase 2)
+##  Formule Complï¿½te (Phase 2)
 
 $$E_{total} = \alpha E_{struct} + \beta E_{const} + \gamma E_{inter} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
 $$E_{edge} = -\lambda_{edge} \sum_{i,j} \left( G_x^2 + G_y^2 \right)$$
 
-OÃ¹:
+Ou:
 - $G_x = I_{i+1,j} - I_{i-1,j}$
 - $G_y = I_{i,j+1} - I_{i,j-1}$
-- Signe **nÃ©gatif**  Minimiser -E = Maximiser gradients
+- Signe **negatif**  Minimiser -E = Maximiser gradients
 
 ---
 
-##  RÃ©sumÃ©
+##  Resume
 
-| Aspect | Avant | AprÃs |
+| Aspect | Avant | Aprï¿½s |
 |--------|-------|-------|
-| **Approche** | Amplification de gradients | Amplification + RÃ©compense active |
+| **Approche** | Amplification de gradients | Amplification + Recompense active |
 | **Dynamique** | Minimise erreur | Minimise erreur + Maximise gradients |
-| **RÃ©sultat** | Bon pour dÃ©convolution | Excellent pour nettetÃ© |
+| **Resultat** | Bon pour deconvolution | Excellent pour nettete |
 | **Performance** | 20ms | 27ms (+35%, acceptable) |
-| **QualitÃ©** | Satisfaisante | SupÃ©rieure pour flou |
+| **Qualite** | Satisfaisante | Superieure pour flou |
 
 ---
 
 **Conclusion**: 
-- **Phase 1 (Avant)** = Fondation solide avec dÃ©convolution physique
-- **Phase 2 (AprÃs)** = AmÃ©lioration active de la nettetÃ© via terme d'Ã©nergie
+- **Phase 1 (Avant)** = Fondation solide avec deconvolution physique
+- **Phase 2 (Aprï¿½s)** = Amelioration active de la nettete via terme d'energie
 
-**Recommandation**: Utiliser Phase 2 pour toute application oÃ¹ nettetÃ© > 0
+**Recommandation**: Utiliser Phase 2 pour toute application ou nettete > 0
 

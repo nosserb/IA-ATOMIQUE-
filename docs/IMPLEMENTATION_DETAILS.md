@@ -1,78 +1,78 @@
-#  Implémentation - Mode Humanisation Avancée (v4.1)
+#  Implementation - Mode Humanisation Avancee (v4.1)
 
-##  Résumé des Modifications
+##  Resume des Modifications
 
-### Fichiers Modifiés
+### Fichiers Modifies
 
 #### 1. **interaction.go** (+450 lignes)
-Nouvelles fonctions implémentées � la fin du fichier:
+Nouvelles fonctions implementees � la fin du fichier:
 
 ```go
 type StyleProfile struct
- Défini les caractéristiques de style � détecter
+ Defini les caracteristiques de style � detecter
 
 func AnalyserStyleTexte(texte string) StyleProfile
  Analyse formalisme (0.0-1.0)
- Calcule complexité (0.0-1.0)
- Détecte longueur moyenne des phrases
+ Calcule complexite (0.0-1.0)
+ Detecte longueur moyenne des phrases
  Mesure vocabulaire technique
  Retourne tags [simple|complexe] [formel|informel] [technique]
 
 func ExtraireConceptsCles(phrase string) []string
  Filtre stopwords (40+ mots exclus)
- Retourne mots-clés significatifs pour validation
+ Retourne mots-cles significatifs pour validation
 
 func MapperSynonymes() map[string][]string
  Dictionnaire de 30+ paires mot[synonymes]
     Verbes: avoir, faire, aller, venir
     Adjectifs: bon, grand, difficile, important
-    Adverbes: tr�s, beaucoup, peu, souvent
-    Noms: chose, fa�on, temps, probl�me
+    Adverbes: tr�s, beaucoup, peu, souvent
+    Noms: chose, fa�on, temps, probl�me
 
 func ParaphraseIntelligente(phrase string) string
  Utilise MapperSynonymes
- Remplace jusqu'� 3 mots par phrase
- Préserve casse originale
- Sortie: phrase paraphrasée
+ Remplace jusqu'� 3 mots par phrase
+ Preserve casse originale
+ Sortie: phrase paraphrasee
 
 func VerifierQualiteRecriture(original, rewritten string) map[string]float64
  Mesure conservation concepts (ratio %)
- Valide longueur (�30% acceptable)
- Vérifie lisibilité
+ Valide longueur (�30% acceptable)
+ Verifie lisibilite
  Retourne scores: conservation_concepts, longueur, lisibilite, global
 
 func HumanizeTexteAvance(texte, style string) string
- Orchestrateur principal du mode avancé
+ Orchestrateur principal du mode avance
  Segmente texte phrase par phrase
  Pour chaque phrase:
-   AnalyserStyleTexte()  détecte style
+   AnalyserStyleTexte()  detecte style
    ExtraireConceptsCles()  valide sens
    ParaphraseIntelligente()  reformule
    VerifierQualiteRecriture()  valide
-   Fallback si qualité < 0.6
- Retourne texte humanisé
+   Fallback si qualite < 0.6
+ Retourne texte humanise
 ```
 
-**Modifications apportées:**
-- Ligne 1139: TraiterFichierHumanize() modifiée pour accepter "avance"
+**Modifications apportees:**
+- Ligne 1139: TraiterFichierHumanize() modifiee pour accepter "avance"
 - Ligne 1172: Ajout branche `if style == "avance"`
-- Lignes 1188-1569: 6 nouvelles fonctions avancées
+- Lignes 1188-1569: 6 nouvelles fonctions avancees
 
 #### 2. **main.go** (+30 lignes)
 Modifications du CLI pour supporter le flag `-a`:
 
 ```go
-Ligne 173: Documentation help mise � jour
- Ajout mode avancé dans le help
+Ligne 173: Documentation help mise � jour
+ Ajout mode avance dans le help
  Exemples avec -a
  Mention fichier _humanized_avance.txt
 
 Ligne 285-340: Case "humanize" refondue
  Support flag -a avec 8 ordres de syntaxe (au lieu de 5)
- Parsing style "avance" depuis différentes positions
+ Parsing style "avance" depuis differentes positions
  Check `os.Args[2] == "file"` pour cas 1-7
  Check flag avant "file" pour cas 8-10
- 10 variantes de syntaxe acceptées 
+ 10 variantes de syntaxe acceptees 
 ```
 
 **Nouvelles syntaxes:**
@@ -81,31 +81,31 @@ Ligne 285-340: Case "humanize" refondue
 ./programme humanize -a file document.txt      
 ```
 
-### �tat de Compilation
+### �tat de Compilation
 
 ```
  0 erreurs
  0 warnings  
- Compilation réussie (2.9 MB)
+ Compilation reussie (2.9 MB)
 ```
 
 ---
 
-##  Implémentation Détaillée
+##  Implementation Detaillee
 
 ### 1. Analyse de Style (`AnalyserStyleTexte`)
 
-**Indicateurs détectés:**
-- Mots formels: "� l'occasion de", "en ce qui concerne", "cependant"
+**Indicateurs detectes:**
+- Mots formels: "� l'occasion de", "en ce qui concerne", "cependant"
 - Mots informels: "sympa", "cool", "genre", "vraiment"
-- Termes techniques: "algorithme", "données", "architecture", "API"
+- Termes techniques: "algorithme", "donnees", "architecture", "API"
 - Longueur phrase: Total mots / nombre phrases
-- Mots longs: % de mots > 8 caract�res
+- Mots longs: % de mots > 8 caract�res
 
 **Scoring:**
 ```
 Formalisme = mots_formels / (mots_formels + mots_informels)
-Complexité:
+Complexite:
   - > 20 mots/phrase  0.8 (complexe)
   - > 15 mots/phrase  0.6 (moyen)
   - < 15 mots/phrase  0.4 (simple)
@@ -113,13 +113,13 @@ Complexité:
 
 ### 2. Extraction de Concepts (`ExtraireConceptsCles`)
 
-**Stopwords filtrés (40+):**
-Articles, prépositions, conjonctions, pronoms, auxiliaires
+**Stopwords filtres (40+):**
+Articles, prepositions, conjonctions, pronoms, auxiliaires
 ```
 stopwords = {
   "le", "la", "les", "un", "une", "des",
   "et", "ou", "mais", "donc", "car",
-  "est", "sont", "a", "en", "de", "�",
+  "est", "sont", "a", "en", "de", "�",
   "pour", "par", "dans", "sur", "qui", "que", "ce"
 }
 ```
@@ -129,7 +129,7 @@ stopwords = {
 - Nettoie ponctuation
 - Filtre stopwords
 - Filtre mots < 3 chars
-- Retourne liste concepts clés
+- Retourne liste concepts cles
 
 ### 3. Paraphrase Intelligente (`ParaphraseIntelligente`)
 
@@ -139,34 +139,34 @@ stopwords = {
 2. Pour chaque mot du dictionnaire:
    - Chercher occurrence dans phrase
    - Calculer hash stable: hash(motOriginal) % len(options)
-   - Sélectionner synonyme déterministe
-   - Remplacer premi�re occurrence avec regex
-   - Préserver casse (premi�re lettre majuscule)
-   - Limiter � 3 remplacements
-3. Retourner phrase paraphrasée
+   - Selectionner synonyme deterministe
+   - Remplacer premi�re occurrence avec regex
+   - Preserver casse (premi�re lettre majuscule)
+   - Limiter � 3 remplacements
+3. Retourner phrase paraphrasee
 ```
 
-**Exemple d'exécution:**
+**Exemple d'execution:**
 ```
-Input:  "Les ordinateurs font tr�s vite"
-Hash("tr�s") % 3 = 0  "extr�mement"
+Input:  "Les ordinateurs font tr�s vite"
+Hash("tr�s") % 3 = 0  "extr�mement"
 Hash("vite") % X = Y  "rapidement"
-Output: "Les ordinateurs accomplissent extr�mement rapidement"
+Output: "Les ordinateurs accomplissent extr�mement rapidement"
 ```
 
-### 4. Validation de Qualité (`VerifierQualiteRecriture`)
+### 4. Validation de Qualite (`VerifierQualiteRecriture`)
 
-**3 métriques:**
+**3 metriques:**
 
 a) **Conservation des concepts (0.0-1.0)**
 ```
-ratio = concepts_conservés / concepts_originaux
-(80%+ de conservation considéré acceptable)
+ratio = concepts_conserves / concepts_originaux
+(80%+ de conservation considere acceptable)
 ```
 
 b) **Longueur (0.0-1.0)**
 ```
-Si longueur_reécrit/longueur_original  [0.7, 1.3]:
+Si longueur_reecrit/longueur_original  [0.7, 1.3]:
   score = 1.0 (acceptable)
 Sinon si  [0.5, 1.5]:
   score = 0.7 (limite)
@@ -174,11 +174,11 @@ Sinon:
   score = 0.3 (inacceptable)
 ```
 
-c) **Lisibilité (0.0-1.0)**
+c) **Lisibilite (0.0-1.0)**
 ```
-Détecte:
-  - Ponctuation dupliquée (".." ou ",,")
-score = 1.0 - (probl�mes_count * 0.5)
+Detecte:
+  - Ponctuation dupliquee (".." ou ",,")
+score = 1.0 - (probl�mes_count * 0.5)
 ```
 
 d) **Score Global**
@@ -188,11 +188,11 @@ global = (conservation + longueur + lisibilite) / 3
 
 ### 5. Pipeline Orchestrateur (`HumanizeTexteAvance`)
 
-**Séquence d'exécution:**
+**Sequence d'execution:**
 ```
 1. AnalyserStyleTexte() 
-    Détecte [complexe] [technique] etc.
-    Affiche tags détectés
+    Detecte [complexe] [technique] etc.
+    Affiche tags detectes
 
 2. Segmenter par "."
     Compte phrases
@@ -203,14 +203,14 @@ global = (conservation + longueur + lisibilite) / 3
    b) ParaphraseIntelligente()  reformule
    c) VerifierQualiteRecriture()  score global
    d) Si score >= 0.6  Utiliser paraphrase
-      Sinon  Fallback � HumanizeTexteStyle(standard)
+      Sinon  Fallback � HumanizeTexteStyle(standard)
    e) Afficher score pour phrases 1-3
 
 4. Reconstruire texte
     Jointure par ". "
     Assurer point final
 
-5. Afficher "[HUMANISATION AVANC�E COMPL�T�E]"
+5. Afficher "[HUMANISATION AVANC�E COMPL�T�E]"
 ```
 
 ---
@@ -221,7 +221,7 @@ global = (conservation + longueur + lisibilite) / 3
 ```bash
 $ go build -o programme 2>&1
  0 erreurs, 0 warnings
- 2.9 MB compilé
+ 2.9 MB compile
 ```
 
 ### Test 2: Syntaxes (10 variantes)
@@ -247,26 +247,26 @@ $ ./programme humanize -a file test.txt
 
 ### Test 3: Modes comparatifs
 ```
-Texte original: "Les ordinateurs modernes sont tr�s puissants"
+Texte original: "Les ordinateurs modernes sont tr�s puissants"
 
-Standard:       "Les ordinateurs modernes sont tr�s puissants. Ensuite..."
+Standard:       "Les ordinateurs modernes sont tr�s puissants. Ensuite..."
                 (ajoute connecteur)
 
-Professionnel:  "Les ordinateurs modernes sont particuli�rement puissants"
-                (remplace "tr�s"  "particuli�rement")
+Professionnel:  "Les ordinateurs modernes sont particuli�rement puissants"
+                (remplace "tr�s"  "particuli�rement")
 
-Avancé:         "Les ordinateurs modernes sont extr�mement puissants"
-                (remplace "tr�s"  "extr�mement", autre synonyme)
+Avance:         "Les ordinateurs modernes sont extr�mement puissants"
+                (remplace "tr�s"  "extr�mement", autre synonyme)
 ```
 
-### Test 4: Scores de Qualité
+### Test 4: Scores de Qualite
 ```
-Phrase 1: Score 1.00 (excellent, tous concepts conservés)
-Phrase 2: Score 0.93 (bon, 93% concepts conservés)
-Phrase 3: Score 0.96 (excellent, structure préservée)
+Phrase 1: Score 1.00 (excellent, tous concepts conserves)
+Phrase 2: Score 0.93 (bon, 93% concepts conserves)
+Phrase 3: Score 0.96 (excellent, structure preservee)
 ```
 
-### Test 5: Fallback de Qualité
+### Test 5: Fallback de Qualite
 ```
 Si score < 0.6  Utilise HumanizeTexteStyle(standard) automatiquement
 Transparent pour l'utilisateur
@@ -274,7 +274,7 @@ Transparent pour l'utilisateur
 
 ---
 
-##  Métadonnées du Code
+##  Metadonnees du Code
 
 ### Nouvelles fonctions (6)
 - AnalyserStyleTexte: 70 lignes
@@ -285,15 +285,15 @@ Transparent pour l'utilisateur
 - HumanizeTexteAvance: 40 lignes
 **Total: ~240 lignes**
 
-### Struct personnalisée (1)
+### Struct personnalisee (1)
 - StyleProfile: 6 champs
 
 ### Dictionnaire
 - 30+ paires mot[synonymes]
-- 4 catégories (verbes, adj, adv, noms)
+- 4 categories (verbes, adj, adv, noms)
 
-### Mots-clés filtrés
-- 40+ stopwords fran�ais
+### Mots-cles filtres
+- 40+ stopwords fran�ais
 
 ### Documentation
 - HUMANIZATION_GUIDE.md: 260 lignes
@@ -302,26 +302,26 @@ Transparent pour l'utilisateur
 
 ---
 
-##  Avantages de l'Implémentation
+##  Avantages de l'Implementation
 
-1. **Modulaire**: Chaque fonction peut �tre utilisée indépendamment
+1. **Modulaire**: Chaque fonction peut �tre utilisee independamment
 2. **Extensible**: Facile d'ajouter plus de synonymes ou stopwords
-3. **Performant**: O(n) complexity pour la plupart des opérations
-4. **Robuste**: Fallback automatique si qualité insuffisante
+3. **Performant**: O(n) complexity pour la plupart des operations
+4. **Robuste**: Fallback automatique si qualite insuffisante
 5. **Transparent**: Affichage des scores pour comprendre le processus
-6. **Compatible**: N'interf�re pas avec les modes standard/professionnel
+6. **Compatible**: N'interf�re pas avec les modes standard/professionnel
 
 ---
 
-##  Fichiers Générés (Sortie)
+##  Fichiers Generes (Sortie)
 
 Pour `input.txt`:
 - `input_humanized.txt` (mode standard)
 - `input_humanized_prof.txt` (mode professionnel)
-- `input_humanized_avance.txt` (mode avancé)  NOUVEAU
+- `input_humanized_avance.txt` (mode avance)  NOUVEAU
 
 ---
 
-**Date d'implémentation**: 2 janvier 2025  
+**Date d'implementation**: 2 janvier 2025  
 **Version**: IA-ATOMIQUE v4.1  
 **Status**: Production-ready 

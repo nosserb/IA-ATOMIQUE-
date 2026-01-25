@@ -1,6 +1,6 @@
-# ¶ Archive IA-ATOMIQUE - Pr√te pour Email!
+# ÔøΩ Archive IA-ATOMIQUE - PrÔøΩte pour Email!
 
-##  Fichier Cr√©√©
+##  Fichier Cree
 
 ```
 ia-atomique-web.zip (36 KB)
@@ -13,7 +13,7 @@ Located at:
 
 ---
 
-## ã Contenu de l'Archive
+## ÔøΩ Contenu de l'Archive
 
 Tous les fichiers de la branche `chore/siteweb`:
 
@@ -47,11 +47,11 @@ Tous les fichiers de la branche `chore/siteweb`:
 - `Dockerfile`  NOUVEAU!
 - `docker-compose.yml`  NOUVEAU!
 - `Makefile`  NOUVEAU!
-- `.gitignore` (mis √ jour)
+- `.gitignore` (mis ÔøΩ jour)
 - `go.mod`
 
 ### Documentation
-- `README.md` (mis √ jour)
+- `README.md` (mis ÔøΩ jour)
 - `INSTALL.md`  NOUVEAU!
 - `WEB_README.md`  NOUVEAU!
 - `SETUP_WEB.md`  NOUVEAU!
@@ -67,8 +67,8 @@ Tous les fichiers de la branche `chore/siteweb`:
 
 ##  Comment L'Utiliser
 
-### 1. T√©l√©charger
-T√©l√©charge le fichier `ia-atomique-web.zip` depuis l'email ou le dossier partag√©
+### 1. Telecharger
+Telecharge le fichier `ia-atomique-web.zip` depuis l'email ou le dossier partage
 
 ### 2. Extraire
 - **Windows:** Clique droit  "Extract All"
@@ -98,16 +98,16 @@ make web
 
 - **Fichier:** 36 KB
 - **Extraction:** ~200 KB
-- **Facile √ envoyer par email!** 
+- **Facile ÔøΩ envoyer par email!** 
 
 ---
 
 ##  Contenu Nouveau
 
-Cette archive contient TOUT ce qui a √©t√© cr√©√©:
+Cette archive contient TOUT ce qui a ete cree:
 
- Interface web compl√te (HTML/CSS/JS)  
- Serveur HTTP int√©gr√© (Go)  
+ Interface web complÔøΩte (HTML/CSS/JS)  
+ Serveur HTTP integre (Go)  
  Support Windows complet (Batch + PowerShell)  
  Support Docker (Dockerfile, docker-compose)  
  Makefile pour Linux/Mac  
@@ -117,9 +117,9 @@ Cette archive contient TOUT ce qui a √©t√© cr√©√©:
 
 ---
 
-##  Prochaine √tape
+##  Prochaine ÔøΩtape
 
-Une fois extract√©e et test√©e, tu peux pusher sur GitHub:
+Une fois extractee et testee, tu peux pusher sur GitHub:
 
 ```bash
 cd ia-atomique-web
@@ -130,4 +130,4 @@ git push origin chore/siteweb
 
 ---
 
-**Archive pr√te √ envoyer! **
+**Archive prÔøΩte ÔøΩ envoyer! **

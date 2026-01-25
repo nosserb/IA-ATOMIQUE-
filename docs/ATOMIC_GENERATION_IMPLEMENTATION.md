@@ -14,15 +14,15 @@ A complete **Atomic Resonance-based Image Generation System** that transforms wa
   - Velocity tracking for momentum
   - Pattern guidance values
   
-- **GenerationGrid**: Main container (Width Ã Height grid)
-  - Parameters: Î (resonance), Î² (pattern), Î³ (smoothing), Î´ (feedback), Îµ (damping)
+- **GenerationGrid**: Main container (Width ï¿½ Height grid)
+  - Parameters: ï¿½ (resonance), beta (pattern), gamma (smoothing), delta (feedback), epsilon (damping)
   - Thread-safe with RWMutex
   - Target image support for feedback mode
   
 - **Key Functions**:
-  - `PropagateLocal()`: s_ij(t+1) = ÎÂÎ£ neighbors + Î²ÂP_ij + ÎµÂV
+  - `PropagateLocal()`: s_ij(t+1) = ï¿½ï¿½Î£ neighbors + betaï¿½P_ij + epsilonï¿½V
   - `StateToColor()`: HSL-based stateRGB conversion
-  - `SmoothColors()`: Local color averaging C' = (1-Î³)ÂC + Î³Âneighbor_avg
+  - `SmoothColors()`: Local color averaging C' = (1-gamma)ï¿½C + gammaï¿½neighbor_avg
   - `ApplyFeedback()`: Optional target-guided adjustment
   - `GenerateStep()`: Full iteration = propagate + color + smooth + feedback
   - `Generate(iterations)`: Multi-iteration pipeline
@@ -40,7 +40,7 @@ A complete **Atomic Resonance-based Image Generation System** that transforms wa
 
 - **HandleGenerateWithFeedback()**: Target-guided generation
   - Loads target image
-  - Enhanced feedback weight (Î´=0.3)
+  - Enhanced feedback weight (delta=0.3)
   - Same pipeline with feedback applied
   - Guides atoms toward target appearance
 
@@ -77,12 +77,12 @@ INPUT PATTERN IMAGE
     
      Create GenerationGrid
      (neutral gray atoms) 
-    ˜
+    ï¿½
         
     
      Inject Pattern      
      Set initial P_ij    
-    ˜
+    ï¿½
         
     
      GenerateStep()      
@@ -96,14 +96,14 @@ INPUT PATTERN IMAGE
         (local averaging)
      4. ApplyFeedback()  
         (if enabled)     
-    ˜
+    ï¿½
         
     
      SaveImage()         
      PNG Export          
-    ˜
+    ï¿½
         
-    OUTPUT IMAGE (512Ã512, 8-bit RGB)
+    OUTPUT IMAGE (512ï¿½512, 8-bit RGB)
 ```
 
 ### Mathematical Implementation
@@ -114,9 +114,9 @@ for s := 0; s < 5; s++ {
     neighborAvg := neighborSum[s] / float64(neighborCount)
     
     newCells[i][j].State[s] = 
-        gg.ResonanceAlpha * neighborAvg +           // ÎÂÎ£ neighbors
-        gg.PatternBeta * pattern[s] +                // Î²ÂP_ij
-        newCells[i][j].Velocity[s]                   // ÎµÂV
+        gg.ResonanceAlpha * neighborAvg +           // ï¿½ï¿½Î£ neighbors
+        gg.PatternBeta * pattern[s] +                // betaï¿½P_ij
+        newCells[i][j].Velocity[s]                   // epsilonï¿½V
     
     newCells[i][j].State[s] = math.Max(0, math.Min(1, ...))  // Clamp [0,1]
 }
@@ -168,7 +168,7 @@ if target_pixel != current_color {
 ./programme generate with-feedback 128 128 50 output/test_gradient.png
 ```
 **Result**:
--  Grid initialized with feedback enabled (Î´=0.3)
+-  Grid initialized with feedback enabled (delta=0.3)
 -  Target loaded and injected
 -  50 iterations completed in ~1 second
 -  Loss converged: 0.195  0.060
@@ -195,12 +195,12 @@ if target_pixel != current_color {
 
 | Test | Resolution | Iterations | Time | Status |
 |------|-----------|-----------|------|--------|
-| Quick test | 128Ã128 | 100 | ~2s |  Fast |
-| Standard | 256Ã256 | 100 | ~4s |  Good |
-| Quality | 512Ã512 | 200 | ~12s |  Acceptable |
-| Feedback | 128Ã128 | 50 | ~1s |  Very fast |
+| Quick test | 128ï¿½128 | 100 | ~2s |  Fast |
+| Standard | 256ï¿½256 | 100 | ~4s |  Good |
+| Quality | 512ï¿½512 | 200 | ~12s |  Acceptable |
+| Feedback | 128ï¿½128 | 50 | ~1s |  Very fast |
 
-**Scaling**: ~80ms per iteration for 256Ã256 grid
+**Scaling**: ~80ms per iteration for 256ï¿½256 grid
 
 ## File Structure
 
@@ -261,18 +261,18 @@ ls -lh output/atomic_*
 
 | Param | Range | Default | Role |
 |-------|-------|---------|------|
-| Î | 0.1-0.5 | 0.3 | Neighbor resonance |
-| Î² | 0.2-0.8 | 0.5 | Pattern adherence |
-| Î³ | 0.05-0.3 | 0.2 | Color smoothing |
-| Î´ | 0.0-1.0 | 0.2 | Feedback (pattern mode) / 0.3 (feedback mode) |
-| Îµ | 0.8-1.0 | 0.9 | Velocity damping |
+| ï¿½ | 0.1-0.5 | 0.3 | Neighbor resonance |
+| beta | 0.2-0.8 | 0.5 | Pattern adherence |
+| gamma | 0.05-0.3 | 0.2 | Color smoothing |
+| delta | 0.0-1.0 | 0.2 | Feedback (pattern mode) / 0.3 (feedback mode) |
+| epsilon | 0.8-1.0 | 0.9 | Velocity damping |
 
 ## Configuration Examples
 
-**Fine Detail**: Î=0.2, Î²=0.6, Î³=0.10  Sharp edges, local patterns
-**Smooth Blend**: Î=0.4, Î²=0.4, Î³=0.25  Natural-looking, coherent
-**Wave-Centric**: Î=0.1, Î²=0.8, Î³=0.05  Pattern dominates
-**Emergent**: Î=0.5, Î²=0.3, Î³=0.20  Creative, self-organizing
+**Fine Detail**: ï¿½=0.2, beta=0.6, gamma=0.10  Sharp edges, local patterns
+**Smooth Blend**: ï¿½=0.4, beta=0.4, gamma=0.25  Natural-looking, coherent
+**Wave-Centric**: ï¿½=0.1, beta=0.8, gamma=0.05  Pattern dominates
+**Emergent**: ï¿½=0.5, beta=0.3, gamma=0.20  Creative, self-organizing
 
 ## Integration Points
 

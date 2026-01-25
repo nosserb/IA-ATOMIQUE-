@@ -8,7 +8,7 @@ This document describes the complete **5-phase atomic image generation system** 
 
 ---
 
-## Phase 1: Multi-Scale Structuration (Structuration Multi-Ãchelle)
+## Phase 1: Multi-Scale Structuration (Structuration Multi-ï¿½chelle)
 
 ### Objective
 Transform isolated pixels into coherent patterns through **local resonance** at multiple scales (micro, meso, macro).
@@ -30,7 +30,7 @@ Where:
 
 1. **Multi-Scale Layers**
    - **Micro**: Individual pixels (scale = 1)
-   - **Meso**: 4Ã4 or 8Ã8 blocks (scale = 4, 8)
+   - **Meso**: 4ï¿½4 or 8ï¿½8 blocks (scale = 4, 8)
    - **Macro**: Full image patterns (scale = 16+)
 
 2. **Resonance Calculation**
@@ -68,7 +68,7 @@ network.PhaseOne_StructurationMultiEchelle(50)
 
 ---
 
-## Phase 2: Shape Emergence (Ãmergence de Forme)
+## Phase 2: Shape Emergence (ï¿½mergence de Forme)
 
 ### Objective
 Make **primitive shapes** appear (contours, lines, curves) through **capsule-based resonance**.
@@ -199,7 +199,7 @@ network.PhaseThree_PromptConditioning(guide, 50)
 
 ---
 
-## Phase 4: Iterative Refinement (Affinement ItÃ©ratif)
+## Phase 4: Iterative Refinement (Affinement Iteratif)
 
 ### Objective
 Add **fine details** and **realistic texture** through local smoothing and noise adjustment.
@@ -260,7 +260,7 @@ network.PhaseFour_IterativeRefinement(0.1, 0.08, 50)
 
 ---
 
-## Phase 5: Coherence Verification (VÃ©rification de CohÃ©rence Atomique)
+## Phase 5: Coherence Verification (Verification de Coherence Atomique)
 
 ### Objective
 Perform **quality control** and **automatic repair** of low-coherence regions.
@@ -417,8 +417,8 @@ CoherenceReport {
 ### Computational Complexity
 
 - **Per atom, per iteration**: O(8) neighborhood reads + resonance computation
-- **Total per iteration**: O(N) where N = (width/patch) Ã (height/patch)
-- **Full pipeline**: O(5 Ã N Ã iterations)
+- **Total per iteration**: O(N) where N = (width/patch) ï¿½ (height/patch)
+- **Full pipeline**: O(5 ï¿½ N ï¿½ iterations)
 - **Memory**: O(N) atoms + auxiliary structures
 
 ### Parallelization

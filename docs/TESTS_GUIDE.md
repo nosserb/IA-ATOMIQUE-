@@ -8,7 +8,7 @@ go build -o programme
 
 # Tests disponibles
 ./programme test needle input.txt      # Needle In Haystack
-./programme test perplexity input.txt  # Perplexité
+./programme test perplexity input.txt  # Perplexite
 ./programme bench-1m                   # Benchmark vitesse
 ```
 
@@ -16,7 +16,7 @@ go build -o programme
 
 ##  1. Test Needle In Haystack
 
-**Objectif**: Trouver des phrases anormales/incohérentes dans un texte massif
+**Objectif**: Trouver des phrases anormales/incoherentes dans un texte massif
 
 ### Commande
 ```bash
@@ -28,29 +28,29 @@ go build -o programme
 ./programme test needle input.txt
 ```
 
-### Résultat Attendu
+### Resultat Attendu
 ```
 Temps de scan:          ~23 secondes (568K mots)
 Vitesse:                25K mots/sec
-Anomalies détectées:    10 phrases suspectes
+Anomalies detectees:    10 phrases suspectes
 ```
 
-### Interprétation
-- **Cohérence < 0.3** = Phrase tr�s suspecte
-- **Cohérence 0.3-0.5** = Phrase moyennement suspecte
-- **Cohérence > 0.5** = Phrase normale mais détectée
+### Interpretation
+- **Coherence < 0.3** = Phrase tr�s suspecte
+- **Coherence 0.3-0.5** = Phrase moyennement suspecte
+- **Coherence > 0.5** = Phrase normale mais detectee
 
 ### Cas d'Usage
-- Détection de contenu incohérent
-- Modération automatique
+- Detection de contenu incoherent
+- Moderation automatique
 - Recherche d'erreurs dans corpus
-- Vérification qualité texte
+- Verification qualite texte
 
 ---
 
-##  2. Test de Perplexité
+##  2. Test de Perplexite
 
-**Objectif**: Mesurer la cohérence globale et la "surprise" du syst�me
+**Objectif**: Mesurer la coherence globale et la "surprise" du syst�me
 
 ### Commande
 ```bash
@@ -62,26 +62,26 @@ Anomalies détectées:    10 phrases suspectes
 ./programme test perplexity input.txt
 ```
 
-### Résultat Attendu
+### Resultat Attendu
 ```
-Perplexité globale:     1.05
-Cohérence moyenne:      98.2%
-Stabilité:              98.2%
-Qualité:                EXCELLENT
+Perplexite globale:     1.05
+Coherence moyenne:      98.2%
+Stabilite:              98.2%
+Qualite:                EXCELLENT
 ```
 
-### �chelle de Perplexité
+### �chelle de Perplexite
 - **< 2**: Excellent (meilleur que GPT-4)
-- **2-5**: Tr�s bon
+- **2-5**: Tr�s bon
 - **5-10**: Bon (niveau GPT-4)
 - **10-20**: Moyen (niveau GPT-3)
 - **> 20**: Faible
 
 ### Cas d'Usage
-- �valuation qualité texte
+- �valuation qualite texte
 - Comparaison de documents
-- Détection de texte généré
-- Mesure de complexité
+- Detection de texte genere
+- Mesure de complexite
 
 ---
 
@@ -94,7 +94,7 @@ Qualité:                EXCELLENT
 ./programme bench-1m
 ```
 
-### Résultat Attendu (input.txt = 568K mots)
+### Resultat Attendu (input.txt = 568K mots)
 ```
 Temps total:            143 ms
 Vitesse globale:        3.96M mots/sec
@@ -102,8 +102,8 @@ Temps par mot:          0.253 µs
 
 Phases:
 - Tokenisation:         82 ms (57%)
-- Extraction clés:      47 ms (33%)
-- Activation réseau:    15 ms (10%)
+- Extraction cles:      47 ms (33%)
+- Activation reseau:    15 ms (10%)
 - Classification:       2 µs (<1%)
 ```
 
@@ -111,33 +111,33 @@ Phases:
 ```
 LLM local (50 tokens/sec):  3.1 heures
 IA-ATOMIQUE:                0.14 seconde
-Accélération:               79 185� 
+Acceleration:               79 185� 
 ```
 
 ---
 
-##  Résultats de Référence
+##  Resultats de Reference
 
 ### Sur input.txt (568K mots, 3.13 Mo)
 
-| Test | Résultat | Temps | Verdict |
+| Test | Resultat | Temps | Verdict |
 |------|----------|-------|---------|
-| **Perplexité** | 1.05 | 101 ms |  Excellent |
-| **Cohérence** | 98.2% | 101 ms |  Excellent |
+| **Perplexite** | 1.05 | 101 ms |  Excellent |
+| **Coherence** | 98.2% | 101 ms |  Excellent |
 | **Vitesse** | 3.96M/s | 143 ms |  Ultra-rapide |
-| **Needle** | 10 anomalies | 23 s |  Détecté |
+| **Needle** | 10 anomalies | 23 s |  Detecte |
 
 ---
 
 ##  Comparaison Standards
 
-### Perplexité
+### Perplexite
 
 ```
 GPT-4:           10-20
 GPT-3:           20-40
-Mod�les simples: >100
-IA-ATOMIQUE:     1.05   10-20� meilleur! 
+Mod�les simples: >100
+IA-ATOMIQUE:     1.05   10-20� meilleur! 
 ```
 
 ### Vitesse
@@ -146,31 +146,31 @@ IA-ATOMIQUE:     1.05   10-20� meilleur!
 GPT-4:           ~50 mots/sec
 GPT-3:           ~30 mots/sec
 LLM locaux:      ~50 mots/sec
-IA-ATOMIQUE:     3.96M mots/sec   79K� plus rapide! 
+IA-ATOMIQUE:     3.96M mots/sec   79K� plus rapide! 
 ```
 
 ---
 
-##  Tests Avancés
+##  Tests Avances
 
 ### Test sur Gros Fichier
 
 ```bash
-# Créer fichier test de 5M mots (concaténer input.txt 9�)
+# Creer fichier test de 5M mots (concatener input.txt 9�)
 for i in {1..9}; do cat input.txt >> huge_test.txt; done
 
-# Test perplexité (devrait prendre ~1 seconde)
+# Test perplexite (devrait prendre ~1 seconde)
 ./programme test perplexity huge_test.txt
 
 # Test needle (devrait prendre ~3 minutes)
 ./programme test needle huge_test.txt
 ```
 
-### Test de Cohérence Multiple
+### Test de Coherence Multiple
 
 ```bash
-# Créer plusieurs fichiers de qualité différente
-echo "Texte cohérent..." > coherent.txt
+# Creer plusieurs fichiers de qualite differente
+echo "Texte coherent..." > coherent.txt
 echo "sdlfkj asdlkfj random blabla..." > chaos.txt
 
 # Comparer
@@ -180,22 +180,22 @@ echo "sdlfkj asdlkfj random blabla..." > chaos.txt
 
 ---
 
-##  Options Personnalisées
+##  Options Personnalisees
 
-### Modifier la Sensibilité (dans le code)
+### Modifier la Sensibilite (dans le code)
 
 **Needle Search** (`database/needle_search.go`):
 ```go
-engine.WindowSize = 50        // Taille fen�tre (défaut: 50)
-engine.AnomalyThreshold = 0.3 // Seuil anomalie (défaut: 0.3)
-engine.MaxResults = 10        // Nb résultats (défaut: 10)
+engine.WindowSize = 50        // Taille fen�tre (defaut: 50)
+engine.AnomalyThreshold = 0.3 // Seuil anomalie (defaut: 0.3)
+engine.MaxResults = 10        // Nb resultats (defaut: 10)
 ```
 
-**Perplexité** (`database/perplexity.go`):
+**Perplexite** (`database/perplexity.go`):
 ```go
-calc.SampleSize = 100      // Taille échantillon (défaut: 100)
-calc.MinPerplexity = 1.0   // Perplexité min (défaut: 1.0)
-calc.MaxPerplexity = 15.0  // Perplexité max (défaut: 15.0)
+calc.SampleSize = 100      // Taille echantillon (defaut: 100)
+calc.MinPerplexity = 1.0   // Perplexite min (defaut: 1.0)
+calc.MaxPerplexity = 15.0  // Perplexite max (defaut: 15.0)
 ```
 
 ---
@@ -204,22 +204,22 @@ calc.MaxPerplexity = 15.0  // Perplexité max (défaut: 15.0)
 
 ### Pour 1M de mots
 ```
-Perplexité:     ~180 ms
+Perplexite:     ~180 ms
 Needle Search:  ~40 secondes
 Vitesse pure:   ~250 ms
 ```
 
 ### Pour 10M de mots
 ```
-Perplexité:     ~1.8 secondes
+Perplexite:     ~1.8 secondes
 Needle Search:  ~6-7 minutes
 Vitesse pure:   ~2.5 secondes
 ```
 
 ### Pour Wikipedia FR (2 milliards de mots)
 ```
-Perplexité:     ~6 minutes
-Needle Search:  ~20 heures (parallélisable)
+Perplexite:     ~6 minutes
+Needle Search:  ~20 heures (parallelisable)
 Vitesse pure:   ~8.4 minutes
 ```
 
@@ -228,20 +228,20 @@ Vitesse pure:   ~8.4 minutes
 ##  Troubleshooting
 
 ### "Temps trop long sur Needle Search"
- Normal pour gros fichiers, c'est O(n²). Optimisation en cours.
+ Normal pour gros fichiers, c'est O(n^2). Optimisation en cours.
 
-### "Perplexité tr�s haute"
+### "Perplexite tr�s haute"
  Le texte est probablement chaotique ou multi-langue.
 
-### "Pas assez d'anomalies détectées"
- Diminuer `AnomalyThreshold` de 0.3 � 0.2.
+### "Pas assez d'anomalies detectees"
+ Diminuer `AnomalyThreshold` de 0.3 � 0.2.
 
-### "Trop d'anomalies détectées"
- Augmenter `AnomalyThreshold` de 0.3 � 0.4.
+### "Trop d'anomalies detectees"
+ Augmenter `AnomalyThreshold` de 0.3 � 0.4.
 
 ---
 
-##  Commandes Compl�tes
+##  Commandes Compl�tes
 
 ```bash
 # Compilation
@@ -250,11 +250,11 @@ go build -o programme
 # Tests principaux
 ./programme bench-1m                    # Benchmark vitesse
 ./programme test needle input.txt       # Needle In Haystack
-./programme test perplexity input.txt   # Perplexité
+./programme test perplexity input.txt   # Perplexite
 
 # Tests atomiques (anciens)
 ./programme atomic simulate 1000 500    # Simulation atomique
-./programme atomic benchmark            # Benchmark réseau
+./programme atomic benchmark            # Benchmark reseau
 
 # Analyse de texte
 ./programme text "Votre texte ici"      # Analyse directe
@@ -263,21 +263,21 @@ go build -o programme
 # Humanisation
 ./programme humanize file -s doc.txt    # Style standard
 ./programme humanize file -p doc.txt    # Style professionnel
-./programme humanize file -a doc.txt    # Style avancé
+./programme humanize file -a doc.txt    # Style avance
 ```
 
 ---
 
-##  En Résumé
+##  En Resume
 
-L'IA-ATOMIQUE offre maintenant **3 tests de référence** pour valider ses performances:
+L'IA-ATOMIQUE offre maintenant **3 tests de reference** pour valider ses performances:
 
 1. **Needle In Haystack**  Attention sur contexte long
-2. **Perplexité**  Cohérence et surprise
+2. **Perplexite**  Coherence et surprise
 3. **Benchmark Vitesse**  Performance brute
 
-Avec des résultats qui **surpassent GPT-4** sur tous les crit�res mesurables! 
+Avec des resultats qui **surpassent GPT-4** sur tous les crit�res mesurables! 
 
 ---
 
-**Pour plus de détails**: Voir [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md)
+**Pour plus de details**: Voir [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md)

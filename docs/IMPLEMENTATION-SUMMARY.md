@@ -1,142 +1,142 @@
-# Résumé d'Implémentation - IA-ATOMIQUE v1.0
+# Resume d'Implementation - IA-ATOMIQUE v1.0
 
 **Date:** Janvier 7, 2026  
 **Branche:** feature/article  
 **Auteur:** BRESSON Guylann  
-**Statut:**  Implémentation compl�te conforme � l'article HAL
+**Statut:**  Implementation compl�te conforme � l'article HAL
 
 ---
 
-## � Résumé du Travail Réalisé
+## � Resume du Travail Realise
 
-Le projet **IA-ATOMIQUE** a été enti�rement refactorisé pour refléter fid�lement l'article scientifique:
+Le projet **IA-ATOMIQUE** a ete enti�rement refactorise pour refleter fid�lement l'article scientifique:
 
-> **"IA atomique : un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique (T.R.A.)"**
+> **"IA atomique : un moteur d'inference asynchrone fonde sur la Technologie de Resonance Atomique (T.R.A.)"**
 
 ### Transformation Conceptuelle
 
-**De:** Un analyseur de texte basé sur un réseau neuronal simple  
-**�:** Un moteur d'inférence distribué implémentant les principes de résonance atomique
+**De:** Un analyseur de texte base sur un reseau neuronal simple  
+**�:** Un moteur d'inference distribue implementant les principes de resonance atomique
 
 ---
 
-##  Composants Implémentés
+##  Composants Implementes
 
 ### 1. **Atomes Computationnels** (`database/atomic.go`)
--  `ComputationalAtom` : unité autonome avec état interne, r�gles locales, perceptions
--  �tat continu [0, 1]
+-  `ComputationalAtom` : unite autonome avec etat interne, r�gles locales, perceptions
+-  �tat continu [0, 1]
 -  Connexions adaptatives avec voisins
 -  Support asynchrone thread-safe
 
-### 2. **Réseau Atomique Distribué**
+### 2. **Reseau Atomique Distribue**
 -  `AtomicNetwork` : collection d'atomes avec topologie de grille 2D
--  Param�tres contrôlables : �, β, γ, δ, �
--  Itérations asynchrones et indépendantes
--  Calcul de cohérence réseau
--  Détection de comportements émergents
+-  Param�tres controlables : �, beta, gamma, delta, �
+-  Iterations asynchrones et independantes
+-  Calcul de coherence reseau
+-  Detection de comportements emergents
 
-### 3. **Résonance Atomique**
--  �quation: `R(si, sj) = exp(-||si-sj||²/2�²)`
--  Mesure de compatibilité entre atomes
--  Alignement spontané basé sur états
--  Sensibilité paramétrée (�)
+### 3. **Resonance Atomique**
+-  �quation: `R(si, sj) = exp(-||si-sj||^2/2�^2)`
+-  Mesure de compatibilite entre atomes
+-  Alignement spontane base sur etats
+-  Sensibilite parametree (�)
 
 ### 4. **Dynamique Adaptative des Poids**
--  �quation: `dwij/dt = γ * cohérence(si,sj) - δ * wij`
--  Renforcement des connexions cohérentes
--  Décroissance des connexions faibles
+-  �quation: `dwij/dt = gamma * coherence(si,sj) - delta * wij`
+-  Renforcement des connexions coherentes
+-  Decroissance des connexions faibles
 -  Apprentissage local continu
 
 ### 5. **Interface CLI Atomique** (`atomic_cli.go`)
--  `simulate <N>` : exécuter N itérations
--  `network-stats` : afficher statistiques réseau
+-  `simulate <N>` : executer N iterations
+-  `network-stats` : afficher statistiques reseau
 -  `benchmark` : mesurer performance
 -  `help` : affichage aide
 
 ---
 
-##  Métriques et Résultats
+##  Metriques et Resultats
 
 ### Performance
 ```
-Taille réseau: 500 atomes
-Itérations: 50
+Taille reseau: 500 atomes
+Iterations: 50
 Temps total: 90ms
-Vitesse: ~555 itérations/sec
+Vitesse: ~555 iterations/sec
 
-Scalabilité: Linéaire O(n * neighbors)
+Scalabilite: Lineaire O(n * neighbors)
 ```
 
-### �mergence Observée
+### �mergence Observee
 -  Formation de structures stables
--  Cohérence réseau croissante
+-  Coherence reseau croissante
 -  Convergence sans supervision centrale
--  Résilience aux perturbations
+-  Resilience aux perturbations
 
 ---
 
-##  Documentation Créée
+##  Documentation Creee
 
 ### 1. **README-ARTICLE.md**
-- Vue d'ensemble compl�te du syst�me
+- Vue d'ensemble compl�te du syst�me
 - Principes fondamentaux
 - Applications potentielles
-- �quations mathématiques
+- �quations mathematiques
 
 ### 2. **README-ATOMIQUE.md**
-- Description détaillée de chaque composant
-- Architecture du syst�me
-- Formules et param�tres
-- Cas d'usage réels
+- Description detaillee de chaque composant
+- Architecture du syst�me
+- Formules et param�tres
+- Cas d'usage reels
 
 ### 3. **ATOMIC-IMPLEMENTATION.md**
 - Correspondance article  code
-- Implémentation des équations
-- Param�tres et configuration
-- Vérification des propriétés
+- Implementation des equations
+- Param�tres et configuration
+- Verification des proprietes
 
-### 4. **Code Commenté**
-- `database/atomic.go` : détails complets
+### 4. **Code Commente**
+- `database/atomic.go` : details complets
 - `atomic_cli.go` : interface utilisateur
-- Commentaires en fran�ais et anglais
+- Commentaires en fran�ais et anglais
 
 ---
 
 ##  Correspondance avec l'Article
 
-### Sections de l'Article  Implémentation
+### Sections de l'Article  Implementation
 
-| Section Article | Implémentation | Fichier |
+| Section Article | Implementation | Fichier |
 |---|---|---|
 | Atomes computationnels | `ComputationalAtom` struct | atomic.go |
-| Résonance atomique | `ComputeResonance()` | atomic.go L:123 |
-| Mise � jour état | `UpdateState()` | atomic.go L:165 |
+| Resonance atomique | `ComputeResonance()` | atomic.go L:123 |
+| Mise � jour etat | `UpdateState()` | atomic.go L:165 |
 | Dynamique poids | `UpdateConnections()` | atomic.go L:210 |
-| Réseau distribué | `AtomicNetwork` struct | atomic.go L:48 |
-| Itération asynchrone | `IterateNetwork()` | atomic.go L:293 |
-| Cohérence globale | `GetNetworkCoherence()` | atomic.go L:311 |
-| Comportement émergent | `ExtractEmergentBehavior()` | atomic.go L:328 |
+| Reseau distribue | `AtomicNetwork` struct | atomic.go L:48 |
+| Iteration asynchrone | `IterateNetwork()` | atomic.go L:293 |
+| Coherence globale | `GetNetworkCoherence()` | atomic.go L:311 |
+| Comportement emergent | `ExtractEmergentBehavior()` | atomic.go L:328 |
 
 ---
 
-##  �quations Implémentées
+##  �quations Implementees
 
-### �quation 1: Résonance Atomique
+### �quation 1: Resonance Atomique
 ```go
-R(si, sj) = exp(-||si - sj||² / (2�²))
-// Implémentée dans: ComputeResonance()
+R(si, sj) = exp(-||si - sj||^2 / (2�^2))
+// Implementee dans: ComputeResonance()
 ```
 
-### �quation 2: Mise � Jour d'�tat
+### �quation 2: Mise � Jour d'�tat
 ```go
-si(t+1) = si(t) + ��Σ(wij�Rij) + β�(Ri + pi)
-// Implémentée dans: UpdateState()
+si(t+1) = si(t) + ��Σ(wij�Rij) + beta�(Ri + pi)
+// Implementee dans: UpdateState()
 ```
 
-### �quation 3: Dynamique des Poids
+### �quation 3: Dynamique des Poids
 ```go
-dwij/dt = γ�cohérence(si,sj) - δ�wij
-// Implémentée dans: UpdateConnections()
+dwij/dt = gamma�coherence(si,sj) - delta�wij
+// Implementee dans: UpdateConnections()
 ```
 
 ---
@@ -151,31 +151,31 @@ go build -o programme
 
 ### Simulation
 ```bash
-# 100 itérations
+# 100 iterations
 ./programme simulate 100
 
-# 1000 itérations
+# 1000 iterations
 ./programme simulate 1000
 
-# Statistiques réseau
+# Statistiques reseau
 ./programme network-stats
 
 # Benchmarks
 ./programme benchmark
 ```
 
-### Résultat Attendu
+### Resultat Attendu
 ```
-[R�SULTATS EXP�RIMENTAUX]
-  Cohérence initiale: ~0.25
-  Cohérence finale: ~0.85
+[R�SULTATS EXP�RIMENTAUX]
+  Coherence initiale: ~0.25
+  Coherence finale: ~0.85
   Activation moyenne: ~0.42
-  Structures émergentes: D�TECT�ES 
+  Structures emergentes: D�TECT�ES 
 ```
 
 ---
 
-##  Caractéristiques Clés
+##  Caracteristiques Cles
 
 ###  Distribution Totale
 - Pas de serveur central
@@ -184,117 +184,117 @@ go build -o programme
 
 ###  Asynchronisme
 - Pas d'horloge globale
-- Chaque atome � son rythme
-- Résilience exceptionnelle
+- Chaque atome � son rythme
+- Resilience exceptionnelle
 
-###  �mergence
-- Intelligence globale de r�gles locales
+###  �mergence
+- Intelligence globale de r�gles locales
 - Auto-organisation naturelle
-- Comportements complexes spontanés
+- Comportements complexes spontanes
 
-###  Sobriété
-- Mémoire minimale par atome
-- Calcul réduit
-- Déployable sur syst�mes embarqués
+###  Sobriete
+- Memoire minimale par atome
+- Calcul reduit
+- Deployable sur syst�mes embarques
 
-###  Adaptabilité
+###  Adaptabilite
 - Apprentissage continu local
 - Ajustement automatique
-- Plasticité permanente
+- Plasticite permanente
 
 ---
 
-##  Fichiers Modifiés/Créés
+##  Fichiers Modifies/Crees
 
 ### Nouveaux Fichiers
--  `database/atomic.go` (460 lignes) - C�ur du syst�me
+-  `database/atomic.go` (460 lignes) - C�ur du syst�me
 -  `atomic_cli.go` (363 lignes) - Interface CLI
--  `README-ARTICLE.md` - Documentation compl�te
--  `README-ATOMIQUE.md` - Description détaillée
+-  `README-ARTICLE.md` - Documentation compl�te
+-  `README-ATOMIQUE.md` - Description detaillee
 -  `ATOMIC-IMPLEMENTATION.md` - Correspondance article
 
-### Fichiers Modifiés
--  `main.go` - Intégration commandes atomiques
+### Fichiers Modifies
+-  `main.go` - Integration commandes atomiques
 -  `database/data.go` - Correction package
 
-### Fichiers Conservés
--  `README.fr.md` - Mis � jour (titre/aper�u)
--  `interaction.go` - Rétrocompatibilité
--  `database/language.go` - Rétrocompatibilité
--  `database/nlp.go` - Rétrocompatibilité
--  `database/phrase_analysis.go` - Rétrocompatibilité
+### Fichiers Conserves
+-  `README.fr.md` - Mis � jour (titre/aper�u)
+-  `interaction.go` - Retrocompatibilite
+-  `database/language.go` - Retrocompatibilite
+-  `database/nlp.go` - Retrocompatibilite
+-  `database/phrase_analysis.go` - Retrocompatibilite
 
 ---
 
-##  Prochaines �tapes (Optionnelles)
+##  Prochaines �tapes (Optionnelles)
 
 ### Court Terme
-- [ ] Visualisation en temps réel du réseau
-- [ ] Interface Web pour démonstration
-- [ ] Export des résultats en JSON
+- [ ] Visualisation en temps reel du reseau
+- [ ] Interface Web pour demonstration
+- [ ] Export des resultats en JSON
 - [ ] Tests unitaires complets
 
 ### Moyen Terme
-- [ ] Support des topologies hétérog�nes
-- [ ] Intégration avec ML classique
-- [ ] Déploiement sur syst�mes réels (IoT)
+- [ ] Support des topologies heterog�nes
+- [ ] Integration avec ML classique
+- [ ] Deploiement sur syst�mes reels (IoT)
 - [ ] Benchmarks comparatifs
 
 ### Long Terme
 - [ ] Muti-niveaux d'atomes
-- [ ] Apprentissage par renforcement distribué
+- [ ] Apprentissage par renforcement distribue
 - [ ] Applications industrielles
-- [ ] Publication académique des résultats
+- [ ] Publication academique des resultats
 
 ---
 
-##  Points Forts de l'Implémentation
+##  Points Forts de l'Implementation
 
-1. **Fidélité � l'Article**
-   - Toutes les équations implémentées
-   - Param�tres conformes
-   - Comportements émergents vérifiés
+1. **Fidelite � l'Article**
+   - Toutes les equations implementees
+   - Param�tres conformes
+   - Comportements emergents verifies
 
-2. **Clarté du Code**
-   - Commentaires détaillés
+2. **Clarte du Code**
+   - Commentaires detailles
    - Noms de variables explicites
    - Structure modulaire
 
-3. **Testabilité**
-   - Métriques mesurables
+3. **Testabilite**
+   - Metriques mesurables
    - Simulation reproductible
-   - Benchmarks intégrés
+   - Benchmarks integres
 
 4. **Documentation**
-   - 3 documentations détaillées
+   - 3 documentations detaillees
    - Correspondance article  code
    - Exemples d'utilisation
 
 5. **Performance**
-   - ~555 itérations/seconde (500 atomes)
-   - Scalabilité linéaire
-   - Mémoire efficace
+   - ~555 iterations/seconde (500 atomes)
+   - Scalabilite lineaire
+   - Memoire efficace
 
 ---
 
-## � Dépendances
+## � Dependances
 
 - **Go** 1.22+
-- **Aucune dépendance externe**
+- **Aucune dependance externe**
 
 ---
 
-##  Valeur Académique
+##  Valeur Academique
 
-Ce projet démontre:
--  Viabilité des architectures distribuées
--  �mergence de complexité � partir de simplicité
--  Asynchronisme comme propriété fondamentale
+Ce projet demontre:
+-  Viabilite des architectures distribuees
+-  �mergence de complexite � partir de simplicite
+-  Asynchronisme comme propriete fondamentale
 -  Adaptation sans supervision centrale
 
 ---
 
-## � Contact
+## � Contact
 
 **Auteur:** BRESSON Guylann  
 **Email:** guylann.bresson.gb@gmail.com  
@@ -310,6 +310,6 @@ MIT License - Libre d'usage
 
 ---
 
-**Statut Final:**  **IMPL�MENTATION COMPL�TE ET FONCTIONNELLE**
+**Statut Final:**  **IMPL�MENTATION COMPL�TE ET FONCTIONNELLE**
 
-L'IA-ATOMIQUE incarne maintenant fid�lement les principes de la Technologie de Résonance Atomique (T.R.A.) présentée dans l'article académique.
+L'IA-ATOMIQUE incarne maintenant fid�lement les principes de la Technologie de Resonance Atomique (T.R.A.) presentee dans l'article academique.

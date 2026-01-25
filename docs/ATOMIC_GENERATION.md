@@ -1,138 +1,138 @@
-# IA-ATOMIQUE v5.0 - Génération par Résonance Atomique Autonome
+# IA-ATOMIQUE v5.0 - Generation par Resonance Atomique Autonome
 
 ##  Architecture
 
-### Trois méthodes de génération coexistent:
+### Trois methodes de generation coexistent:
 
-#### 1. **Génération Vectorielle (Originale)**
-- Sélection greedy: `rk = argmax[sim(vw, VR(k)) + ��aw(k-1)]`
-- Vecteur cible VR = Σ E(Pi)�vi / Σ E(Pi)
-- Avantages: Tr�s cohérent (91%), rapide (237µs), déterministe
-- Parfait pour: Résumés serrés, textes formels
+#### 1. **Generation Vectorielle (Originale)**
+- Selection greedy: `rk = argmax[sim(vw, VR(k)) + ��aw(k-1)]`
+- Vecteur cible VR = Σ E(Pi)�vi / Σ E(Pi)
+- Avantages: Tr�s coherent (91%), rapide (237µs), deterministe
+- Parfait pour: Resumes serres, textes formels
 
-#### 2. **Génération Atomique Autonome (NEW!)**
-- Résonance distribuée: `aj(t+1) = f(aj(t), Σ �jk�ak(t), βj�VR)`
-- Chaque atome = idée autonome avec activation propre
-- �mission quand activation > �_wake (seuil de résonance)
-- Avantages: Exploratif, moins répétitif, naturel
-- Parfait pour: Textes créatifs, exploration sémantique
+#### 2. **Generation Atomique Autonome (NEW!)**
+- Resonance distribuee: `aj(t+1) = f(aj(t), Σ �jk�ak(t), betaj�VR)`
+- Chaque atome = idee autonome avec activation propre
+- �mission quand activation > �_wake (seuil de resonance)
+- Avantages: Exploratif, moins repetitif, naturel
+- Parfait pour: Textes creatifs, exploration semantique
 
-#### 3. **Génération Multi-réseaux avec Résonance Globale**
-- Divise le texte en sous-réseaux (~10-20 phrases chacun)
-- Chaque sous-réseau = résonance locale autonome
-- Résonance inter-réseaux = influence vectorielle globale
-- Avantages: Scalable pour gros textes, économe en mémoire
+#### 3. **Generation Multi-reseaux avec Resonance Globale**
+- Divise le texte en sous-reseaux (~10-20 phrases chacun)
+- Chaque sous-reseau = resonance locale autonome
+- Resonance inter-reseaux = influence vectorielle globale
+- Avantages: Scalable pour gros textes, econome en memoire
 
 ---
 
-##  Formules Mathématiques
+##  Formules Mathematiques
 
-### Mise � jour atomique
+### Mise � jour atomique
 ```
-aj(t+1) = �(aj(t) + Σ_{kvoisins} �jk�ak(t) + βj�VR)
+aj(t+1) = �(aj(t) + Σ_{kvoisins} �jk�ak(t) + betaj�VR)
 ```
-- � = sigmo�de (activation)
-- �jk  [0.2, 1.0] = couplage semblant aux voisins
-- βj = influence du vecteur cible (β  0.75)
+- � = sigmo�de (activation)
+- �jk  [0.2, 1.0] = couplage semblant aux voisins
+- betaj = influence du vecteur cible (beta  0.75)
 
-### �mission d'un mot
+### �mission d'un mot
 ```
-Si aj(t+1)  �_wake  alors  rj = concept(j)
+Si aj(t+1)  �_wake  alors  rj = concept(j)
 ```
-- �_wake  0.70 = seuil de résonance
-- Apr�s émission: aj  0.2 (reset) et EtatFreeze=true
+- �_wake  0.70 = seuil de resonance
+- Apr�s emission: aj  0.2 (reset) et EtatFreeze=true
 
-### �nergie et freeze
+### �nergie et freeze
 ```
 Energie(j) += Activation(j)
 Si Activation(j) < FreezeThreshold  alors  EtatFreeze(j)=true
 ```
-- Réduit la consommation d'énergie pour atomes inactifs
-- Réveille progressivement via résonance des voisins
+- Reduit la consommation d'energie pour atomes inactifs
+- Reveille progressivement via resonance des voisins
 
-### Vecteur cible d'un sous-réseau
+### Vecteur cible d'un sous-reseau
 ```
-VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
+VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
 ```
 
 ---
 
 ##  Commandes
 
-### Générer avec méthode vectorielle (existant)
+### Generer avec methode vectorielle (existant)
 ```bash
 ./programme generate <fichier> [compression=0.3]
 ```
 
-### Générer avec résonance atomique autonome (NEW!)
+### Generer avec resonance atomique autonome (NEW!)
 ```bash
 ./programme atomic <fichier> [compression=0.3]
 ```
 
-### Comparer les deux méthodes
+### Comparer les deux methodes
 ```bash
 ./programme compare <fichier> [compression=0.3]
 ```
 
 ---
 
-##  Résultats Comparatifs (test.txt)
+##  Resultats Comparatifs (test.txt)
 
-| Métrique | Vectoriel | Atomique |
+| Metrique | Vectoriel | Atomique |
 |----------|-----------|----------|
-| **Cohérence** | 91.47% | 9.19% |
-| **Diversité** | 100% | 100% |
-| **Qualité Globale** | 95.73% | 54.60% |
+| **Coherence** | 91.47% | 9.19% |
+| **Diversite** | 100% | 100% |
+| **Qualite Globale** | 95.73% | 54.60% |
 | **Temps** | 237µs | 2.0ms |
-| **Mots générés** | 20 | 25 |
-| **Nature** | Déterministe | Exploratoire |
+| **Mots generes** | 20 | 25 |
+| **Nature** | Deterministe | Exploratoire |
 
 ---
 
-##  Quand utiliser quelle méthode?
+##  Quand utiliser quelle methode?
 
 ### Utiliser **VECTORIEL** (generate):
--  Résumés de documents techniques
--  Textes � forte cohérence requise
--  Performance critique (temps réel)
+-  Resumes de documents techniques
+-  Textes � forte coherence requise
+-  Performance critique (temps reel)
 -  Contexte formel/professionnel
 
 ### Utiliser **ATOMIQUE** (atomic):
--  Génération créative, exploration sémantique
--  Textes avec variété thématique
--  Apprentissage des patterns distribués
--  Textes longs (multi-réseaux + résonance globale)
+-  Generation creative, exploration semantique
+-  Textes avec variete thematique
+-  Apprentissage des patterns distribues
+-  Textes longs (multi-reseaux + resonance globale)
 
 ### Utiliser **COMPARAISON** (compare):
--  Tester différentes stratégies
--  Analyser le comportement du syst�me
+-  Tester differentes strategies
+-  Analyser le comportement du syst�me
 -  Benchmark performance
 
 ---
 
-##  Insight Théorique
+##  Insight Theorique
 
-La génération atomique implémente le concept fondamental de T.R.A. (Technologie de Résonance Atomique):
+La generation atomique implemente le concept fondamental de T.R.A. (Technologie de Resonance Atomique):
 
-> **L'intelligence émerge de l'interaction locale entre entités autonomes, pas d'une computation centrale.**
+> **L'intelligence emerge de l'interaction locale entre entites autonomes, pas d'une computation centrale.**
 
 Chaque atome:
-- Maintient son propre état d'activation
-- N'interagit qu'avec ses voisins (couplage �jk)
-- Est influencé par l'idée centrale (βj�VR)
-- �met quand la résonance atteint �_wake
+- Maintient son propre etat d'activation
+- N'interagit qu'avec ses voisins (couplage �jk)
+- Est influence par l'idee centrale (betaj�VR)
+- �met quand la resonance atteint �_wake
 
-Le texte émerge comme un motif stable dans le réseau, plutôt que d'�tre construit word-by-word de mani�re greedy.
+Le texte emerge comme un motif stable dans le reseau, plutot que d'�tre construit word-by-word de mani�re greedy.
 
 ---
 
-##  Param�tres Configurables
+##  Param�tres Configurables
 
 ```go
 type ReseauAtomiquePourGeneration struct {
-    Couplage         float64 // � = 0.25 (interaction locale)
-    InfluenceCible   float64 // β = 0.75 (pertinence globale)
-    SeuilResonance   float64 // �_wake = 0.70 (seuil d'émission)
+    Couplage         float64 // � = 0.25 (interaction locale)
+    InfluenceCible   float64 // beta = 0.75 (pertinence globale)
+    SeuilResonance   float64 // �_wake = 0.70 (seuil d'emission)
     TauxDecroissance float64 // = 0.15 (oubli)
     FreezeThreshold  float64 // = 0.20 (gel automatique)
 }
@@ -140,11 +140,11 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-##  Intégration avec le syst�me existant
+##  Integration avec le syst�me existant
 
 -  Compatible avec vectorisation 11D existante
--  Utilise le lexique et catégories du syst�me
--  Respecte la hiérarchie des phrases (énergie E(Pi))
+-  Utilise le lexique et categories du syst�me
+-  Respecte la hierarchie des phrases (energie E(Pi))
 -  Peut combiner avec translation/humanization
 
 ---
@@ -152,18 +152,18 @@ type ReseauAtomiquePourGeneration struct {
 ##  Exemple d'utilisation
 
 ```bash
-# Générer résumé 30% avec résonance atomique
+# Generer resume 30% avec resonance atomique
 ./programme atomic document.txt 0.3
 
-# Comparer vectoriel vs atomique sur m�me fichier
+# Comparer vectoriel vs atomique sur m�me fichier
 ./programme compare document.txt 0.2
 
-# Puis humaniser le résumé atomique
-./programme rewrite "résumé généré" professionnel
+# Puis humaniser le resume atomique
+./programme rewrite "resume genere" professionnel
 ```
 
 ---
 
-**Status**:  Implémenté et fonctionnel
-**Performance**: Optimisé (2ms pour 15 phrases)
-**Scalabilité**: Multi-réseaux pour 1000+ phrases
+**Status**:  Implemente et fonctionnel
+**Performance**: Optimise (2ms pour 15 phrases)
+**Scalabilite**: Multi-reseaux pour 1000+ phrases

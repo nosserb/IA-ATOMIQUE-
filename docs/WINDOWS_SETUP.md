@@ -2,23 +2,23 @@
 
 Installation ultra-simple pour Windows.
 
-##  3 �tapes Seulement
+##  3 �tapes Seulement
 
-### 1� Installer Go (une fois pour toutes)
+### 1� Installer Go (une fois pour toutes)
 
-- **Télécharge:** https://golang.org/dl/
+- **Telecharge:** https://golang.org/dl/
 - **Choisis:** `Windows x86-64` (la version 64-bit pour la plupart)
 - **Installe:** Clique Next partout, c'est facile
-- **Redémarre** (optionnel mais recommandé)
+- **Redemarre** (optionnel mais recommande)
 
-**Vérification:**
+**Verification:**
 - Ouvre Command Prompt
 - Tape: `go version`
 - Tu devrais voir: `go version go1.22+ windows/amd64`
 
 ---
 
-### 2� Clone le Repo
+### 2� Clone le Repo
 
 ```bash
 git clone https://github.com/TON-USER/ia-atomique.git
@@ -27,7 +27,7 @@ cd ia-atomique
 
 ---
 
-### 3� Lance l'Installation
+### 3� Lance l'Installation
 
 **Option A: Batch Files (Command Prompt)**
 ```bash
@@ -56,7 +56,7 @@ run-web.bat
 | `install.bat` | Installation initiale |
 | `run-web.bat` | Lancer le serveur |
 | `build.bat` | Recompiler |
-| `verify.bat` | Vérifier tout |
+| `verify.bat` | Verifier tout |
 
 ### PowerShell Scripts (.ps1)
 | Fichier | Action |
@@ -69,13 +69,13 @@ run-web.bat
 
 ##  Utilisation
 
-### Premi�re Fois
+### Premi�re Fois
 ```bash
 # 1. Double-clique install.bat (ou .\install.ps1)
 # Ça compile tout automatiquement
 
 # 2. Double-clique run-web.bat (ou .\run-web.ps1)
-# Le serveur démarre
+# Le serveur demarre
 
 # 3. Ouvre navigateur: http://localhost:8080
 ```
@@ -83,7 +83,7 @@ run-web.bat
 ### Prochaines Fois
 ```bash
 # Juste: Double-clique run-web.bat
-# Et voil�!
+# Et voil�!
 ```
 
 ---
@@ -91,14 +91,14 @@ run-web.bat
 ##  Troubleshooting
 
 ###  "Go is not recognized"
-- Go n'est pas installé
-- Télécharge depuis https://golang.org/dl/
-- Redémarre Command Prompt apr�s installation
+- Go n'est pas installe
+- Telecharge depuis https://golang.org/dl/
+- Redemarre Command Prompt apr�s installation
 
 ###  "Programme.exe n'existe pas"
 - Lancer `install.bat` ou `build.bat` d'abord
 
-###  Port 8080 occupé
+###  Port 8080 occupe
 - Ferme l'autre application
 - Ou modifie `web.go` ligne 29 pour utiliser port 9000
 
@@ -106,24 +106,24 @@ run-web.bat
 - Ouvre PowerShell en tant qu'admin
 - Tape: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 - Tape: `Y` et Enter
-- Réessaye le script
+- Reessaye le script
 
 ---
 
 ##  Astuces Windows
 
-### Créer un Raccourci Bureau
+### Creer un Raccourci Bureau
 1. Clique droit sur `run-web.bat`
-2. "Envoyer vers > Bureau (créer un raccourci)"
+2. "Envoyer vers > Bureau (creer un raccourci)"
 3. Double-clique le raccourci pour lancer!
 
-### Lancer au Démarrage Windows
+### Lancer au Demarrage Windows
 1. Win+R  `shell:startup`  Enter
-2. Copie un raccourci de `run-web.bat` l�
-3. � chaque redémarrage, le serveur se lance!
+2. Copie un raccourci de `run-web.bat` l�
+3. � chaque redemarrage, le serveur se lance!
 
-### Créer un Fichier VBS (Cache la fen�tre)
-Crée `run-web-silent.vbs`:
+### Creer un Fichier VBS (Cache la fen�tre)
+Cree `run-web-silent.vbs`:
 ```vbs
 Set objShell = CreateObject("WScript.Shell")
 objShell.Run "cmd /c run-web.bat", 0
@@ -134,10 +134,10 @@ WScript.Quit
 
 ##  Voir Aussi
 
-- [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) - Guide détaillé Windows
-- [INSTALL.md](INSTALL.md) - Installation générale
+- [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) - Guide detaille Windows
+- [INSTALL.md](INSTALL.md) - Installation generale
 - [WEB_README.md](WEB_README.md) - Configuration web
 
 ---
 
-**C'est tout! Rien de compliqué! **
+**C'est tout! Rien de complique! **

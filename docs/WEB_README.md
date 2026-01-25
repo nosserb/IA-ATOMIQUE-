@@ -1,10 +1,10 @@
 # IA-ATOMIQUE - Interface Web
 
-Interface web simple pour résumer des textes avec votre IA neuronale.
+Interface web simple pour resumer des textes avec votre IA neuronale.
 
-##  Démarrage
+##  Demarrage
 
-### Option 1: Avec le script (recommandé)
+### Option 1: Avec le script (recommande)
 ```bash
 ./start-web.sh
 ```
@@ -14,14 +14,14 @@ Interface web simple pour résumer des textes avec votre IA neuronale.
 go run main.go interaction.go web.go web_utils.go database/*.go web
 ```
 
-### Option 3: Avec le binaire compilé
+### Option 3: Avec le binaire compile
 ```bash
 ./programme web
 ```
 
-##  Acc�s
+##  Acc�s
 
-Une fois le serveur démarré, ouvrez votre navigateur et accédez �:
+Une fois le serveur demarre, ouvrez votre navigateur et accedez �:
 ```
 http://localhost:8080
 ```
@@ -29,25 +29,25 @@ http://localhost:8080
 ##  Utilisation
 
 1. **Collez votre texte** dans la zone "Votre Texte"
-2. **Cliquez sur "Résumer"** ou appuyez sur **Ctrl+Entrée**
-3. **Consultez le résumé** dans la zone de droite
+2. **Cliquez sur "Resumer"** ou appuyez sur **Ctrl+Entree**
+3. **Consultez le resume** dans la zone de droite
 
-### Résumé généré
-Le résumé affiche:
--  Les catégories principales détectées
--  Les phrases clés du texte
-- Statistiques d'analyse (phrases, confiance, catégories)
+### Resume genere
+Le resume affiche:
+-  Les categories principales detectees
+-  Les phrases cles du texte
+- Statistiques d'analyse (phrases, confiance, categories)
 
 ##  Personnalisation
 
 ### Modifier les couleurs
-�ditez `web/style.css`:
+�ditez `web/style.css`:
 ```css
 /* Modifier le gradient principal */
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 ```
 
-### Modifier la taille des éléments
+### Modifier la taille des elements
 Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 
 ##  Fichiers
@@ -65,14 +65,14 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 **Request:**
 ```json
 {
-  "text": "Votre texte � résumer..."
+  "text": "Votre texte � resumer..."
 }
 ```
 
 **Response:**
 ```json
 {
-  "summary": "Résumé généré...",
+  "summary": "Resume genere...",
   "stats": {
     "phrases": 5,
     "confidence": "85.3",
@@ -83,25 +83,25 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 
 ##  Troubleshooting
 
-### Port 8080 déj� utilisé
+### Port 8080 dej� utilise
 Modifiez le port dans `web.go` ligne:
 ```go
 go StartWebServer("9000")  // Changez 8080 en 9000
 ```
 
-### Fichiers web non trouvés
-Assurez-vous que le répertoire `web/` existe avec les fichiers:
+### Fichiers web non trouves
+Assurez-vous que le repertoire `web/` existe avec les fichiers:
 - `index.html`
 - `style.css`
 - `script.js`
 
-##  Améliorations possibles
+##  Ameliorations possibles
 
 - [ ] Support des fichiers upload
-- [ ] Historique des résumés
+- [ ] Historique des resumes
 - [ ] Export en PDF
 - [ ] Mode sombre
-- [ ] Traduction du résumé
+- [ ] Traduction du resume
 - [ ] Graphiques d'analyse
 
-Bon résumé! 
+Bon resume! 

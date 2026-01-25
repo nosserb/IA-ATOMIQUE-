@@ -2,100 +2,100 @@
 
 ## Version : 1.0 - 8 janvier 2026
 
-###  Objectif résolu
+###  Objectif resolu
 
-**Probl�me identifié** :
-- Phase 15 �tape 2 gén�re parfois du contenu non présent dans le texte source
-- Aucun mécanisme de vérification de fidélité
-- Risque d'hallucinations dans les résumés
+**Probl�me identifie** :
+- Phase 15 �tape 2 gen�re parfois du contenu non present dans le texte source
+- Aucun mecanisme de verification de fidelite
+- Risque d'hallucinations dans les resumes
 
-**Solution implémentée** :
-- Formalisation mathématique du probl�me
-- 6 stratégies anti-hallucination
-- Score de fidélité Ff(R,T) = |C(R)�C(T)| / |C(R)|
-- Hybridation automatique génératif  extractif
+**Solution implementee** :
+- Formalisation mathematique du probl�me
+- 6 strategies anti-hallucination
+- Score de fidelite Ff(R,T) = |C(R)�C(T)| / |C(R)|
+- Hybridation automatique generatif  extractif
 
 ---
 
-##  Fichiers modifiés
+##  Fichiers modifies
 
-###  Créés (nouveaux)
+###  Crees (nouveaux)
 
 1. **`fidelity_commands.go`** (272 lignes)
    - `ProcessAntiHallucination()` : Orchestration CLI
-   - `ProcessFidelityAnalysis()` : Analyse détaillée
+   - `ProcessFidelityAnalysis()` : Analyse detaillee
    - `CompareAllStrategies()` : Comparaison A/B/C
    - `RunCompleteFidelityTests()` : Tests automatiques
    - `TestHybridApproach()` : Test hybridation
 
 2. **`PHASE-15-ANTI-HALLUCINATION.md`** (Documentation)
-   - Formalisaton mathématique compl�te
-   - 6 stratégies détaillées
-   - Théor�me d'absence d'hallucination
+   - Formalisaton mathematique compl�te
+   - 6 strategies detaillees
+   - Theor�me d'absence d'hallucination
    - Exemples d'utilisation
 
 3. **`FIDELITY_QUICKSTART.md`** (Guide utilisateur)
-   - Démarrage rapide
-   - Interprétation des scores
-   - Dépannage
+   - Demarrage rapide
+   - Interpretation des scores
+   - Depannage
    - Checklist validation
 
 4. **`test_atomique_technique.txt`** (Test data)
    - Texte technique IA-ATOMIQUE de 167 mots
-   - Pour démonstration des stratégies
+   - Pour demonstration des strategies
 
-###  Modifiés (existants)
+###  Modifies (existants)
 
-1. **`database/fidelity_check.go`** (+améliorations)
-   - Fonctions existantes conservées (CalculateFidelity, ExtractiveResume, HybridResume)
-   - Peut �tre enrichi avec nouveaux termes techniques
+1. **`database/fidelity_check.go`** (+ameliorations)
+   - Fonctions existantes conservees (CalculateFidelity, ExtractiveResume, HybridResume)
+   - Peut �tre enrichi avec nouveaux termes techniques
 
 2. **`main.go`** (+3 lignes)
    - Ajout du case `"fidelity"` pour router vers `ProcessAntiHallucination()`
 
 ---
 
-##  Innovations mathématiques
+##  Innovations mathematiques
 
-### Formule d'évaluation fidélité
+### Formule d'evaluation fidelite
 
 $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
-**Impacte directement** : Décision hybridation
+**Impacte directement** : Decision hybridation
 
-### Stratégies implémentées
+### Strategies implementees
 
-| # | Nom | Formule | Fidélité | Implémentation |
+| # | Nom | Formule | Fidelite | Implementation |
 |---|---|---|---|---|
 | A | Extraction TF-IDF | $S(p_i) = \sum tf \times idf$ | 100% | `ExtractiveResume()` |
 | B | Filtrage | $R' = \{w \in R : w \in C(T)\}$ | Variable | `FilterForFidelity()` |
 | C | Hybridation | $R_{\text{final}} = \begin{cases} R_g & \text{si } F_f \geq \tau \\ R_e & \text{sinon} \end{cases}$ | 80% | `HybridResume()` |
 | D | Similarity | $\text{sim} = \cos(v(T), v(R))$ | Heuristic | `EstimateSemanticSimilarity()` |
-| E | Pondération | $\text{Score} \times \alpha_{\text{technique}}$ | Réservé | Future |
-| F | Contexte | Détection spécifique au domaine | Réservé | Future |
+| E | Ponderation | $\text{Score} \times \alpha_{\text{technique}}$ | Reserve | Future |
+| F | Contexte | Detection specifique au domaine | Reserve | Future |
 
-### Classification fidélité
+### Classification fidelite
 
 | Plage Ff | Rating | Mode | Action |
 |---|---|---|---|
-| 0.90+ |  EXCELLENT | Généré | Garder |
-| 0.80-0.90 |  BON | Généré | Garder |
-| 0.70-0.80 |  ACCEPTABLE | Généré | Vigilance |
+| 0.90+ |  EXCELLENT | Genere | Garder |
+| 0.80-0.90 |  BON | Genere | Garder |
+| 0.70-0.80 |  ACCEPTABLE | Genere | Vigilance |
 | 0.60-0.70 |  FAIBLE | Extractif | Fallback |
 | < 0.60 |  CRITIQUE | Extractif | Obligatoire |
 
 ---
 
-##  Tests effectués
+##  Tests effectues
 
 ### Test 1 : Simple technique
 ```
-Source: 28 words (atome, réseau, résonance...)
+Source: 28 words (atome, reseau, resonance...)
 Generated: 10 words
 Fidelity: 100.00% 
 ```
 
-### Test 2 : Texte encyclopédique
+### Test 2 : Texte encyclopedique
 ```
 Source: 29 words (IA atomique, structure, NLP...)
 Generated: 10 words
@@ -104,13 +104,13 @@ Fidelity: 100.00%
 
 ### Test 3 : Texte domaine IA-ATOMIQUE (167 words)
 ```
-Source: Atomes, résonance, asynchrone, couplage...
+Source: Atomes, resonance, asynchrone, couplage...
 Generated: 50 words (30% compression)
 Coverage (Ff): 38-42%
-Mode: EXTRACTIF  (détection hallucination)
+Mode: EXTRACTIF  (detection hallucination)
 ```
 
-### Test 4 : Texte hors-domaine (Mésange huppée)
+### Test 4 : Texte hors-domaine (Mesange huppee)
 ```
 Source: 8080 words (bio-ornithologie)
 Generated: 2374 words
@@ -120,44 +120,44 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ---
 
-##  Flux de décision
+##  Flux de decision
 
 ```
 
- Phase 15 �tape 2 Généré     
- Résumé: Rg                  
-�
+ Phase 15 �tape 2 Genere     
+ Resume: Rg                  
+�
                
-               �
+               �
 
  Extraction vocabulaire      
  C(T) = termes du source     
-�
+�
                
-               �
+               �
 
  Calcul Ff(Rg, T)            
  Score couverture            
-�
+�
                
-       �
+       �
                        
-       �                �
+       �                �
    Ff  0.80      Ff < 0.80
                        
-       �                �
+       �                �
    GARDER       REMPLACER
-  Rg généré     par Re extractif
+  Rg genere     par Re extractif
 ```
 
 ---
 
-##  Metrics de succ�s
+##  Metrics de succ�s
 
-| Métrique | Avant | Apr�s | Amélioration |
+| Metrique | Avant | Apr�s | Amelioration |
 |---|---|---|---|
-| Hallucinations détectées | 0 | 100% | � |
-| Fidélité garantie | Non | Oui |  |
+| Hallucinations detectees | 0 | 100% | � |
+| Fidelite garantie | Non | Oui |  |
 | Fallback automatique | Non | Oui |  |
 | Textes techniques | Variable | Stable | +40% |
 
@@ -165,11 +165,11 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ##  Utilisation en production
 
-### Intégration dans Phase 15
+### Integration dans Phase 15
 
 Phase 15 **n'utilise PAS automatiquement** le module. Pour activer :
 
-**Option 1 : Lors de la génération**
+**Option 1 : Lors de la generation**
 ```go
 generated := GeneratePhase15Summary(text)
 final, _, _ := database.HybridResume(generated, text, 0.80)
@@ -178,57 +178,57 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 **Option 2 : Via CLI pour validation**
 ```bash
 ./programme fidelity file mon_texte.txt
-# Gén�re rapport automatique
+# Gen�re rapport automatique
 ```
 
-### Seuil recommandé
+### Seuil recommande
 
-- **Production générale** : � = 0.80 (80%)
-- **Domaines critiques** (médical, légal) : � = 0.90
-- **Domaines flexibles** (fiction) : � = 0.70
+- **Production generale** : � = 0.80 (80%)
+- **Domaines critiques** (medical, legal) : � = 0.90
+- **Domaines flexibles** (fiction) : � = 0.70
 
 ---
 
-##  Futures améliorations
+##  Futures ameliorations
 
-### Court terme (Priorité haute)
-- [ ] Intégrer embeddings BERT pour Stratégie D réelle
+### Court terme (Priorite haute)
+- [ ] Integrer embeddings BERT pour Strategie D reelle
 - [ ] Enrichir termes techniques pour 20+ domaines
-- [ ] UI dashboard pour visualiser fidélité
+- [ ] UI dashboard pour visualiser fidelite
 
 ### Moyen terme
-- [ ] Machine Learning pour prédire fidélité avant génération
+- [ ] Machine Learning pour predire fidelite avant generation
 - [ ] Feedback loop utilisateur pour affiner seuils
-- [ ] Cache TF-IDF pour textes récurrents
+- [ ] Cache TF-IDF pour textes recurrents
 
 ### Long terme
-- [ ] Intégration avec system de ranking (BM25)
+- [ ] Integration avec system de ranking (BM25)
 - [ ] Multi-langue (en, de, es, it)
-- [ ] Détection de concepts connexes (hallucinations "proches")
+- [ ] Detection de concepts connexes (hallucinations "proches")
 
 ---
 
-##  Qualité du code
+##  Qualite du code
 
-| Aspect | �tat |
+| Aspect | �tat |
 |---|---|
 | Compilation |  Pas d'erreurs |
 | Tests |  4 tests passant |
-| Documentation |  Compl�te |
+| Documentation |  Compl�te |
 | Performance |  < 1s pour 1000 mots |
-| Maintenabilité |  Code bien structuré |
+| Maintenabilite |  Code bien structure |
 
 ---
 
-## � Support
+## � Support
 
 **Questions** ? Consultez :
 1. `FIDELITY_QUICKSTART.md` pour utilisation
-2. `PHASE-15-ANTI-HALLUCINATION.md` pour théorie
+2. `PHASE-15-ANTI-HALLUCINATION.md` pour theorie
 3. Code source : `database/fidelity_check.go`
 
 ---
 
-**Build status** :  Compilé (go 1.22.2)  
+**Build status** :  Compile (go 1.22.2)  
 **Test status** :  Tous passants  
 **Ready for production** :  OUI (Phase 15 + Anti-Hallucination v1.0)

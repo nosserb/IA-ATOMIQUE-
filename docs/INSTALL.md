@@ -2,19 +2,19 @@
 
 ## Installation depuis GitHub
 
-### Pr√©requis
+### Prerequis
 - **Go 1.22+** ou **Docker**
 - **Git**
 
-### 1£ Cloner le repo
+### 1ÔøΩ Cloner le repo
 ```bash
 git clone https://github.com/ton-user/IA-ATOMIQUE.git
 cd IA-ATOMIQUE
 ```
 
-### 2£ Compiler et Lancer
+### 2ÔøΩ Compiler et Lancer
 
-#### Option A: Avec Go (recommand√©)
+#### Option A: Avec Go (recommande)
 ```bash
 # Compiler
 go build -o programme
@@ -40,7 +40,7 @@ docker run -p 8080:8080 ia-atomique
 docker-compose up
 ```
 
-### 3£ Acc√©der √ l'interface
+### 3ÔøΩ Acceder ÔøΩ l'interface
 ```
 http://localhost:8080
 ```
@@ -50,7 +50,7 @@ http://localhost:8080
 ### Mode Web (Interface)
 ```bash
 ./programme web
-# Acc√de √ http://localhost:8080
+# AccÔøΩde ÔøΩ http://localhost:8080
 ```
 
 ### Mode Fichier
@@ -60,7 +60,7 @@ http://localhost:8080
 
 ### Mode Texte
 ```bash
-./programme text "Votre texte √ analyser"
+./programme text "Votre texte ÔøΩ analyser"
 ```
 
 ### Mode Interactif
@@ -70,7 +70,7 @@ http://localhost:8080
 
 ##  Troubleshooting
 
-### Port 8080 d√©j√ utilis√©
+### Port 8080 dejÔøΩ utilise
 ```bash
 # Modifier le port dans web.go ligne 29:
 # go StartWebServer("9000")
@@ -80,14 +80,14 @@ go build -o programme
 
 ### Erreur de compilation
 ```bash
-# Mettre √ jour les d√©pendances
+# Mettre ÔøΩ jour les dependances
 go mod tidy
 go mod download
 go build -o programme
 ```
 
 ### Fichiers web manquants
-V√©rifier que le r√©pertoire `web/` existe avec:
+Verifier que le repertoire `web/` existe avec:
 - `index.html`
 - `style.css`
 - `script.js`
@@ -96,7 +96,7 @@ V√©rifier que le r√©pertoire `web/` existe avec:
 
 ```
  web.go              # Serveur HTTP
- main.go             # Entr√©e principale
+ main.go             # Entree principale
  interaction.go      # CLI
  database/
     phrase_analysis.go
@@ -109,18 +109,18 @@ V√©rifier que le r√©pertoire `web/` existe avec:
     script.js
  Dockerfile          # Pour Docker
  docker-compose.yml  # Compose config
- go.mod             # D√©pendances Go
+ go.mod             # Dependances Go
 ```
 
-##  Exemple de texte √ tester
+##  Exemple de texte ÔøΩ tester
 
 ```
 L'intelligence artificielle transforme le monde. 
-Les r√©seaux neuronaux permettent aux machines d'apprendre.
-La technologie progresse rapidement et change notre soci√©t√©.
+Les reseaux neuronaux permettent aux machines d'apprendre.
+La technologie progresse rapidement et change notre societe.
 ```
 
-Colle ce texte dans l'interface et clique "R√©sumer"!
+Colle ce texte dans l'interface et clique "Resumer"!
 
 ---
 

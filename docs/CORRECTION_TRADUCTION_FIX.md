@@ -1,30 +1,30 @@
 # CORRECTION - Traduction EN  FR maintenant active 
 
-## Probl�mes trouvés & résolus
+## Probl�mes trouves & resolus
 
 ### 1. **Language Detection minuscule vs majuscule**
-**Symptôme**: Détection retournait "EN", "DE", "ES" EN MAJUSCULES, mais TraductionMap avait des clés "en", "de", "es" en minuscules.
+**Symptome**: Detection retournait "EN", "DE", "ES" EN MAJUSCULES, mais TraductionMap avait des cles "en", "de", "es" en minuscules.
 
 **Solution**: 
-- Modifié `DetecterLanguePhrase()` pour retourner "fr", "en", "de", "es" en minuscules
-- Adapté comparaisons dans `DetecterEtTraduirePhrases()` et `TraduireSiNecessaire()` pour utiliser minuscules
+- Modifie `DetecterLanguePhrase()` pour retourner "fr", "en", "de", "es" en minuscules
+- Adapte comparaisons dans `DetecterEtTraduirePhrases()` et `TraduireSiNecessaire()` pour utiliser minuscules
 
 ### 2. **Word boundaries manquants dans detection**
-**Symptôme**: `countKeywords()` utilisait `strings.Contains()` qui matchait des sous-cha�nes (ex: "a" matchait dans "away", "the" dans "then")
+**Symptome**: `countKeywords()` utilisait `strings.Contains()` qui matchait des sous-cha�nes (ex: "a" matchait dans "away", "the" dans "then")
 
 **Solution**: 
-- Réécrit `countKeywords()` pour utiliser `strings.FieldsFunc()` et comparaison mot entier
+- Reecrit `countKeywords()` pour utiliser `strings.FieldsFunc()` et comparaison mot entier
 - Maintenant: `strings.ToLower(word) == keyword` au lieu de `strings.Contains()`
 
 ### 3. **TraductionMap insuffisant**
-**Symptôme**: Seuls ~50 mots traduits, texte scientific "Essay on Combustion" avait des mots rares non trouvés
+**Symptome**: Seuls ~50 mots traduits, texte scientific "Essay on Combustion" avait des mots rares non trouves
 
 **Solution**: 
 - Enrichi TraductionMap avec **200+ mots EN**
-- Ajouté mots scientifiques: combustion, hypothesis, substance, experiment, calcination, reduction, etc.
-- Ajouté verbes/adjectifs/adverbes communs: make, find, apparatus, pleasing, unfavorable, etc.
+- Ajoute mots scientifiques: combustion, hypothesis, substance, experiment, calcination, reduction, etc.
+- Ajoute verbes/adjectifs/adverbes communs: make, find, apparatus, pleasing, unfavorable, etc.
 
-## Résultats
+## Resultats
 
 ### Avant la correction
 ```
@@ -32,17 +32,17 @@
  NOT TRANSLATED (remained in EN)
 ```
 
-### Apr�s la correction
+### Apr�s la correction
 ```
 "Le Project Gutenberg eBook de An essai sur combustion..."
  PARTIALLY TRANSLATED (100+ mots traduits)
 
 Phrase 1:
-"Le possibility de making cloths de gold, silver, et other metals, par chymical processus occurred � me en le year 1780..."
+"Le possibility de making cloths de gold, silver, et other metals, par chymical processus occurred � me en le year 1780..."
       le (the)         de (of)                et (and)         par (by)     en (in)
 ```
 
-## Changements effectués
+## Changements effectues
 
 **Fichier: `/database/traduction.go`**
 
@@ -59,7 +59,7 @@ Phrase 1:
    -  Compare `langue != "fr"` (minuscule) au lieu de `"FR"`
 
 5. **TraductionMap["en"]** (lines 10-190):
-   -  Enrichi avec 200+ entrées anglaises
+   -  Enrichi avec 200+ entrees anglaises
    -  Couvre mots courants + scientifiques
 
 ## Performance
@@ -67,32 +67,32 @@ Phrase 1:
 **Stats extraction input.txt (ratio 12%)**:
 ```
 Phrases originales: ~2037
-Phrases conservées: 244 (12%)
+Phrases conservees: 244 (12%)
 Temps d'extraction: 1.38s (+150-200ms pour traduction)
 Taux de compression: 1.8x
 ```
 
-**Qualité traduction**:
--  Déterminants (the/a  le/un)
--  Prépositions (of/to/in  de/�/en)
+**Qualite traduction**:
+-  Determinants (the/a  le/un)
+-  Prepositions (of/to/in  de/�/en)
 -  Conjonctions (and/or  et/ou)
--  Verbes courants (make/have/be  faire/avoir/�tre)
--  Adjectifs scientifiques (combustion/experiment  combustion/expérience)
+-  Verbes courants (make/have/be  faire/avoir/�tre)
+-  Adjectifs scientifiques (combustion/experiment  combustion/experience)
 -  Mots rares toujours en EN (chymical, fulhame, etc.)
 
 ## Conclusion
 
-Le **pipeline traduction est maintenant opérationnel** 
+Le **pipeline traduction est maintenant operationnel** 
 
--  Détection de langue robuste
--  Traduction mot-�-mot avec 200+ entrées
--  Confidence factor γi appliqué
--  Energy formula Etotal = E�γi + β�coherence respectée
+-  Detection de langue robuste
+-  Traduction mot-�-mot avec 200+ entrees
+-  Confidence factor gammai applique
+-  Energy formula Etotal = E�gammai + beta�coherence respectee
 -  Performance acceptable (+12% overhead)
 
 ### Recommandations futures
 
-1. **Utiliser API externe** (DeepL, LibreTranslate) pour meilleure qualité
-2. **Ajouter plus de mots** � TraductionMap basé sur corpus cible
-3. **Implémenter lemmatization** pour gérer variantes (dying/die, makes/make)
+1. **Utiliser API externe** (DeepL, LibreTranslate) pour meilleure qualite
+2. **Ajouter plus de mots** � TraductionMap base sur corpus cible
+3. **Implementer lemmatization** pour gerer variantes (dying/die, makes/make)
 4. **Tester sur corpus pure DE/ES** pour valider

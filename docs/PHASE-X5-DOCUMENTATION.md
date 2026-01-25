@@ -2,15 +2,15 @@
 
 ##  Objectif
 
-Améliorer la qualité finale des résumés conceptuels en ajoutant:
-1. **Contexte littéraire** - Mention auteur/�uvre (Flaubert, Emma Bovary)
-2. **Enrichissement lexical** - Termes spécifiques plutôt que génériques
-3. **Fluidité syntaxique** - Meilleure structure et rythme
+Ameliorer la qualite finale des resumes conceptuels en ajoutant:
+1. **Contexte litteraire** - Mention auteur/�uvre (Flaubert, Emma Bovary)
+2. **Enrichissement lexical** - Termes specifiques plutot que generiques
+3. **Fluidite syntaxique** - Meilleure structure et rythme
 4. **Ancrage narratif** - Exemples concrets pour illustrer concepts
 
-##  4 Axes d'Amélioration
+##  4 Axes d'Amelioration
 
-### 1� Contexte Littéraire
+### 1� Contexte Litteraire
 
 **Fonction**: `addFlaubertContext(summary string)`
 
@@ -18,52 +18,52 @@ Ajoute introduction identifiant l'auteur et posant le contexte:
 
 ```
 AVANT:
-"La brutalité systémique se cache sous..."
+"La brutalite systemique se cache sous..."
 
-APR�S:
-"Chez Gustave Flaubert, le roman expose comment la société étrangle les aspirations individuelles. 
-La brutalité systémique se cache sous..."
+APR�S:
+"Chez Gustave Flaubert, le roman expose comment la societe etrangle les aspirations individuelles. 
+La brutalite systemique se cache sous..."
 ```
 
-**Détection**: `IsLikelyFlaubert(text)` cherche 3+ marqueurs:
+**Detection**: `IsLikelyFlaubert(text)` cherche 3+ marqueurs:
 - Emma, Bovary, Charles, Rodolphe, Yonville
-- mariage, ennui, désir, provincial
+- mariage, ennui, desir, provincial
 - Flaubert, Madame Bovary
 
 ---
 
-### 2� Enrichissement Lexical
+### 2� Enrichissement Lexical
 
 **Fonction**: `enrichVocabulary(summary string)`
 
-Remplace termes génériques par termes spécifiques � l'univers Flaubert:
+Remplace termes generiques par termes specifiques � l'univers Flaubert:
 
-| Générique | Spécifique Flaubert |
+| Generique | Specifique Flaubert |
 |-----------|---------------------|
-| syst�me | ordre social |
-| structure | mécanisme |
-| brutalité | rigueur |
-| normalité | conformité |
-| discrimination | hiérarchie |
-| pauvreté | indigence |
-| abnégation | sacrifice |
-| violence | cruauté |
-| rôles assignés | état |
-| trajectoires | destinées |
+| syst�me | ordre social |
+| structure | mecanisme |
+| brutalite | rigueur |
+| normalite | conformite |
+| discrimination | hierarchie |
+| pauvrete | indigence |
+| abnegation | sacrifice |
+| violence | cruaute |
+| roles assignes | etat |
+| trajectoires | destinees |
 
-**Stratégie**: Remplacements en ordre de longueur (longs d'abord) pour éviter doublons
+**Strategie**: Remplacements en ordre de longueur (longs d'abord) pour eviter doublons
 
 ```go
 replacements := []struct{old, new string}{
-    {"le syst�me oppressif", "l'ordre social oppressif"},
-    {"le syst�me", "l'ordre social"},
+    {"le syst�me oppressif", "l'ordre social oppressif"},
+    {"le syst�me", "l'ordre social"},
     // ... etc, du plus long au plus court
 }
 ```
 
 ---
 
-### 3� Fluidité Syntaxique
+### 3� Fluidite Syntaxique
 
 **Fonction**: `improveFlowAndRhythm(summary string)`
 
@@ -71,41 +71,41 @@ Restructure les phrases longues/denses pour meilleur rythme:
 
 **Avant** (maladroit):
 ```
-"La brutalité systémique se cache sous l'apparence de normalité, 
-car les rôles assignés figent les trajectoires sociales;"
+"La brutalite systemique se cache sous l'apparence de normalite, 
+car les roles assignes figent les trajectoires sociales;"
 ```
 
-**Apr�s** (fluide):
+**Apr�s** (fluide):
 ```
-"Sous l'apparence de conformité, l'ordre social rév�le sa rigueur : 
-les états figent les destinées sociales;"
+"Sous l'apparence de conformite, l'ordre social rev�le sa rigueur : 
+les etats figent les destinees sociales;"
 ```
 
-**Transformations appliquées**:
+**Transformations appliquees**:
 - Inversion sujet-verbe pour dynamique
-- Reformulation cause  conséquence
-- Ponctuation variée (`;` au lieu de `,`)
-- Subordination plutôt que coordination
+- Reformulation cause  consequence
+- Ponctuation variee (`;` au lieu de `,`)
+- Subordination plutot que coordination
 
 ---
 
-### 4� Ancrage Narratif
+### 4� Ancrage Narratif
 
 **Fonction**: `addNarrativeAnchoring(summary string)`
 
 Ajoute exemple concret (Emma) pour illustrer concepts abstraits:
 
-**Insertion apr�s 1�re phrase**:
+**Insertion apr�s 1�re phrase**:
 ```
-"Emma incarne cette tension : une jeune femme étouffée par le mariage 
-provincial, r�vant d'une vie passionnée qu'une société rigide lui refuse."
+"Emma incarne cette tension : une jeune femme etouffee par le mariage 
+provincial, r�vant d'une vie passionnee qu'une societe rigide lui refuse."
 ```
 
-**Effet**: Lien entre analyse systémique abstraite  personnage concret
+**Effet**: Lien entre analyse systemique abstraite  personnage concret
 
 ---
 
-## � Nettoyage Final
+## � Nettoyage Final
 
 **Fonction**: `finalCleanup(summary string)`
 
@@ -113,77 +113,77 @@ Corrige erreurs grammaticales introduites par transformations:
 
 ### Redondances
 ```
-"hiérarchies établies reproduisent les hiérarchies"
+"hierarchies etablies reproduisent les hierarchies"
      
-"hiérarchies établies perpétuent les inégalités"
+"hierarchies etablies perpetuent les inegalites"
 ```
 
 ### Accords Grammaticaux
 ```
-"L'sacrifice est exigée"  "Le sacrifice est exigé"
-"la rigueur inhérent"  "la rigueur inhérente"
-"les destinée sociale"  "les destinées sociales"
-"les humbles"  "les démunis"
+"L'sacrifice est exigee"  "Le sacrifice est exige"
+"la rigueur inherent"  "la rigueur inherente"
+"les destinee sociale"  "les destinees sociales"
+"les humbles"  "les demunis"
 ```
 
 ### Expressions Maladroites
 ```
-"expose indigence mécanisme les résignation"
+"expose indigence mecanisme les resignation"
     
-"expose comment la pauvreté crée la résignation"
+"expose comment la pauvrete cree la resignation"
 ```
 
 ### Ponctuation
-- Espaces multiples éliminés
-- Ponctuation mal placée corrigée
-- Point-virgule renormalisé
+- Espaces multiples elimines
+- Ponctuation mal placee corrigee
+- Point-virgule renormalise
 
 ---
 
-##  Résultats: AVANT/APR�S
+##  Resultats: AVANT/APR�S
 
 ### Exemple: Madame Bovary (736 KB)
 
-**AVANT X+5** (trop générique, dense):
+**AVANT X+5** (trop generique, dense):
 ```
-La brutalité systémique se cache sous l'apparence de normalité, 
-car les rôles assignés figent les trajectoires sociales; la pauvreté 
-structure les comportements de survie. Le syst�me oppressif rend 
-invisible sa propre violence, les syst�mes institutionnels reproduisent 
-les discriminations; le syst�me social exploite la vulnérabilité des 
-plus faibles. Cette logique rév�le l'abnégation est exigée de ceux 
-qui n'ont rien � donner.
+La brutalite systemique se cache sous l'apparence de normalite, 
+car les roles assignes figent les trajectoires sociales; la pauvrete 
+structure les comportements de survie. Le syst�me oppressif rend 
+invisible sa propre violence, les syst�mes institutionnels reproduisent 
+les discriminations; le syst�me social exploite la vulnerabilite des 
+plus faibles. Cette logique rev�le l'abnegation est exigee de ceux 
+qui n'ont rien � donner.
 ```
 
- Probl�mes:
-- Termes génériques (syst�me, brutalité, violence)
-- Pas de contexte (qui? quand? où?)
+ Probl�mes:
+- Termes generiques (syst�me, brutalite, violence)
+- Pas de contexte (qui? quand? ou?)
 - Pas d'ancrage narratif
-- Phrases tr�s denses
-- Erreur: "est exigée" (absent)
+- Phrases tr�s denses
+- Erreur: "est exigee" (absent)
 
 ---
 
-**APR�S X+5** (enrichi, narratif, fluide):
+**APR�S X+5** (enrichi, narratif, fluide):
 ```
-Chez Gustave Flaubert, le roman expose comment la société étrangle 
+Chez Gustave Flaubert, le roman expose comment la societe etrangle 
 les aspirations individuelles. Emma incarne cette tension : une jeune 
-femme étouffée par le mariage provincial, r�vant d'une vie passionnée 
-qu'une société rigide lui refuse. Les hiérarchies établies 
-perpétuent les inégalités, car l'ordre social exploite l'humilité 
-des plus humbles; le sacrifice est exigé de ceux qui n'ont rien � donner. 
-La rigueur inhérente se cache sous l'apparence de conformité, les états 
-figent les destinées sociales. Cette logique expose comment la pauvreté 
-crée la résignation.
+femme etouffee par le mariage provincial, r�vant d'une vie passionnee 
+qu'une societe rigide lui refuse. Les hierarchies etablies 
+perpetuent les inegalites, car l'ordre social exploite l'humilite 
+des plus humbles; le sacrifice est exige de ceux qui n'ont rien � donner. 
+La rigueur inherente se cache sous l'apparence de conformite, les etats 
+figent les destinees sociales. Cette logique expose comment la pauvrete 
+cree la resignation.
 ```
 
- Améliorations:
-- Contexte littéraire clair (Flaubert)
-- Vocabulaire riche (ordre social, rigueur, états)
+ Ameliorations:
+- Contexte litteraire clair (Flaubert)
+- Vocabulaire riche (ordre social, rigueur, etats)
 - Ancrage narratif (Emma, mariage provincial)
-- Fluidité excellente (ponctuation, rythme)
+- Fluidite excellente (ponctuation, rythme)
 - Grammaire correcte (accords, formules)
-- Cohérence narrative-conceptuelle
+- Coherence narrative-conceptuelle
 
 ---
 
@@ -196,11 +196,11 @@ Texte Input (736 KB)
        
 Preprocessing & segmentation
        
-[PHASE 2] Résumé atomique (50% compression)
+[PHASE 2] Resume atomique (50% compression)
        
-[PHASE 3-8] Analyse, enrichissement, variantes, sélection
+[PHASE 3-8] Analyse, enrichissement, variantes, selection
        
-[PHASE X+1] Abstraction sémantique (si score < 60%)
+[PHASE X+1] Abstraction semantique (si score < 60%)
        
 [PHASE X+3] Humanisation syntaxique (pour narratif)
        
@@ -212,19 +212,19 @@ Preprocessing & segmentation
         addNarrativeAnchoring 
         finalCleanup 
        
-� R�SUM� FINAL (Haute qualité, fluide, enrichi)
+� R�SUM� FINAL (Haute qualite, fluide, enrichi)
 ```
 
 ---
 
-##  Intégration
+##  Integration
 
 **Fichier**: `database/post_processing.go` (210 lignes)
 **Appel**: Dans `grammar_summarization.go` ligne 452
 
 ```go
 if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
-    fmt.Println("\n[PHASE X+5] �tape 10: Post-processing enrichissement...")
+    fmt.Println("\n[PHASE X+5] �tape 10: Post-processing enrichissement...")
     isFlaubert := database.IsLikelyFlaubert(inputText)
     enhancedSummary := database.EnhancedPostProcessing(
         result.OptimizedSummary, 
@@ -236,56 +236,56 @@ if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
 
 ---
 
-##  Métriques
+##  Metriques
 
-| Aspect | Avant | Apr�s | Gain |
+| Aspect | Avant | Apr�s | Gain |
 |--------|-------|-------|------|
 | Contexte |  Absent |  Clair | +100% |
-| Vocabulaire | Générique | Spécifique | +40% |
-| Fluidité | Dense | Respirant | +50% |
+| Vocabulaire | Generique | Specifique | +40% |
+| Fluidite | Dense | Respirant | +50% |
 | Ancrage |  Aucun | Emma + exemples | +80% |
 | Grammaire | Erreurs | Correct | +90% |
-| **Lisibilité Globale** | **40%** | **90%** | **+125%** |
+| **Lisibilite Globale** | **40%** | **90%** | **+125%** |
 
 ---
 
 ##  Cas d'Usage Optimal
 
-Phase X+5 est idéale pour:
+Phase X+5 est ideale pour:
 
- Textes littéraires classiques (Flaubert, Balzac, Hugo)
- Résumés conceptuels courts (< 1000 chars)
- Analyses critiques ou thématiques
- Présentations académiques
- Synth�ses pour publication
+ Textes litteraires classiques (Flaubert, Balzac, Hugo)
+ Resumes conceptuels courts (< 1000 chars)
+ Analyses critiques ou thematiques
+ Presentations academiques
+ Synth�ses pour publication
 
- Non recommandé pour:
-- Textes scientifiques purs (ajoute contexte littéraire inapproprié)
-- Résumés tr�s longs (trop de transformations)
-- Textes encyclopédiques (ne besoins pas enrichissement)
+ Non recommande pour:
+- Textes scientifiques purs (ajoute contexte litteraire inapproprie)
+- Resumes tr�s longs (trop de transformations)
+- Textes encyclopediques (ne besoins pas enrichissement)
 
 ---
 
 ##  Configuration
 
 Phase X+5 s'active **automatiquement** pour:
-- Résumé conceptuel généré (Phase X+1)
-- Longueur < 1000 caract�res
-- Texte d'entrée détecté comme Flaubert
+- Resume conceptuel genere (Phase X+1)
+- Longueur < 1000 caract�res
+- Texte d'entree detecte comme Flaubert
 
-**Désactiver** (si nécessaire): Commenter appel ligne 452 dans `grammar_summarization.go`
+**Desactiver** (si necessaire): Commenter appel ligne 452 dans `grammar_summarization.go`
 
 ---
 
-##  Résumé
+##  Resume
 
 **Phase X+5** est une couche de raffinement qui:
 
-1. **Contextualise** - Ajoute auteur/�uvre
-2. **Enrichit** - Vocabulaire spécifique
+1. **Contextualise** - Ajoute auteur/�uvre
+2. **Enrichit** - Vocabulaire specifique
 3. **Fluidifie** - Meilleur rythme
 4. **Ancre** - Exemples narratifs
 5. **Nettoie** - Grammaire + ponctuation
 
-Transforme un résumé générique en texte **professionnel, riche et lisible**.
+Transforme un resume generique en texte **professionnel, riche et lisible**.
 

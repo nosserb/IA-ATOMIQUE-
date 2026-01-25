@@ -2,27 +2,27 @@
 
 Guide d'installation simple pour Windows.
 
-##  Installation Rapide (2 Ã©tapes)
+##  Installation Rapide (2 etapes)
 
-### Ãtape 1: Installer Go (une seule fois)
+### ï¿½tape 1: Installer Go (une seule fois)
 
-1. **TÃ©lÃ©charge Go** depuis https://golang.org/dl/
+1. **Telecharge Go** depuis https://golang.org/dl/
 2. **Choisir la version Windows** (msi):
    - Windows x86-64 (64-bit) = La plupart des gens
    - Windows x86 (32-bit) = PC ancien
-3. **ExÃ©cute l'installateur** et clique "Next" partout
-4. **RedÃ©marre** (optionnel mais recommandÃ©)
+3. **Execute l'installateur** et clique "Next" partout
+4. **Redemarre** (optionnel mais recommande)
 
-**VÃ©rifier que Go est installÃ©:**
+**Verifier que Go est installe:**
 - Ouvre PowerShell ou Command Prompt
 - Tape: `go version`
 - Tu dois voir quelque chose comme: `go version go1.22.2 windows/amd64`
 
-Si Ãa marche pas, redÃ©marre ton PC et rÃ©essaye.
+Si ï¿½a marche pas, redemarre ton PC et reessaye.
 
 ---
 
-### Ãtape 2: Lancer le projet
+### ï¿½tape 2: Lancer le projet
 
 1. **Clone le repo GitHub**
    ```
@@ -32,16 +32,16 @@ Si Ãa marche pas, redÃ©marre ton PC et rÃ©essaye.
 
 2. **Double-clique sur `install.bat`**
    - Ã‡a compile automatiquement
-   - Ã‡a vÃ©rifie les fichiers
+   - Ã‡a verifie les fichiers
    - C'est tout!
 
 3. **Double-clique sur `run-web.bat`**
-   - Le serveur dÃ©marre
-   - Une fenÃtre s'ouvre
+   - Le serveur demarre
+   - Une fenï¿½tre s'ouvre
 
 4. **Ouvre ton navigateur**
-   - AccÃde Ã: http://localhost:8080
-   - Et voilÃ! 
+   - Accï¿½de ï¿½: http://localhost:8080
+   - Et voilï¿½! 
 
 ---
 
@@ -51,10 +51,10 @@ Si Ãa marche pas, redÃ©marre ton PC et rÃ©essaye.
 
 | Fichier | Fonction |
 |---------|----------|
-| `install.bat` | Installation initiale (Ã faire une seule fois) |
+| `install.bat` | Installation initiale (ï¿½ faire une seule fois) |
 | `run-web.bat` | Lancer le serveur web |
 | `build.bat` | Recompiler le projet |
-| `verify.bat` | VÃ©rifier que tout est OK |
+| `verify.bat` | Verifier que tout est OK |
 
 ### Comment les utiliser
 
@@ -72,12 +72,12 @@ verify.bat
 
 ##  Mode Command Prompt/PowerShell
 
-Si tu prÃ©fÃres la ligne de commande:
+Si tu prefï¿½res la ligne de commande:
 
-### PremiÃre utilisation
+### Premiï¿½re utilisation
 ```bash
 # Ouvre Command Prompt (Cmd.exe)
-# Navigue vers le rÃ©pertoire:
+# Navigue vers le repertoire:
 cd "C:\Users\TON-USER\Downloads\ia-atomique"
 
 # Compile:
@@ -96,28 +96,28 @@ programme.exe web
 
 ---
 
-##  RÃ©solution des ProblÃmes
+##  Resolution des Problï¿½mes
 
 ###  "Go is not recognized"
 
-**ProblÃme:** Go n'est pas installÃ© ou trouvable
+**Problï¿½me:** Go n'est pas installe ou trouvable
 
 **Solution:**
 1. Installe Go depuis https://golang.org/dl/
-2. RedÃ©marre ton PC complÃtement
-3. RÃ©essaye
+2. Redemarre ton PC complï¿½tement
+3. Reessaye
 
 ###  "web\index.html n'existe pas"
 
-**ProblÃme:** Fichiers web manquants
+**Problï¿½me:** Fichiers web manquants
 
 **Solution:**
 - Assure-toi que le dossier `web/` existe
 - Avec les fichiers: `index.html`, `style.css`, `script.js`
 
-###  Port 8080 dÃ©jÃ utilisÃ©
+###  Port 8080 dejï¿½ utilise
 
-**ProblÃme:** Un autre programme utilise le port 8080
+**Problï¿½me:** Un autre programme utilise le port 8080
 
 **Solution 1:**
 - Ferme l'autre application
@@ -129,11 +129,11 @@ programme.exe web
   ```
 - Recompile: `build.bat`
 - Lance avec: `programme.exe web`
-- AccÃde Ã: http://localhost:9000
+- Accï¿½de ï¿½: http://localhost:9000
 
 ###  "programme.exe n'existe pas"
 
-**ProblÃme:** Pas compilÃ©
+**Problï¿½me:** Pas compile
 
 **Solution:**
 - Double-clique `build.bat` ou `install.bat`
@@ -142,17 +142,17 @@ programme.exe web
 
 ##  Astuces Windows
 
-### CrÃ©er un raccourci sur le Bureau
+### Creer un raccourci sur le Bureau
 
 1. **Clique droit sur `run-web.bat`**
-2. **Envoyer vers > Bureau (crÃ©er un raccourci)**
+2. **Envoyer vers > Bureau (creer un raccourci)**
 3. **Double-clique le raccourci pour lancer!**
 
-### Lancer dans une vraie fenÃtre (pas CMD)
+### Lancer dans une vraie fenï¿½tre (pas CMD)
 
-Pour une expÃ©rience plus fluide:
+Pour une experience plus fluide:
 
-1. **CrÃ©e `run-web.vbs`:**
+1. **Cree `run-web.vbs`:**
 
 ```vbs
 Set objShell = CreateObject("WScript.Shell")
@@ -160,37 +160,37 @@ objShell.Run "cmd /c run-web.bat", 0
 WScript.Quit
 ```
 
-2. **Sauvegarde dans le mÃme dossier**
-3. **Double-clique pour lancer sans fenÃtre CMD**
+2. **Sauvegarde dans le mï¿½me dossier**
+3. **Double-clique pour lancer sans fenï¿½tre CMD**
 
-### Ajouter au menu DÃ©marrer
+### Ajouter au menu Demarrer
 
 1. **Appuie sur Win+R**
 2. **Tape: `shell:startup`**
-3. **Mets un raccourci de `run-web.bat` lÃ**
-4. **Ã chaque dÃ©marrage, le serveur se lance!**
+3. **Mets un raccourci de `run-web.bat` lï¿½**
+4. **ï¿½ chaque demarrage, le serveur se lance!**
 
 ---
 
 ##  Workflow Typique
 
 ```
-1. Double-clique install.bat (premiÃre fois seulement)
+1. Double-clique install.bat (premiï¿½re fois seulement)
    
 2. Double-clique run-web.bat
    
-3. Une fenÃtre s'ouvre avec le serveur
+3. Une fenï¿½tre s'ouvre avec le serveur
    
 4. Ouvre navigateur: http://localhost:8080
    
 5. Utilise l'interface!
    
-6. Pour arrÃter: Ferme la fenÃtre CMD
+6. Pour arrï¿½ter: Ferme la fenï¿½tre CMD
 ```
 
 ---
 
-##  Pour DÃ©veloppeurs
+##  Pour Developpeurs
 
 Si tu modifies le code:
 
@@ -207,7 +207,7 @@ run-web.bat
 ##  Avant de Pusher sur GitHub
 
 ```bash
-# VÃ©rifier que tout compile
+# Verifier que tout compile
 verify.bat
 
 # Si tout est OK, push!
@@ -218,20 +218,20 @@ git push origin main
 
 ---
 
-## ž Support
+## ï¿½ Support
 
 Si quelque chose ne marche pas:
 
-1. **VÃ©rifie que Go est installÃ©:** `go version`
+1. **Verifie que Go est installe:** `go version`
 2. **Recompile:** `build.bat`
-3. **VÃ©rification:** `verify.bat`
-4. **RÃ©essaye:** `run-web.bat`
+3. **Verification:** `verify.bat`
+4. **Reessaye:** `run-web.bat`
 
-Si Ãa marche toujours pas:
-- RedÃ©marre ton PC
-- RÃ©installe Go proprement
-- Essaye Ã nouveau
+Si ï¿½a marche toujours pas:
+- Redemarre ton PC
+- Reinstalle Go proprement
+- Essaye ï¿½ nouveau
 
 ---
 
-**C'est simple! Bon rÃ©sumÃ©! **
+**C'est simple! Bon resume! **

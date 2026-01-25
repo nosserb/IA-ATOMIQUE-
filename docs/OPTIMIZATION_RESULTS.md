@@ -1,14 +1,14 @@
-#  OPTIMISATIONS COMPLÃTÃES - IA-ATOMIQUE
+#  OPTIMISATIONS COMPLï¿½Tï¿½ES - IA-ATOMIQUE
 
 ##  Objectif Atteint: <2 Secondes
 
-**RÃ©sultats Actuels:**
--  **GÃ©nÃ©ration Ultra:** 15ms (128Ã128)
--  **GÃ©nÃ©ration Draft:** 20ms (256Ã256)
--  **GÃ©nÃ©ration Fast:** 20ms (256Ã256)
--  **DÃ©floutage Ultra:** 28ms
--  **DÃ©floutage Draft:** 26ms
--  **DÃ©floutage Fast:** 25ms
+**Resultats Actuels:**
+-  **Generation Ultra:** 15ms (128ï¿½128)
+-  **Generation Draft:** 20ms (256ï¿½256)
+-  **Generation Fast:** 20ms (256ï¿½256)
+-  **Defloutage Ultra:** 28ms
+-  **Defloutage Draft:** 26ms
+-  **Defloutage Fast:** 25ms
 
 **All modes:** < 30ms =  FAR BELOW 2 SECOND TARGET!
 
@@ -16,49 +16,49 @@
 
 ##  Tableau Comparatif
 
-### GÃNÃRATIONS D'IMAGES
+### Gï¿½Nï¿½RATIONS D'IMAGES
 
-| Mode | RÃ©solution | Patch | Iter | Temps | Quality | Usage |
+| Mode | Resolution | Patch | Iter | Temps | Quality | Usage |
 |------|-----------|-------|------|-------|---------|-------|
-| **ULTRA** | 128Ã128 | 64Ã64 | 2 | ~15ms |  | Preview ultra-rapide |
-| **DRAFT** | 256Ã256 | 32Ã32 | 5 | ~20ms |  | Brouillon/Draft |
-| **FAST** | 256Ã256 | 16Ã16 | 10 | ~20ms |  | Web/Mobile |
-| BALANCED | 512Ã512 | 8Ã8 | 30 | 1-2s |  | Standard |
-| QUALITY | 512Ã512 | 8Ã8 | 100 | 3-5s |  | Production |
+| **ULTRA** | 128ï¿½128 | 64ï¿½64 | 2 | ~15ms |  | Preview ultra-rapide |
+| **DRAFT** | 256ï¿½256 | 32ï¿½32 | 5 | ~20ms |  | Brouillon/Draft |
+| **FAST** | 256ï¿½256 | 16ï¿½16 | 10 | ~20ms |  | Web/Mobile |
+| BALANCED | 512ï¿½512 | 8ï¿½8 | 30 | 1-2s |  | Standard |
+| QUALITY | 512ï¿½512 | 8ï¿½8 | 100 | 3-5s |  | Production |
 
-### DÃFLOUTAGE D'IMAGES
+### Dï¿½FLOUTAGE D'IMAGES
 
 | Mode | Grid | Iter | Temps | Quality | Usage |
 |------|------|------|-------|---------|-------|
-| **ULTRA** | 2Ã2 | 5 | ~28ms |  | Preview |
-| **DRAFT** | 4Ã4 | 10 | ~26ms |  | Good draft |
-| **FAST** | 8Ã8 | 20 | ~25ms |  | Web-ready |
-| BALANCED | 16Ã16 | 50 | 1-2s |  | Standard |
-| QUALITY | 32Ã32 | 100 | 3-5s |  | High-res |
+| **ULTRA** | 2ï¿½2 | 5 | ~28ms |  | Preview |
+| **DRAFT** | 4ï¿½4 | 10 | ~26ms |  | Good draft |
+| **FAST** | 8ï¿½8 | 20 | ~25ms |  | Web-ready |
+| BALANCED | 16ï¿½16 | 50 | 1-2s |  | Standard |
+| QUALITY | 32ï¿½32 | 100 | 3-5s |  | High-res |
 
 ---
 
-##  Optimisations ImplÃ©mentÃ©es
+##  Optimisations Implementees
 
-### 1. RÃDUCTION DES ATOMES (Biggest Win! )
+### 1. Rï¿½DUCTION DES ATOMES (Biggest Win! )
 ```
-Avant:  256Ã256 pixels @ 8px patch = 1,024 atomes
-AprÃs:  128Ã128 pixels @ 64px patch = 4 atomes 
-        256Ã256 pixels @ 32px patch = 64 atomes 
+Avant:  256ï¿½256 pixels @ 8px patch = 1,024 atomes
+Aprï¿½s:  128ï¿½128 pixels @ 64px patch = 4 atomes 
+        256ï¿½256 pixels @ 32px patch = 64 atomes 
 ```
 **Impact:** 96% fewer atoms to process!
 
-### 2. ITÃRATIONS RÃDUITES (Second Win! )
+### 2. ITï¿½RATIONS Rï¿½DUITES (Second Win! )
 ```
 Avant:  100+ iterations
-AprÃs:  2-10 iterations
+Aprï¿½s:  2-10 iterations
 ```
 **Impact:** 10-50x fewer computation cycles!
 
 ### 3. SIMPLIFICATION CALCULS (Speedup 20-30% )
 ```go
 // Au lieu de:
-resonance := exp(-(diffÂ²)/(2ÏÂ²))  // Expensive
+resonance := exp(-(diff^2)/(2ï¿½^2))  // Expensive
 
 // Faire:
 resonance := 1.0 - abs(diff)  // Linear approximation
@@ -73,7 +73,7 @@ for all 8 neighbors { compute... }  // 8 ops
 for top-2 neighbors { compute... }  // 2 ops
 ```
 
-### 5. EARLY STOPPING (Variable Speedup ¹)
+### 5. EARLY STOPPING (Variable Speedup ï¿½)
 ```go
 if grid.VerifyGlobalConvergence() {
     break  // Stop early!
@@ -105,18 +105,18 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ##  Commandes Disponibles
 
-### GÃNÃRATIONS D'IMAGES
+### Gï¿½Nï¿½RATIONS D'IMAGES
 
 ```bash
-# Mode ULTRA (128Ã128, <500ms)
+# Mode ULTRA (128ï¿½128, <500ms)
 ./programme image ultra "blue ocean"
 ./programme image ultra "red sunset"
 
-# Mode DRAFT (256Ã256, <1.5sec)
+# Mode DRAFT (256ï¿½256, <1.5sec)
 ./programme image draft "green forest"
 ./programme image draft "abstract art"
 
-# Mode FAST (256Ã256, <3sec)
+# Mode FAST (256ï¿½256, <3sec)
 ./programme image fast "detailed landscape"
 ./programme image fast "colorful patterns"
 
@@ -126,7 +126,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 ./programme image generate 512 512 100 8 "prompt"
 ```
 
-### DÃFLOUTAGE D'IMAGES
+### Dï¿½FLOUTAGE D'IMAGES
 
 ```bash
 # Mode ULTRA (<500ms)
@@ -148,7 +148,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-##  Fichiers CrÃ©Ã©s/ModifiÃ©s
+##  Fichiers Crees/Modifies
 
 ### Nouveaux Fichiers
 1. **database/image_fast.go** - Core fast mode implementation (237 lines)
@@ -175,7 +175,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 5. **test-fast-modes.sh** - Benchmark script
 
-### ModifiÃ©s
+### Modifies
 1. **main.go** - Route fast deblur commands
 2. **image_commands.go** - Added to switch statement
 
@@ -225,9 +225,9 @@ done
 
 ### Atom Count Reduction Strategy
 ```
-Standard: (512Ã8) Ã (512Ã8) = 64Â² = 4,096 atoms
-DRAFT:    (256Ã32) Ã (256Ã32) = 8Â² = 64 atoms (64Ã reduction!)
-ULTRA:    (128Ã64) Ã (128Ã64) = 2Â² = 4 atoms (1,024Ã reduction!)
+Standard: (512ï¿½8) ï¿½ (512ï¿½8) = 64^2 = 4,096 atoms
+DRAFT:    (256ï¿½32) ï¿½ (256ï¿½32) = 8^2 = 64 atoms (64ï¿½ reduction!)
+ULTRA:    (128ï¿½64) ï¿½ (128ï¿½64) = 2^2 = 4 atoms (1,024ï¿½ reduction!)
 ```
 
 ### Coupling Coefficients for Speed
@@ -258,14 +258,14 @@ Standard:
 
 
 IMAGE GENERATION:
-   ULTRA:   15ms   (128Ã128 @ 2 iter)
-   DRAFT:   20ms   (256Ã256 @ 5 iter)
-   FAST:    20ms   (256Ã256 @ 10 iter)
+   ULTRA:   15ms   (128ï¿½128 @ 2 iter)
+   DRAFT:   20ms   (256ï¿½256 @ 5 iter)
+   FAST:    20ms   (256ï¿½256 @ 10 iter)
 
 IMAGE DEBLURRING:
-   ULTRA:   28ms   (2Ã2 grid @ 5 iter)
-   DRAFT:   26ms   (4Ã4 grid @ 10 iter)
-   FAST:    25ms   (8Ã8 grid @ 20 iter)
+   ULTRA:   28ms   (2ï¿½2 grid @ 5 iter)
+   DRAFT:   26ms   (4ï¿½4 grid @ 10 iter)
+   FAST:    25ms   (8ï¿½8 grid @ 20 iter)
 
 
  ALL TARGETS MET!
@@ -303,8 +303,8 @@ Possible enhancements:
 
 **Status:**  **PRODUCTION READY**
 
-**Objectif:** GÃ©nÃ©rer/DÃ©flouter en <2sec
-**RÃ©sultat:**  15-28ms (100-133x BETTER!)
+**Objectif:** Generer/Deflouter en <2sec
+**Resultat:**  15-28ms (100-133x BETTER!)
 
 **Test it yourself:**
 ```bash

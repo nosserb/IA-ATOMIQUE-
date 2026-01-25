@@ -3,74 +3,74 @@
 ##  Concept Central
 
 **Tu n'as pas le droit de copier les pixels.**
-**Mais tu peux copier l'Ã©quilibre physique qui les explique.**
+**Mais tu peux copier l'equilibre physique qui les explique.**
 
-### IdÃ©e ClÃ©
+### Idee Cle
 
-Une image peut Ãtre vue comme un **systÃme physique Ã l'Ã©quilibre**.
+Une image peut ï¿½tre vue comme un **systï¿½me physique ï¿½ l'equilibre**.
 
 Au lieu de:
 ```
 Image A  Copier les pixels  Image A
-(IllÃ©gal, trivial, ennuyeux)
+(Illegal, trivial, ennuyeux)
 ```
 
 Tu fais:
 ```
-Image A  Extraire la signature Ã©nergÃ©tique  Î_grad, Î_local, Î_texture, Î_scale
+Image A  Extraire la signature energetique  ï¿½_grad, ï¿½_local, ï¿½_texture, ï¿½_scale
          
-          GÃ©nÃ©rer une nouvelle image qui minimise E_total avec ces Î
+          Generer une nouvelle image qui minimise E_total avec ces ï¿½
          
-Image B (complÃtement diffÃ©rente, mais "physiquement Ã©quivalente")
+Image B (complï¿½tement differente, mais "physiquement equivalente")
 ```
 
 ---
 
-##  Les 4 Termes d'Ãnergie
+##  Les 4 Termes d'ï¿½nergie
 
-### 1£ **Ãnergie de Gradient**: `Î_grad`
+### 1ï¿½ **ï¿½nergie de Gradient**: `ï¿½_grad`
 
 Mesure la structure, les contours, les formes.
 
 ```
-E_grad = Î£ ||‡I||Â²
+E_grad = Î£ ||ï¿½I||^2
 ```
 
-**ConcrÃtement**: 
-- Forte si image a beaucoup de dÃ©tails nets
+**Concrï¿½tement**: 
+- Forte si image a beaucoup de details nets
 - Faible si image est lisse
 
 **Exemple**:
 ```
-Dark Sharp Image  Î_grad  0.16 (high detail)
-Smooth Image     Î_grad  0.05 (low detail)
+Dark Sharp Image  ï¿½_grad  0.16 (high detail)
+Smooth Image     ï¿½_grad  0.05 (low detail)
 ```
 
-### 2£ **Ãnergie de CohÃ©rence Locale**: `Î_local`
+### 2ï¿½ **ï¿½nergie de Coherence Locale**: `ï¿½_local`
 
 Mesure comment les voisins "vont ensemble".
 
 ```
-E_local = Î£ ||I(x) - mean(neighbors)||Â²
+E_local = Î£ ||I(x) - mean(neighbors)||^2
 ```
 
-**ConcrÃtement**:
+**Concrï¿½tement**:
 - Forte si les pixels changent brutalement
 - Faible si les transitions sont douces
 
-### 3£ **Ãnergie de Texture**: `Î_texture`
+### 3ï¿½ **ï¿½nergie de Texture**: `ï¿½_texture`
 
-Mesure la rugositÃ©, les rÃ©pÃ©titions, la matiÃre.
+Mesure la rugosite, les repetitions, la matiï¿½re.
 
 ```
 E_texture = variance locale (multi-scale)
 ```
 
-**ConcrÃtement**:
-- Forte pour images texturÃ©es
+**Concrï¿½tement**:
+- Forte pour images texturees
 - Faible pour images lisses
 
-### 4£ **Ãnergie de Distribution**: `Î_scale`
+### 4ï¿½ **ï¿½nergie de Distribution**: `ï¿½_scale`
 
 Mesure le ratio de zones nettes vs zones plates.
 
@@ -80,115 +80,115 @@ E_scale = ratio(sharp regions) / total regions
 
 ---
 
-##  Comment Ã‡a Marche: Les 2 Ãtapes
+##  Comment Ã‡a Marche: Les 2 ï¿½tapes
 
-### **Ãtape A: Analyser l'Image Cible**
+### **ï¿½tape A: Analyser l'Image Cible**
 
 ```bash
 ./programme energy from-image target.png 256 256 300 4
 ```
 
-Calcule 4 coefficients Î:
+Calcule 4 coefficients ï¿½:
 ```
-Î_gradient  = 0.1694    (gradient energy)
-Î_local     = 0.1673    (local coherence)
-Î_texture   = 0.1108    (texture amount)
-Î_scale     = 0.3774    (sharpness distribution)
-```
-
-**RÃ©sultat**: Une "signature" qui dÃ©finit l'Ã©quilibre physique.
-
-### **Ãtape B: GÃ©nÃ©rer une Nouvelle Image**
-
-Ton systÃme cherche une configuration d'atomes qui minimise:
-
-```
-E_total = Î E_grad + Î E_local + Î E_texture + Î E_scale
+ï¿½_gradient  = 0.1694    (gradient energy)
+ï¿½_local     = 0.1673    (local coherence)
+ï¿½_texture   = 0.1108    (texture amount)
+ï¿½_scale     = 0.3774    (sharpness distribution)
 ```
 
-**RÃ©sultat**: Une image **complÃtement diffÃ©rente** (pas une copie!)
-**Mais**: Avec la mÃme signature Ã©nergÃ©tique
+**Resultat**: Une "signature" qui definit l'equilibre physique.
+
+### **ï¿½tape B: Generer une Nouvelle Image**
+
+Ton systï¿½me cherche une configuration d'atomes qui minimise:
+
+```
+E_total = ï¿½ E_grad + ï¿½ E_local + ï¿½ E_texture + ï¿½ E_scale
+```
+
+**Resultat**: Une image **complï¿½tement differente** (pas une copie!)
+**Mais**: Avec la mï¿½me signature energetique
 
 ---
 
-##  Exemple RÃ©el
+##  Exemple Reel
 
 ### Input: `generated_energy_based.png` (dark sharp image)
 
 ```
 Analyzed signature:
-  Î_gradient  = 0.1694   (34% du budget Ã©nergÃ©tique)
-  Î_local     = 0.1673   (33% du budget)
-  Î_texture   = 0.1108   (22% du budget)
-  Î_scale     = 0.3774   (75% du budget!)   Dominant
-  Î_smoothing = 0.1751   (35% du budget)
+  ï¿½_gradient  = 0.1694   (34% du budget energetique)
+  ï¿½_local     = 0.1673   (33% du budget)
+  ï¿½_texture   = 0.1108   (22% du budget)
+  ï¿½_scale     = 0.3774   (75% du budget!)   Dominant
+  ï¿½_smoothing = 0.1751   (35% du budget)
 
 Statistics:
-  Sharpness ratio: 0.4631  (46% d'edges, 27% de rÃ©gions plates)
+  Sharpness ratio: 0.4631  (46% d'edges, 27% de regions plates)
   Histogram: bimodal       (2 modes: sharp vs smooth)
 ```
 
 ### Output: `generated_from_signature.png`
 
 **Pas une copie! Mais**:
-- MÃme "Ã©quilibre" de nivetÃ©/dÃ©tail
-- MÃme structure de patterns
-- MÃme "sentiment visuel"
+- Mï¿½me "equilibre" de nivete/detail
+- Mï¿½me structure de patterns
+- Mï¿½me "sentiment visuel"
 
 ---
 
-##  Avantages ClÃ©s
+##  Avantages Cles
 
-### 1£ **LÃ©gal et Ãthique**
+### 1ï¿½ **Legal et ï¿½thique**
 ```
- Tu copies l'Ã©quilibre physique
+ Tu copies l'equilibre physique
  Tu ne copies pas les pixels
 ```
 
-### 2£ **Infiniment Variable**
-Chaque fois que tu gÃ©nÃres, tu obtiens une image **complÃtement diffÃ©rente**
-(mais avec la mÃme physique).
+### 2ï¿½ **Infiniment Variable**
+Chaque fois que tu genï¿½res, tu obtiens une image **complï¿½tement differente**
+(mais avec la mï¿½me physique).
 
-### 3£ **InterprÃ©table**
-Chaque Î = un nombre que tu comprends.
-Pas de "magie" de rÃ©seau de neurones.
+### 3ï¿½ **Interpretable**
+Chaque ï¿½ = un nombre que tu comprends.
+Pas de "magie" de reseau de neurones.
 
-### 4£ **Pas d'EntraÃnement**
-0 heure d'entraÃnement.
+### 4ï¿½ **Pas d'Entraï¿½nement**
+0 heure d'entraï¿½nement.
 Juste physique + optimisation locale.
 
-### 5£ **Adaptatif**
+### 5ï¿½ **Adaptatif**
 Tu peux mixer plusieurs images:
 ```
-Î = 0.5 * Î(image1) + 0.5 * Î(image2)
- GÃ©nÃre une image "entre" les deux!
+ï¿½ = 0.5 * ï¿½(image1) + 0.5 * ï¿½(image2)
+ Genï¿½re une image "entre" les deux!
 ```
 
 ---
 
 ##  Cas d'Usage
 
-### 1: Variation Infinie d'un MÃme Style
+### 1: Variation Infinie d'un Mï¿½me Style
 
 ```bash
 # Analyser le style d'une image
 ./programme energy from-image artistic_style.png 512 512 400 4
 
-# GÃ©nÃ©rer 100 images diffÃ©rentes avec le mÃme style
+# Generer 100 images differentes avec le mï¿½me style
 for i in {1..100}; do
   ./programme energy from-image artistic_style.png 512 512 400 4
 done
 ```
 
-RÃ©sultat: 100 images **complÃtement diffÃ©rentes** mais avec la mÃme "signature visuelle".
+Resultat: 100 images **complï¿½tement differentes** mais avec la mï¿½me "signature visuelle".
 
 ### 2: Blend de Styles
 
 ```go
 // Dans le code:
 lambda = 0.6 * profileA.LambdaGradient + 0.4 * profileB.LambdaGradient
-// Idem pour les autres Î
- GÃ©nÃre une image "entre" style A et style B
+// Idem pour les autres ï¿½
+ Genï¿½re une image "entre" style A et style B
 ```
 
 ### 3: Extraction de Style
@@ -196,14 +196,14 @@ lambda = 0.6 * profileA.LambdaGradient + 0.4 * profileB.LambdaGradient
 ```bash
 # Tu aimes cette photo?
 ./programme energy from-image my_favorite_photo.png 256 256 300 4
-# GÃ©nÃ©rer 10 versions avec la mÃme "sensation"
+# Generer 10 versions avec la mï¿½me "sensation"
 ```
 
-### 4: Super-RÃ©solution Intelligente
+### 4: Super-Resolution Intelligente
 
 ```
 Petite image  Analyser signature
-              GÃ©nÃ©rer grande image avec mÃme signature
+              Generer grande image avec mï¿½me signature
               Upscale automatiquement!
 ```
 
@@ -211,52 +211,52 @@ Petite image  Analyser signature
 
 ##  Pourquoi C'est Puissant
 
-### Le ProblÃme Classique
+### Le Problï¿½me Classique
 ```
 GAN/Diffusion model:
   - 100h+ training
   - Copie patterns statistiques
-  - BoÃte noire (qui apprend quoi?)
+  - Boï¿½te noire (qui apprend quoi?)
 ```
 
 ### Notre Solution
 ```
 Energy-based:
   - 0h training
-  - Copie Ã©quilibre physique (explicite)
-  - 100% interprÃ©table
-  - Infiniment variÃ©e (pas 1 output par input!)
+  - Copie equilibre physique (explicite)
+  - 100% interpretable
+  - Infiniment variee (pas 1 output par input!)
 ```
 
 ---
 
-##  Formules MathÃ©matiques
+##  Formules Mathematiques
 
 Pour les scientifiques:
 
-### Extraction (Ãtape A)
+### Extraction (ï¿½tape A)
 ```
 Pour image I:
-  ‡I = calcul gradient par Sobel
-  Î = normalize(mean(||‡I||Â²))
+  ï¿½I = calcul gradient par Sobel
+  ï¿½ = normalize(mean(||ï¿½I||^2))
   
-  E_local(x) = ||I(x) - avg(neighbors)||Â²
-  Î = normalize(mean(E_local))
+  E_local(x) = ||I(x) - avg(neighbors)||^2
+  ï¿½ = normalize(mean(E_local))
   
   var_texture(x) = variance(neighbors)
-  Î = normalize(mean(var_texture))
+  ï¿½ = normalize(mean(var_texture))
   
-  edge_density = count(||‡I||Â² > threshold) / total_pixels
-  Î = normalize(edge_density)
+  edge_density = count(||ï¿½I||^2 > threshold) / total_pixels
+  ï¿½ = normalize(edge_density)
 ```
 
-### GÃ©nÃ©ration (Ãtape B)
+### Generation (ï¿½tape B)
 ```
-E_total = ÎÂE_grad + ÎÂE_local + ÎÂE_texture + ÎÂE_scale + other_terms
+E_total = ï¿½ï¿½E_grad + ï¿½ï¿½E_local + ï¿½ï¿½E_texture + ï¿½ï¿½E_scale + other_terms
 
 Chaque atome minimise: E_total/state_i = 0
 
-RÃ©sultat: Ãquilibre physique  Image
+Resultat: ï¿½quilibre physique  Image
 ```
 
 ---
@@ -268,119 +268,119 @@ RÃ©sultat: Ãquilibre physique  Image
 ./programme energy from-image target.png
 ```
 
-Utilise defaults: 256Ã256, 300 iter, patch 4.
+Utilise defaults: 256ï¿½256, 300 iter, patch 4.
 
-### Analyser et GÃ©nÃ©rer Custom
+### Analyser et Generer Custom
 ```bash
 ./programme energy from-image target.png 512 512 400 8
 ```
 
-512Ã512 output, 400 iterations, 8Ã8 patches.
+512ï¿½512 output, 400 iterations, 8ï¿½8 patches.
 
 ### Exemple Complet
 ```bash
-# Ãtape 1: GÃ©nÃ©rer une image cible
+# ï¿½tape 1: Generer une image cible
 ./programme energy generate 256 256 200 4 "dark sharp"
 
-# Ãtape 2: Analyser son Ã©nergie
+# ï¿½tape 2: Analyser son energie
 ./programme energy from-image generated_energy_based.png
 
-# RÃ©sultat: generated_from_signature.png
-#  ComplÃtement diffÃ©rente, mais mÃme Ã©nergie!
+# Resultat: generated_from_signature.png
+#  Complï¿½tement differente, mais mï¿½me energie!
 ```
 
 ---
 
 ##  Validations Empiriques
 
-### Test 1: MÃme Image  DiffÃ©rents Outputs
+### Test 1: Mï¿½me Image  Differents Outputs
 ```
 Input: generated_energy_based.png (dark sharp)
 
-Output 1: generated_from_signature.png (exÃ©cution 1)
-Output 2: generated_from_signature.png (exÃ©cution 2)
-Output 3: generated_from_signature.png (exÃ©cution 3)
+Output 1: generated_from_signature.png (execution 1)
+Output 2: generated_from_signature.png (execution 2)
+Output 3: generated_from_signature.png (execution 3)
 
-RÃ©sultat: 3 images COMPLÃTEMENT DIFFÃRENTES
-Mais: MÃme distribution d'Ã©nergies
+Resultat: 3 images COMPLï¿½TEMENT DIFFï¿½RENTES
+Mais: Mï¿½me distribution d'energies
 ```
 
-### Test 2: VÃ©rifier Î Extrait
+### Test 2: Verifier ï¿½ Extrait
 ```
 Source profile:
-  Î_gradient  = 0.1694
-  Î_local     = 0.1673
-  Î_texture   = 0.1108
-  Î_scale     = 0.3774
+  ï¿½_gradient  = 0.1694
+  ï¿½_local     = 0.1673
+  ï¿½_texture   = 0.1108
+  ï¿½_scale     = 0.3774
 
- GÃ©nÃ©rer image
- Analyser image gÃ©nÃ©rÃ©e
- Comparer les Î
+ Generer image
+ Analyser image generee
+ Comparer les ï¿½
 
-RÃ©sultat: Î_generated  Î_source (avec petite variance)
+Resultat: ï¿½_generated  ï¿½_source (avec petite variance)
 ```
 
 ---
 
-##  Limitations (Ã ConnaÃtre)
+##  Limitations (ï¿½ Connaï¿½tre)
 
 ### 1: Photorealism
-Si tu cherches EXACTEMENT la mÃme image:
+Si tu cherches EXACTEMENT la mï¿½me image:
 ```
  Energy matching alone won't give pixel-perfect reproduction
  BUT: C'est normal! Tu n'essaies pas de copier!
 ```
 
-### 2: TrÃs Petit Details
-Patterns trÃs petits (< 4 pixels):
+### 2: Trï¿½s Petit Details
+Patterns trï¿½s petits (< 4 pixels):
 ```
  Patch-based system peut les perdre
- Solution: RÃ©duire patch_size (mais 2Ã plus lent)
+ Solution: Reduire patch_size (mais 2ï¿½ plus lent)
 ```
 
 ### 3: Multi-image Blend
 Blending de nombreuses images:
 ```
  Peut devenir chaotique si trop d'images
- Solution: Limiter Ã 2-5 images max
+ Solution: Limiter ï¿½ 2-5 images max
 ```
 
 ---
 
-##  Prochaines Ãtapes RecommandÃ©es
+##  Prochaines ï¿½tapes Recommandees
 
-### TrÃs Prochainement
+### Trï¿½s Prochainement
 - [ ] Supporter FamilyProfile (moyenne de N images)
-- [ ] Spatial constraints (apply Î diffÃ©rent par rÃ©gion)
+- [ ] Spatial constraints (apply ï¿½ different par region)
 - [ ] Real-time visualization de la relaxation
 
 ### Court Terme
-- [ ] Ajouter plus de termes d'Ã©nergie (symetry, color harmony, etc.)
+- [ ] Ajouter plus de termes d'energie (symetry, color harmony, etc.)
 - [ ] Optimisation GPU (actuellement CPU)
 - [ ] CLI pour batch processing
 
 ### Recherche
-- [ ] Apprendre Î Ã partir de donnÃ©es rÃ©elles
-- [ ] InterprÃ©ter Î en termes de style humains
-- [ ] Super-rÃ©solution intelligente
+- [ ] Apprendre ï¿½ ï¿½ partir de donnees reelles
+- [ ] Interpreter ï¿½ en termes de style humains
+- [ ] Super-resolution intelligente
 
 ---
 
 ##  Philosophie
 
 > "Tu n'es pas en train de copier une image.
-> Tu es en train de copier l'Ã©quilibre physique qui l'explique.
+> Tu es en train de copier l'equilibre physique qui l'explique.
 >
-> Et ensuite tu laisses le systÃme trouver une **nouvelle** configuration
-> qui respecte le mÃme Ã©quilibre.
+> Et ensuite tu laisses le systï¿½me trouver une **nouvelle** configuration
+> qui respecte le mï¿½me equilibre.
 >
-> C'est lÃ©gal, c'est juste, c'est magnifique."
+> C'est legal, c'est juste, c'est magnifique."
 
 ---
 
-##  RÃ©fÃ©rences
+##  References
 
-**Concepts InspirÃ©s Par**:
+**Concepts Inspires Par**:
 - Active Matter (Ramaswamy, 2010)
 - Pattern Formation (Murray, 2003)
 - Energy-Based Models (LeCun et al., 2006)
@@ -389,7 +389,7 @@ Blending de nombreuses images:
 ---
 
 Fait le: 13 janvier 2026
-ImplÃ©mentation: ~150 lignes de code
+Implementation: ~150 lignes de code
 Test Coverage: 100% (analyzes + generates)
 
  **IA-ATOMIQUE | Atomic Resonance Technology**

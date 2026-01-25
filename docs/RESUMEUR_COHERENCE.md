@@ -1,98 +1,98 @@
-#  Résumeur Vectoriel avec Découpage & Cohérence
+#  Resumeur Vectoriel avec Decoupage & Coherence
 
-## Architecture Mathématique
+## Architecture Mathematique
 
-### 1� Découpage du Texte (�tape 1)
+### 1� Decoupage du Texte (�tape 1)
 
 Pour un document avec **P** phrases et **N** mots :
 
 ```
 B = N / k  (nombre de blocs)
-k = taille cible par bloc (défaut: 25 mots)
+k = taille cible par bloc (defaut: 25 mots)
 ```
 
 **Exemple:**
 - Document: N = 1189 mots
 - Blocs: B = 1189 / 25 = 48 blocs
-- Notre implémentation: k=25  B=30 blocs réels
+- Notre implementation: k=25  B=30 blocs reels
 
-### 2� Vectorisation (�tape 2)
+### 2� Vectorisation (�tape 2)
 
-Chaque bloc **i** devient un vecteur **v�** dans ¹¹ (11 dimensions):
+Chaque bloc **i** devient un vecteur **v�** dans ¹¹ (11 dimensions):
 
 ```
-v� = MoyennePondereeVecteurs(phrases[bloc_i])
+v� = MoyennePondereeVecteurs(phrases[bloc_i])
 ```
 
-- Vectorisation TF-IDF intégrée
+- Vectorisation TF-IDF integree
 - Normalisation L2 implicite
 - Capture le sens du bloc
 
-### 3� Cohérence Vectorielle Globale (�tape 3)
+### 3� Coherence Vectorielle Globale (�tape 3)
 
 Calcul du vecteur global du document:
 
 ```
-V_doc = (1/B) Σ�� v�   (moyenne des vecteurs de blocs)
+V_doc = (1/B) Σ�� v�   (moyenne des vecteurs de blocs)
 ```
 
-Normalisé en ¹¹:
+Normalise en ¹¹:
 
 ```
 V_doc_norm = V_doc / ||V_doc||
 ```
 
-### 4� Sélection par �nergie (�tape 4)
+### 4� Selection par �nergie (�tape 4)
 
-Pour chaque bloc i, calculer le **score d'énergie**:
+Pour chaque bloc i, calculer le **score d'energie**:
 
 ```
-cohérence_i = sim_cosinus(v�, V_doc)    [0, 1]
+coherence_i = sim_cosinus(v�, V_doc)    [0, 1]
 tfidf_i = moyenne_tfidf(mots_bloc_i)     [0, 1]
 
-énergie_i = ��cohérence_i + β�tfidf_i
+energie_i = ��coherence_i + beta�tfidf_i
 ```
 
-où:
-- **� = 0.6** : Poids cohérence (bloc représentatif)
-- **β = 0.4** : Poids importance lexicale (mots clés)
-- � + β = 1.0
+ou:
+- **� = 0.6** : Poids coherence (bloc representatif)
+- **beta = 0.4** : Poids importance lexicale (mots cles)
+- � + beta = 1.0
 
-**Sélection:** Les blocs avec **énergie** > seuil sont conservés
+**Selection:** Les blocs avec **energie** > seuil sont conserves
 
-Nombre de blocs sélectionnés:
+Nombre de blocs selectionnes:
 ```
-B_selected = B � ratioCompression
+B_selected = B � ratioCompression
 ```
 
-### 5� Génération du Résumé (�tape 5)
+### 5� Generation du Resume (�tape 5)
 
-� partir des blocs sélectionnés:
+� partir des blocs selectionnes:
 
-1. Extraire le vocabulaire valide (filtré par `isValidWord()`)
+1. Extraire le vocabulaire valide (filtre par `isValidWord()`)
 2. Vectoriser chaque mot du vocabulaire
-3. Générer par **argmax** (similitude + cohérence)
-4. Ajouter connecteurs sémantiques
+3. Generer par **argmax** (similitude + coherence)
+4. Ajouter connecteurs semantiques
 
-Formule génération:
+Formule generation:
 ```
-mot_sélectionné = argmax_w [ sim(vw, V_doc) + ��sim(vw, v_mot_précédent) ]
+mot_selectionne = argmax_w [ sim(vw, V_doc) + ��sim(vw, v_mot_precedent) ]
 ```
 
-### 6� Complexité & Gains de Performance
+### 6� Complexite & Gains de Performance
 
-**Sans découpage:**
+**Sans decoupage:**
 ```
-Complexité: O(P² � d)
+Complexite: O(P^2 � d)
 P = nombre de phrases (~50-100)
 d = dimensions (11)
 ```
 
-**Avec découpage:**
+**Avec decoupage:**
 ```
-Complexité: O(B² � d)
+Complexite: O(B^2 � d)
 B = nombre de blocs (~30)
-Réduction: (B/P)² = (30/50)²  0.36
+Reduction: (B/P)^2 = (30/50)^2  0.36
 Gain: ~3x plus rapide
 ```
 
@@ -100,11 +100,11 @@ Pour documents massifs:
 ```
 P = 128,938 phrases
 B = 10,000 blocs
-Réduction: (10K/128K)²  0.006
+Reduction: (10K/128K)^2  0.006
 Gain: 166x plus rapide!
 ```
 
-## Implémentation
+## Implementation
 
 ### Structures principales
 
@@ -113,31 +113,31 @@ type BlocVectoriel struct {
 	Index      int              // Position
 	Contenu    string           // Texte
 	Mots       []string         // Vocabulaire
-	Vecteur    VecteurAtomique  // v�  ¹¹
-	Coherence  float64          // sim(v�, V_doc)  [0,1]
+	Vecteur    VecteurAtomique  // v�  ¹¹
+	Coherence  float64          // sim(v�, V_doc)  [0,1]
 	TFIDFScore float64          // Importance lexicale  [0,1]
-	Energie    float64          // Score final = ��cohérence + β�tfidf
+	Energie    float64          // Score final = ��coherence + beta�tfidf
 }
 
 type ResumeurCoherence struct {
 	Blocs         []BlocVectoriel
 	VecteurGlobal VecteurAtomique   // V_doc
-	AlphaCoherence float64          // � = 0.6
-	BetaTFIDF      float64          // β = 0.4
+	AlphaCoherence float64          // � = 0.6
+	BetaTFIDF      float64          // beta = 0.4
 }
 ```
 
-### Méthodes
+### Methodes
 
 ```go
-// 1. Découper et vectoriser
+// 1. Decouper et vectoriser
 resumeur.Decouper(phrases)
 
-// 2. Sélectionner par énergie
-blocsSelectionnés := resumeur.Selectionner(ratioCompression)
+// 2. Selectionner par energie
+blocsSelectionnes := resumeur.Selectionner(ratioCompression)
 
-// 3. Générer résumé
-resume := resumeur.GenerByVectors(blocsSelectionnés, tailleResume)
+// 3. Generer resume
+resume := resumeur.GenerByVectors(blocsSelectionnes, tailleResume)
 ```
 
 ## Commande CLI
@@ -152,87 +152,87 @@ resume := resumeur.GenerByVectors(blocsSelectionnés, tailleResume)
 ```
 
 Affiche:
-- Nombre de blocs créés / sélectionnés
-- Cohérence moyenne
+- Nombre de blocs crees / selectionnes
+- Coherence moyenne
 - TF-IDF moyen
-- �nergie moyenne
-- Résumé généré
+- �nergie moyenne
+- Resume genere
 - Statistiques de temps
 
-## Comparaison avec d'autres méthodes
+## Comparaison avec d'autres methodes
 
-| Aspect | Vectoriel simple | Découpage & Cohérence | Atomique |
+| Aspect | Vectoriel simple | Decoupage & Coherence | Atomique |
 |--------|------------------|----------------------|----------|
-| **Cohérence** | 88-92% | 95-100% | 9-15% |
-| **Couverture** | Partielle | Bonne (début-fin) | Exploratory |
+| **Coherence** | 88-92% | 95-100% | 9-15% |
+| **Couverture** | Partielle | Bonne (debut-fin) | Exploratory |
 | **Vitesse** | ~600µs | ~300µs | ~2ms |
-| **Nature** | Greedy | Déterministe | Résonance |
+| **Nature** | Greedy | Deterministe | Resonance |
 | **Mots redondants** | Quelques-uns | Minimal | Aucun |
 
-## Résultats sur test.txt (103 mots, 15 phrases)
+## Resultats sur test.txt (103 mots, 15 phrases)
 
 ### Vectoriel (30% compression)
 ```
-Résumé: "bénéficient insights patterns précieux... constamment innovations"
-Mots: 25 | Cohérence: 89% | Temps: 600µs
+Resume: "beneficient insights patterns precieux... constamment innovations"
+Mots: 25 | Coherence: 89% | Temps: 600µs
 ```
 
-### Découpage (20% compression)
+### Decoupage (20% compression)
 ```
-Résumé: "L'analyse insights patterns précieux... constamment innovations"
-Mots: 22 | Cohérence: 100% | Temps: 350µs | Blocs: 1/4
+Resume: "L'analyse insights patterns precieux... constamment innovations"
+Mots: 22 | Coherence: 100% | Temps: 350µs | Blocs: 1/4
 ```
 
-## Résultats sur input.txt (1189 mots, 53 phrases)
+## Resultats sur input.txt (1189 mots, 53 phrases)
 
 ### Vectoriel (12% compression)
 ```
-Mots: 178 | Cohérence: 93% | Compression: 6.7x | Temps: 6.7ms
+Mots: 178 | Coherence: 93% | Compression: 6.7x | Temps: 6.7ms
 ```
 
-### Découpage (12% compression)
+### Decoupage (12% compression)
 ```
-Mots: 79 | Cohérence: 100% | Compression: 15.1x | Temps: 5ms
-Blocs sélectionnés: 4/30
+Mots: 79 | Coherence: 100% | Compression: 15.1x | Temps: 5ms
+Blocs selectionnes: 4/30
 ```
 
 ## Points forts
 
- **Cohérence garantie** - Tous les vecteurs alignés avec V_doc  
- **Couverture texto** - Blocs sélectionnés préservent l'ordre  
- **Scalabilité** - O(B²�d) vs O(P²�d)  
- **Interprétabilité** - �nergie = ��cohérence + β�importance  
+ **Coherence garantie** - Tous les vecteurs alignes avec V_doc  
+ **Couverture texto** - Blocs selectionnes preservent l'ordre  
+ **Scalabilite** - O(B^2�d) vs O(P^2�d)  
+ **Interpretabilite** - �nergie = ��coherence + beta�importance  
  **Vitesse** - 3-166x plus rapide selon taille  
 
-## Amélioration futures
+## Amelioration futures
 
-- [ ] Adapter � et β par document (apprentissage)
-- [ ] Ajouter pondération temporelle (plus récent = mieux)
-- [ ] Intégrer connecteurs de blocs (donc, cependant, etc.)
-- [ ] Visualisation de la "carte" de cohérence
+- [ ] Adapter � et beta par document (apprentissage)
+- [ ] Ajouter ponderation temporelle (plus recent = mieux)
+- [ ] Integrer connecteurs de blocs (donc, cependant, etc.)
+- [ ] Visualisation de la "carte" de coherence
 - [ ] Multi-langage (vecteurs multilingues)
 
-## Mathématique résumée
+## Mathematique resumee
 
 ```
-Entrée:  P phrases  B blocs  vecteurs v�
+Entree:  P phrases  B blocs  vecteurs v�
          B blocs vectoriels
 
-V_doc  MoyennePonderee(v, ..., vB)    [�tape 3]
+V_doc  MoyennePonderee(v, ..., vB)    [�tape 3]
 
 Pour chaque bloc i:
-  cohérence_i  cos_sim(v�, V_doc)
-  énergie_i  0.6�cohérence_i + 0.4�tfidf_i
+  coherence_i  cos_sim(v�, V_doc)
+  energie_i  0.6�coherence_i + 0.4�tfidf_i
 
-Sélectionner: top B_selected par énergie    [�tape 4]
+Selectionner: top B_selected par energie    [�tape 4]
 
-Générer:  argmax vocabulaire par similarity + coherence  [�tape 5]
+Generer:  argmax vocabulaire par similarity + coherence  [�tape 5]
 
-Sortie:   Résumé cohérent début-fin de longueur cible
+Sortie:   Resume coherent debut-fin de longueur cible
 ```
 
 ---
 
 **Date:** 7 janvier 2026  
-**Implémentation:** Go 1.22  
+**Implementation:** Go 1.22  
 **Module:** `database/resumeur_coherence.go` (288 lignes)
