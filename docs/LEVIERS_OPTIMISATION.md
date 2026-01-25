@@ -1,6 +1,6 @@
-#  LES 7 LEVIERS D'OPTIMISATION - IMPLàMENTATION
+# LES 7 LEVIERS D'OPTIMISATION - IMPLàMENTATION
 
-##  Levier nà1: UX Instantanée <230ms (IMPLàMENTà)
+## Levier nà1: UX Instantanée <230ms (IMPLàMENTà)
 
 ### Concept: Réponse Partielle Immédiate + Fond Asynchrone
 
@@ -60,7 +60,7 @@ Speedup peràu: 1778ms / 53ms = **33x plus rapide**
 
 ---
 
-##  Levier nà2: Batch Adaptatif Dynamique (IMPLàMENTà)
+## Levier nà2: Batch Adaptatif Dynamique (IMPLàMENTà)
 
 ### Concept: Batch optimal calculé dynamiquement
 
@@ -141,7 +141,7 @@ for batchStart := 0; batchStart < len(ops); batchStart += adaptiveBatch {
 
 ---
 
-##  Levier nà3: àlimination d'Opérations Inutiles
+## Levier nà3: àlimination d'Opérations Inutiles
 
 ### Concept: Beaucoup de calculs sont redondants
 
@@ -178,7 +178,7 @@ fmt.Printf("Ops eliminées: %d (%.1f%%)\n", removed, float64(removed)*100/float6
 
 ---
 
-##  Levier nà4: Optimisation Mémoire
+## Levier nà4: Optimisation Mémoire
 
 ### Concept: Mémoire > CPU
 
@@ -229,7 +229,7 @@ for i := range batch.Xs {
 
 ---
 
-##  Levier nà5: Réduire S (Fraction Séquentielle)
+## Levier nà5: Réduire S (Fraction Séquentielle)
 
 ### Concept: àliminer tout ce qui bloque parallélisation
 
@@ -283,7 +283,7 @@ for w := 0; w < numWorkers; w++ {
 
 ---
 
-##  Levier nà6: SIMD (Optionnel, Complexe)
+## Levier nà6: SIMD (Optionnel, Complexe)
 
 ### Concept: Vectorisation CPU (AVX2, AVX-512)
 
@@ -314,7 +314,7 @@ Avec W = largeur SIMD
 
 ---
 
-##  Comparaison des Leviers
+## Comparaison des Leviers
 
 ```
 
@@ -331,7 +331,7 @@ Avec W = largeur SIMD
 
 ---
 
-##  Ordre d'Implémentation Recommandé
+## Ordre d'Implémentation Recommandé
 
 1.  **Levier 1**: Réponse instantanée <230ms (FAIT)
 2.  **Levier 2**: Batch adaptatif (1 heure)
@@ -352,7 +352,7 @@ Avec W = largeur SIMD
 
 ---
 
-##  Prochaine àtape
+## Prochaine àtape
 
 **Continuons avec Levier nà3: àlimination d'Opérations Inutiles**
 

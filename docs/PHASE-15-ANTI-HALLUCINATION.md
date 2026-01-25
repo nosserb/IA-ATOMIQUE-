@@ -15,7 +15,7 @@ où :
 
 ---
 
-##  Critàre de fidélité implémenté
+## Critàre de fidélité implémenté
 
 ### Formule mathématique
 
@@ -39,7 +39,7 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
 ---
 
-##  Stratégies implémentées
+## Stratégies implémentées
 
 ### Stratégie A : Extraction par phrases clés (Extractive Summarization)
 
@@ -152,7 +152,7 @@ sim = (lengthRatio à 0.3) + (conceptCoverage à 0.7)
 
 ---
 
-##  Résultats d'implémentation
+## Résultats d'implémentation
 
 ### Tests simples
 
@@ -180,7 +180,7 @@ Fichiers créés/modifiés :
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Tester l'analyse de fidélité
 
@@ -233,7 +233,7 @@ SUITE COMPLàTE: TESTS ANTI-HALLUCINATION
 
 ---
 
-##  Mathématique complàte
+## Mathématique complàte
 
 ### Vocabulaire source (àtape 1)
 
@@ -271,7 +271,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-##  Garanties mathématiques
+## Garanties mathématiques
 
 ### Théoràme : Absence d'hallucination
 
@@ -286,7 +286,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-##  Configuration et seuils
+## Configuration et seuils
 
 | Paramàtre | Valeur par défaut | Recommandation |
 |---|---|---|
@@ -297,7 +297,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-##  Directions futures
+## Directions futures
 
 1. **Embeddings réels** : Intégrer BERT/multilingual BERT pour cosine similarity réelle
 2. **Contexte spécifique** : Détecter si hallucination est "proche" du sujet (ex: concepts connexes)
@@ -306,7 +306,7 @@ $$\text{Verdict} = \begin{cases}
 
 ---
 
-##  Références implémentées
+## Références implémentées
 
 - Kuhn, T., Perez-Kriz, S. (2015) - **Extractive Summarization using IDF-weighted concepts**
 - Robertson, S. (2004) - **Understanding Inverse Document Frequency: on Theoretical Arguments**

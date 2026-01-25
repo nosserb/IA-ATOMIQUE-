@@ -1,8 +1,8 @@
-#  IA-ATOMIQUE sur Windows
+# IA-ATOMIQUE sur Windows
 
 Guide d'installation simple pour Windows.
 
-##  Installation Rapide (2 étapes)
+## Installation Rapide (2 étapes)
 
 ### àtape 1: Installer Go (une seule fois)
 
@@ -45,7 +45,7 @@ Si àa marche pas, redémarre ton PC et réessaye.
 
 ---
 
-##  Fichiers Disponibles
+## Fichiers Disponibles
 
 ### Scripts Windows
 
@@ -70,7 +70,7 @@ verify.bat
 
 ---
 
-##  Mode Command Prompt/PowerShell
+## Mode Command Prompt/PowerShell
 
 Si tu préfàres la ligne de commande:
 
@@ -96,9 +96,9 @@ programme.exe web
 
 ---
 
-##  Résolution des Problàmes
+## Résolution des Problàmes
 
-###  "Go is not recognized"
+### "Go is not recognized"
 
 **Problàme:** Go n'est pas installé ou trouvable
 
@@ -107,7 +107,7 @@ programme.exe web
 2. Redémarre ton PC complàtement
 3. Réessaye
 
-###  "web\index.html n'existe pas"
+### "web\index.html n'existe pas"
 
 **Problàme:** Fichiers web manquants
 
@@ -115,7 +115,7 @@ programme.exe web
 - Assure-toi que le dossier `web/` existe
 - Avec les fichiers: `index.html`, `style.css`, `script.js`
 
-###  Port 8080 déjà utilisé
+### Port 8080 déjà utilisé
 
 **Problàme:** Un autre programme utilise le port 8080
 
@@ -131,7 +131,7 @@ programme.exe web
 - Lance avec: `programme.exe web`
 - Accàde à: http://localhost:9000
 
-###  "programme.exe n'existe pas"
+### "programme.exe n'existe pas"
 
 **Problàme:** Pas compilé
 
@@ -140,7 +140,7 @@ programme.exe web
 
 ---
 
-##  Astuces Windows
+## Astuces Windows
 
 ### Créer un raccourci sur le Bureau
 
@@ -172,7 +172,7 @@ WScript.Quit
 
 ---
 
-##  Workflow Typique
+## Workflow Typique
 
 ```
 1. Double-clique install.bat (premiàre fois seulement)
@@ -190,7 +190,7 @@ WScript.Quit
 
 ---
 
-##  Pour Développeurs
+## Pour Développeurs
 
 Si tu modifies le code:
 
@@ -204,7 +204,7 @@ run-web.bat
 
 ---
 
-##  Avant de Pusher sur GitHub
+## Avant de Pusher sur GitHub
 
 ```bash
 # Vérifier que tout compile

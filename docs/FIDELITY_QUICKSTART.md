@@ -1,6 +1,6 @@
 # GUIDE UTILISATEUR - MODULE ANTI-HALLUCINATION PHASE 15
 
-##  Démarrage rapide
+## Démarrage rapide
 
 ### 1. Compiler le projet
 ```bash
@@ -55,7 +55,7 @@ go build -o programme
 
 ---
 
-##  Résultat attendus
+## Résultat attendus
 
 ### Cas 1 : Texte technique ( BONNE FIDàLITà)
 
@@ -95,7 +95,7 @@ Raison: Score >= 80%  Texte généré est assez fidàle
 
 ---
 
-##  Interprétation des scores
+## Interprétation des scores
 
 | Score Ff | Interprétation | Action |
 |---|---|---|
@@ -107,7 +107,7 @@ Raison: Score >= 80%  Texte généré est assez fidàle
 
 ---
 
-##  Stratégies utilisables
+## Stratégies utilisables
 
 ### Stratégie A : Extraction pure (TF-IDF)
 **Approche** : Sélectionner les meilleures phrases du texte original
@@ -154,7 +154,7 @@ finalSummary, fidelity, mode := database.HybridResume(
 
 ---
 
-##  Mesures mathématiques
+## Mesures mathématiques
 
 ### Formule fidélité
 
@@ -172,7 +172,7 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 
 ---
 
-##  Dépannage
+## Dépannage
 
 ### "Coverage tràs bas (< 10%)"
 
@@ -198,7 +198,7 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 
 ---
 
-##  Checklist de validation
+## Checklist de validation
 
 - [ ] Compiler le projet : `go build -o programme`
 - [ ] Tester basique : `./programme fidelity test`
@@ -208,7 +208,7 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 
 ---
 
-##  Fichiers clés
+## Fichiers clés
 
 | Fichier | Description |
 |---|---|

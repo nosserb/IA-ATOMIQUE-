@@ -1,6 +1,6 @@
 # Résumé d'Implémentation - Stress Test Arithmétique Optimisé
 
-##  Objectif Atteint
+## Objectif Atteint
 
 Créer un stress test de calcul arithmétique massif qui:
 1. Implémente la **loi d'Amdahl** avec validation empirique
@@ -9,7 +9,7 @@ Créer un stress test de calcul arithmétique massif qui:
 4. Parallélise la **génération des opérations** pour réduire S
 5. Fournit une **roadmap précise** pour atteindre <1ms
 
-##  Résultats Finaux
+## Résultats Finaux
 
 ### Test 100K opérations (small scale - optimal parallelism)
 ```
@@ -38,7 +38,7 @@ Débit parallàle:    11.8 Gops/sec
 Efficacité Amdahl: 126.4%
 ```
 
-##  Implémentations Clés
+## Implémentations Clés
 
 ### 1. Loi d'Amdahl Complàte
 ```go
@@ -107,7 +107,7 @@ theoreticalParallelTime := S*seqTime + (1.0-S)*seqTime/float64(N)
 overheadMs := parMetrics.TotalTimeMS - theoreticalParallelTime
 ```
 
-##  Commandos Disponibles
+## Commandos Disponibles
 
 ```bash
 # 100K opérations (test rapide)
@@ -123,7 +123,7 @@ overheadMs := parMetrics.TotalTimeMS - theoreticalParallelTime
 ./programme stest 100000000
 ```
 
-##  Analyse Mathématique Validée
+## Analyse Mathématique Validée
 
 ### Amdahl vs Réalité
 
@@ -145,7 +145,7 @@ Différence:                 +26.4%
 Explication: Meilleure localité cache avec 8 workers
 ```
 
-##  Roadmap <1ms pour 10M Opérations
+## Roadmap <1ms pour 10M Opérations
 
 ### Phase 1: Pré-génération (S: 40%  15%)
 - **Réduction**: 850 ms  564 ms (-34%)
@@ -167,7 +167,7 @@ Explication: Meilleure localité cache avec 8 workers
 - **Statut**:  à faire (profiling fin)
 - **Effort**: Variable
 
-##  Progression Mesurable
+## Progression Mesurable
 
 ```
 àtat initial:        850 ms  (2.68x speedup)
@@ -179,7 +179,7 @@ Apràs Phase 4:       88 ms   (5.68x speedup)
 Gain potentiel: 850/88  9.7x supplémentaire
 ```
 
-##  Fichiers Générés
+## Fichiers Générés
 
 1. **stress_test_commands.go** (488 lignes)
    - Implémentation complàte du stress test
@@ -201,7 +201,7 @@ Gain potentiel: 850/88  9.7x supplémentaire
    - Tableau progressif
    - Recommandations prioritaires
 
-##  Enseignements
+## Enseignements
 
 1. **Amdahl > Réalité**: Speedup réel peut dépasser la théorie gràce aux effets de cache
 2. **Channels > Mutex**: Communication sans mutex est critique pour la performance parallàle
@@ -209,7 +209,7 @@ Gain potentiel: 850/88  9.7x supplémentaire
 4. **Batching adaptatif**: B = M/N à k minimise l'overhead de synchronisation
 5. **Génération parallélisée**: Pré-générer les données en parallàle réduit S de 50%  40%
 
-##  Conclusion
+## Conclusion
 
 Le stress test démontre qu'on peut:
 -  Atteindre **2.68x speedup** sur 10M opérations avec 8 workers

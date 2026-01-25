@@ -1,4 +1,4 @@
-#  Résumeur Vectoriel avec Découpage & Cohérence
+# Résumeur Vectoriel avec Découpage & Cohérence
 
 ## Architecture Mathématique
 

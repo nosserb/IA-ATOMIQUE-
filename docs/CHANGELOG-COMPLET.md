@@ -1,4 +1,4 @@
-#  RàSUMà DES AMàLIORATIONS - AVANT/APRàS COMPLET
+# RàSUMà DES AMàLIORATIONS - AVANT/APRàS COMPLET
 
 ## VERSION INITIALE (Avant améliorations)
 
@@ -192,7 +192,7 @@ reformulerSegment(mots) {
 
 ---
 
-##  COMPARAISON GLOBALE
+## COMPARAISON GLOBALE
 
 ### Métrique 1: Compression Fonctionnelle
 
@@ -265,7 +265,7 @@ Résultat: Texte pur
 
 ---
 
-##  RàSULTAT FINAL
+## RàSULTAT FINAL
 
 ### Systàme AVANT
 ```
@@ -287,7 +287,7 @@ Production:  (pràt à déployer)
 
 ---
 
-##  EVOLUTION PIPELINE
+## EVOLUTION PIPELINE
 
 ### AVANT
 ```
@@ -313,7 +313,7 @@ Text  DetectType  Preprocess
 
 ---
 
-##  TESTS COUVERTS
+## TESTS COUVERTS
 
  test_encyclopedic.txt (Photosynthàse)
 - Détection: ENCYCLOPEDIC 
@@ -336,7 +336,7 @@ Text  DetectType  Preprocess
 
 ---
 
-##  PRàT POUR
+## PRàT POUR
 
 -  Production deployment
 -  Utilisateurs finaux
@@ -369,7 +369,7 @@ Text  DetectType  Preprocess
 
 ---
 
-##  CONCLUSION
+## CONCLUSION
 
 Le systàme passe de "chaotique, non-fonctionnel" à "robuste, adaptatif, production-ready".
 

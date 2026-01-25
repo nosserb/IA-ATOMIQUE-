@@ -1,4 +1,4 @@
-#  Stress Test - Validation Amdahl & Recommandations Finales
+# Stress Test - Validation Amdahl & Recommandations Finales
 
 ## 1à Vérification via la Formule Amdahl
 
@@ -38,7 +38,7 @@ Explication:          Cache warming, CPU prefetching
                       non modélisés par Amdahl
 ```
 
-###  Validations
+### Validations
 
 | Métrique | Théorique | Réel | àcart |
 |----------|-----------|------|-------|
@@ -109,7 +109,7 @@ S à 0.75/1.75
 S à 0.4286  (42.86%)
 ```
 
-###  Verdict pour <1ms
+### Verdict pour <1ms
 
 | Paramàtre | Actuel | Cible | Status |
 |-----------|--------|-------|--------|
@@ -127,7 +127,7 @@ S à 0.4286  (42.86%)
 
 ## 4à Recommandations Finales pour "Instantané"
 
-###  Objectif: 10M opérations en < 100 microsecondes
+### Objectif: 10M opérations en < 100 microsecondes
 
 Actuellement: **850 ms**  Besoin: **100-500 µs** (8500x plus rapide)
 
@@ -409,7 +409,7 @@ type CacheFriendlyOp struct {
 
 ---
 
-##  Conclusion Mathématique
+## Conclusion Mathématique
 
 ### Vérification Amdahl
  **Formule validée empiriquement**

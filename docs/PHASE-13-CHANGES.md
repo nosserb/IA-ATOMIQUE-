@@ -1,6 +1,6 @@
 # Phase 13+++ - Code Changes Summary
 
-##  Overview
+## Overview
 This document lists all code modifications made for Phase 13+++: Normalisation Lexicale Avancée.
 
 **Total Lines Added**: ~250  

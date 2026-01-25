@@ -6,7 +6,7 @@
 
 ---
 
-##  Overview
+## Overview
 
 Your 7 optimization strategies have been implemented to dramatically accelerate the cellular relaxation system for image reconstruction:
 
@@ -17,7 +17,7 @@ New approach: Dynamic patches, smart relaxation  10-100x FASTER
 
 ---
 
-##  Implementation Status
+## Implementation Status
 
 ### 1à **Adaptive Atom Count** 
 ```
@@ -190,7 +190,7 @@ hash := FNV1a(fingerprint)
 
 ---
 
-##  Performance Metrics
+## Performance Metrics
 
 ### Test: `target.png` with 8à8 grid, 30 iterations
 
@@ -212,7 +212,7 @@ Convergence trend: Energy decreases, stabilizes
 
 ---
 
-##  CLI Usage
+## CLI Usage
 
 ### Basic Relaxation
 ```bash
@@ -257,7 +257,7 @@ Convergence trend: Energy decreases, stabilizes
 
 ---
 
-##  Configuration
+## Configuration
 
 ### Tuning Parameters
 
@@ -286,7 +286,7 @@ grid.ParallelWorkers = 4  // Detect CPU cores automatically
 
 ---
 
-##  Speedup Breakdown
+## Speedup Breakdown
 
 Assuming 8à8 grid with 50 iterations on quad-core CPU:
 
@@ -308,7 +308,7 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 
 ---
 
-##  Known Limitations & Future Improvements
+## Known Limitations & Future Improvements
 
 ### Current Limitations
 1. **Pattern cache** - Only grows, never pruned (could be LRU)
@@ -326,7 +326,7 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 
 ---
 
-##  Files Changed
+## Files Changed
 
 ### New Files
 - `database/cellular_relaxation_optimized.go` (838 lines)
@@ -340,7 +340,7 @@ Actual: ~10x (overhead from synchronization, GC, etc.)
 
 ---
 
-##  Summary
+## Summary
 
 All 7 optimization strategies are now fully integrated:
 
@@ -362,7 +362,7 @@ Perfect for:
 
 ---
 
-##  Next Steps
+## Next Steps
 
 1. Test with ultra-high resolution (4K+)
 2. Profile memory usage vs original

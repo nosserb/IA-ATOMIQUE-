@@ -14,7 +14,7 @@
 
 ---
 
-##  Solution Implémentée
+## Solution Implémentée
 
 ### àtape 0.5: Protection Mathématique Atomique (AVANT Phase 2)
 
@@ -93,7 +93,7 @@ func CalculateWeightedFidelityWithMathConstraint(
 
 ---
 
-##  Résultats Avant/Apràs
+## Résultats Avant/Apràs
 
 ### Test 1: Compression 0.85 (85%)
 
@@ -144,7 +144,7 @@ func CalculateWeightedFidelityWithMathConstraint(
 
 ---
 
-##  Clarification: Pourquoi àa s'appelle "binaire"?
+## Clarification: Pourquoi àa s'appelle "binaire"?
 
 ```
 Différence entre anciennes métriques:
@@ -164,7 +164,7 @@ Différence entre anciennes métriques:
 
 ---
 
-##  Intégration dans Pipeline
+## Intégration dans Pipeline
 
 ### Phase 15 àtape 0.5 (NOUVEAU):
 ```go
@@ -194,13 +194,13 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-##  Ce que Tu Peux Annoncer
+## Ce que Tu Peux Annoncer
 
-###  ànoncé Rigoureux (Publishable):
+### ànoncé Rigoureux (Publishable):
 
 > "The summarization engine enforces mathematical integrity by treating equations as immutable atomic units within a weighted fidelity framework. Formally, for any equation e in the source text, the system maintains e  R (equation e appears completely in summary R). The fidelity metric uses a binary equation score: EqScore  {0, 1}, penalizing any summarization where formal notation is omitted or paraphrased. When weighted fidelity falls below à = 0.80, the system automatically rejects abstractive generation and falls back to faithful extractive summarization, guaranteeing zero semantic hallucination by construction."
 
-###  Contexte Numérique:
+### Contexte Numérique:
 
 | Property | Value |
 |----------|-------|
@@ -213,7 +213,7 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-##  Files Modified/Created
+## Files Modified/Created
 
 **Created**:
 -  `database/math_integrity.go` (350+ lines)
@@ -231,7 +231,7 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-##  Next Steps (Optional)
+## Next Steps (Optional)
 
 1. **Tune β weight**: Currently β=0.5 (equations = half the score). Could adjust:
    - β=0.6 for pure math texts (proof-heavy)
@@ -252,7 +252,7 @@ if fidelityScore < FIDELITY_THRESHOLD {
 
 ---
 
-##  Summary
+## Summary
 
 **Le correctif minimal mais tràs efficace**:
 -  Détecte les équations via notations mathématiques (5 trouvées)

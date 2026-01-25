@@ -1,8 +1,8 @@
-#  Windows Setup - IA-ATOMIQUE
+# Windows Setup - IA-ATOMIQUE
 
 Installation ultra-simple pour Windows.
 
-##  3 àtapes Seulement
+## 3 àtapes Seulement
 
 ### 1à Installer Go (une fois pour toutes)
 
@@ -48,7 +48,7 @@ run-web.bat
 
 ---
 
-##  Fichiers Disponibles
+## Fichiers Disponibles
 
 ### Batch Files (.bat) - Command Prompt
 | Fichier | Action |
@@ -67,7 +67,7 @@ run-web.bat
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Premiàre Fois
 ```bash
@@ -88,21 +88,21 @@ run-web.bat
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
-###  "Go is not recognized"
+### "Go is not recognized"
 - Go n'est pas installé
 - Télécharge depuis https://golang.org/dl/
 - Redémarre Command Prompt apràs installation
 
-###  "Programme.exe n'existe pas"
+### "Programme.exe n'existe pas"
 - Lancer `install.bat` ou `build.bat` d'abord
 
-###  Port 8080 occupé
+### Port 8080 occupé
 - Ferme l'autre application
 - Ou modifie `web.go` ligne 29 pour utiliser port 9000
 
-###  PowerShell dit "Script cannot be run"
+### PowerShell dit "Script cannot be run"
 - Ouvre PowerShell en tant qu'admin
 - Tape: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 - Tape: `Y` et Enter
@@ -110,7 +110,7 @@ run-web.bat
 
 ---
 
-##  Astuces Windows
+## Astuces Windows
 
 ### Créer un Raccourci Bureau
 1. Clique droit sur `run-web.bat`
@@ -132,7 +132,7 @@ WScript.Quit
 
 ---
 
-##  Voir Aussi
+## Voir Aussi
 
 - [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md) - Guide détaillé Windows
 - [INSTALL.md](INSTALL.md) - Installation générale

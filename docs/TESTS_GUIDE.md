@@ -1,6 +1,6 @@
-#  Guide Rapide - Tests de Performance IA-ATOMIQUE
+# Guide Rapide - Tests de Performance IA-ATOMIQUE
 
-##  Quick Start
+## Quick Start
 
 ```bash
 # Compilation
@@ -14,7 +14,7 @@ go build -o programme
 
 ---
 
-##  1. Test Needle In Haystack
+## 1. Test Needle In Haystack
 
 **Objectif**: Trouver des phrases anormales/incohérentes dans un texte massif
 
@@ -48,7 +48,7 @@ Anomalies détectées:    10 phrases suspectes
 
 ---
 
-##  2. Test de Perplexité
+## 2. Test de Perplexité
 
 **Objectif**: Mesurer la cohérence globale et la "surprise" du systàme
 
@@ -85,7 +85,7 @@ Qualité:                EXCELLENT
 
 ---
 
-##  3. Benchmark Vitesse
+## 3. Benchmark Vitesse
 
 **Objectif**: Mesurer la performance de traitement pure
 
@@ -116,7 +116,7 @@ Accélération:               79 185à
 
 ---
 
-##  Résultats de Référence
+## Résultats de Référence
 
 ### Sur input.txt (568K mots, 3.13 Mo)
 
@@ -129,7 +129,7 @@ Accélération:               79 185à
 
 ---
 
-##  Comparaison Standards
+## Comparaison Standards
 
 ### Perplexité
 
@@ -151,7 +151,7 @@ IA-ATOMIQUE:     3.96M mots/sec   79Kà plus rapide!
 
 ---
 
-##  Tests Avancés
+## Tests Avancés
 
 ### Test sur Gros Fichier
 
@@ -180,7 +180,7 @@ echo "sdlfkj asdlkfj random blabla..." > chaos.txt
 
 ---
 
-##  Options Personnalisées
+## Options Personnalisées
 
 ### Modifier la Sensibilité (dans le code)
 
@@ -200,7 +200,7 @@ calc.MaxPerplexity = 15.0  // Perplexité max (défaut: 15.0)
 
 ---
 
-##  Extrapolations Utiles
+## Extrapolations Utiles
 
 ### Pour 1M de mots
 ```
@@ -225,7 +225,7 @@ Vitesse pure:   ~8.4 minutes
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 ### "Temps trop long sur Needle Search"
  Normal pour gros fichiers, c'est O(n²). Optimisation en cours.
@@ -241,7 +241,7 @@ Vitesse pure:   ~8.4 minutes
 
 ---
 
-##  Commandes Complàtes
+## Commandes Complàtes
 
 ```bash
 # Compilation
@@ -268,7 +268,7 @@ go build -o programme
 
 ---
 
-##  En Résumé
+## En Résumé
 
 L'IA-ATOMIQUE offre maintenant **3 tests de référence** pour valider ses performances:
 

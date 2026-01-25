@@ -1,14 +1,14 @@
-#  SYNTHàSE: Réorientation Paradigmatique Complàte
+# SYNTHàSE: Réorientation Paradigmatique Complàte
 
 ## Ce Que Nous Avons Transformé
 
-###  AVANT: "Pixel-by-pixel Generation"
+### AVANT: "Pixel-by-pixel Generation"
 - Pensée: "Chaque pixel = décision indépendante"
 - Approche: Réseau neuronal géant (GAN/Diffusion)
 - Résultat: Boàte noire, coàteux, lent, nécessite GPU
 - Problàme: **Vous ne savez pas comment àa marche**
 
-###  APRàS: "Constraint Relaxation Physics"
+### APRàS: "Constraint Relaxation Physics"
 - Pensée: "Chaque atome minimise sa tension locale"
 - Approche: Systàme physique en équilibre
 - Résultat: Transparence totale, rapide, aucun GPU

@@ -1,8 +1,8 @@
-#  Déploiement sur Railway.app
+# Déploiement sur Railway.app
 
 Guide complet pour héberger IA-ATOMIQUE sur Railway.
 
-##  Setup Rapide (5 minutes)
+## Setup Rapide (5 minutes)
 
 ### 1à Créer un compte Railway
 - Va sur: https://railway.app
@@ -46,7 +46,7 @@ C'est tout!
 
 ---
 
-##  Configuration Avancée
+## Configuration Avancée
 
 ### Voir les logs
 ```bash
@@ -65,7 +65,7 @@ git push origin main
 
 ---
 
-##  URL Finale
+## URL Finale
 
 Une fois déployée, ton app sera accessible sur:
 ```
@@ -76,7 +76,7 @@ Remplace `xxx` par le nom que Railway génàre.
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 ### Erreur: "Build failed"
 - Vérifier que `go.mod` existe
@@ -94,7 +94,7 @@ Remplace `xxx` par le nom que Railway génàre.
 
 ---
 
-##  Performance
+## Performance
 
 - Go est ultra-rapide
 - Railway gratuit peut gérer beaucoup de traffic
@@ -102,14 +102,14 @@ Remplace `xxx` par le nom que Railway génàre.
 
 ---
 
-##  Coàt
+## Coàt
 
 - Gratuit les premiers crédits ($5/mois)
 - Puis payant (tràs peu cher)
 
 ---
 
-##  Avantages Railway
+## Avantages Railway
 
  Déploiement automatique (git push)  
  Zéro configuration requise  
@@ -120,7 +120,7 @@ Remplace `xxx` par le nom que Railway génàre.
 
 ---
 
-##  Prochaines àtapes
+## Prochaines àtapes
 
 1. Push ton code sur GitHub
 2. Va sur railway.app

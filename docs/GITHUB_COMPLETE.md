@@ -1,4 +1,4 @@
-#  TOUT EST PRàT POUR GITHUB!
+# TOUT EST PRàT POUR GITHUB!
 
 ## Résumé: Qu'est-ce qui a été préparé?
 
@@ -42,7 +42,7 @@ Ton projet **IA-ATOMIQUE** est maintenant **100% pràt** pour GitHub. Voici ce q
 
 ---
 
-##  Comment àa Marche
+## Comment àa Marche
 
 ### Pour toi (développeur)
 
@@ -92,7 +92,7 @@ go build -o programme
 
 ---
 
-##  Qu'est-ce Qu'on Peut Faire Avec?
+## Qu'est-ce Qu'on Peut Faire Avec?
 
 ### Sur localhost (développement)
 ```bash
@@ -123,7 +123,7 @@ GitHub Actions vérifiera automatiquement:
 
 ---
 
-##  Interface Web - Fonctionnalités
+## Interface Web - Fonctionnalités
 
 **Côté utilisateur:**
 1. Colle ton texte dans la zone gauche
@@ -138,7 +138,7 @@ GitHub Actions vérifiera automatiquement:
 
 ---
 
-##  Structure Finale du Projet
+## Structure Finale du Projet
 
 ```
 IA-ATOMIQUE/
@@ -183,7 +183,7 @@ IA-ATOMIQUE/
 
 ---
 
-##  Points Clés
+## Points Clés
 
 ### Compilation
 ```bash
@@ -212,7 +212,7 @@ Chaque document a un objectif:
 
 ---
 
-##  Checklist Finale
+## Checklist Finale
 
 - [x] Code compile sans erreur
 - [x] Interface web complàte et testée
@@ -228,7 +228,7 @@ Chaque document a un objectif:
 
 ---
 
-##  Prochaine àtape?
+## Prochaine àtape?
 
 ### Créer le repo GitHub:
 1. Va sur github.com
@@ -256,7 +256,7 @@ Voir [GITHUB_PUSH_GUIDE.md](GITHUB_PUSH_GUIDE.md) pour plus de détails.
 
 ---
 
-##  Astuces
+## Astuces
 
 ### Pour lancer rapidement
 ```bash
@@ -277,7 +277,7 @@ make test          # Teste la compilation
 
 ---
 
-##  C'est Tout!
+## C'est Tout!
 
 Ton projet est **100% pràt** pour àtre hébergé sur GitHub. Les utilisateurs vont pouvoir:
 

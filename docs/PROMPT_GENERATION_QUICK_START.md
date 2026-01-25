@@ -1,4 +1,4 @@
-#  Neural Prompt Generation - Quick Reference
+# Neural Prompt Generation - Quick Reference
 
 ## One-Liner Examples
 
@@ -96,13 +96,13 @@ ls -lh output/atomic_prompt_512x512_150iter.png output/atomic_generated_512x512_
 
 ```bash
 ./programme generate from-prompt
-#  Shows usage examples
+# Shows usage examples
 
 ./programme generate
-#  Shows all commands
+# Shows all commands
 
 ./programme generate parameters  
-#  Explains all parameters
+# Explains all parameters
 ```
 
 ---

@@ -1,4 +1,4 @@
-#  IA-ATOMIQUE: Atomic Dataset Training Guide
+# IA-ATOMIQUE: Atomic Dataset Training Guide
 
 ## Overview
 

@@ -1,6 +1,6 @@
-#  CORRECTIF FINAL: Hallucination àliminée
+# CORRECTIF FINAL: Hallucination àliminée
 
-##  Diagnostic du Problàme
+## Diagnostic du Problàme
 
 **Symptôme avant correctif**:
 ```
@@ -17,7 +17,7 @@ Fidélité pondérée: 80.97% (> seuil 80%)
 - à ce niveau, les étapes de transformation créent de la dérive sémantique
 - Les phases X+1, X+3, X+5 (abstraction, humanisation, enrichissement) inventent du texte
 
-##  Correctif Appliqué
+## Correctif Appliqué
 
 ### Nouvelle logique (ligne ~512 de grammar_summarization.go)
 
@@ -41,7 +41,7 @@ if fidelityScore < 0.80 {
 }
 ```
 
-##  Avant/Apràs
+## Avant/Apràs
 
 ### Avant Correctif
 ```
@@ -65,7 +65,7 @@ Résumé EXTRACTIF: "IA atomique, résonance, atomes, ..."
  EXACT (fidàle à la source)
 ```
 
-##  Résultat Validation
+## Résultat Validation
 
 **Diagnostic systàme**:
 ```
@@ -92,7 +92,7 @@ Résumé EXTRACTIF: "IA atomique, résonance, atomes, ..."
  Zéro mention de violence, précarité, ou tout autre hallucination
 ```
 
-##  Garanties de Sécurité
+## Garanties de Sécurité
 
 ### Seuils Finaux
 
@@ -114,7 +114,7 @@ if result.SkipAbstraction || result.HalluccinationDetected {
 }
 ```
 
-##  Performances
+## Performances
 
 ```
 Compression:      14.6% (extractif, sàr)
@@ -124,7 +124,7 @@ Processing Time:  309 ms
 Hallucination:     àLIMINà
 ```
 
-##  Leàon Technique
+## Leàon Technique
 
 **Le paradoxe de la fidélité marginale**:
 - Fidélité = 5.02% (couverture simple)
@@ -133,11 +133,11 @@ Hallucination:     àLIMINà
 - Les phases d'abstraction créent de la dérive màme avec bonne fidélité
 - **Solution: Refuser abstraction si Ff_w < 92%** (zone de précaution)
 
-##  ànoncé Final (Publication)
+## ànoncé Final (Publication)
 
 > "To prevent semantic drift at marginal fidelity levels, the system rejects abstractive summarization when weighted fidelity falls below a conservative safety threshold (92%). This creates a clear bifurcation: faithful extraction when confidence is uncertain, and safe generation only when mathematical and conceptual integrity is proven (Ff_w > 92%)."
 
-##  Status
+## Status
 
  **Hallucination àLIMINàE**
  **Fidélité GARANTIE**

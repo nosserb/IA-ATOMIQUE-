@@ -1,4 +1,4 @@
-#  Pattern Database & Indexing System
+# Pattern Database & Indexing System
 
 **Date:** January 9, 2026  
 **Version:** 1.0  

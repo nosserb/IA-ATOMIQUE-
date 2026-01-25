@@ -1,4 +1,4 @@
-#  Atomic Generation - 5-Minute Quick Start
+# Atomic Generation - 5-Minute Quick Start
 
 ## What It Does
 

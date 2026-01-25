@@ -1,4 +1,4 @@
-#  IA-ATOMIQUE: 5-Phase Atomic Image Generation Pipeline
+# IA-ATOMIQUE: 5-Phase Atomic Image Generation Pipeline
 
 ## Overview
 

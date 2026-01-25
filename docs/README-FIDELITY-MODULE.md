@@ -14,7 +14,7 @@ Ce module implémente **6 stratégies mathématiquement formalisées** pour emp�
 
 ---
 
-##  Caractéristiques principales
+## Caractéristiques principales
 
  **Zéro hallucination garantie** (via fallback extractif)  
  **Décision automatique** (hybridation intelligente)  
@@ -24,7 +24,7 @@ Ce module implémente **6 stratégies mathématiquement formalisées** pour emp�
 
 ---
 
-##  Structure du module
+## Structure du module
 
 ```
 IA-ATOMIQUE-/
@@ -40,7 +40,7 @@ IA-ATOMIQUE-/
 
 ---
 
-##  Démarrage 30 secondes
+## Démarrage 30 secondes
 
 ### 1. Compiler
 ```bash
@@ -67,7 +67,7 @@ go build -o programme
 
 ---
 
-##  Formule fidélité
+## Formule fidélité
 
 $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
@@ -80,7 +80,7 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
 ---
 
-##  6 Stratégies
+## 6 Stratégies
 
 ### A. Extraction TF-IDF (Extractive)
 -  Fidélité : 100%
@@ -109,7 +109,7 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
 ---
 
-##  Utilisation programmatique
+## Utilisation programmatique
 
 ### Approche simple : Hybridation automatique
 ```go
@@ -136,7 +136,7 @@ extracted := database.ExtractiveResume(text, 0.3)
 
 ---
 
-##  Résultats de tests
+## Résultats de tests
 
 | Test | Texte | Source | Generated | Fidélité | Mode |
 |---|---|---|---|---|---|
@@ -149,7 +149,7 @@ extracted := database.ExtractiveResume(text, 0.3)
 
 ---
 
-##  Métriques
+## Métriques
 
 | Métrique | Valeur |
 |---|---|
@@ -162,7 +162,7 @@ extracted := database.ExtractiveResume(text, 0.3)
 
 ---
 
-##  Configuration
+## Configuration
 
 ### Seuil fidélité (recommandation)
 
@@ -188,7 +188,7 @@ technicalPatterns := []string{
 
 ---
 
-##  Checklist utilisation
+## Checklist utilisation
 
 - [ ] Compiler : `go build -o programme`
 - [ ] Tester : `./programme fidelity test`
@@ -199,7 +199,7 @@ technicalPatterns := []string{
 
 ---
 
-##  Documentation
+## Documentation
 
 | Document | Contenu |
 |---|---|
@@ -211,7 +211,7 @@ technicalPatterns := []string{
 
 ---
 
-##  Important
+## Important
 
 ### Garanties mathématiques
 
@@ -229,7 +229,7 @@ technicalPatterns := []string{
 
 ---
 
-##  Futures améliorations
+## Futures améliorations
 
 - [ ] BERT embeddings réels
 - [ ] Support multi-langue (EN, DE, ES)
@@ -249,7 +249,7 @@ technicalPatterns := []string{
 
 ---
 
-##  Licence
+## Licence
 
 Màme que IA-ATOMIQUE
 

@@ -1,6 +1,6 @@
-#  OPTIMISATIONS COMPLàTàES - IA-ATOMIQUE
+# OPTIMISATIONS COMPLàTàES - IA-ATOMIQUE
 
-##  Objectif Atteint: <2 Secondes
+## Objectif Atteint: <2 Secondes
 
 **Résultats Actuels:**
 -  **Génération Ultra:** 15ms (128à128)
@@ -14,7 +14,7 @@
 
 ---
 
-##  Tableau Comparatif
+## Tableau Comparatif
 
 ### GàNàRATIONS D'IMAGES
 
@@ -38,7 +38,7 @@
 
 ---
 
-##  Optimisations Implémentées
+## Optimisations Implémentées
 
 ### 1. RàDUCTION DES ATOMES (Biggest Win! )
 ```
@@ -103,7 +103,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-##  Commandes Disponibles
+## Commandes Disponibles
 
 ### GàNàRATIONS D'IMAGES
 
@@ -148,7 +148,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-##  Fichiers Créés/Modifiés
+## Fichiers Créés/Modifiés
 
 ### Nouveaux Fichiers
 1. **database/image_fast.go** - Core fast mode implementation (237 lines)
@@ -181,13 +181,13 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 
 ---
 
-##  Cas d'Usage
+## Cas d'Usage
 
 ### UX Interactive
 ```bash
 # User clicks "Generate Preview"
 ./programme image ultra "sunset over ocean"
-#  15ms 
+# 15ms 
 # Preview appears instantly!
 ```
 
@@ -197,7 +197,7 @@ for batchStart := 0; batchStart < totalAtoms; batchStart += 16 {
 for i in {1..10}; do
     ./programme image fast "random prompt $i" &
 done
-#  20ms each = 200ms total 
+# 20ms each = 200ms total 
 # 10 images ready!
 ```
 
@@ -205,13 +205,13 @@ done
 ```bash
 # User uploads blurry photo
 ./programme deblur fast user_photo.jpg result.png
-#  25ms 
+# 25ms 
 # Fixed photo ready!
 ```
 
 ---
 
-##  Performance Summary
+## Performance Summary
 
 | Task | Before | After | Improvement |
 |------|--------|-------|------------|
@@ -221,7 +221,7 @@ done
 
 ---
 
-##  Technical Details
+## Technical Details
 
 ### Atom Count Reduction Strategy
 ```
@@ -251,7 +251,7 @@ Standard:
 
 ---
 
-##  Benchmark Results
+## Benchmark Results
 
 ```
  COMPLETE BENCHMARK
@@ -276,7 +276,7 @@ IMAGE DEBLURRING:
 
 ---
 
-##  Architecture Insight
+## Architecture Insight
 
 The key insight: **Less computation = Faster results**
 
@@ -290,7 +290,7 @@ We achieve **sub-millisecond performance** while still maintaining reasonable vi
 
 ---
 
-##  Next Steps
+## Next Steps
 
 Possible enhancements:
 - [ ] GPU acceleration for even faster processing

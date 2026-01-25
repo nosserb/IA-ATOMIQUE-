@@ -1,6 +1,6 @@
 # Systàme Hybride Probabilité + Stabilité Atomique
 
-##  Concept Innovant
+## Concept Innovant
 
 Au lieu de choisir entre **probabilité linguistique** OU **stabilité atomique**, on les **MIXE** pour combiner leurs forces :
 
@@ -21,7 +21,7 @@ Au lieu de choisir entre **probabilité linguistique** OU **stabilité atomique*
 - **Formule** : Synergie = P(prob) à S(stabilité)
 - **Avantage** : Récompense les textes qui sont à LA FOIS probables ET stables
 
-##  Formule Hybride
+## Formule Hybride
 
 ```
 Score = ààP + βàS + γà(PàS)
@@ -34,7 +34,7 @@ Où :
 - S = score stabilité atomique [0-1]
 ```
 
-##  Comment àa Marche
+## Comment àa Marche
 
 ### 1. Score de Probabilité
 ```go
@@ -79,7 +79,7 @@ Exemples:
 - P=0.5, S=0.5  Synergie=0.25 (médiocre partout)
 ```
 
-##  Exemples Concrets
+## Exemples Concrets
 
 ### Exemple 1: Cuisine (Hellaswag)
 **Contexte** : "Une femme entre dans une cuisine. Elle prend une casserole et la remplit d'eau."
@@ -111,7 +111,7 @@ Exemples:
 - Synergie = 0.31
 - **Score = 0.30à0.68 + 0.50à0.45 + 0.20à0.31 = 0.491**  MAUVAIS
 
-##  Avantages du Systàme Hybride
+## Avantages du Systàme Hybride
 
 ### 1. Complémentarité
 - Probabilité capture les patterns statistiques
@@ -128,7 +128,7 @@ Exemples:
 - Apprentissage automatique des meilleurs poids
 - Spécialisation possible par domaine
 
-##  Résultats
+## Résultats
 
 ### Performance Actuelle
 - **MMLU** : 40% (avec hybride)
@@ -145,7 +145,7 @@ Avec datasets complets (16K questions) et réseau 1000+ atomes :
 - **MMLU projeté** : 50-60%
 - **Hellaswag projeté** : 70-80%
 
-##  Améliorations Possibles
+## Améliorations Possibles
 
 ### Court Terme
 1. **Augmenter réseau atomique** : 300  1000 atomes
@@ -162,7 +162,7 @@ Avec datasets complets (16K questions) et réseau 1000+ atomes :
 2. **Apprentissage par renforcement** : Optimiser poids automatiquement
 3. **Transfer learning** : Pré-entraàner sur corpus massif
 
-##  Pourquoi àa Fonctionne
+## Pourquoi àa Fonctionne
 
 ### Théorie
 Le langage a DEUX niveaux :
@@ -181,7 +181,7 @@ C'est comme avoir deux juges :
 
 Une bonne réponse doit satisfaire LES DEUX juges.
 
-##  Conclusion
+## Conclusion
 
 Le systàme hybride **Probabilité + Stabilité Atomique** est une innovation qui :
 -  Combine forces de deux approches complémentaires

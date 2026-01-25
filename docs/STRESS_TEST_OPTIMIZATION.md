@@ -1,6 +1,6 @@
-#  Stress Test Arithmétique - Optimisation Amdahl & Batching
+# Stress Test Arithmétique - Optimisation Amdahl & Batching
 
-##  Résumé Exécutif
+## Résumé Exécutif
 
 Nous avons implémenté un **stress test de calcul arithmétique massif** qui vérifie la loi d'Amdahl et l'optimisation du batching parallàle.
 
@@ -229,19 +229,19 @@ Résultat: Parallélisme efficace
 
 ## 8à Leàons clés
 
-###  Ce qui fonctionne bien:
+### Ce qui fonctionne bien:
 1. **Channels sans mutex** - Communication haute performance
 2. **Batching adaptatif** - B = M/N réduit overhead exponentiellement
 3. **Grandes opérations** - Work dominate overhead quand operations complexes
 4. **Division équitable** - Pas de load imbalance avec len(ops)/N
 
-###  Piàges à éviter:
+### Piàges à éviter:
 1. **Mutex fin-grain** - 1 lock/op = catastrophe
 2. **Batch trop petit** - Overhead synchronisation dépasse le travail
 3. **Nombre petit** - Si M < 10k ops, séquentiel plus rapide
 4. **Opérations triviales** - Si op < 100ns, parallel overhead non amortissable
 
-###  Optimisations futures:
+### Optimisations futures:
 1. **SIMD/Vectorisation** - AVX2 pour multiplier operands par lots
 2. **GPU acceleration** - 1000+ workers pour réduire S
 3. **Worksteal scheduling** - Redistribution dynamique si imbalance
@@ -264,7 +264,7 @@ $$\lim_{N \to \infty} \text{Speedup} = \frac{1}{S}$$
 
 ---
 
-##  Validation mathématique
+## Validation mathématique
 
 ### Benchmark 1M:
 - T_seq = 229.27 ms
@@ -287,7 +287,7 @@ Ratio = 2.23 / 1.92 = 1.16x (116% - cache warming)
 
 ---
 
-##  Références
+## Références
 
 1. Gene Amdahl, "Validity of the single processor approach to achieving large-scale computing capabilities", 1967
 2. John L. Gustafson, "Reevaluating Amdahl's Law", 1988

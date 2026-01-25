@@ -236,7 +236,7 @@ Opérations: 10M, 40% redondantes
 
 ## Quand Levier 3 Génàre le Plus de Gain?
 
-###  Meilleur Cas
+### Meilleur Cas
 
 ```
 Application: Convergence itérative
@@ -248,7 +248,7 @@ Levier 3 economise: 312ms par itération
  10 iterations = 3.1 secondes SAUVàES
 ```
 
-###  Cas Moyen
+### Cas Moyen
 
 ```
 Application: Traitement données streaming
@@ -260,7 +260,7 @@ Levier 3 economise: 138ms par batch
  1000 batches = 138 secondes SAUVàES
 ```
 
-###  Pire Cas
+### Pire Cas
 
 ```
 Application: Données purement aléatoires

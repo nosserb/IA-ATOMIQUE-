@@ -20,7 +20,7 @@ Le projet **IA-ATOMIQUE** a été entiàrement refactorisé pour refléter fidà
 
 ---
 
-##  Composants Implémentés
+## Composants Implémentés
 
 ### 1. **Atomes Computationnels** (`database/atomic.go`)
 -  `ComputationalAtom` : unité autonome avec état interne, ràgles locales, perceptions
@@ -55,7 +55,7 @@ Le projet **IA-ATOMIQUE** a été entiàrement refactorisé pour refléter fidà
 
 ---
 
-##  Métriques et Résultats
+## Métriques et Résultats
 
 ### Performance
 ```
@@ -75,7 +75,7 @@ Scalabilité: Linéaire O(n * neighbors)
 
 ---
 
-##  Documentation Créée
+## Documentation Créée
 
 ### 1. **README-ARTICLE.md**
 - Vue d'ensemble complàte du systàme
@@ -102,7 +102,7 @@ Scalabilité: Linéaire O(n * neighbors)
 
 ---
 
-##  Correspondance avec l'Article
+## Correspondance avec l'Article
 
 ### Sections de l'Article  Implémentation
 
@@ -119,7 +119,7 @@ Scalabilité: Linéaire O(n * neighbors)
 
 ---
 
-##  àquations Implémentées
+## àquations Implémentées
 
 ### àquation 1: Résonance Atomique
 ```go
@@ -141,7 +141,7 @@ dwij/dt = γàcohérence(si,sj) - δàwij
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Compilation
 ```bash
@@ -175,36 +175,36 @@ go build -o programme
 
 ---
 
-##  Caractéristiques Clés
+## Caractéristiques Clés
 
-###  Distribution Totale
+### Distribution Totale
 - Pas de serveur central
 - Chaque atome autonome
 - Interactions exclusivement locales
 
-###  Asynchronisme
+### Asynchronisme
 - Pas d'horloge globale
 - Chaque atome à son rythme
 - Résilience exceptionnelle
 
-###  àmergence
+### àmergence
 - Intelligence globale de ràgles locales
 - Auto-organisation naturelle
 - Comportements complexes spontanés
 
-###  Sobriété
+### Sobriété
 - Mémoire minimale par atome
 - Calcul réduit
 - Déployable sur systàmes embarqués
 
-###  Adaptabilité
+### Adaptabilité
 - Apprentissage continu local
 - Ajustement automatique
 - Plasticité permanente
 
 ---
 
-##  Fichiers Modifiés/Créés
+## Fichiers Modifiés/Créés
 
 ### Nouveaux Fichiers
 -  `database/atomic.go` (460 lignes) - Càur du systàme
@@ -226,7 +226,7 @@ go build -o programme
 
 ---
 
-##  Prochaines àtapes (Optionnelles)
+## Prochaines àtapes (Optionnelles)
 
 ### Court Terme
 - [ ] Visualisation en temps réel du réseau
@@ -248,7 +248,7 @@ go build -o programme
 
 ---
 
-##  Points Forts de l'Implémentation
+## Points Forts de l'Implémentation
 
 1. **Fidélité à l'Article**
    - Toutes les équations implémentées
@@ -284,7 +284,7 @@ go build -o programme
 
 ---
 
-##  Valeur Académique
+## Valeur Académique
 
 Ce projet démontre:
 -  Viabilité des architectures distribuées
@@ -304,7 +304,7 @@ Ce projet démontre:
 
 ---
 
-##  License
+## License
 
 MIT License - Libre d'usage
 

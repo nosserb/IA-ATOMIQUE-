@@ -1,6 +1,6 @@
 # Comparaison Académique - IA-ATOMIQUE vs IA Classiques
 
-##  Tableau Comparatif des Benchmarks Standards
+## Tableau Comparatif des Benchmarks Standards
 
 | Benchmark | Objectif | IA Classique | IA-ATOMIQUE | Amélioration |
 |-----------|----------|--------------|-------------|--------------|
@@ -14,7 +14,7 @@
 
 ---
 
-##  Analyse Détaillée par Benchmark
+## Analyse Détaillée par Benchmark
 
 ### 1. MMLU (Massive Multitask Language Understanding)
 
@@ -244,7 +244,7 @@ Comparaison:
 
 ---
 
-##  Synthàse Scientifique
+## Synthàse Scientifique
 
 ### Architecture Fondamentale
 
@@ -280,7 +280,7 @@ Comparaison:
 
 ---
 
-##  Implications pour la Recherche
+## Implications pour la Recherche
 
 ### 1. Publications Académiques
 
@@ -342,7 +342,7 @@ Comparaison:
 
 ---
 
-##  Conclusion pour Article HAL
+## Conclusion pour Article HAL
 
 ### Contributions Scientifiques
 
@@ -404,7 +404,7 @@ Comparaison:
 
 ---
 
-##  Références
+## Références
 
 ### Benchmarks Standards
 

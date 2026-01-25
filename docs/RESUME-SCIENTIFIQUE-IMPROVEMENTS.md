@@ -1,11 +1,11 @@
-#  Améliorations du Systàme de Résumé Scientifique
+# Améliorations du Systàme de Résumé Scientifique
 
 ## Vue d'ensemble
 Implémentation du systàme des **5 piliers scientifiques** pour générer des résumés structurés, lisibles et complets.
 
 ---
 
-##  Systàme Implémenté
+## Systàme Implémenté
 
 ### 1à Les 5 Piliers Obligatoires
 
@@ -21,7 +21,7 @@ Chaque résumé doit répondre à ces 5 questions dans l'ordre:
 
 ---
 
-##  Structure du Code
+## Structure du Code
 
 ### Structures de Données
 ```go
@@ -86,7 +86,7 @@ Crée un texte narratif continu qui relie les piliers
 
 ---
 
-##  Exemple de Sortie
+## Exemple de Sortie
 
 ```
 
@@ -123,14 +123,14 @@ Il en résulte que : les résultats montrent une accélération de 30x.
 
 ---
 
-##  Améliorations Apportées
+## Améliorations Apportées
 
-###  Avant
+### Avant
 - Résumé fluide mais flou
 - Structure implicite, difficile à suivre
 - Aucune métrique de qualité scientifique
 
-###  Apràs
+### Apràs
 - **Structure explicite** avec les 5 piliers
 - **Score de complétude** (0-100%)
 - **Double sortie**: structure + narratif
@@ -140,7 +140,7 @@ Il en résulte que : les résultats montrent une accélération de 30x.
 
 ---
 
-##  Prochaines àtapes Recommandées
+## Prochaines àtapes Recommandées
 
 ### àTAPE 5  Réécriture Locale (Clé)
 Apràs génération, éliminer les phrases redondantes:
@@ -172,7 +172,7 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ```bash
 # Tester le nouveau systàme
@@ -185,7 +185,7 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ---
 
-##  Métrique de Qualité
+## Métrique de Qualité
 
 **Score de résumabilité scientifique** = (Nombre de piliers présents) / 5 à 100%
 
@@ -196,7 +196,7 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ---
 
-##  Points d'Attention
+## Points d'Attention
 
 1. **Classification**: Les mots-clés peuvent se chevaucher (ex: "propose" peut àtre OBJECTIF ou APPROCHE)
     Solution: Ajouter du contexte sémantique
@@ -209,7 +209,7 @@ Comparer le recouvrement sémantique  valider la compréhension réelle
 
 ---
 
-##  Références
+## Références
 
 - [Votre recommandation initiale sur la structure scientifique]
 - Implémentation Go: `database/language.go`

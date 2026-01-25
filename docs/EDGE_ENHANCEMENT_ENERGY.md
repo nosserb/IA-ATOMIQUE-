@@ -5,14 +5,14 @@
 
 ---
 
-##  Objectif
+## Objectif
 
 **Avant**: Le systàme s'appuyait sur la déconvolution (Richardson-Lucy) et l'amplification des gradients  
 **Maintenant**: En plus de la déconvolution, le systàme **récompense activement les contours** via une énergie de netteté
 
 ---
 
-##  Formulation Mathématique
+## Formulation Mathématique
 
 ### ànergie Totale
 
@@ -34,7 +34,7 @@ $$G_y = I_{i,j+1} - I_{i,j-1}$$
 
 ---
 
-##  Intuition Physique
+## Intuition Physique
 
 1. **Zones lisses** (bas gradient): $E_{sharpness}$ proche de 0, peu de récompense
 2. **Contours nets** (haut gradient): $E_{sharpness}$ tràs négatif, **forte récompense**
@@ -44,7 +44,7 @@ $$G_y = I_{i,j+1} - I_{i,j-1}$$
 
 ---
 
-##  Implémentation
+## Implémentation
 
 ### Structure `DeconvolutionParams`
 
@@ -120,7 +120,7 @@ patch.Atoms[i][j].B -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGra
 
 ---
 
-##  Comparaison Avant/Apràs
+## Comparaison Avant/Apràs
 
 | Aspect | Avant | Apràs |
 |--------|-------|-------|
@@ -132,7 +132,7 @@ patch.Atoms[i][j].B -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGra
 
 ---
 
-##  Effets Observables
+## Effets Observables
 
 ### Avec E_sharpness
 
@@ -149,7 +149,7 @@ patch.Atoms[i][j].B -= gradientBoost * (baseGrad - 0.5*sharpenGrad - 0.3*edgeGra
 
 ---
 
-##  Paramàtres Ajustables
+## Paramàtres Ajustables
 
 ### Par Défaut
 
@@ -179,7 +179,7 @@ blurSigma = 5.0   à = 1.0  (flou extràme: maximum)
 
 ---
 
-##  Performance
+## Performance
 
 **Benchmark** (1920à1080, 16à16 grid, 100 itérations):
 
@@ -193,7 +193,7 @@ Throughput: ~7100 pixels/ms
 
 ---
 
-##  Précautions
+## Précautions
 
 ### àviter les Artefacts
 
@@ -225,7 +225,7 @@ if shouldEnhanceEdges[i][j] {  // Masque local
 
 ---
 
-##  Exemples de Tuning
+## Exemples de Tuning
 
 ### Pour Image Peu Floue
 
@@ -252,7 +252,7 @@ EdgeEnhancementLambda: 0.6  // Fort (texte nécessite netteté)
 
 ---
 
-##  Formule Complàte Intégrée
+## Formule Complàte Intégrée
 
 ### ànergie Locale par Patch
 
@@ -273,7 +273,7 @@ Où $\eta$ = learning rate adaptatif
 
 ---
 
-##  Avantages de cette Approche
+## Avantages de cette Approche
 
  **Interprétabilité**: ànergie négative = attraction vers gradients élevés  
  **Contrôle**: à paramétré et adaptatif  
@@ -283,7 +283,7 @@ Où $\eta$ = learning rate adaptatif
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Commande Standard
 
@@ -311,7 +311,7 @@ Réduisez les itérations:
 
 ---
 
-##  Intégration avec Autres Termes
+## Intégration avec Autres Termes
 
 ### Pipeline Complet d'Atome
 
@@ -335,7 +335,7 @@ Ces poids peuvent àtre ajustés pour favoriser un aspect ou l'autre.
 
 ---
 
-##  Fondements Théoriques
+## Fondements Théoriques
 
 ### Gradient Descent avec ànergie
 
@@ -364,7 +364,7 @@ G_x = -1*I[i-1,j-1] + 0*I[i-1,j] + 1*I[i-1,j+1]
 
 ---
 
-##  Résumé Conceptuel
+## Résumé Conceptuel
 
 | Composant | Rôle | Formule |
 |-----------|------|---------|
@@ -376,7 +376,7 @@ G_x = -1*I[i-1,j-1] + 0*I[i-1,j] + 1*I[i-1,j+1]
 
 ---
 
-##  Extensions Futures
+## Extensions Futures
 
 - [ ] **Masque adaptatif**: Appliquer à uniquement où nécessaire
 - [ ] **Sobel complet**: Passer à Sobel 3à3 pour meilleure détection

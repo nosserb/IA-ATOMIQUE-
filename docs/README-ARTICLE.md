@@ -6,7 +6,7 @@
 
 ---
 
-##  Concept
+## Concept
 
 L'**IA atomique** est une architecture révolutionnaire qui remplace le paradigme centralisé et synchrone par un systàme entiàrement **distribué et asynchrone**. Plutôt qu'un serveur central superviseur, le systàme repose sur des **unités autonomes élémentaires** (atomes computationnels) qui interagissent localement selon le mécanisme de **résonance atomique**.
 
@@ -14,7 +14,7 @@ Les structures globales stables et les comportements complexes **émergent natur
 
 ---
 
-##  Caractéristiques Fondamentales
+## Caractéristiques Fondamentales
 
 ### 1. Architecture Entiàrement Distribuée
 -  Pas de serveur central ni d'unité de contrôle
@@ -55,7 +55,7 @@ $$\frac{dw_{ij}}{dt} = \gamma \cdot \text{cohérence}(s_i, s_j) - \delta \cdot w
 
 ---
 
-##  Installation & Utilisation
+## Installation & Utilisation
 
 ### Compilation
 
@@ -85,7 +85,7 @@ go build -o programme main.go atomic_cli.go database/*.go
 
 ---
 
-##  Résultats de Simulation
+## Résultats de Simulation
 
 La simulation du réseau atomique retourne:
 
@@ -146,7 +146,7 @@ La simulation du réseau atomique retourne:
 
 ---
 
-##  Architecture
+## Architecture
 
 ### Fichiers Principaux
 
@@ -183,7 +183,7 @@ Réseau distribué d'atomes computationnels:
 
 ---
 
-##  àquations Fondamentales
+## àquations Fondamentales
 
 ### Mise à Jour d'àtat
 
@@ -209,7 +209,7 @@ Où:
 
 ---
 
-##  Principes Implémentés
+## Principes Implémentés
 
 ### 1. àmergence par Interactions Locales
 L'ordre global naàt de ràgles locales simples, **sans intervention externe**.
@@ -228,7 +228,7 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 
 ---
 
-##  Applications Potentielles
+## Applications Potentielles
 
 ### Villes Intelligentes
 - Gestion du trafic décentralisée
@@ -256,7 +256,7 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 
 ---
 
-##  Sécurité et Intégrité
+## Sécurité et Intégrité
 
 - **Opérations thread-safe** : mutex pour accàs concurrent
 - **Cohérence réseau** : vérification intégrité topologique
@@ -265,7 +265,7 @@ Le systàme s'adapte en permanence via l'**apprentissage décentralisé**.
 
 ---
 
-##  Références Académiques
+## Références Académiques
 
 Cet article s'appuie sur les travaux fondamentaux en:
 - **Systàmes multi-agents** (Wooldridge)
@@ -284,13 +284,13 @@ Pour questions, suggestions ou signalements de bugs:
 
 ---
 
-##  License
+## License
 
 MIT License - Libre d'usage dans contextes académiques et commerciaux
 
 ---
 
-##  Auteur
+## Auteur
 
 **BRESSON Guylann**
 - Indépendant / àtudiant en informatique

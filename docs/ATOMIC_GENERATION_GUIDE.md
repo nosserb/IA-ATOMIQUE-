@@ -1,4 +1,4 @@
-#  Atomic Generation System - Complete Guide
+# Atomic Generation System - Complete Guide
 
 ## Overview
 

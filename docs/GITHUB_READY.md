@@ -1,6 +1,6 @@
-#  Pràt pour GitHub!
+# Pràt pour GitHub!
 
-##  Configuration Complàte
+## Configuration Complàte
 
 Ton projet **IA-ATOMIQUE** est maintenant entiàrement configuré pour àtre hébergé sur GitHub avec l'interface web!
 
@@ -46,7 +46,7 @@ web/
 
 ---
 
-##  Comment utiliser
+## Comment utiliser
 
 ### Option 1: Installation simple (Recommandé)
 ```bash
@@ -75,7 +75,7 @@ go build -o programme
 
 ---
 
-##  Fonctionnalités de l'Interface Web
+## Fonctionnalités de l'Interface Web
 
  **Texte en entrée** - Zone de saisie large et confortable  
  **Résumé en sortie** - Affichage immédiat des résultats  
@@ -86,7 +86,7 @@ go build -o programme
 
 ---
 
-##  Avant de Pusher
+## Avant de Pusher
 
 ```bash
 # Vérifier que tout est OK
@@ -100,7 +100,7 @@ git push origin chore/siteweb
 
 ---
 
-##  Structure du Projet
+## Structure du Projet
 
 ```
 IA-ATOMIQUE/
@@ -132,7 +132,7 @@ IA-ATOMIQUE/
 
 ---
 
-##  API
+## API
 
 L'interface utilise l'API `/api/summarize` (POST):
 
@@ -155,7 +155,7 @@ RESPONSE:
 
 ---
 
-##  Prochaines àtapes
+## Prochaines àtapes
 
 1. **Pusher sur GitHub** - Utilise la branche `chore/siteweb`
 2. **Faire un PR** - Vers main/develop
@@ -164,7 +164,7 @@ RESPONSE:
 
 ---
 
-##  Pour les Utilisateurs qui Clonent
+## Pour les Utilisateurs qui Clonent
 
 Ils vont voir:
 - Instructions claires dans README.md
@@ -176,7 +176,7 @@ Tout fonctionne out-of-the-box!
 
 ---
 
-##  Troubleshooting Rapide
+## Troubleshooting Rapide
 
 | Problàme | Solution |
 |----------|----------|
@@ -187,7 +187,7 @@ Tout fonctionne out-of-the-box!
 
 ---
 
-##  Checklist Finale
+## Checklist Finale
 
 - [x] Code compile sans erreur
 - [x] Fichiers web présents

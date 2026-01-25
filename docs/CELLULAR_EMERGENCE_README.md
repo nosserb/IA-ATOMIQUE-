@@ -1,6 +1,6 @@
-#  Cellular Emergence System - Revolutionary Perfect Rendering
+# Cellular Emergence System - Revolutionary Perfect Rendering
 
-##  The Problem
+## The Problem
 
 Traditional image generation approaches suffer from a fundamental issue:
 
@@ -13,7 +13,7 @@ Arbitrary chunking (64à64)  Chunks don't match image structure
 The solution **isn't** to use bigger or smaller chunks.  
 The solution **is** to let chunks **emerge naturally**.
 
-##  The Breakthrough: Hierarchical Emergence
+## The Breakthrough: Hierarchical Emergence
 
 Instead of imposing structure from above, we build it from the bottom up:
 
@@ -37,7 +37,7 @@ LEVEL 3: Perfect Rendering
    100% natural organization
 ```
 
-##  How It Works
+## How It Works
 
 ### Phase 1: Atomic Stabilization
 - 256à256 network of atoms
@@ -63,7 +63,7 @@ When criteria met  **Cell automatically emerges**
 - Hierarchical structure stabilizes
 - Perfect rendering emerges
 
-##  Quick Start
+## Quick Start
 
 ```bash
 # Build
@@ -79,7 +79,7 @@ go build -o programme main.go atomic_cli.go database/*.go
 ./programme cellular target.png 500 10
 ```
 
-##  What You'll See
+## What You'll See
 
 ```
 
@@ -121,7 +121,7 @@ go build -o programme main.go atomic_cli.go database/*.go
    Hierarchical coherence enables perfect rendering
 ```
 
-##  The Magic: Why It Works
+## The Magic: Why It Works
 
 ### Traditional Approach (FAILS)
 ```go
@@ -150,7 +150,7 @@ for iter := 0; iter < 500; iter++ {
 // Result: Cells emerge naturally, perfect rendering
 ```
 
-##  Key Advantages
+## Key Advantages
 
 | Feature | Traditional | Cellular Emergence |
 |---------|-------------|-------------------|
@@ -177,7 +177,7 @@ A **Cell** emerges when:
 
 No manual configuration needed!
 
-##  Theoretical Foundation
+## Theoretical Foundation
 
 ### Atomic Level Resonance
 $$s_i(t+1) = s_i(t) + \alpha \sum_j w_{ij} R(s_i, s_j) + \beta(R_i + p_i)$$
@@ -194,7 +194,7 @@ $$S_c(t+1) = S_c(t) + \alpha \sum_d W_{cd} R(S_c, S_d) + \beta(R_c + P_c)$$
 - **Hierarchy** is self-similar across levels
 - **Perfect rendering** emerges at top level
 
-##  Parameters (All with Good Defaults)
+## Parameters (All with Good Defaults)
 
 ```go
 // Atomic level
@@ -218,7 +218,7 @@ StabilityThreshold    = 0.85
 CoherenceThreshold    = 0.90
 ```
 
-##  Expected Results
+## Expected Results
 
 ### 500 iterations, detection every 20
 - **Time**: 10-15 seconds
@@ -238,7 +238,7 @@ CoherenceThreshold    = 0.90
 - **Cells**: 100-150
 - **Quality**: Perfect
 
-##  Use Cases
+## Use Cases
 
 1. **Image Generation**: Perfect reconstruction from energy
 2. **Style Transfer**: Hierarchical transfer between images
@@ -246,7 +246,7 @@ CoherenceThreshold    = 0.90
 4. **Artistic Rendering**: Control via energy signature matching
 5. **Super-resolution**: Hierarchical upscaling
 
-##  Documentation
+## Documentation
 
 - `CELLULAR_EMERGENCE_GUIDE.md` - Complete technical guide
 - `examples_cellular_emergence.sh` - Usage examples
@@ -254,7 +254,7 @@ CoherenceThreshold    = 0.90
 - `image_energy_based.go` - Energy computation
 - `cellular_emergence.go` - Cell detection & dynamics
 
-##  Next Steps
+## Next Steps
 
 1. Run a basic test
 2. Experiment with different iteration counts
@@ -262,7 +262,7 @@ CoherenceThreshold    = 0.90
 4. Observe how cells emerge and stabilize
 5. Experience perfect rendering quality
 
-##  Summary
+## Summary
 
 **The cellular emergence system solves the image generation problem by:**
 

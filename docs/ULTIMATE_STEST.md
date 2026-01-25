@@ -1,4 +1,4 @@
-#  ULTIMATE STEST: Vitesse Inégalée
+# ULTIMATE STEST: Vitesse Inégalée
 
 ## Concept
 `stest` est maintenant **combiné L1 + L2 + L3** pour une optimisation totale:
@@ -11,7 +11,7 @@
 
 ## Résultats Empiriques (10M Opérations)
 
-###  Cas Réaliste (40% Redondance)
+### Cas Réaliste (40% Redondance)
 
 ```
  Réponse visible: 65.45 ms  < 230ms
@@ -26,7 +26,7 @@ L3 Impact:
  SPEEDUP PERÇU: 52x
 ```
 
-###  Cas Optimiste (70% Redondance)
+### Cas Optimiste (70% Redondance)
 
 ```
  Réponse visible: 43.87 ms  < 230ms

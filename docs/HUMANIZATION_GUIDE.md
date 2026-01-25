@@ -6,7 +6,7 @@ Le systàme d'humanisation de texte a été considérablement amélioré avec l'
 
 ---
 
-##  3 Modes de Fonctionnement
+## 3 Modes de Fonctionnement
 
 ### 1. **Mode Standard (-s)**
 - **Utilisation**: `./programme humanize file texte.txt`
@@ -100,7 +100,7 @@ Pour chaque phrase:
 
 ---
 
-##  Syntaxes Supportées
+## Syntaxes Supportées
 
 Le systàme accepte 10 variantes de syntaxe différentes:
 
@@ -125,7 +125,7 @@ Le systàme accepte 10 variantes de syntaxe différentes:
 
 ---
 
-##  Exemple de Traitement
+## Exemple de Traitement
 
 ### Texte Original
 ```
@@ -163,7 +163,7 @@ De nombreux chercheurs accomplissent continuellement.
 
 ---
 
-##  Architecture Interne
+## Architecture Interne
 
 ### Fonctions Principales (interaction.go)
 
@@ -200,7 +200,7 @@ HumanizeTexteAvance()
 
 ---
 
-##  Tests Réussis
+## Tests Réussis
 
 - [x] Compilation sans erreurs
 - [x] Mode standard: ajout connecteurs fonctionnel
@@ -213,7 +213,7 @@ HumanizeTexteAvance()
 
 ---
 
-##  Futures Améliorations Possibles
+## Futures Améliorations Possibles
 
 1. **Apprentissage adaptatif**: Mémoriser les synonymes préférés par domaine
 2. **Analyse des relations sémantiques**: Utiliser des graphes de concepts
@@ -224,7 +224,7 @@ HumanizeTexteAvance()
 
 ---
 
-##  Changelog
+## Changelog
 
 ### v4.1 - Humanisation Avancée
 -  Ajout mode avancé avec analyse sémantique
@@ -246,7 +246,7 @@ HumanizeTexteAvance()
 
 ---
 
-##  Utilisation Recommandée
+## Utilisation Recommandée
 
 - **Textes génériques**: Mode Standard
 - **Documents formels**: Mode Professionnel  

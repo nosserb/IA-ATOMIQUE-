@@ -2,7 +2,7 @@
 
 Interface web simple pour résumer des textes avec votre IA neuronale.
 
-##  Démarrage
+## Démarrage
 
 ### Option 1: Avec le script (recommandé)
 ```bash
@@ -19,14 +19,14 @@ go run main.go interaction.go web.go web_utils.go database/*.go web
 ./programme web
 ```
 
-##  Accàs
+## Accàs
 
 Une fois le serveur démarré, ouvrez votre navigateur et accédez à:
 ```
 http://localhost:8080
 ```
 
-##  Utilisation
+## Utilisation
 
 1. **Collez votre texte** dans la zone "Votre Texte"
 2. **Cliquez sur "Résumer"** ou appuyez sur **Ctrl+Entrée**
@@ -38,7 +38,7 @@ Le résumé affiche:
 -  Les phrases clés du texte
 - Statistiques d'analyse (phrases, confiance, catégories)
 
-##  Personnalisation
+## Personnalisation
 
 ### Modifier les couleurs
 àditez `web/style.css`:
@@ -50,7 +50,7 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 ### Modifier la taille des éléments
 Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 
-##  Fichiers
+## Fichiers
 
 - `web/index.html` - Structure HTML
 - `web/style.css` - Styles et mise en page
@@ -58,7 +58,7 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 - `web.go` - Serveur HTTP et API
 - `start-web.sh` - Script de lancement
 
-##  API
+## API
 
 ### Endpoint: POST /api/summarize
 
@@ -81,7 +81,7 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 }
 ```
 
-##  Troubleshooting
+## Troubleshooting
 
 ### Port 8080 déjà utilisé
 Modifiez le port dans `web.go` ligne:
@@ -95,7 +95,7 @@ Assurez-vous que le répertoire `web/` existe avec les fichiers:
 - `style.css`
 - `script.js`
 
-##  Améliorations possibles
+## Améliorations possibles
 
 - [ ] Support des fichiers upload
 - [ ] Historique des résumés

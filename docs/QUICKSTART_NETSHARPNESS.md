@@ -1,10 +1,10 @@
-#  RàSUMà RAPIDE: Terme d'ànergie de Netteté
+# RàSUMà RAPIDE: Terme d'ànergie de Netteté
 
 **Date**: 13 janvier 2026
 
 ---
 
-##  En 30 Secondes
+## En 30 Secondes
 
 ### Ajout Réalisé
 
@@ -24,7 +24,7 @@ Atomes se repositionnent pour créer/amplifier contours nets
 
 ---
 
-##  Implémentation (4 Fonctions)
+## Implémentation (4 Fonctions)
 
 ### 1. ànergie Globale
 
@@ -57,7 +57,7 @@ RelaxWithEnergyTerms()  // Mise à jour
 
 ---
 
-##  Formule Complàte
+## Formule Complàte
 
 $$E_{total} = \alpha E_{struct} + \beta E_{constraint} + \gamma E_{interaction} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
@@ -68,7 +68,7 @@ Où:
 
 ---
 
-##  Paramàtres
+## Paramàtres
 
 | Paramàtre | Valeur | Plage |
 |-----------|--------|-------|
@@ -79,7 +79,7 @@ Où:
 
 ---
 
-##  Performance
+## Performance
 
 ```
 Before: 20-23ms
@@ -89,7 +89,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Compilation & Test
+## Compilation & Test
 
 ```bash
 # Build
@@ -102,7 +102,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Intuition
+## Intuition
 
 **Sans E_edge**: Amplifier gradients existants (Richardson-Lucy + k=2.2)
 
@@ -112,7 +112,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Clés de Succàs
+## Clés de Succàs
 
 1. **Signe négatif**: Force maximisation via minimisation
 2. **Sobel simplifié**: O(1) rapide, suffisant
@@ -122,7 +122,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Fichier Modifié
+## Fichier Modifié
 
 **`database/deblur_system.go`** (+200 lignes)
 
@@ -136,7 +136,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ```bash
 ./programme deblur image.jpg 16 16 100 1920 1080 output.jpg
@@ -146,7 +146,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Cas d'Usage
+## Cas d'Usage
 
  Flou à réduire activement  
  Texte, documents (netteté essentielle)  
@@ -158,7 +158,7 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Avant vs Apràs
+## Avant vs Apràs
 
 | Aspect | Avant | Apràs |
 |--------|-------|-------|

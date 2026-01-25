@@ -1,4 +1,4 @@
-#  Comparaison Visuelle des 3 Modes
+# Comparaison Visuelle des 3 Modes
 
 ## Exemple 1: Texte Technique
 
@@ -175,21 +175,21 @@ Fallback: "Les données sont tràs volumineuses"
 
 ## Conseil d'Utilisation
 
-###  Utilisez Mode STANDARD pour:
+### Utilisez Mode STANDARD pour:
 - Emails
 - Présentations générales
 - Textes conversationnels
 - Contenu blog
 - Communication interne
 
-###  Utilisez Mode PROFESSIONNEL pour:
+### Utilisez Mode PROFESSIONNEL pour:
 - Rapports
 - Documentation technique
 - Propositions commerciales
 - Contrats
 - Textes officiels
 
-###  Utilisez Mode AVANCà pour:
+### Utilisez Mode AVANCà pour:
 - Réécriture créative
 - àviter répétitions
 - Améliorer lisibilité

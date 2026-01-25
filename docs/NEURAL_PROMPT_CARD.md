@@ -1,4 +1,4 @@
-#  Neural Prompt  Image Generation - Quick Card
+# Neural Prompt  Image Generation - Quick Card
 
 ## Command
 ```bash

@@ -1,4 +1,4 @@
-#  Résumé Complet des Benchmarks - IA-ATOMIQUE v4.1
+# Résumé Complet des Benchmarks - IA-ATOMIQUE v4.1
 
 **Date:** Janvier 2026  
 **Auteur:** BRESSON Guylann  
@@ -6,7 +6,7 @@
 
 ---
 
-##  Vue d'Ensemble
+## Vue d'Ensemble
 
 Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE pour validation académique et comparaison avec l'état de l'art (GPT-4, GPT-3, BERT).
 
@@ -149,7 +149,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 
 ---
 
-##  Tableau Comparatif Global
+## Tableau Comparatif Global
 
 | Benchmark | Métrique | GPT-4 | GPT-3.5 | BERT | IA-ATOMIQUE | Amélioration |
 |-----------|----------|-------|---------|------|-------------|--------------|
@@ -165,7 +165,7 @@ Ce document récapitule **TOUS** les benchmarks implémentés dans IA-ATOMIQUE p
 
 ---
 
-##  Points Forts - Records Absolus
+## Points Forts - Records Absolus
 
 ### 1. Perplexité: 1.05 à
 
@@ -239,7 +239,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Points d'Amélioration
+## Points d'Amélioration
 
 ### 1. MMLU: 30%  70-80% (Objectif)
 
@@ -275,7 +275,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Positionnement Académique
+## Positionnement Académique
 
 ### Forces Incomparables
 
@@ -325,7 +325,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Fichiers de Documentation
+## Fichiers de Documentation
 
 ### Guides Utilisateur
 
@@ -364,7 +364,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Commandes Complàtes Disponibles
+## Commandes Complàtes Disponibles
 
 ```bash
 # === BENCHMARKS DE BASE ===
@@ -406,7 +406,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Roadmap Amélioration
+## Roadmap Amélioration
 
 ### Court Terme (1 semaine)
 
@@ -431,7 +431,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Publication Académique
+## Publication Académique
 
 ### Résultats Publiables Dàs Maintenant
 
@@ -475,7 +475,7 @@ IA-ATOMIQUE: <100MB
 
 ---
 
-##  Conclusion
+## Conclusion
 
 ### Synthàse Finale
 

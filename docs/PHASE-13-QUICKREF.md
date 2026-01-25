@@ -1,4 +1,4 @@
-#  Phase 13+++ Quick Reference
+# Phase 13+++ Quick Reference
 
 ## One-Liner
 **5 stratégies imbriquées** (normalisation lexicale, TF-IDF intelligent, fenàtrage strict, anti-répétition, synonymes)  **95% cohérence** sans répétitions, **86% plus rapide**.
@@ -32,7 +32,7 @@ Phase 13++     Phase 13+++
 
 ## Configuration Profiles
 
-###  Maximum Quality (Zéro répétitions)
+### Maximum Quality (Zéro répétitions)
 ```go
 penalite += count-2 * 0.2           // Fort
 similarity > 0.4                     // Strict
@@ -42,7 +42,7 @@ distance < 7                         // Long
  400-500 mots, ultra-qualité
 ```
 
-###  Balanced (Recommandé)
+### Balanced (Recommandé)
 ```go
 penalite += count-2 * 0.1           // Standard
 similarity > 0.6                     // Modéré
@@ -52,7 +52,7 @@ distance < 5                         // Standard
  600-800 mots, qualité optimale
 ```
 
-###  Maximum Coverage (Plus contenu)
+### Maximum Coverage (Plus contenu)
 ```go
 penalite += count-2 * 0.05          // Faible
 similarity > 0.75                    // Permissif

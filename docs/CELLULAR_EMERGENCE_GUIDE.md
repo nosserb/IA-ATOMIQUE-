@@ -1,6 +1,6 @@
 # Cellular Emergence System - Guide Complet
 
-##  Concept Fondamental
+## Concept Fondamental
 
 **Pas de chunking arbitraire!** Au lieu de diviser l'image en carrés réguliers de 64à64 pixels, nous créons une **hiérarchie émergente d'atomes**:
 
@@ -40,7 +40,7 @@ Une **Cell** émerge automatiquement quand 9 atomes du réseau répondent TOUS �
 - On peut atteindre tout atome depuis n'importe quel autre
 - Pas de sous-clusters déconnectés
 
-##  Architecture Implémentée
+## Architecture Implémentée
 
 ### 1. Cell Struct
 
@@ -137,7 +137,7 @@ Pour chaque itération:
      - Itération cellulaire
 ```
 
-##  Utilisation
+## Utilisation
 
 ### Commande CLI
 
@@ -207,7 +207,7 @@ Pour chaque itération:
    Hierarchical coherence enables perfect rendering
 ```
 
-##  Métriques Clés
+## Métriques Clés
 
 ### Atomic Level Metrics
 - **Coherence**: Inverse de la distance moyenne entre états d'atomes
@@ -222,7 +222,7 @@ Pour chaque itération:
 - **Iterations/sec**: Vitesse de traitement
 - **Total Energy**: Somme énergie atomique + cellulaire
 
-##  Cas d'àtude: Processus d'àmergence
+## Cas d'àtude: Processus d'àmergence
 
 ### Phase 1: Chaos Atomique (Iter 0-50)
 ```
@@ -252,7 +252,7 @@ Cells: 30-100
 àtat: Structure complàtement stabilisée, pràte pour rendu parfait
 ```
 
-##  Comment Cela Résout le Problàme
+## Comment Cela Résout le Problàme
 
 ### Le Problàme Original
 - Image générée par relaxation atomique
@@ -272,7 +272,7 @@ Cells: 30-100
  **Structure auto-organisée** - Les cellules interagissent sans supervision  
  **Rendu parfait** - La hiérarchie crée la stabilisation finale  
 
-##  Paramàtres Ajustables
+## Paramàtres Ajustables
 
 ### Detection Criteria
 ```go
@@ -303,7 +303,7 @@ CellResonanceSigma     = 0.75   // Sélectivité résonance cellulaire
 ./programme cellular target.png 2000 20
 ```
 
-##  Perspective Théorique
+## Perspective Théorique
 
 ### àmergence Multi-Niveaux
 ```
@@ -326,7 +326,7 @@ Structure Globale Parfaite
 3. **Pas de design arbitraire** - Les critàres garantissent la qualité
 4. **Auto-organisation multi-niveau** - Hiérarchie émergente
 
-##  Résultats Attendus
+## Résultats Attendus
 
 ### Petit réseau (128à128 atomes)
 - Temps: 2-5 secondes
@@ -343,7 +343,7 @@ Structure Globale Parfaite
 - Cellules: 80-200
 - Coherence finale: 95-99%
 
-##  Prochaines àtapes
+## Prochaines àtapes
 
 1. **Visualisation** des cellules (afficher clusters en couleur)
 2. **Export** de la structure cellulaire (JSON)

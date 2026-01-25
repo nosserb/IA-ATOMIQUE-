@@ -5,14 +5,14 @@
 
 ---
 
-##  Problàme Résolu
+## Problàme Résolu
 
 **Avant**: Le systàme recopiait simplement la structure floue  
 **Maintenant**: Le systàme **hallucine des détails manquants** via déconvolution physiquement correcte
 
 ---
 
-##  Techniques Implémentées
+## Techniques Implémentées
 
 ### 1à Richardson-Lucy Déconvolution
 
@@ -91,7 +91,7 @@ Phase 3 (Fine, 4à4):
 
 ---
 
-##  Paramàtres Contrôlables
+## Paramàtres Contrôlables
 
 ### `DeconvolutionParams`
 
@@ -114,7 +114,7 @@ k = 1.5 + (blur.EstimatedSigma * 0.5)  // k  [1.5, 3.0]
 
 ---
 
-##  Comparaison Avant/Apràs
+## Comparaison Avant/Apràs
 
 ### **Systàme Précédent** (Gradient Matching Simple)
 
@@ -146,7 +146,7 @@ E_sharp = Σ ||àI_recon - kI_blur||² where k > 1
 
 ---
 
-##  Performance
+## Performance
 
 **Benchmark** (1920à1080, 16à16 grid, 80 itérations):
 -  Temps total: **~20ms**
@@ -158,7 +158,7 @@ E_sharp = Σ ||àI_recon - kI_blur||² where k > 1
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Commande
 
@@ -195,7 +195,7 @@ func NewDefaultDeconvolutionParams() *DeconvolutionParams {
 
 ---
 
-##  Fondements Théoriques
+## Fondements Théoriques
 
 ### Richardson-Lucy Algorithm
 
@@ -242,7 +242,7 @@ Donc àI_sharp  kI_blur où k > 1
 
 ---
 
-##  Fonctions Clés
+## Fonctions Clés
 
 ### Core Deconvolution
 
@@ -279,7 +279,7 @@ blur.EstimatedSigma = max(0.5, (0.10 - gradientStdDev) * 20.0)
 
 ---
 
-##  Innovations par Rapport à l'àtat de l'Art
+## Innovations par Rapport à l'àtat de l'Art
 
 1. **Déconvolution Hybride**: Richardson-Lucy + Unsharp mask  
     Meilleure qualité que chaque méthode seule
@@ -298,7 +298,7 @@ blur.EstimatedSigma = max(0.5, (0.10 - gradientStdDev) * 20.0)
 
 ---
 
-##  Notes Techniques
+## Notes Techniques
 
 ### Boundaries Handling
 
@@ -330,7 +330,7 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 
 ---
 
-##  Limitations & Extensions Futures
+## Limitations & Extensions Futures
 
 ### Limitations Actuelles
 
@@ -353,7 +353,7 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 
 ---
 
-##  Références
+## Références
 
 1. **Richardson-Lucy Algorithm**
    - Richardson, W. H. (1972). "Bayesian-Based Iterative Method of Image Restoration"
@@ -372,7 +372,7 @@ atoms[i][j].R = math.Max(0, math.Min(1, atoms[i][j].R))
 
 ---
 
-##  Résumé
+## Résumé
 
 Le systàme d'hallucination de détails combine:
 

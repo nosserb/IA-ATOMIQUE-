@@ -1,4 +1,4 @@
-#  Installation & Utilisation Rapide
+# Installation & Utilisation Rapide
 
 ## Installation depuis GitHub
 
@@ -45,7 +45,7 @@ docker-compose up
 http://localhost:8080
 ```
 
-##  Modes d'utilisation
+## Modes d'utilisation
 
 ### Mode Web (Interface)
 ```bash
@@ -68,7 +68,7 @@ http://localhost:8080
 ./programme interactive
 ```
 
-##  Troubleshooting
+## Troubleshooting
 
 ### Port 8080 déjà utilisé
 ```bash
@@ -92,7 +92,7 @@ Vérifier que le répertoire `web/` existe avec:
 - `style.css`
 - `script.js`
 
-##  Fichiers importants
+## Fichiers importants
 
 ```
  web.go              # Serveur HTTP
@@ -112,7 +112,7 @@ Vérifier que le répertoire `web/` existe avec:
  go.mod             # Dépendances Go
 ```
 
-##  Exemple de texte à tester
+## Exemple de texte à tester
 
 ```
 L'intelligence artificielle transforme le monde. 

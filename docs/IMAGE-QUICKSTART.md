@@ -1,4 +1,4 @@
-#  Quickstart - Génération d'Images Atomiques
+# Quickstart - Génération d'Images Atomiques
 
 ## Installation & Compilation
 
@@ -9,7 +9,7 @@ go build -o programme
 
 ## Premiers pas
 
-### 1à Génération simple
+### 1 Génération simple
 
 ```bash
 ./programme image generate 256 256 50 8 "blue sky with clouds"
@@ -21,7 +21,7 @@ go build -o programme
 - Patch size : 8 (8à8 pixels par atome)
 - Résultat en ~50-100ms
 
-### 2à Génération auto-optimisée
+### 2 Génération auto-optimisée
 
 ```bash
 ./programme image prompt "beautiful sunset over ocean with mountains"
@@ -29,7 +29,7 @@ go build -o programme
 
 Le systàme choisit automatiquement les meilleurs paramàtres selon la complexité du prompt.
 
-### 3à Génération haute qualité multi-échelle
+### 3 Génération haute qualité multi-échelle
 
 ```bash
 ./programme image multi-scale "detailed fantasy landscape with castles"

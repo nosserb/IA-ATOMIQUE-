@@ -1,4 +1,4 @@
-#  Pattern Emergence System - Complete Overview
+# Pattern Emergence System - Complete Overview
 
 ## What Is Pattern Emergence?
 
@@ -13,7 +13,7 @@ Result: **Emergent order from local rules**
 
 ---
 
-##  Quick Start
+## Quick Start
 
 ### One Command
 ```bash
@@ -35,7 +35,7 @@ Images showing **evolution from chaos to recognizable pattern**:
 
 ---
 
-##  The Mathematics
+## The Mathematics
 
 ### Three Core Equations
 
@@ -63,7 +63,7 @@ W(t+1) = W(t) + γàexp(-||àColor||²)
 
 ---
 
-##  Key Parameters
+## Key Parameters
 
 | Parameter | Default | Meaning |
 |-----------|---------|---------|
@@ -74,7 +74,7 @@ W(t+1) = W(t) + γàexp(-||àColor||²)
 
 ---
 
-##  Expected Behavior
+## Expected Behavior
 
 ```
 Iteration 0:     Gray (no structure)
@@ -88,7 +88,7 @@ Loss metric decreases as pattern converges to seeds.
 
 ---
 
-##  File Structure
+## File Structure
 
 ```
 Core Engine:
@@ -114,7 +114,7 @@ Documentation:
 
 ---
 
-##  How It Actually Works
+## How It Actually Works
 
 ### Pixel Diffusion
 Each pixel "talks" to its 8 neighbors:
@@ -139,7 +139,7 @@ Connections between similar pixels get stronger:
 
 ---
 
-##  Typical Use Cases
+## Typical Use Cases
 
 ### 1. Pattern Learning from Reference
 ```bash
@@ -167,7 +167,7 @@ Get accurate copy with high seed density.
 
 ---
 
-##  What Makes It Special
+## What Makes It Special
 
  **Local Computation** - No global backpropagation
  **Interpretable** - Can see each step of emergence
@@ -179,7 +179,7 @@ Get accurate copy with high seed density.
 
 ---
 
-##  Performance
+## Performance
 
 | Resolution | 100 iter | 200 iter | 500 iter |
 |-----------|----------|----------|----------|
@@ -191,7 +191,7 @@ Memory: ~15-50 MB depending on resolution.
 
 ---
 
-##  Example Outputs
+## Example Outputs
 
 ### Test: Geometric Shapes
 ```
@@ -208,7 +208,7 @@ All outputs saved to `output/pattern_*.png`
 
 ---
 
-##  Learning Path
+## Learning Path
 
 1. **Quick Start** (5 min)
    - Run: `./programme pattern emerge 256 256 50 image.png 0.15`
@@ -235,7 +235,7 @@ All outputs saved to `output/pattern_*.png`
 
 ---
 
-##  Common Questions
+## Common Questions
 
 **Q: Why do I need seeds?**
 A: Seeds anchor waves to reality. Without them, you get pure noise. With them, patterns emerge toward a recognizable target.
@@ -254,7 +254,7 @@ A: This is simpler, faster, interpretable, and works without training data.
 
 ---
 
-##  What You Learn
+## What You Learn
 
 -  How local interactions create global structure
 -  Wave propagation and diffusion
@@ -264,7 +264,7 @@ A: This is simpler, faster, interpretable, and works without training data.
 
 ---
 
-##  Next Steps
+## Next Steps
 
 1. Copy an image to `input/image/`
 2. Run: `./programme pattern emerge 512 512 200 input/image/your_image.png 0.15`
@@ -274,7 +274,7 @@ A: This is simpler, faster, interpretable, and works without training data.
 
 ---
 
-##  Summary
+## Summary
 
 You have a complete **atomic pattern emergence system** that:
 - Models pixels as local autonomous units
@@ -289,7 +289,7 @@ You have a complete **atomic pattern emergence system** that:
 
 ---
 
-##  Documentation Index
+## Documentation Index
 
 | Document | Purpose |
 |----------|---------|

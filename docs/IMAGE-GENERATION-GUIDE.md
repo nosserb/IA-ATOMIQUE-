@@ -1,4 +1,4 @@
-#  Génération d'Images Atomiques (T.R.A.)
+# Génération d'Images Atomiques (T.R.A.)
 
 ## Vue d'ensemble
 

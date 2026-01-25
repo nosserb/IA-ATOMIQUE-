@@ -108,7 +108,7 @@ Apràs le push, va sur GitHub et vérifie:
 
 ---
 
-##  Apràs le Push
+## Apràs le Push
 
 ### Partager le Repo
 
@@ -133,7 +133,7 @@ make web
 
 ---
 
-##  Configuration SSH (optionnel mais recommandé)
+## Configuration SSH (optionnel mais recommandé)
 
 Pour éviter de taper le mot de passe à chaque fois:
 
@@ -186,7 +186,7 @@ Génàre un token sur GitHub: Settings > Developer settings > Personal access to
 
 ---
 
-##  Fichiers Importants
+## Fichiers Importants
 
 ```
  web/                    - Interface web
@@ -204,7 +204,7 @@ Tout est pràt!
 
 ---
 
-##  Message de Commit Détaillé
+## Message de Commit Détaillé
 
 Si tu veux un message plus détaillé:
 

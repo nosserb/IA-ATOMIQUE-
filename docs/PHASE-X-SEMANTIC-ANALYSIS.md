@@ -1,9 +1,9 @@
-#  Phase X - Semantic Abstraction Layer
+# Phase X - Semantic Abstraction Layer
 ## La Couche Manquante (Analyse & Solutions)
 
 ---
 
-##  Analyse Précise du Problàme
+## Analyse Précise du Problàme
 
 ### Avant Phase X
 ```
@@ -25,7 +25,7 @@ Lecture = "ah d'accord, le texte parle du coàt humain des inégalités"
 
 ---
 
-##  Implémentation Complàte
+## Implémentation Complàte
 
 ### 1. **Détection de Concepts Abstraits**
 ```go
@@ -72,7 +72,7 @@ Score = 35% Concepts
 
 ---
 
-##  Architecture Implémentée
+## Architecture Implémentée
 
 ### Fichier: `database/semantic_abstraction.go`
 
@@ -131,7 +131,7 @@ type ScoreAbstraction struct {
 
 ---
 
-##  Résultats Observés (Test: Fantine)
+## Résultats Observés (Test: Fantine)
 
 ### Entrée:
 ```
@@ -167,7 +167,7 @@ SCORE GLOBAL: 28.0%   ALERTE
 
 ---
 
-##  Prochaines Améliorations (Imperatives)
+## Prochaines Améliorations (Imperatives)
 
 ### àTAPE 1: Filtre Anti-Citations (URGENT)
 ```go
@@ -204,7 +204,7 @@ if scoreAbstraction < 60 {
 
 ---
 
-##  Comparaison Avant/Apràs Phase X
+## Comparaison Avant/Apràs Phase X
 
 | Aspect | Avant | Apràs Phase X |
 |--------|-------|---------------|
@@ -217,7 +217,7 @@ if scoreAbstraction < 60 {
 
 ---
 
-##  Benchmark sur Texte Réel (input.txt)
+## Benchmark sur Texte Réel (input.txt)
 
 Avant Phase X:
 - Résumé fluide mais trop proche du texte
@@ -233,7 +233,7 @@ Apràs Phase X:
 
 ---
 
-##  Leàon Clé
+## Leàon Clé
 
 Tu avais raison sur tout. L'IA ne "pense" pas tant qu'elle ne:
 

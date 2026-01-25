@@ -1,6 +1,6 @@
 # Guide Phase 13+++ - Configuration & Tuning
 
-##  Quick Start
+## Quick Start
 
 ```bash
 # Compiler
@@ -17,7 +17,7 @@ go build -o programme
 
 ---
 
-##  Paramàtres Configurables
+## Paramàtres Configurables
 
 ### 1. **Normalisation Lexicale** (resumeur_coherence.go)
 
@@ -185,9 +185,9 @@ if compteurMots[motClean] % 5 == 0 && synChoisi != motClean {
 
 ---
 
-##  Profils de Configuration Pré-définis
+## Profils de Configuration Pré-définis
 
-###  **Profil 1: Maximum Quality** (Zéro Répétitions)
+### **Profil 1: Maximum Quality** (Zéro Répétitions)
 
 ```go
 // resumeur_coherence.go
@@ -210,7 +210,7 @@ if compteurMots[motClean] % 2 == 0 && ... {  // Synonymes fréquents
 
 ---
 
-###  **Profil 2: Balanced** (Recommandé - Par Défaut)
+### **Profil 2: Balanced** (Recommandé - Par Défaut)
 
 ```go
 // resumeur_coherence.go
@@ -233,7 +233,7 @@ if compteurMots[motClean] % 3 == 0 && ... {  // Synonymes modérés
 
 ---
 
-###  **Profil 3: Maximum Coverage** (Plus de Contenu)
+### **Profil 3: Maximum Coverage** (Plus de Contenu)
 
 ```go
 // resumeur_coherence.go
@@ -259,7 +259,7 @@ if numBlocs > 75 { numBlocs = 75 }  // vs 50
 
 ---
 
-##  Recettes de Tuning
+## Recettes de Tuning
 
 ### Cas 1: Résumé Tràs Court (100-200 mots)
 ```go
@@ -309,7 +309,7 @@ if i-lastPos < 4 { continue }  // vs 5
 
 ---
 
-##  Benchmarking & Tuning Itératif
+## Benchmarking & Tuning Itératif
 
 ### Test 1: Mesurer Longueur
 ```bash
@@ -340,23 +340,23 @@ time ./programme resume input.txt 0.12 > /dev/null
 
 ---
 
-##  Diagnostic & Dépannage
+## Diagnostic & Dépannage
 
-###  Problàme: Trop de Répétitions
+### Problàme: Trop de Répétitions
 **Cause probable**: Distance anti-répétition trop courte  
 **Solution**:
 ```go
 if i-lastPos < 7 { continue }  // Augmenter de 5 à 7
 ```
 
-###  Problàme: Résumé Trop Court
+### Problàme: Résumé Trop Court
 **Cause probable**: Fenàtrage strict trop agressif  
 **Solution**:
 ```go
 if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 à 0.7
 ```
 
-###  Problàme: Synonymes "Bizarre"
+### Problàme: Synonymes "Bizarre"
 **Cause probable**: Dictionnaire inadapté au domaine  
 **Solution**: àtendre `SynonymsDict` avec termes appropriés
 ```go
@@ -364,7 +364,7 @@ if similarity > 0.7 { delete(...) }  // Augmenter de 0.6 à 0.7
 "données":    {"informations", "éléments", "contenus", "données"},
 ```
 
-###  Problàme: Cohérence Baisse
+### Problàme: Cohérence Baisse
 **Cause probable**: Filtrage trop agressif  
 **Solution**: Assouplir pénalités
 ```go
@@ -374,7 +374,7 @@ tfidfVal *= 0.85  // Augmenter de 0.8
 
 ---
 
-##  Comprendre l'Impact
+## Comprendre l'Impact
 
 ### Les 5 Filtres en Cascade
 ```
@@ -402,7 +402,7 @@ Output Texte (679 mots, 95% cohérence)
 
 ---
 
-##  Checklist Optimisation
+## Checklist Optimisation
 
 - [ ] Tester configuration default Phase 13+++
 - [ ] Mesurer: longueur, cohérence, vitesse
@@ -414,7 +414,7 @@ Output Texte (679 mots, 95% cohérence)
 
 ---
 
-##  Références
+## Références
 
 - [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md) - Spécifications techniques
 - [PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md) - Comparaison avant/apràs

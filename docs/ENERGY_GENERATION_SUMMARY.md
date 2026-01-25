@@ -1,6 +1,6 @@
-#   PARADIGME DE RELAXATION D'àNERGIE POUR GàNàRATION D'IMAGES
+# PARADIGME DE RELAXATION D'àNERGIE POUR GàNàRATION D'IMAGES
 
-##  Résumé Exécutif
+## Résumé Exécutif
 
 **Nous avons pivé d'une approche "dessin" à une approche "physique".**
 
@@ -16,7 +16,7 @@ Au lieu de dire à une IA "dessine une image avec ces propriétés", nous disons
 
 ---
 
-##  Architecture en 3 Niveaux
+## Architecture en 3 Niveaux
 
 ### Niveau 1: Atomes (Micro)
 - **Unité**: Chaque pixel/patch = 1 atome autonome
@@ -38,7 +38,7 @@ Au lieu de dire à une IA "dessine une image avec ces propriétés", nous disons
 
 ---
 
-##  Fonction d'ànergie Locale
+## Fonction d'ànergie Locale
 
 Chaque atome minimise:
 
@@ -56,7 +56,7 @@ champ_global:  faible attrait vers propriétés globales
 
 ---
 
-##  Cycle de Génération
+## Cycle de Génération
 
 ```
 àTAPE 1: Initialisation
@@ -83,7 +83,7 @@ champ_global:  faible attrait vers propriétés globales
 
 ---
 
-##  Exemple: Trois Phases pour Meilleure Qualité
+## Exemple: Trois Phases pour Meilleure Qualité
 
 **Paradigme: Coarse-to-Fine Progressive**
 
@@ -112,7 +112,7 @@ Phase 3: Patches 4à4 (250 itérations)
 
 ---
 
-##  Métriques de Suivi en Temps Réel
+## Métriques de Suivi en Temps Réel
 
 Pendant la génération, on affiche:
 
@@ -132,7 +132,7 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 
 ---
 
-##  Commandes Disponibles
+## Commandes Disponibles
 
 ### Génération Simple
 ```bash
@@ -166,7 +166,7 @@ Iteration | Total Energy | Avg Local Energy | Stability | Oscillating%
 
 ---
 
-##  Auto-Réévaluation: La Clé de la Qualité
+## Auto-Réévaluation: La Clé de la Qualité
 
 **L'IA se juge elle-màme et s'améliore en temps réel.**
 
@@ -205,7 +205,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##  Avantages vs Approches Classiques
+## Avantages vs Approches Classiques
 
 ### vs GAN
 | Aspect | GAN | Notre Approche |
@@ -229,7 +229,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##  Où Nous Excellons
+## Où Nous Excellons
 
  **Génération procédurale** (jeux, terrain, worlds)  
  **Art abstrait** (motifs, géométrie)  
@@ -241,7 +241,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##   Limitations Honnàtes
+## Limitations Honnàtes
 
  **Photorealism** (style ultra-réaliste)  
  **Faces** (détails complexes)  
@@ -252,7 +252,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##  Roadmap Futur
+## Roadmap Futur
 
 ### Court Terme (Mois)
 - [ ] Ajout d'une couche de features apprises (patterns reconnus)
@@ -274,7 +274,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##  Philosophie
+## Philosophie
 
 > **Une image n'est pas une somme de pixels.**
 > 
@@ -292,7 +292,7 @@ C'est le principe sous-jacent:
 
 ---
 
-##  Références & Inspiration
+## Références & Inspiration
 
 - **Ising Model**: Statistique des interactions locales
 - **Markov Random Fields**: Probabilité d'équilibre

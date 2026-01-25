@@ -1,6 +1,6 @@
-#  Stress Test - Optimisation vers <1ms pour 10M opérations
+# Stress Test - Optimisation vers <1ms pour 10M opérations
 
-##  RàCAPITULATIF DES MESURES ACTUELLES
+## RàCAPITULATIF DES MESURES ACTUELLES
 
 ### Test 1: Génération séquentielle (S  50%)
 ```
@@ -72,7 +72,7 @@ Speedup réel mesuré: 2.68x (126% du théorique)
 Explication: Cache + parallélisation génération
 ```
 
-###  Conclusion Amdahl:
+### Conclusion Amdahl:
  **Speedup réel > Théorique** car:
 - Overhead minimal (channels sans mutex)
 - Meilleure localité cache en parallàle
@@ -126,7 +126,7 @@ Avec T_seq optimisé à **2 ms** (améliorations ultérieures):
 S à 0.75/1.75  0.4286 (42.86%)
 ```
 
-###  Conclusion:
+### Conclusion:
 - **S actuel: 39.73%**  (déjà < 42.86%)
 - **T_seq actuel: 2,275 ms**  Besoin 2 ms avec optimisations
 - **Donc <1ms est RàALISABLE** avec:

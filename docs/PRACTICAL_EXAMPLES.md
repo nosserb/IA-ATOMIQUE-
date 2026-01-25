@@ -1,6 +1,6 @@
-#  Energy Signature Matching: Practical Examples
+# Energy Signature Matching: Practical Examples
 
-##  Cas 1: Générer 10 Variations d'un Style
+## Cas 1: Générer 10 Variations d'un Style
 
 **Besoin**: J'aime l'aspect de cette image, génàre 10 variations différentes
 
@@ -39,7 +39,7 @@ Mais tous avec la **màme signature énergétique**.
 
 ---
 
-##  Cas 2: Blender Deux Styles
+## Cas 2: Blender Deux Styles
 
 **Besoin**: J'aime à la fois Image A (smooth) et Image B (sharp), fusionne!
 
@@ -83,7 +83,7 @@ func BlendEnergyProfiles(profileA, profileB *ImageEnergyProfile, alpha float64) 
 
 ---
 
-##  Cas 3: Extraction de Style d'une Photo
+## Cas 3: Extraction de Style d'une Photo
 
 **Besoin**: Ma photo préférée a un certain "feel", crée 5 images abstraites avec le màme feel
 
@@ -108,7 +108,7 @@ convert my_favorite.jpg my_favorite.png
 
 ---
 
-##  Cas 4: Variant Résolution
+## Cas 4: Variant Résolution
 
 **Besoin**: Crée 256à256 et 512à512 avec la màme énergie
 
@@ -135,7 +135,7 @@ Deux images:
 
 ---
 
-##  Cas 5: Texture Scientifique (Advanced)
+## Cas 5: Texture Scientifique (Advanced)
 
 **Besoin**: J'étudie les patterns, génàre 20 images avec texture contrôlée
 
@@ -173,7 +173,7 @@ Image 3 (rough):
 
 ---
 
-##  Cas 6: Pattern Analysis (Research)
+## Cas 6: Pattern Analysis (Research)
 
 **Besoin**: àtudier comment les patterns structurés émergent
 
@@ -212,7 +212,7 @@ Image 3 (rough):
 
 ---
 
-##  Script Bash: Générer 10 Variations
+## Script Bash: Générer 10 Variations
 
 Crée un fichier `generate_variations.sh`:
 
@@ -242,7 +242,7 @@ chmod +x generate_variations.sh
 
 ---
 
-##  Tableau: Paramàtres vs Résultat
+## Tableau: Paramàtres vs Résultat
 
 | Objectif | Commande | Résultat |
 |----------|----------|----------|
@@ -254,7 +254,7 @@ chmod +x generate_variations.sh
 
 ---
 
-##  Cas Pédagogique: Comprendre les à
+## Cas Pédagogique: Comprendre les à
 
 ### Partie 1: Générer Baselines
 
@@ -293,7 +293,7 @@ Detailed image:
 
 ---
 
-##  Cas Avancé: Interpolation (Future)
+## Cas Avancé: Interpolation (Future)
 
 Code à implémenter:
 
@@ -323,7 +323,7 @@ for i, p := range profiles {
 
 ---
 
-##  Benchmark: Performance
+## Benchmark: Performance
 
 ```
 Task                          Time      Output Size
@@ -339,7 +339,7 @@ Blend profiles + generate     0.5 sec   19 KB PNG
 
 ---
 
-##  Checklist: Utiliser Energy Signature Matching
+## Checklist: Utiliser Energy Signature Matching
 
 - [ ] Générer une image de base avec une contrainte
 - [ ] Analyser sa signature avec `from-image`
@@ -351,7 +351,7 @@ Blend profiles + generate     0.5 sec   19 KB PNG
 
 ---
 
-##  Insights Clés
+## Insights Clés
 
 1. **Pas de Copie Pixel**: Tu extrais l'équilibre, pas les pixels
 2. **Infiniment Variée**: Chaque génération est unique

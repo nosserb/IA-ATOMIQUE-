@@ -1,4 +1,4 @@
-#  Pattern Emergence - Quick Start
+# Pattern Emergence - Quick Start
 
 ## One-Command Magic
 
@@ -12,7 +12,7 @@ That's it! Check `output/` for results.
 
 ---
 
-##  What Actually Happens
+## What Actually Happens
 
 ### Mathematical Magic
 
@@ -45,7 +45,7 @@ Each saved image shows the progression from chaos to order.
 
 ---
 
-##  Quick Examples
+## Quick Examples
 
 ### Example 1: Basic Pattern Emergence
 
@@ -90,7 +90,7 @@ Each saved image shows the progression from chaos to order.
 
 ---
 
-##  Output Explained
+## Output Explained
 
 After running emergence, you get:
 
@@ -108,7 +108,7 @@ output/
 
 ---
 
-##  Key Parameters (Defaults)
+## Key Parameters (Defaults)
 
 | Parameter | Default | Effect |
 |-----------|---------|--------|
@@ -121,7 +121,7 @@ output/
 
 ---
 
-##  Getting Started (5 minutes)
+## Getting Started (5 minutes)
 
 ### Step 1: Prepare Images
 ```bash
@@ -154,7 +154,7 @@ ls output/pattern_*.png
 
 ---
 
-##  Understanding the Progression
+## Understanding the Progression
 
 ### Loss Metric
 
@@ -172,7 +172,7 @@ You'll see lines like:
 
 ---
 
-##  Visual Modes
+## Visual Modes
 
 ### Mode 1: Wave Visualization
 ```bash
@@ -194,7 +194,7 @@ Complete transformation pipeline.
 
 ---
 
-##  Common Questions
+## Common Questions
 
 **Q: Why do I need seed images?**
 A: Seeds anchor the abstract waves to reality. Without seeds, you get pure noise. Seeds guide emergence.
@@ -226,7 +226,7 @@ A: Yes! Works best with:
 
 ---
 
-##  Advanced Moves
+## Advanced Moves
 
 ### Multi-Pass (Higher Quality)
 
@@ -255,7 +255,7 @@ A: Yes! Works best with:
 
 ---
 
-##  Typical Results
+## Typical Results
 
 After running emergence on a face image with 0.15 density:
 
@@ -275,7 +275,7 @@ Output:
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 **Pattern doesn't look right?**
 - Try more iterations: 200  400
@@ -294,7 +294,7 @@ Output:
 
 ---
 
-##  Performance
+## Performance
 
 **Typical timings:**
 
@@ -309,7 +309,7 @@ Output:
 
 ---
 
-##  Learning Path
+## Learning Path
 
 1. **Start here**: Run basic emergence
    ```bash
@@ -335,7 +335,7 @@ Output:
 
 ---
 
-##  Files & Locations
+## Files & Locations
 
 ```
 Project Root/
@@ -349,7 +349,7 @@ Project Root/
 
 ---
 
-##  One-Liner for Beginners
+## One-Liner for Beginners
 
 Copy your image to `input/image/test.png`, then run:
 
@@ -361,7 +361,7 @@ Done!
 
 ---
 
-##  Creative Inspiration
+## Creative Inspiration
 
 Try these parameter combinations:
 
@@ -375,7 +375,7 @@ Try these parameter combinations:
 
 ---
 
-##  Next Steps
+## Next Steps
 
 -  Understand pattern emergence math
 -  Run your first emergence

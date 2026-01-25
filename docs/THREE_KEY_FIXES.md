@@ -1,6 +1,6 @@
-#  Les 3 Correctifs Clés : De "Plat" à "Riche Visuellement"
+# Les 3 Correctifs Clés : De "Plat" à "Riche Visuellement"
 
-##  Le Problàme Identifié
+## Le Problàme Identifié
 
 ```
 Coherence: 0.00   Le systàme était "stable" mais visually mort
@@ -12,7 +12,7 @@ L'IA minimisait l'énergie **mais sans récompenser la structure interne**.
 
 ---
 
-##  CORRECTIF 1: ànergie de Cohérence Régionale
+## CORRECTIF 1: ànergie de Cohérence Régionale
 
 ### Concept (Simple mais Puissant)
 
@@ -43,7 +43,7 @@ energy += colorVariationPenalty + gradientVariationPenalty
 
 ---
 
-##  CORRECTIF 2: Héritage Inter-Phase
+## CORRECTIF 2: Héritage Inter-Phase
 
 ### Concept
 
@@ -91,7 +91,7 @@ Phase 3: ...
 
 ---
 
-##  CORRECTIF 3: Pénalité Esthétique Douce
+## CORRECTIF 3: Pénalité Esthétique Douce
 
 ### Concept
 
@@ -114,7 +114,7 @@ if totalUniformity > 0.95 {
 
 ---
 
-##  Résultats Mesurables
+## Résultats Mesurables
 
 ### Avant les Correctifs
 ```
@@ -136,7 +136,7 @@ Multi-Phase Energy:
 
 ---
 
-##  Augmentation des Itérations (Bonus)
+## Augmentation des Itérations (Bonus)
 
 **Fichier**: `energy_commands.go` - `HandleMultiPhaseGeneration()`
 
@@ -152,7 +152,7 @@ Parce que la **qualité fine dépend fortement de convergence profonde**.
 
 ---
 
-##  Philosophie Derriàre
+## Philosophie Derriàre
 
 ### Avant
 ```
@@ -174,7 +174,7 @@ Parce que la **qualité fine dépend fortement de convergence profonde**.
 
 ---
 
-##  Calcul de Cohérence (Nouveau!)
+## Calcul de Cohérence (Nouveau!)
 
 **Fichier**: `database/image_energy_based.go` - Fonction `computeProperties()`
 
@@ -193,7 +193,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-##  Commandes pour Tester
+## Commandes pour Tester
 
 ```bash
 # Test multi-phase avec héritage
@@ -208,7 +208,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-##  Métriques Clés à Observer
+## Métriques Clés à Observer
 
 | Métrique | Avant | Apràs | Impact |
 |----------|-------|-------|--------|
@@ -219,7 +219,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-##  Pourquoi Ça Marche
+## Pourquoi Ça Marche
 
 1. **ànergie de Cohérence**: Transforme le problàme de "stabilité" en "stabilité + structure"
    - Les régions uniformes sont encore acceptables
@@ -237,7 +237,7 @@ Coherence = 0.7 * colorCoherence + 0.3 * orientCoherence
 
 ---
 
-##  Prochaines àtapes Possibles
+## Prochaines àtapes Possibles
 
 - [ ] **Tuner les poids** (0.15, 0.1, 0.1  données-driven)
 - [ ] **Critàres visuels additionnels** (symétrie, répétition)

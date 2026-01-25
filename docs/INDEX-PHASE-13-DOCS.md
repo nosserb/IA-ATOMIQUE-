@@ -1,12 +1,12 @@
-#  Phase 13+++ - Documentation Index
+# Phase 13+++ - Documentation Index
 
-##  Start Here
+## Start Here
 
  **[PHASE-13-QUICKREF.md](PHASE-13-QUICKREF.md)**  One-page overview
 
 ---
 
-##  Documentation Map
+## Documentation Map
 
 ### Phase 13+++: Normalisation Lexicale Avancée
 
@@ -53,7 +53,7 @@
 
 ---
 
-##  Find What You Need
+## Find What You Need
 
 ### "I want to..."
 
@@ -77,7 +77,7 @@
 
 ---
 
-##  The 5 Strategies at a Glance
+## The 5 Strategies at a Glance
 
 ```
 INPUT BLOCS (180)
@@ -112,7 +112,7 @@ OUTPUT TEXT (95% coherence, ~0 repetitions)
 
 ---
 
-##  Key Concepts
+## Key Concepts
 
 ### Pénalité de Répétition (Strategy 1)
 ```
@@ -151,7 +151,7 @@ For each frequent word (>2 occurrences):
 
 ---
 
-##  Quick Start
+## Quick Start
 
 ```bash
 # Default usage (Balanced profile)
@@ -166,7 +166,7 @@ For each frequent word (>2 occurrences):
 
 ---
 
-##  Key Metrics
+## Key Metrics
 
 | Metric | Phase 13++ | Phase 13+++ | Improvement |
 |--------|-----------|-----------|------------|
@@ -177,7 +177,7 @@ For each frequent word (>2 occurrences):
 
 ---
 
-##  Validation Status
+## Validation Status
 
 -  Build: SUCCESS
 -  Tests: ALL PASSED
@@ -188,7 +188,7 @@ For each frequent word (>2 occurrences):
 
 ---
 
-##  Configuration
+## Configuration
 
 ### Balanced Profile (Default, Recommended)
 ```go
@@ -221,7 +221,7 @@ See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md) for details.
 
 ---
 
-##  Code Changes
+## Code Changes
 
 ```
 database/resumeur_coherence.go
@@ -243,7 +243,7 @@ Total changes: ~250 lines of code.
 
 ---
 
-##  For Developers
+## For Developers
 
 ### Understanding the Flow
 1. Read [PHASE-13-PLUS-PLUS-PLUS.md](PHASE-13-PLUS-PLUS-PLUS.md)
@@ -286,7 +286,7 @@ A: Reduce penalties: `0.1  0.05` for normalization, `0.8  0.85` for TF-IDF.
 
 ---
 
-##  Summary
+## Summary
 
 **Phase 13+++** implements **5 complementary strategies** to eliminate repetitions while maintaining 95% coherence at 6.3x faster speed.
 

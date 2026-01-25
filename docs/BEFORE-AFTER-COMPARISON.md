@@ -1,6 +1,6 @@
 # Comparaison AVANT/APRàS Phase X+5
 
-##  Cas d'àtude: Madame Bovary (Gustave Flaubert)
+## Cas d'àtude: Madame Bovary (Gustave Flaubert)
 
 **Texte Original**: 736 KB de texte complet du roman
 **Compression**: 50% (ratio 0.5)
@@ -9,7 +9,7 @@
 
 ---
 
-##  AVANT Phase X+5
+## AVANT Phase X+5
 
 ```
 La brutalité systémique se cache sous l'apparence de normalité, 
@@ -21,7 +21,7 @@ plus faibles. Cette logique révàle l'abnégation est exigée de ceux
 qui n'ont rien à donner.
 ```
 
-###  Problàmes Identifiés
+### Problàmes Identifiés
 
 1. **Pas de contexte**
    - Aucune mention de Flaubert
@@ -56,7 +56,7 @@ qui n'ont rien à donner.
 - Fluidité: **50%** 
 ---
 
-##  APRàS Phase X+5
+## APRàS Phase X+5
 
 ```
 Chez Gustave Flaubert, le roman expose comment la société étrangle 
@@ -70,7 +70,7 @@ figent les destinées sociales. Cette logique expose comment la pauvreté
 crée la résignation.
 ```
 
-###  Améliorations Apportées
+### Améliorations Apportées
 
 1. **Contexte Littéraire** 
    - "Chez Gustave Flaubert"  identification auteur
@@ -112,7 +112,7 @@ crée la résignation.
 
 ---
 
-##  Tableau Comparatif Détaillé
+## Tableau Comparatif Détaillé
 
 | Critàre | AVANT | APRàS | Amélioration |
 |---------|-------|-------|--------------|
@@ -130,7 +130,7 @@ crée la résignation.
 
 ---
 
-##  Points Clés de Transformation
+## Points Clés de Transformation
 
 ### Transformation 1: Contextualisation
 ```
@@ -170,7 +170,7 @@ APRàS: "Le sacrifice est exigé de ceux qui n'ont rien à donner"
 
 ---
 
-##  Conclusion
+## Conclusion
 
 Phase X+5 transforme un résumé **fonctionnel mais basique** 
 en texte **professionnel, enrichi et captivant**.

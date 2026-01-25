@@ -2,7 +2,7 @@
 
 ## Version : 1.0 - 8 janvier 2026
 
-###  Objectif résolu
+### Objectif résolu
 
 **Problàme identifié** :
 - Phase 15 àtape 2 génàre parfois du contenu non présent dans le texte source
@@ -17,9 +17,9 @@
 
 ---
 
-##  Fichiers modifiés
+## Fichiers modifiés
 
-###  Créés (nouveaux)
+### Créés (nouveaux)
 
 1. **`fidelity_commands.go`** (272 lignes)
    - `ProcessAntiHallucination()` : Orchestration CLI
@@ -44,7 +44,7 @@
    - Texte technique IA-ATOMIQUE de 167 mots
    - Pour démonstration des stratégies
 
-###  Modifiés (existants)
+### Modifiés (existants)
 
 1. **`database/fidelity_check.go`** (+améliorations)
    - Fonctions existantes conservées (CalculateFidelity, ExtractiveResume, HybridResume)
@@ -55,7 +55,7 @@
 
 ---
 
-##  Innovations mathématiques
+## Innovations mathématiques
 
 ### Formule d'évaluation fidélité
 
@@ -86,7 +86,7 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 
 ---
 
-##  Tests effectués
+## Tests effectués
 
 ### Test 1 : Simple technique
 ```
@@ -120,7 +120,7 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ---
 
-##  Flux de décision
+## Flux de décision
 
 ```
 
@@ -152,7 +152,7 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ---
 
-##  Metrics de succàs
+## Metrics de succàs
 
 | Métrique | Avant | Apràs | Amélioration |
 |---|---|---|---|
@@ -163,7 +163,7 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ---
 
-##  Utilisation en production
+## Utilisation en production
 
 ### Intégration dans Phase 15
 
@@ -189,7 +189,7 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 
 ---
 
-##  Futures améliorations
+## Futures améliorations
 
 ### Court terme (Priorité haute)
 - [ ] Intégrer embeddings BERT pour Stratégie D réelle
@@ -208,7 +208,7 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 
 ---
 
-##  Qualité du code
+## Qualité du code
 
 | Aspect | àtat |
 |---|---|

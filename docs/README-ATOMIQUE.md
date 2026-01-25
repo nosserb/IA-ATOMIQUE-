@@ -15,7 +15,7 @@
 
 ---
 
-##  Vue d'Ensemble
+## Vue d'Ensemble
 
 **IA-ATOMIQUE** est une implémentation en Go d'un moteur d'inférence révolutionnaire basé sur la **Technologie de Résonance Atomique (T.R.A.)**, présenté dans l'article scientifique:
 
@@ -27,7 +27,7 @@ Plutôt que de reposer sur une architecture centralisée et synchrone, IA-ATOMIQ
 
 ---
 
-##  Caractéristiques Principales
+## Caractéristiques Principales
 
 ### 1. **Architecture Entiàrement Distribuée**
 - Pas de serveur central ou d'unité de contrôle superviseur
@@ -75,7 +75,7 @@ Où:
 
 ---
 
-##  Fondements Théoriques
+## Fondements Théoriques
 
 ### àtat Interne et Mise à Jour
 
@@ -102,7 +102,7 @@ Aucune orchestration centrale n'est nécessaire.
 
 ---
 
-##  Installation et Utilisation
+## Installation et Utilisation
 
 ### Prérequis
 
@@ -134,7 +134,7 @@ go build -o programme main.go
 
 ---
 
-##  Architecture du Systàme
+## Architecture du Systàme
 
 ### Structure des Fichiers
 
@@ -171,7 +171,7 @@ Réseau distribué d'atomes computationnels:
 
 ---
 
-##  Résultats Expérimentaux
+## Résultats Expérimentaux
 
 ### àmergence Observée
 
@@ -202,7 +202,7 @@ Les expériences confirment que:
 
 ---
 
-##  Applications Potentielles
+## Applications Potentielles
 
 ### Villes Intelligentes
 - Gestion du trafic décentralisée
@@ -230,7 +230,7 @@ Les expériences confirment que:
 
 ---
 
-##  Principes de Conception
+## Principes de Conception
 
 ### 1. àmergence par Interactions Locales
 L'ordre global naàt de ràgles locales simples, sans intervention externe.
@@ -249,7 +249,7 @@ Intelligence massive avec ressources minimales par unité.
 
 ---
 
-##  Références Académiques
+## Références Académiques
 
 Cet article s'appuie sur les travaux fondamentaux en:
 - **Systàmes multi-agents** (Wooldridge)
@@ -260,7 +260,7 @@ Cet article s'appuie sur les travaux fondamentaux en:
 
 ---
 
-##  Considérations àthiques et de Sécurité
+## Considérations àthiques et de Sécurité
 
 - **Transparence**: Interactions locales simples et compréhensibles
 - **Responsabilité**: Comportements émergeants vérifiables et traàables
@@ -270,13 +270,13 @@ Cet article s'appuie sur les travaux fondamentaux en:
 
 ---
 
-##  License
+## License
 
 MIT License - Libre d'usage dans contextes académiques et commerciaux
 
 ---
 
-##  Auteur
+## Auteur
 
 **BRESSON Guylann**
 - Indépendant / àtudiant en informatique

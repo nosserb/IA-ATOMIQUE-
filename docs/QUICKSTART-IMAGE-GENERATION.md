@@ -1,4 +1,4 @@
-#  Atomic Image Generation - Quick Start Guide
+# Atomic Image Generation - Quick Start Guide
 
 **IA-ATOMIQUE v4.0** now includes a complete **5-phase atomic image generation system** using local resonance principles.
 

@@ -1,8 +1,8 @@
-#  Interface Web IA-ATOMIQUE - Configuration Terminée
+# Interface Web IA-ATOMIQUE - Configuration Terminée
 
-##  Qu'est-ce qui a été créé?
+## Qu'est-ce qui a été créé?
 
-###  Fichiers créés:
+### Fichiers créés:
 ```
 web/
  index.html      # Interface principale
@@ -15,7 +15,7 @@ start-web.sh       # Script de lancement facile
 WEB_README.md      # Documentation complàte
 ```
 
-##  Démarrage Rapide
+## Démarrage Rapide
 
 ### Lancer le serveur:
 ```bash
@@ -32,7 +32,7 @@ Ou directement:
 http://localhost:8080
 ```
 
-##  Caractéristiques
+## Caractéristiques
 
  **Interface intuitive** - Une seule page pour résumer  
  **Design moderne** - Gradient violet, animation fluide  
@@ -41,7 +41,7 @@ http://localhost:8080
  **Statistiques** - Affiche confiance, catégories, phrases  
  **Accessibilité** - Raccourci Ctrl+Entrée pour envoyer  
 
-##  Comment àa fonctionne?
+## Comment àa fonctionne?
 
 1. L'utilisateur tape du texte dans la zone gauche
 2. Clique sur "Résumer" ou appuie sur Ctrl+Entrée
@@ -49,7 +49,7 @@ http://localhost:8080
 4. Votre IA analyse le texte phrase par phrase
 5. Le résumé et les statistiques s'affichent en temps réel
 
-##  Personnalisation
+## Personnalisation
 
 ### Modifier les couleurs:
 àditez `web/style.css`:
@@ -70,7 +70,7 @@ go StartWebServer("9000")  // Utilise le port 9000 au lieu de 8080
 - Historique: utiliser localStorage
 - Mode sombre: ajouter CSS
 
-##  API
+## API
 
 ### POST /api/summarize
 ```json
@@ -90,7 +90,7 @@ Response:
 }
 ```
 
-##  Tests
+## Tests
 
 Voici des textes de test recommandés:
 
@@ -103,14 +103,14 @@ Voici des textes de test recommandés:
 **Long:**  
 > Collez un article entier et regardez l'analyse complàte!
 
-##  Astuces
+## Astuces
 
 -  Ctrl+A pour sélectionner tout rapidement
 -  Les requàtes sont instantanées
 -  Testez sur mobile aussi!
 -  Le résumé affiche les catégories dominantes
 
-##  Si àa ne marche pas
+## Si àa ne marche pas
 
 | Problàme | Solution |
 |----------|----------|
@@ -119,7 +119,7 @@ Voici des textes de test recommandés:
 | Erreur de compilation | Lancer `go mod tidy` |
 | API ne répond pas | Vérifier que database/ est accessible |
 
-##  Prochaines étapes optionnelles
+## Prochaines étapes optionnelles
 
 - [ ] Ajouter un systàme d'upload de fichiers
 - [ ] Créer un historique des résumés

@@ -1,6 +1,6 @@
-#   Paradigme de Génération d'Images par Relaxation de Contraintes
+# Paradigme de Génération d'Images par Relaxation de Contraintes
 
-##  Philosophie Fondamentale
+## Philosophie Fondamentale
 
 **Au lieu de "dessiner" une image, on la génàre par relaxation d'un systàme physique vers l'équilibre.**
 
@@ -16,7 +16,7 @@
 
 ---
 
-##  Les 3 Niveaux d'Abstraction
+## Les 3 Niveaux d'Abstraction
 
 ### **Niveau 1: Atomes (àtats àlémentaires)**
 
@@ -66,7 +66,7 @@ Exemple: "Si j'ajoute un champ d'ombre en haut-gauche, les gradients vont doucem
 
 ---
 
-##  Fonction d'ànergie Locale
+## Fonction d'ànergie Locale
 
 Chaque atome minimise une **tension locale**:
 
@@ -106,7 +106,7 @@ E_champ_global:
 
 ---
 
-##  Processus de Relaxation
+## Processus de Relaxation
 
 ### Phase 1: Initialisation (Chaos)
 ```
@@ -133,7 +133,7 @@ Confiance: HAUTE (> 0.7)
 
 ---
 
-##  Auto-Réévaluation (La Clé de la Qualité)
+## Auto-Réévaluation (La Clé de la Qualité)
 
 **L'IA compare elle-màme ses états successifs et pénalise les mauvaises configurations.**
 
@@ -168,7 +168,7 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 
 ---
 
-##  Génération Multi-Phases (Meilleure Qualité)
+## Génération Multi-Phases (Meilleure Qualité)
 
 ### Paradigme: Coarse-to-Fine
 
@@ -192,7 +192,7 @@ Phase 3: FIN (4à4 patches)
 
 ---
 
-##  Métriques de Suivi
+## Métriques de Suivi
 
 ### During Generation
 
@@ -216,7 +216,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Contraintes Applicables
+## Contraintes Applicables
 
 ### Constraints String Examples
 
@@ -246,7 +246,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Avantages vs GAN/Diffusion
+## Avantages vs GAN/Diffusion
 
 | Critàre | Notre Approche | GAN | Diffusion |
 |---------|---|---|---|
@@ -262,7 +262,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Cas d'Usage Idéals
+## Cas d'Usage Idéals
 
  **Oà NOUS EXCELLER:**
 - Génération procédurale (jeux, worlds)
@@ -282,7 +282,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Futurs Développements
+## Futurs Développements
 
 ### Moyen Terme
 1. **Ajout d'une couche de features apprises**
@@ -305,7 +305,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Exemple Complet
+## Exemple Complet
 
 ```bash
 # Phase 1: Génération simple
@@ -323,7 +323,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ---
 
-##  Philosophie Finale
+## Philosophie Finale
 
 > **Une image n'est pas la somme de ses pixels.**
 > 

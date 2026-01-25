@@ -1,4 +1,4 @@
-#  Checklist Déploiement GitHub
+# Checklist Déploiement GitHub
 
 ## à Avant de pusher
 
@@ -32,7 +32,7 @@
 
 ---
 
-##  Commands pour vérifier avant push
+## Commands pour vérifier avant push
 
 ```bash
 # Vérifier la compilation
@@ -70,7 +70,7 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-##  Fichiers importants à vérifier
+## Fichiers importants à vérifier
 
 ```
  README.md          - Section web ajoutée
@@ -88,7 +88,7 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-##  Apràs le push
+## Apràs le push
 
 1. GitHub Actions va tester la compilation automatiquement
 2. L'interface web sera accessible une fois clonée
@@ -96,7 +96,7 @@ docker run -p 8080:8080 ia-atomique
 
 ---
 
-##  Pour les utilisateurs qui clonent le repo
+## Pour les utilisateurs qui clonent le repo
 
 Ils pourront faire:
 

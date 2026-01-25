@@ -1,4 +1,4 @@
-#  Text-to-Image Neural Prompt Generation - Implementation Summary
+# Text-to-Image Neural Prompt Generation - Implementation Summary
 
 **Status**:  **COMPLETE & TESTED**
 **Date**: January 9, 2025

@@ -1,10 +1,10 @@
 # SYSTàME D'APPRENTISSAGE AUTOMATIQUE - IA-ATOMIQUE v4.1
 
-##  Objectif
+## Objectif
 
 Permettre à l'IA d'apprendre automatiquement des connaissances factuelles à partir de textes bruts (histoire, médecine, sciences, etc.) pour améliorer les scores aux benchmarks académiques (MMLU, Hellaswag).
 
-##  Résultats
+## Résultats
 
 **AVANT l'apprentissage automatique:**
 - MMLU: 40% (manque de connaissances factuelles)
@@ -14,7 +14,7 @@ Permettre à l'IA d'apprendre automatiquement des connaissances factuelles à pa
 - MMLU: 60-70% (+20-30% avec base de connaissances enrichie)
 - Hellaswag: 65-70% (+5-10% avec contexte factuel)
 
-##  Architecture
+## Architecture
 
 ### 3 Méthodes d'Extraction Automatique
 
@@ -46,7 +46,7 @@ Réseau de 500 atomes qui forment des clusters émergents par résonance:
  "Waterloo", "défaite", "1815" = màme cluster
 ```
 
-##  Utilisation
+## Utilisation
 
 ### 1. Apprendre à partir d'un fichier
 
@@ -146,7 +146,7 @@ Les connaissances sont automatiquement sauvegardées dans `knowledge_base.json` 
 }
 ```
 
-##  Intégration aux Benchmarks
+## Intégration aux Benchmarks
 
 ### Utilisation dans MMLU/Hellaswag
 
@@ -170,7 +170,7 @@ finalScore = baseScore * (1 + boost)
 - **20-30%**: Plusieurs mots connus (contexte fort)
 - **30%+**: Presque tous les mots connus (expertise)
 
-##  Améliorations Futures
+## Améliorations Futures
 
 ### Court Terme
 -  Extraction de patterns (FAIT)
@@ -190,7 +190,7 @@ finalScore = baseScore * (1 + boost)
 - [ ] Compression de connaissances (top 1000 faits les plus utiles)
 - [ ] Intégration avec APIs externes (Wikidata, DBpedia)
 
-##  Exemples de Corpus
+## Exemples de Corpus
 
 ### Histoire
 ```bash
@@ -221,7 +221,7 @@ corpus/sciences/biologie.txt
 ./programme learn corpus/sciences/
 ```
 
-##  Mesure d'Impact
+## Mesure d'Impact
 
 ### Test Avant/Apràs
 
@@ -243,7 +243,7 @@ diff scores_before.txt scores_after.txt
 
 **Amélioration attendue:** +20-30% sur MMLU (40%  60-70%)
 
-##  Conseils
+## Conseils
 
 ### Pour Maximiser l'Apprentissage
 
@@ -262,14 +262,14 @@ pattern := regexp.MustCompile(`([A-Z][a-z]+)\s+découvert\s+par\s+([A-Z][a-z\s]+
 matches := pattern.FindAllStringSubmatch(text, -1)
 ```
 
-##  Fichiers Créés
+## Fichiers Créés
 
 - `automatic_learning.go` (460 lignes) - Moteur d'apprentissage
 - `learn_command.go` (285 lignes) - Commandes CLI
 - `knowledge_base.json` - Base de connaissances persistante (auto-générée)
 - `APPRENTISSAGE_AUTOMATIQUE.md` - Cette documentation
 
-##  Objectif Final
+## Objectif Final
 
 **Scores cibles:**
 - MMLU: **80%** (vs 40% actuellement)

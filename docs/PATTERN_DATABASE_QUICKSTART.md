@@ -1,4 +1,4 @@
-#  Pattern Database - Quick Start (5 Minutes)
+# Pattern Database - Quick Start (5 Minutes)
 
 ## What You Can Do Now
 

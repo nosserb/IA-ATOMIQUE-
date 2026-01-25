@@ -1,4 +1,4 @@
-#  IA-ATOMIQUE - Résultats des Tests de Référence
+# IA-ATOMIQUE - Résultats des Tests de Référence
 
 **Date**: 23 Janvier 2026  
 **Version**: v4.1 Beta  
@@ -6,11 +6,11 @@
 
 ---
 
-##  RàSUMà EXàCUTIF
+## RàSUMà EXàCUTIF
 
 L'IA-ATOMIQUE a passé avec succàs les tests de référence académiques et industriels, démontrant des performances **supérieures aux LLM commerciaux** tout en utilisant **~30x moins de ressources**.
 
-###  Scores Principaux
+### Scores Principaux
 
 | Test | Résultat IA-ATOMIQUE | Référence GPT-4 | Verdict |
 |------|---------------------|-----------------|---------|
@@ -56,7 +56,7 @@ Top 5 Catégories Détectées:
 - Perplexité max: **2.927** (légàres variations)
 - àcart: **1.927** (tràs stable)
 
-###  Comparaison Standards
+### Comparaison Standards
 
 | Systàme | Perplexité Typique | àvaluation |
 |---------|-------------------|------------|
@@ -114,7 +114,7 @@ Position: 481720
 | 3M mots (5à Les Misérables) | 2 minutes |
 | 10M mots | 6.7 minutes |
 
-###  Avantage Atomique
+### Avantage Atomique
 
 **Mécanisme**: Les phrases incohérentes créent des **ruptures de résonance** dans le réseau atomique. Ces ruptures sont détectées instantanément par:
 1. Entropie élevée des catégories activées
@@ -157,7 +157,7 @@ Temps par mot:          0.253 µs
 | 10M mots | 2.5 secondes |
 | **Wikipedia FR complàte (4.5M articles)** | ~15 minutes |
 
-###  Comparaison LLM Local
+### Comparaison LLM Local
 
 ```
 LLM Local (50 tokens/sec):  3.1 heures pour 568K mots
@@ -170,7 +170,7 @@ Accélération:               79 185à plus rapide
 
 ---
 
-##  TEST INDUSTRIEL PROPOSà
+## TEST INDUSTRIEL PROPOSà
 
 ### Challenge: Indexation Wikipedia Complàte
 
@@ -195,7 +195,7 @@ Accélération:               79 185à plus rapide
 2 000 000 000 mots / 50 mots/sec = 40 000 000 secondes = 463 jours
 ```
 
-###  Cas d'Usage Réels
+### Cas d'Usage Réels
 
 1. **Archives juridiques UE**
    - Volume: ~500M mots
@@ -216,7 +216,7 @@ Accélération:               79 185à plus rapide
 
 ---
 
-##  ANALYSE COMPARATIVE FINALE
+## ANALYSE COMPARATIVE FINALE
 
 ### Tableau Récapitulatif
 
@@ -241,7 +241,7 @@ Accélération:               79 185à plus rapide
 
 ---
 
-##  RàSULTATS ACADàMIQUES
+## RàSULTATS ACADàMIQUES
 
 ### Tests de Référence Passés
 
@@ -274,7 +274,7 @@ Accélération:               79 185à plus rapide
 
 ---
 
-##  INNOVATIONS CLàS
+## INNOVATIONS CLàS
 
 ### 1. Résonance Atomique pour Cohérence
 ```
@@ -301,7 +301,7 @@ Résultat: Détection instantanée de ruptures sémantiques
 
 ---
 
-##  CONCLUSION
+## CONCLUSION
 
 L'**IA-ATOMIQUE** a démontré des performances **exceptionnelles** sur les tests de référence:
 

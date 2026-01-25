@@ -1,6 +1,6 @@
 # Phase X+5: Post-Processing Enrichissement
 
-##  Objectif
+## Objectif
 
 Améliorer la qualité finale des résumés conceptuels en ajoutant:
 1. **Contexte littéraire** - Mention auteur/àuvre (Flaubert, Emma Bovary)
@@ -8,7 +8,7 @@ Améliorer la qualité finale des résumés conceptuels en ajoutant:
 3. **Fluidité syntaxique** - Meilleure structure et rythme
 4. **Ancrage narratif** - Exemples concrets pour illustrer concepts
 
-##  4 Axes d'Amélioration
+## 4 Axes d'Amélioration
 
 ### 1à Contexte Littéraire
 
@@ -140,7 +140,7 @@ Corrige erreurs grammaticales introduites par transformations:
 
 ---
 
-##  Résultats: AVANT/APRàS
+## Résultats: AVANT/APRàS
 
 ### Exemple: Madame Bovary (736 KB)
 
@@ -187,7 +187,7 @@ crée la résignation.
 
 ---
 
-##  Pipeline Complet
+## Pipeline Complet
 
 ```
 Texte Input (736 KB)
@@ -217,7 +217,7 @@ Preprocessing & segmentation
 
 ---
 
-##  Intégration
+## Intégration
 
 **Fichier**: `database/post_processing.go` (210 lignes)
 **Appel**: Dans `grammar_summarization.go` ligne 452
@@ -236,7 +236,7 @@ if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
 
 ---
 
-##  Métriques
+## Métriques
 
 | Aspect | Avant | Apràs | Gain |
 |--------|-------|-------|------|
@@ -249,7 +249,7 @@ if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
 
 ---
 
-##  Cas d'Usage Optimal
+## Cas d'Usage Optimal
 
 Phase X+5 est idéale pour:
 
@@ -266,7 +266,7 @@ Phase X+5 est idéale pour:
 
 ---
 
-##  Configuration
+## Configuration
 
 Phase X+5 s'active **automatiquement** pour:
 - Résumé conceptuel généré (Phase X+1)
@@ -277,7 +277,7 @@ Phase X+5 s'active **automatiquement** pour:
 
 ---
 
-##  Résumé
+## Résumé
 
 **Phase X+5** est une couche de raffinement qui:
 

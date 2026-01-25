@@ -1,10 +1,10 @@
 # Comment Améliorer les Réponses
 
-##  àtat Actuel
+## àtat Actuel
 - **MMLU** : 40% (mauvais sur faits historiques/médicaux)
 - **Hellaswag** : 60% (bon sur bon sens/logique)
 
-##  Pourquoi les Erreurs ?
+## Pourquoi les Erreurs ?
 
 ### Sur MMLU (Questions Factuelles)
 Le systàme **devine** au lieu de **savoir** :
@@ -18,7 +18,7 @@ Le systàme **raisonne mieux** :
 - Score hybride capture la séquence causale
 - **Force** : Cohérence sémantique
 
-##  3 Solutions Concràtes
+## 3 Solutions Concràtes
 
 ### 1. BASE DE CONNAISSANCES FACTUELLES 
 ```go
@@ -144,7 +144,7 @@ func CheckErrorMemory(question, choice string) float64 {
 
 **Impact estimé** : Apprentissage progressif, +10-20% apràs 100 questions
 
-##  Prédiction avec Améliorations
+## Prédiction avec Améliorations
 
 | Amélioration | MMLU | Hellaswag |
 |--------------|------|-----------|
@@ -153,7 +153,7 @@ func CheckErrorMemory(question, choice string) float64 {
 | + Détection type | 70% | 70% |
 | + Apprentissage | 75-80% | 75-80% |
 
-##  Priorité #1 : Base de Faits
+## Priorité #1 : Base de Faits
 
 **Plus facile et plus d'impact** : Ajouter 200-300 faits clés :
 - Histoire : 50 événements majeurs (dates, lieux)
@@ -164,7 +164,7 @@ func CheckErrorMemory(question, choice string) float64 {
 **Implémentation** : 1-2 heures
 **Gain** : +20-30% sur MMLU
 
-##  Conclusion
+## Conclusion
 
 Le systàme **raisonne bien** (d'où 60% Hellaswag) mais **manque de mémoire** (d'où 40% MMLU).
 

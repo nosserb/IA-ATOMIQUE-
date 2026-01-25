@@ -1,6 +1,6 @@
-#  Energy Signature Matching: Copying the Physics, Not the Pixels
+# Energy Signature Matching: Copying the Physics, Not the Pixels
 
-##  Concept Central
+## Concept Central
 
 **Tu n'as pas le droit de copier les pixels.**
 **Mais tu peux copier l'équilibre physique qui les explique.**
@@ -26,7 +26,7 @@ Image B (complàtement différente, mais "physiquement équivalente")
 
 ---
 
-##  Les 4 Termes d'ànergie
+## Les 4 Termes d'ànergie
 
 ### 1à **ànergie de Gradient**: `à_grad`
 
@@ -80,7 +80,7 @@ E_scale = ratio(sharp regions) / total regions
 
 ---
 
-##  Comment Ça Marche: Les 2 àtapes
+## Comment Ça Marche: Les 2 àtapes
 
 ### **àtape A: Analyser l'Image Cible**
 
@@ -111,7 +111,7 @@ E_total = à E_grad + à E_local + à E_texture + à E_scale
 
 ---
 
-##  Exemple Réel
+## Exemple Réel
 
 ### Input: `generated_energy_based.png` (dark sharp image)
 
@@ -137,7 +137,7 @@ Statistics:
 
 ---
 
-##  Avantages Clés
+## Avantages Clés
 
 ### 1à **Légal et àthique**
 ```
@@ -166,7 +166,7 @@ Tu peux mixer plusieurs images:
 
 ---
 
-##  Cas d'Usage
+## Cas d'Usage
 
 ### 1: Variation Infinie d'un Màme Style
 
@@ -209,7 +209,7 @@ Petite image  Analyser signature
 
 ---
 
-##  Pourquoi C'est Puissant
+## Pourquoi C'est Puissant
 
 ### Le Problàme Classique
 ```
@@ -230,7 +230,7 @@ Energy-based:
 
 ---
 
-##  Formules Mathématiques
+## Formules Mathématiques
 
 Pour les scientifiques:
 
@@ -261,7 +261,7 @@ Résultat: àquilibre physique  Image
 
 ---
 
-##  Commandes Pratiques
+## Commandes Pratiques
 
 ### Analyser une Image
 ```bash
@@ -286,12 +286,12 @@ Utilise defaults: 256à256, 300 iter, patch 4.
 ./programme energy from-image generated_energy_based.png
 
 # Résultat: generated_from_signature.png
-#  Complàtement différente, mais màme énergie!
+# Complàtement différente, mais màme énergie!
 ```
 
 ---
 
-##  Validations Empiriques
+## Validations Empiriques
 
 ### Test 1: Màme Image  Différents Outputs
 ```
@@ -322,7 +322,7 @@ Résultat: à_generated  à_source (avec petite variance)
 
 ---
 
-##  Limitations (à Connaàtre)
+## Limitations (à Connaàtre)
 
 ### 1: Photorealism
 Si tu cherches EXACTEMENT la màme image:
@@ -347,7 +347,7 @@ Blending de nombreuses images:
 
 ---
 
-##  Prochaines àtapes Recommandées
+## Prochaines àtapes Recommandées
 
 ### Tràs Prochainement
 - [ ] Supporter FamilyProfile (moyenne de N images)
@@ -366,7 +366,7 @@ Blending de nombreuses images:
 
 ---
 
-##  Philosophie
+## Philosophie
 
 > "Tu n'es pas en train de copier une image.
 > Tu es en train de copier l'équilibre physique qui l'explique.
@@ -378,7 +378,7 @@ Blending de nombreuses images:
 
 ---
 
-##  Références
+## Références
 
 **Concepts Inspirés Par**:
 - Active Matter (Ramaswamy, 2010)

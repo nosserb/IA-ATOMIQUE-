@@ -1,6 +1,6 @@
 # IA-ATOMIQUE v5.0 - Génération par Résonance Atomique Autonome
 
-##  Architecture
+## Architecture
 
 ### Trois méthodes de génération coexistent:
 
@@ -25,7 +25,7 @@
 
 ---
 
-##  Formules Mathématiques
+## Formules Mathématiques
 
 ### Mise à jour atomique
 ```
@@ -57,7 +57,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)àAi / Σ_{i=1}^N E(Pi)
 
 ---
 
-##  Commandes
+## Commandes
 
 ### Générer avec méthode vectorielle (existant)
 ```bash
@@ -76,7 +76,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)àAi / Σ_{i=1}^N E(Pi)
 
 ---
 
-##  Résultats Comparatifs (test.txt)
+## Résultats Comparatifs (test.txt)
 
 | Métrique | Vectoriel | Atomique |
 |----------|-----------|----------|
@@ -89,7 +89,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)àAi / Σ_{i=1}^N E(Pi)
 
 ---
 
-##  Quand utiliser quelle méthode?
+## Quand utiliser quelle méthode?
 
 ### Utiliser **VECTORIEL** (generate):
 -  Résumés de documents techniques
@@ -110,7 +110,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)àAi / Σ_{i=1}^N E(Pi)
 
 ---
 
-##  Insight Théorique
+## Insight Théorique
 
 La génération atomique implémente le concept fondamental de T.R.A. (Technologie de Résonance Atomique):
 
@@ -126,7 +126,7 @@ Le texte émerge comme un motif stable dans le réseau, plutôt que d'àtre cons
 
 ---
 
-##  Paramàtres Configurables
+## Paramàtres Configurables
 
 ```go
 type ReseauAtomiquePourGeneration struct {
@@ -140,7 +140,7 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-##  Intégration avec le systàme existant
+## Intégration avec le systàme existant
 
 -  Compatible avec vectorisation 11D existante
 -  Utilise le lexique et catégories du systàme
@@ -149,7 +149,7 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-##  Exemple d'utilisation
+## Exemple d'utilisation
 
 ```bash
 # Générer résumé 30% avec résonance atomique

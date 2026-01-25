@@ -1,4 +1,4 @@
-#  PATTERNS MATHàMATIQUES - IMPLàMENTATION RàALISàE
+# PATTERNS MATHàMATIQUES - IMPLàMENTATION RàALISàE
 
 **Date**: January 9, 2026  
 **Status**:  COMPILà & OPàRATIONNEL  
@@ -6,7 +6,7 @@
 
 ---
 
-##  CE QUI A àTà FAIT
+## CE QUI A àTà FAIT
 
 ### 1. Fichier Mathématique Fondamental
 
@@ -99,7 +99,7 @@ func PrintPatternAnalysis(pattern *PatternMathematical)
 
 ---
 
-##  LA MàCANIQUE MATHàMATIQUE IMPLàMENTàE
+## LA MàCANIQUE MATHàMATIQUE IMPLàMENTàE
 
 ### Formule Fondamentale
 
@@ -137,7 +137,7 @@ MSE = (Σ(C_original - C_reconstructed)² / pixels)
 
 ---
 
-##  UTILISATION PRàVUE
+## UTILISATION PRàVUE
 
 ### Pipeline Complet
 
@@ -154,32 +154,32 @@ PROMPT + Pattern  Décodage  f(x,y)  AtomicNetwork  IMAGE
 ```bash
 # 1. Apprendre un pattern
 ./programme pattern math-extract input/sunset.png 20
-#  Génàre 60 coefficients (20à3 pour RGB)
-#  Stocke dans patterns.db
-#  MSE validation
+# Génàre 60 coefficients (20à3 pour RGB)
+# Stocke dans patterns.db
+# MSE validation
 
 # 2. Utiliser le pattern
 ./programme generate with-math-pattern sunset 512 512 100 "dark forest"
-#  Charge coefficients sunset
-#  f(x,y) = Σ à_sunset,k à gk(x,y)
-#  ApplyPatternToAtomicNetwork()
-#  Itàre 100 fois
-#  Export PNG
+# Charge coefficients sunset
+# f(x,y) = Σ à_sunset,k à gk(x,y)
+# ApplyPatternToAtomicNetwork()
+# Itàre 100 fois
+# Export PNG
 
 # 3. Composer patterns
 ./programme pattern math-compose sunset:0.6 ocean:0.4 512 512 result.png
-#  C = 0.6àf_sunset + 0.4àf_ocean
+# C = 0.6àf_sunset + 0.4àf_ocean
 
 # 4. Interpoler
 ./programme pattern math-interpolate sunset ocean 5 ./anim/
-#  Génàre transition progressive
-#  t=[0, 0.25, 0.5, 0.75, 1.0]
-#  5 images intermédiaires
+# Génàre transition progressive
+# t=[0, 0.25, 0.5, 0.75, 1.0]
+# 5 images intermédiaires
 ```
 
 ---
 
-##  AVANTAGES DE L'APPROCHE
+## AVANTAGES DE L'APPROCHE
 
 | Aspect | Metadata basique | Mathématique |
 |--------|---|---|
@@ -195,7 +195,7 @@ PROMPT + Pattern  Décodage  f(x,y)  AtomicNetwork  IMAGE
 
 ---
 
-##  COMPLEXITà COMPUTATIONNELLE
+## COMPLEXITà COMPUTATIONNELLE
 
 ### Extraction (une fois par image)
 
@@ -233,7 +233,7 @@ Temps: ~10ms sur CPU
 
 ---
 
-##  CE QUI àTAIT MANQUANT AVANT
+## CE QUI àTAIT MANQUANT AVANT
 
 **Avant cette implémentation:**
 ```
@@ -266,7 +266,7 @@ Solution: Pour chaque pixel (x,y):
 
 ---
 
-##  FICHIERS CRààS
+## FICHIERS CRààS
 
 | Fichier | Lignes | Rôle |
 |---------|--------|------|
@@ -279,7 +279,7 @@ Solution: Pour chaque pixel (x,y):
 
 ---
 
-##  VALIDATION
+## VALIDATION
 
 ### Compilation
 ```
@@ -304,7 +304,7 @@ similarity := database.PatternSimilarity(p1, p2)  // Retourne [0,1]
 
 ---
 
-##  PROCHAIN àTAPE
+## PROCHAIN àTAPE
 
 Pour utiliser ces patterns:
 
@@ -334,7 +334,7 @@ Pour utiliser ces patterns:
 
 ---
 
-##  INSIGHTS
+## INSIGHTS
 
 ### Pourquoi cette approche?
 
@@ -354,7 +354,7 @@ Texte  Atomes texte  Catégories  Patterns image  Génération
 
 ---
 
-##  RàSUMà
+## RàSUMà
 
 Tu viens de m'expliquer la **vraie mécanique** pour que patterns soient mathématiquement réutilisables.
 

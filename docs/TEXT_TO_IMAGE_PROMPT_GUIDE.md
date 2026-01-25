@@ -1,4 +1,4 @@
-#  Text-to-Image Generation via Neural Prompts
+# Text-to-Image Generation via Neural Prompts
 
 ## Overview
 

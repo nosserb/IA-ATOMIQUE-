@@ -1,10 +1,10 @@
-#  GUIDE D'UTILISATION - SYSTàME DE RàSUMà ADAPTATIF
+# GUIDE D'UTILISATION - SYSTàME DE RàSUMà ADAPTATIF
 
-##  Concept Clé
+## Concept Clé
 
 Le systàme détecte automatiquement le **type de texte** et adapte le pipeline de résumé en conséquence. Vous obtenez des résumés optimisés sans configuration supplémentaire.
 
-##  3 Types de Textes Supportés
+## 3 Types de Textes Supportés
 
 ### 1. **ENCYCLOPàDIQUE** 
 Textes factuels, scientifiques, informatifs
@@ -91,7 +91,7 @@ Philosophie, analyse, théorie, argumentation
 
 ---
 
-##  UTILISATION RECOMMANDàE
+## UTILISATION RECOMMANDàE
 
 ### Utilisation Simple (RECOMMANDàE)
 ```bash
@@ -131,7 +131,7 @@ Le systàme détecte le type et adapte automatiquement!
 
 ---
 
-##  INTERPRàTATION DU RAPPORT
+## INTERPRàTATION DU RAPPORT
 
 ### Exemple 1: Texte Encyclopédique
 
@@ -178,7 +178,7 @@ Compression:       82.4%
 
 ---
 
-##  MESSAGES SPàCIAUX
+## MESSAGES SPàCIAUX
 
 ### " Phase X+1 désactivée pour ce type"
 **Signifie:** Texte encyclopédique détecté  faits conservés  c'est normal et bon
@@ -194,7 +194,7 @@ Compression:       82.4%
 
 ---
 
-##  CAS D'USAGE PRATIQUES
+## CAS D'USAGE PRATIQUES
 
 ### Cas 1: Résumer un article scientifique
 ```bash
@@ -222,7 +222,7 @@ Compression:       82.4%
 
 ---
 
-##  CONSEILS D'OPTIMISATION
+## CONSEILS D'OPTIMISATION
 
 ### Pour Encyclopédique
 - Demandez 30-40% pour meilleur résultat
@@ -241,7 +241,7 @@ Compression:       82.4%
 
 ---
 
-##  METRIQUES à SURVEILLER
+## METRIQUES à SURVEILLER
 
 ### Compression
 - < -10%: Expansion (texte enrichi, normal pour encyclopédique)
@@ -261,7 +261,7 @@ Compression:       82.4%
 
 ---
 
-##  DàPANNAGE
+## DàPANNAGE
 
 ### "Le résumé est trop court"
  Augmentez le ratio (ex: 0.3  0.5)
@@ -281,7 +281,7 @@ Compression:       82.4%
 
 ---
 
-##  CHECKLIST UTILISATION
+## CHECKLIST UTILISATION
 
 - [ ] Vous avez un document à résumer
 - [ ] Vous avez deviné le type (encyclopédique/narratif/conceptuel)
@@ -293,7 +293,7 @@ Compression:       82.4%
 
 ---
 
-##  CONCLUSION
+## CONCLUSION
 
 Le systàme est conàu pour vous donner:
 1. **Automatisation**: Détection type sans effort

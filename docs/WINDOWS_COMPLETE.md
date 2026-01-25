@@ -1,4 +1,4 @@
-#  Résumé Complet - Installation Windows
+# Résumé Complet - Installation Windows
 
 ## à Qu'est-ce qui a été créé pour Windows?
 
@@ -26,7 +26,7 @@ README.md            Mis à jour avec section Windows
 
 ---
 
-##  Installation Super Simple (3 étapes)
+## Installation Super Simple (3 étapes)
 
 ### àtape 1: Télécharger Go
 - Va sur: https://golang.org/dl/
@@ -64,7 +64,7 @@ PS> .\run-web.ps1
 
 ---
 
-##  Qu'est-ce que chaque script fait?
+## Qu'est-ce que chaque script fait?
 
 ### install.bat / install.ps1
 -  Vérifie que Go est installé
@@ -89,7 +89,7 @@ PS> .\run-web.ps1
 
 ---
 
-##  Astuces Pratiques
+## Astuces Pratiques
 
 ### Créer un Raccourci Bureau
 1. Clique droit sur `run-web.bat`
@@ -112,7 +112,7 @@ Puis double-clique ce fichier!
 
 ---
 
-##  Personnaliser le Port
+## Personnaliser le Port
 
 Si le port 8080 est occupé:
 
@@ -125,7 +125,7 @@ Si le port 8080 est occupé:
 
 ---
 
-##  Dépannage
+## Dépannage
 
 ### Problàme: "Go is not recognized"
 ```
@@ -162,7 +162,7 @@ Solution:
 
 ---
 
-##  Structure pour Windows
+## Structure pour Windows
 
 ```
 ia-atomique/
@@ -189,7 +189,7 @@ ia-atomique/
 
 ---
 
-##  Workflow Typique Windows
+## Workflow Typique Windows
 
 ```
 1à Double-clique install.bat
@@ -211,7 +211,7 @@ ia-atomique/
 
 ---
 
-##  Points Importants
+## Points Importants
 
  **Aucune ligne de commande requise** - Juste double-clique  
  **Automatique** - Install.bat fait tout tout seul  
@@ -221,7 +221,7 @@ ia-atomique/
 
 ---
 
-##  Prochaines àtapes
+## Prochaines àtapes
 
 ### Pour toi (développeur):
 1. Teste les scripts sur Windows

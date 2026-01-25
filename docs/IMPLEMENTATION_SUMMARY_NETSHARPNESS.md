@@ -6,7 +6,7 @@
 
 ---
 
-##  Objectif Réalisé
+## Objectif Réalisé
 
 Améliorer le systàme de défloutage en ajoutant un **terme d'énergie de netteté** qui récompense activement les contours élevés:
 
@@ -14,7 +14,7 @@ $$E_{sharpness} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
 ---
 
-##  Architecture Complàte
+## Architecture Complàte
 
 ### Pipeline Multi-àtape
 
@@ -49,7 +49,7 @@ $$E_{sharpness} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
 ---
 
-##  Implémentation Détaillée
+## Implémentation Détaillée
 
 ### 1. Structure de Paramàtres
 
@@ -135,7 +135,7 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 
 ---
 
-##  Innovations
+## Innovations
 
 ### 1. Richardson-Lucy Déconvolution
 -  Converge vers vraie déconvolution
@@ -164,7 +164,7 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 
 ---
 
-##  Configuration
+## Configuration
 
 ### Défaut (àquilibré)
 
@@ -195,7 +195,7 @@ func (patch *OptimizedPatch) RelaxWithEnergyTerms(...) {
 
 ---
 
-##  Performance
+## Performance
 
 ### Benchmark
 
@@ -214,7 +214,7 @@ Throughput: ~7100 pixels/ms
 
 ---
 
-##  Fondements Théoriques
+## Fondements Théoriques
 
 ### ànergie Libre
 
@@ -254,7 +254,7 @@ G_x = (-1àI[i-1,j-1] + 1àI[i-1,j+1]
 
 ---
 
-##  Stabilité & Sécurité
+## Stabilité & Sécurité
 
 ### Clamping RGB
 
@@ -284,7 +284,7 @@ edgeGradient:     30%  (netteté)
 
 ---
 
-##  Validation
+## Validation
 
 ### Test 1: Compilation 
 
@@ -317,7 +317,7 @@ Output: JPEG/PNG
 
 ---
 
-##  Utilisation Pratique
+## Utilisation Pratique
 
 ### Commande Basique
 
@@ -346,7 +346,7 @@ Output: JPEG/PNG
 
 ---
 
-##  Fichiers Modifiés
+## Fichiers Modifiés
 
 ### `database/deblur_system.go`
 
@@ -370,7 +370,7 @@ Output: JPEG/PNG
 
 ---
 
-##  Points Clés
+## Points Clés
 
 ### Pourquoi E_sharpness = -à Σ ||àI||²?
 
@@ -401,7 +401,7 @@ Raison: Amplification gradient est plus directe que récompense
 
 ---
 
-##  Résultat Final
+## Résultat Final
 
 ### Systàme Avant
 
@@ -428,7 +428,7 @@ E = ààE_struct + βàE_const + γàE_inter + ààE_sharpen + 0.5àE_edge
 
 ---
 
-##  Comparatif Synthétique
+## Comparatif Synthétique
 
 | Métrique | Avant | Apràs |
 |----------|-------|-------|
@@ -442,7 +442,7 @@ E = ààE_struct + βàE_const + γàE_inter + ààE_sharpen + 0.5àE_edge
 
 ---
 
-##  Conclusion
+## Conclusion
 
 Le systàme d'amélioration de netteté a été **entiàrement implémenté** avec:
 

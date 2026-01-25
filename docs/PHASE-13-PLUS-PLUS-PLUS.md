@@ -1,11 +1,11 @@
 # Phase 13+++ - Normalisation Lexicale Avancée & Diversification
 
-##  Objectif Global
+## Objectif Global
 Réduire les répétitions résiduelles gràce à **5 stratégies imbriquées** opérant à différents niveaux: décision de blocs, vectorisation, sélection, et post-traitement.
 
 ---
 
-##  Les 5 Stratégies Implémentées
+## Les 5 Stratégies Implémentées
 
 ### 1à **Normalisation Lexicale des Blocs** 
 **Fichier**: `/database/resumeur_coherence.go`  
@@ -178,7 +178,7 @@ motsFiltres = append(motsFiltres, mot)
 
 ---
 
-##  Impact Mesuré
+## Impact Mesuré
 
 ### Avant Phase 13+++
 - **Mots générés**: 1297 (sur 5406 source)
@@ -199,7 +199,7 @@ motsFiltres = append(motsFiltres, mot)
 
 ---
 
-##  Modifications Fichiers
+## Modifications Fichiers
 
 ### 1. `/database/resumeur_coherence.go`
 - **Ligne ~16**: Ajout `RepetitionsBloc map[string]int` au struct `BlocVectoriel`
@@ -220,7 +220,7 @@ motsFiltres = append(motsFiltres, mot)
 
 ---
 
-##  Flux d'Exécution (Phase 13+++)
+## Flux d'Exécution (Phase 13+++)
 
 ```
 1. Découpage (Decouper)
@@ -248,7 +248,7 @@ motsFiltres = append(motsFiltres, mot)
 
 ---
 
-##  Résultats Attendus
+## Résultats Attendus
 
 **Pour textes longs (500+ mots)**:
 - Cohérence maintenue: ~95%
@@ -263,7 +263,7 @@ motsFiltres = append(motsFiltres, mot)
 
 ---
 
-##  Concepts Clés
+## Concepts Clés
 
 ### Pénalité de Répétition
 ```
@@ -294,7 +294,7 @@ Prévient: "la la", "le le", etc.
 
 ---
 
-##  Checklist Validation
+## Checklist Validation
 
 - [x] Phase 1: Normalisation lexicale blocs implémentée
 - [x] Phase 2: Pondération TF-IDF intelligente implémentée
@@ -307,7 +307,7 @@ Prévient: "la la", "le le", etc.
 
 ---
 
-##  Prochaines àtapes Optionnelles
+## Prochaines àtapes Optionnelles
 
 ### Phase 14: Fine-Tuning Avancé
 1. **Augmenter dictionnaire synonymes**: Ajouter 30+ entrées (verbes, adjectifs)

@@ -1,8 +1,8 @@
-#  IA-ATOMIQUE - ULTRA-FAST IMAGE GENERATION & DEBLURRING
+# IA-ATOMIQUE - ULTRA-FAST IMAGE GENERATION & DEBLURRING
 
 **Objectif atteint:** Générer ou déflouter une image en **<2 secondes** 
 
-##  Nouveaux Modes Ultra-Rapides
+## Nouveaux Modes Ultra-Rapides
 
 ### GàNàRATION D'IMAGES
 
@@ -72,7 +72,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 - ** Temps:** ~45ms
 - ** Qualité:** Web-ready
 
-##  Benchmark Résultats
+## Benchmark Résultats
 
 ```
  IMAGE GENERATION BENCHMARK
@@ -93,7 +93,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
    Ultra mode now does: deblur + 4K upscale + quality enhancement
 ```
 
-##  Optimisations Implémentées
+## Optimisations Implémentées
 
 ### Générations
 1. **Patch Size Augmenté**
@@ -146,7 +146,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
    - Seulement traiter régions changées
    - àviter recalcul inutile
 
-##  Performances Comparées
+## Performances Comparées
 
 | Mode | Résolution | Temps | Qualité | Utilisation |
 |------|-----------|-------|---------|------------|
@@ -156,7 +156,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 | **BALANCED** | 512à512 | 5-10s |  | Production standard |
 | **QUALITY** | 512à512 | 20-30s |  | Print/Haute résolution |
 
-##  Cas d'Usage
+## Cas d'Usage
 
 ### Génération D'Images
 - **Ultra:** Preview d'idées (interface interactive)
@@ -168,7 +168,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 - **Draft:** Déflouter captures d'écran
 - **Fast:** Restaurer photos utilisateur
 
-##  Commandes Complàtes
+## Commandes Complàtes
 
 ### Génération
 ```bash
@@ -201,7 +201,7 @@ Les màmes modes s'appliquent au défloutage ! Mais avec une différence clé po
 ./programme deblur help
 ```
 
-##  Architecture Optimisée
+## Architecture Optimisée
 
 ```
 Image Input
@@ -225,7 +225,7 @@ Image Input
 PNG Output ~0.1-2 seconds 
 ```
 
-##  Optimisation Détail
+## Optimisation Détail
 
 ### Reduce Atoms Count (Biggest Impact)
 ```
@@ -255,7 +255,7 @@ ULTRA/DRAFT: Zéro post-processing
 FAST: Minimal only
 ```
 
-##  Résultat Final
+## Résultat Final
 
  **Images générées en <2 secondes**
 - Mode ULTRA: ~50ms
@@ -267,7 +267,7 @@ FAST: Minimal only
 - Mode DRAFT: ~1000ms
 - Mode FAST: ~2000ms
 
-##  Configuration personnalisée
+## Configuration personnalisée
 
 Pour créer un mode custom:
 ```go
@@ -284,7 +284,7 @@ config := database.FastImageConfig{
 fnet := database.NewFastAtomicImageNetwork(config)
 ```
 
-##  Fichiers Modifiés
+## Fichiers Modifiés
 
 1. **database/image_fast.go** - New fast generation module
 2. **image_commands.go** - New CLI handlers

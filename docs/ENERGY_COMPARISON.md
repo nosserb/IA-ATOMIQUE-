@@ -5,7 +5,7 @@
 
 ---
 
-##  Architecture ànergétique
+## Architecture ànergétique
 
 ### Phase 1: Avant (Amplification Gradient Simple)
 
@@ -42,7 +42,7 @@ Où:
 
 ---
 
-##  Différences Clés
+## Différences Clés
 
 | Aspect | Avant | Apràs |
 |--------|-------|-------|
@@ -56,7 +56,7 @@ Où:
 
 ---
 
-##  Intuition Physique
+## Intuition Physique
 
 ### Avant
 
@@ -81,7 +81,7 @@ Résultat: Amplifient ET créent des gradients
 
 ---
 
-##  Comparaison Visuelle Attendue
+## Comparaison Visuelle Attendue
 
 ### Avant (Sans E_edge)
 
@@ -105,7 +105,7 @@ Texture  créée par Perlin + gradients locaux attirés
 
 ---
 
-##  Configuration Comparative
+## Configuration Comparative
 
 ### Test 1: Image Légàrement Floue
 
@@ -135,7 +135,7 @@ Texture  créée par Perlin + gradients locaux attirés
 
 ---
 
-##  Métriques
+## Métriques
 
 ### Speedup
 
@@ -157,7 +157,7 @@ Pas de métrique absolue (dépend du contenu), mais:
 
 ---
 
-##  Cas d'Usage
+## Cas d'Usage
 
 ### Avant: Meilleur Pour
 
@@ -174,7 +174,7 @@ Pas de métrique absolue (dépend du contenu), mais:
 
 ---
 
-##  Avantages de Phase 2
+## Avantages de Phase 2
 
 1. **Plus adaptatif**: à_edge varie selon flou détecté
 2. **Moins passif**: Force création de contours, pas juste amplification
@@ -184,7 +184,7 @@ Pas de métrique absolue (dépend du contenu), mais:
 
 ---
 
-##  Précautions
+## Précautions
 
 ### àviter Avec Phase 2
 
@@ -201,7 +201,7 @@ Pas de métrique absolue (dépend du contenu), mais:
 
 ---
 
-##  Formule Complàte (Phase 2)
+## Formule Complàte (Phase 2)
 
 $$E_{total} = \alpha E_{struct} + \beta E_{const} + \gamma E_{inter} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
@@ -214,7 +214,7 @@ Où:
 
 ---
 
-##  Résumé
+## Résumé
 
 | Aspect | Avant | Apràs |
 |--------|-------|-------|

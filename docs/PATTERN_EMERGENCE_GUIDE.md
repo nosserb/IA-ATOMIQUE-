@@ -1,4 +1,4 @@
-#  Pattern Emergence Guide - From Waves to Recognizable Images
+# Pattern Emergence Guide - From Waves to Recognizable Images
 
 ## Overview
 
@@ -10,7 +10,7 @@
 
 ---
 
-##  Mathematical Foundation
+## Mathematical Foundation
 
 ### 1à Pixel Grid Representation
 
@@ -72,7 +72,7 @@ Where $S$ is the set of sampled/seed pixels.
 
 ---
 
-##  Commands Overview
+## Commands Overview
 
 ### Pattern Creation
 
@@ -131,7 +131,7 @@ Where $S$ is the set of sampled/seed pixels.
 
 ---
 
-##  Workflow Example
+## Workflow Example
 
 ### Step 1: Prepare Reference Image
 
@@ -170,7 +170,7 @@ ls -lh output/pattern_*.png
 
 ---
 
-##  Parameter Tuning
+## Parameter Tuning
 
 ### Diffusion Coefficient (à)
 
@@ -224,7 +224,7 @@ Number of diffusion steps:
 
 ---
 
-##  Interpretation of Loss
+## Interpretation of Loss
 
 The `Average Loss` metric shows how far generated pixels drift from seeds:
 
@@ -248,7 +248,7 @@ $$\text{Loss} = \sqrt{\text{Mean squared error from seeds}}$$
 
 ---
 
-##  Expected Progression
+## Expected Progression
 
 ### Pure Diffusion (No Seeds)
 
@@ -287,7 +287,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-##  Advanced Techniques
+## Advanced Techniques
 
 ### Multi-Scale Emergence
 
@@ -323,7 +323,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-##  Performance Considerations
+## Performance Considerations
 
 ### Memory Usage
 
@@ -347,7 +347,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 ### Issue: Pattern won't emerge
 
@@ -389,7 +389,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-##  Creative Applications
+## Creative Applications
 
 ### 1. Image Style Transfer
 
@@ -426,7 +426,7 @@ Iteration 200:   Clear recognition possible
 
 ---
 
-##  Mathematical Intuition
+## Mathematical Intuition
 
 ### Why It Works
 
@@ -479,7 +479,7 @@ This is why the mathematical formulation worksit mirrors nature.
 
 ---
 
-##  Experimental Variations
+## Experimental Variations
 
 ### Variable Alpha Over Time
 Decrease diffusion as iterations progress:
@@ -495,7 +495,7 @@ Start with few seeds, gradually add more as iterations progress.
 
 ---
 
-##  References
+## References
 
 Mathematical foundations:
 - Turing patterns in reaction-diffusion systems
@@ -511,7 +511,7 @@ Practical applications:
 
 ---
 
-##  Learning Outcomes
+## Learning Outcomes
 
 After working with Pattern Emergence, you understand:
 

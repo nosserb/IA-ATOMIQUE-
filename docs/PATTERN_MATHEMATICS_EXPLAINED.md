@@ -1,4 +1,4 @@
-#  PATTERNS MATHàMATIQUES - La Vraie Mécanique
+# PATTERNS MATHàMATIQUES - La Vraie Mécanique
 
 **Date**: January 9, 2026  
 **Status**:  IMPLàMENTà  
@@ -6,7 +6,7 @@
 
 ---
 
-##  LE PROBLàME QUE ÇA RàSOUT
+## LE PROBLàME QUE ÇA RàSOUT
 
 Avant:
 ```
@@ -28,7 +28,7 @@ Pattern = équation mathématique
 
 ---
 
-##  FONDATIONS MATHàMATIQUES
+## FONDATIONS MATHàMATIQUES
 
 ### 1à Représentation d'un Pattern
 
@@ -90,7 +90,7 @@ $$g_k(x,y) = \left(\frac{x}{W}\right)^{k_x} \cdot \left(\frac{y}{H}\right)^{k_y}
 
 ---
 
-##  EXTRACTION D'UN PATTERN DEPUIS UNE IMAGE
+## EXTRACTION D'UN PATTERN DEPUIS UNE IMAGE
 
 ### àtape 1: Normalisation
 
@@ -142,7 +142,7 @@ MSE > 0.15  Augmenter N (plus de fonctions)
 
 ---
 
-##  UTILISATION D'UN PATTERN APPRIS
+## UTILISATION D'UN PATTERN APPRIS
 
 ### Mode 1: Application Simple
 
@@ -206,7 +206,7 @@ C_dark = C_base à 0.6  [rendre 40% plus sombre]
 
 ---
 
-##  STOCKAGE DANS LA BASE DE DONNàES
+## STOCKAGE DANS LA BASE DE DONNàES
 
 Chaque pattern stocké = 3 informations:
 
@@ -230,7 +230,7 @@ Chaque pattern stocké = 3 informations:
 
 ---
 
-##  EXEMPLE COMPLET: COUCHER DE SOLEIL
+## EXEMPLE COMPLET: COUCHER DE SOLEIL
 
 ### àtape 1: Image source
 
@@ -291,7 +291,7 @@ Puis itération atomique:
 
 ---
 
-##  INTERPOLATION: TRANSITION ENTRE PATTERNS
+## INTERPOLATION: TRANSITION ENTRE PATTERNS
 
 Pour créer une animation douce de pattern1  pattern2:
 
@@ -315,7 +315,7 @@ t=1.0: Pur ocean
 
 ---
 
-##  AVANTAGES DE CETTE APPROCHE
+## AVANTAGES DE CETTE APPROCHE
 
 | Aspect | Avant (metadata) | Apràs (math) |
 |--------|---|---|
@@ -330,7 +330,7 @@ t=1.0: Pur ocean
 
 ---
 
-##  COMMANDES DISPONIBLES
+## COMMANDES DISPONIBLES
 
 ### Extraction
 ```bash
@@ -370,7 +370,7 @@ Affiche tous les àk avec interprétation.
 
 ---
 
-##  INSIGHTS MATHàMATIQUES
+## INSIGHTS MATHàMATIQUES
 
 ### 1. Pourquoi la décomposition Fourier?
 
@@ -398,7 +398,7 @@ Avec pattern mathématique:
 
 ---
 
-##  FLUX GLOBAL
+## FLUX GLOBAL
 
 ```
 Image  Extraction  Coefficients àk  Database
@@ -412,7 +412,7 @@ Prompt + Pattern  Décodage  f(x,y)  AtomicNetwork  Image
 
 ---
 
-##  POUR LES CHERCHEURS
+## POUR LES CHERCHEURS
 
 Cette approche est:
 

@@ -1,6 +1,6 @@
 # Guide des Tests Académiques - IA-ATOMIQUE
 
-##  Vue d'Ensemble
+## Vue d'Ensemble
 
 L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer ses capacités par rapport aux modàles de langage classiques (GPT-4, GPT-3, BERT).
 
@@ -69,7 +69,7 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 
 ---
 
-##  Interpréter les Résultats
+## Interpréter les Résultats
 
 ### MMLU
 
@@ -130,7 +130,7 @@ L'IA-ATOMIQUE implémente les benchmarks académiques standards pour évaluer se
 
 ---
 
-##  Méthodologie
+## Méthodologie
 
 ### MMLU - àvaluation par Cohérence Sémantique
 
@@ -186,7 +186,7 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ---
 
-##  Limitations Actuelles
+## Limitations Actuelles
 
 ### Pourquoi les scores sont-ils inférieurs aux LLMs?
 
@@ -207,7 +207,7 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ---
 
-##  Améliorer les Performances
+## Améliorer les Performances
 
 ### Stratégies d'Amélioration
 
@@ -246,7 +246,7 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ---
 
-##  Résultats Extrapolés
+## Résultats Extrapolés
 
 ### Avec Entraànement Complet
 
@@ -267,7 +267,7 @@ score = 0.6 * score_perplexite + 0.4 * score_coherence
 
 ---
 
-##  Configuration Avancée
+## Configuration Avancée
 
 ### Ajuster Sensibilité MMLU
 
@@ -295,7 +295,7 @@ func (e *HellaswagEngine) EvaluateQuestion(q HellaswagQuestion) {
 
 ---
 
-##  Références
+## Références
 
 ### Papiers Originaux
 
@@ -318,7 +318,7 @@ func (e *HellaswagEngine) EvaluateQuestion(q HellaswagQuestion) {
 
 ---
 
-##  Pour Publication Académique
+## Pour Publication Académique
 
 ### Présenter les Résultats
 
@@ -345,7 +345,7 @@ créative. Avec entraànement supervisé, nous estimons atteindre 70-80% sur MML
 
 ---
 
-##  Cas d'Usage Recommandés
+## Cas d'Usage Recommandés
 
 ### Quand Utiliser IA-ATOMIQUE
 

@@ -1,6 +1,6 @@
 # Comparaison Phase 13++ vs Phase 13+++
 
-##  Métriques Globales
+## Métriques Globales
 
 | Métrique | Phase 13++ | Phase 13+++ | Variation |
 |----------|-----------|-----------|-----------|
@@ -13,7 +13,7 @@
 
 ---
 
-##  Analyse Détaillée
+## Analyse Détaillée
 
 ### Phase 13++ - Baseline
 **Caractéristiques**:
@@ -51,20 +51,20 @@
 
 ---
 
-##  Avantages Phase 13+++
+## Avantages Phase 13+++
 
-###  Qualité Améliorie
+### Qualité Améliorie
 - **Répétitions intra-blocs**: Détectées et pénalisées
 - **Répétitions inter-phrases**: àliminées (<5 mots)
 - **Vocabulaire varié**: Synonymes pour mots fréquents
 - **Lectures plus fluides**: Pas de "donné... donnent... données"
 
-###  Performance Accélérée
+### Performance Accélérée
 - **86% plus rapide**: Moins de blocs à traiter
 - **Fenàtrage strict réduit sélection**: 45 vs 50 blocs
 - **Post-traitement optimisé**: Filtrage simple et rapide
 
-###  Cohérence Stable
+### Cohérence Stable
 - **94.83%  95.00%**: Légàre amélioration
 - **Preuve**: Les filtres éliminent bruit, préservent signal
 
@@ -96,7 +96,7 @@ if similarity > 0.7 {  // vs 0.6 (plus permissif)
 
 ---
 
-##  Exemples de Sortie
+## Exemples de Sortie
 
 ### Avant Phase 13+++
 ```
@@ -118,7 +118,7 @@ L'univers moderne, une sphàre en constante transformation..."
 
 ---
 
-##  Validation Expérimentale
+## Validation Expérimentale
 
 ### Test 1: input.txt (5436 mots)
 ```
@@ -136,7 +136,7 @@ Phase 13+++: 12 mots    95.00% cohérence
 
 ---
 
-##  Détail des 5 Stratégies
+## Détail des 5 Stratégies
 
 ### Stratégie 1: Normalisation Lexicale 
 ```go
@@ -184,7 +184,7 @@ Phase 13+++: 12 mots    95.00% cohérence
 
 ---
 
-##  Quand Utiliser Chaque Phase
+## Quand Utiliser Chaque Phase
 
 ### Phase 13++ (Baseline)
 -  Besoins de **couverture maximale** (1200+ mots)
@@ -235,7 +235,7 @@ if i-lastPos < 10 { skip }  // vs 5
 
 ---
 
-##  Conclusion
+## Conclusion
 
 **Phase 13+++** représente un équilibre optimal entre:
 -  **Qualité**: 5 couches de filtrage répétitions

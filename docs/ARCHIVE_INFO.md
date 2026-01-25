@@ -1,6 +1,6 @@
 # à Archive IA-ATOMIQUE - Pràte pour Email!
 
-##  Fichier Créé
+## Fichier Créé
 
 ```
 ia-atomique-web.zip (36 KB)
@@ -65,7 +65,7 @@ Tous les fichiers de la branche `chore/siteweb`:
 
 ---
 
-##  Comment L'Utiliser
+## Comment L'Utiliser
 
 ### 1. Télécharger
 Télécharge le fichier `ia-atomique-web.zip` depuis l'email ou le dossier partagé
@@ -94,7 +94,7 @@ make web
 
 ---
 
-##  Taille
+## Taille
 
 - **Fichier:** 36 KB
 - **Extraction:** ~200 KB
@@ -102,7 +102,7 @@ make web
 
 ---
 
-##  Contenu Nouveau
+## Contenu Nouveau
 
 Cette archive contient TOUT ce qui a été créé:
 
@@ -117,7 +117,7 @@ Cette archive contient TOUT ce qui a été créé:
 
 ---
 
-##  Prochaine àtape
+## Prochaine àtape
 
 Une fois extractée et testée, tu peux pusher sur GitHub:
 
