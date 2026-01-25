@@ -157,7 +157,7 @@ return result
 
 **After**:
 ```go
-// === PHASE 13+++: Fen�trage strict - Force lexical diversity between consecutive blocks ===
+// === PHASE 13+++: Fenàtrage strict - Force lexical diversity between consecutive blocks ===
 result := []BlocVectoriel{}
 for i, bloc := range r.Blocs {
     if selectedIndices[i] {
@@ -217,7 +217,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
         }
     }
 
-    // Calculate Jaccard similarity: |A � B| / |A  B|
+    // Calculate Jaccard similarity: |A à B| / |A  B|
     intersection := 0
     for mot := range vocab1 {
         if vocab2[mot] {
@@ -247,7 +247,7 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
 
 **Before**:
 ```go
-// TF-IDF = TF � IDF
+// TF-IDF = TF à IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -262,7 +262,7 @@ for _, mot := range vocab {
 
 **After**:
 ```go
-// TF-IDF = TF � IDF
+// TF-IDF = TF à IDF
 for _, mot := range vocab {
     tfidfVal := tf[mot] * idf[mot]
     if tfidfVal < 0 {
@@ -323,17 +323,17 @@ import (
 ```go
 // === PHASE 13+++: Contextual synonyms dictionary ===
 var SynonymsDict = map[string][]string{
-    "malheureux":   {"regrettable", "désolé", "f�cheux", "malheureux"},
+    "malheureux":   {"regrettable", "désolé", "fàcheux", "malheureux"},
     "changer":      {"modifier", "transformer", "altérer", "changer"},
     "important":    {"crucial", "essentiel", "vital", "important"},
     "différent":    {"distinct", "varié", "divers", "différent"},
-    "donne":        {"gén�re", "fournit", "conduit", "donne"},
+    "donne":        {"génàre", "fournit", "conduit", "donne"},
     "avoir":        {"posséder", "détenir", "disposer de", "avoir"},
-    "�tre":         {"constituer", "représenter", "figurer", "�tre"},
+    "àtre":         {"constituer", "représenter", "figurer", "àtre"},
     "faire":        {"effectuer", "réaliser", "accomplir", "faire"},
     "donner":       {"attribuer", "procurer", "conférer", "donner"},
     "montrer":      {"démontrer", "révéler", "illustrer", "montrer"},
-    "monde":        {"univers", "domaine", "sph�re", "monde"},
+    "monde":        {"univers", "domaine", "sphàre", "monde"},
     "jour":         {"époque", "période", "moment", "jour"},
     "suivant":      {"ultérieur", "postérieur", "subséquent", "suivant"},
     "simple":       {"élémentaire", "basique", "rudimentaire", "simple"},
@@ -427,7 +427,7 @@ mots = motsFiltres
 2.  Added call to `NormaliserRepetitionsBlocs()` in `Decouper()`
 3.  Implemented `NormaliserRepetitionsBlocs()` function
 4.  Modified scoring in `SelectionnerBlocsAvecFenetrageGlissant()`
-5.  Added strict fen�trage logic
+5.  Added strict fenàtrage logic
 6.  Implemented `CalculerSimilarityVocabLexical()` function
 
 ### generation.go (1 change, ~15 lines)

@@ -1,16 +1,16 @@
 # IA-ATOMIQUE Phase 15 : Module Anti-Hallucination
 
-## � Résumé
+## à Résumé
 
-Ce module implémente **6 stratégies mathématiquement formalisées** pour emp�cher Phase 15 d'inventer du contenu non présent dans le texte source.
+Ce module implémente **6 stratégies mathématiquement formalisées** pour empàcher Phase 15 d'inventer du contenu non présent dans le texte source.
 
-**Probl�me résolu** : 
-- Phase 15 �tape 2 générait du contenu hallucin (inventa concepts)
+**Problàme résolu** : 
+- Phase 15 àtape 2 générait du contenu hallucin (inventa concepts)
 - Aucune vérification de fidélité au texte source
 
 **Solution** :
-- Score de fidélité Ff(R,T) = |C(R)�C(T)| / |C(R)|
-- Hybridation automatique : génération si fid�le (Ff  80%), sinon extraction garantie
+- Score de fidélité Ff(R,T) = |C(R)àC(T)| / |C(R)|
+- Hybridation automatique : génération si fidàle (Ff  80%), sinon extraction garantie
 
 ---
 
@@ -18,7 +18,7 @@ Ce module implémente **6 stratégies mathématiquement formalisées** pour emp�
 
  **Zéro hallucination garantie** (via fallback extractif)  
  **Décision automatique** (hybridation intelligente)  
- **Mathématiquement formalisé** (6 stratégies, théor�me de garantie)  
+ **Mathématiquement formalisé** (6 stratégies, théoràme de garantie)  
  **Performant** (< 100ms par résumé)  
  **Production-ready** (5 fichiers, 500+ lignes de code, tests passants)  
 
@@ -92,8 +92,8 @@ $$F_f(R,T) = \frac{|C(R) \cap C(T)|}{|C(R)|}$$
 -  Peut fragmenter le texte
 -  Fidélité variable
 
-### C. Hybridation (RECOMMAND�E )
--  Meilleur des deux : génération si fid�le, extraction sinon
+### C. Hybridation (RECOMMANDàE )
+-  Meilleur des deux : génération si fidàle, extraction sinon
 -  Zéro hallucination garantie
 -  Texte plus naturel
 - **UTILISER CELLE-CI**
@@ -125,7 +125,7 @@ final, fidelity, mode := database.HybridResume(
     0.80, // seuil fidélité
 )
 
-// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
+// mode = "GàNàRATIF (fidàle)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
 ### Approche personnalisée : Extraction pure
@@ -203,7 +203,7 @@ technicalPatterns := []string{
 
 | Document | Contenu |
 |---|---|
-| **PHASE-15-ANTI-HALLUCINATION.md** | Mathématique compl�te + théor�me |
+| **PHASE-15-ANTI-HALLUCINATION.md** | Mathématique complàte + théoràme |
 | **FIDELITY_QUICKSTART.md** | Guide utilisateur simple |
 | **CHANGELOG-PHASE-15...md** | Détail des changements |
 | **INTEGRATION-EXAMPLES.go** | Exemples code d'intégration |
@@ -215,7 +215,7 @@ technicalPatterns := []string{
 
 ### Garanties mathématiques
 
-**Théor�me** : Si stratégie C (hybridation) avec � = 0.80 :
+**Théoràme** : Si stratégie C (hybridation) avec à = 0.80 :
 - Alors résumé final = 0% hallucination garantie
 - (Extraction pure si aucune fidélité)
 
@@ -223,9 +223,9 @@ technicalPatterns := []string{
 
 ### Limitations
 
-- Vocabulaire technique limité � domaine IA-ATOMIQUE (enrichissable)
+- Vocabulaire technique limité à domaine IA-ATOMIQUE (enrichissable)
 - Embeddings actuellement heuristiques (BERT future)
-- Nécessite texte en fran�ais ou compatible
+- Nécessite texte en franàais ou compatible
 
 ---
 
@@ -239,11 +239,11 @@ technicalPatterns := []string{
 
 ---
 
-## � Questions ?
+## à Questions ?
 
 **Consulter** :
 1. `FIDELITY_QUICKSTART.md`  utilisation basique
-2. `PHASE-15-ANTI-HALLUCINATION.md`  théorie compl�te
+2. `PHASE-15-ANTI-HALLUCINATION.md`  théorie complàte
 3. `INTEGRATION-EXAMPLES.go`  exemples code
 4. Source : `database/fidelity_check.go`
 
@@ -251,7 +251,7 @@ technicalPatterns := []string{
 
 ##  Licence
 
-M�me que IA-ATOMIQUE
+Màme que IA-ATOMIQUE
 
 ---
 

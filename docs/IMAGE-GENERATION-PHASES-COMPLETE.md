@@ -8,7 +8,7 @@ This document describes the complete **5-phase atomic image generation system** 
 
 ---
 
-## Phase 1: Multi-Scale Structuration (Structuration Multi-Ãchelle)
+## Phase 1: Multi-Scale Structuration (Structuration Multi-Ã chelle)
 
 ### Objective
 Transform isolated pixels into coherent patterns through **local resonance** at multiple scales (micro, meso, macro).
@@ -30,7 +30,7 @@ Where:
 
 1. **Multi-Scale Layers**
    - **Micro**: Individual pixels (scale = 1)
-   - **Meso**: 4Ã4 or 8Ã8 blocks (scale = 4, 8)
+   - **Meso**: 4Ã 4 or 8Ã 8 blocks (scale = 4, 8)
    - **Macro**: Full image patterns (scale = 16+)
 
 2. **Resonance Calculation**
@@ -68,7 +68,7 @@ network.PhaseOne_StructurationMultiEchelle(50)
 
 ---
 
-## Phase 2: Shape Emergence (Ãmergence de Forme)
+## Phase 2: Shape Emergence (Ã mergence de Forme)
 
 ### Objective
 Make **primitive shapes** appear (contours, lines, curves) through **capsule-based resonance**.
@@ -417,8 +417,8 @@ CoherenceReport {
 ### Computational Complexity
 
 - **Per atom, per iteration**: O(8) neighborhood reads + resonance computation
-- **Total per iteration**: O(N) where N = (width/patch) Ã (height/patch)
-- **Full pipeline**: O(5 Ã N Ã iterations)
+- **Total per iteration**: O(N) where N = (width/patch) Ã  (height/patch)
+- **Full pipeline**: O(5 Ã  N Ã  iterations)
 - **Memory**: O(N) atoms + auxiliary structures
 
 ### Parallelization

@@ -1,6 +1,6 @@
 # CORRECTION - Traduction EN  FR maintenant active 
 
-## Probl�mes trouvés & résolus
+## Problàmes trouvés & résolus
 
 ### 1. **Language Detection minuscule vs majuscule**
 **Symptôme**: Détection retournait "EN", "DE", "ES" EN MAJUSCULES, mais TraductionMap avait des clés "en", "de", "es" en minuscules.
@@ -10,7 +10,7 @@
 - Adapté comparaisons dans `DetecterEtTraduirePhrases()` et `TraduireSiNecessaire()` pour utiliser minuscules
 
 ### 2. **Word boundaries manquants dans detection**
-**Symptôme**: `countKeywords()` utilisait `strings.Contains()` qui matchait des sous-cha�nes (ex: "a" matchait dans "away", "the" dans "then")
+**Symptôme**: `countKeywords()` utilisait `strings.Contains()` qui matchait des sous-chaànes (ex: "a" matchait dans "away", "the" dans "then")
 
 **Solution**: 
 - Réécrit `countKeywords()` pour utiliser `strings.FieldsFunc()` et comparaison mot entier
@@ -32,13 +32,13 @@
  NOT TRANSLATED (remained in EN)
 ```
 
-### Apr�s la correction
+### Apràs la correction
 ```
 "Le Project Gutenberg eBook de An essai sur combustion..."
  PARTIALLY TRANSLATED (100+ mots traduits)
 
 Phrase 1:
-"Le possibility de making cloths de gold, silver, et other metals, par chymical processus occurred � me en le year 1780..."
+"Le possibility de making cloths de gold, silver, et other metals, par chymical processus occurred à me en le year 1780..."
       le (the)         de (of)                et (and)         par (by)     en (in)
 ```
 
@@ -74,9 +74,9 @@ Taux de compression: 1.8x
 
 **Qualité traduction**:
 -  Déterminants (the/a  le/un)
--  Prépositions (of/to/in  de/�/en)
+-  Prépositions (of/to/in  de/à/en)
 -  Conjonctions (and/or  et/ou)
--  Verbes courants (make/have/be  faire/avoir/�tre)
+-  Verbes courants (make/have/be  faire/avoir/àtre)
 -  Adjectifs scientifiques (combustion/experiment  combustion/expérience)
 -  Mots rares toujours en EN (chymical, fulhame, etc.)
 
@@ -85,14 +85,14 @@ Taux de compression: 1.8x
 Le **pipeline traduction est maintenant opérationnel** 
 
 -  Détection de langue robuste
--  Traduction mot-�-mot avec 200+ entrées
+-  Traduction mot-à-mot avec 200+ entrées
 -  Confidence factor γi appliqué
--  Energy formula Etotal = E�γi + β�coherence respectée
+-  Energy formula Etotal = Eàγi + βàcoherence respectée
 -  Performance acceptable (+12% overhead)
 
 ### Recommandations futures
 
 1. **Utiliser API externe** (DeepL, LibreTranslate) pour meilleure qualité
-2. **Ajouter plus de mots** � TraductionMap basé sur corpus cible
+2. **Ajouter plus de mots** à TraductionMap basé sur corpus cible
 3. **Implémenter lemmatization** pour gérer variantes (dying/die, makes/make)
 4. **Tester sur corpus pure DE/ES** pour valider

@@ -23,7 +23,7 @@ Do:         Atoms  Auto-detect cells  Cellular dynamics  Perfect rendering
 
 ---
 
-## ¦ What Was Created
+## Ã  What Was Created
 
 ### 1. Core System (620 lines - `database/cellular_emergence.go`)
 
@@ -174,12 +174,12 @@ A **Cell** emerges automatically when:
 ```
 LEVEL 1: ATOMIC NETWORK
 
- 256Ã256 atoms (individual pixels)   
+ 256Ã 256 atoms (individual pixels)   
   State: [0, 1]                      
   Resonance: R(si, sj) = exp(...)   
-  Weights: dwij/dt = Î³Âcoh - Î´Âwij  
+  Weights: dwij/dt = Î³Ã coh - Î´Ã wij  
   Coherence: 20%  90%              
-˜
+Ã 
              (every 20 iterations)
         DETECTION SCAN
             
@@ -190,12 +190,12 @@ LEVEL 2: CELLULAR NETWORK
   Same dynamics as atoms            
   Resonance: between cells          
   Coherence: 45%  89%              
-˜
+Ã 
             
     HIERARCHICAL DYNAMICS
             
 LEVEL 3: PERFECT RENDERING
-˜
+Ã 
 ```
 
 ---
@@ -228,20 +228,20 @@ LEVEL 3: PERFECT RENDERING
 
 ### Atomic Level (Tuned)
 ```
-Î (Coupling):        0.70
+Ã  (Coupling):        0.70
 Î² (Local Rules):     0.30
 Î³ (Reinforcement):   0.15
 Î´ (Decay):           0.05
-Ï (Resonance):       0.80
+Ã  (Resonance):       0.80
 ```
 
 ### Cellular Level (Similar, slightly different)
 ```
-Î (Coupling):        0.70
+Ã  (Coupling):        0.70
 Î² (Local Rules):     0.30
 Î³ (Reinforcement):   0.12
 Î´ (Decay):           0.04
-Ï (Resonance):       0.75
+Ã  (Resonance):       0.75
 ```
 
 ### Detection (Automatic, unchangeable)
@@ -268,7 +268,7 @@ CoherenceThreshold:   0.90
 
 ### The Problem with Arbitrary Chunking
 ```
-Divide image into 64Ã64 chunks
+Divide image into 64Ã 64 chunks
     
 Relax each chunk
     
@@ -279,7 +279,7 @@ Imperfect rendering
 
 ### The Solution: Cellular Emergence
 ```
-Create 256Ã256 atom network
+Create 256Ã 256 atom network
     
 Atoms self-organize into clusters
     
@@ -385,8 +385,8 @@ $$S_c(t+1) = S_c(t) + \alpha \sum_d W_{cd} R(S_c, S_d) + \beta(R_c + P_c)$$
 ##  Key Insights
 
 ### Why Not Just Use Bigger Chunks?
- Chunks of 128Ã128 are too large for fine detail  
- Chunks of 32Ã32 are too small for large structures  
+ Chunks of 128Ã 128 are too large for fine detail  
+ Chunks of 32Ã 32 are too small for large structures  
  Cells emerge at the RIGHT SIZE for each region
 
 ### Why Not Use Machine Learning?
@@ -407,7 +407,7 @@ $$S_c(t+1) = S_c(t) + \alpha \sum_d W_{cd} R(S_c, S_d) + \beta(R_c + P_c)$$
 
 ---
 
-## ‹ Checklist: What's Implemented
+## Ã  Checklist: What's Implemented
 
 - [x] Cell struct (super-atoms)
 - [x] CellularClusterDetector (5 criteria verification)

@@ -1,4 +1,4 @@
-#  R�SUM� RAPIDE: Terme d'�nergie de Netteté
+#  RàSUMà RAPIDE: Terme d'ànergie de Netteté
 
 **Date**: 13 janvier 2026
 
@@ -14,8 +14,8 @@ $$E_{edge} = -\lambda \sum_{i,j} \|\nabla I_{i,j}\|^2$$
 
 ### Effet
 
-- **Signe négatif**  Syst�me minimise -E = **Maximise gradients**
-- **� adaptatif**  0.3 � 1.0 selon flou détecté
+- **Signe négatif**  Systàme minimise -E = **Maximise gradients**
+- **à adaptatif**  0.3 à 1.0 selon flou détecté
 - **Sobel simple**  G_x = I[i+1,j] - I[i-1,j], idem G_y
 
 ### Résultat
@@ -26,18 +26,18 @@ Atomes se repositionnent pour créer/amplifier contours nets
 
 ##  Implémentation (4 Fonctions)
 
-### 1. �nergie Globale
+### 1. ànergie Globale
 
 ```go
 CalculateEdgeEnhancementEnergy(atoms, lambda)
-// Somme: -��(G_x² + G_y²) pour tous pixels
+// Somme: -àà(G_x² + G_y²) pour tous pixels
 ```
 
 ### 2. Magnitude Local
 
 ```go
 ComputeLocalEdgeStrength(atoms, i, j)
-// Retourne: G_x² + G_y² � position (i,j)
+// Retourne: G_x² + G_y² à position (i,j)
 ```
 
 ### 3. Gradient de Descente
@@ -51,29 +51,29 @@ ComputeLocalEdgeGradient(atoms, i, j, lambda)
 ### 4. Intégration
 
 ```go
-RelaxWithEnergyTerms()  // Mise � jour
-// Ajoute edgeGrad au calcul de mise � jour RGB
+RelaxWithEnergyTerms()  // Mise à jour
+// Ajoute edgeGrad au calcul de mise à jour RGB
 ```
 
 ---
 
-##  Formule Compl�te
+##  Formule Complàte
 
 $$E_{total} = \alpha E_{struct} + \beta E_{constraint} + \gamma E_{interaction} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
 Où:
 - **Trois premiers**: Stabilité structure
-- **��E_sharpen**: Amplification (k=2.2)
-- **0.5�E_edge**: Récompense netteté  **NOUVEAU**
+- **ààE_sharpen**: Amplification (k=2.2)
+- **0.5àE_edge**: Récompense netteté  **NOUVEAU**
 
 ---
 
-##  Param�tres
+##  Paramàtres
 
-| Param�tre | Valeur | Plage |
+| Paramàtre | Valeur | Plage |
 |-----------|--------|-------|
-| � (défaut) | 0.4 | [0.3, 1.0] |
-| � (adaptatif) | blur_��0.15 | Auto |
+| à (défaut) | 0.4 | [0.3, 1.0] |
+| à (adaptatif) | blur_àà0.15 | Auto |
 | Sobel | Simple 2-point | O(1) rapide |
 | Poids E_edge | 0.5 | Modéré |
 
@@ -112,13 +112,13 @@ Overhead: ~5% (acceptable)
 
 ---
 
-##  Clés de Succ�s
+##  Clés de Succàs
 
 1. **Signe négatif**: Force maximisation via minimisation
 2. **Sobel simplifié**: O(1) rapide, suffisant
-3. **Adaptatif �**: Fort flou  � fort  plus d'amplification
+3. **Adaptatif à**: Fort flou  à fort  plus d'amplification
 4. **Poids modéré**: 0.5 balance avec autres termes
-5. **Clamping RGB**: �vite débordement
+5. **Clamping RGB**: àvite débordement
 
 ---
 
@@ -127,10 +127,10 @@ Overhead: ~5% (acceptable)
 **`database/deblur_system.go`** (+200 lignes)
 
 - `DeconvolutionParams`: Ajout `EdgeEnhancementLambda`
-- `NewDefaultDeconvolutionParams()`: � = 0.4
-- `NewAdaptiveDeconvolutionParams()`: � adaptatif
-- `CalculateEdgeEnhancementEnergy()`: E_edge = -��Σ||�I||²
-- `ComputeLocalEdgeStrength()`: ||�I||²
+- `NewDefaultDeconvolutionParams()`: à = 0.4
+- `NewAdaptiveDeconvolutionParams()`: à adaptatif
+- `CalculateEdgeEnhancementEnergy()`: E_edge = -ààΣ||àI||²
+- `ComputeLocalEdgeStrength()`: ||àI||²
 - `ComputeLocalEdgeGradient()`: E/I pour R,G,B
 - `RelaxWithEnergyTerms()`: Intégration dans relaxation
 
@@ -142,25 +142,25 @@ Overhead: ~5% (acceptable)
 ./programme deblur image.jpg 16 16 100 1920 1080 output.jpg
 ```
 
-**Auto**: � adaptatif selon image (0.3-1.0)
+**Auto**: à adaptatif selon image (0.3-1.0)
 
 ---
 
 ##  Cas d'Usage
 
- Flou � réduire activement  
+ Flou à réduire activement  
  Texte, documents (netteté essentielle)  
  Images naturelles (détails fins)  
  Haute résolution (plus de pixels = plus de gradient)  
 
- Pas pour images tr�s bruitées (amplifierait bruit)  
+ Pas pour images tràs bruitées (amplifierait bruit)  
  Pas sans Richardson-Lucy (détails artificiels)  
 
 ---
 
-##  Avant vs Apr�s
+##  Avant vs Apràs
 
-| Aspect | Avant | Apr�s |
+| Aspect | Avant | Apràs |
 |--------|-------|-------|
 | **Déconvolution** |  RL+Unsharp |  RL+Unsharp |
 | **Amplification** |  k=2.2 |  k=2.2 |
@@ -170,6 +170,6 @@ Overhead: ~5% (acceptable)
 
 ---
 
-**Status**:  **COMPLET & TEST�**
+**Status**:  **COMPLET & TESTà**
 
-Syst�me maintenant avec **récompense active des contours** via E_edge = -��Σ||�I||²
+Systàme maintenant avec **récompense active des contours** via E_edge = -ààΣ||àI||²

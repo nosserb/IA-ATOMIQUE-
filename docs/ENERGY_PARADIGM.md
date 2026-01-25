@@ -2,13 +2,13 @@
 
 ##  Philosophie Fondamentale
 
-**Au lieu de "dessiner" une image, on la gén�re par relaxation d'un syst�me physique vers l'équilibre.**
+**Au lieu de "dessiner" une image, on la génàre par relaxation d'un systàme physique vers l'équilibre.**
 
 ### Différence Conceptuelle
 
 | Approche Traditionnelle | Notre Approche |
 |---|---|
-| "Je vais créer pixels" | "Je vais relaxer un syst�me" |
+| "Je vais créer pixels" | "Je vais relaxer un systàme" |
 | Algorithme déterministe | Physique d'équilibre |
 | Somme de décisions | Minimisation d'énergie |
 | Réseau de neurones massif | Interactions locales |
@@ -18,9 +18,9 @@
 
 ##  Les 3 Niveaux d'Abstraction
 
-### **Niveau 1: Atomes (�tats �lémentaires)**
+### **Niveau 1: Atomes (àtats àlémentaires)**
 
-Chaque pixel-atome poss�de:
+Chaque pixel-atome possàde:
 - **Couleur** [R, G, B]  [0, 1]
 - **Intensité** (luminosité globale)
 - **Orientation** (direction du gradient local)
@@ -28,10 +28,10 @@ Chaque pixel-atome poss�de:
 - **Index texture** (type de texture local)
 
 ```
-�tat interne:
-  si = (Ri, Gi, Bi, Ii, �i, ci, ti)
+àtat interne:
+  si = (Ri, Gi, Bi, Ii, ài, ci, ti)
 
-Pas de r�gle externe, juste minimisation d'énergie locale
+Pas de ràgle externe, juste minimisation d'énergie locale
 ```
 
 ### **Niveau 2: Motifs (Structures Locales)**
@@ -43,7 +43,7 @@ Le réseau détecte automatiquement:
 - **Micro-textures** (cohérence locale)
 - **Symétries** (alignements régionaux)
 
-Ces motifs **émergent** du processus de relaxation, sans �tre programmés explicitement.
+Ces motifs **émergent** du processus de relaxation, sans àtre programmés explicitement.
 
 ### **Niveau 3: Champ de Cohérence Global**
 
@@ -52,21 +52,21 @@ Un champ **faible** qui n'impose rien, mais influence subtilement:
 ```
 Global Field:
   - Luminosité moyenne globale
-  - Direction des ombres (ex: �/4 = haut-gauche)
+  - Direction des ombres (ex: à/4 = haut-gauche)
   - Symétrie cible
   - Cohérence texture
   - Force de bord (sharpness)
   
-Influence: seulement 0.05-0.15 (tr�s faible!)
+Influence: seulement 0.05-0.15 (tràs faible!)
 ```
 
-**Pas une r�gle dure, juste une "pression" statistique.**
+**Pas une ràgle dure, juste une "pression" statistique.**
 
 Exemple: "Si j'ajoute un champ d'ombre en haut-gauche, les gradients vont doucement s'aligner dans cette direction, mais sans contrainte rigide."
 
 ---
 
-##  Fonction d'�nergie Locale
+##  Fonction d'ànergie Locale
 
 Chaque atome minimise une **tension locale**:
 
@@ -94,7 +94,7 @@ E_champ_global:
   (attrait faible vers le champ global)
 ```
 
-### Comment �a fonctionne?
+### Comment àa fonctionne?
 
 1. **Initialisation**: Couleurs aléatoires, confiance basse
 2. **Itération**: Chaque atome se déplace pour **réduire son énergie**
@@ -110,40 +110,40 @@ E_champ_global:
 
 ### Phase 1: Initialisation (Chaos)
 ```
-�nergie: TR�S HAUTE (tous les atomes dés synchronisés)
+ànergie: TRàS HAUTE (tous les atomes dés synchronisés)
 Stabilité: -1.0 (oscillations massives)
 Confiance: Basse (0.1)
 ```
 
 ### Phase 2: Relaxation Active
 ```
-�nergie: D�CROISSANTE (atomes se syncrhonisent)
+ànergie: DàCROISSANTE (atomes se syncrhonisent)
 Stabilité: CROISSANTE vers 0
 Confiance: CROISSANTE
-[Les patterns commencent � émerger]
+[Les patterns commencent à émerger]
 ```
 
 ### Phase 3: Plateau (Convergence)
 ```
-�nergie: STABLE (peu de changement < 0.001)
+ànergie: STABLE (peu de changement < 0.001)
 Stabilité: POSITIVE (> 0.5)
 Confiance: HAUTE (> 0.7)
-[Arr�t automatique]
+[Arràt automatique]
 ```
 
 ---
 
 ##  Auto-Réévaluation (La Clé de la Qualité)
 
-**L'IA compare elle-m�me ses états successifs et pénalise les mauvaises configurations.**
+**L'IA compare elle-màme ses états successifs et pénalise les mauvaises configurations.**
 
 ```go
 // Pseudo-code
 for iteration := 0; iteration < maxIterations; iteration++ {
-    // Mettre � jour tous les atomes
+    // Mettre à jour tous les atomes
     RelaxationStep()
     
-    // V�RIFICATION: Cet état est-il mieux que le précédent?
+    // VàRIFICATION: Cet état est-il mieux que le précédent?
     if TotalEnergy > PreviousTotalEnergy {
         // Non! Pénaliser les oscillations
         IncreaseAtomDamping()
@@ -161,9 +161,9 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 ```
 
 **Cela crée une boucle d'auto-amélioration:**
-1. L'IA gén�re une configuration
+1. L'IA génàre une configuration
 2. L'IA l'évalue (énergie totale)
-3. L'IA ajuste ses param�tres pour améliorer
+3. L'IA ajuste ses paramàtres pour améliorer
 4. **Pas de dataset externe nécessaire**
 
 ---
@@ -173,22 +173,22 @@ for iteration := 0; iteration < maxIterations; iteration++ {
 ### Paradigme: Coarse-to-Fine
 
 ```
-Phase 1: GROSSIER (16�16 patches)
-   Gén�re la structure globale (100-200 itérations)
-      �nergie: ~1.0 | Stabilité: stable
+Phase 1: GROSSIER (16à16 patches)
+   Génàre la structure globale (100-200 itérations)
+      ànergie: ~1.0 | Stabilité: stable
 
-Phase 2: MOYEN (8�8 patches)
-   Initialise � partir de Phase 1 (upscale 2x)
+Phase 2: MOYEN (8à8 patches)
+   Initialise à partir de Phase 1 (upscale 2x)
    Ajoute des détails intermédiaires (150-250 itérations)
-      �nergie: ~0.5 | Stabilité: plus fine
+      ànergie: ~0.5 | Stabilité: plus fine
 
-Phase 3: FIN (4�4 patches)
-   Initialise � partir de Phase 2 (upscale 2x)
+Phase 3: FIN (4à4 patches)
+   Initialise à partir de Phase 2 (upscale 2x)
    Détails fins et micro-structures (200-300 itérations)
-      �nergie: ~0.3 | Stabilité: tr�s fine
+      ànergie: ~0.3 | Stabilité: tràs fine
 ```
 
-**Avantage**: Chaque phase commence pr�s d'un bon équilibre (gr�ce � la phase précédente), donc converge plus vite et mieux.
+**Avantage**: Chaque phase commence pràs d'un bon équilibre (gràce à la phase précédente), donc converge plus vite et mieux.
 
 ---
 
@@ -209,9 +209,9 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 ### Final Statistics
 
 - **Iterations**: Nombre d'étapes avant convergence
-- **Final Energy**: �nergie globale (plus bas = meilleur équilibre)
+- **Final Energy**: ànergie globale (plus bas = meilleur équilibre)
 - **Average Local Energy**: Tension moyenne par atome
-- **System Stability**: -1 (chaos) � +1 (stable)
+- **System Stability**: -1 (chaos) à +1 (stable)
 - **Plateau Iterations**: Combien d'itérations sans changement?
 
 ---
@@ -221,9 +221,9 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 ### Constraints String Examples
 
 ```bash
-# Lumi�re
+# Lumiàre
 "dark"           # Abaisse GlobalField.AverageBrightness  0.3
-"bright"         # �l�ve  0.7
+"bright"         # àlàve  0.7
 
 # Bords
 "smooth"         # Réduit EdgeCohesion  0.2
@@ -234,8 +234,8 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 "rough"          # Réduit TextureConsistency  0.2
 "clean"          # Augmente  0.8
 
-# Direction de lumi�re
-"top"            # ShadowDirection = �/2
+# Direction de lumiàre
+"top"            # ShadowDirection = à/2
 "side"           # ShadowDirection = 0
 
 # Symétrie
@@ -248,11 +248,11 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ##  Avantages vs GAN/Diffusion
 
-| Crit�re | Notre Approche | GAN | Diffusion |
+| Critàre | Notre Approche | GAN | Diffusion |
 |---------|---|---|---|
-| **Vitesse** | Instantanée | Rapide | Tr�s lent |
+| **Vitesse** | Instantanée | Rapide | Tràs lent |
 | **GPU requis** | Non | Oui | Oui |
-| **Interpretabilité** | 100% (énergie explicite) | 0% (bo�te noire) | ~10% |
+| **Interpretabilité** | 100% (énergie explicite) | 0% (boàte noire) | ~10% |
 | **Adaptabilité** | Instant (change contraintes) | Retraining | Retraining |
 | **Training** | Aucun | 100+ GPU hours | 1000+ GPU hours |
 | **Parallélisation** | Parfaite (atomes indépendants) | Bonne | Bonne |
@@ -264,7 +264,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 ##  Cas d'Usage Idéals
 
- **O� NOUS EXCELLER:**
+ **Oà NOUS EXCELLER:**
 - Génération procédurale (jeux, worlds)
 - Imagery abstraite/artistique
 - Applications embedded/temps réel
@@ -272,7 +272,7 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 - Visualisation de données
 - Sécurité (pas de dataset, aucune hallucination)
 
- **O� NOUS PERDONS:**
+ **Oà NOUS PERDONS:**
 - Photorealism (style photo réelle)
 - Portraits détaillés
 - Texte/symboles précis
@@ -295,13 +295,13 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 3. **Multi-scale adaptative**
    - Détecter les régions instables
-   - Raffiner seulement l� où c'est nécessaire
+   - Raffiner seulement là où c'est nécessaire
 
 ### Long Terme
 1. **Neurones plastiques** (apprentissage sans retraining)
 2. **Génération temps réel** (30+ FPS)
-3. **�dition interactive** (modifier contraintes, voir changement immédiatement)
-4. **Fusion avec mod�les spécialisés** (style transfer, super-resolution)
+3. **àdition interactive** (modifier contraintes, voir changement immédiatement)
+4. **Fusion avec modàles spécialisés** (style transfer, super-resolution)
 
 ---
 
@@ -327,19 +327,19 @@ Iteration | Total Energy | Avg Local | Stability | Oscillating%
 
 > **Une image n'est pas la somme de ses pixels.**
 > 
-> **C'est un syst�me d'interactions locales en équilibre.**
+> **C'est un systàme d'interactions locales en équilibre.**
 > 
 > **Générez par relaxation, pas par simulation d'un réseau neurone.**
 > 
-> **Laissez émerger la structure globale de r�gles locales simples.**
+> **Laissez émerger la structure globale de ràgles locales simples.**
 
-C'est le m�me principe que:
+C'est le màme principe que:
 - La croissance cristalline
 - La formation de motifs en biologie
-- Les syst�mes complexes auto-organisés
+- Les systàmes complexes auto-organisés
 - La physique statistique
 
-Nous appliquons **la physique � la génération d'images**.
+Nous appliquons **la physique à la génération d'images**.
 
 ---
 

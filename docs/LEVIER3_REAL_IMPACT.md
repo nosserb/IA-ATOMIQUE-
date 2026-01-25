@@ -1,4 +1,4 @@
-# Levier 3: Impact Réel de l'�limination d'Opérations Redondantes
+# Levier 3: Impact Réel de l'àlimination d'Opérations Redondantes
 
 ## Résumé Exécutif
 
@@ -16,11 +16,11 @@
 
 ### Pourquoi 30-70% de Redondance?
 
-Les applications réelles affichent réguli�rement des patterns redondants:
+Les applications réelles affichent réguliàrement des patterns redondants:
 
 **Exemples:**
-- **Données temps réel**: Capteurs = m�me valeur  x+0 (ajouter le delta nul)
-- **Mise � jour SQL**: `UPDATE users SET status=status+0` (test de triggers)
+- **Données temps réel**: Capteurs = màme valeur  x+0 (ajouter le delta nul)
+- **Mise à jour SQL**: `UPDATE users SET status=status+0` (test de triggers)
 - **Calcul matriciel**: Padding zéro dans convolutions  x*0 ou x*1
 - **Traitement image**: Pixels identiques  x+0 ou x*1
 - **Algorithmes itératifs**: Convergence  les deltas deviennent zéro
@@ -30,7 +30,7 @@ Les applications réelles affichent réguli�rement des patterns redondants:
 
 ## Résultats Empiriques (10M Opérations)
 
-### 1� Cas Sans Redondance (Random - 0%)
+### 1à Cas Sans Redondance (Random - 0%)
 
 ```
 Configuration: 10M ops aléatoires, 0% redondantes
@@ -41,18 +41,18 @@ Configuration: 10M ops aléatoires, 0% redondantes
 
 Impact Levier 3:
    Redondantes détectées: 0 (0.0%)
-   Opérations R�ELLES: 10000000
-   �conomie: 0%
-   Temps SAUV�: 0ms
+   Opérations RàELLES: 10000000
+   àconomie: 0%
+   Temps SAUVà: 0ms
 
-Verdict:  Framework pr�t, mais zéro gain sur données aléatoires
+Verdict:  Framework pràt, mais zéro gain sur données aléatoires
 ```
 
 **Pourquoi 0%?** Les valeurs aléatoires ne créent jamais (x+0, x*1, etc) naturellement.
 
 ---
 
-### 2� Cas Réaliste (40% Redondantes)
+### 2à Cas Réaliste (40% Redondantes)
 
 ```
 Configuration: 10M ops, 40% redondantes intentionnelles
@@ -63,12 +63,12 @@ Configuration: 10M ops, 40% redondantes intentionnelles
 
  Impact Levier 3:
    Redondantes détectées: 4,000,000 (40.0%)
-   Opérations R�ELLES exécutées: 6,000,000
-   �conomie: 40% du temps de calcul
-   Temps SAUV�: 138.39 ms
+   Opérations RàELLES exécutées: 6,000,000
+   àconomie: 40% du temps de calcul
+   Temps SAUVà: 138.39 ms
 
 Speedup Fond: 345.97 / 207.58 = 1.67x 
-Speedup Per�u (vs sans L1+L2+L3): 53x
+Speedup Peràu (vs sans L1+L2+L3): 53x
 ```
 
 **Exemple Pattern Réel:**
@@ -80,7 +80,7 @@ Speedup Per�u (vs sans L1+L2+L3): 53x
 
 ---
 
-### 3� Cas Optimiste (70% Redondantes)
+### 3à Cas Optimiste (70% Redondantes)
 
 ```
 Configuration: 10M ops, 70% redondantes
@@ -91,15 +91,15 @@ Configuration: 10M ops, 70% redondantes
 
  Impact Levier 3:
    Redondantes détectées: 7,000,000 (70.0%)
-   Opérations R�ELLES exécutées: 3,000,000
-   �conomie: 70% du temps de calcul
-   Temps SAUV�: 312.59 ms 
+   Opérations RàELLES exécutées: 3,000,000
+   àconomie: 70% du temps de calcul
+   Temps SAUVà: 312.59 ms 
 
 Speedup Fond: 446.56 / 133.97 = 3.33x 
-Speedup Per�u (vs sans L1+L2+L3): 50x
+Speedup Peràu (vs sans L1+L2+L3): 50x
 ```
 
-**Exemple Pattern Extr�me (données haute répétition):**
+**Exemple Pattern Extràme (données haute répétition):**
 ```
 Traitement batch convergence:
   Itération 1: 30% redondant
@@ -116,7 +116,7 @@ Traitement batch convergence:
 
 Quand proportion R des ops sont redondantes:
 
-$$\text{Speedup}_{\text{fond}} = \frac{1}{(1-R)} = \frac{1}{0.3} \text{ � } \frac{1}{0.6}$$
+$$\text{Speedup}_{\text{fond}} = \frac{1}{(1-R)} = \frac{1}{0.3} \text{ à } \frac{1}{0.6}$$
 
 - R = 0%  Speedup = 1.00x (pas de gain)
 - R = 40%  Speedup = 1.67x 
@@ -127,8 +127,8 @@ $$\text{Speedup}_{\text{fond}} = \frac{1}{(1-R)} = \frac{1}{0.3} \text{ � } \fra
 $$T_{\text{sauvé}} = T_{\text{fond}} \times R$$
 
 Pour 10M ops, T_op  0.06µs, fond = 250ms:
-- R = 40%  Sauvé = 250 � 0.4 = **100ms**
-- R = 70%  Sauvé = 250 � 0.7 = **175ms**
+- R = 40%  Sauvé = 250 à 0.4 = **100ms**
+- R = 70%  Sauvé = 250 à 0.7 = **175ms**
 
 ---
 
@@ -146,7 +146,7 @@ Levier 3 détecte et saute:
 | `(a+b)+0` |  | Détection simple uniquement |
 | `x * (1*1)` |  | Pas de simplification algébrique |
 
-**Note:** Extension possible pour patterns complexes (� Phase 4).
+**Note:** Extension possible pour patterns complexes (à Phase 4).
 
 ---
 
@@ -230,11 +230,11 @@ Opérations: 10M, 40% redondantes
   4. Total: 207ms
 ```
 
-**Résultat:** Visible 64ms < 230ms , Speedup per�u 53x
+**Résultat:** Visible 64ms < 230ms , Speedup peràu 53x
 
 ---
 
-## Quand Levier 3 Gén�re le Plus de Gain?
+## Quand Levier 3 Génàre le Plus de Gain?
 
 ###  Meilleur Cas
 
@@ -245,7 +245,7 @@ Application: Convergence itérative
    Itération 3: 70% redondant  PIQUE
 
 Levier 3 economise: 312ms par itération
- 10 iterations = 3.1 secondes SAUV�ES
+ 10 iterations = 3.1 secondes SAUVàES
 ```
 
 ###  Cas Moyen
@@ -257,7 +257,7 @@ Application: Traitement données streaming
    Moyenne ~40% redondance
 
 Levier 3 economise: 138ms par batch
- 1000 batches = 138 secondes SAUV�ES
+ 1000 batches = 138 secondes SAUVàES
 ```
 
 ###  Pire Cas
@@ -302,7 +302,7 @@ Levier 4 optimisera la **localité mémoire** (cache hits):
 ./programme stest-l3-demo 10000000 70
 ```
 
-### Extr�me (90% redondance)
+### Extràme (90% redondance)
 ```bash
 ./programme stest-l3-demo 10000000 90
 ```
@@ -318,6 +318,6 @@ Levier 4 optimisera la **localité mémoire** (cache hits):
 | **Gain Réaliste (40%)** | 138ms sauvés (1.67x) |
 | **Gain Optimiste (70%)** | 312ms sauvés (3.33x) |
 | **Visible Response** | 59-65ms  < 230ms |
-| **Statut** |  PR�T PRODUCTION |
+| **Statut** |  PRàT PRODUCTION |
 
- **Prochaine �tape:** Levier 4 (Cache Optimization) ou validation finale avant déploiement.
+ **Prochaine àtape:** Levier 4 (Cache Optimization) ou validation finale avant déploiement.

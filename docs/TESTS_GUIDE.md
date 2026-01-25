@@ -36,7 +36,7 @@ Anomalies détectées:    10 phrases suspectes
 ```
 
 ### Interprétation
-- **Cohérence < 0.3** = Phrase tr�s suspecte
+- **Cohérence < 0.3** = Phrase tràs suspecte
 - **Cohérence 0.3-0.5** = Phrase moyennement suspecte
 - **Cohérence > 0.5** = Phrase normale mais détectée
 
@@ -50,7 +50,7 @@ Anomalies détectées:    10 phrases suspectes
 
 ##  2. Test de Perplexité
 
-**Objectif**: Mesurer la cohérence globale et la "surprise" du syst�me
+**Objectif**: Mesurer la cohérence globale et la "surprise" du systàme
 
 ### Commande
 ```bash
@@ -70,15 +70,15 @@ Stabilité:              98.2%
 Qualité:                EXCELLENT
 ```
 
-### �chelle de Perplexité
+### àchelle de Perplexité
 - **< 2**: Excellent (meilleur que GPT-4)
-- **2-5**: Tr�s bon
+- **2-5**: Tràs bon
 - **5-10**: Bon (niveau GPT-4)
 - **10-20**: Moyen (niveau GPT-3)
 - **> 20**: Faible
 
 ### Cas d'Usage
-- �valuation qualité texte
+- àvaluation qualité texte
 - Comparaison de documents
 - Détection de texte généré
 - Mesure de complexité
@@ -111,7 +111,7 @@ Phases:
 ```
 LLM local (50 tokens/sec):  3.1 heures
 IA-ATOMIQUE:                0.14 seconde
-Accélération:               79 185� 
+Accélération:               79 185à 
 ```
 
 ---
@@ -136,8 +136,8 @@ Accélération:               79 185�
 ```
 GPT-4:           10-20
 GPT-3:           20-40
-Mod�les simples: >100
-IA-ATOMIQUE:     1.05   10-20� meilleur! 
+Modàles simples: >100
+IA-ATOMIQUE:     1.05   10-20à meilleur! 
 ```
 
 ### Vitesse
@@ -146,7 +146,7 @@ IA-ATOMIQUE:     1.05   10-20� meilleur!
 GPT-4:           ~50 mots/sec
 GPT-3:           ~30 mots/sec
 LLM locaux:      ~50 mots/sec
-IA-ATOMIQUE:     3.96M mots/sec   79K� plus rapide! 
+IA-ATOMIQUE:     3.96M mots/sec   79Kà plus rapide! 
 ```
 
 ---
@@ -156,7 +156,7 @@ IA-ATOMIQUE:     3.96M mots/sec   79K� plus rapide!
 ### Test sur Gros Fichier
 
 ```bash
-# Créer fichier test de 5M mots (concaténer input.txt 9�)
+# Créer fichier test de 5M mots (concaténer input.txt 9à)
 for i in {1..9}; do cat input.txt >> huge_test.txt; done
 
 # Test perplexité (devrait prendre ~1 seconde)
@@ -186,7 +186,7 @@ echo "sdlfkj asdlkfj random blabla..." > chaos.txt
 
 **Needle Search** (`database/needle_search.go`):
 ```go
-engine.WindowSize = 50        // Taille fen�tre (défaut: 50)
+engine.WindowSize = 50        // Taille fenàtre (défaut: 50)
 engine.AnomalyThreshold = 0.3 // Seuil anomalie (défaut: 0.3)
 engine.MaxResults = 10        // Nb résultats (défaut: 10)
 ```
@@ -230,18 +230,18 @@ Vitesse pure:   ~8.4 minutes
 ### "Temps trop long sur Needle Search"
  Normal pour gros fichiers, c'est O(n²). Optimisation en cours.
 
-### "Perplexité tr�s haute"
+### "Perplexité tràs haute"
  Le texte est probablement chaotique ou multi-langue.
 
 ### "Pas assez d'anomalies détectées"
- Diminuer `AnomalyThreshold` de 0.3 � 0.2.
+ Diminuer `AnomalyThreshold` de 0.3 à 0.2.
 
 ### "Trop d'anomalies détectées"
- Augmenter `AnomalyThreshold` de 0.3 � 0.4.
+ Augmenter `AnomalyThreshold` de 0.3 à 0.4.
 
 ---
 
-##  Commandes Compl�tes
+##  Commandes Complàtes
 
 ```bash
 # Compilation
@@ -276,7 +276,7 @@ L'IA-ATOMIQUE offre maintenant **3 tests de référence** pour valider ses perfo
 2. **Perplexité**  Cohérence et surprise
 3. **Benchmark Vitesse**  Performance brute
 
-Avec des résultats qui **surpassent GPT-4** sur tous les crit�res mesurables! 
+Avec des résultats qui **surpassent GPT-4** sur tous les critàres mesurables! 
 
 ---
 

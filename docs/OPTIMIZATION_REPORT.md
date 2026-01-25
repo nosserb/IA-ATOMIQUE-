@@ -14,11 +14,11 @@
 - **Score**: 60% (10 questions tests)
 - **Cible**: 85-95% (niveau GPT-3/BERT)
 - **Performance**: 7,400+ questions/seconde
-- **Progression**: +0% par rapport � l'optimisation initiale (70%), mais -10% apr�s ajout contexte
+- **Progression**: +0% par rapport à l'optimisation initiale (70%), mais -10% apràs ajout contexte
 
 ##  Optimisations Implémentées
 
-### Phase 1: Multi-Crit�res (COMPLET�E )
+### Phase 1: Multi-Critàres (COMPLETàE )
 **Fichiers**: `mmlu_benchmark.go`, `hellaswag_benchmark.go`
 
 #### MMLU - 6 facteurs
@@ -33,7 +33,7 @@
 1. **Perplexité** (25%) - Surprise du texte
 2. **Cohérence** (20%) - Alignement catégoriel
 3. **Continuité lexicale** (15%) - Overlap de vocabulaire
-4. **Patterns temporels** (15%) - "puis", "ensuite", "apr�s"
+4. **Patterns temporels** (15%) - "puis", "ensuite", "apràs"
 5. **Patterns causaux** (10%) - "donc", "parce que"
 6. **Cohérence d'actions** (10%) - Compatibilité des verbes
 7. **Flux narratif** (5%) - Transitions naturelles
@@ -42,7 +42,7 @@
 - MMLU: 30%  40% (+33%)
 - Hellaswag: 60%  70% (+17%)
 
-### Phase 2: Contexte Enrichi (COMPLET�E )
+### Phase 2: Contexte Enrichi (COMPLETàE )
 **Fichiers**: `context_engine.go`, `context_graph_extended.go`
 
 #### Moteur de Contexte
@@ -50,7 +50,7 @@
 - **Graphe de concepts**: 150+ concepts inter-reliés
   - Histoire (napoléon, révolution, waterloo, 1789, etc.)
   - Médecine (hépatite, foie, virus, traitement, etc.)
-  - Mathématiques (équation, racine, théor�me, etc.)
+  - Mathématiques (équation, racine, théoràme, etc.)
   - Sciences (atome, cellule, énergie, etc.)
   - Actions quotidiennes (cuisine, sport, travail, etc.)
 - **Profondeur sémantique**: Mesure de richesse contextuelle
@@ -72,7 +72,7 @@ EnrichedContext{
 - Amélioration visible de la confiance des prédictions
 - Meilleures performances sur textes longs
 
-### Phase 3: Analyse Sémantique Profonde (COMPLET�E )
+### Phase 3: Analyse Sémantique Profonde (COMPLETàE )
 **Fichiers**: `deep_semantic_analyzer.go`
 
 #### 5 Dimensions d'Analyse
@@ -131,7 +131,7 @@ EnrichedContext{
 ### Solution 1: Augmenter les Données (PRIORITAIRE)
 ```bash
 # Au lieu de 10 questions:
-- MMLU: 16,000 questions compl�tes
+- MMLU: 16,000 questions complàtes
 - Hellaswag: 10,000 scénarios complets
 
 # Permettrait:
@@ -182,7 +182,7 @@ for each question {
 
 ### Court Terme (Immédiat)
 - [ ] Charger datasets complets (16K MMLU + 10K Hellaswag)
-- [ ] Implémenter boucle d'entra�nement
+- [ ] Implémenter boucle d'entraànement
 - [ ] Logger performance par catégorie
 - [ ] Ajuster poids automatiquement
 
@@ -193,44 +193,44 @@ for each question {
 - [ ] Implémenter cache de réponses
 
 ### Long Terme (Ce mois)
-- [ ] Intégrer embeddings pré-entra�nés
+- [ ] Intégrer embeddings pré-entraànés
 - [ ] Apprentissage par renforcement
 - [ ] Multi-passes avec auto-correction
-- [ ] Ensembles de mod�les
+- [ ] Ensembles de modàles
 
 ##  Recommandations
 
 ### Pour MMLU (40%  80%)
 1. **Base de connaissances** - 50% de l'amélioration potentielle
 2. **Plus de catégories** - 50  500 catégories
-3. **Détection entités** - Reconna�tre dates, lieux, personnes
+3. **Détection entités** - Reconnaàtre dates, lieux, personnes
 
 ### Pour Hellaswag (60%  85%)
 1. **Plus de données** - Apprendre patterns sur 10K exemples
-2. **Mod�le de langage** - Calcul de probabilité réelle
+2. **Modàle de langage** - Calcul de probabilité réelle
 3. **Scripts d'actions** - Séquences pré-définies ("cuisine", "sport")
 
 ##  Comparaison avec Standards
 
-| Syst�me | MMLU | Hellaswag | Vitesse |
+| Systàme | MMLU | Hellaswag | Vitesse |
 |---------|------|-----------|---------|
 | GPT-4 | 86% | 95% | ~2 q/sec |
 | GPT-3.5 | 70% | 85% | ~5 q/sec |
 | BERT | - | 75% | ~50 q/sec |
 | **IA-ATOMIQUE** | **40%** | **60%** | **~15K q/sec** |
 
-**Avantage**: Vitesse 3000� supérieure  
-**Désavantage**: Précision 2� inférieure
+**Avantage**: Vitesse 3000à supérieure  
+**Désavantage**: Précision 2à inférieure
 
 ##  Conclusion
 
-L'IA-ATOMIQUE a fait des **progr�s significatifs**:
--  Architecture optimisée multi-crit�res
+L'IA-ATOMIQUE a fait des **progràs significatifs**:
+-  Architecture optimisée multi-critàres
 -  Contexte enrichi avec 150+ concepts
 -  Analyse sémantique profonde
 -  Performance exceptionnelle (15K q/sec)
 
-**Limitation principale**: Manque de données d'entra�nement (10 questions vs 16,000 requises)
+**Limitation principale**: Manque de données d'entraànement (10 questions vs 16,000 requises)
 
 Pour atteindre 80-90%, il faut:
 1. **Charger datasets complets** (immédiat)

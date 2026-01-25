@@ -88,7 +88,7 @@ Uses pattern data to guide generation
 Shows:
 - Pattern ID (from filename)
 - Original file
-- Dimensions (W√H)
+- Dimensions (W√†H)
 - Complexity (0-1)
 - Confidence (0-100%)
 - Activated neuron categories
@@ -134,7 +134,7 @@ Displays:
 - `HISTOIRE` - History, medieval, ancient content
 - `BUSINESS` - Commerce, markets, enterprise
 - `ALIMENTATION` - Food, nutrition, cuisine
-- `SANT√` - Health, medicine, wellness
+- `SANT√†` - Health, medicine, wellness
 - `VERBE` - Actions, movement, dynamics
 
 ---
@@ -221,7 +221,7 @@ Each pattern stores:
 ./programme pattern search category HISTOIRE
 
 # 3. Generate with related prompt
-./programme generate from-prompt 512 512 300 "ch√teau ancien"
+./programme generate from-prompt 512 512 300 "ch√†teau ancien"
 
 # Result: Generation guided by HISTOIRE patterns found in database
 ```
@@ -269,7 +269,7 @@ Each pattern stores:
 Typical: Historical images, sunset, fire, warm ambiance
 ```
 
-**Green Tones**  ALIMENTATION (3), SANT√ (2)
+**Green Tones**  ALIMENTATION (3), SANT√† (2)
 ```
 Typical: Food photos, nature, plants, health-related
 ```
@@ -321,7 +321,7 @@ normalized to 0-1 range
 
 **Formula:**
 ```
-confidence = 0.75 + (complexity √ 0.25)
+confidence = 0.75 + (complexity √† 0.25)
 ```
 
 **Interpretation:**
@@ -357,7 +357,7 @@ GOOD COLLECTION:
   - 3-4 HISTOIRE images
   - 2-3 TECH images
   - 1-2 ALIMENTATION images
-  - 1-2 SANT√ images
+  - 1-2 SANT√† images
 ```
 
 ### 3. **Keep Images Organized**

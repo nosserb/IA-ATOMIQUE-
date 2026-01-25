@@ -4,29 +4,29 @@ Guide complet pour héberger IA-ATOMIQUE sur Railway.
 
 ##  Setup Rapide (5 minutes)
 
-### 1� Créer un compte Railway
+### 1à Créer un compte Railway
 - Va sur: https://railway.app
 - Clique "Sign Up"
 - Connecte-toi avec GitHub (recommandé)
 
-### 2� Créer un nouveau projet
+### 2à Créer un nouveau projet
 - Clique "New Project"
 - Choisis "Deploy from GitHub repo"
 - Sélectionne ton repo `IA-ATOMIQUE`
 
-### 3� Railway détecte automatiquement
+### 3à Railway détecte automatiquement
 - Railway voit `go.mod` et `Procfile`
 - Compile automatiquement
 - Lance le serveur
 
-### 4� Attendre le déploiement
+### 4à Attendre le déploiement
 - Quelques secondes/minutes
 - Tu vois l'URL en haut:
   ```
   https://ton-projet-xxx.railway.app
   ```
 
-### 5� Ouvrir l'URL
+### 5à Ouvrir l'URL
 ```
 https://ton-projet-xxx.railway.app
 ```
@@ -35,7 +35,7 @@ C'est tout!
 
 ---
 
-## � Fichiers Nécessaires
+## à Fichiers Nécessaires
 
  `Procfile` - Comment lancer l'app  
  `railway.json` - Configuration Railway  
@@ -55,7 +55,7 @@ railway logs
 
 ### Variables d'environnement
 Railway ajoute automatiquement `PORT`
-(ton code l'utilise déj�!)
+(ton code l'utilise déjà!)
 
 ### Redéployer
 ```bash
@@ -72,7 +72,7 @@ Une fois déployée, ton app sera accessible sur:
 https://ia-atomique-xxx.railway.app
 ```
 
-Remplace `xxx` par le nom que Railway gén�re.
+Remplace `xxx` par le nom que Railway génàre.
 
 ---
 
@@ -102,10 +102,10 @@ Remplace `xxx` par le nom que Railway gén�re.
 
 ---
 
-##  Co�t
+##  Coàt
 
 - Gratuit les premiers crédits ($5/mois)
-- Puis payant (tr�s peu cher)
+- Puis payant (tràs peu cher)
 
 ---
 
@@ -120,7 +120,7 @@ Remplace `xxx` par le nom que Railway gén�re.
 
 ---
 
-##  Prochaines �tapes
+##  Prochaines àtapes
 
 1. Push ton code sur GitHub
 2. Va sur railway.app
@@ -130,6 +130,6 @@ Remplace `xxx` par le nom que Railway gén�re.
 
 ---
 
-**C'est simpler que �a en a l'air!** 
+**C'est simpler que àa en a l'air!** 
 
 Besoin d'aide? Dis-moi!

@@ -5,7 +5,7 @@
 Traditional image generation approaches suffer from a fundamental issue:
 
 ```
-Arbitrary chunking (64Ã64)  Chunks don't match image structure
+Arbitrary chunking (64Ã 64)  Chunks don't match image structure
                            Rendering imperfect
                            Structures don't stabilize
 ```
@@ -18,7 +18,7 @@ The solution **is** to let chunks **emerge naturally**.
 Instead of imposing structure from above, we build it from the bottom up:
 
 ```
-LEVEL 1: 256Ã256 Atoms (individual pixels)
+LEVEL 1: 256Ã 256 Atoms (individual pixels)
    Each atom has state [0, 1]
    Local interactions via resonance
    Connections to 8 neighbors
@@ -40,7 +40,7 @@ LEVEL 3: Perfect Rendering
 ##  How It Works
 
 ### Phase 1: Atomic Stabilization
-- 256Ã256 network of atoms
+- 256Ã 256 network of atoms
 - Each atom tries to align with neighbors (resonance)
 - Weights adapt to reinforce stable patterns
 - Coherence gradually increases from 20%  90%
@@ -161,7 +161,7 @@ for iter := 0; iter < 500; iter++ {
 | Rendering | Imperfect | **Flawless** |
 | Configuration | Complex | **Automatic** |
 
-## ‹ Detection Criteria (Automatic)
+## Ã  Detection Criteria (Automatic)
 
 A **Cell** emerges when:
 

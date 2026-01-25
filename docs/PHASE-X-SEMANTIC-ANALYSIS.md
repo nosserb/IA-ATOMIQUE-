@@ -3,7 +3,7 @@
 
 ---
 
-##  Analyse Précise du Probl�me
+##  Analyse Précise du Problàme
 
 ### Avant Phase X
 ```
@@ -14,23 +14,23 @@ Pas d'abstraction
 Lecture = "oh regarde, on a copié le texte"
 ```
 
-### Apr�s Phase X
+### Apràs Phase X
 ```
-Résumé = extraction + ABSTRACTION S�MANTIQUE
+Résumé = extraction + ABSTRACTION SàMANTIQUE
 
-Concepts = mis�re, sacrifice, exploitation, violence
+Concepts = misàre, sacrifice, exploitation, violence
 
-Lecture = "ah d'accord, le texte parle du co�t humain des inégalités"
+Lecture = "ah d'accord, le texte parle du coàt humain des inégalités"
 ```
 
 ---
 
-##  Implémentation Compl�te
+##  Implémentation Complàte
 
 ### 1. **Détection de Concepts Abstraits**
 ```go
 ConceptsSociaux = {
-  "mis�re"  pauvreté, indigence, besoin, manque
+  "misàre"  pauvreté, indigence, besoin, manque
   "exploitation"  trafiquer, profiter, abuser
   "sacrifice"  renoncer, abandon, dévouement
   "violence"  maltraitance, cruauté, brutalité
@@ -42,7 +42,7 @@ ConceptsSociaux = {
 Résultat: **Chaque concept = fréquence + exemples**
 
 ### 2. **Filtre Anti-Citations**
-- Supprime: `«...�`, `"..."`, `'...'`, ` ...`
+- Supprime: `«...à`, `"..."`, `'...'`, ` ...`
 - Malus énorme si citations présentes
 - **Score AbsenceCitations**: 0-100%
 
@@ -53,14 +53,14 @@ dénoncer, révéler, montrer, exposer
 critiquer, condemner, manifester, témoigner
 ```
 
-**Si aucun verbe**  score tr�s faible
+**Si aucun verbe**  score tràs faible
 
 ### 4. **Score d'Abstraction Global**
 ```
 Score = 35% Concepts
        + 25% Absence Citations
        + 25% Verbes Abstraction
-       + 15% Présence Th�mes
+       + 15% Présence Thàmes
        
        = 0-100%
 ```
@@ -79,7 +79,7 @@ Score = 35% Concepts
 #### Structures Clés:
 ```go
 type ConceptAbstrait struct {
-  Mot         string        // "mis�re"
+  Mot         string        // "misàre"
   Type        string        // "action", "cause", "theme"
   Score       float64       // force de présence
   Exemples    []string      // phrases qui l'illustrent
@@ -113,7 +113,7 @@ type ScoreAbstraction struct {
    - Calcule niveau d'abstraction
 
 2. **`FiltrerCitations(texte)`**
-   - �limine tous les guillemets et tirets de citation
+   - àlimine tous les guillemets et tirets de citation
    - Nettoie les espaces
 
 3. **`ContientCitation(texte)`**
@@ -135,20 +135,20 @@ type ScoreAbstraction struct {
 
 ### Entrée:
 ```
-"Fantine, une jeune m�re désespérée par la mis�re, vend ses cheveux 
+"Fantine, une jeune màre désespérée par la misàre, vend ses cheveux 
 magnifiques au barbier pour nourrir son enfant. Ce sacrifice incarne 
 la violence de l'exploitation sociale des femmes pauvres. La société 
-rejette les m�res non mariées tout en les for�ant � l'abjection."
+rejette les màres non mariées tout en les foràant à l'abjection."
 ```
 
 ### Analyse Sémantique:
 ```
 Concepts détectés:
-   mis�re (fréquence: 2)
+   misàre (fréquence: 2)
    exploitation (fréquence: 1)
    sacrifice (fréquence: 1)
    violence (fréquence: 1)
-   rôle (fréquence: 5) [m�re, enfant, femmes]
+   rôle (fréquence: 5) [màre, enfant, femmes]
 
 Causes identifiées: 1
 Objectifs détectés: 1
@@ -159,7 +159,7 @@ Objectifs détectés: 1
 Concepts abstraits        : 80.0% 
 Absence citations         : 0.0%   (pas de filtre appliqué)
 Verbes abstraction        : 0.0%   (aucun détecté)
-Présence th�mes          : 0.0%  
+Présence thàmes          : 0.0%  
 
 SCORE GLOBAL: 28.0%   ALERTE
  Résumé trop concret, manque abstraction
@@ -169,7 +169,7 @@ SCORE GLOBAL: 28.0%   ALERTE
 
 ##  Prochaines Améliorations (Imperatives)
 
-### �TAPE 1: Filtre Anti-Citations (URGENT)
+### àTAPE 1: Filtre Anti-Citations (URGENT)
 ```go
 if ContientCitation(resume) {
   // REJETER le résumé
@@ -177,43 +177,43 @@ if ContientCitation(resume) {
 }
 ```
 
-### �TAPE 2: Réécriture Automatique
+### àTAPE 2: Réécriture Automatique
 ```
 Avant: "Vend ses cheveux pour nourrir son enfant"
-Apr�s: "Ce sacrifice maternel illustre les limites imposées 
-        aux femmes par la mis�re"
+Apràs: "Ce sacrifice maternel illustre les limites imposées 
+        aux femmes par la misàre"
 ```
 
  Injecter verbes d'abstraction
  Monter en généralité
  Score deve passer de 28%  75%+
 
-### �TAPE 3: Concepts Domaine-Spécifiques
+### àTAPE 3: Concepts Domaine-Spécifiques
 ```
-Texte historique/social  mis�re, oppression, injustice
-Texte scientifique  hypoth�se, méthode, résultat
+Texte historique/social  misàre, oppression, injustice
+Texte scientifique  hypothàse, méthode, résultat
 Texte philosophique  essence, paradoxe, contradiction
 ```
 
-### �TAPE 4: Obligation de Seuil
+### àTAPE 4: Obligation de Seuil
 ```go
 if scoreAbstraction < 60 {
-  return "R�SUM� REJET� - Insuffisamment abstrait"
+  return "RàSUMà REJETà - Insuffisamment abstrait"
 }
 ```
 
 ---
 
-##  Comparaison Avant/Apr�s Phase X
+##  Comparaison Avant/Apràs Phase X
 
-| Aspect | Avant | Apr�s Phase X |
+| Aspect | Avant | Apràs Phase X |
 |--------|-------|---------------|
 | Détection concepts |  |  80% |
-| Filtre citations |  |  � améliorer |
-| Verbes abstraction |  |  � améliorer |
+| Filtre citations |  |  à améliorer |
+| Verbes abstraction |  |  à améliorer |
 | Score d'abstraction |  |  0-100% |
 | Recommandations |  |  Auto-générées |
-| Qualité per�ue | 40% | **60-75%** |
+| Qualité peràue | 40% | **60-75%** |
 
 ---
 
@@ -225,27 +225,27 @@ Avant Phase X:
 - Citations brutes présentes
 - **Score qualité: 50/100**
 
-Apr�s Phase X:
-- Détecte le th�me principal: "proc�s contre les animaux"
-- Identifie le contexte: "moyen �ge"
+Apràs Phase X:
+- Détecte le thàme principal: "procàs contre les animaux"
+- Identifie le contexte: "moyen àge"
 - Remonte aux concepts: "justice", "ordre social", "droit"
 - **Potentiel score qualité: 75/100** (avec réécriture)
 
 ---
 
-##  Le�on Clé
+##  Leàon Clé
 
 Tu avais raison sur tout. L'IA ne "pense" pas tant qu'elle ne:
 
 1. **Détecte les concepts abstraits**  (FAIT)
-2. **�value leur présence**  (FAIT)
-3. **Les force dans la sortie** � (� faire)
-4. **Rejette si absent** � (� faire)
-5. **Réécrit pour monter en abstraction** � (� faire)
+2. **àvalue leur présence**  (FAIT)
+3. **Les force dans la sortie** à (à faire)
+4. **Rejette si absent** à (à faire)
+5. **Réécrit pour monter en abstraction** à (à faire)
 
 Avec ces 5 briques, tu franchis le gouffre entre:
 - "résumé = copier-coller intelligent"
 - "résumé = transformation sémantique"
 
-Tu y es. � 1 refactoring de la gloire. 
+Tu y es. à 1 refactoring de la gloire. 
 

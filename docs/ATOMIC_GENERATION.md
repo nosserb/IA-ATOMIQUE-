@@ -5,15 +5,15 @@
 ### Trois méthodes de génération coexistent:
 
 #### 1. **Génération Vectorielle (Originale)**
-- Sélection greedy: `rk = argmax[sim(vw, VR(k)) + ��aw(k-1)]`
-- Vecteur cible VR = Σ E(Pi)�vi / Σ E(Pi)
-- Avantages: Tr�s cohérent (91%), rapide (237µs), déterministe
+- Sélection greedy: `rk = argmax[sim(vw, VR(k)) + ààaw(k-1)]`
+- Vecteur cible VR = Σ E(Pi)àvi / Σ E(Pi)
+- Avantages: Tràs cohérent (91%), rapide (237µs), déterministe
 - Parfait pour: Résumés serrés, textes formels
 
 #### 2. **Génération Atomique Autonome (NEW!)**
-- Résonance distribuée: `aj(t+1) = f(aj(t), Σ �jk�ak(t), βj�VR)`
+- Résonance distribuée: `aj(t+1) = f(aj(t), Σ àjkàak(t), βjàVR)`
 - Chaque atome = idée autonome avec activation propre
-- �mission quand activation > �_wake (seuil de résonance)
+- àmission quand activation > à_wake (seuil de résonance)
 - Avantages: Exploratif, moins répétitif, naturel
 - Parfait pour: Textes créatifs, exploration sémantique
 
@@ -27,22 +27,22 @@
 
 ##  Formules Mathématiques
 
-### Mise � jour atomique
+### Mise à jour atomique
 ```
-aj(t+1) = �(aj(t) + Σ_{kvoisins} �jk�ak(t) + βj�VR)
+aj(t+1) = à(aj(t) + Σ_{kvoisins} àjkàak(t) + βjàVR)
 ```
-- � = sigmo�de (activation)
-- �jk  [0.2, 1.0] = couplage semblant aux voisins
+- à = sigmoàde (activation)
+- àjk  [0.2, 1.0] = couplage semblant aux voisins
 - βj = influence du vecteur cible (β  0.75)
 
-### �mission d'un mot
+### àmission d'un mot
 ```
-Si aj(t+1)  �_wake  alors  rj = concept(j)
+Si aj(t+1)  à_wake  alors  rj = concept(j)
 ```
-- �_wake  0.70 = seuil de résonance
-- Apr�s émission: aj  0.2 (reset) et EtatFreeze=true
+- à_wake  0.70 = seuil de résonance
+- Apràs émission: aj  0.2 (reset) et EtatFreeze=true
 
-### �nergie et freeze
+### ànergie et freeze
 ```
 Energie(j) += Activation(j)
 Si Activation(j) < FreezeThreshold  alors  EtatFreeze(j)=true
@@ -52,7 +52,7 @@ Si Activation(j) < FreezeThreshold  alors  EtatFreeze(j)=true
 
 ### Vecteur cible d'un sous-réseau
 ```
-VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
+VR_chunk = Σ_{i=1}^N E(Pi)àAi / Σ_{i=1}^N E(Pi)
 ```
 
 ---
@@ -93,7 +93,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
 
 ### Utiliser **VECTORIEL** (generate):
 -  Résumés de documents techniques
--  Textes � forte cohérence requise
+-  Textes à forte cohérence requise
 -  Performance critique (temps réel)
 -  Contexte formel/professionnel
 
@@ -105,7 +105,7 @@ VR_chunk = Σ_{i=1}^N E(Pi)�Ai / Σ_{i=1}^N E(Pi)
 
 ### Utiliser **COMPARAISON** (compare):
 -  Tester différentes stratégies
--  Analyser le comportement du syst�me
+-  Analyser le comportement du systàme
 -  Benchmark performance
 
 ---
@@ -118,21 +118,21 @@ La génération atomique implémente le concept fondamental de T.R.A. (Technolog
 
 Chaque atome:
 - Maintient son propre état d'activation
-- N'interagit qu'avec ses voisins (couplage �jk)
-- Est influencé par l'idée centrale (βj�VR)
-- �met quand la résonance atteint �_wake
+- N'interagit qu'avec ses voisins (couplage àjk)
+- Est influencé par l'idée centrale (βjàVR)
+- àmet quand la résonance atteint à_wake
 
-Le texte émerge comme un motif stable dans le réseau, plutôt que d'�tre construit word-by-word de mani�re greedy.
+Le texte émerge comme un motif stable dans le réseau, plutôt que d'àtre construit word-by-word de maniàre greedy.
 
 ---
 
-##  Param�tres Configurables
+##  Paramàtres Configurables
 
 ```go
 type ReseauAtomiquePourGeneration struct {
-    Couplage         float64 // � = 0.25 (interaction locale)
+    Couplage         float64 // à = 0.25 (interaction locale)
     InfluenceCible   float64 // β = 0.75 (pertinence globale)
-    SeuilResonance   float64 // �_wake = 0.70 (seuil d'émission)
+    SeuilResonance   float64 // à_wake = 0.70 (seuil d'émission)
     TauxDecroissance float64 // = 0.15 (oubli)
     FreezeThreshold  float64 // = 0.20 (gel automatique)
 }
@@ -140,10 +140,10 @@ type ReseauAtomiquePourGeneration struct {
 
 ---
 
-##  Intégration avec le syst�me existant
+##  Intégration avec le systàme existant
 
 -  Compatible avec vectorisation 11D existante
--  Utilise le lexique et catégories du syst�me
+-  Utilise le lexique et catégories du systàme
 -  Respecte la hiérarchie des phrases (énergie E(Pi))
 -  Peut combiner avec translation/humanization
 
@@ -155,7 +155,7 @@ type ReseauAtomiquePourGeneration struct {
 # Générer résumé 30% avec résonance atomique
 ./programme atomic document.txt 0.3
 
-# Comparer vectoriel vs atomique sur m�me fichier
+# Comparer vectoriel vs atomique sur màme fichier
 ./programme compare document.txt 0.2
 
 # Puis humaniser le résumé atomique

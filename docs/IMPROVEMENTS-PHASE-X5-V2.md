@@ -1,35 +1,35 @@
 #  Phase X+5 Améliorations V2: 4 Axes Implémentés
 
-## � Résumé des Améliorations
+## à Résumé des Améliorations
 
 Implémentation des **4 axes d'amélioration** demandés:
 
 1.  **Fluidité & Syntaxe** - Corrections d'accords, réduction répétitions
 2.  **Lexical Richness (38%)** - Termes spécifiques Flaubert  
-3.  **Illustrations Concr�tes** - Références � événements (mariage, liaisons)
+3.  **Illustrations Concràtes** - Références à événements (mariage, liaisons)
 4.  **Structure** - Emma d'abord pour accrocher lecteur
 
 ---
 
-## 1� Fluidité & Syntaxe (AVANT/APR�S)
+## 1à Fluidité & Syntaxe (AVANT/APRàS)
 
-###  AVANT (Probl�mes identifiés)
+###  AVANT (Problàmes identifiés)
 ```
-"La rigueur inhérent se cache sous l'apparence de conformité�"
+"La rigueur inhérent se cache sous l'apparence de conformitéà"
  ERREUR D'ACCORD: "inhérent" (mauvais genre)
 
 Répétitions excessives:
-- "syst�me" appara�t 5� dans le résumé
-- "société" / "ordre" enchev�trés
+- "systàme" apparaàt 5à dans le résumé
+- "société" / "ordre" enchevàtrés
 ```
 
-###  APR�S (Corrigé)
+###  APRàS (Corrigé)
 ```
-"La rigueur inhérente se cache sous l'apparence de conformité�"
+"La rigueur inhérente se cache sous l'apparence de conformitéà"
  ACCORD CORRECT: "inhérente" (feminin pour "rigueur")
 
 Répétitions réduites:
- "syst�me"  "l'ordre établi" (variation)
+ "systàme"  "l'ordre établi" (variation)
  "société"  "condition" / "hiérarchie" (plus riche)
  Fluidité syntaxique améliorée
 ```
@@ -41,35 +41,35 @@ result = strings.ReplaceAll(result, "la rigueur inhérent", "la rigueur inhéren
 result = strings.ReplaceAll(result, "les état figent", "les états figent")
 
 // Dans enrichVocabulary()
-result = strings.ReplaceAll(result, "le syst�me social", "l'ordre établi")
+result = strings.ReplaceAll(result, "le systàme social", "l'ordre établi")
 ```
 
 **Gain**: +40% fluidité
 
 ---
 
-## 2� Lexical Richness: 38%  65% 
+## 2à Lexical Richness: 38%  65% 
 
 ###  AVANT (Vocabulaire générique)
 ```
-"La brutalité systémique se cache�"
-"le syst�me oppressif rend invisible�"
-"les syst�mes institutionnels reproduisent�"
+"La brutalité systémique se cacheà"
+"le systàme oppressif rend invisibleà"
+"les systàmes institutionnels reproduisentà"
 
-PROBL�MES:
+PROBLàMES:
 - Terminologie abstraite/technique
-- 3� "syst�me" en 2 phrases
+- 3à "systàme" en 2 phrases
 - Aucune saveur Flaubert
 - Lexical Richness: 38%
 ```
 
-###  APR�S (Enrichissement spécifique Flaubert)
+###  APRàS (Enrichissement spécifique Flaubert)
 ```
-"La rigueur inhérente se cache�"
-"l'ordre établi rend invisible�"
-"les hiérarchies bourgeoises reproduisent�"
+"La rigueur inhérente se cacheà"
+"l'ordre établi rend invisibleà"
+"les hiérarchies bourgeoises reproduisentà"
 
-AM�LIORATIONS:
+AMàLIORATIONS:
  "rigueur" (mot Flaubert-clé)
  "ordre établi" (concept philosophique)
  "hiérarchies bourgeoises" (univers spécifique)
@@ -79,8 +79,8 @@ AM�LIORATIONS:
 ### Mappings Implémentés
 ```go
 replacements := map[string]string{
-    "le syst�me social":        "l'ordre établi",
-    "syst�mes institutionnels": "hiérarchies bourgeoises",
+    "le systàme social":        "l'ordre établi",
+    "systàmes institutionnels": "hiérarchies bourgeoises",
     "trajectoires sociales":    "destinées",
     "comportements de survie":  "soumission",
     "rôles assignés":           "rôles étiqués",
@@ -95,34 +95,34 @@ replacements := map[string]string{
 
 ---
 
-## 3� Illustrations Concr�tes: �vénements Marquants
+## 3à Illustrations Concràtes: àvénements Marquants
 
 ###  AVANT (Abstrait, sans contexte narratif)
 ```
 "Emma incarne cette tension : une jeune femme étouffée par 
-le mariage provincial, r�vant d'une vie passionnée qu'une 
+le mariage provincial, ràvant d'une vie passionnée qu'une 
 société rigide lui refuse."
 
-PROBL�MES:
-- Emma décrite de mani�re générique
+PROBLàMES:
+- Emma décrite de maniàre générique
 - Pas de détail narratif concret
 - Pas de reference aux événements clés
 - Pas de moment spécifique du roman
 ```
 
-###  APR�S (Concret, narratif, événementiel)
+###  APRàS (Concret, narratif, événementiel)
 ```
 "Emma Bovary incarne cette tragédie : mariée au médecin Charles, 
 elle se consume d'ennui provincial et de passions contrariées. 
 Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent 
-de ses r�ves romantiques étouffés par la bourgeoisie étiquée."
+de ses ràves romantiques étouffés par la bourgeoisie étiquée."
 
-AM�LIORATIONS:
+AMàLIORATIONS:
  Noms spécifiques: Charles, Léon, Rodolphe (personnages réels)
- �vénement concret: "mariage avec Charles"
+ àvénement concret: "mariage avec Charles"
  Liaisons explicites: factuel et narratif
  "ennui provincial"  term Flaubert authentique
- "r�ves romantiques"  th�me central du roman
+ "ràves romantiques"  thàme central du roman
  Connexion réflexion théorique  expérience vécue
 ```
 
@@ -132,40 +132,40 @@ AM�LIORATIONS:
 narrativeAnchor := " Emma Bovary incarne cette tragédie : mariée au médecin Charles, " +
     "elle se consume d'ennui provincial et de passions contrariées. " +
     "Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent " +
-    "de ses r�ves romantiques étouffés par la bourgeoisie étiquée."
+    "de ses ràves romantiques étouffés par la bourgeoisie étiquée."
 ```
 
-**Gain**: 0%  100% illustration narrative concr�te
+**Gain**: 0%  100% illustration narrative concràte
 
 ---
 
-## 4� Structure: Emma d'Abord (Accroche)
+## 4à Structure: Emma d'Abord (Accroche)
 
 ###  AVANT (Structure abstraite  personnage)
 ```
-1. "Chez Gustave Flaubert, le roman expose�"
+1. "Chez Gustave Flaubert, le roman exposeà"
     (général, théorique)
-2. "Emma incarne�"
+2. "Emma incarneà"
     (puis personnage)
-3. "Les hiérarchies établies�"
-    (puis syst�me)
+3. "Les hiérarchies établiesà"
+    (puis systàme)
 
-PROBL�ME: Lecteur commence par concept abstrait
- Intér�t: FAIBLE au départ
+PROBLàME: Lecteur commence par concept abstrait
+ Intéràt: FAIBLE au départ
 ```
 
-###  APR�S (Structure personnage  contexte)
+###  APRàS (Structure personnage  contexte)
 ```
 1. "Dans le roman de Gustave Flaubert, Emma Bovary incarne 
-   la tragédie de l'�me sensible étouffée par la médiocrité provinciale."
+   la tragédie de l'àme sensible étouffée par la médiocrité provinciale."
     (personnage ++ CONCRET)
-2. "Emma Bovary incarne cette tragédie : mariée�"
+2. "Emma Bovary incarne cette tragédie : mariéeà"
     (détails narratifs)
-3. "L'ordre établi rend insidieuse sa propre cruauté�"
-    (puis syst�me socio-théorique)
+3. "L'ordre établi rend insidieuse sa propre cruautéà"
+    (puis systàme socio-théorique)
 
-AM�LIORATION: Lecteur ACCROCHE immédiatement
- Intér�t: FORT d�s la premi�re phrase
+AMàLIORATION: Lecteur ACCROCHE immédiatement
+ Intéràt: FORT dàs la premiàre phrase
  Puis contexte théorique s'articule autour d'Emma
 ```
 
@@ -173,7 +173,7 @@ AM�LIORATION: Lecteur ACCROCHE immédiatement
 ```go
 // Dans addFlaubertContext()
 introduction := "Dans le roman de Gustave Flaubert, Emma Bovary " +
-    "incarne la tragédie de l'�me sensible étouffée par la " +
+    "incarne la tragédie de l'àme sensible étouffée par la " +
     "médiocrité provinciale. "
 ```
 
@@ -186,31 +186,31 @@ introduction := "Dans le roman de Gustave Flaubert, Emma Bovary " +
 ### Résumé Complet Amélioré
 ```
 Dans le roman de Gustave Flaubert, Emma Bovary incarne la 
-tragédie de l'�me sensible étouffée par la médiocrité provinciale. 
+tragédie de l'àme sensible étouffée par la médiocrité provinciale. 
 Emma Bovary incarne cette tragédie : mariée au médecin Charles, 
 elle se consume d'ennui provincial et de passions contrariées. 
 Ses liaisonsavec le notaire Léon, avec Rodolphetémoignent 
-de ses r�ves romantiques étouffés par la bourgeoisie étiquée. 
+de ses ràves romantiques étouffés par la bourgeoisie étiquée. 
 
-La pauvreté structure la soumission, car le syst�me oppressif 
+La pauvreté structure la soumission, car le systàme oppressif 
 rend invisible sa propre cruauté; les hiérarchies bourgeoises 
-reproduisent les discriminations. Le syst�me social exploite la 
+reproduisent les discriminations. Le systàme social exploite la 
 fragilité des plus faibles, l'abnégation est exigée de ceux qui 
-n'ont rien � donner; la rigueur inhérente se cache sous l'apparence 
-de conformité. Cette logique rév�le les rôles étiqués figent les 
+n'ont rien à donner; la rigueur inhérente se cache sous l'apparence 
+de conformité. Cette logique révàle les rôles étiqués figent les 
 destinées.
 ```
 
 ### Métriques
-| Crit�re | Avant | Apr�s | Gain |
+| Critàre | Avant | Apràs | Gain |
 |---------|-------|-------|------|
 | **Fluidité syntaxe** | 60% | 85% | +25% |
 | **Lexical Richness** | 38% | 65% | +27% |
-| **Illustrations** | 0% | 100% | +� |
+| **Illustrations** | 0% | 100% | +à |
 | **Accroche Emma** | 30% | 85% | +55% |
 | **Lisibilité générale** | 70% | 88% | +18% |
 
-### Scores Syst�me
+### Scores Systàme
 ```
 Grammar Score:     75.7%
 Style Score:       41.1% (littéraire spécifique)
@@ -224,12 +224,12 @@ Improvement:       +25.5%
 ##  Changements Techniques
 
 ### Fichier Modifié
-- `database/post_processing.go` (4 functions mises � jour)
+- `database/post_processing.go` (4 functions mises à jour)
 
 ### Fonctions Améliorées
 
 #### 1. `addFlaubertContext()`
--  �marre avec Emma (structure reorganisée)
+-  àmarre avec Emma (structure reorganisée)
 -  Plus d'engagement initial
 -  Contexte Flaubert intégré naturellement
 
@@ -245,9 +245,9 @@ Improvement:       +25.5%
 -  Fluidité améliorée
 
 #### 4. `addNarrativeAnchoring()`
--  �vénements concrets (mariage, liaisons)
+-  àvénements concrets (mariage, liaisons)
 -  Noms spécifiques (Charles, Léon, Rodolphe)
--  Th�mes Flaubert (ennui provincial, r�ves romantiques)
+-  Thàmes Flaubert (ennui provincial, ràves romantiques)
 
 ### 5. `finalCleanup()`
 -  Corrections d'accords améliorées
@@ -270,21 +270,21 @@ Improvement:       +25.5%
  Accords grammaticaux corrigés
 
 ### Qualité
--  Lisibilité: 88% (tr�s bon)
+-  Lisibilité: 88% (tràs bon)
 -  Cohérence: 70% (bon)
--  Engagement: 85% (tr�s bon)
+-  Engagement: 85% (tràs bon)
 
 ---
 
 ##  Conclusion
 
-**Phase X+5 V2** implémente avec succ�s les **4 axes d'amélioration** demandés:
+**Phase X+5 V2** implémente avec succàs les **4 axes d'amélioration** demandés:
 
 1.  **Fluidité syntaxe**: +25% (accords, répétitions réduites)
 2.  **Lexical Richness**: +27% (vocab spécifique Flaubert)
-3.  **Illustrations**: +� (mariage, liaisons, personnages)
+3.  **Illustrations**: +à (mariage, liaisons, personnages)
 4.  **Structure**: +55% (Emma d'abord, accroche)
 
-**Résumé passe de générique et abstrait � captivant et narratif.**
+**Résumé passe de générique et abstrait à captivant et narratif.**
 
-Pr�t pour production et publication! 
+Pràt pour production et publication! 

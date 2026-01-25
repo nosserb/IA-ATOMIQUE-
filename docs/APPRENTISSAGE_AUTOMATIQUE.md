@@ -1,8 +1,8 @@
-# SYST�ME D'APPRENTISSAGE AUTOMATIQUE - IA-ATOMIQUE v4.1
+# SYSTàME D'APPRENTISSAGE AUTOMATIQUE - IA-ATOMIQUE v4.1
 
 ##  Objectif
 
-Permettre � l'IA d'apprendre automatiquement des connaissances factuelles � partir de textes bruts (histoire, médecine, sciences, etc.) pour améliorer les scores aux benchmarks académiques (MMLU, Hellaswag).
+Permettre à l'IA d'apprendre automatiquement des connaissances factuelles à partir de textes bruts (histoire, médecine, sciences, etc.) pour améliorer les scores aux benchmarks académiques (MMLU, Hellaswag).
 
 ##  Résultats
 
@@ -10,7 +10,7 @@ Permettre � l'IA d'apprendre automatiquement des connaissances factuelles � part
 - MMLU: 40% (manque de connaissances factuelles)
 - Hellaswag: 60% (bon raisonnement logique)
 
-**APR�S l'apprentissage (estimé):**
+**APRàS l'apprentissage (estimé):**
 - MMLU: 60-70% (+20-30% avec base de connaissances enrichie)
 - Hellaswag: 65-70% (+5-10% avec contexte factuel)
 
@@ -18,16 +18,16 @@ Permettre � l'IA d'apprendre automatiquement des connaissances factuelles � part
 
 ### 3 Méthodes d'Extraction Automatique
 
-#### 1� **Extraction de Patterns** (Regex)
+#### 1à **Extraction de Patterns** (Regex)
 Capture des structures linguistiques explicites:
 
 - **Dates**: "bataille de Waterloo en 1815", "Napoléon (1769-1821)"
 - **Relations causales**: "X a causé Y", "X provoque Y"
 - **Lieux**: "Paris capitale de la France", "X situé en Y"
-- **Définitions**: "Le c�ur est un organe...", "X: définition"
+- **Définitions**: "Le càur est un organe...", "X: définition"
 
-#### 2� **Co-occurrences Statistiques**
-Associations de mots dans une fen�tre de 5 mots:
+#### 2à **Co-occurrences Statistiques**
+Associations de mots dans une fenàtre de 5 mots:
 
 ```
 Texte: "Napoléon Waterloo 1815 défaite"
@@ -37,18 +37,18 @@ Texte: "Napoléon Waterloo 1815 défaite"
   - "1815"  "défaite" (12 fois)
 ```
 
-#### 3� **Entra�nement Atomique**
+#### 3à **Entraànement Atomique**
 Réseau de 500 atomes qui forment des clusters émergents par résonance:
 
 ```
 50 itérations  Concepts similaires groupés
- "Napoléon", "empereur", "France" = m�me cluster
- "Waterloo", "défaite", "1815" = m�me cluster
+ "Napoléon", "empereur", "France" = màme cluster
+ "Waterloo", "défaite", "1815" = màme cluster
 ```
 
 ##  Utilisation
 
-### 1. Apprendre � partir d'un fichier
+### 1. Apprendre à partir d'un fichier
 
 ```bash
 ./programme learn histoire.txt
@@ -78,7 +78,7 @@ BASE DE CONNAISSANCES:
  Base de connaissances sauvegardée dans knowledge_base.json
 ```
 
-### 2. Apprendre � partir d'un dossier complet
+### 2. Apprendre à partir d'un dossier complet
 
 ```bash
 ./programme learn corpus/histoire/
@@ -90,19 +90,19 @@ Traite tous les fichiers `.txt` du dossier automatiquement.
 
 ```bash
 ./programme knowledge Napoléon
-./programme knowledge c�ur
+./programme knowledge càur
 ./programme knowledge 1815
 ```
 
 **Exemple de sortie:**
 ```
- Connaissances sur: c�ur
+ Connaissances sur: càur
 ============================================================
 
- D�FINITION:
+ DàFINITION:
    organe musculaire qui pompe le sang dans tout le corps
 
- CONCEPTS LI�S:
+ CONCEPTS LIàS:
     sang
     organe
     pompe
@@ -123,9 +123,9 @@ Traite tous les fichiers `.txt` du dossier automatiquement.
 
 Cherche les connaissances pertinentes et calcule un boost de confiance.
 
-## � Persistance
+## à Persistance
 
-Les connaissances sont automatiquement sauvegardées dans `knowledge_base.json` et rechargées � chaque exécution.
+Les connaissances sont automatiquement sauvegardées dans `knowledge_base.json` et rechargées à chaque exécution.
 
 **Format JSON:**
 ```json
@@ -135,7 +135,7 @@ Les connaissances sont automatiquement sauvegardées dans `knowledge_base.json` 
     "1815": ["bataille de Waterloo"]
   },
   "DefinitionFacts": {
-    "c�ur": "organe musculaire qui pompe le sang"
+    "càur": "organe musculaire qui pompe le sang"
   },
   "CoOccurrences": {
     "napoléon": {
@@ -175,9 +175,9 @@ finalScore = baseScore * (1 + boost)
 ### Court Terme
 -  Extraction de patterns (FAIT)
 -  Co-occurrences (FAIT)
--  Entra�nement atomique (FAIT)
+-  Entraànement atomique (FAIT)
 -  Persistance JSON (FAIT)
-- � Intégration aux benchmarks MMLU/Hellaswag
+- à Intégration aux benchmarks MMLU/Hellaswag
 
 ### Moyen Terme
 - [ ] Détection automatique du type de question (factuelle vs raisonnement)
@@ -223,7 +223,7 @@ corpus/sciences/biologie.txt
 
 ##  Mesure d'Impact
 
-### Test Avant/Apr�s
+### Test Avant/Apràs
 
 ```bash
 # 1. Benchmark AVANT apprentissage
@@ -234,7 +234,7 @@ corpus/sciences/biologie.txt
 ./programme learn corpus/sciences/
 ./programme learn corpus/medecine/
 
-# 3. Benchmark APR�S apprentissage
+# 3. Benchmark APRàS apprentissage
 ./programme academic mmlu > scores_after.txt
 
 # 4. Comparaison
@@ -252,7 +252,7 @@ diff scores_before.txt scores_after.txt
 3. **Volume**: Minimum 100k mots pour couvrir les bases
 4. **Qualité**: Textes factuels précis (encyclopédies, manuels scolaires)
 
-### Patterns � Enrichir
+### Patterns à Enrichir
 
 Ajouter vos propres patterns dans `automatic_learning.go`:
 

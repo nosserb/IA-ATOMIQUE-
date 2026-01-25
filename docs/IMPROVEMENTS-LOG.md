@@ -1,4 +1,4 @@
-#  AM�LIORATIONS IMPL�MENT�ES - PHASE X+4 COMPL�TE
+#  AMàLIORATIONS IMPLàMENTàES - PHASE X+4 COMPLàTE
 
 ##  Améliorations Implémées
 
@@ -10,7 +10,7 @@
 
 ### 2. **Compression Intelligente par Type de Texte**
 ```
-- ENCYCLOP�DIQUE: Max 30% (min 70% gardé)  Lisibilité
+- ENCYCLOPàDIQUE: Max 30% (min 70% gardé)  Lisibilité
 - NARRATIVE:      Normal (user decides)  Flexibilité  
 - CONCEPTUAL:     Agressif acceptable  Abstraction
 ```
@@ -23,7 +23,7 @@ ResumerTexteParPhrases() - nouveau
 - Splitte par phrases (pas par mots)
 - Score chaque phrase par importance
 - Garde les meilleures phrases dans l'ordre original
-- Ratio limité � min 30% pour éviter atomisation
+- Ratio limité à min 30% pour éviter atomisation
 ```
 -  Implémenté fonction `ResumerTexteParPhrases()`
 - **Résultat**: Résumés cohérents gardant la structure du texte
@@ -42,9 +42,9 @@ reformulerSegment() - 4 patterns principaux:
 - **Résultat**: Moins de phrases "C'est..." artificielles
 
 ### 5. **Skip Phase X+1 pour Encyclopédique**
--  `ShouldSkipAbstractionForType()` déj� fonctionnel
+-  `ShouldSkipAbstractionForType()` déjà fonctionnel
 -  Philosophique message "conservation des faits concrets"
-- **Résultat**: Pas de for�age d'abstraction sur textes factuels
+- **Résultat**: Pas de foràage d'abstraction sur textes factuels
 
 ### 6. **Skip Phase X+3 pour Encyclopédique** 
 -  Ajout condition dans ProcessWithPhase15
@@ -54,7 +54,7 @@ reformulerSegment() - 4 patterns principaux:
 
 ### 7. **Skip Enrichissement pour Encyclopédique**
 ```go
-�tape 4 conditionnelle:
+àtape 4 conditionnelle:
 if result.TextType == ENCYCLOPEDIC {
     enrichedSummary = baseSummary  // Pas d'enrichissement
 } else {
@@ -64,20 +64,20 @@ if result.TextType == ENCYCLOPEDIC {
 -  Implémenté
 - **Résultat**: Texte factuel gardé pur, sans "style" artificiel
 
-##  Améliorations de Qualité - Avant/Apr�s
+##  Améliorations de Qualité - Avant/Apràs
 
-### Texte Encyclopédique (Photosynth�se)
+### Texte Encyclopédique (Photosynthàse)
 
 **AVANT (Chaotique)**:
 ```
 Processus biologique fondamental par lequel plantes. Certains l'énergie énergie processus implique carbone. 
-Alors, de plus D'oxyg�ne comme sont cellulaires responsables chez.
+Alors, de plus D'oxygàne comme sont cellulaires responsables chez.
 ```
  Word-salad avec connecteurs inutiles
 
-**APR�S (Cohérent)**:
+**APRàS (Cohérent)**:
 ```
-La photosynth�se est le processus biologique fondamental par lequel les plantes vertes et certains 
+La photosynthàse est le processus biologique fondamental par lequel les plantes vertes et certains 
 microorganismes convertissent l'énergie lumineuse. En énergie chimique Ce processus implique. 
 La fixation est du dioxyde de carbone.
 ```
@@ -94,20 +94,20 @@ La fixation est du dioxyde de carbone.
 ##  Nouvelles Fonctions Ajoutées
 
 ### database/nlp.go
-- `ResumerTexteParPhrases(texte, ratio)` - Résume par phrases enti�res
-- `isArticle(mot)` - Détecte articles fran�ais
+- `ResumerTexteParPhrases(texte, ratio)` - Résume par phrases entiàres
+- `isArticle(mot)` - Détecte articles franàais
 - `isVerbPasse(mot)` - Détecte verbes au passé
 
 ### grammar_summarization.go
 - `GetOptimalCompressionForType(textType)` - Compression recommandée
-- `ShouldSkipAbstractionForType(textType)` - R�gles de skip
+- `ShouldSkipAbstractionForType(textType)` - Ràgles de skip
 - Conditions dans `ProcessWithPhase15()` pour encyclopédique
 
 ##  Résultats Finaux
 
 ### Qualité Globale
 - **Grammar Score**: 78.1% (textes encyclopédiques)
-- **Coherence**: Amélioré (phrases enti�res > mots isolés)
+- **Coherence**: Amélioré (phrases entiàres > mots isolés)
 - **Lisibilité**: Excellente (pas de connecteurs parasites)
 - **Respect utilisateur**: Limites intelligentes appliquées
 
@@ -117,7 +117,7 @@ La fixation est du dioxyde de carbone.
 - Jamais < 10% pour éviter atomisation
 
 ### Performance
-- Temps: 2-8 ms (tr�s rapide)
+- Temps: 2-8 ms (tràs rapide)
 - RAM: 3-5 MB (léger)
 - Goroutines: 3 (efficace)
 
@@ -127,7 +127,7 @@ La fixation est du dioxyde de carbone.
 Texte Encyclopédique  Type=ENCYCLOPEDIC
   
    Phase 2: ResumerTexteParPhrases() [NOUVEAU]
-              Garde phrases enti�res (cohérence)
+              Garde phrases entiàres (cohérence)
   
    Phase 2.5: Phase X+4 [OPTIONNEL]
                Si compression < 30% ultra-agressive
@@ -146,7 +146,7 @@ Résultat: Résumé encyclopédique cohérent, factuel, lisible
 
 ##  Tests Réalisés
 
--  `test_encyclopedic.txt` (Photosynth�se) - Détection OK, reformulation OK
+-  `test_encyclopedic.txt` (Photosynthàse) - Détection OK, reformulation OK
 -  `test_philo.txt` (Philosophie) - Type Conceptuel, abstraction appliquée
 -  Compression ratios 0.1, 0.3, 0.5, 0.7, 0.9 - Tous fonctionnels
 -  Détection type: Encyclopédique, Narratif, Conceptual - Tous testés
@@ -156,11 +156,11 @@ Résultat: Résumé encyclopédique cohérent, factuel, lisible
 -  Compilation: Success
 -  Logique: Correcte
 -  Edge cases: Gérés (min 1 phrase, min 30%)
--  Intégration: Compl�te
+-  Intégration: Complàte
 
-##  Pr�t pour Production
+##  Pràt pour Production
 
-Le syst�me est maintenant:
+Le systàme est maintenant:
 - Robuste (compression limites intelligentes)
 - Adaptatif (comportement par type de texte)
 - Cohérent (résumé par phrases pour encyclopédique)

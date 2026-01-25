@@ -14,13 +14,13 @@
 
          Pattern Commands (CLI)              
       pattern_commands.go (890 lines)        
-¤
+Ã 
      Pattern Database Logic                  
    database/pattern_indexer.go (452 lines)   
-¤
+Ã 
       JSON Storage (patterns.db)             
    Persistent pattern metadata               
-˜
+Ã 
 ```
 
 ---
@@ -156,7 +156,7 @@ For each image:
          Color  category mapping
          Keyword  category mapping
       Calculate confidence
-         confidence = 0.75 + (complexity Ã 0.25)
+         confidence = 0.75 + (complexity Ã  0.25)
       Create PatternMetadata
           Add to database.Patterns[ID]
 
@@ -195,7 +195,7 @@ func analyzeImageContent(avgColor [3]float64, complexity float64, filename strin
         categories["BUSINESS"] = 2
     } else if g > r && g > b {
         categories["ALIMENTATION"] = 3
-        categories["SANTÃ"] = 2
+        categories["SANTÃ "] = 2
     } else if b > r && b > g {
         categories["TECH"] = 4
     }
@@ -227,7 +227,7 @@ Red/Warm (r > g, r > b)
 
 Green (g > r, g > b)
    ALIMENTATION: 3 neurons (food, nature)
-   SANTÃ: 2 neurons (health, wellness)
+   SANTÃ : 2 neurons (health, wellness)
 
 Blue (b > r, b > g)
    TECH: 4 neurons (technology, digital)
@@ -244,7 +244,7 @@ Complexity > 0.6
 
 ```
 raw_complexity = (unique_colors) / (total_pixels)
-normalized = max(0, min(1, raw_complexity Ã scaling_factor))
+normalized = max(0, min(1, raw_complexity Ã  scaling_factor))
 ```
 
 ### Interpretation:
@@ -281,7 +281,7 @@ if complexity > 1.0 {
 ### Formula:
 
 ```go
-confidence = 0.75 + (complexity Ã 0.25)
+confidence = 0.75 + (complexity Ã  0.25)
 ```
 
 ### Range:
@@ -407,7 +407,7 @@ Operation       | Time      | Scale
 ----------------|-----------|--------
 Load database   | 10-50ms   | Linear (file size)
 Search category | < 100ms   | O(patterns)
-Search keyword  | 10-100ms  | O(patterns Ã keywords)
+Search keyword  | 10-100ms  | O(patterns Ã  keywords)
 Get pattern     | < 50ms    | O(1) map lookup
 List all        | 50-200ms  | O(patterns)
 ```
@@ -493,7 +493,7 @@ if no matches:
 patterns.db
  7 patterns indexed
  File size: ~4 KB
- Categories: HISTOIRE (6), BUSINESS (6), ALIMENTATION (1), SANTÃ (1)
+ Categories: HISTOIRE (6), BUSINESS (6), ALIMENTATION (1), SANTÃ  (1)
  All metadata extracted
 ```
 

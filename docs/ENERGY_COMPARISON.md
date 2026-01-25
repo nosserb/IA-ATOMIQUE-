@@ -1,19 +1,19 @@
-# Comparaison des Syst�mes de Défloutage
+# Comparaison des Systàmes de Défloutage
 
 **Date**: 13 janvier 2026  
-**Comparaison**: Avant vs Apr�s ajout du terme E_sharpness
+**Comparaison**: Avant vs Apràs ajout du terme E_sharpness
 
 ---
 
-##  Architecture �nergétique
+##  Architecture ànergétique
 
 ### Phase 1: Avant (Amplification Gradient Simple)
 
 ```
-E_total = ��E_structure + β�E_constraint + γ�E_interaction + ��E_sharpen_amplified
+E_total = ààE_structure + βàE_constraint + γàE_interaction + ààE_sharpen_amplified
 
 Où:
-- E_sharpen_amplified = Σ ||�I_recon - kI_blur||²
+- E_sharpen_amplified = Σ ||àI_recon - kI_blur||²
 - k  [1.5, 3.0] (adaptatif selon flou)
 - Déconvolution: Richardson-Lucy (5 itérations par phase)
 - Bruit structuré: Perlin multi-octave (3%)
@@ -23,16 +23,16 @@ Où:
 
 ---
 
-### Phase 2: Apr�s (Amplification + Récompense Active des Contours)
+### Phase 2: Apràs (Amplification + Récompense Active des Contours)
 
 ```
-E_total = ��E_struct + β�E_constraint + γ�E_interaction 
-        + ��E_sharpen_amplified + 0.5�E_edge
+E_total = ààE_struct + βàE_constraint + γàE_interaction 
+        + ààE_sharpen_amplified + 0.5àE_edge
 
 Où:
-- E_sharpen_amplified = Σ ||�I_recon - kI_blur||²
-- E_edge = -�_edge � Σ ||�I||²  NOUVEAU
-- �_edge  [0.3, 1.0] (adaptatif selon flou)
+- E_sharpen_amplified = Σ ||àI_recon - kI_blur||²
+- E_edge = -à_edge à Σ ||àI||²  NOUVEAU
+- à_edge  [0.3, 1.0] (adaptatif selon flou)
 ```
 
 **Résultat**: 
@@ -44,15 +44,15 @@ Où:
 
 ##  Différences Clés
 
-| Aspect | Avant | Apr�s |
+| Aspect | Avant | Apràs |
 |--------|-------|-------|
 | **Déconvolution** | Richardson-Lucy + Unsharp |  Richardson-Lucy + Unsharp |
 | **Amplification k** | kI_blur (k=2.2) |  kI_blur (k=2.2) |
-| **�nergie de netteté** |  Passif |  -� Σ \|\|�I\|\|² |
+| **ànergie de netteté** |  Passif |  -à Σ \|\|àI\|\|² |
 | **Dynamique atomique** | Minimise erreur de gradient |  Minimise erreur + Maximise gradients |
 | **Bruit structuré** | 3% Perlin |  3% Perlin |
-| **Itérations typiques** | 80-100 |  80-100 (m�me co�t) |
-| **Performance** | 20-30ms (1920�1080) |  26-30ms (overhead ~5%) |
+| **Itérations typiques** | 80-100 |  80-100 (màme coàt) |
+| **Performance** | 20-30ms (1920à1080) |  26-30ms (overhead ~5%) |
 
 ---
 
@@ -63,18 +63,18 @@ Où:
 ```
 Atomes se repositionnent pour:
 1. Respecter structure globale
-2. Minimiser ||�I_recon - kI_blur||²
+2. Minimiser ||àI_recon - kI_blur||²
 
 Résultat: Amplifient gradients existants
 ```
 
-### Apr�s
+### Apràs
 
 ```
 Atomes se repositionnent pour:
 1. Respecter structure globale
-2. Minimiser ||�I_recon - kI_blur||²
-3. Minimiser -��Σ||�I||²  MAXIMISER gradients!
+2. Minimiser ||àI_recon - kI_blur||²
+3. Minimiser -ààΣ||àI||²  MAXIMISER gradients!
 
 Résultat: Amplifient ET créent des gradients
 ```
@@ -86,17 +86,17 @@ Résultat: Amplifient ET créent des gradients
 ### Avant (Sans E_edge)
 
 ```
-Zone lisse  peut rester lisse ou lég�rement rehaussée
+Zone lisse  peut rester lisse ou légàrement rehaussée
 Bord existant  amplifié via Richardson-Lucy + k
 Texture  créée par Perlin 3%
 ```
 
 **Qualité**: Bonne pour déconvolution, mais passive
 
-### Apr�s (Avec E_edge)
+### Apràs (Avec E_edge)
 
 ```
-Zone lisse  repoussée vers contours (� récompense gradients)
+Zone lisse  repoussée vers contours (à récompense gradients)
 Bord existant  amplifié + renforcé via E_edge
 Texture  créée par Perlin + gradients locaux attirés
 ```
@@ -107,28 +107,28 @@ Texture  créée par Perlin + gradients locaux attirés
 
 ##  Configuration Comparative
 
-### Test 1: Image Lég�rement Floue
+### Test 1: Image Légàrement Floue
 
 ```bash
 # Avant (sans E_edge)
 ./programme deblur slight_blur.jpg 16 16 100 1920 1080 before.jpg
-# �_edge = 0 (absent)
+# à_edge = 0 (absent)
 
-# Apr�s (avec E_edge)
+# Apràs (avec E_edge)
 ./programme deblur slight_blur.jpg 16 16 100 1920 1080 after.jpg
-# �_edge = 0.35 (adaptatif)
+# à_edge = 0.35 (adaptatif)
 ```
 
-**Différence attendue**: Contours lég�rement plus nets avec E_edge
+**Différence attendue**: Contours légàrement plus nets avec E_edge
 
-### Test 2: Image Tr�s Floue
+### Test 2: Image Tràs Floue
 
 ```bash
 # Avant
-# �_edge = 0
+# à_edge = 0
 
-# Apr�s
-# �_edge = 0.75 (forte adaptation)
+# Apràs
+# à_edge = 0.75 (forte adaptation)
 ```
 
 **Différence attendue**: Amélioration perceptible de la netteté
@@ -141,7 +141,7 @@ Texture  créée par Perlin + gradients locaux attirés
 
 ```
 Avant: 20ms (référence)
-Apr�s: 26.9ms (avec 100 itérations et E_edge)
+Apràs: 26.9ms (avec 100 itérations et E_edge)
 Overhead: ~6ms  5% (acceptable)
 ```
 
@@ -152,7 +152,7 @@ Overhead: ~6ms  5% (acceptable)
 Pas de métrique absolue (dépend du contenu), mais:
 
 -  Contours plus nets (visuellement)
--  Moins de halo (� modéré par défaut)
+-  Moins de halo (à modéré par défaut)
 -  Texture plus riche (E_edge favorise variation)
 
 ---
@@ -165,9 +165,9 @@ Pas de métrique absolue (dépend du contenu), mais:
 - Images sans bruit
 - Cas où netteté maximale n'est pas l'objectif
 
-### Apr�s: Meilleur Pour
+### Apràs: Meilleur Pour
 
-- **Flou � réduire activement**  NOUVEAU
+- **Flou à réduire activement**  NOUVEAU
 - Texte, documents (netteté essentielle)
 - Images naturelles avec détails fins
 - Cas où contours nets sont importants
@@ -176,32 +176,32 @@ Pas de métrique absolue (dépend du contenu), mais:
 
 ##  Avantages de Phase 2
 
-1. **Plus adaptatif**: �_edge varie selon flou détecté
+1. **Plus adaptatif**: à_edge varie selon flou détecté
 2. **Moins passif**: Force création de contours, pas juste amplification
-3. **�quilibré**: Pas de sursharpening excessif (� � 1.0)
-4. **Physiquement justifié**: �nergie négative = attrait vers états de haute netteté
+3. **àquilibré**: Pas de sursharpening excessif (à à 1.0)
+4. **Physiquement justifié**: ànergie négative = attrait vers états de haute netteté
 5. **Performance acceptable**: Overhead ~5% pour meilleure qualité
 
 ---
 
 ##  Précautions
 
-### �viter Avec Phase 2
+### àviter Avec Phase 2
 
- �_edge > 1.0  Halo autour des bords  
- Appliquer � images tr�s bruitées  Amplifie bruit aussi  
+ à_edge > 1.0  Halo autour des bords  
+ Appliquer à images tràs bruitées  Amplifie bruit aussi  
  Sans Richardson-Lucy  Détails artificiels
 
 ### Mieux Utiliser
 
- �_edge  [0.3, 0.8]  Gamme s�re  
+ à_edge  [0.3, 0.8]  Gamme sàre  
  + Richardson-Lucy  Déconvolution correcte  
  + k-amplification  Gradients justifiés  
  + Perlin 3%  Texture réaliste  
 
 ---
 
-##  Formule Compl�te (Phase 2)
+##  Formule Complàte (Phase 2)
 
 $$E_{total} = \alpha E_{struct} + \beta E_{const} + \gamma E_{inter} + \lambda E_{sharpen} + 0.5 E_{edge}$$
 
@@ -216,7 +216,7 @@ Où:
 
 ##  Résumé
 
-| Aspect | Avant | Apr�s |
+| Aspect | Avant | Apràs |
 |--------|-------|-------|
 | **Approche** | Amplification de gradients | Amplification + Récompense active |
 | **Dynamique** | Minimise erreur | Minimise erreur + Maximise gradients |
@@ -228,7 +228,7 @@ Où:
 
 **Conclusion**: 
 - **Phase 1 (Avant)** = Fondation solide avec déconvolution physique
-- **Phase 2 (Apr�s)** = Amélioration active de la netteté via terme d'énergie
+- **Phase 2 (Apràs)** = Amélioration active de la netteté via terme d'énergie
 
 **Recommandation**: Utiliser Phase 2 pour toute application où netteté > 0
 

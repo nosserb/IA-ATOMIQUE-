@@ -5,7 +5,7 @@
 ### Texte Original
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent tr�s souvent cette technologie pour améliorer 
+Les organisations utilisent tràs souvent cette technologie pour améliorer 
 la productivité. De nombreux chercheurs travaillent sans relache pour 
 faire progresser ce domaine fascinant.
 ```
@@ -13,7 +13,7 @@ faire progresser ce domaine fascinant.
 ### Mode Standard
 ```
 L'intelligence artificielle fait une difference immense dans le monde. 
-Les organisations utilisent tr�s souvent cette technologie pour améliorer 
+Les organisations utilisent tràs souvent cette technologie pour améliorer 
 la productivité. Ensuite, de nombreux chercheurs travaillent sans relache 
 pour faire progresser ce domaine fascinant.
 ```
@@ -22,7 +22,7 @@ pour faire progresser ce domaine fascinant.
 ### Mode Professionnel
 ```
 L'intelligence artificielle constitue une transformation considérable 
-dans l'environnement mondial. Les organisations déploient réguli�rement 
+dans l'environnement mondial. Les organisations déploient réguliàrement 
 cette technologie pour optimiser la productivité. De nombreux chercheurs 
 s'engagent continuellement pour faire avancer ce domaine déterminant.
 ```
@@ -30,7 +30,7 @@ s'engagent continuellement pour faire avancer ce domaine déterminant.
 - "fait"  "constitue"
 - "difference"  "transformation"
 - "dans le monde"  "dans l'environnement mondial"
-- "tr�s souvent"  "réguli�rement"
+- "tràs souvent"  "réguliàrement"
 - "améliorer"  "optimiser"
 - "sans relache"  "continuellement"
 - "fascinant"  "déterminant"
@@ -38,7 +38,7 @@ s'engagent continuellement pour faire avancer ce domaine déterminant.
 ### Mode Avancé
 ```
 L'intelligence artificielle constitue une difference majeure dans le 
-contexte mondial. Les organisations emploient extr�mement réguli�rement 
+contexte mondial. Les organisations emploient extràmement réguliàrement 
 cette technologie pour perfectionner la productivité. De nombreux 
 chercheurs s'accomplissent constamment pour faire avancer ce domaine 
 exceptionnel.
@@ -47,7 +47,7 @@ exceptionnel.
 - "fait"  "constitue"
 - "immense"  "majeure"
 - "monde"  "contexte"
-- "utilisent tr�s souvent"  "emploient extr�mement réguli�rement"
+- "utilisent tràs souvent"  "emploient extràmement réguliàrement"
 - "améliorer"  "perfectionner"
 - "travaillent"  "s'accomplissent"
 - "sans relache"  "constamment"
@@ -59,27 +59,27 @@ exceptionnel.
 
 ### Texte Original
 ```
-Notre entreprise a fait beaucoup de progr�s cette année. 
-Les ventes augmentent rapidement et le marché montre de l'intér�t. 
-Nous devons continuer � faire des efforts pour rester compétitifs dans 
-ce secteur tr�s difficile.
+Notre entreprise a fait beaucoup de progràs cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intéràt. 
+Nous devons continuer à faire des efforts pour rester compétitifs dans 
+ce secteur tràs difficile.
 ```
 
 ### Mode Standard
 ```
-Notre entreprise a fait beaucoup de progr�s cette année. 
-Les ventes augmentent rapidement et le marché montre de l'intér�t. 
-Ensuite, nous devons continuer � faire des efforts pour rester compétitifs 
-dans ce secteur tr�s difficile.
+Notre entreprise a fait beaucoup de progràs cette année. 
+Les ventes augmentent rapidement et le marché montre de l'intéràt. 
+Ensuite, nous devons continuer à faire des efforts pour rester compétitifs 
+dans ce secteur tràs difficile.
 ```
 **Changements**: + Connecteur "Ensuite"
 
 ### Mode Professionnel
 ```
 Notre organisation a effectué des avancées considérables cette année. 
-Les revenus progressent fortement et le marché manifeste de l'intér�t. 
+Les revenus progressent fortement et le marché manifeste de l'intéràt. 
 Nous devons poursuivre nos efforts pour demeurer compétitifs dans ce 
-secteur extr�mement complexe.
+secteur extràmement complexe.
 ```
 **Changements**:
 - "entreprise"  "organisation"
@@ -87,16 +87,16 @@ secteur extr�mement complexe.
 - "beaucoup"  "considérables"
 - "augmentent rapidement"  "progressent fortement"
 - "montre"  "manifeste"
-- "continuer � faire"  "poursuivre"
+- "continuer à faire"  "poursuivre"
 - "rester"  "demeurer"
-- "tr�s difficile"  "extr�mement complexe"
+- "tràs difficile"  "extràmement complexe"
 
 ### Mode Avancé
 ```
-Notre entreprise a réalisé énormément de progr�s cette année. 
-Les ventes progressent rapidement et le marché affiche de l'intér�t. 
-Nous devons persévérer � exécuter des efforts pour demeurer compétitifs 
-dans ce secteur particuli�rement ardu.
+Notre entreprise a réalisé énormément de progràs cette année. 
+Les ventes progressent rapidement et le marché affiche de l'intéràt. 
+Nous devons persévérer à exécuter des efforts pour demeurer compétitifs 
+dans ce secteur particuliàrement ardu.
 ```
 **Changements**:
 - "fait"  "réalisé"
@@ -106,7 +106,7 @@ dans ce secteur particuli�rement ardu.
 - "continuer"  "persévérer"
 - "faire"  "exécuter"
 - "rester"  "demeurer"
-- "tr�s difficile"  "particuli�rement ardu"
+- "tràs difficile"  "particuliàrement ardu"
 
 ---
 
@@ -116,7 +116,7 @@ dans ce secteur particuli�rement ardu.
 |--------|----------|---------------|--------|
 | **Connecteurs** | Ajoute ("Ensuite") | Aucun | Aucun |
 | **Vocabulaire** | Naturel | Formal | Paraphrasé |
-| **Adverbes** | "tr�s", "beaucoup" | "particuli�rement", "considérablement" | "extr�mement", "énormément" |
+| **Adverbes** | "tràs", "beaucoup" | "particuliàrement", "considérablement" | "extràmement", "énormément" |
 | **Verbes** | Original | Upgraded | Synonymisé |
 | **Longueur max** | 40 mots | 30 mots | Flexible |
 | **Substitution** | Lemmatique | Professionnelle | Contextuelle |
@@ -135,15 +135,15 @@ dans ce secteur particuli�rement ardu.
 | avoir | avoir | disposer | posséder |
 | aller | aller | progresser, avancer | se diriger |
 | venir | venir | arriver | survenir |
-| �tre | �tre | exister | constituer |
+| àtre | àtre | exister | constituer |
 
 ### Adverbes
 | Original | Standard | Professionnel | Avancé |
 |----------|----------|----------------|--------|
-| tr�s | tr�s | particuli�rement | extr�mement |
+| tràs | tràs | particuliàrement | extràmement |
 | beaucoup | beaucoup | considérablement | énormément |
-| peu | peu | faiblement | lég�rement |
-| souvent | souvent | réguli�rement | fréquemment |
+| peu | peu | faiblement | légàrement |
+| souvent | souvent | réguliàrement | fréquemment |
 | toujours | toujours | constamment | continuellement |
 
 ### Adjectifs
@@ -165,10 +165,10 @@ dans ce secteur particuli�rement ardu.
 
 **Exemple**:
 ```
-Original: "Les données sont tr�s volumineuses"
+Original: "Les données sont tràs volumineuses"
 Avancé tente: "Les informations constituent énormément massives"
 Score: 0.45 (< 0.6)  Trop de changement
-Fallback: "Les données sont tr�s volumineuses"
+Fallback: "Les données sont tràs volumineuses"
 ```
 
 ---
@@ -189,9 +189,9 @@ Fallback: "Les données sont tr�s volumineuses"
 - Contrats
 - Textes officiels
 
-###  Utilisez Mode AVANC� pour:
+###  Utilisez Mode AVANCà pour:
 - Réécriture créative
-- �viter répétitions
+- àviter répétitions
 - Améliorer lisibilité
 - Paraphrasing pour originalité
 - Textes avec variations styliques
@@ -212,4 +212,4 @@ Fallback: "Les données sont tr�s volumineuses"
 
 ---
 
-**Derni�re mise � jour**: 2 janvier 2025
+**Derniàre mise à jour**: 2 janvier 2025

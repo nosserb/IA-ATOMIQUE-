@@ -1,4 +1,4 @@
-#  Phase 13+++ - Validation Compl�te
+#  Phase 13+++ - Validation Complàte
 
 ##  Résumé Exécutif
 
@@ -6,7 +6,7 @@
 
 1.  **Normalisation Lexicale** - Pénalité blocs répétitifs
 2.  **Pondération TF-IDF Intelligente** - Mots rares moins influents
-3.  **Fen�trage Strict** - Blocs consécutifs diversifiés
+3.  **Fenàtrage Strict** - Blocs consécutifs diversifiés
 4.  **Anti-Répétition** - Zéro répétition <5 mots
 5.  **Synonymes Contextuels** - Vocabulaire naturellement varié
 
@@ -54,17 +54,17 @@ Test: Petit corpus
 
 ### Avant Phase 13+++
 ```
- Exemple: "...donné que les syst�mes donnent résultats..."
+ Exemple: "...donné que les systàmes donnent résultats..."
            "...dans ce cas, plusieurs cas différents..."
            "...le monde du digital, un monde qui change..."
- Probl�me: Répétitions évidentes de "donné/donnent", "cas", "monde"
+ Problàme: Répétitions évidentes de "donné/donnent", "cas", "monde"
 ```
 
-### Apr�s Phase 13+++
+### Apràs Phase 13+++
 ```
- Exemple: "...donné que les syst�mes fournissent résultats..."
+ Exemple: "...donné que les systàmes fournissent résultats..."
            "...dans cette situation, plusieurs contextes différents..."
-           "...l'univers du digital, une sph�re qui change..."
+           "...l'univers du digital, une sphàre qui change..."
  Solution: Synonymes appliqués, anti-répétition activé
  Résultat: Zéro répétitions visibles, lecture naturelle
 ```
@@ -77,7 +77,7 @@ Test: Petit corpus
 ```
 Bloc: ["donné", "donné", "donné", "case"]
           Compte: "donné"3, "case"1
-          Pénalité: (3-2)�0.1 = 0.1
+          Pénalité: (3-2)à0.1 = 0.1
           finalScore *= (1 - 0.1) = 0.9x
          
 Effet: Bloc déprioritisé automatiquement
@@ -93,17 +93,17 @@ Mot: "cas" (rare mais fréquent)
 Effet: Mots rares-fréquents moins dominants
 ```
 
-### Layer 3: Fen�trage Strict (Block-selection)
+### Layer 3: Fenàtrage Strict (Block-selection)
 ```
-Bloc_A vocab: {intell, artif, syst�me}
+Bloc_A vocab: {intell, artif, systàme}
 Bloc_B vocab: {intell, artif, distribué}
       Similarité: 2/4 = 50% < 60%  OK
 
-Bloc_C vocab: {artif, syst�me, exact}
-Bloc_D vocab: {artif, syst�me, timing}
+Bloc_C vocab: {artif, systàme, exact}
+Bloc_D vocab: {artif, systàme, timing}
       Similarité: 2/4 = 50% < 60%  OK
      
-Effet: Topics diversifiés bloc-�-bloc
+Effet: Topics diversifiés bloc-à-bloc
 ```
 
 ### Layer 4: Anti-Répétition (Text-generation)
@@ -122,7 +122,7 @@ Effet: Zéro répétition intra-phrase
 Mot fréquent: "monde" (8 occurrences)
       Occurrence 1: "monde" (garder)
       Occurrence 3: "univers" (synonyme)
-      Occurrence 5: "sph�re" (synonyme)
+      Occurrence 5: "sphàre" (synonyme)
       Occurrence 7: "domaine" (synonyme)
      
 Effet: Vocabulaire naturellement varié
@@ -139,7 +139,7 @@ Phase 13+++: 219ms  (ratio 15%)
 
 Accélération: 1384/219 = 6.3x PLUS RAPIDE 
 
-Raison: Fen�trage strict réduit blocs � traiter
+Raison: Fenàtrage strict réduit blocs à traiter
         45 blocs vs 50 = -10% overhead
         + Post-traitement optimisé
 ```
@@ -178,7 +178,7 @@ Modifications:
  Ligne 142: Appel NormaliserRepetitionsBlocs()
  Ligne 554-580: Fonction NormaliserRepetitionsBlocs()
  Ligne 698: Scoring: finalScore *= (1 - PenaliteRepetition)
- Ligne 730-745: Fen�trage strict implémenté
+ Ligne 730-745: Fenàtrage strict implémenté
  Ligne 950+: Fonction CalculerSimilarityVocabLexical()
 
 Impact: 5 stratégies, ~150 lignes de code
@@ -222,8 +222,8 @@ Impact: 3 stratégies, ~80 lignes de code
 - [x]  Synonymes substituent mots fréquents
 
 ### Integration Testing
-- [x]  Phase 13+++ s'int�gre avec Decouper()
-- [x]  Fen�trage strict compatible sélection
+- [x]  Phase 13+++ s'intàgre avec Decouper()
+- [x]  Fenàtrage strict compatible sélection
 - [x]  Post-traitement compatible génération
 - [x]  Synonymes ne cassent pas ponctuation
 
@@ -241,16 +241,16 @@ Impact: 3 stratégies, ~80 lignes de code
 
 ---
 
-##  Le�ons Apprises
+##  Leàons Apprises
 
 ###  Insights Principaux
 
 1. **Cascade de Filtres Efficace**
    - Combiner 5 stratégies simples > 1 super-stratégie complexe
-   - Chaque filtre op�re indépendamment (modularité)
+   - Chaque filtre opàre indépendamment (modularité)
    - Ordre importe peu (non-dépendances)
 
-2. **Fen�trage Strict Powerful**
+2. **Fenàtrage Strict Powerful**
    - Similarité lexicale Jaccard simple mais effective
    - 60% seuil balance qualité et couverture
    - Réduit bruit automatiquement
@@ -263,7 +263,7 @@ Impact: 3 stratégies, ~80 lignes de code
 4. **Synonymes Discrets**
    - Remplacement tous les 3 = 33% = imperceptible
    - Plus fréquent = remarqué négativement
-   - Dictionnaire peut �tre domaine-spécifique
+   - Dictionnaire peut àtre domaine-spécifique
 
 5. **Performance Gratuit**
    - Filtrer blocs = moins de traitement
@@ -275,15 +275,15 @@ Impact: 3 stratégies, ~80 lignes de code
 ##  Recommandations Futures
 
 ### Phase 14: Enhancements Potentiels
-1. **�tendue Synonymes**: 20  50+ entrées
-2. **Contexte Sémantique**: Synonymes varient par catégorie (TECH vs SANT�)
+1. **àtendue Synonymes**: 20  50+ entrées
+2. **Contexte Sémantique**: Synonymes varient par catégorie (TECH vs SANTà)
 3. **Bigrammes**: Vérifier couples de mots aussi
-4. **Lemmatisation**: "donné/donnent/donnée" = m�me racine
+4. **Lemmatisation**: "donné/donnent/donnée" = màme racine
 
 ### Phase 15: Optimisations
 1. **Cache TF-IDF**: Pré-calculer pour corpus récurrents
 2. **Parallélisation**: Score blocs en goroutines
-3. **Incremental Updates**: M�j vectorisation sans recalcul total
+3. **Incremental Updates**: Màj vectorisation sans recalcul total
 
 ---
 
@@ -297,13 +297,13 @@ Trois fichiers documentant Phase 13+++:
    - Formules et code
 
 2. **[PHASE-13-COMPARISON.md](PHASE-13-COMPARISON.md)**
-   - Avant/apr�s Phase 13++
+   - Avant/apràs Phase 13++
    - Avantages et trade-offs
    - Cas d'usage recommandés
 
 3. **[PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)**
    - Guide de configuration
-   - Param�tres ajustables
+   - Paramàtres ajustables
    - Profils pré-définis (Quality/Balanced/Coverage)
 
 ---
@@ -312,7 +312,7 @@ Trois fichiers documentant Phase 13+++:
 
 ###  Objectifs Atteints
 
- �liminer répétitions résiduelles  
+ àliminer répétitions résiduelles  
  Maintenir cohérence 95%  
  Accélérer exécution (86% plus rapide)  
  Vocabulaire naturellement varié  

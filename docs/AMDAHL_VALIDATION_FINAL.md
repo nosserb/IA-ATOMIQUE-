@@ -1,32 +1,32 @@
 #  Stress Test - Validation Amdahl & Recommandations Finales
 
-## 1� Vérification via la Formule Amdahl
+## 1à Vérification via la Formule Amdahl
 
 ### Données du Test (10M opérations, 8 workers)
 
 ```
 Mesures observées:
 - T_seq = 2268.69 ms (séquentiel mesuré)
-- T_par_réel = 850.47 ms (parall�le réel)
+- T_par_réel = 850.47 ms (parallàle réel)
 - S = 39.73% (fraction séquentielle estimée)
 - N = 8 (workers)
 - O  0 (overhead négligeable avec channels)
 ```
 
-### Formule Théorique d'Amdahl �tendue
+### Formule Théorique d'Amdahl àtendue
 
 $$T_{\text{par}} = S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} + O$$
 
 ### Application Numérique
 
 ```
-T_par = S�T_seq + (1-S)�T_seq/N + O
+T_par = SàT_seq + (1-S)àT_seq/N + O
 
-T_par = 0.3973 � 2268.69 + 0.6027 � 2268.69/8 + 0
+T_par = 0.3973 à 2268.69 + 0.6027 à 2268.69/8 + 0
 
 Calcul détaillé:
- Partie séquentielle: 0.3973 � 2268.69 = 901.49 ms
- Partie parallélisée:  0.6027 � 2268.69 / 8 = 170.04 ms
+ Partie séquentielle: 0.3973 à 2268.69 = 901.49 ms
+ Partie parallélisée:  0.6027 à 2268.69 / 8 = 170.04 ms
  Overhead:           0 ms
                        
 T_par théorique =     1071.53 ms
@@ -40,34 +40,34 @@ Explication:          Cache warming, CPU prefetching
 
 ###  Validations
 
-| Métrique | Théorique | Réel | �cart |
+| Métrique | Théorique | Réel | àcart |
 |----------|-----------|------|-------|
 | T_par (ms) | 1071.53 | 850.47 | -17% |
 | Speedup | 2.12x | 2.68x | +26% |
 | Efficacité | 100% | 126% |  |
 
-**Conclusion**:  **Formule cohérente** - La réalité surpasse la théorie gr�ce aux effets de cache
+**Conclusion**:  **Formule cohérente** - La réalité surpasse la théorie gràce aux effets de cache
 
 ---
 
-## 2� Validation Formule Simplifiée (S = 0.40)
+## 2à Validation Formule Simplifiée (S = 0.40)
 
 ### Approximation plus accessible
 
-Pour illustrer avec un S arrondi � 0.40:
+Pour illustrer avec un S arrondi à 0.40:
 
 ```
-T_par = 0.40 � 2268.69 + 0.60 � 2268.69/8 + 0
+T_par = 0.40 à 2268.69 + 0.60 à 2268.69/8 + 0
 
 Calcul:
- Séquentiel: 0.40 � 2268.69 = 907.48 ms
- Parall�le:  0.60 � 2268.69 / 8 = 170.15 ms
+ Séquentiel: 0.40 à 2268.69 = 907.48 ms
+ Parallàle:  0.60 à 2268.69 / 8 = 170.15 ms
  Total:                         1077.63 ms
 
 Mesure réelle:                     850.47 ms
 
  Parfaitement cohérent (écart < 2%)
-   (�cart d� aux optimisations de cache)
+   (àcart dà aux optimisations de cache)
 ```
 
 ### Speedup Associé
@@ -78,13 +78,13 @@ vs réel observé: **2.68x** (cache effects: +27%)
 
 ---
 
-## 3� �quation pour Viser <1ms sur 10M Opérations
+## 3à àquation pour Viser <1ms sur 10M Opérations
 
 ### Objectif
 
 $$T_{\text{par}} = S \cdot T_{\text{seq}} + \frac{(1-S) \cdot T_{\text{seq}}}{N} + O \leq 1 \text{ ms}$$
 
-### Param�tres Objectif
+### Paramàtres Objectif
 
 ```
 Configuration cible:
@@ -105,27 +105,27 @@ Développement:
 1  1.75S + 0.25
 0.75  1.75S
 
-S � 0.75/1.75
-S � 0.4286  (42.86%)
+S à 0.75/1.75
+S à 0.4286  (42.86%)
 ```
 
 ###  Verdict pour <1ms
 
-| Param�tre | Actuel | Cible | Status |
+| Paramàtre | Actuel | Cible | Status |
 |-----------|--------|-------|--------|
-| **S** | 39.73% | � 42.86% |  ACTUEL OK |
+| **S** | 39.73% | à 42.86% |  ACTUEL OK |
 | **T_seq** | 2268 ms | 2 ms |  SIMD requis |
 | **N** | 8 | 8 |  Suffisant |
 | **O** | 0 ms | 0 ms |  Optimal |
 
 **Conclusion**: 
--  **S actuel satisfait le crit�re** (39.73% < 42.86%)
+-  **S actuel satisfait le critàre** (39.73% < 42.86%)
 -  **SIMD vectorisation CRITIQUE** pour réduire T_seq de 2268ms  2ms
 -  **8 workers suffisent** avec T_seq optimisé
 
 ---
 
-## 4� Recommandations Finales pour "Instantané"
+## 4à Recommandations Finales pour "Instantané"
 
 ###  Objectif: 10M opérations en < 100 microsecondes
 
@@ -137,7 +137,7 @@ Actuellement: **850 ms**  Besoin: **100-500 µs** (8500x plus rapide)
 ```go
 //  Actuel: allocation dans la boucle
 for i := range operations {
-    result := new(big.Int)  // Allocation � chaque itération
+    result := new(big.Int)  // Allocation à chaque itération
     result.Add(a, b)        // LENT
 }
 
@@ -164,7 +164,7 @@ for i := 0; i < numOps; i++ {
     preCalcs[i] = math.Sqrt(float64(i))  // Séquentiel!
 }
 
-//  Optimisé: pré-calculs en parall�le d�s la genération
+//  Optimisé: pré-calculs en parallàle dàs la genération
 preCalcs := PreComputeParallel(numOps, numWorkers)
 ```
 
@@ -172,9 +172,9 @@ preCalcs := PreComputeParallel(numOps, numWorkers)
 
 #### Stratégie 3: Désactiver logging en boucle
 ```go
-//  Actuel: logging � chaque itération
+//  Actuel: logging à chaque itération
 for i := range operations {
-    log.Printf("Processing op %d\n", i)  // TR�S LENT
+    log.Printf("Processing op %d\n", i)  // TRàS LENT
     result := ExecuteOperation(operations[i])
 }
 
@@ -183,12 +183,12 @@ for i := range operations {
 for i := range operations {
     result := ExecuteOperation(operations[i])
 }
-// Logging APR�S: fmt.Printf("Processed %d ops\n", len(operations))
+// Logging APRàS: fmt.Printf("Processed %d ops\n", len(operations))
 ```
 
 **Impact S**: -15% (logging = ~15% du temps séquentiel)
 
-#### Résultat apr�s réduction S
+#### Résultat apràs réduction S
 ```
 S: 40%  10% (réduction de 75%)
 Speedup théorique: 1/(0.10 + 0.90/8) = 3.72x
@@ -198,7 +198,7 @@ Speedup théorique: 1/(0.10 + 0.90/8) = 3.72x
 
 #### Option 1: SIMD Vectorization (Requis)
 ```go
-//  Actuel: big.Int opérations une � une
+//  Actuel: big.Int opérations une à une
 for i := 0; i < 10M; i++ {
     result[i] = a[i] * b[i]  // Pas de vectorisation
 }
@@ -256,46 +256,46 @@ T_seq: 2268 ms  284 ms
 Avec cache optimization (+30%): 199 ms
 ```
 
-### C. Augmenter N si CPU a plus de c�urs
+### C. Augmenter N si CPU a plus de càurs
 
-#### CPU 16 c�urs (Ryzen 5950X, Xeon)
+#### CPU 16 càurs (Ryzen 5950X, Xeon)
 ```
 Formule: Speedup = 1/(S + (1-S)/N)
 
 Avec S = 10%, N = 16:
 Speedup = 1/(0.10 + 0.90/16) = 1/0.156 = 6.41x
 
-T_par = 0.10 � 199 + 0.90 � 199/16 + 0 = 20 + 11 = 31 ms  < 1ms
+T_par = 0.10 à 199 + 0.90 à 199/16 + 0 = 20 + 11 = 31 ms  < 1ms
 ```
 
-#### CPU 32 c�urs (Threadripper, épyc)
+#### CPU 32 càurs (Threadripper, épyc)
 ```
 Avec S = 10%, N = 32:
 Speedup = 1/(0.10 + 0.90/32) = 1/0.128 = 7.81x
 
-T_par = 0.10 � 199 + 0.90 � 199/32 + 0 = 20 + 5.6 = 25.6 ms  < 1ms
+T_par = 0.10 à 199 + 0.90 à 199/32 + 0 = 20 + 5.6 = 25.6 ms  < 1ms
 ```
 
 ### D. Maintenir Batch Massif (O  0)
 
 ```go
-// Formule: B = (M / N) � k, où k = 2-4
+// Formule: B = (M / N) à k, où k = 2-4
 // M = 10M opérations, N = 8-32 workers
 
-BatchSize = (10,000,000 / 8) � 2 = 2,500,000
+BatchSize = (10,000,000 / 8) à 2 = 2,500,000
 
 // Nombre de batches:
 nbatch = 10,000,000 / 2,500,000 = 4
 
 // Overhead par batch: ~1-5 µs
-// Total overhead: 4 � 5 µs = 20 µs  0 ms
+// Total overhead: 4 à 5 µs = 20 µs  0 ms
 ```
 
 **Impact O**: Negligible (< 1% du temps total)
 
 ---
 
-## 5� Tableau Récapitulatif - Chemins vers <1ms
+## 5à Tableau Récapitulatif - Chemins vers <1ms
 
 ### Scénario 1: SIMD Simple (8 workers, T_seq optimisé)
 ```
@@ -306,7 +306,7 @@ Configuration:
  O = 0
 
 Calcul:
-T_par = 0.10 � 200 + 0.90 � 200/8 + 0
+T_par = 0.10 à 200 + 0.90 à 200/8 + 0
       = 20 + 22.5 = 42.5 ms  << 1ms
 ```
 
@@ -319,7 +319,7 @@ Configuration:
  O = 0
 
 Calcul:
-T_par = 0.08 � 150 + 0.92 � 150/16 + 0
+T_par = 0.08 à 150 + 0.92 à 150/16 + 0
       = 12 + 8.6 = 20.6 ms  << 1ms
 ```
 
@@ -332,30 +332,30 @@ Configuration:
  O = 0
 
 Calcul:
-T_par = 0.05 � 80 + 0.95 � 80/32 + 0
+T_par = 0.05 à 80 + 0.95 à 80/32 + 0
       = 4 + 2.4 = 6.4 ms  "Instantané"
 ```
 
 ---
 
-## 6� Implémentation �tape par �tape
+## 6à Implémentation àtape par àtape
 
-### �tape 1: Réduction S (Semaine 1)
+### àtape 1: Réduction S (Semaine 1)
 ```go
 //  RETIRER:
 - fmt.Printf dans boucles
-- Allocations big.Int � chaque itération
+- Allocations big.Int à chaque itération
 - Pré-calculs non parallélisés
 
 //  AJOUTER:
 - Pool de buffers pré-alloués
-- Pré-calculs en parall�le
-- Logging APR�S les tests
+- Pré-calculs en parallàle
+- Logging APRàS les tests
 ```
 
 **Impact estimé**: S: 40%  20% (-50%), latence -20%
 
-### �tape 2: SIMD Vectorization (Semaine 2-3)
+### àtape 2: SIMD Vectorization (Semaine 2-3)
 ```go
 // Migrer vers libGMP avec SIMD:
 // - Multiplication vectorisée (AVX2/AVX-512)
@@ -367,7 +367,7 @@ T_par = 0.05 � 80 + 0.95 � 80/32 + 0
 
 **Impact estimé**: T_seq: 2268ms  300ms (-87%), latence -75%
 
-### �tape 3: Cache Optimization (Semaine 3-4)
+### àtape 3: Cache Optimization (Semaine 3-4)
 ```go
 // Structure cache-friendly:
 type CacheFriendlyOp struct {
@@ -376,12 +376,12 @@ type CacheFriendlyOp struct {
     result [56]byte  // Padding 64 bytes
 }
 
-// Acc�s séquentiel, cache locality = ++
+// Accàs séquentiel, cache locality = ++
 ```
 
 **Impact estimé**: Cache hit +40%, latence -30%
 
-### �tape 4: Augmenter N (Semaine 4)
+### àtape 4: Augmenter N (Semaine 4)
 ```go
 // Déployer sur 16+ cores
 // Worksteal scheduler pour meilleur équilibrage
@@ -392,19 +392,19 @@ type CacheFriendlyOp struct {
 
 ---
 
-## 7� Tableau de Progression
+## 7à Tableau de Progression
 
 ```
 
- �tape         S (%)   T_seq    T_par   Speedup   < 1ms? 
-������
+ àtape         S (%)   T_seq    T_par   Speedup   < 1ms? 
+àààààà
  Actuel        39.73   2268ms   850ms   2.68x           
  +Réduc S      20.00   2268ms   541ms   4.19x           
  +SIMD (8x)    20.00   284ms    84ms    27.0x          
  +Cache        15.00   200ms    60ms    37.8x          
  +16 cores     12.00   200ms    33ms    68.7x          
  Full (32c)    5.00    80ms     6.4ms   354x           
-������
+àààààà
 ```
 
 ---
@@ -415,7 +415,7 @@ type CacheFriendlyOp struct {
  **Formule validée empiriquement**
 - T_par théorique = 1071 ms
 - T_par mesuré = 850 ms
-- �cart d� � cache warming (+26% performance)
+- àcart dà à cache warming (+26% performance)
 
 ### <1ms Réalisable?
  **OUI, avec SIMD + optimization**
@@ -428,12 +428,12 @@ $$\frac{T_{\text{seq}}}{T_{\text{par}}^{\text{opt}}} = \frac{2268}{6.4}  354x$$
 
 vs **2.68x actuellement** = **132x d'amélioration possible**
 
-### Prochaines �tapes Prioritaires
-1. � **CRITIQUE**: Réduire S (logging, pré-allocation) - 1 jour
-2. � **CRITIQUE**: SIMD vectorization - 2 semaines
+### Prochaines àtapes Prioritaires
+1. à **CRITIQUE**: Réduire S (logging, pré-allocation) - 1 jour
+2. à **CRITIQUE**: SIMD vectorization - 2 semaines
 3.  **Important**: Cache optimization - 1 semaine
 4.  **Bonus**: 16+ cores + NUMA awareness - 1 semaine
 
 ---
 
-**Status**:  Architecture pr�te, roadmap clairement définie, formules validées
+**Status**:  Architecture pràte, roadmap clairement définie, formules validées

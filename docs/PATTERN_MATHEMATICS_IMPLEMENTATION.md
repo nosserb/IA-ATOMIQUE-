@@ -1,12 +1,12 @@
-#  PATTERNS MATH�MATIQUES - IMPL�MENTATION R�ALIS�E
+#  PATTERNS MATHàMATIQUES - IMPLàMENTATION RàALISàE
 
 **Date**: January 9, 2026  
-**Status**:  COMPIL� & OP�RATIONNEL  
+**Status**:  COMPILà & OPàRATIONNEL  
 **Innovation**: Représentation patterns par équations réutilisables
 
 ---
 
-##  CE QUI A �T� FAIT
+##  CE QUI A àTà FAIT
 
 ### 1. Fichier Mathématique Fondamental
 
@@ -19,13 +19,13 @@ type PatternMathematical struct {
     PatternID        string         // "sunset_001"
     Width, Height    int            // Dimensions
     BasisFunctions   int            // N = nombre de composantes (ex: 20)
-    Coefficients     []float64      // �k pour chaque fonction (3N pour RGB)
+    Coefficients     []float64      // àk pour chaque fonction (3N pour RGB)
     BasisType        string         // "fourier", "gaussian", "polynomial"
     Reconstruction   float64        // Erreur MSE
     IntensityProfile []float64      // Profil 1D
 }
 
-// �valuateur de fonctions de base
+// àvaluateur de fonctions de base
 type BasisFunctionEvaluator struct {
     Type         string
     BasisCount   int
@@ -42,14 +42,14 @@ func ExtractPatternFromImage(imagePath string, basisCount int) (*PatternMathemat
 - Charge image PNG/JPG
 - Normalise pixels [0, 1]
 - Applique décomposition Fourier 2D
-- Calcule coefficients �k par régression
+- Calcule coefficients àk par régression
 - Retourne erreur de reconstruction (MSE)
 
 #### **Décomposition Fourier**
 ```go
 func DecomposeFourierBasis(imageData [][][3]float64, width, height, basisCount, channel int) []float64
 ```
-- Utilise cosinus 2D: cos(2��kx�x/W) � cos(2��ky�y/H)
+- Utilise cosinus 2D: cos(2ààkxàx/W) à cos(2ààkyày/H)
 - Résout par projection orthogonale
 - Retourne les N coefficients
 
@@ -57,19 +57,19 @@ func DecomposeFourierBasis(imageData [][][3]float64, width, height, basisCount, 
 ```go
 func ReconstructImage(pattern *PatternMathematical, width, height int) [][]float64
 ```
-- Applique: f(x,y) = Σ �k � gk(x,y)
+- Applique: f(x,y) = Σ àk à gk(x,y)
 - Recréé approximation de l'image
 - Valide avec MSE
 
-#### **�valuateurs de Base** (3 types)
+#### **àvaluateurs de Base** (3 types)
 ```go
-// Fourier: cos(2��kx�x/W) � cos(2��ky�y/H)
+// Fourier: cos(2ààkxàx/W) à cos(2ààkyày/H)
 func (b *BasisFunctionEvaluator) evaluateFourier(k, x, y int) float64
 
-// Gaussian: exp(-(distance²/�²))
+// Gaussian: exp(-(distance²/à²))
 func (b *BasisFunctionEvaluator) evaluateGaussian(k, x, y int) float64
 
-// Polynomial: (x/W)^kx � (y/H)^ky
+// Polynomial: (x/W)^kx à (y/H)^ky
 func (b *BasisFunctionEvaluator) evaluatePolynomial(k, x, y int) float64
 ```
 
@@ -78,14 +78,14 @@ func (b *BasisFunctionEvaluator) evaluatePolynomial(k, x, y int) float64
 func CombinePatterns(patterns []*PatternMathematical, weights []float64, width, height int) [][][3]float64
 ```
 - Mélange N patterns avec poids
-- C_final = w1�f1 + w2�f2 + ... + wN�fN
+- C_final = w1àf1 + w2àf2 + ... + wNàfN
 - Normalise poids automatiquement
 
 #### **Similarité**
 ```go
 func PatternSimilarity(p1, p2 *PatternMathematical) float64
 ```
-- Compare coefficients �k
+- Compare coefficients àk
 - Retourne cosine similarity [0, 1]
 - 1.0 = identique, 0.0 = différent
 
@@ -99,7 +99,7 @@ func PrintPatternAnalysis(pattern *PatternMathematical)
 
 ---
 
-##  LA M�CANIQUE MATH�MATIQUE IMPL�MENT�E
+##  LA MàCANIQUE MATHàMATIQUE IMPLàMENTàE
 
 ### Formule Fondamentale
 
@@ -107,19 +107,19 @@ $$C_{target}(x,y) = f(x,y) = \sum_{k=1}^{N} \alpha_k \cdot g_k(x,y)$$
 
 Où:
 - **N** = 10-100 (nombre de composantes)
-- **�k** = coefficient apprendre (extraire depuis image)
+- **àk** = coefficient apprendre (extraire depuis image)
 - **gk(x,y)** = fonction de base (Fourier/Gaussian/Polynomial)
 
 ### Extraction Depuis Image
 
-**Probl�me**: Trouver �k qui minimisent erreur
+**Problàme**: Trouver àk qui minimisent erreur
 ```
-min Σ_{i,j} ||C(i,j) - Σ �k�gk(i,j)||²
+min Σ_{i,j} ||C(i,j) - Σ àkàgk(i,j)||²
 ```
 
 **Solution**: Projection orthogonale
 ```
-�k = (Σ C(i,j)�gk(i,j)) / (Σ gk(i,j)²)
+àk = (Σ C(i,j)àgk(i,j)) / (Σ gk(i,j)²)
 ```
 
 Implémenté pour les 3 types de base.
@@ -137,12 +137,12 @@ MSE = (Σ(C_original - C_reconstructed)² / pixels)
 
 ---
 
-##  UTILISATION PR�VUE
+##  UTILISATION PRàVUE
 
 ### Pipeline Complet
 
 ```
-IMAGE  Extraction  Coefficients �k  patterns.db
+IMAGE  Extraction  Coefficients àk  patterns.db
                                             
 PROMPT + Pattern  Décodage  f(x,y)  AtomicNetwork  IMAGE
                               
@@ -154,25 +154,25 @@ PROMPT + Pattern  Décodage  f(x,y)  AtomicNetwork  IMAGE
 ```bash
 # 1. Apprendre un pattern
 ./programme pattern math-extract input/sunset.png 20
-#  Gén�re 60 coefficients (20�3 pour RGB)
+#  Génàre 60 coefficients (20à3 pour RGB)
 #  Stocke dans patterns.db
 #  MSE validation
 
 # 2. Utiliser le pattern
 ./programme generate with-math-pattern sunset 512 512 100 "dark forest"
 #  Charge coefficients sunset
-#  f(x,y) = Σ �_sunset,k � gk(x,y)
+#  f(x,y) = Σ à_sunset,k à gk(x,y)
 #  ApplyPatternToAtomicNetwork()
-#  It�re 100 fois
+#  Itàre 100 fois
 #  Export PNG
 
 # 3. Composer patterns
 ./programme pattern math-compose sunset:0.6 ocean:0.4 512 512 result.png
-#  C = 0.6�f_sunset + 0.4�f_ocean
+#  C = 0.6àf_sunset + 0.4àf_ocean
 
 # 4. Interpoler
 ./programme pattern math-interpolate sunset ocean 5 ./anim/
-#  Gén�re transition progressive
+#  Génàre transition progressive
 #  t=[0, 0.25, 0.5, 0.75, 1.0]
 #  5 images intermédiaires
 ```
@@ -185,30 +185,30 @@ PROMPT + Pattern  Décodage  f(x,y)  AtomicNetwork  IMAGE
 |--------|---|---|
 | **Représentation** | Couleur moyenne | 60 coefficients |
 | **Stockage** | 100 bytes | 500 bytes |
-| **Réutilisation** | "Appliquer rouge" | f(x,y) = Σ �k�gk(x,y) |
-| **Taille image** | 512�512 fixe | Scalable � |
-| **Combinaison** | Impossible | w1�f1 + w2�f2 |
-| **Interpolation** | Impossible | Lerp entre �k |
+| **Réutilisation** | "Appliquer rouge" | f(x,y) = Σ àkàgk(x,y) |
+| **Taille image** | 512à512 fixe | Scalable à |
+| **Combinaison** | Impossible | w1àf1 + w2àf2 |
+| **Interpolation** | Impossible | Lerp entre àk |
 | **Compression** | 0% (perdu) | 95% (MSE <0.05) |
 | **Hallucination** | Possible | 0% (pur math) |
 | **Apprentissage** | Manuel | Décomposition auto |
 
 ---
 
-##  COMPLEXIT� COMPUTATIONNELLE
+##  COMPLEXITà COMPUTATIONNELLE
 
 ### Extraction (une fois par image)
 
 ```
-Image 512�512 pixels
+Image 512à512 pixels
 N = 20 fonctions
 Channel = 3 (RGB)
 
 Pour chaque canal:
   Pour chaque fonction gk:
-    Σ_{i,j} C(i,j) � gk(i,j)   O(W�H) = 262K opérations
+    Σ_{i,j} C(i,j) à gk(i,j)   O(WàH) = 262K opérations
     
-Total: 20 � 3 � 262K = 15.7M opérations
+Total: 20 à 3 à 262K = 15.7M opérations
 Temps: ~50-100ms sur CPU moderne
 ```
 
@@ -219,21 +219,21 @@ Pour chaque pixel (x,y):
   Pour chaque canal c:
     Pour chaque fonction gk:
       basis = evaluator.Evaluate(k, x, y)
-      color += coeff[c][k] � basis
+      color += coeff[c][k] à basis
       
-Dimensions: 512�512 pixels � 3 channels � 20 functions
-= 512 � 512 � 3 � 20 = 15.7M opérations
+Dimensions: 512à512 pixels à 3 channels à 20 functions
+= 512 à 512 à 3 à 20 = 15.7M opérations
 Temps: ~10ms sur CPU
 ```
 
 **Total génération**: 
-- Atomic iteration (100�): 100-500ms
+- Atomic iteration (100à): 100-500ms
 - Pattern application: ~10ms
 - **Total**: 100-510ms (vs 30-60s Stable Diffusion!)
 
 ---
 
-##  CE QUI �TAIT MANQUANT AVANT
+##  CE QUI àTAIT MANQUANT AVANT
 
 **Avant cette implémentation:**
 ```
@@ -242,36 +242,36 @@ Pattern = Metadata
   - complexité: 0.45
   - catégories: [HISTOIRE, BUSINESS]
   
-Probl�me: Comment utiliser ces données pour générer une image?
+Problàme: Comment utiliser ces données pour générer une image?
   - "Appliquer le rouge"  trop vague
   - Pas de structure spatiale
   - Pas de réutilisabilité mathématique
 ```
 
-**Apr�s (avec patterns mathématiques):**
+**Apràs (avec patterns mathématiques):**
 ```
-Pattern = �quation Fourier
-  - 60 coefficients: �=0.45, �=0.32, ...
+Pattern = àquation Fourier
+  - 60 coefficients: à=0.45, à=0.32, ...
   - BasisType: "fourier"
   - Reconstruction MSE: 0.043
   
 Solution: Pour chaque pixel (x,y):
-  C_target = Σ �k � cos(2��kx�x/W) � cos(2��ky�y/H)
+  C_target = Σ àk à cos(2ààkxàx/W) à cos(2ààkyày/H)
   
  Mathématiquement précis
- Scalable � n'importe quelle taille
+ Scalable à n'importe quelle taille
  Combinable avec d'autres patterns
  Compressionné (95%)
 ```
 
 ---
 
-##  FICHIERS CR��S
+##  FICHIERS CRààS
 
 | Fichier | Lignes | Rôle |
 |---------|--------|------|
 | `database/pattern_mathematics.go` | 390 | Implémentation mathématique |
-| `PATTERN_MATHEMATICS_EXPLAINED.md` | 450+ | Documentation compl�te |
+| `PATTERN_MATHEMATICS_EXPLAINED.md` | 450+ | Documentation complàte |
 
 | Fichier Modifié | Changements |
 |---|---|
@@ -304,7 +304,7 @@ similarity := database.PatternSimilarity(p1, p2)  // Retourne [0,1]
 
 ---
 
-##  PROCHAIN �TAPE
+##  PROCHAIN àTAPE
 
 Pour utiliser ces patterns:
 
@@ -329,7 +329,7 @@ Pour utiliser ces patterns:
 3. **Tester extraction réelle**:
    ```bash
    ./programme pattern math-extract input/sunset.png 20
-   # Affiche analyse compl�te
+   # Affiche analyse complàte
    ```
 
 ---
@@ -339,22 +339,22 @@ Pour utiliser ces patterns:
 ### Pourquoi cette approche?
 
 1. **Déterministe**: Pas de randomness, pure mathématique
-2. **Compressible**: 512�512 image  500 bytes pattern
-3. **Scalable**: Fonctionne � n'importe quelle résolution
+2. **Compressible**: 512à512 image  500 bytes pattern
+3. **Scalable**: Fonctionne à n'importe quelle résolution
 4. **Composable**: Σ patterns = pattern mixte
 5. **Rapide**: ~50ms extraction, ~10ms application
-6. **Explicable**: Chaque �k signifie quelque chose
+6. **Explicable**: Chaque àk signifie quelque chose
 
 ### Relation avec T.R.A.
 
-T.R.A. atomique (texte) + Pattern mathématique (images) = **syst�me unifié**:
+T.R.A. atomique (texte) + Pattern mathématique (images) = **systàme unifié**:
 ```
 Texte  Atomes texte  Catégories  Patterns image  Génération
 ```
 
 ---
 
-##  R�SUM�
+##  RàSUMà
 
 Tu viens de m'expliquer la **vraie mécanique** pour que patterns soient mathématiquement réutilisables.
 
@@ -365,9 +365,9 @@ J'ai implémenté:
 -  Validation par reconstruction (MSE)
 -  Composition de patterns (weighted sum)
 -  Similarité entre patterns (cosine)
--  Documentation mathématique compl�te
+-  Documentation mathématique complàte
 
-Le syst�me compile  et attend l'intégration avec les commandes CLI.
+Le systàme compile  et attend l'intégration avec les commandes CLI.
 
-**Status**:  Fondations posées, pr�t pour la prochaine phase!
+**Status**:  Fondations posées, pràt pour la prochaine phase!
 

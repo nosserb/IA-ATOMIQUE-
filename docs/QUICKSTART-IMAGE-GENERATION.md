@@ -57,22 +57,22 @@
 
 ## Performance Tips
 
-**Fast (30 seconds)**: 256Ã256, 50 iterations, patch 8
+**Fast (30 seconds)**: 256Ã 256, 50 iterations, patch 8
 ```bash
 ./programme image pipeline 256 256 50 8 "prompt"
 ```
 
-**Balanced (2-3 min)**: 512Ã512, 200 iterations, patch 8
+**Balanced (2-3 min)**: 512Ã 512, 200 iterations, patch 8
 ```bash
 ./programme image pipeline 512 512 200 8 "prompt"
 ```
 
-**High Quality (5-10 min)**: 512Ã512, 200 iterations, patch 4
+**High Quality (5-10 min)**: 512Ã 512, 200 iterations, patch 4
 ```bash
 ./programme image pipeline 512 512 200 4 "prompt"
 ```
 
-**Ultra Quality (15+ min)**: 1024Ã1024, 400 iterations, patch 8
+**Ultra Quality (15+ min)**: 1024Ã 1024, 400 iterations, patch 8
 ```bash
 ./programme image pipeline 1024 1024 400 8 "prompt"
 ```

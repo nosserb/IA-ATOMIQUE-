@@ -5,7 +5,7 @@
 
 - **L1:** UX Instantanéité (5% visible + 95% invisible)
 - **L2:** Batch Adaptatif (0% overhead)
-- **L3:** �limination Opérations Redondantes (40-70% speedup)
+- **L3:** àlimination Opérations Redondantes (40-70% speedup)
 
 ---
 
@@ -41,7 +41,7 @@ L3 Impact:
  SPEEDUP PERÇU: 68x
 ```
 
-### � Cas Défaut (Auto-40%)
+### à Cas Défaut (Auto-40%)
 
 ```
  Réponse visible: 54.61 ms  < 230ms
@@ -58,7 +58,7 @@ L3 Impact:
 ```
 Input: 10M Arithmetic Operations
     
-[PHASE 1] Génération parall�le (8 workers)
+[PHASE 1] Génération parallàle (8 workers)
     
 [PHASE 2] Pré-scan détection redondances (auto)
     
@@ -67,17 +67,17 @@ Input: 10M Arithmetic Operations
      B_optimal = (230ms / T_op) / N_workers
      Distribution: 20-21 batches
     
-[PHASE 4] CALCUL IMM�DIAT (5%, visible)
+[PHASE 4] CALCUL IMMàDIAT (5%, visible)
      500k ops
      Skip redondantes
      Retour en 54-65ms 
     
- UTILISATEUR REÇOIT SA R�PONSE (instant)
+ UTILISATEUR REÇOIT SA RàPONSE (instant)
     
 [PHASE 5] CALCUL FOND (95%, invisible)
-     8 workers parall�les
+     8 workers parallàles
      Skip 40-70% ops redondantes
-     Compl�te en 160-210ms
+     Complàte en 160-210ms
     
 Output: 10M Results (all verified)
 ```
@@ -114,24 +114,24 @@ Output: 10M Results (all verified)
 | **Réponse visible** | 54-65ms |  < 230ms |
 | **Overhead scheduling** | 0% |  Zéro contention |
 | **Redondances détectées** | 40-70% |  Auto-detected |
-| **Speedup per�u** | 52-68x |  Exceptionnel |
+| **Speedup peràu** | 52-68x |  Exceptionnel |
 | **Intégrité mathématique** |  |  big.Int verified |
 
 ---
 
 ## Why ULTIMATE?
 
-### 1� **L1: UX Psychology**
+### 1à **L1: UX Psychology**
 - Visible < 230ms  brain perceives as "instant"
 - Background work happens invisibly
 - **Perceived speedup: 20-70x**
 
-### 2� **L2: Zero Overhead**
+### 2à **L2: Zero Overhead**
 - Batch adaptive: B = (230ms/0.05µs) / 8 = 500k
 - Channels zero-contention
 - **No degradation from L1**
 
-### 3� **L3: Operation Fusion**
+### 3à **L3: Operation Fusion**
 - Auto-detect x+0, x-0, x*1, x/1, x*0
 - Skip redundant ops (40-70% of workload)
 - **+40-70% background speedup**
@@ -140,9 +140,9 @@ Output: 10M Results (all verified)
 
 ---
 
-## Comparaison: Avant vs Apr�s
+## Comparaison: Avant vs Apràs
 
-| Scenario | Avant | Apr�s (Ultimate) | Gain |
+| Scenario | Avant | Apràs (Ultimate) | Gain |
 |----------|-------|------------------|------|
 | Random ops | 1500ms visible | 55ms visible | **27x** |
 | 40% redund | 1500ms visible | 65ms visible | **23x** |
@@ -159,11 +159,11 @@ Output: 10M Results (all verified)
 - [x] Test:  All metrics achieved
 - [x] Documentation:  Complete
 
- **Status: PR�T D�PLOIEMENT**
+ **Status: PRàT DàPLOIEMENT**
 
 ---
 
-## Prochaines �tapes Optionnelles
+## Prochaines àtapes Optionnelles
 
 ### Levier 4: Cache Optimization
 - SoA vs AoS (2-3x potential)
@@ -178,8 +178,8 @@ Output: 10M Results (all verified)
 ### Levier 6: SIMD
 - CGO + libGMP
 - Optionnel, haute complexité
-- Gains diminishing apr�s L1-L3
+- Gains diminishing apràs L1-L3
 
 ---
 
-**�tat:**  **VITESSE IN�GAL�E** avec `./programme stest 10000000`
+**àtat:**  **VITESSE INàGALàE** avec `./programme stest 10000000`

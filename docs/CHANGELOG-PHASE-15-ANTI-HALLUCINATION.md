@@ -4,15 +4,15 @@
 
 ###  Objectif résolu
 
-**Probl�me identifié** :
-- Phase 15 �tape 2 gén�re parfois du contenu non présent dans le texte source
+**Problàme identifié** :
+- Phase 15 àtape 2 génàre parfois du contenu non présent dans le texte source
 - Aucun mécanisme de vérification de fidélité
 - Risque d'hallucinations dans les résumés
 
 **Solution implémentée** :
-- Formalisation mathématique du probl�me
+- Formalisation mathématique du problàme
 - 6 stratégies anti-hallucination
-- Score de fidélité Ff(R,T) = |C(R)�C(T)| / |C(R)|
+- Score de fidélité Ff(R,T) = |C(R)àC(T)| / |C(R)|
 - Hybridation automatique génératif  extractif
 
 ---
@@ -29,9 +29,9 @@
    - `TestHybridApproach()` : Test hybridation
 
 2. **`PHASE-15-ANTI-HALLUCINATION.md`** (Documentation)
-   - Formalisaton mathématique compl�te
+   - Formalisaton mathématique complàte
    - 6 stratégies détaillées
-   - Théor�me d'absence d'hallucination
+   - Théoràme d'absence d'hallucination
    - Exemples d'utilisation
 
 3. **`FIDELITY_QUICKSTART.md`** (Guide utilisateur)
@@ -48,7 +48,7 @@
 
 1. **`database/fidelity_check.go`** (+améliorations)
    - Fonctions existantes conservées (CalculateFidelity, ExtractiveResume, HybridResume)
-   - Peut �tre enrichi avec nouveaux termes techniques
+   - Peut àtre enrichi avec nouveaux termes techniques
 
 2. **`main.go`** (+3 lignes)
    - Ajout du case `"fidelity"` pour router vers `ProcessAntiHallucination()`
@@ -124,39 +124,39 @@ Mode: EXTRACTIF  (hallucination massive)
 
 ```
 
- Phase 15 �tape 2 Généré     
+ Phase 15 àtape 2 Généré     
  Résumé: Rg                  
-�
+à
                
-               �
+               à
 
  Extraction vocabulaire      
  C(T) = termes du source     
-�
+à
                
-               �
+               à
 
  Calcul Ff(Rg, T)            
  Score couverture            
-�
+à
                
-       �
+       à
                        
-       �                �
+       à                à
    Ff  0.80      Ff < 0.80
                        
-       �                �
+       à                à
    GARDER       REMPLACER
   Rg généré     par Re extractif
 ```
 
 ---
 
-##  Metrics de succ�s
+##  Metrics de succàs
 
-| Métrique | Avant | Apr�s | Amélioration |
+| Métrique | Avant | Apràs | Amélioration |
 |---|---|---|---|
-| Hallucinations détectées | 0 | 100% | � |
+| Hallucinations détectées | 0 | 100% | à |
 | Fidélité garantie | Non | Oui |  |
 | Fallback automatique | Non | Oui |  |
 | Textes techniques | Variable | Stable | +40% |
@@ -178,14 +178,14 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 **Option 2 : Via CLI pour validation**
 ```bash
 ./programme fidelity file mon_texte.txt
-# Gén�re rapport automatique
+# Génàre rapport automatique
 ```
 
 ### Seuil recommandé
 
-- **Production générale** : � = 0.80 (80%)
-- **Domaines critiques** (médical, légal) : � = 0.90
-- **Domaines flexibles** (fiction) : � = 0.70
+- **Production générale** : à = 0.80 (80%)
+- **Domaines critiques** (médical, légal) : à = 0.90
+- **Domaines flexibles** (fiction) : à = 0.70
 
 ---
 
@@ -210,17 +210,17 @@ final, _, _ := database.HybridResume(generated, text, 0.80)
 
 ##  Qualité du code
 
-| Aspect | �tat |
+| Aspect | àtat |
 |---|---|
 | Compilation |  Pas d'erreurs |
 | Tests |  4 tests passant |
-| Documentation |  Compl�te |
+| Documentation |  Complàte |
 | Performance |  < 1s pour 1000 mots |
 | Maintenabilité |  Code bien structuré |
 
 ---
 
-## � Support
+## à Support
 
 **Questions** ? Consultez :
 1. `FIDELITY_QUICKSTART.md` pour utilisation

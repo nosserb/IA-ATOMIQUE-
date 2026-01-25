@@ -3,46 +3,46 @@
 **Date:** Janvier 7, 2026  
 **Branche:** feature/article  
 **Auteur:** BRESSON Guylann  
-**Statut:**  Implémentation compl�te conforme � l'article HAL
+**Statut:**  Implémentation complàte conforme à l'article HAL
 
 ---
 
-## � Résumé du Travail Réalisé
+## à Résumé du Travail Réalisé
 
-Le projet **IA-ATOMIQUE** a été enti�rement refactorisé pour refléter fid�lement l'article scientifique:
+Le projet **IA-ATOMIQUE** a été entiàrement refactorisé pour refléter fidàlement l'article scientifique:
 
 > **"IA atomique : un moteur d'inférence asynchrone fondé sur la Technologie de Résonance Atomique (T.R.A.)"**
 
 ### Transformation Conceptuelle
 
 **De:** Un analyseur de texte basé sur un réseau neuronal simple  
-**�:** Un moteur d'inférence distribué implémentant les principes de résonance atomique
+**à:** Un moteur d'inférence distribué implémentant les principes de résonance atomique
 
 ---
 
 ##  Composants Implémentés
 
 ### 1. **Atomes Computationnels** (`database/atomic.go`)
--  `ComputationalAtom` : unité autonome avec état interne, r�gles locales, perceptions
--  �tat continu [0, 1]
+-  `ComputationalAtom` : unité autonome avec état interne, ràgles locales, perceptions
+-  àtat continu [0, 1]
 -  Connexions adaptatives avec voisins
 -  Support asynchrone thread-safe
 
 ### 2. **Réseau Atomique Distribué**
 -  `AtomicNetwork` : collection d'atomes avec topologie de grille 2D
--  Param�tres contrôlables : �, β, γ, δ, �
+-  Paramàtres contrôlables : à, β, γ, δ, à
 -  Itérations asynchrones et indépendantes
 -  Calcul de cohérence réseau
 -  Détection de comportements émergents
 
 ### 3. **Résonance Atomique**
--  �quation: `R(si, sj) = exp(-||si-sj||²/2�²)`
+-  àquation: `R(si, sj) = exp(-||si-sj||²/2à²)`
 -  Mesure de compatibilité entre atomes
 -  Alignement spontané basé sur états
--  Sensibilité paramétrée (�)
+-  Sensibilité paramétrée (à)
 
 ### 4. **Dynamique Adaptative des Poids**
--  �quation: `dwij/dt = γ * cohérence(si,sj) - δ * wij`
+-  àquation: `dwij/dt = γ * cohérence(si,sj) - δ * wij`
 -  Renforcement des connexions cohérentes
 -  Décroissance des connexions faibles
 -  Apprentissage local continu
@@ -67,7 +67,7 @@ Vitesse: ~555 itérations/sec
 Scalabilité: Linéaire O(n * neighbors)
 ```
 
-### �mergence Observée
+### àmergence Observée
 -  Formation de structures stables
 -  Cohérence réseau croissante
 -  Convergence sans supervision centrale
@@ -78,27 +78,27 @@ Scalabilité: Linéaire O(n * neighbors)
 ##  Documentation Créée
 
 ### 1. **README-ARTICLE.md**
-- Vue d'ensemble compl�te du syst�me
+- Vue d'ensemble complàte du systàme
 - Principes fondamentaux
 - Applications potentielles
-- �quations mathématiques
+- àquations mathématiques
 
 ### 2. **README-ATOMIQUE.md**
 - Description détaillée de chaque composant
-- Architecture du syst�me
-- Formules et param�tres
+- Architecture du systàme
+- Formules et paramàtres
 - Cas d'usage réels
 
 ### 3. **ATOMIC-IMPLEMENTATION.md**
 - Correspondance article  code
 - Implémentation des équations
-- Param�tres et configuration
+- Paramàtres et configuration
 - Vérification des propriétés
 
 ### 4. **Code Commenté**
 - `database/atomic.go` : détails complets
 - `atomic_cli.go` : interface utilisateur
-- Commentaires en fran�ais et anglais
+- Commentaires en franàais et anglais
 
 ---
 
@@ -110,7 +110,7 @@ Scalabilité: Linéaire O(n * neighbors)
 |---|---|---|
 | Atomes computationnels | `ComputationalAtom` struct | atomic.go |
 | Résonance atomique | `ComputeResonance()` | atomic.go L:123 |
-| Mise � jour état | `UpdateState()` | atomic.go L:165 |
+| Mise à jour état | `UpdateState()` | atomic.go L:165 |
 | Dynamique poids | `UpdateConnections()` | atomic.go L:210 |
 | Réseau distribué | `AtomicNetwork` struct | atomic.go L:48 |
 | Itération asynchrone | `IterateNetwork()` | atomic.go L:293 |
@@ -119,23 +119,23 @@ Scalabilité: Linéaire O(n * neighbors)
 
 ---
 
-##  �quations Implémentées
+##  àquations Implémentées
 
-### �quation 1: Résonance Atomique
+### àquation 1: Résonance Atomique
 ```go
-R(si, sj) = exp(-||si - sj||² / (2�²))
+R(si, sj) = exp(-||si - sj||² / (2à²))
 // Implémentée dans: ComputeResonance()
 ```
 
-### �quation 2: Mise � Jour d'�tat
+### àquation 2: Mise à Jour d'àtat
 ```go
-si(t+1) = si(t) + ��Σ(wij�Rij) + β�(Ri + pi)
+si(t+1) = si(t) + ààΣ(wijàRij) + βà(Ri + pi)
 // Implémentée dans: UpdateState()
 ```
 
-### �quation 3: Dynamique des Poids
+### àquation 3: Dynamique des Poids
 ```go
-dwij/dt = γ�cohérence(si,sj) - δ�wij
+dwij/dt = γàcohérence(si,sj) - δàwij
 // Implémentée dans: UpdateConnections()
 ```
 
@@ -166,11 +166,11 @@ go build -o programme
 
 ### Résultat Attendu
 ```
-[R�SULTATS EXP�RIMENTAUX]
+[RàSULTATS EXPàRIMENTAUX]
   Cohérence initiale: ~0.25
   Cohérence finale: ~0.85
   Activation moyenne: ~0.42
-  Structures émergentes: D�TECT�ES 
+  Structures émergentes: DàTECTàES 
 ```
 
 ---
@@ -184,18 +184,18 @@ go build -o programme
 
 ###  Asynchronisme
 - Pas d'horloge globale
-- Chaque atome � son rythme
+- Chaque atome à son rythme
 - Résilience exceptionnelle
 
-###  �mergence
-- Intelligence globale de r�gles locales
+###  àmergence
+- Intelligence globale de ràgles locales
 - Auto-organisation naturelle
 - Comportements complexes spontanés
 
 ###  Sobriété
 - Mémoire minimale par atome
 - Calcul réduit
-- Déployable sur syst�mes embarqués
+- Déployable sur systàmes embarqués
 
 ###  Adaptabilité
 - Apprentissage continu local
@@ -207,9 +207,9 @@ go build -o programme
 ##  Fichiers Modifiés/Créés
 
 ### Nouveaux Fichiers
--  `database/atomic.go` (460 lignes) - C�ur du syst�me
+-  `database/atomic.go` (460 lignes) - Càur du systàme
 -  `atomic_cli.go` (363 lignes) - Interface CLI
--  `README-ARTICLE.md` - Documentation compl�te
+-  `README-ARTICLE.md` - Documentation complàte
 -  `README-ATOMIQUE.md` - Description détaillée
 -  `ATOMIC-IMPLEMENTATION.md` - Correspondance article
 
@@ -218,7 +218,7 @@ go build -o programme
 -  `database/data.go` - Correction package
 
 ### Fichiers Conservés
--  `README.fr.md` - Mis � jour (titre/aper�u)
+-  `README.fr.md` - Mis à jour (titre/aperàu)
 -  `interaction.go` - Rétrocompatibilité
 -  `database/language.go` - Rétrocompatibilité
 -  `database/nlp.go` - Rétrocompatibilité
@@ -226,7 +226,7 @@ go build -o programme
 
 ---
 
-##  Prochaines �tapes (Optionnelles)
+##  Prochaines àtapes (Optionnelles)
 
 ### Court Terme
 - [ ] Visualisation en temps réel du réseau
@@ -235,9 +235,9 @@ go build -o programme
 - [ ] Tests unitaires complets
 
 ### Moyen Terme
-- [ ] Support des topologies hétérog�nes
+- [ ] Support des topologies hétérogànes
 - [ ] Intégration avec ML classique
-- [ ] Déploiement sur syst�mes réels (IoT)
+- [ ] Déploiement sur systàmes réels (IoT)
 - [ ] Benchmarks comparatifs
 
 ### Long Terme
@@ -250,9 +250,9 @@ go build -o programme
 
 ##  Points Forts de l'Implémentation
 
-1. **Fidélité � l'Article**
+1. **Fidélité à l'Article**
    - Toutes les équations implémentées
-   - Param�tres conformes
+   - Paramàtres conformes
    - Comportements émergents vérifiés
 
 2. **Clarté du Code**
@@ -277,7 +277,7 @@ go build -o programme
 
 ---
 
-## � Dépendances
+## à Dépendances
 
 - **Go** 1.22+
 - **Aucune dépendance externe**
@@ -288,13 +288,13 @@ go build -o programme
 
 Ce projet démontre:
 -  Viabilité des architectures distribuées
--  �mergence de complexité � partir de simplicité
+-  àmergence de complexité à partir de simplicité
 -  Asynchronisme comme propriété fondamentale
 -  Adaptation sans supervision centrale
 
 ---
 
-## � Contact
+## à Contact
 
 **Auteur:** BRESSON Guylann  
 **Email:** guylann.bresson.gb@gmail.com  
@@ -310,6 +310,6 @@ MIT License - Libre d'usage
 
 ---
 
-**Statut Final:**  **IMPL�MENTATION COMPL�TE ET FONCTIONNELLE**
+**Statut Final:**  **IMPLàMENTATION COMPLàTE ET FONCTIONNELLE**
 
-L'IA-ATOMIQUE incarne maintenant fid�lement les principes de la Technologie de Résonance Atomique (T.R.A.) présentée dans l'article académique.
+L'IA-ATOMIQUE incarne maintenant fidàlement les principes de la Technologie de Résonance Atomique (T.R.A.) présentée dans l'article académique.

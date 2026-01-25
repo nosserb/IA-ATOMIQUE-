@@ -48,7 +48,7 @@ go build -o programme
 ### Neural Processing
 - **1000-neuron network** with 50+ categories
 - **Atomic Resonance Technology** - decentralized, asynchronous computation
-- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANT�, VERBE
+- **6-category classification**: TECH, HISTOIRE, BUSINESS, ALIMENTATION, SANTà, VERBE
 - **Subject-Verb-Complement (SVC)** structure detection
 - **Multi-language support**: FR/EN/DE/ES
 
@@ -61,7 +61,7 @@ go build -o programme
 
 ### Image Generation & Processing
 - **Energy-based image generation** from text prompts
-- **Multi-scale pipeline** (32�32  256�256)
+- **Multi-scale pipeline** (32à32  256à256)
 - **Symmetry breaking** for coherent image synthesis
 - **Ultra deblur** with 327,000+ atoms
 - **Motion blur removal** (Lucy-Richardson deconvolution)
@@ -102,17 +102,17 @@ ComputationalAtom (autonomous unit)
 
 AtomicNetwork (distributed)
    Asynchronous iteration
-   Resonance equation: R(si, sj) = exp(-||si - sj||²/2�²)
+   Resonance equation: R(si, sj) = exp(-||si - sj||²/2à²)
    Weight update: dwij/dt = γ*coherence - δ*wij
    Freeze system (energy efficiency)
 ```
 
 ### Key Parameters
-- **� (coupling)**: Neighbor influence strength
+- **à (coupling)**: Neighbor influence strength
 - **β (local rules)**: Internal rule weight
 - **γ (reinforcement)**: Weight update strength
 - **δ (decay)**: Connection decay rate
-- **� (resonance sensitivity)**: Resonance sharpness
+- **à (resonance sensitivity)**: Resonance sharpness
 
 ## Commands Reference
 

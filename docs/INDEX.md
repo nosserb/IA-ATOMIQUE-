@@ -1,6 +1,6 @@
 # Documentation IA-ATOMIQUE
 
-> Documentation compl�te du projet IA-ATOMIQUE v4.1
+> Documentation complàte du projet IA-ATOMIQUE v4.1
 
 ##  Structure de la documentation
 
@@ -13,24 +13,24 @@
 ###  Technologie de Résonance Atomique (T.R.A.)
 - [ATOMIC-IMPLEMENTATION.md](ATOMIC-IMPLEMENTATION.md) - Implémentation de la T.R.A.
 - [IMPLEMENTATION-SUMMARY.md](IMPLEMENTATION-SUMMARY.md) - Résumé d'implémentation
-- [ATOMIC_OPTIMIZATIONS.md](ATOMIC_OPTIMIZATIONS.md) - Optimisations du syst�me
+- [ATOMIC_OPTIMIZATIONS.md](ATOMIC_OPTIMIZATIONS.md) - Optimisations du systàme
 
 ###  Génération et apprentissage
 - [ATOMIC_GENERATION_GUIDE.md](ATOMIC_GENERATION_GUIDE.md) - Guide de génération
 - [ATOMIC_GENERATION_QUICKSTART.md](ATOMIC_GENERATION_QUICKSTART.md) - Démarrage rapide
-- [ATOMIC-DATASET-TRAINING.md](ATOMIC-DATASET-TRAINING.md) - Entra�nement de mod�les
+- [ATOMIC-DATASET-TRAINING.md](ATOMIC-DATASET-TRAINING.md) - Entraànement de modàles
 - [APPRENTISSAGE_AUTOMATIQUE.md](APPRENTISSAGE_AUTOMATIQUE.md) - Machine learning
 
-### � Génération d'images
+### à Génération d'images
 - [IMAGE-GENERATION-GUIDE.md](IMAGE-GENERATION-GUIDE.md) - Guide complet
 - [IMAGE-QUICKSTART.md](IMAGE-QUICKSTART.md) - Démarrage rapide
 - [ENERGY_PARADIGM.md](ENERGY_PARADIGM.md) - Paradigme énergétique
 - [DEBLUR_4K_ULTRA.md](DEBLUR_4K_ULTRA.md) - Défloutage ultra HD
 
-###  �mergence cellulaire
+###  àmergence cellulaire
 - [CELLULAR_EMERGENCE_README.md](CELLULAR_EMERGENCE_README.md) - Présentation
 - [CELLULAR_EMERGENCE_GUIDE.md](CELLULAR_EMERGENCE_GUIDE.md) - Guide complet
-- [PATTERN_EMERGENCE_GUIDE.md](PATTERN_EMERGENCE_GUIDE.md) - �mergence de patterns
+- [PATTERN_EMERGENCE_GUIDE.md](PATTERN_EMERGENCE_GUIDE.md) - àmergence de patterns
 
 ###  Benchmarks et tests
 - [ACADEMIC_BENCHMARKS_README.md](ACADEMIC_BENCHMARKS_README.md) - Tests académiques

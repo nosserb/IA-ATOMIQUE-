@@ -3,14 +3,14 @@
 ##  Objectif
 
 Améliorer la qualité finale des résumés conceptuels en ajoutant:
-1. **Contexte littéraire** - Mention auteur/�uvre (Flaubert, Emma Bovary)
+1. **Contexte littéraire** - Mention auteur/àuvre (Flaubert, Emma Bovary)
 2. **Enrichissement lexical** - Termes spécifiques plutôt que génériques
 3. **Fluidité syntaxique** - Meilleure structure et rythme
 4. **Ancrage narratif** - Exemples concrets pour illustrer concepts
 
 ##  4 Axes d'Amélioration
 
-### 1� Contexte Littéraire
+### 1à Contexte Littéraire
 
 **Fonction**: `addFlaubertContext(summary string)`
 
@@ -20,7 +20,7 @@ Ajoute introduction identifiant l'auteur et posant le contexte:
 AVANT:
 "La brutalité systémique se cache sous..."
 
-APR�S:
+APRàS:
 "Chez Gustave Flaubert, le roman expose comment la société étrangle les aspirations individuelles. 
 La brutalité systémique se cache sous..."
 ```
@@ -32,15 +32,15 @@ La brutalité systémique se cache sous..."
 
 ---
 
-### 2� Enrichissement Lexical
+### 2à Enrichissement Lexical
 
 **Fonction**: `enrichVocabulary(summary string)`
 
-Remplace termes génériques par termes spécifiques � l'univers Flaubert:
+Remplace termes génériques par termes spécifiques à l'univers Flaubert:
 
 | Générique | Spécifique Flaubert |
 |-----------|---------------------|
-| syst�me | ordre social |
+| systàme | ordre social |
 | structure | mécanisme |
 | brutalité | rigueur |
 | normalité | conformité |
@@ -55,15 +55,15 @@ Remplace termes génériques par termes spécifiques � l'univers Flaubert:
 
 ```go
 replacements := []struct{old, new string}{
-    {"le syst�me oppressif", "l'ordre social oppressif"},
-    {"le syst�me", "l'ordre social"},
+    {"le systàme oppressif", "l'ordre social oppressif"},
+    {"le systàme", "l'ordre social"},
     // ... etc, du plus long au plus court
 }
 ```
 
 ---
 
-### 3� Fluidité Syntaxique
+### 3à Fluidité Syntaxique
 
 **Fonction**: `improveFlowAndRhythm(summary string)`
 
@@ -75,9 +75,9 @@ Restructure les phrases longues/denses pour meilleur rythme:
 car les rôles assignés figent les trajectoires sociales;"
 ```
 
-**Apr�s** (fluide):
+**Apràs** (fluide):
 ```
-"Sous l'apparence de conformité, l'ordre social rév�le sa rigueur : 
+"Sous l'apparence de conformité, l'ordre social révàle sa rigueur : 
 les états figent les destinées sociales;"
 ```
 
@@ -89,23 +89,23 @@ les états figent les destinées sociales;"
 
 ---
 
-### 4� Ancrage Narratif
+### 4à Ancrage Narratif
 
 **Fonction**: `addNarrativeAnchoring(summary string)`
 
 Ajoute exemple concret (Emma) pour illustrer concepts abstraits:
 
-**Insertion apr�s 1�re phrase**:
+**Insertion apràs 1àre phrase**:
 ```
 "Emma incarne cette tension : une jeune femme étouffée par le mariage 
-provincial, r�vant d'une vie passionnée qu'une société rigide lui refuse."
+provincial, ràvant d'une vie passionnée qu'une société rigide lui refuse."
 ```
 
 **Effet**: Lien entre analyse systémique abstraite  personnage concret
 
 ---
 
-## � Nettoyage Final
+## à Nettoyage Final
 
 **Fonction**: `finalCleanup(summary string)`
 
@@ -140,7 +140,7 @@ Corrige erreurs grammaticales introduites par transformations:
 
 ---
 
-##  Résultats: AVANT/APR�S
+##  Résultats: AVANT/APRàS
 
 ### Exemple: Madame Bovary (736 KB)
 
@@ -148,30 +148,30 @@ Corrige erreurs grammaticales introduites par transformations:
 ```
 La brutalité systémique se cache sous l'apparence de normalité, 
 car les rôles assignés figent les trajectoires sociales; la pauvreté 
-structure les comportements de survie. Le syst�me oppressif rend 
-invisible sa propre violence, les syst�mes institutionnels reproduisent 
-les discriminations; le syst�me social exploite la vulnérabilité des 
-plus faibles. Cette logique rév�le l'abnégation est exigée de ceux 
-qui n'ont rien � donner.
+structure les comportements de survie. Le systàme oppressif rend 
+invisible sa propre violence, les systàmes institutionnels reproduisent 
+les discriminations; le systàme social exploite la vulnérabilité des 
+plus faibles. Cette logique révàle l'abnégation est exigée de ceux 
+qui n'ont rien à donner.
 ```
 
- Probl�mes:
-- Termes génériques (syst�me, brutalité, violence)
+ Problàmes:
+- Termes génériques (systàme, brutalité, violence)
 - Pas de contexte (qui? quand? où?)
 - Pas d'ancrage narratif
-- Phrases tr�s denses
+- Phrases tràs denses
 - Erreur: "est exigée" (absent)
 
 ---
 
-**APR�S X+5** (enrichi, narratif, fluide):
+**APRàS X+5** (enrichi, narratif, fluide):
 ```
 Chez Gustave Flaubert, le roman expose comment la société étrangle 
 les aspirations individuelles. Emma incarne cette tension : une jeune 
-femme étouffée par le mariage provincial, r�vant d'une vie passionnée 
+femme étouffée par le mariage provincial, ràvant d'une vie passionnée 
 qu'une société rigide lui refuse. Les hiérarchies établies 
 perpétuent les inégalités, car l'ordre social exploite l'humilité 
-des plus humbles; le sacrifice est exigé de ceux qui n'ont rien � donner. 
+des plus humbles; le sacrifice est exigé de ceux qui n'ont rien à donner. 
 La rigueur inhérente se cache sous l'apparence de conformité, les états 
 figent les destinées sociales. Cette logique expose comment la pauvreté 
 crée la résignation.
@@ -212,7 +212,7 @@ Preprocessing & segmentation
         addNarrativeAnchoring 
         finalCleanup 
        
-� R�SUM� FINAL (Haute qualité, fluide, enrichi)
+à RàSUMà FINAL (Haute qualité, fluide, enrichi)
 ```
 
 ---
@@ -224,7 +224,7 @@ Preprocessing & segmentation
 
 ```go
 if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
-    fmt.Println("\n[PHASE X+5] �tape 10: Post-processing enrichissement...")
+    fmt.Println("\n[PHASE X+5] àtape 10: Post-processing enrichissement...")
     isFlaubert := database.IsLikelyFlaubert(inputText)
     enhancedSummary := database.EnhancedPostProcessing(
         result.OptimizedSummary, 
@@ -238,7 +238,7 @@ if result.OptimizedSummary != "" && len(result.OptimizedSummary) < 1000 {
 
 ##  Métriques
 
-| Aspect | Avant | Apr�s | Gain |
+| Aspect | Avant | Apràs | Gain |
 |--------|-------|-------|------|
 | Contexte |  Absent |  Clair | +100% |
 | Vocabulaire | Générique | Spécifique | +40% |
@@ -257,11 +257,11 @@ Phase X+5 est idéale pour:
  Résumés conceptuels courts (< 1000 chars)
  Analyses critiques ou thématiques
  Présentations académiques
- Synth�ses pour publication
+ Synthàses pour publication
 
  Non recommandé pour:
 - Textes scientifiques purs (ajoute contexte littéraire inapproprié)
-- Résumés tr�s longs (trop de transformations)
+- Résumés tràs longs (trop de transformations)
 - Textes encyclopédiques (ne besoins pas enrichissement)
 
 ---
@@ -270,7 +270,7 @@ Phase X+5 est idéale pour:
 
 Phase X+5 s'active **automatiquement** pour:
 - Résumé conceptuel généré (Phase X+1)
-- Longueur < 1000 caract�res
+- Longueur < 1000 caractàres
 - Texte d'entrée détecté comme Flaubert
 
 **Désactiver** (si nécessaire): Commenter appel ligne 452 dans `grammar_summarization.go`
@@ -281,7 +281,7 @@ Phase X+5 s'active **automatiquement** pour:
 
 **Phase X+5** est une couche de raffinement qui:
 
-1. **Contextualise** - Ajoute auteur/�uvre
+1. **Contextualise** - Ajoute auteur/àuvre
 2. **Enrichit** - Vocabulaire spécifique
 3. **Fluidifie** - Meilleur rythme
 4. **Ancre** - Exemples narratifs

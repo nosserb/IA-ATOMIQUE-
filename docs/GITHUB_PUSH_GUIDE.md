@@ -1,19 +1,19 @@
-# � Guide: Créer et Pusher sur GitHub
+# à Guide: Créer et Pusher sur GitHub
 
-## �tape 1: Créer le repo sur GitHub
+## àtape 1: Créer le repo sur GitHub
 
 1. Va sur [github.com](https://github.com)
-2. Clique sur **"New"** (ou **"+"** en haut � droite)
+2. Clique sur **"New"** (ou **"+"** en haut à droite)
 3. Crée un nouveau repository:
    - **Repository name**: `IA-ATOMIQUE`
    - **Description**: `Neural network for text analysis and summarization with web interface`
-   - **Public** ou **Private** (� toi de choisir)
-   - NE coche PAS "Initialize with README" (tu en as déj� un)
+   - **Public** ou **Private** (à toi de choisir)
+   - NE coche PAS "Initialize with README" (tu en as déjà un)
    - Clique **"Create repository"**
 
 ---
 
-## �tape 2: Configuration Git Locale
+## àtape 2: Configuration Git Locale
 
 ### Si tu n'as pas encore configuré Git globalement:
 
@@ -27,7 +27,7 @@ git config --global user.email "ton.email@example.com"
 ```bash
 cd "/home/student/autre projets/IA-ATOMIQUE-"
 
-# Initialiser le repo si ce n'est pas déj� fait
+# Initialiser le repo si ce n'est pas déjà fait
 git init
 
 # Ajouter l'URL du repo GitHub
@@ -40,7 +40,7 @@ git remote add origin https://github.com/USERNAME/ia-atomique.git
 
 ---
 
-## �tape 3: Ajouter les Fichiers
+## àtape 3: Ajouter les Fichiers
 
 ```bash
 # Vérifier le statut
@@ -65,7 +65,7 @@ git commit -m "feat: Add web interface for text summarization
 
 ---
 
-## �tape 4: Configurer la Branche
+## àtape 4: Configurer la Branche
 
 ### Option A: Push vers main directement
 
@@ -79,7 +79,7 @@ git push -u origin main
 
 ### Option B: Créer une PR (recommandé)
 
-Ton code est déj� sur la branche `chore/siteweb`, donc:
+Ton code est déjà sur la branche `chore/siteweb`, donc:
 
 ```bash
 # Vérifier la branche actuelle
@@ -97,9 +97,9 @@ git push -u origin chore/siteweb
 
 ---
 
-## �tape 5: Vérification
+## àtape 5: Vérification
 
-Apr�s le push, va sur GitHub et vérifie:
+Apràs le push, va sur GitHub et vérifie:
 
  Tous les fichiers sont présents  
  README.md s'affiche bien  
@@ -108,7 +108,7 @@ Apr�s le push, va sur GitHub et vérifie:
 
 ---
 
-##  Apr�s le Push
+##  Apràs le Push
 
 ### Partager le Repo
 
@@ -135,7 +135,7 @@ make web
 
 ##  Configuration SSH (optionnel mais recommandé)
 
-Pour éviter de taper le mot de passe � chaque fois:
+Pour éviter de taper le mot de passe à chaque fois:
 
 ```bash
 # Générer une clé SSH
@@ -157,12 +157,12 @@ git remote set-url origin git@github.com:USERNAME/ia-atomique.git
 
 ---
 
-## � Dépannage
+## à Dépannage
 
 ### Erreur: "fatal: not a git repository"
 
 ```bash
-# Tu dois �tre dans le répertoire du projet
+# Tu dois àtre dans le répertoire du projet
 cd "/home/student/autre projets/IA-ATOMIQUE-"
 
 # Puis initialiser git
@@ -171,8 +171,8 @@ git init
 
 ### Erreur: "Permission denied (publickey)"
 
-C'est un probl�me SSH. Soit:
-1. Utilise HTTPS � la place
+C'est un problàme SSH. Soit:
+1. Utilise HTTPS à la place
 2. Configure les clés SSH correctement
 
 ### Erreur: "failed to authenticate"
@@ -182,7 +182,7 @@ C'est un probl�me SSH. Soit:
 git remote set-url origin https://YOUR_USERNAME:YOUR_TOKEN@github.com/USERNAME/ia-atomique.git
 ```
 
-Gén�re un token sur GitHub: Settings > Developer settings > Personal access tokens
+Génàre un token sur GitHub: Settings > Developer settings > Personal access tokens
 
 ---
 
@@ -200,7 +200,7 @@ Gén�re un token sur GitHub: Settings > Developer settings > Personal access tok
  *.go                   - Code source
 ```
 
-Tout est pr�t! 
+Tout est pràt! 
 
 ---
 
@@ -242,4 +242,4 @@ Closes #XX (if you have an issue)"
 
 ---
 
-**Tu es pr�t! Bon push! **
+**Tu es pràt! Bon push! **

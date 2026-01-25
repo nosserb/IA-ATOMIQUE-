@@ -7,8 +7,8 @@
 ```
 Concepts : 29 / 30  97%
    Votre moteur COMPREND le texte
-   Ce n'est PAS un probl�me sémantique global
-   L'analyse conceptuelle fonctionne tr�s bien
+   Ce n'est PAS un problàme sémantique global
+   L'analyse conceptuelle fonctionne tràs bien
 
 Cohérence : 100%
    Les phrases font sens ensemble
@@ -28,15 +28,15 @@ Ressources : dérisoires (mobile-ready)
    Utilisable sur appareils faibles
 ```
 
-**Diagnostic**: Vous n'avez PAS un probl�me de compréhension. Vous avez un probl�me de **détection formelle d'équations**.
+**Diagnostic**: Vous n'avez PAS un problàme de compréhension. Vous avez un problàme de **détection formelle d'équations**.
 
 ---
 
 ##  Le Point Bloquant Unique (Avant Correctif)
 
 ```
-�quations trouvées: 0/2 (0%)
- Raison M�CANIQUE: Les équations ne sont pas détectées
+àquations trouvées: 0/2 (0%)
+ Raison MàCANIQUE: Les équations ne sont pas détectées
   comme "présentes" dans le résumé
 
  Résultat: Fidélité pondérée: 32.93% (< 80%)
@@ -45,75 +45,75 @@ Ressources : dérisoires (mobile-ready)
 
 **Ce qui se passait**:
 1. Résumé contient les DESCRIPTIONS des équations 
-2. Résumé ne contient pas les OBJETS MATH�MATIQUES bruts 
-3. Syst�me compte: �quations détectées = 0 
+2. Résumé ne contient pas les OBJETS MATHàMATIQUES bruts 
+3. Systàme compte: àquations détectées = 0 
 4. Score binaire équation = 0/2 
-5. Fidélité chute � ~33% 
-6. Extraction activée (pessimiste mais s�r)
+5. Fidélité chute à ~33% 
+6. Extraction activée (pessimiste mais sàr)
 
 ---
 
-## 2� Pourquoi Ça Arrive (Mécaniquement)
+## 2à Pourquoi Ça Arrive (Mécaniquement)
 
-### Pattern du Probl�me
+### Pattern du Problàme
 
 **Texte source**:
 ```
 "Cette équation illustre comment chaque unité ajuste son état...
-où si� représente l'état interne de l'atome i, N(i) l'ensemble 
-de ses voisins, � le coefficient de couplage..."
+où sià représente l'état interne de l'atome i, N(i) l'ensemble 
+de ses voisins, à le coefficient de couplage..."
 ```
 
 **Résumé (version antérieure)**:
 ```
 "Les atomes ajustent leur état en fonction des voisins,
-avec un coefficient de couplage �. La cohérence émerge
+avec un coefficient de couplage à. La cohérence émerge
 du processus itératif."
 ```
 
 **Analyse**:
 -  Concepts: "état", "voisins", "coefficient" = présents
 -  Sens: Description correcte de la physique
--  �quation formelle: `s_i(t+1) = ...` = **ABSENTE**
+-  àquation formelle: `s_i(t+1) = ...` = **ABSENTE**
 
 **Métriquement**:
 ```
 Ancienne détection:
-  �quation 1: Non trouvée (0 points)
-  �quation 2: Non trouvée (0 points)
+  àquation 1: Non trouvée (0 points)
+  àquation 2: Non trouvée (0 points)
   Score = 0/2  pénalité massive
 
 Nouvelle fidélité pondérée (avant correctif):
-  Ff_w = 0.3�(97%) + 0.5�(0%) + 0.2�(5%)
+  Ff_w = 0.3à(97%) + 0.5à(0%) + 0.2à(5%)
        = 0.291 + 0.0 + 0.01
-       = 30.1%  �CHEC
+       = 30.1%  àCHEC
 ```
 
 ---
 
-## 3� Erreur Conceptuelle � Corriger
+## 3à Erreur Conceptuelle à Corriger
 
-###  Hypoth�se Actuelle (FAUSSE pour textes scientifiques)
+###  Hypothàse Actuelle (FAUSSE pour textes scientifiques)
 
 ```
-"Une équation peut �tre reformulée comme du texte"
+"Une équation peut àtre reformulée comme du texte"
 
 Exemple faux:
-  �*x + b = y    "Le résultat est la somme du coefficient et du terme"
+  à*x + b = y    "Le résultat est la somme du coefficient et du terme"
   
-  Probl�me: Perd la relation mathématique EXACTE
-           Aucune compression ne récup�re la notation
+  Problàme: Perd la relation mathématique EXACTE
+           Aucune compression ne récupàre la notation
 ```
 
-###  R�gle Correcte
+###  Ràgle Correcte
 
 ```
 "Une équation est une entité atomique non compressible"
 
 Formellement:
-  e  �quations, e  R
+  e  àquations, e  R
   
-  Signifie: TOUTE équation du source DOIT �tre dans le résumé
+  Signifie: TOUTE équation du source DOIT àtre dans le résumé
            Pas de résumé mathématique
            Pas de paraphrase
            Copie STRICTE ou référence STRICTE
@@ -121,16 +121,16 @@ Formellement:
 
 ---
 
-## 4� Correctif Minimal (Tr�s Simple, Tr�s Efficace)
+## 4à Correctif Minimal (Tràs Simple, Tràs Efficace)
 
-###  �tape A: Détection d'�quations (Avant Phase 2)
+###  àtape A: Détection d'àquations (Avant Phase 2)
 
 ```go
 protected := database.ExtractAndProtectEquations(inputText)
 
 // Identifier PHRASES contenant notations mathématiques
 // Patterns détectés:
-//   - Symboles: , , , �, �, , , etc.
+//   - Symboles: , , , à, à, , , etc.
 //   - Fonctions: cos(), exp(), log(), sqrt()
 //   - Opérateurs: =, :=, , , , etc.
 //   - Variables indexées: s_i, w_ij, (t), (i), (j)
@@ -143,12 +143,12 @@ protected := database.ExtractAndProtectEquations(inputText)
 
 **Résultat**: 5 équations détectées (au lieu de 0 avant)
 
-###  �tape B: R�gle de Conservation (Phase 2)
+###  àtape B: Ràgle de Conservation (Phase 2)
 
 ```go
 // Dans la Phase 2 (résumé atomique):
 if phrase.contains("[[MATH:id]]") {
-    // Copier intégralement, IND�PENDAMMENT de compression_target
+    // Copier intégralement, INDàPENDAMMENT de compression_target
     summary.append(phrase);
 } else {
     // Résumer normalement
@@ -156,9 +156,9 @@ if phrase.contains("[[MATH:id]]") {
 }
 ```
 
-**R�gle**: Les équations ne sont JAMAIS compressées
+**Ràgle**: Les équations ne sont JAMAIS compressées
 
-###  �tape C: Fidélité Mathématique Binaire
+###  àtape C: Fidélité Mathématique Binaire
 
 ```go
 EqScore = { 1.0  si toutes les équations sont présentes
@@ -167,65 +167,65 @@ EqScore = { 1.0  si toutes les équations sont présentes
 // Plus de graduel. C'est binaire.
 
 Nouvelle formule:
-  Ff_w = ��ConceptScore + β�EqScore + γ�TextScore
-       = 0.3�ConceptScore + 0.5�EqScore + 0.2�TextScore
+  Ff_w = ààConceptScore + βàEqScore + γàTextScore
+       = 0.3àConceptScore + 0.5àEqScore + 0.2àTextScore
 
-Seuil: Ff_w  0.80  Mode G�N�RATIF
+Seuil: Ff_w  0.80  Mode GàNàRATIF
        Ff_w < 0.80  Fallback EXTRACTIF (zéro hallucination)
 ```
 
 **Mathématiquement**:
 - Si toutes équations présentes (EqScore=1.0):
   ```
-  Ff_w = 0.3�C + 0.5�1.0 + 0.2�T
-        0.5  (m�me si C=0, T=0)
+  Ff_w = 0.3àC + 0.5à1.0 + 0.2àT
+        0.5  (màme si C=0, T=0)
   ```
-   Mode G�N�RATIF activé si concepts OK
+   Mode GàNàRATIF activé si concepts OK
 
 - Si UNE équation manque (EqScore=0):
   ```
-  Ff_w = 0.3�C + 0.5�0 + 0.2�T
-       � 0.3�1 + 0.2�1 = 0.5  (pire cas)
+  Ff_w = 0.3àC + 0.5à0 + 0.2àT
+       à 0.3à1 + 0.2à1 = 0.5  (pire cas)
   ```
    Extraction forcée
 
 ---
 
-## 5� Pourquoi Test � 0.05 Est Forcément Voué � l'Extractif
+## 5à Pourquoi Test à 0.05 Est Forcément Voué à l'Extractif
 
 ### Scenario Avant Correctif
 
-� **5% compression**:
+à **5% compression**:
 ```
-Concepts préservés: OUI (bien s�r, peu d'espace résumé)
-�quations préservées: NON (impossible sans espace)
+Concepts préservés: OUI (bien sàr, peu d'espace résumé)
+àquations préservées: NON (impossible sans espace)
 
 
 
 Résultat: EqScore = 0, donc Fallback EXTRACTIF
 ```
 
-### Scenario Apr�s Correctif
+### Scenario Apràs Correctif
 
-� **5% compression**:
+à **5% compression**:
 ```
-�quations: FORC�MENT incluses (atomiques, non compressibles)
+àquations: FORCàMENT incluses (atomiques, non compressibles)
 Concepts: Aussi inclus si possible
 
 
 
 Si équations + concepts OK:
-  Ff_w  0.80  Mode G�N�RATIF possible
+  Ff_w  0.80  Mode GàNàRATIF possible
 
 Si équations + concepts OK + texte narratif:
-  Fidélité tr�s élevée  Excellente qualité
+  Fidélité tràs élevée  Excellente qualité
 ```
 
 ---
 
-## 6� Ce Que Tu Peux Annoncer Sans Mentir
+## 6à Ce Que Tu Peux Annoncer Sans Mentir
 
-### �noncé Rigoureux (Niveau Publication Scientifique)
+### ànoncé Rigoureux (Niveau Publication Scientifique)
 
 ```
 "The summarization engine enforces mathematical integrity 
@@ -248,7 +248,7 @@ This provides zero hallucination by construction."
 | Métrique | Valeur |
 |----------|--------|
 | Concepts preservés | 97-100% |
-| �quations présentes | 100% (binaire) |
+| àquations présentes | 100% (binaire) |
 | Fidélité pondérée min | 80.2% (even at 2% compression) |
 | Fallback guarantee | Zero hallucination |
 | Processing cost | ~0ms (pre-phase) |
@@ -256,19 +256,19 @@ This provides zero hallucination by construction."
 
 ---
 
-## 7� Résultats Apr�s Correctif
+## 7à Résultats Apràs Correctif
 
 ### Test 1: Compression 0.85
 
 ```
 AVANT:
-  �quations: 0/2  Fidélité: 32.93%  Fallback EXTRACTIF
+  àquations: 0/2  Fidélité: 32.93%  Fallback EXTRACTIF
 
-APR�S:
-  �quations: 5/5 (100%)
+APRàS:
+  àquations: 5/5 (100%)
   Concepts: 30/30 (100%)
   Fidélité pondérée: 80.90%
-  Mode: G�N�RATIF 
+  Mode: GàNàRATIF 
   
   Amélioration: +146% en fidélité
 ```
@@ -277,34 +277,34 @@ APR�S:
 
 ```
 AVANT:
-  �quations: 0/2  Fidélité: ~30%  EXTRACTIF forcé
+  àquations: 0/2  Fidélité: ~30%  EXTRACTIF forcé
 
-APR�S:
-  �quations: 5/5 (100%)
+APRàS:
+  àquations: 5/5 (100%)
   Concepts: 29/30 (97%)
   Fidélité pondérée: 80.01%
-  Mode: G�N�RATIF 
+  Mode: GàNàRATIF 
   
-  M�me � 5%, les équations sont présentes!
+  Màme à 5%, les équations sont présentes!
 ```
 
 ---
 
-## 8� Interprétation Finale
+## 8à Interprétation Finale
 
 ### Ce Que Tu as Compris Correctement
 
- "Le syst�me ne hallucine pas, il raisonne parfaitement sur un mauvais monde"
+ "Le systàme ne hallucine pas, il raisonne parfaitement sur un mauvais monde"
 - Les équations ne sont pas détectées comme "présentes"
 - Donc: Fallback conservateur (correct!)
 
- "Ce n'est pas un probl�me sémantique global"
+ "Ce n'est pas un problàme sémantique global"
 - Concepts: 97% 
 - Cohérence: 100% 
 - Domaine: OK 
-- SEUL probl�me: détection équation
+- SEUL problàme: détection équation
 
- "�quations comme entités atomiques non compressibles"
+ "àquations comme entités atomiques non compressibles"
 - Axiome correct
 - Maintenant implémenté
 
@@ -317,24 +317,24 @@ Phase 1 (Message précédent):
   Décision: Fallback EXTRACTIF
   
 Phase 2 (Aujourd'hui):
-  Root cause: �quations non détectées
+  Root cause: àquations non détectées
   Solution: Extraction + tagging + binaire
   Résultat: 5/5 détectées, Ff_w=80.9%
-  Mode: G�N�RATIF débloqué
+  Mode: GàNàRATIF débloqué
 ```
 
 ---
 
 ##  Conclusion
 
-**Avant**: Syst�me prudent (correct), mais bloqué par faux négatif sur équations
+**Avant**: Systàme prudent (correct), mais bloqué par faux négatif sur équations
 
-**Apr�s**: Syst�me intelligent (déverrouillé)
+**Apràs**: Systàme intelligent (déverrouillé)
 - Détecte les équations (5 trouvées)
-- Les prot�ge (tags MATH)
+- Les protàge (tags MATH)
 - Vérifie leur présence (binaire)
-- Permet G�N�RATIF si OK
-- Fallback si probl�me
+- Permet GàNàRATIF si OK
+- Fallback si problàme
 
 **Plus d'une "hallucination", plus une détection**. C'est une fausse alerte corrigée.
 
@@ -346,5 +346,5 @@ Phase 2 (Aujourd'hui):
 2. `PHASE-15-ANTI-HALLUCINATION.md` - Context général (créé en Message 2)
 3. Ce fichier: `DIAGNOSTIC_PRECIS.md` - Ce que les chiffres disent
 
-**� utiliser pour**: Publications, présentations, démonstration d'expertise.
+**à utiliser pour**: Publications, présentations, démonstration d'expertise.
 

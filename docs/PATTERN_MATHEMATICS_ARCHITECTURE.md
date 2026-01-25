@@ -1,11 +1,11 @@
-#  ARCHITECTURE PATTERNS MATH�MATIQUES - Vue Compl�te
+#  ARCHITECTURE PATTERNS MATHàMATIQUES - Vue Complàte
 
 **Date**: January 9, 2026  
-**Sujet**: Comment la mécanique mathématique des patterns s'int�gre au syst�me entier
+**Sujet**: Comment la mécanique mathématique des patterns s'intàgre au systàme entier
 
 ---
 
-## � ARCHITECTURE GLOBALE
+## à ARCHITECTURE GLOBALE
 
 ### Niveau 1: Foundation (Existing)
 
@@ -16,7 +16,7 @@
     AtomicNetwork               
     Résonance R(si, sj)         
     Itération asynchrone        
-�
+à
                      
                      
         [Utilisé pour texte depuis Jan 8]
@@ -31,7 +31,7 @@
     AtomicImageNetwork (2D)     
     Itération pixels            
     Voisinage 8-direction       
-�
+à
                      
                      
         [Génération simple depuis Jan 8]
@@ -48,7 +48,7 @@
     CombinePatterns()           
     PatternSimilarity()         
     Fourier/Gaussian/Polynomial 
-�
+à
                      
                      
         [Apprendre & composer patterns]
@@ -61,7 +61,7 @@
    generation_commands.go                  
     HandleGenerateFromPrompt()            
     HandleGenerateWithPattern()   NEW    
-�
+à
                              
                              
     [Pattern DB]      [Applied Pattern]
@@ -69,22 +69,22 @@
 
 ---
 
-##  FLUX COMPLET: DE L'IMAGE � LA G�N�RATION
+##  FLUX COMPLET: DE L'IMAGE à LA GàNàRATION
 
 ### Phase 1: Apprentissage (User Input)
 
 ```
 Input: "Image de coucher de soleil"
-       sunset.png (512�512 pixels)
+       sunset.png (512à512 pixels)
        
         ./programme pattern math-extract sunset.png 20
        
        database.ExtractPatternFromImage()
            
        Pour chaque pixel (x,y):
-           - Récup�re couleur C(x,y) = [R, G, B]  [0,1]
+           - Récupàre couleur C(x,y) = [R, G, B]  [0,1]
            - Pour chaque fonction de base gk(x,y):
-               �k += C(x,y) � gk(x,y) / ||gk||²
+               àk += C(x,y) à gk(x,y) / ||gk||²
            
        PatternMathematical {
            PatternID: "sunset",
@@ -118,9 +118,9 @@ Commande: ./programme pattern math-compose sunset:0.6 ocean:0.4 512 512 result.p
 database.CombinePatterns([sunset, ocean], [0.6, 0.4], 512, 512)
     
 Pour chaque pixel (x,y):
-    C_sunset = Σ �_sunset,k � g_k(x,y)
-    C_ocean = Σ �_ocean,k � g_k(x,y)
-    C_result = 0.6 � C_sunset + 0.4 � C_ocean
+    C_sunset = Σ à_sunset,k à g_k(x,y)
+    C_ocean = Σ à_ocean,k à g_k(x,y)
+    C_result = 0.6 à C_sunset + 0.4 à C_ocean
     
 Export PNG
 ```
@@ -135,7 +135,7 @@ database.ExtractPatternFromImage() chargé
 database.NewAtomicImageNetwork(512, 512, 8)
     
 Pour chaque atome:
-    C_target = Σ �_sunset,k � g_k(x,y)  [Pattern]
+    C_target = Σ à_sunset,k à g_k(x,y)  [Pattern]
     + prompt_influence("forest")           [Texte]
     
 database.ApplyPatternToAtomicNetwork(network, pattern)
@@ -143,66 +143,66 @@ database.ApplyPatternToAtomicNetwork(network, pattern)
 Pour 100 itérations:
     Chaque atome:
         s_i(t+1) = s_i(t)
-                 + β � (C_target - C_i)           [Pattern force]
-                 + � � Σ_j w_ij � R(s_i, s_j)    [Résonance]
+                 + β à (C_target - C_i)           [Pattern force]
+                 + à à Σ_j w_ij à R(s_i, s_j)    [Résonance]
     
 Convergence  Image finale
 ```
 
 ---
 
-##  MATH�MATIQUES IMPL�MENT�ES
+##  MATHàMATIQUES IMPLàMENTàES
 
 ### Foundation: Décomposition Fourier
 
 ```
-gk(x,y) = cos(2��kx�x/W) � cos(2��ky�y/H)
+gk(x,y) = cos(2ààkxàx/W) à cos(2ààkyày/H)
 
 Où:
   W, H = dimensions image
-  kx, ky = indices fréquence (0 � N-1)
+  kx, ky = indices fréquence (0 à N-1)
   N = nombre de composantes (20)
 
 Exemple avec N=4:
-  g0(x,y) = cos(0) � cos(0) = 1        [DC, moyenne]
-  g1(x,y) = cos(2�x/W) � cos(0)        [Horizontal 1x]
-  g2(x,y) = cos(0) � cos(2�y/H)        [Vertical 1x]
-  g3(x,y) = cos(2�x/W) � cos(2�y/H)   [Diagonal 1x]
+  g0(x,y) = cos(0) à cos(0) = 1        [DC, moyenne]
+  g1(x,y) = cos(2àx/W) à cos(0)        [Horizontal 1x]
+  g2(x,y) = cos(0) à cos(2ày/H)        [Vertical 1x]
+  g3(x,y) = cos(2àx/W) à cos(2ày/H)   [Diagonal 1x]
 ```
 
 ### Extraction: Projection Orthogonale
 
 ```
-min ||C - Σ �k�gk||²  (Erreur quadratique)
-   �k
+min ||C - Σ àkàgk||²  (Erreur quadratique)
+   àk
 
 Solution (Gram-Schmidt):
-  �k = (Σ_{x,y} C(x,y)�gk(x,y)) / (Σ_{x,y} gk(x,y)²)
+  àk = (Σ_{x,y} C(x,y)àgk(x,y)) / (Σ_{x,y} gk(x,y)²)
 
 Implémentation:
   coeff = 0.0
   normalization = 0.0
   Pour (x,y) chaque pixel:
-      coeff += pixel[x,y] � gk(x,y)
+      coeff += pixel[x,y] à gk(x,y)
       normalization += gk(x,y)²
-  �k = coeff / normalization
+  àk = coeff / normalization
 ```
 
 ### Reconstruction: Inverse
 
 ```
-C_reconstructed(x,y) = Σ �k � gk(x,y)
+C_reconstructed(x,y) = Σ àk à gk(x,y)
 
 Pour chaque pixel:
     Pour chaque fonction:
-        C[x,y] += �[k] � gk(x,y)
+        C[x,y] += à[k] à gk(x,y)
 ```
 
 ### Validation: MSE
 
 ```
 MSE = (Σ_{x,y,c} (C_original[x,y,c] - C_reconstructed[x,y,c])²)
-      / (W � H � 3)
+      / (W à H à 3)
 
 MSE < 0.05    Excellent (95% du pattern capturé)
 MSE 0.05-0.1   Bon (90-95%)
@@ -211,41 +211,41 @@ MSE > 0.15     Pas assez (< 85%)
 
 ---
 
-##  INT�GRATION AVEC ATOMIC NETWORK
+##  INTàGRATION AVEC ATOMIC NETWORK
 
-### Mise � Jour Atomique avec Pattern
+### Mise à Jour Atomique avec Pattern
 
 **Formule standard** (sans pattern):
 ```
 s_i(t+1) = s_i(t) 
-         + � � Σ_jN(i) w_ij � R(s_i, s_j)
+         + à à Σ_jN(i) w_ij à R(s_i, s_j)
 ```
 
 **Formule avec pattern** (ce qu'on veut faire):
 ```
 s_i(t+1) = s_i(t)
-         + β � (f(x_i, y_i) - s_i(t))         Pattern guidé
-         + � � Σ_jN(i) w_ij � R(s_i, s_j)   Résonance locale
+         + β à (f(x_i, y_i) - s_i(t))         Pattern guidé
+         + à à Σ_jN(i) w_ij à R(s_i, s_j)   Résonance locale
 ```
 
 Où:
 - **β** = force du pattern (0.0-1.0)
-- **f(x_i, y_i)** = couleur cible du pattern = Σ �k � gk(x_i, y_i)
+- **f(x_i, y_i)** = couleur cible du pattern = Σ àk à gk(x_i, y_i)
 
 ### Implementation (pseudocode)
 
 ```go
-// �TAPE 1: Charger pattern
+// àTAPE 1: Charger pattern
 pattern := LoadPattern("sunset")
 
-// �TAPE 2: Créer réseau
+// àTAPE 2: Créer réseau
 network := NewAtomicImageNetwork(512, 512, 8)
 
-// �TAPE 3: Appliquer pattern
+// àTAPE 3: Appliquer pattern
 for i := 0; i < len(network.Atoms); i++ {
     atom := network.Atoms[i]
     
-    // �valuer f(x, y)
+    // àvaluer f(x, y)
     colorTarget := [3]float64{0, 0, 0}
     for channel := 0; channel < 3; channel++ {
         for k := 0; k < pattern.BasisFunctions; k++ {
@@ -259,7 +259,7 @@ for i := 0; i < len(network.Atoms); i++ {
     atom.ConstraintStrength = 0.8      // β
 }
 
-// �TAPE 4: Itérer
+// àTAPE 4: Itérer
 for iter := 0; iter < 100; iter++ {
     for i := 0; i < len(network.Atoms); i++ {
         atom := network.Atoms[i]
@@ -272,16 +272,16 @@ for iter := 0; iter < 100; iter++ {
             resonanceInfluence += atom.ConnectionWeights[j] * resonance
         }
         
-        // Mise � jour avec pattern
+        // Mise à jour avec pattern
         atom.State += β * (colorTarget - atom.State)
-                   + � * resonanceInfluence
+                   + à * resonanceInfluence
         
         // Clamp [0, 1]
         atom.State = Clamp(atom.State, 0, 1)
     }
 }
 
-// �TAPE 5: Export
+// àTAPE 5: Export
 ExportToPNG(network)
 ```
 
@@ -292,16 +292,16 @@ ExportToPNG(network)
 ### Mathématique
 
 ```
-f_composed(x,y) = w1 � f1(x,y) + w2 � f2(x,y) + ... + wN � fN(x,y)
+f_composed(x,y) = w1 à f1(x,y) + w2 à f2(x,y) + ... + wN à fN(x,y)
 
 Où Σ wi = 1 (normalisé)
 
 Exemple:
-    f_composed = 0.6 � f_sunset + 0.4 � f_ocean
+    f_composed = 0.6 à f_sunset + 0.4 à f_ocean
     
     Pour chaque pixel (x,y):
-        C = 0.6 � (Σ �_sunset,k � gk(x,y))
-          + 0.4 � (Σ �_ocean,k � gk(x,y))
+        C = 0.6 à (Σ à_sunset,k à gk(x,y))
+          + 0.4 à (Σ à_ocean,k à gk(x,y))
 ```
 
 ### Implémentation
@@ -323,7 +323,7 @@ func CombinePatterns(patterns []*Pattern, weights []float64) [][][3]float64 {
                 pattern := patterns[p]
                 weight := weights[p]
                 
-                // �valuer f_p(x, y)
+                // àvaluer f_p(x, y)
                 for c := 0; c < 3; c++ {
                     for k := 0; k < pattern.BasisFunctions; k++ {
                         basis := EvaluateBasis(k, x, y, pattern.BasisType)
@@ -346,7 +346,7 @@ func CombinePatterns(patterns []*Pattern, weights []float64) [][][3]float64 {
 ### Extraction (une fois)
 
 ```
-Image: 512�512
+Image: 512à512
 BasisCount: 20
 Channels: 3
 
@@ -354,31 +354,31 @@ Opérations:
   Pour chaque pixel (262,144):
     Pour chaque canal (3):
       Pour chaque base (20):
-        �k += C � gk
+        àk += C à gk
         
-Total: 262,144 � 3 � 20 = 15.7M opérations
+Total: 262,144 à 3 à 20 = 15.7M opérations
 Temps: ~50-100ms
 ```
 
 ### Application (par génération)
 
 ```
-Image: 512�512
+Image: 512à512
 BasisCount: 20
 Channels: 3
 
-Opérations: 15.7M (m�me)
+Opérations: 15.7M (màme)
 Temps: ~10ms
 ```
 
 ### Atomic Iteration (100x)
 
 ```
-Réseau: 512�512 atomes
+Réseau: 512à512 atomes
 Itérations: 100
 Opérations par atome: ~50 (reads neighbors, compute, update)
 
-Total: 262,144 � 100 � 50 = 1.3B opérations
+Total: 262,144 à 100 à 50 = 1.3B opérations
 Temps: 100-500ms (sur CPU moderne)
 ```
 
@@ -405,7 +405,7 @@ Gain:              60-600x plus rapide
 2. **Efficace**: Seulement N=20 composantes capture 95%
 3. **Orthogonal**: Les fonctions sont indépendantes
 4. **Rapide**: Calcul simple cos() au lieu de FFT
-5. **Scalable**: Fonctionne � n'importe quelle résolution
+5. **Scalable**: Fonctionne à n'importe quelle résolution
 
 ### Pourquoi 3 types de bases?
 
@@ -418,22 +418,22 @@ Gain:              60-600x plus rapide
 ### Déterminisme
 
 ```
-Avantage clé: D�TERMINISTE
+Avantage clé: DàTERMINISTE
     
 Fourier décomposition:
-    C(x,y)  �k (déterministe)
-    f(x,y) = Σ �k � gk(x,y) (déterministe)
+    C(x,y)  àk (déterministe)
+    f(x,y) = Σ àk à gk(x,y) (déterministe)
     
 Atomic iteration:
     s_i(t)  s_i(t+1) (déterministe, pas de randomness)
     
-Résultat: M�ME IMAGE � CHAQUE FOIS
+Résultat: MàME IMAGE à CHAQUE FOIS
     (vs Stable Diffusion: aléatoire!)
 ```
 
 ---
 
-##  FLUX R�EL (Pr�t pour impl.)
+##  FLUX RàEL (Pràt pour impl.)
 
 ```
 User: "./programme generate with-math-pattern sunset 512 512 100 "dark forest""
@@ -496,5 +496,5 @@ TIME: 100-200ms
 
 ---
 
-**Status**:  Fondations mathématiques solides, pr�t pour intégration CLI!
+**Status**:  Fondations mathématiques solides, pràt pour intégration CLI!
 

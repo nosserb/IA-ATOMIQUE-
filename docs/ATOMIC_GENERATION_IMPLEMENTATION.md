@@ -14,15 +14,15 @@ A complete **Atomic Resonance-based Image Generation System** that transforms wa
   - Velocity tracking for momentum
   - Pattern guidance values
   
-- **GenerationGrid**: Main container (Width � Height grid)
-  - Parameters: � (resonance), β (pattern), γ (smoothing), δ (feedback), ε (damping)
+- **GenerationGrid**: Main container (Width à Height grid)
+  - Parameters: à (resonance), β (pattern), γ (smoothing), δ (feedback), ε (damping)
   - Thread-safe with RWMutex
   - Target image support for feedback mode
   
 - **Key Functions**:
-  - `PropagateLocal()`: s_ij(t+1) = ��Σ neighbors + β�P_ij + ε�V
+  - `PropagateLocal()`: s_ij(t+1) = ààΣ neighbors + βàP_ij + εàV
   - `StateToColor()`: HSL-based stateRGB conversion
-  - `SmoothColors()`: Local color averaging C' = (1-γ)�C + γ�neighbor_avg
+  - `SmoothColors()`: Local color averaging C' = (1-γ)àC + γàneighbor_avg
   - `ApplyFeedback()`: Optional target-guided adjustment
   - `GenerateStep()`: Full iteration = propagate + color + smooth + feedback
   - `Generate(iterations)`: Multi-iteration pipeline
@@ -77,12 +77,12 @@ INPUT PATTERN IMAGE
     
      Create GenerationGrid
      (neutral gray atoms) 
-    �
+    à
         
     
      Inject Pattern      
      Set initial P_ij    
-    �
+    à
         
     
      GenerateStep()      
@@ -96,14 +96,14 @@ INPUT PATTERN IMAGE
         (local averaging)
      4. ApplyFeedback()  
         (if enabled)     
-    �
+    à
         
     
      SaveImage()         
      PNG Export          
-    �
+    à
         
-    OUTPUT IMAGE (512�512, 8-bit RGB)
+    OUTPUT IMAGE (512à512, 8-bit RGB)
 ```
 
 ### Mathematical Implementation
@@ -114,9 +114,9 @@ for s := 0; s < 5; s++ {
     neighborAvg := neighborSum[s] / float64(neighborCount)
     
     newCells[i][j].State[s] = 
-        gg.ResonanceAlpha * neighborAvg +           // ��Σ neighbors
-        gg.PatternBeta * pattern[s] +                // β�P_ij
-        newCells[i][j].Velocity[s]                   // ε�V
+        gg.ResonanceAlpha * neighborAvg +           // ààΣ neighbors
+        gg.PatternBeta * pattern[s] +                // βàP_ij
+        newCells[i][j].Velocity[s]                   // εàV
     
     newCells[i][j].State[s] = math.Max(0, math.Min(1, ...))  // Clamp [0,1]
 }
@@ -195,12 +195,12 @@ if target_pixel != current_color {
 
 | Test | Resolution | Iterations | Time | Status |
 |------|-----------|-----------|------|--------|
-| Quick test | 128�128 | 100 | ~2s |  Fast |
-| Standard | 256�256 | 100 | ~4s |  Good |
-| Quality | 512�512 | 200 | ~12s |  Acceptable |
-| Feedback | 128�128 | 50 | ~1s |  Very fast |
+| Quick test | 128à128 | 100 | ~2s |  Fast |
+| Standard | 256à256 | 100 | ~4s |  Good |
+| Quality | 512à512 | 200 | ~12s |  Acceptable |
+| Feedback | 128à128 | 50 | ~1s |  Very fast |
 
-**Scaling**: ~80ms per iteration for 256�256 grid
+**Scaling**: ~80ms per iteration for 256à256 grid
 
 ## File Structure
 
@@ -261,7 +261,7 @@ ls -lh output/atomic_*
 
 | Param | Range | Default | Role |
 |-------|-------|---------|------|
-| � | 0.1-0.5 | 0.3 | Neighbor resonance |
+| à | 0.1-0.5 | 0.3 | Neighbor resonance |
 | β | 0.2-0.8 | 0.5 | Pattern adherence |
 | γ | 0.05-0.3 | 0.2 | Color smoothing |
 | δ | 0.0-1.0 | 0.2 | Feedback (pattern mode) / 0.3 (feedback mode) |
@@ -269,10 +269,10 @@ ls -lh output/atomic_*
 
 ## Configuration Examples
 
-**Fine Detail**: �=0.2, β=0.6, γ=0.10  Sharp edges, local patterns
-**Smooth Blend**: �=0.4, β=0.4, γ=0.25  Natural-looking, coherent
-**Wave-Centric**: �=0.1, β=0.8, γ=0.05  Pattern dominates
-**Emergent**: �=0.5, β=0.3, γ=0.20  Creative, self-organizing
+**Fine Detail**: à=0.2, β=0.6, γ=0.10  Sharp edges, local patterns
+**Smooth Blend**: à=0.4, β=0.4, γ=0.25  Natural-looking, coherent
+**Wave-Centric**: à=0.1, β=0.8, γ=0.05  Pattern dominates
+**Emergent**: à=0.5, β=0.3, γ=0.20  Creative, self-organizing
 
 ## Integration Points
 

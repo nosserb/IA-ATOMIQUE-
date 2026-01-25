@@ -21,7 +21,7 @@ Already included in the build. Just use:
 
 ## Quick Start: 3 Steps
 
-### 1£ Create a Pattern (Optional)
+### 1Ã  Create a Pattern (Optional)
 
 If you have a reference image, extract its pattern:
 ```bash
@@ -31,7 +31,7 @@ If you have a reference image, extract its pattern:
 
 Or use an existing pattern/test image.
 
-### 2£ Generate Image from Pattern
+### 2Ã  Generate Image from Pattern
 
 **Basic (pattern-only):**
 ```bash
@@ -43,7 +43,7 @@ Or use an existing pattern/test image.
 ./programme generate with-feedback 256 256 200 input/image/reference.jpg
 ```
 
-### 3£ View Results
+### 3Ã  View Results
 
 ```bash
 # Check output
@@ -66,10 +66,10 @@ ls -lh output/atomic_*.png
 # Run speed benchmark
 ./programme generate benchmark
 
-# 256Ã256 quick test
+# 256Ã 256 quick test
 ./programme generate pattern 256 256 50 output/test.png
 
-# 512Ã512 quality output
+# 512Ã 512 quality output
 ./programme generate pattern 512 512 300 output/pattern.png
 
 # With target guidance
@@ -80,7 +80,7 @@ ls -lh output/atomic_*.png
 
 | Parameter | Range | Default | Effect |
 |-----------|-------|---------|--------|
-| **Î** Resonance | 0.1-0.5 | 0.3 | How much atoms cooperate (higher = smoother) |
+| **Ã ** Resonance | 0.1-0.5 | 0.3 | How much atoms cooperate (higher = smoother) |
 | **Î²** Pattern | 0.2-0.8 | 0.5 | How strictly atoms follow pattern (higher = more faithful) |
 | **Î³** Smoothing | 0.05-0.3 | 0.2 | Local color blending (higher = less blocky) |
 | **Î´** Feedback | 0.0-1.0 | 0.3 | Target guidance (higher = closer to target) |
@@ -90,7 +90,7 @@ ls -lh output/atomic_*.png
 - Too blocky?  Increase Î³ to 0.25
 - Doesn't follow pattern?  Increase Î² to 0.7
 - Too uniform?  Increase pattern better or increase iterations
-- Too chaotic?  Increase Î to 0.4
+- Too chaotic?  Increase Ã  to 0.4
 
 ## Complete Workflow Example
 
@@ -116,7 +116,7 @@ ls -lh output/pattern_final_emerged.png \
 
 **Iterations**: More = better convergence, but with diminishing returns. 200-300 is usually optimal.
 
-**Size**: 512Ã512 is sweet spot. Larger is slower but higher quality.
+**Size**: 512Ã 512 is sweet spot. Larger is slower but higher quality.
 
 ## Typical Use Cases
 
@@ -140,10 +140,10 @@ ls -lh output/pattern_final_emerged.png \
 
 ### Exploration/Experimentation
 ```bash
-# Vary resonance (Î)
-./programme generate pattern 256 256 100 pattern.png  # Î=0.3 default
+# Vary resonance (Ã )
+./programme generate pattern 256 256 100 pattern.png  # Ã =0.3 default
 # Increase cooperation
-./programme generate pattern 256 256 100 pattern.png  # Î=0.5
+./programme generate pattern 256 256 100 pattern.png  # Ã =0.5
 
 # Vary pattern adherence (Î²)
 ./programme generate pattern 256 256 100 pattern.png  # Î²=0.5 default
@@ -160,7 +160,7 @@ ls -lh output/pattern_final_emerged.png \
 - A: Pattern might be too faint. Increase iterations to 300+
 
 **Q: Very slow**
-- A: Use smaller size (256Ã256) or fewer iterations (100)
+- A: Use smaller size (256Ã 256) or fewer iterations (100)
 
 **Q: Blocky appearance**
 - A: Increase Î³ (smoothing) to 0.25-0.3

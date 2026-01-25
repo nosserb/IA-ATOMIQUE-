@@ -106,7 +106,7 @@ Tests generation speed at different resolutions for performance tuning.
 
 ## Parameter Tuning Guide
 
-### Resonance Alpha (�): 0.1 - 0.5
+### Resonance Alpha (à): 0.1 - 0.5
 
 **Controls how much atoms listen to neighbors**
 
@@ -208,7 +208,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 
 ### Fine Detail Configuration
 ```
-� = 0.2   (limited cooperation)
+à = 0.2   (limited cooperation)
 β = 0.6   (strong pattern adherence)
 γ = 0.10  (minimal smoothing)
 ```
@@ -216,7 +216,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 
 ### Smooth Blend Configuration
 ```
-� = 0.4   (strong cooperation)
+à = 0.4   (strong cooperation)
 β = 0.4   (balanced pattern)
 γ = 0.25  (heavy smoothing)
 ```
@@ -224,7 +224,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 
 ### Wave-Centric Configuration
 ```
-� = 0.1   (minimal cooperation)
+à = 0.1   (minimal cooperation)
 β = 0.8   (strict pattern)
 γ = 0.05  (sharp details)
 ```
@@ -232,7 +232,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 
 ### Emergent Configuration
 ```
-� = 0.5   (maximum cooperation)
+à = 0.5   (maximum cooperation)
 β = 0.3   (loose pattern)
 γ = 0.20  (moderate smoothing)
 ```
@@ -260,7 +260,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 | 512² | 262K | ~4-8s |
 | 1024² | 1M | ~15-30s |
 
-**Note**: Time scales roughly with atom count. Use 512�512 for standard work.
+**Note**: Time scales roughly with atom count. Use 512à512 for standard work.
 
 ## Troubleshooting
 
@@ -268,7 +268,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 **Solution**: Increase smoothing gamma (γ) to 0.15-0.25
 
 ### Problem: Generation looks nothing like pattern
-**Solution**: Increase pattern beta (β) to 0.6-0.8, decrease resonance alpha (�) to 0.2
+**Solution**: Increase pattern beta (β) to 0.6-0.8, decrease resonance alpha (à) to 0.2
 
 ### Problem: Loss not decreasing
 **Solution**: This is normal for this system. Loss reflects state-pattern divergence, not image quality.
@@ -277,7 +277,7 @@ ls -lh output/pattern_final_emerged.png output/atomic_generated_512x512_300iter.
 **Solution**: Increase pattern beta (β), inject better-defined pattern
 
 ### Problem: Too much noise/chaos
-**Solution**: Increase resonance alpha (�) for more cooperation, increase smoothing gamma (γ)
+**Solution**: Increase resonance alpha (à) for more cooperation, increase smoothing gamma (γ)
 
 ## Advanced Usage
 
@@ -307,7 +307,7 @@ Generate multiple times with different parameters, then average the results for 
 
 The atomic generation system models **coupled oscillators with pattern guidance**:
 
-1. **Resonance** (� term): Atoms oscillate in sync with neighbors
+1. **Resonance** (à term): Atoms oscillate in sync with neighbors
 2. **Pattern Injection** (β term): External pattern drives atoms
 3. **Smoothing**: Local color averaging prevents phase separation
 4. **Feedback**: Optional attractor pulling toward target
@@ -344,22 +344,22 @@ FEEDBACK-GUIDED GENERATION:
   ./programme generate with-feedback 512 512 300 target.png
 
 PARAMETER RANGES:
-  � (resonance):  0.1-0.5    (default: 0.3)
+  à (resonance):  0.1-0.5    (default: 0.3)
   β (pattern):    0.2-0.8    (default: 0.5)
   γ (smoothing):  0.05-0.3   (default: 0.2)
   δ (feedback):   0.0-1.0    (default: 0.3)
   ε (damping):    0.8-1.0    (default: 0.9)
 
 TYPICAL CONFIGS:
-  Fine Detail:    �=0.2, β=0.6, γ=0.10
-  Smooth Blend:   �=0.4, β=0.4, γ=0.25
-  Wave-Centric:   �=0.1, β=0.8, γ=0.05
-  Emergent:       �=0.5, β=0.3, γ=0.20
+  Fine Detail:    à=0.2, β=0.6, γ=0.10
+  Smooth Blend:   à=0.4, β=0.4, γ=0.25
+  Wave-Centric:   à=0.1, β=0.8, γ=0.05
+  Emergent:       à=0.5, β=0.3, γ=0.20
 
 ITERATION GUIDE:
   Pattern-only:   100-200 iterations
   With-feedback:  300-500 iterations
-  Resolution:     512�512 recommended
+  Resolution:     512à512 recommended
 ```
 
 ---

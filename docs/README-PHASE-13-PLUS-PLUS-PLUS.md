@@ -19,11 +19,11 @@ Repetitions: ~0
 
 | # | Strategy | Location | Effect |
 |---|----------|----------|--------|
-| 1£ | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
-| 2£ | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
-| 3£ | **Fen√trage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
-| 4£ | **Anti-R√©p√©tition** | coherence.go | Eliminate words repeated <5 words apart |
-| 5£ | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
+| 1√† | **Normalisation Lexicale** | resumeur_coherence.go | Penalize blocks with internal repetitions |
+| 2√† | **TF-IDF Intelligent** | generation.go | Weight rare-frequent words at 0.8x |
+| 3√† | **Fen√†trage Strict** | resumeur_coherence.go | Force lexical diversity between consecutive blocks |
+| 4√† | **Anti-R√©p√©tition** | coherence.go | Eliminate words repeated <5 words apart |
+| 5√† | **Synonymes Contextuels** | coherence.go | Vary vocabulary every 3rd occurrence |
 
 ---
 
@@ -101,7 +101,7 @@ go build -o programme
 ```
 For each block:
   - Count word occurrences
-  - Penalty = (count-2) √ 0.1 for words appearing >2x
+  - Penalty = (count-2) √† 0.1 for words appearing >2x
   - Apply penalty to selection score
 ```
 
@@ -112,7 +112,7 @@ For words with IDF > 0.5 AND TF > 0.05:
   - Prevents repetitive words from dominating scores
 ```
 
-### 3. Strict Fen√trage
+### 3. Strict Fen√†trage
 ```
 For consecutive selected blocks:
   - Calculate Jaccard similarity of vocabularies
@@ -170,7 +170,7 @@ database/resumeur_coherence.go  (+150 lines)
  NormaliserRepetitionsBlocs()
  CalculerSimilarityVocabLexical()
  RepetitionsBloc field
- Fen√trage strict logic
+ Fen√†trage strict logic
 
 database/generation.go           (+15 lines)
  TF-IDF penalty 0.8x
@@ -211,7 +211,7 @@ database/coherence.go            (+80 lines)
 
 **Before**:
 ```
-"...donn√© que les syst√mes donnent r√©sultats...
+"...donn√© que les syst√†mes donnent r√©sultats...
 ...dans ce cas, plusieurs cas diff√©rents...
 ...le monde du digital, un monde qui change..."
 ```
@@ -219,9 +219,9 @@ database/coherence.go            (+80 lines)
 
 **After**:
 ```
-"...donn√© que les syst√mes fournissent r√©sultats...
+"...donn√© que les syst√†mes fournissent r√©sultats...
 ...dans cette situation, plusieurs contextes diff√©rents...
-...l'univers du digital, une sph√re qui change..."
+...l'univers du digital, une sph√†re qui change..."
 ```
  Zero repetitions, natural vocabulary variation
 
@@ -310,7 +310,7 @@ database/coherence.go            (+80 lines)
 
 ---
 
-## ò FAQ
+## √† FAQ
 
 **Q: Should I upgrade from Phase 13++?**  
 A: Yes. Phase 13+++ is faster (6.3x), better quality (zero repetitions), and 100% backward compatible.
@@ -356,7 +356,7 @@ A: Yes. Tested, documented, validated.  DEPLOY.
 ~0 repetitions
 6.3x faster
 $0 implementation cost
-û% production readiness
+√†% production readiness
 ```
 
 ---
@@ -369,7 +369,7 @@ $0 implementation cost
 
 ---
 
-## û Support
+## √† Support
 
 - **Configuration**: See [PHASE-13-CONFIGURATION.md](PHASE-13-CONFIGURATION.md)
 - **Troubleshooting**: See [PHASE-13-VALIDATION.md](PHASE-13-VALIDATION.md)

@@ -8,7 +8,7 @@
 ![Status](https://img.shields.io/badge/Status-Academic%20Implementation-orange?style=flat-square)
 
 **Auteur:** BRESSON Guylann  
-**Affiliation:** Indépendant / �tudiant en informatique  
+**Affiliation:** Indépendant / àtudiant en informatique  
 **Contact:** guylann.bresson.gb@gmail.com
 
 </div>
@@ -29,13 +29,13 @@ Plutôt que de reposer sur une architecture centralisée et synchrone, IA-ATOMIQ
 
 ##  Caractéristiques Principales
 
-### 1. **Architecture Enti�rement Distribuée**
+### 1. **Architecture Entiàrement Distribuée**
 - Pas de serveur central ou d'unité de contrôle superviseur
-- Chaque atome computationnel agit de mani�re autonome
+- Chaque atome computationnel agit de maniàre autonome
 - Les interactions sont strictement locales (entre voisins immédiats)
 
 ### 2. **Asynchronisme Total**
-- Chaque atome évolue � son propre rythme
+- Chaque atome évolue à son propre rythme
 - Pas de dépendance envers une horloge globale
 - Résilience exceptionnelle aux perturbations et aux flux irréguliers
 
@@ -63,7 +63,7 @@ Où:
 - Les connexions cohérentes se renforcent, les instables s'effacent
 
 ### 5. **Apprentissage Continu et Local**
-- Pas d'entra�nement centralisé lourd
+- Pas d'entraànement centralisé lourd
 - Ajustements en temps réel basés sur les interactions locales
 - Plasticité permanente permettant l'adaptation autonome
 
@@ -71,26 +71,26 @@ Où:
 - Chaque atome est volontairement simple
 - Ressources mémoire et calcul minimales
 - L'intelligence globale émerge de la richesse des interactions collectives
-- Déployable sur microcontrôleurs, capteurs autonomes, syst�mes embarqués
+- Déployable sur microcontrôleurs, capteurs autonomes, systàmes embarqués
 
 ---
 
 ##  Fondements Théoriques
 
-### �tat Interne et Mise � Jour
+### àtat Interne et Mise à Jour
 
-La mise � jour de l'état interne suit:
+La mise à jour de l'état interne suit:
 
 $$s_i(t+1) = s_i(t) + \alpha \cdot \sum_{j \in N(i)} w_{ij} \cdot R(s_i, s_j) + \beta \cdot (R_i + p_i)$$
 
 Où:
 - $\alpha$ : coefficient de couplage (influence des voisins)
 - $N(i)$ : ensemble des voisins de l'atome $i$
-- $R_i$ : r�gles locales de l'atome
+- $R_i$ : ràgles locales de l'atome
 - $p_i$ : perceptions locales
-- $\beta$ : coefficient d'impact des r�gles locales
+- $\beta$ : coefficient d'impact des ràgles locales
 
-### �mergence et Auto-Organisation
+### àmergence et Auto-Organisation
 
 Des structures globales stables émergent naturellement de:
 1. Interactions locales simples entre voisins
@@ -134,7 +134,7 @@ go build -o programme main.go
 
 ---
 
-##  Architecture du Syst�me
+##  Architecture du Systàme
 
 ### Structure des Fichiers
 
@@ -155,16 +155,16 @@ go build -o programme main.go
 ### Composants Clés
 
 #### `ComputationalAtom`
-Unité élémentaire autonome représentant un n�ud du réseau:
+Unité élémentaire autonome représentant un nàud du réseau:
 - **InternalState** : état continu $s_i \in [0, 1]$
 - **Neighbors** : liste des atomes voisins
 - **ConnectionWeights** : poids des connexions $w_{ij}$
-- **LocalRules** : r�gles de comportement local
+- **LocalRules** : ràgles de comportement local
 - **Perceptions** : signaux de l'environnement immédiat
 
 #### `AtomicNetwork`
 Réseau distribué d'atomes computationnels:
-- G�re l'ensemble des atomes
+- Gàre l'ensemble des atomes
 - Coordonne les itérations asynchrones
 - Calcule les métriques de cohérence globale
 - Détecte les comportements émergents
@@ -173,7 +173,7 @@ Réseau distribué d'atomes computationnels:
 
 ##  Résultats Expérimentaux
 
-### �mergence Observée
+### àmergence Observée
 
 Les expériences confirment que:
 
@@ -183,7 +183,7 @@ Les expériences confirment que:
 2. **Résilience remarquable**: 
    - Tolérance aux perturbations locales
    - Récupération automatique sans recalibrage central
-   - Performance maintenue m�me avec unités défaillantes
+   - Performance maintenue màme avec unités défaillantes
 
 3. **Efficacité énergétique**:
    - Consommation minimale par rapport aux architectures centralisées
@@ -197,7 +197,7 @@ Les expériences confirment que:
 
 - **Cohérence réseau** : mesure d'alignement global (0-1)
 - **Activation moyenne** : niveau moyen d'activité des atomes
-- **Consommation énergétique** : énergie totale du syst�me
+- **Consommation énergétique** : énergie totale du systàme
 - **Itérations de convergence** : cycles nécessaires pour stabilisation
 
 ---
@@ -216,7 +216,7 @@ Les expériences confirment que:
 - Adaptation en temps réel aux obstacles
 - Apprentissage distribué des stratégies
 
-### Syst�mes Industriels & IoT
+### Systàmes Industriels & IoT
 - Réseaux de capteurs distribués
 - Maintenance prédictive locale
 - Optimisation des processus sans goulot d'étranglement
@@ -232,17 +232,17 @@ Les expériences confirment que:
 
 ##  Principes de Conception
 
-### 1. �mergence par Interactions Locales
-L'ordre global na�t de r�gles locales simples, sans intervention externe.
+### 1. àmergence par Interactions Locales
+L'ordre global naàt de ràgles locales simples, sans intervention externe.
 
 ### 2. Résonance Atomique
 L'harmonisation spontanée permet la coordination sans orchestration centrale.
 
 ### 3. Asynchronisme Total
-Chaque unité op�re indépendamment, garantissant résilience et réactivité.
+Chaque unité opàre indépendamment, garantissant résilience et réactivité.
 
 ### 4. Plasticité Continue
-Le syst�me s'adapte en permanence via l'apprentissage décentralisé.
+Le systàme s'adapte en permanence via l'apprentissage décentralisé.
 
 ### 5. Sobriété Computationnelle
 Intelligence massive avec ressources minimales par unité.
@@ -252,20 +252,20 @@ Intelligence massive avec ressources minimales par unité.
 ##  Références Académiques
 
 Cet article s'appuie sur les travaux fondamentaux en:
-- **Syst�mes multi-agents** (Wooldridge)
+- **Systàmes multi-agents** (Wooldridge)
 - **Architecture de subsomption** (Brooks)
-- **Auto-organisation** et syst�mes complexes
+- **Auto-organisation** et systàmes complexes
 - **Réseaux de neurones biologiques**
 - **Synchronisation et dynamiques collectives**
 
 ---
 
-##  Considérations �thiques et de Sécurité
+##  Considérations àthiques et de Sécurité
 
 - **Transparence**: Interactions locales simples et compréhensibles
-- **Responsabilité**: Comportements émergeants vérifiables et tra�ables
+- **Responsabilité**: Comportements émergeants vérifiables et traàables
 - **Robustesse**: Pas de point de défaillance unique
-- **�quité**: Pas de centralisation du pouvoir décisionnel
+- **àquité**: Pas de centralisation du pouvoir décisionnel
 - **Confidentialité**: Traitement décentralisé des données
 
 ---
@@ -279,19 +279,19 @@ MIT License - Libre d'usage dans contextes académiques et commerciaux
 ##  Auteur
 
 **BRESSON Guylann**
-- Indépendant / �tudiant en informatique
+- Indépendant / àtudiant en informatique
 - Email: guylann.bresson.gb@gmail.com
-- Spécialité: Intelligence Artificielle Distribuée, Syst�mes Autonomes
+- Spécialité: Intelligence Artificielle Distribuée, Systàmes Autonomes
 
 ---
 
-## � Support et Feedback
+## à Support et Feedback
 
-Pour questions, suggestions ou signalements de bugs relatifs � cette implémentation de la Technologie de Résonance Atomique:
+Pour questions, suggestions ou signalements de bugs relatifs à cette implémentation de la Technologie de Résonance Atomique:
 
 Contactez: guylann.bresson.gb@gmail.com
 
 ---
 
-**Derni�re mise � jour:** Janvier 2026  
-**Statut:** Implémentation académique v1.0 - Conforme � l'article publié sur HAL
+**Derniàre mise à jour:** Janvier 2026  
+**Statut:** Implémentation académique v1.0 - Conforme à l'article publié sur HAL

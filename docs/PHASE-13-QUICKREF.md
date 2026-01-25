@@ -1,7 +1,7 @@
 #  Phase 13+++ Quick Reference
 
 ## One-Liner
-**5 stratégies imbriquées** (normalisation lexicale, TF-IDF intelligent, fen�trage strict, anti-répétition, synonymes)  **95% cohérence** sans répétitions, **86% plus rapide**.
+**5 stratégies imbriquées** (normalisation lexicale, TF-IDF intelligent, fenàtrage strict, anti-répétition, synonymes)  **95% cohérence** sans répétitions, **86% plus rapide**.
 
 ---
 
@@ -9,11 +9,11 @@
 
 | # | Nom | Fichier | Effet | Code |
 |---|-----|---------|-------|------|
-| 1� | Normalisation Lexicale | resumeur_coherence.go | Pénalité blocs répétitifs | `penalite = (count-2) � 0.1` |
-| 2� | TF-IDF Intelligent | generation.go | Mots rares moins influents | `tfidf *= 0.8` si IDF>0.5 |
-| 3� | Fen�trage Strict | resumeur_coherence.go | Blocs consécutifs diversifiés | `skip si similarity > 0.6` |
-| 4� | Anti-Répétition | coherence.go | Zéro répétition <5 mots | `skip si position_gap < 5` |
-| 5� | Synonymes | coherence.go | Vocabulaire varié | `remplace 1/3 occurrences` |
+| 1à | Normalisation Lexicale | resumeur_coherence.go | Pénalité blocs répétitifs | `penalite = (count-2) à 0.1` |
+| 2à | TF-IDF Intelligent | generation.go | Mots rares moins influents | `tfidf *= 0.8` si IDF>0.5 |
+| 3à | Fenàtrage Strict | resumeur_coherence.go | Blocs consécutifs diversifiés | `skip si similarity > 0.6` |
+| 4à | Anti-Répétition | coherence.go | Zéro répétition <5 mots | `skip si position_gap < 5` |
+| 5à | Synonymes | coherence.go | Vocabulaire varié | `remplace 1/3 occurrences` |
 
 ---
 
@@ -36,7 +36,7 @@ Phase 13++     Phase 13+++
 ```go
 penalite += count-2 * 0.2           // Fort
 similarity > 0.4                     // Strict
-tfidf *= 0.7                         // Tr�s pénalisant
+tfidf *= 0.7                         // Tràs pénalisant
 distance < 7                         // Long
 % 2 synonymes                        // Fréquent
  400-500 mots, ultra-qualité
@@ -70,8 +70,8 @@ distance < 3                         // Court
 - [ ] Mesurer: longueur, cohérence, vitesse
 - [ ] Choisir métrique cible
 - [ ] Sélectionner profil (Quality/Balanced/Coverage)
-- [ ] Ajuster 1 param � la fois
-- [ ] Re-tester apr�s chaque change
+- [ ] Ajuster 1 param à la fois
+- [ ] Re-tester apràs chaque change
 - [ ] Valider sur multi-textes
 - [ ] Documenter config finale
 
@@ -84,7 +84,7 @@ database/resumeur_coherence.go  (+150 lines)
  RepetitionsBloc field
  NormaliserRepetitionsBlocs()
  Scoring formula update
- Fen�trage strict
+ Fenàtrage strict
  CalculerSimilarityVocabLexical()
 
 database/generation.go           (+15 lines)
@@ -115,7 +115,7 @@ database/coherence.go            (+80 lines)
 | Issue | Cause | Fix |
 |-------|-------|-----|
 | Too many repetitions | Distance too short | Increase distance from 5 to 7 |
-| Summary too short | Fen�trage too strict | Increase similarity from 0.6 to 0.7 |
+| Summary too short | Fenàtrage too strict | Increase similarity from 0.6 to 0.7 |
 | Weird synonyms | Wrong dictionary | Extend SynonymsDict for domain |
 | Coherence drops | Filtering too aggressive | Reduce penalty 0.1  0.05 |
 | Slow execution | Too many blocks | Reduce max blocks from 50 to 30 |

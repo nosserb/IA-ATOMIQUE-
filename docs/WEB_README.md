@@ -19,9 +19,9 @@ go run main.go interaction.go web.go web_utils.go database/*.go web
 ./programme web
 ```
 
-##  Acc�s
+##  Accàs
 
-Une fois le serveur démarré, ouvrez votre navigateur et accédez �:
+Une fois le serveur démarré, ouvrez votre navigateur et accédez à:
 ```
 http://localhost:8080
 ```
@@ -41,7 +41,7 @@ Le résumé affiche:
 ##  Personnalisation
 
 ### Modifier les couleurs
-�ditez `web/style.css`:
+àditez `web/style.css`:
 ```css
 /* Modifier le gradient principal */
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -65,7 +65,7 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 **Request:**
 ```json
 {
-  "text": "Votre texte � résumer..."
+  "text": "Votre texte à résumer..."
 }
 ```
 
@@ -83,7 +83,7 @@ Recherchez les valeurs de `padding`, `font-size`, `height` dans `style.css`
 
 ##  Troubleshooting
 
-### Port 8080 déj� utilisé
+### Port 8080 déjà utilisé
 Modifiez le port dans `web.go` ligne:
 ```go
 go StartWebServer("9000")  // Changez 8080 en 9000

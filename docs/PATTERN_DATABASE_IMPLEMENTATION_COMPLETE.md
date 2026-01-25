@@ -17,7 +17,7 @@ A complete **Pattern Discovery and Reuse System** for analyzing, indexing, and m
 
 ---
 
-## ¦ What Was Built
+## Ã  What Was Built
 
 ### 1. Core Module: `database/pattern_indexer.go`
 **452 lines of Go code**
@@ -112,7 +112,7 @@ Color-based semantic mapping:
 | Color | Category | Activation |
 |-------|----------|-----------|
 | Red/Warm | HISTOIRE | 3-4 neurons |
-| Green | ALIMENTATION, SANTÃ | 2-3 neurons |
+| Green | ALIMENTATION, SANTÃ  | 2-3 neurons |
 | Blue | TECH | 4 neurons |
 | High Complexity | TECH | +2 neurons |
 
@@ -160,7 +160,7 @@ PatternDataHash     String    Content hash
 
 ### Test Data
 - 7 real JPEG images from input/image/
-- Sizes: 474Ã843 to 928Ã1232 pixels
+- Sizes: 474Ã 843 to 928Ã 1232 pixels
 - Real-world photography content
 
 ### Test Results
@@ -177,7 +177,7 @@ PatternDataHash     String    Content hash
 ### Database Created
 - File: `patterns.db` (5.1 KB)
 - Patterns: 7
-- Categories detected: HISTOIRE (6), BUSINESS (6), ALIMENTATION (1), SANTÃ (1)
+- Categories detected: HISTOIRE (6), BUSINESS (6), ALIMENTATION (1), SANTÃ  (1)
 - Average complexity: 0.02
 - Average confidence: 75.5%
 
@@ -319,7 +319,7 @@ cp your_images.png input/image/
 
 ---
 
-## ‹ Quality Checklist
+## Ã  Quality Checklist
 
  **Compilation**
    - Clean build (no errors/warnings)

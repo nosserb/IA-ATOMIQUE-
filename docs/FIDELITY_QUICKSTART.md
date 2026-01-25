@@ -37,7 +37,7 @@ go build -o programme
 1.  Termes clés extraits
 2. Résumé Phase 13+++
 3. Score fidélité (Ff) calculé
-4. Décision : G�N�RATIF ou EXTRACTIF
+4. Décision : GàNàRATIF ou EXTRACTIF
 5. Résumé final
 6. Rapport sauvegardé
 
@@ -57,40 +57,40 @@ go build -o programme
 
 ##  Résultat attendus
 
-### Cas 1 : Texte technique ( BONNE FID�LIT�)
+### Cas 1 : Texte technique ( BONNE FIDàLITà)
 
 ```
 Texte original (167 mots):
 "Un atome computationnel est une unité autonome du réseau atomique T.R.A..."
 
-[ANALYSE FID�LIT�]
+[ANALYSE FIDàLITà]
 Coverage (Ff): 38-42%
 Mode sélectionné: EXTRACTIF
 
 Raison: Score < 80%  Basculer automatiquement sur extraction TF-IDF
 ```
 
-### Cas 2 : Texte général ( HALLUCINATION D�TECT�E)
+### Cas 2 : Texte général ( HALLUCINATION DàTECTàE)
 
 ```
 Texte original (8080 mots):
 "La Mésange huppée (Lophophanes cristatus)..."
 
-[ANALYSE FID�LIT�]
+[ANALYSE FIDàLITà]
 Coverage (Ff): 1.42%
 Mode sélectionné: EXTRACTIF
 
 Raison: Termes techniques IA-ATOMIQUE ne correspondent pas
 ```
 
-### Cas 3 : Texte bien aligné ( TEXTE G�N�R� ACCEPT�)
+### Cas 3 : Texte bien aligné ( TEXTE GàNàRà ACCEPTà)
 
 ```
-[ANALYSE FID�LIT�]
+[ANALYSE FIDàLITà]
 Coverage (Ff): 85%
-Mode sélectionné: G�N�RATIF (fid�le)
+Mode sélectionné: GàNàRATIF (fidàle)
 
-Raison: Score >= 80%  Texte généré est assez fid�le
+Raison: Score >= 80%  Texte généré est assez fidàle
 ```
 
 ---
@@ -135,8 +135,8 @@ filteredSummary := database.FilterForFidelity(generated, sourceVocab)
 
 ---
 
-### Stratégie C : Hybridation (RECOMMAND�E)
-**Approche** : Utiliser génération si fid�le, sinon extractif
+### Stratégie C : Hybridation (RECOMMANDàE)
+**Approche** : Utiliser génération si fidàle, sinon extractif
 
 ```go
 finalSummary, fidelity, mode := database.HybridResume(
@@ -145,7 +145,7 @@ finalSummary, fidelity, mode := database.HybridResume(
     0.80, // seuil fidélité
 )
 
-// mode = "G�N�RATIF (fid�le)" ou "EXTRACTIF (hallucination détectée)"
+// mode = "GàNàRATIF (fidàle)" ou "EXTRACTIF (hallucination détectée)"
 ```
 
 **Fidélité** : Garantie  80%
@@ -167,14 +167,14 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 
 ### Seuil hybride
 
-- **Par défaut** : � = 0.80 (80%)
-- **Ajustable** : Augmentez � 0.85-0.90 pour domaines critiques
+- **Par défaut** : à = 0.80 (80%)
+- **Ajustable** : Augmentez à 0.85-0.90 pour domaines critiques
 
 ---
 
 ##  Dépannage
 
-### "Coverage tr�s bas (< 10%)"
+### "Coverage tràs bas (< 10%)"
 
 **Cause probable** : Vocabulaire source incompatible avec termes techniques du projet
 
@@ -182,18 +182,18 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 1. Vérifier que texte source utilise terminologie IA-ATOMIQUE
 2. Enrichir `database/fidelity_check.go` avec nouveaux termes techniques
 
-### "Résumé fragmenté apr�s filtrage"
+### "Résumé fragmenté apràs filtrage"
 
 **Cause** : Trop de mots rejetés par stratégie B
 
-**Solution** : Utiliser stratégie C (hybridation) � la place
+**Solution** : Utiliser stratégie C (hybridation) à la place
 
 ### "Mode EXTRACTIF quand je veux génération"
 
 **Cause** : Fidélité < seuil
 
 **Solution** : Soit
-1. Rel�cher le seuil : `database.HybridResume(..., 0.70)`
+1. Relàcher le seuil : `database.HybridResume(..., 0.70)`
 2. Soit enrichir le vocabulaire source pour meilleure couverture
 
 ---
@@ -203,7 +203,7 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 - [ ] Compiler le projet : `go build -o programme`
 - [ ] Tester basique : `./programme fidelity test`
 - [ ] Tester sur fichier : `./programme fidelity file test_atomique_technique.txt`
-- [ ] Vérifier décision hybride : Mode = EXTRACTIF ou G�N�RATIF ?
+- [ ] Vérifier décision hybride : Mode = EXTRACTIF ou GàNàRATIF ?
 - [ ] Consulter rapport : `test_atomique_technique_fidelity_report_*.txt`
 
 ---
@@ -214,10 +214,10 @@ $$F_f(R,T) = \frac{|\text{mots du résumé en commun avec source}|}{|\text{total
 |---|---|
 | `database/fidelity_check.go` | Implémentation du scoring Ff et stratégies |
 | `fidelity_commands.go` | CLI pour tester les stratégies |
-| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathématique compl�te |
+| `PHASE-15-ANTI-HALLUCINATION.md` | Documentation mathématique complàte |
 
 ---
 
 **Statut** :  Opérationnel  
-**Derni�re mise � jour** : 8 janvier 2026  
+**Derniàre mise à jour** : 8 janvier 2026  
 **Contact** : IA-ATOMIQUE Project Team

@@ -1,19 +1,19 @@
 # Phase 13+++ - Normalisation Lexicale Avancée & Diversification
 
 ##  Objectif Global
-Réduire les répétitions résiduelles gr�ce � **5 stratégies imbriquées** opérant � différents niveaux: décision de blocs, vectorisation, sélection, et post-traitement.
+Réduire les répétitions résiduelles gràce à **5 stratégies imbriquées** opérant à différents niveaux: décision de blocs, vectorisation, sélection, et post-traitement.
 
 ---
 
 ##  Les 5 Stratégies Implémentées
 
-### 1� **Normalisation Lexicale des Blocs** 
+### 1à **Normalisation Lexicale des Blocs** 
 **Fichier**: `/database/resumeur_coherence.go`  
 **Fonction**: `NormaliserRepetitionsBlocs()`
 
 **Principe**:
 - Lors du découpage, compter les occurrences de chaque mot valide dans chaque bloc
-- Calculer une pénalité: `PenaliteRepetition = Σ(count-2) � 0.1` pour words où `count > 2`
+- Calculer une pénalité: `PenaliteRepetition = Σ(count-2) à 0.1` pour words où `count > 2`
 - Appliquer cette pénalité lors de la sélection: `finalScore *= (1 - bloc.PenaliteRepetition)`
 
 **Résultat**: Blocs avec répétitions internes sont déprioritisés automatiquement.
@@ -43,13 +43,13 @@ func (r *ResumeurCoherence) NormaliserRepetitionsBlocs() {
 
 ---
 
-### 2� **Pondération Intelligente des Mots Rares** 
+### 2à **Pondération Intelligente des Mots Rares** 
 **Fichier**: `/database/generation.go`  
 **Fonction**: `CalculerTFIDF()`
 
 **Principe**:
 - Identifier les mots **rares mais fréquents** (IDF élevé + TF élevé)
-- Ces mots tendent � se répéter  appliquer pénalité `0.8x`
+- Ces mots tendent à se répéter  appliquer pénalité `0.8x`
 - Formule: si `IDF > 0.5` et `TF > 0.05`  `tfidf *= 0.8`
 
 **Résultat**: Mots comme "donné", "cas", "monde" ne dominent plus le score des blocs.
@@ -65,12 +65,12 @@ if idf[mot] > 0.5 && tf[mot] > 0.05 {
 
 ---
 
-### 3� **Fen�trage Strict avec Diversité Lexicale** 
+### 3à **Fenàtrage Strict avec Diversité Lexicale** 
 **Fichier**: `/database/resumeur_coherence.go`  
 **Fonction**: `CalculerSimilarityVocabLexical()` + `SelectionnerBlocsAvecFenetrageGlissant()`
 
 **Principe**:
-- Apr�s sélection des meilleurs blocs, vérifier que blocs **consécutifs** ont <60% similarité lexicale
+- Apràs sélection des meilleurs blocs, vérifier que blocs **consécutifs** ont <60% similarité lexicale
 - Similarité = `intersection / union` des vocabulaires normalisés
 - Si similitude > 0.6  skip le bloc (forcer diversité)
 
@@ -78,7 +78,7 @@ if idf[mot] > 0.5 && tf[mot] > 0.05 {
 
 **Code**:
 ```go
-// Phase 13+++: Fen�trage strict
+// Phase 13+++: Fenàtrage strict
 if len(result) > 0 {
     lastBloc := result[len(result)-1]
     similarity := CalculerSimilarityVocabLexical(lastBloc.Mots, bloc.Mots)
@@ -104,16 +104,16 @@ func CalculerSimilarityVocabLexical(mots1, mots2 []string) float64 {
 
 ---
 
-### 4� **Post-Traitement Anti-Répétition (<5 mots d'écart)** 
+### 4à **Post-Traitement Anti-Répétition (<5 mots d'écart)** 
 **Fichier**: `/database/coherence.go`  
 **Fonction**: `PostTraiterResume()`
 
 **Principe**:
 - Lors de la génération de texte, tracker position de chaque mot
-- Si mot réapparat � distance < 5 mots  **ignorer 2�me occurrence**
-- Formule: si `position[i] - position[derni�re] < 5`  skip le mot
+- Si mot réapparat à distance < 5 mots  **ignorer 2àme occurrence**
+- Formule: si `position[i] - position[derniàre] < 5`  skip le mot
 
-**Résultat**: Aucun mot répété dans fen�tre de 5 mots  texte fluide et sans répétitions locales.
+**Résultat**: Aucun mot répété dans fenàtre de 5 mots  texte fluide et sans répétitions locales.
 
 **Code**:
 ```go
@@ -136,7 +136,7 @@ mots = motsFiltres
 
 ---
 
-### 5� **Diversification par Synonymes Contextuels** 
+### 5à **Diversification par Synonymes Contextuels** 
 **Fichier**: `/database/coherence.go`  
 **Dictionnaire**: `SynonymsDict`
 
@@ -151,11 +151,11 @@ mots = motsFiltres
 **Dictionnaire inclus**:
 ```go
 var SynonymsDict = map[string][]string{
-    "malheureux":   {"regrettable", "désolé", "f�cheux", "malheureux"},
+    "malheureux":   {"regrettable", "désolé", "fàcheux", "malheureux"},
     "changer":      {"modifier", "transformer", "altérer", "changer"},
     "important":    {"crucial", "essentiel", "vital", "important"},
     "différent":    {"distinct", "varié", "divers", "différent"},
-    "donne":        {"gén�re", "fournit", "conduit", "donne"},
+    "donne":        {"génàre", "fournit", "conduit", "donne"},
     // ... 15+ autres entrées
 }
 ```
@@ -184,11 +184,11 @@ motsFiltres = append(motsFiltres, mot)
 - **Mots générés**: 1297 (sur 5406 source)
 - **Blocs sélectionnés**: 50 / 474
 - **Cohérence**: 94.83%
-- **Probl�me**: Répétitions résiduelles de "donné", "moi!", "cas"
+- **Problàme**: Répétitions résiduelles de "donné", "moi!", "cas"
 
-### Apr�s Phase 13+++
+### Apràs Phase 13+++
 - **Mots générés**: 679 (test input.txt)
-- **Blocs sélectionnés**: 45 / 180 (fen�trage strict appliqué)
+- **Blocs sélectionnés**: 45 / 180 (fenàtrage strict appliqué)
 - **Cohérence**: 95.00%
 - **Avantages**:
   -  Pénalités appliquées aux blocs répétitifs
@@ -206,7 +206,7 @@ motsFiltres = append(motsFiltres, mot)
 - **Ligne ~142**: Appel `r.NormaliserRepetitionsBlocs()` dans `Decouper()`
 - **Ligne ~554-580**: Fonction `NormaliserRepetitionsBlocs()` implémentée
 - **Ligne ~698**: Scoring modifié: `finalScore *= (1.0 - bloc.PenaliteRepetition)`
-- **Ligne ~730-740**: Fen�trage strict avec `CalculerSimilarityVocabLexical()`
+- **Ligne ~730-740**: Fenàtrage strict avec `CalculerSimilarityVocabLexical()`
 - **Ligne ~940+**: Fonction `CalculerSimilarityVocabLexical()` ajoutée
 
 ### 2. `/database/generation.go`
@@ -238,7 +238,7 @@ motsFiltres = append(motsFiltres, mot)
 
 4. Post-Traitement (PostTraiterResume)
     Filtrer répétitions immédiates (mot mot  mot)
-    Anti-répétition: mots répétés <5 mots d'écart  skip 2�me
+    Anti-répétition: mots répétés <5 mots d'écart  skip 2àme
     Diversifier: remplacer mots fréquents par synonymes (1/3 fois)
 
 5. Lissage & Finalisaton
@@ -258,7 +258,7 @@ motsFiltres = append(motsFiltres, mot)
 
 **Pour textes courts (50-100 mots)**:
 - Cohérence: ~95%
-- Blocs diversifiés: Fen�trage strict fonctionne m�me sur petits corpus
+- Blocs diversifiés: Fenàtrage strict fonctionne màme sur petits corpus
 - Effet synonymes visible mais discret (peu d'occurrences)
 
 ---
@@ -267,19 +267,19 @@ motsFiltres = append(motsFiltres, mot)
 
 ### Pénalité de Répétition
 ```
-PenaliteRepetition = Σ(count - 2) � 0.1  pour words où count > 2
-Impact: bloc avec 5x "donné"  pénalité = (3 + 4 + 5) � 0.1 = 1.2 (capped at 0.99)
+PenaliteRepetition = Σ(count - 2) à 0.1  pour words où count > 2
+Impact: bloc avec 5x "donné"  pénalité = (3 + 4 + 5) à 0.1 = 1.2 (capped at 0.99)
 ```
 
 ### Similarité Lexicale Jaccard
 ```
-Similarity = |A � B| / |A  B|
+Similarity = |A à B| / |A  B|
 Si >60%  blocs trop similaires  skip second bloc
 ```
 
 ### TF-IDF Ajusté (Phase 13+++)
 ```
-tfidf = tf � idf
+tfidf = tf à idf
 Si idf > 0.5 && tf > 0.05:
     tfidf *= 0.8  # Pénaliser mots rares mais fréquents
 ```
@@ -298,7 +298,7 @@ Prévient: "la la", "le le", etc.
 
 - [x] Phase 1: Normalisation lexicale blocs implémentée
 - [x] Phase 2: Pondération TF-IDF intelligente implémentée
-- [x] Phase 3: Fen�trage strict avec diversité lexicale implémentée
+- [x] Phase 3: Fenàtrage strict avec diversité lexicale implémentée
 - [x] Phase 4: Post-traitement anti-répétition (<5 mots) implémentée
 - [x] Phase 5: Synonymes contextuels implémentés
 - [x] Compilation:  BUILD SUCCESS
@@ -307,18 +307,18 @@ Prévient: "la la", "le le", etc.
 
 ---
 
-##  Prochaines �tapes Optionnelles
+##  Prochaines àtapes Optionnelles
 
 ### Phase 14: Fine-Tuning Avancé
 1. **Augmenter dictionnaire synonymes**: Ajouter 30+ entrées (verbes, adjectifs)
-2. **Contexte sémantique**: Choisir synonyme basé sur catégorie (TECH/SANT�)
-3. **Fen�trage dynamique**: Ajuster seuil 60% selon longueur document
+2. **Contexte sémantique**: Choisir synonyme basé sur catégorie (TECH/SANTà)
+3. **Fenàtrage dynamique**: Ajuster seuil 60% selon longueur document
 4. **Bigrammes non-répétitifs**: Vérifier couples de mots aussi
 
 ### Phase 15: Optimisation Performance
 1. **Cache TF-IDF**: Pré-calculer pour accélération
 2. **Parallélisation**: Score blocs en goroutines
-3. **Incremental**: M�j vectorisation sans recalcul total
+3. **Incremental**: Màj vectorisation sans recalcul total
 
 ---
 
