@@ -1,5 +1,9 @@
 # IA-ATOMIQUE
 
+<p align="center">
+<a href="https://ibb.co/5QTzvfj"><img src="https://i.ibb.co/kLKr0WD/NEUROPULSE-2.png" alt="NEUROPULSE-2" border="0" /></a>
+</p>
+
 Advanced neural network system with Atomic Resonance Technology (T.R.A.)
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
