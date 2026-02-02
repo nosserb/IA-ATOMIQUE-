@@ -43,7 +43,7 @@ func StartLLMMode() {
 Slash commands:
 	/file <path>                analyze a file
 	/text <content>             analyze inline text
-	/resume <file> [threshold]  grammar-aware summary (default 0.10)
+	/resume <file> [ratio]      hybrid summary atomique+proba (default 0.55)
 	/compare <file> [ratio]     compare summarizers
 	/generate <file> [ratio]    generate summary (vector/atomic)
 	/extract <file> [ratio]     extract key sentences
@@ -77,14 +77,14 @@ Free text without a slash is analyzed directly.
 		case strings.HasPrefix(lower, "/resume "):
 			parts := strings.Fields(line)
 			if len(parts) < 2 {
-				fmt.Println("Usage: /resume <file> [threshold]")
+				fmt.Println("Usage: /resume <file> [ratio]")
 				continue
 			}
-			threshold := "0.10"
+			ratio := "0.55"
 			if len(parts) > 2 {
-				threshold = parts[2]
+				ratio = parts[2]
 			}
-			ResumeOptimizedCommand([]string{parts[1], threshold})
+			ResumeHybridCommand([]string{parts[1], ratio})
 			continue
 
 		case strings.HasPrefix(lower, "/compare "):

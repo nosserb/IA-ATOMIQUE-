@@ -367,6 +367,85 @@ func (kb *KnowledgeBase) GetRelatedConcepts(keyword string) []string {
 	return related
 }
 
+// findClosestMatch cherche le mot le plus proche dans la KB (avec gestion des synonymes)
+func (kb *KnowledgeBase) findClosestMatch(term string) string {
+	termLower := strings.ToLower(term)
+
+	// D'abord: chercher correspondance exacte
+	if _, exists := kb.DefinitionFacts[termLower]; exists {
+		return termLower
+	}
+
+	// Deuxième: chercher dans les co-occurrences (mots souvent liés)
+	if coOccur, exists := kb.CoOccurrences[termLower]; exists {
+		// Retourner le mot le plus fréquemment associé
+		var bestMatch string
+		var bestCount int
+		for word, count := range coOccur {
+			if count > bestCount {
+				bestCount = count
+				bestMatch = word
+			}
+		}
+		if bestMatch != "" {
+			return strings.ToLower(bestMatch)
+		}
+	}
+
+	// Troisième: chercher par similarité Levenshtein (distance d'édition)
+	var closestMatch string
+	minDistance := 5 // Maximum 5 différences de caractères
+
+	for knownTerm := range kb.DefinitionFacts {
+		dist := levenshteinDistance(termLower, knownTerm)
+		if dist < minDistance {
+			minDistance = dist
+			closestMatch = knownTerm
+		}
+	}
+
+	return closestMatch
+}
+
+// levenshteinDistance calcule la distance d'édition entre deux mots
+func levenshteinDistance(a, b string) int {
+	if len(a) == 0 {
+		return len(b)
+	}
+	if len(b) == 0 {
+		return len(a)
+	}
+
+	// Matrice de programmation dynamique
+	d := make([][]int, len(a)+1)
+	for i := range d {
+		d[i] = make([]int, len(b)+1)
+		d[i][0] = i
+	}
+	for j := range d[0] {
+		d[0][j] = j
+	}
+
+	for i := 1; i <= len(a); i++ {
+		for j := 1; j <= len(b); j++ {
+			cost := 0
+			if a[i-1] != b[j-1] {
+				cost = 1
+			}
+			d[i][j] = min(d[i-1][j]+1, min(d[i][j-1]+1, d[i-1][j-1]+cost))
+		}
+	}
+	return d[len(a)][len(b)]
+}
+
+// min retourne le minimum de deux entiers
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 // GetFactualInfo retourne les informations factuelles sur un terme
 func (kb *KnowledgeBase) GetFactualInfo(term string) map[string]interface{} {
 	kb.mutex.RLock()
@@ -374,9 +453,22 @@ func (kb *KnowledgeBase) GetFactualInfo(term string) map[string]interface{} {
 
 	info := make(map[string]interface{})
 
-	// Définition
-	if def, exists := kb.DefinitionFacts[strings.ToLower(term)]; exists {
-		info["definition"] = def
+	// Utiliser le matching amélioré pour trouver le meilleur terme
+	matchedTerm := kb.findClosestMatch(term)
+	termLower := strings.ToLower(term)
+
+	// Définition - utiliser le terme matché si trouvé
+	var defTerm string
+	if _, exists := kb.DefinitionFacts[termLower]; exists {
+		defTerm = termLower
+	} else if matchedTerm != "" {
+		defTerm = matchedTerm
+	}
+
+	if defTerm != "" {
+		if def, exists := kb.DefinitionFacts[defTerm]; exists {
+			info["definition"] = def
+		}
 	}
 
 	// Dates associées
@@ -540,6 +632,26 @@ func (kb *KnowledgeBase) LoadFromFile(filepath string) error {
 	kb.TotalTextsProcessed = skb.TotalTextsProcessed
 	kb.TotalWordsProcessed = skb.TotalWordsProcessed
 	kb.TotalFactsExtracted = skb.TotalFactsExtracted
+
+	// Réinitialiser les maps nil pour éviter les panics
+	if kb.CoOccurrences == nil {
+		kb.CoOccurrences = make(map[string]map[string]int)
+	}
+	if kb.DateFacts == nil {
+		kb.DateFacts = make(map[string][]string)
+	}
+	if kb.CausalFacts == nil {
+		kb.CausalFacts = make(map[string][]string)
+	}
+	if kb.LocationFacts == nil {
+		kb.LocationFacts = make(map[string][]string)
+	}
+	if kb.DefinitionFacts == nil {
+		kb.DefinitionFacts = make(map[string]string)
+	}
+	if kb.ConceptMapping == nil {
+		kb.ConceptMapping = make(map[string]int)
+	}
 
 	return nil
 }

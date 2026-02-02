@@ -1,0 +1,479 @@
+
+╔════════════════════════════════════════════════════════════╗
+║         PHASE 15: GRAMMAR-AWARE SUMMARIZATION REPORT        ║
+╚════════════════════════════════════════════════════════════╝
+
+
+📊 METRICS:
+────────────────────────────────────────────────────────────
+Grammar Score:     54.5%
+Style Score:       39.4%
+Coherence Score:   0.0%
+Lexical Richness:  39.4%
+Improvement:       +8.1%
+
+📝 TEXT ANALYSIS:
+────────────────────────────────────────────────────────────
+Text Type:         Conceptuel
+Abstraction:       APPLIED
+
+📈 PROCESSING:
+────────────────────────────────────────────────────────────
+Original Length:   693246 chars
+Summary Length:    27498 chars
+Compression:       96.0%
+Variants Created:  5
+Operations:        408650 (0.41M ops)
+Processing Time:   1366 ms
+Throughput:        0.30 M ops/sec
+
+💾 SYSTEM RESOURCES:
+────────────────────────────────────────────────────────────
+RAM Used:          7.0 MB / 3341.0 MB (0.2%)
+Go Routines:       1
+Memory Alloc:      7.4 MB
+CPU Usage:         9.67%
+
+💬 SUMMARY:
+────────────────────────────────────────────────────────────
+Que l’on réfléchisse deux minutes à l’univers de cette époque par
+rapport aux perspectives d’aujourd’hui: le XXe siècle, c’était un univers
+sans Internet, sans caméras numériques, sans banques vidéo, sans échange
+de données visuelles, sans véritables neurosciences sociales, sans IRM
+dédiée aux sciences humaines, sans intelligence artificielle, sans réseau de
+neurones; or, tous ces outils ont su se rendre absolument indispensables
+pour comprendre la gestuelle et permettent aujourd’hui de la voir
+autrement. Voici qui vous aidera à mieux comprendre:
+avez-vous déjà pris conscience que, au cours d’une conversation à deux,
+votre interlocuteur passe la moitié du temps à se taire puisqu’il vous
+écoute? Au mitan de notre vie, à 40 ans environ, à raison de 6 heures
+quotidiennes de conversations, nous aurons passé plus de 43 000 heures à
+converser avec un interlocuteur silencieux sans autres indicateurs que le
+langage de son corps, soit 4 années entières d’échanges à nous assurer que
+l’autre personne écoutait, comprenait, était d’accord avec nous, à le vérifier,
+ou à être attentifs au fait qu’elle veuille reprendre la parole. Les
+travaux de Darwin ont démontré que ces signes apparaissent aussi chez les
+singes, les chiens, les chats, mais aussi sur les dindons et les poules14,
+auxquels nous pouvons aujourd’hui ajouter les vaches15!
+Notre intuition se forge à partir de ces décodages faciaux rapides, si
+bien qu’un visage montrant beaucoup de blanc de l’œil sera perçu comme
+moins attrayant qu’un visage qui n’en montre pas16 ou peu; et c’est ainsi
+que les émotions ressenties contribuent à ce que nous trouvions très vite des
+personnes d’un abord plaisant ou non. En revanche, ils
+pourraient battre Madame Irma sur son terrain de voyante, car ils peuvent
+prédire des résultats d’élections à partir des photographies de candidats31!
+On a présenté à des enfants suisses de 5 à 13 ans des photos de visages,
+groupées par deux (en fait, les deux candidats restants au deuxième tour
+d’élections d’un autre pays), et on leur a demandé de sélectionner «le
+capitaine de leur bateau» parmi ces deux personnes. De votre côté, vous est-il déjà arrivé d’inviter quelqu’un à manger et
+d’être capable de deviner, avant même qu’il porte la nourriture à sa bouche,
+sa réticence face au plat que vous lui servez? Vous n’avez pas pensé à
+observer consciemment le muscle buccinateur (codé BC3 en synergologie)
+de la personne qui regarde les huîtres, mais votre cerveau l’a vu et il a
+ressenti le dégoût ressenti par l’autre. «Je mets les assiettes… Les assiettes creuses
+ou les assiettes plates? Les assiettes à motif?… Donne ton assiette!… Mon
+assiette est trop pleine… Finis ton assiette… Débarrasse les assiettes… On
+change d’assiette pour le dessert?… Cette assiette est ébréchée…» Bébé
+engloutit tous ces sons, les absorbe et finit par associer le mot [assiette] à
+cette chose ronde qui se trouve sur la table et dans laquelle on mange. Voici quelques-unes de ces idées reçues qui méritent d’être remises en
+question: «Les gens qui croisent les bras sont fermés!», «Il ne me regarde
+pas dans les yeux, il n’est pas net!», «S’il a une poignée de main molle,
+c’est qu’il est mou!», «Il fait beaucoup de gestes pour se justifier donc il
+ment!», «Il fait des gestes de la main gauche parce qu’il est gaucher», «Il
+bouge sur sa chaise, donc il est mal à l’aise, il ment certainement!», «Il est
+ouvert donc il dit la vérité», «Il rougit, c’est la preuve qu’il ment!», «Il rit
+parce qu’il est heureux», «Il transpire parce qu’il ment», «Il sourit parce
+qu’il est détendu», «Il déglutit parce qu’il ment», «Il est bien franc, il
+regarde dans les yeux», «Il parle en posant la main devant la bouche, il
+ment», «Il sourit parce qu’il est bienveillant», «Il se gratte le nez parce qu’il
+ment», «Il touche les autres parce qu’il est kinesthésique», «Il lève le
+menton parce qu’il est hautain», «Il montre des signes de honte, il ment»,
+«Elle se passe la main dans les cheveux, elle est dans la séduction!», «Sa
+poignée de main vient du haut, il est dominant», etc. Si nous entrons des données fausses dans nos bases de données, il y a
+bien peu de chances qu’une fois mixées elles soient justes!
+Troisième idée reçue: Le menteur ne regarde pas dans les yeux
+Comment pouvez-vous dire quand les gens mentent? Posez la question
+autour de vous, il y a toutes les chances du monde pour que les réponses
+entendues ressemblent à celles de cette étude dans laquelle des humains de
+tous les continents ont été interrogés sur le mensonge. Elle permet de
+générer des images en trois dimensions de toutes les parties du corps, à
+commencer par sa partie souveraine, le cerveau, et d’offrir, contre toute
+attente, un ordre de réponse à la question qui conditionne toute notre
+réflexion:
+La même attitude corporelle adoptée inconsciemment par deux
+personnes différentes a-t-elle la même signification?
+Observant l’activité des neurones miroirs, les neurosciences, grâce à la
+résonance magnétique, sont assez catégoriques: le geste effectué par notre
+interlocuteur a le même sens pour lui que pour nous, et nous comprenons le
+geste de l’autre par le ressenti5. Notre cerveau n’est-il pas la somme d’un tissu d’expériences, depuis celles
+phylogénétiques de nos aïeux jusqu’aux nôtres? Mais, là encore, si
+l’expérience est un atout dans la vie, dès qu’il est question de langage
+corporel, comme il n’existe pas de corpus de connaissances solides et
+stables, elle n’est le plus souvent que le renforcement de croyances et de
+préjugés; ce qui fait que les gens les plus expérimentés sont loin d’être
+systématiquement efficaces pour décoder les émotions et les pensées sur les
+bases du langage corporel. Même sur une photo, lorsque les pupilles d’une personne sont dilatées,
+celle-ci devient plus désirable aux yeux de celui qui la regarde et, par effet
+mimétique, les pupilles de ce dernier se dilatent également9!
+Enfin, face à l’attractivité et d’un point de vue plus anecdotique, mais
+non moins sérieux, si la dilatation des pupilles joue le même rôle attractif
+chez les hommes que chez les femmes10, il semble toutefois que les
+femmes qui sont plus sensibles à la dilatation des pupilles des hommes sont
+aussi celles qui disent préférer les «bad boys»11!
+Les yeux sont un témoin précieux des émotions, mais le regard donne
+d’autres indications. Le cerveau semble en somme moins impliqué qu’on le pensait dans les
+directions du regard, tandis que l’environnement l’est davantage; ce qui
+veut dire que ce n’est pas parce que tel hémisphère cérébral travaille27 que
+les yeux vont dans telle ou telle direction, mais plutôt que les yeux
+cherchent pour réfléchir un espace vierge où ils sont certains de ne pas
+croiser le regard de l’autre. Ces regards vers la droite on été observés aussi
+bien lors de la remémoration du 11 septembre 2001 racontée quelques
+années après par les pompiers de New York présents sur les lieux du
+drame43, que lorsque des personnes ont évoqué l’attentat du Bataclan ou
+celui de Nice, deux ans après les événements44; de même, quand des
+personnes ont relaté une agression sexuelle45; ou lorsqu’une psychologue
+demande à des pompiers d’une caserne d’un aéroport suisse de relater une
+intervention au dénouement malheureux et de la comparer à une autre au
+dénouement heureux46. Mais si l’implantation des sourcils est propre à
+chacun, leurs déplacements sont transculturels, universels et même partagés
+par certains animaux, les singes, mais aussi les vaches! Au Québec, une
+synergologue agronome, capable de reconnaître les vaches et les taureaux
+agressifs, est consultée régulièrement par des agriculteurs, et ce, afin de leur
+éviter d’être encornés6! Elle utilise exactement les mêmes indicateurs
+faciaux d’agressivité que ceux que nous repérons chez l’être humain. Lorsqu’on est en colère, par contre, si! Le mot «father» n’est
+pas neutre dans la bouche de ce fils, et, s’il nous est impossible de savoir
+pourquoi les dents sont tout à coup devenues aussi visibles, nous pourrions
+tout de même lui demander: «Au fait, comment va votre père?» et l’écouter
+exprimer son ressentiment, parce que ses lèvres montent comme elles le
+font lorsqu’on est en colère. Lorsqu’un animateur demande à la femme leader d’un parti de droite
+nationaliste français si elle connaît tous les couplets de La Marseillaise, son
+hymne national, elle se gratte la zone centrale de la moustache de la main
+gauche avant de lui répondre:
+— L’intégralité… je vous le dis très franchement, non!
+Elle pense que son électorat attend d’elle qu’elle connaisse son hymne
+national et, en regardant le journaliste lui lire les couplets, elle sait qu’il
+vient de la piéger et de rabaisser son autorité. Dans le cas d’un toast, il pourrait
+nous inciter à nous poser les questions suivantes: la personne avec qui vous
+trinquez regarde-t-elle vos yeux, son verre, le vôtre ou quelqu’un d’autre?
+Quel hémivisage présente-t-elle? Ses yeux sont-ils humides ou secs? Ses
+pupilles plutôt dilatées ou rétractées? Le blanc de l’œil largement visible ou
+non? Sourit-elle, bouche ouverte ou mi-close? A-t-elle monté sa main (et
+son verre) la première ou a-t-elle suivi votre geste? Son autre main reste-t-
+elle raidie contre son flanc ou fait-elle mine d’approcher vers vous? Ces
+codes-là sont inconscients et ils sont universels. Mais sait-il
+à quel point, au-delà des objets, c’est vous-même ou votre propos qu’il
+caresse, manipule, étreint, déplace ou rejette? Et à quel point aussi la
+distance à laquelle il place ses objets nous renseigne sur ce qu’il ressent?
+Les microtractions sur les vêtements et la main sur la cravate
+Les signes corporels effectués sur nos vêtements (cravate, lunettes,
+poussières de cheveux ou pellicules balayées précipitamment) passent
+généralement sous le radar de l’observation parce qu’on a de la difficulté à
+penser qu’ils puissent avoir du sens, sauf lorsque nous les visionnons, dans
+les bases de données, les uns à la suite des autres. Dans les bases de données vidéo, un journaliste, après avoir touché sa
+cravate, interrompt un invité en lui expliquant que c’est lui, l’animateur de
+l’émission, ce dont son interlocuteur ne semblait pas se soucier; un joueur
+de football sur un plateau de télévision trouve que la réussite de son équipe
+n’est pas suffisamment soulignée, le gouverneur de Tokyo pose la main sur
+sa cravate avant de prendre la parole sur des questions de sécurité, etc. Sur une vidéo, un acteur adulé se débarrasse vigoureusement d’une
+poussière sur sa jambe, écartant une question relative à sa vie personnelle
+par ces paroles sans détour: «Si j’avais su qu’on parlerait de ça, je ne serais
+pas venu!» Le mouvement violent de rejet du plat de la main contraste avec
+l’expression sereine de son visage; c’est un peu comme une cocotte-minute
+qui n’explose pas grâce au mécanisme de la vapeur d’eau qui s’échappe du
+couvercle. Parmi les extraits vidéo que nous avons visionnés, deux messieurs
+s’invectivant sur un plateau de télévision sont interrompus par un animateur
+qui constate: «Nous venons de perdre 30 secondes!» Rappelés à l’ordre, ils
+boivent exactement en même temps… Une personne reconnue pour son
+caractère chicanier est questionnée: «Pensez-vous que vous êtes déjà allée
+trop loin dans la confrontation, dans les insultes?» La question sournoise la
+met mal à l’aise et, là aussi, elle pique du nez dans son verre… Un
+humoriste à l’humour graveleux lance à une intellectuelle partie à la défense
+des politiciens sur un plateau de télévision sérieux: «Moi, ce qui me
+dérange avec les politiciens, c’est la langue de bois, parce que la langue de
+bois, ça fait des échardes durant les fellations!», ne lui laissant d’autre choix
+que de plonger dans son verre pour ne pas renchérir sur le terrain de la
+vulgarité. Les observations et les leçons à tirer de la «goutte de malaise» sont si
+nombreuses qu’elles pourraient nous incliner à troquer une réunion matinale
+de négociation dans un bureau austère contre un déjeuner de travail autour
+d’une table avec couvert et surtout: un verre!
+Microfrappe: passons à autre chose
+Les objets sont également utilisés comme des outils pour mettre fin à une
+situation de manière symbolique. Il y est beaucoup question de température chaude quand les
+relations sont positives: «Qu’est-ce qu’il est chaleureux!», «Elle brillait de
+tous ses feux!», «J’ai envie de lui déclarer ma flamme!», «J’aime la chaleur
+de ses propos», «Qu’est-ce qu’il est hot!», «Un regard de braise!», «Qu’est-
+ce qu’elle est chaude!», «Un chaud lapin!», «Une relation torride!», «Être
+en chaleur!», «Brûler de désir!», etc. Parallèlement, l’aspect négatif des relations prend la forme de
+températures fraîches: «Qu’est-ce qu’il est froid», «Elle a un regard
+glacial», «Ah, la froideur de ses réactions!», «Un monstre froid», «Il m’a
+complètement refroidi», «Il a le cœur glacé», «Un froid entre nous», «Elle
+est frigide», «Le climat de réflexion s’est rafraîchi», «Il va bien finir par se
+dégeler», «C’est un vrai glaçon». Cette histoire commence à l’Université de San Francisco dans les
+années 1960, au moment où Benjamin Libet se pose, en bon scientifique,
+une question en apparence anodine: combien y a-t-il de temps entre le
+moment où une personne décide d’agir, par exemple en bougeant sa main,
+et le moment où la main bouge effectivement? Il découvre alors une chose
+stupéfiante: le cerveau enverrait ses ordres trois ou quatre dixièmes de
+seconde avant que la personne ait conscience de demander à sa main de
+bouger, trois ou quatre dixièmes de seconde avant qu’il ait pris sa décision
+effective2!
+En fait:
+1. L’observation du langage corporel
+doit donc se faire en lien avec une pratique de la relation…
+TROISIÈME PARTIE
+La relation
+Que penseriez-vous d’une personne qui dirait: l’être humain, c’est un
+ensemble de muscles rattachés à un corps au sommet duquel trône un
+cerveau?
+Vous auriez l’impression que même si rien n’est faux dans cette
+définition, elle est très organique et manque assez cruellement d’humanité,
+n’est-ce pas? L’être humain n’est pas simplement l’addition d’un ensemble
+de muscles, et l’interprétation de son comportement ne peut pas être
+rapportée à la somme unique d’un ensemble de signes corporels. Très concrètement, chaque fois que nous avons le sentiment d’avoir
+avec notre interlocuteur une relation harmonieuse, mais que nous voyons
+qu’il est plus important pour lui aujourd’hui d’avoir raison que d’aider la
+communication à progresser, qu’il se bute plutôt que de développer une
+logique d’écoute ou encore que sa vision s’arrête aux limites strictes de son
+intérêt propre, ce sera un indice que nous sommes passés à côté de signes de
+fermeture que nous n’avons pas su déceler à temps. CHAPITRE 22
+Pour une origine possible de la théorie de la
+relation
+Dans cet ouvrage consacré au langage corporel, peut-être pouvons-nous
+poser, le temps d’un court chapitre, cette question moins saugrenue qu’il
+n’y paraît: le langage corporel commence dans le corps, d’accord, mais où
+dans le corps? Et d’où nous vient l’intelligence de la relation qui permet au
+corps humain de réagir avec tant de vélocité?
+À y regarder de plus près, les comportements humains se reproduisent
+indéfiniment depuis si longtemps qu’on peut dire que le corps a de la
+mémoire, une si bonne mémoire qu’il semble évident aujourd’hui que les
+stratégies de communication humaines sont nées avant l’Homo sapiens. Antonio Damasio, dont la réputation scientifique dans le champ des
+neurosciences n’est plus à faire7, s’appuie sur la science la plus solide et la
+plus consensuelle pour nous parler des bactéries:
+Lorsqu’un être vivant se comporte intelligemment et avec
+assurance en société, nous partons du principe que ce
+comportement résulte à la fois d’une capacité d’anticipation et de
+réflexion, et de mécanismes complexes, et que cette capacité et
+ces mécanismes s’appuient sur le système nerveux. Il n’est pas déraisonnable de penser que des règles d’interaction aient
+été à l’origine même de la vie et que celles-ci se reproduisent dans nos
+cellules, car nos processus d’adaptation complexes ressemblent diablement
+aux stratégies de communication des bactéries! C’est en tout cas ce que
+donnent à penser les spécialistes de ces questions, une fois de plus dans le
+champ scientifique le plus académique. Nous verrons la
+suite…
+Au stade où nous en sommes, nous avançons avec l’idée que si le
+mensonge est si difficile à décoder, c’est parce que l’être humain ment
+depuis toujours et, comme le mensonge est omniprésent, repérable jusque
+dans les bilans de personnalité, peut-être inscrit dans nos gènes, notre
+cerveau ne peut pas vraiment nous préparer à reconnaître ce qu’il travaille à
+fabriquer lui-même!
+Que le mensonge soit nécessaire pour lutter contre les prédateurs
+physiques ou sociaux, nous pouvons l’entendre, mais sommes-nous prêts à
+entendre qu’il est aussi un critère de mesure de l’intelligence? Pas certain. Vous regardez et
+écoutez votre interlocuteur et vous vous dites: Qu’est-ce que je sens? Soit
+vous sentez que l’autre ment, qu’il «n’a pas l’air net»… et tout à coup des
+tas de signes abondent dans le sens du mensonge; soit, sans trop savoir
+pourquoi, vous le trouvez «vrai» et, là aussi, tout à coup plusieurs signes
+vous incitent à aller en ce sens et vous cochez la case «Vérité» dans votre
+ordinateur cérébral. Cette façon de faire, si c’est bien la vôtre, est basée sur
+l’empathie et elle est sans doute la meilleure manière pour ne jamais
+aboutir! Pourquoi?
+L’empathie, qui entre en action grâce à notre système de neurones
+miroirs, permet de ressentir ce que l’autre ressent et, à ce titre, ses résultats
+sont insurpassables; mais elle s’active lorsque les êtres humains cherchent à
+mieux se comprendre. Si c’est le cas, êtes-
+vous aussi qualifié pour parler des émotions que la personne ayant un
+vocabulaire plus riche que vous?
+Dans cette perspective, les gens qui connaissent le plus de mots
+émotionnels parce qu’ils sont érudits ne seraient-ils pas plus qualifiés pour
+reconnaître les émotions?
+Ces questions simples font naître une certitude: tant que la corrélation
+entre un déplacement de muscle et un vocable ne sera pas établie (et elle ne
+peut l’être), on ne peut pas espérer apposer le nom juste de l’émotion sur le
+visage que l’on regarde. Il ressasse des pensées qui prennent la forme suivante: «Je
+l’avais prévenu», «Si elle ne m’avait pas menti, elle serait toujours
+vivante», «S’il avait fait ce que je lui demandais, on n’en serait pas là», «Il
+m’a trahi», «Pourquoi ne m’a-t-elle pas écouté?», «Je l’avais prévenue
+depuis le départ qu’il fallait qu’elle change…», «Si elle n’avait pas cherché
+à fuir, on n’en serait pas à»… si… si… si…
+Ces observations nous ont conduits, il y a longtemps déjà, à comprendre
+que le mensonge ne pouvait pas être si facilement relié aux émotions, parce
+qu’il est essentiellement du domaine de la pensée. Est-ce à dire que les émotions seraient hors-jeu pour comprendre le
+comportement humain? Évidemment, non! Les émotions sont un terrain de
+prédilection pour observer la sincérité (dont les signes diffèrent de ceux de
+la vérité), pour aider la personne à comprendre comment elle se sent, pour
+démêler avec elle les états qui la traversent, pour l’aider à voir plus clair en
+elle. Si je vous dis qu’une recherche a été faite à la sortie des piscines et que
+les chercheurs se sont rendu compte que les personnes qui fréquentaient les
+piscines avaient une meilleure dentition que l’ensemble de la population, ça
+vous paraîtra farfelu, mais c’est pourtant vrai!
+Ça paraît incroyable, mais c’est parce qu’entre la piscine et les dents
+vous êtes en train de chercher un lien de causalité, alors qu’il s’agit d’une
+corrélation. Enfin, et c’est la cerise sur le gâteau, le menteur investit encore une
+énergie cognitive considérable pour montrer qu’il n’investit pas d’énergie!
+Qu’il est bien trop «cool» pour être un menteur, parce qu’il sait qu’on
+attend d’un menteur qu’il soit sur le qui-vive!
+Sa surcharge cognitive, renforcée quand les questions qui lui sont
+posées sont sagaces, précises et concrètes, le met en état d’ébullition, et le
+niveau d’ébullition devrait finir par pouvoir se mesurer. Conclusion
+Nous vivons une époque formidable!
+À de très nombreux égards, l’enthousiasme n’est pourtant pas de mise:
+réchauffement planétaire, exodes climatiques et politiques, désertion des
+espaces démocratiques au profit d’espaces démagogiques, montée des
+extrémismes…
+Mais, parallèlement, dès qu’il est question de relations, jamais autant
+d’outils n’ont été élaborés pour que nous puissions nous regarder, nous
+rencontrer et croiser à l’échelle de la planète une quantité infinie
+d’informations permettant de mieux nous connaître, de nous comprendre. Table des matières
+AVANT-PROPOS
+INTRODUCTION
+PREMIÈRE PARTIE
+L’humain et le langage corporel
+CHAPITRE 1 — L’intuition
+Un moyen efficace de gagner du temps
+L’amygdale, plus rapide que la pensée elle-même
+L’intuition corporelle
+Quelques exemples de stéréotypes corporels
+CHAPITRE 2 — L’empathie
+Des neurones miroirs pour se comprendre
+Un phénomène troublant: la contre-empathie
+De la contre-empathie à la schadenfreude
+Face à la contre-empathie, l’éducation du regard
+CHAPITRE 3 — L’expérience
+L’expérience, une intuition supérieure
+AlphaGo, ou lorsqu’un ordinateur explique l’intuition
+Les idées reçues nous aveuglent
+Première idée reçue: Les croisements sont des fermetures
+Deuxième idée reçue: Le sourire est bienveillant
+Troisième idée reçue: Le menteur ne regarde pas dans les yeux
+CHAPITRE 4 — De nouvelles clés d’observation
+Le tableau des éléments corporels (TEC)
+Des solutions simples à des interrogations restées sans réponses
+Le sens des gestes n’est pas lié au contexte
+Pourquoi la synergologie?
+DEUXIÈME PARTIE
+Le lexique corporel
+CHAPITRE 5 — L’angle du visage pour saisir l’angle de la relation
+De visage gauche à visage gauche
+De visage droit à visage droit
+Le visage en mouvement
+CHAPITRE 6 — Les yeux
+Les émotions: dans le blanc et le noir de l’œil
+La relation: la durée du regard
+Les pensées: la direction des yeux
+Des yeux qui vont à droite et à gauche
+Des yeux qui vont en haut et en bas
+Lorsque notre regard change d’espace-temps
+CHAPITRE 7 — Le front, les sourcils, la bouche
+Le front
+Les sourcils
+La bouche
+Pas de lecture des émotions de l’autre sans introspection
+CHAPITRE 8 — Des gestes d’autocontact: pourquoi?
+Signification des gestes d’autocontact
+Que savons-nous exactement des microdémangeaisons?
+Comment interpréter précisément chaque microdémangeaison?
+CHAPITRE 9 — Un lexique des autocontacts du visage
+Le front et l’arrière de la tête
+Les sourcils
+Les yeux et les oreilles
+La zone de la moustache
+La bouche et les lèvres
+Les joues et le menton
+CHAPITRE 10 — Le nez: la zone phare
+Les ailes du nez
+Sous le nez
+L’arête et le bout du nez
+CHAPITRE 11 — Un lexique des autocontacts du corps
+Le cou
+Le torse
+Le ventre
+Le dos
+CHAPITRE 12 — Un lexique des autocontacts des membres
+Les trapèzes et les épaules
+De l’aisselle à la clavicule
+Le bras et les avant-bras
+Les coudes
+Les poignets
+Les jambes
+Les genoux
+Les tibias et les mollets
+Les chevilles
+CHAPITRE 13 — Les mains de retour l’une dans l’autre
+Distance et hauteur des mains
+Les mains en pyramide
+L’index vertical
+Les mains lavées
+Les mains sur et derrière la tête
+CHAPITRE 14 — Les mains dans l’espace
+Pour en finir avec deux idées reçues sur les gestes
+Première idée reçue: Le langage corporel, c’est culturel
+Seconde idée reçue: Nous faisons davantage de gestes avec notre main
+dominante
+Quelle main pour quel message?
+Parler à deux mains
+Les poignets
+Nos valeurs sont dans nos mains
+Une logique spatio-temporelle
+CHAPITRE 15 — Les mains sur les objets
+Les microtractions sur les vêtements et la main sur la cravate
+Le microtoilettage, pour ne pas être sali par les propos de l’autre
+Micropréhension des lunettes: mieux voir ou s’empêcher de voir
+Ongles et pointes de cheveux tout à coup si captivants
+Déplacer les objets pour déplacer les affects
+Boire son malaise
+Microfrappe: passons à autre chose
+CHAPITRE 16 — Les positions de chaise: un indicateur de proximité
+Considérer la proximité physique
+Le modèle Gibbs
+La personne avance ou recule
+La personne est à droite, à gauche ou au centre
+CHAPITRE 17 — Le temps: l’atout maître du langage corporel
+Une histoire qui a commencé il y a 50 ans
+Des décisions prises 10 secondes avant qu’elles soient conscientes
+Comment notre corps peut-il entendre et comprendre avant que nous en
+ayons conscience?
+Lorsque le corps a plusieurs minutes d’avance sur le cerveau
+TROISIÈME PARTIE
+La relation
+CHAPITRE 18 — De l’effet Pygmalion à l’espace d’authenticité
+L’effet Pygmalion
+La création d’un espace d’authenticité
+L’espace ARE
+CHAPITRE 19 — Les figures d’autorité dans la relation
+Des postures de communication structurelles et fonctionnelles
+La figure d’autorité conquérante
+La figure d’autorité syntonique
+La figure d’autorité vigilante
+Le rôle du stress dans l’adoption d’une figure d’autorité
+De 3 à 6 figures d’autorité
+Figure d’autorité conquérante
+Figure d’autorité syntonique
+Figure d’autorité vigilante
+CHAPITRE 20 — Douze figures d’autorité
+Communiquer, c’est aussi se taire
+Les conquérants silencieux
+Les syntoniques silencieux
+Les vigilants silencieux
+CHAPITRE 21 — À quoi pense celui qui ne dit rien?
+L’autre me comprend-il?
+L’autre est-il d’accord avec moi?
+L’autre est-il intéressé?
+L’autre souhaite-t-il reprendre la parole?
+Sommes-nous synchronisés ou complémentaires?
+CHAPITRE 22 — Pour une origine possible de la théorie de la relation
+La bactérie: métaphore ou ancêtre commun?
+QUATRIÈME PARTIE
+Décoder la vérité et le mensonge
+CHAPITRE 23 — Des préjugés qui font le bonheur du menteur
+L’évolution nous trompe
+Notre cerveau nous trompe
+Notre bienveillance nous trompe
+Le «stéréotype du menteur» nous trompe
+CHAPITRE 24 — Émotions et mensonge: les fausses croyances
+Les émotions ne sont pas les amies des décodeurs
+Pour une vision plus réaliste des émotions
+Lorsque le bleu et le jaune ne font pas du vert
+Des émotions hétérogènes très perturbantes
+L’émotion déniée
+Des émotions en lien avec le mensonge.
+

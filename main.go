@@ -228,15 +228,15 @@ func afficherAide() {
 📝 RÉSUMÉS & GÉNÉRATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1. RÉSUMÉ OPTIMISÉ (Phase 15 - Grammar-Aware)
-   $ ./programme resume <fichier> [threshold=0.10]
+1. RÉSUMÉ HYBRIDE (Atomique + Proba, Phase 15)
+	 $ ./programme resume <fichier> [ratio=0.55]
    
-   Exemples:
-     $ ./programme resume document.txt         (strict, 10%)
-     $ ./programme resume document.txt 0.3     (normal, 30%)
-     $ ./programme resume document.txt 0.5     (détaillé, 50%)
+	 Exemples:
+		 $ ./programme resume document.txt         (complet, 55%)
+		 $ ./programme resume document.txt 0.70    (très complet, 70%)
+		 $ ./programme resume document.txt 0.40    (plus condensé, 40%)
    
-   → Utilise la technologie T.R.A. avec analyse grammaticale
+	 → Fusion atomique + scoring probabiliste + réécriture fluide
 
 2. GÉNÉRATION DE RÉSUMÉ (simple)
    $ ./programme generate <fichier> [ratio=0.3]
@@ -731,14 +731,14 @@ func main() {
 	if commande == "resume" {
 		if len(os.Args) > 2 {
 			filepath := os.Args[2]
-			threshold := 0.10 // 10% default
+			ratio := 0.55 // résumé complet par défaut
 			if len(os.Args) > 3 {
-				fmt.Sscanf(os.Args[3], "%f", &threshold)
+				fmt.Sscanf(os.Args[3], "%f", &ratio)
 			}
-			// Use Phase 15 optimized pipeline
-			commands.ResumeOptimizedCommand([]string{filepath, fmt.Sprintf("%f", threshold)})
+			// Mode hybride: atomique + proba pour un résumé fluide et complet
+			commands.ResumeHybridCommand([]string{filepath, fmt.Sprintf("%f", ratio)})
 		} else {
-			fmt.Println("[ERREUR] Utilisation: ./programme resume <fichier> [threshold=0.10]")
+			fmt.Println("[ERREUR] Utilisation: ./programme resume <fichier> [ratio=0.55]")
 		}
 		return
 	}
