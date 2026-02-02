@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/nosserb/IA-ATOMIQUE-/database"
 	"os"
+
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // StartLLMMode launches a chat-like loop that can run core commands or free-text analysis.
@@ -161,7 +162,35 @@ Free text without a slash is analyzed directly.
 				fmt.Println("Usage: /ask <question>")
 				continue
 			}
+			if (strings.HasPrefix(question, "\"") && strings.HasSuffix(question, "\"")) ||
+				(strings.HasPrefix(question, "'") && strings.HasSuffix(question, "'")) {
+				question = strings.TrimSpace(question[1 : len(question)-1])
+			}
 			catAct, mots, conf := database.ProcesserTexte(question)
+
+			// Try KB answer first (always, regardless of category detection)
+			if kbAnswer, ok := buildKnowledgeAnswer(question, mots); ok {
+				fmt.Printf("\n[REPONSE]\n%s\n", kbAnswer)
+				if len(mots) > 0 {
+					maxMots := 3
+					if len(mots) < 3 {
+						maxMots = len(mots)
+					}
+					fmt.Printf("Mots cles: %s\n", strings.Join(mots[:maxMots], ", "))
+				}
+				fmt.Printf("Confiance: 100%%\n")
+				continue
+			}
+
+			// If KB failed, check if it's a factual question
+			if isFactualQuestion(question) {
+				fmt.Println("\n[REPONSE]\nJe n'ai pas de fait fiable pour cette question.")
+				fmt.Println("Astuce: utilisez /learn avec un texte pertinent pour enrichir la base.")
+				fmt.Printf("Confiance: 0%%\n")
+				continue
+			}
+
+			// Otherwise, try generated response
 			var cat int
 			var score int
 			for c, s := range catAct {
@@ -170,8 +199,9 @@ Free text without a slash is analyzed directly.
 					cat = c
 				}
 			}
+
 			if cat > 0 {
-				reponse := database.GenererReponse(cat, nil)
+				reponse := database.GenererReponseAvancee(cat, mots, question)
 				fmt.Printf("\n[REPONSE]\n%s\n", reponse)
 				if len(mots) > 0 {
 					maxMots := 3

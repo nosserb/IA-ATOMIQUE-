@@ -1110,7 +1110,32 @@ func nettoyerPhraseWiki(phrase string) string {
 
 // GenererReponseAvancee crée une réponse avec context
 func GenererReponseAvancee(catID int, motsClés []string, texteOriginal string) string {
-	base := GenererReponse(catID, nil)
+	base := GenererReponse(catID, motsClés)
+
+	// Adapter le ton selon la forme de la question
+	intro := ""
+	question := strings.ToLower(strings.TrimSpace(texteOriginal))
+	switch {
+	case strings.Contains(question, "pourquoi"):
+		intro = "Explication rapide : "
+	case strings.Contains(question, "comment"):
+		intro = "Voici une manière simple d'aborder cela : "
+	case strings.Contains(question, "quand"):
+		intro = "Repère chronologique : "
+	case strings.Contains(question, "où"):
+		intro = "Contexte / localisation : "
+	case strings.Contains(question, "qui"):
+		intro = "Concernant l'acteur principal : "
+	case strings.Contains(question, "quoi") || strings.Contains(question, "qu'est-ce"):
+		intro = "Définition concise : "
+	case strings.Contains(question, "combien"):
+		intro = "Ordre de grandeur : "
+	}
+
+	response := base
+	if intro != "" {
+		response = intro + base
+	}
 
 	// Ajouter contexte basé sur les mots clés
 	if len(motsClés) > 0 {
@@ -1118,10 +1143,10 @@ func GenererReponseAvancee(catID int, motsClés []string, texteOriginal string) 
 		if len(motsClés) < 3 {
 			limit = len(motsClés)
 		}
-		return fmt.Sprintf("%s\nConcepts détectés: %s", base, strings.Join(motsClés[:limit], ", "))
+		response = fmt.Sprintf("%s\nPoints clés: %s", response, strings.Join(motsClés[:limit], ", "))
 	}
 
-	return base
+	return response
 }
 
 // ParlerTexte génère du texte parlé basé sur le contenu

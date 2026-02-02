@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+	"unicode"
 
 	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
@@ -61,6 +62,136 @@ func NewKnowledgeBase() *KnowledgeBase {
 	return kb
 }
 
+// ============================================================================
+// NOUVELLE STRUCTURE HIÉRARCHIQUE - ENTITÉS ET RELATIONS
+// ============================================================================
+
+// Entity - Représente une entité avec ses propriétés hiérarchisées
+type Entity struct {
+	ID          string                 `json:"id"`           // Identifiant normalisé
+	Aliases     []string               `json:"aliases"`      // Variantes (JK Rowling, Joanne Rowling, etc.)
+	Type        string                 `json:"type"`         // personne, œuvre, lieu, concept
+	Properties  map[string]interface{} `json:"properties"`   // nom, naissance, fonction, etc.
+	Relations   map[string][]string    `json:"relations"`    // relations vers autres entités
+	SubEntities map[string]*Entity     `json:"sub_entities"` // Entités imbriquées (livres dans auteur)
+	Confidence  float64                `json:"confidence"`   // Confiance de l'extraction (0-1)
+	Sources     []string               `json:"sources"`      // Fichiers d'où vient l'info
+}
+
+// HierarchicalKB - Base de connaissances hiérarchisée
+type HierarchicalKB struct {
+	Entities map[string]*Entity `json:"entities"` // ID normalisé -> Entity
+	mutex    sync.RWMutex
+}
+
+// NewHierarchicalKB crée une nouvelle KB hiérarchisée
+func NewHierarchicalKB() *HierarchicalKB {
+	return &HierarchicalKB{
+		Entities: make(map[string]*Entity),
+	}
+}
+
+// NormalizeID normalise un ID pour l'unicité (j.k rowling, Joanne Rowling -> joanne rowling)
+func NormalizeID(s string) string {
+	s = strings.ToLower(s)
+	s = strings.TrimSpace(s)
+	// Supprimer ponctuation multiple
+	s = regexp.MustCompile(`[\.\[\](),;:!?'"]+`).ReplaceAllString(s, " ")
+	// Supprimer espaces multiples
+	s = regexp.MustCompile(`\s+`).ReplaceAllString(s, " ")
+	return strings.TrimSpace(s)
+}
+
+// AddOrMergeEntity ajoute ou fusionne une entité
+func (hkb *HierarchicalKB) AddOrMergeEntity(id string, entityType string, properties map[string]interface{}) {
+	hkb.mutex.Lock()
+	defer hkb.mutex.Unlock()
+
+	normalizedID := NormalizeID(id)
+
+	if existing, exists := hkb.Entities[normalizedID]; exists {
+		// Fusionner les propriétés
+		for key, value := range properties {
+			if _, hasKey := existing.Properties[key]; !hasKey {
+				existing.Properties[key] = value
+			}
+		}
+		// Ajouter alias si c'est une variante
+		if id != normalizedID && !containsString(existing.Aliases, id) {
+			existing.Aliases = append(existing.Aliases, id)
+		}
+	} else {
+		// Créer nouvelle entité
+		entity := &Entity{
+			ID:          normalizedID,
+			Type:        entityType,
+			Properties:  properties,
+			Relations:   make(map[string][]string),
+			SubEntities: make(map[string]*Entity),
+			Aliases:     []string{id},
+			Confidence:  0.8,
+		}
+		hkb.Entities[normalizedID] = entity
+	}
+}
+
+// GetEntity récupère une entité par ID ou alias
+func (hkb *HierarchicalKB) GetEntity(query string) *Entity {
+	hkb.mutex.RLock()
+	defer hkb.mutex.RUnlock()
+
+	normalizedQuery := NormalizeID(query)
+	if entity, exists := hkb.Entities[normalizedQuery]; exists {
+		return entity
+	}
+
+	// Chercher par alias
+	for _, entity := range hkb.Entities {
+		for _, alias := range entity.Aliases {
+			if NormalizeID(alias) == normalizedQuery {
+				return entity
+			}
+		}
+	}
+
+	return nil
+}
+
+// SaveToFile sauvegarde la KB hiérarchisée en JSON
+func (hkb *HierarchicalKB) SaveToFile(filepath string) error {
+	hkb.mutex.RLock()
+	data, err := json.MarshalIndent(hkb.Entities, "", "  ")
+	hkb.mutex.RUnlock()
+
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(filepath, data, 0644)
+}
+
+// LoadFromFile charge la KB hiérarchisée depuis JSON
+func (hkb *HierarchicalKB) LoadFromFile(filepath string) error {
+	data, err := os.ReadFile(filepath)
+	if err != nil {
+		return err
+	}
+
+	hkb.mutex.Lock()
+	defer hkb.mutex.Unlock()
+
+	return json.Unmarshal(data, &hkb.Entities)
+}
+
+// containsString vérifie si une chaîne est dans un slice
+func containsString(slice []string, s string) bool {
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	return false
+}
+
 // LearnFromTextFile apprend à partir d'un fichier texte
 func (kb *KnowledgeBase) LearnFromTextFile(filepath string) error {
 	file, err := os.Open(filepath)
@@ -110,6 +241,24 @@ func (kb *KnowledgeBase) LearnFromText(text string) {
 	// Compter les mots
 	words := strings.Fields(text)
 	kb.TotalWordsProcessed += len(words)
+
+	// 4. Extraction hiérarchique (nouvelle approche)
+	kb.learnHierarchical(text)
+}
+
+// learnHierarchical extrait les entités hiérarchisées
+func (kb *KnowledgeBase) learnHierarchical(text string) {
+	if GlobalHierarchicalKB == nil {
+		return
+	}
+
+	extractor := NewPatternExtractor()
+	entities := extractor.ExtractEntitiesFromText(text)
+
+	// Ajouter chaque entité à la KB hiérarchisée
+	for entityID, data := range entities {
+		BuildEntityAndAddToKB(entityID, data)
+	}
 }
 
 // extractDatePatterns extrait les faits avec dates
@@ -223,11 +372,31 @@ func (kb *KnowledgeBase) extractLocationPatterns(text string) {
 }
 
 // extractDefinitionPatterns extrait les définitions
-// Patterns: "X est Y", "X: Y", "X, Y,"
+// Patterns: "X est Y", "X: Y", "X, Y," + noms propres
 func (kb *KnowledgeBase) extractDefinitionPatterns(text string) {
-	// Pattern: "Le cœur est un organe musculaire"
+	// Pattern 0: "NomPropre ... est un/une/article definition"
+	// Allows intermediate text like citations, pronunciation guides, aliases
+	// Ex: "Joanne Rowling [ d͡ʒoʊˈæn ˈroʊlɪŋ][a], plus connue sous les noms de plume J. K. Rowling[b] et Robert Galbraith, est une romancière et scénariste britannique née..."
+	pattern0 := regexp.MustCompile(`([A-Z][a-zéèêàùçœ]+(?:\s+[A-Z][a-zéèêàùçœ]+)*)[^\n]*?est\s+(?:un|une|la|le|des|l')\s+([a-zéèêàùçœ\s]+?)(?:née|né|et|\.|,|$)`)
+	matches := pattern0.FindAllStringSubmatch(text, -1)
+	for _, match := range matches {
+		if len(match) >= 3 {
+			term := strings.ToLower(strings.TrimSpace(match[1]))
+			definition := strings.TrimSpace(match[2])
+			// Limiter la définition à 100 caractères
+			if len(definition) > 100 {
+				definition = definition[:100]
+			}
+			if definition != "" && !strings.HasPrefix(definition, "[") {
+				kb.DefinitionFacts[term] = definition
+				kb.TotalFactsExtracted++
+			}
+		}
+	}
+
+	// Pattern 1: "Le cœur est un organe musculaire"
 	pattern1 := regexp.MustCompile(`(?:Le|La|L')\s+([a-zéèêàùçœ]+)\s+est\s+un(?:e)?\s+([a-zéèêàùçœ\s]+(?:qui|dont|de)[a-zéèêàùçœ\s]+)`)
-	matches := pattern1.FindAllStringSubmatch(text, -1)
+	matches = pattern1.FindAllStringSubmatch(text, -1)
 	for _, match := range matches {
 		if len(match) >= 3 {
 			term := strings.TrimSpace(match[1])
@@ -241,7 +410,7 @@ func (kb *KnowledgeBase) extractDefinitionPatterns(text string) {
 		}
 	}
 
-	// Pattern: "cœur: organe qui pompe le sang"
+	// Pattern 2: "cœur: organe qui pompe le sang"
 	pattern2 := regexp.MustCompile(`([a-zéèêàùçœ]+):\s+([a-zéèêàùçœ\s]+)`)
 	matches = pattern2.FindAllStringSubmatch(text, -1)
 	for _, match := range matches {
@@ -452,10 +621,11 @@ func (kb *KnowledgeBase) GetFactualInfo(term string) map[string]interface{} {
 	defer kb.mutex.RUnlock()
 
 	info := make(map[string]interface{})
+	termLower := strings.ToLower(term)
+	termNorm := normalizeKBKey(term)
 
 	// Utiliser le matching amélioré pour trouver le meilleur terme
 	matchedTerm := kb.findClosestMatch(term)
-	termLower := strings.ToLower(term)
 
 	// Définition - utiliser le terme matché si trouvé
 	var defTerm string
@@ -474,15 +644,34 @@ func (kb *KnowledgeBase) GetFactualInfo(term string) map[string]interface{} {
 	// Dates associées
 	if dates, exists := kb.DateFacts[term]; exists {
 		info["dates"] = dates
+	} else if dates, exists := kb.DateFacts[termLower]; exists {
+		info["dates"] = dates
+	} else if termNorm != "" {
+		// Recherche dans les événements datés
+		var found []string
+		for year, events := range kb.DateFacts {
+			for _, event := range events {
+				if strings.Contains(normalizeKBKey(event), termNorm) {
+					found = append(found, fmt.Sprintf("%s: %s", year, event))
+				}
+			}
+		}
+		if len(found) > 0 {
+			info["dates"] = found
+		}
 	}
 
 	// Relations causales
 	if causes, exists := kb.CausalFacts[term]; exists {
 		info["causes"] = causes
+	} else if causes, exists := kb.CausalFacts[termLower]; exists {
+		info["causes"] = causes
 	}
 
 	// Lieux
 	if locs, exists := kb.LocationFacts[term]; exists {
+		info["locations"] = locs
+	} else if locs, exists := kb.LocationFacts[termLower]; exists {
 		info["locations"] = locs
 	}
 
@@ -493,6 +682,16 @@ func (kb *KnowledgeBase) GetFactualInfo(term string) map[string]interface{} {
 	}
 
 	return info
+}
+
+func normalizeKBKey(s string) string {
+	var b strings.Builder
+	for _, r := range s {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			b.WriteRune(unicode.ToLower(r))
+		}
+	}
+	return b.String()
 }
 
 // HasFactualKnowledge vérifie si la KB a des infos sur un terme

@@ -1,13 +1,14 @@
 package commands
 
 import (
-	"github.com/nosserb/IA-ATOMIQUE-/database"
 	"bufio"
 	"fmt"
 	"os"
 	"regexp"
 	"sort"
 	"strings"
+
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // DetecterLangue identifie la langue d'un texte de manière robuste
@@ -901,8 +902,16 @@ Commandes:
 				}
 
 				if cat > 0 {
-					reponse := database.GenererReponse(cat, nil)
-					fmt.Printf("\n[REPONSE]\n%s\n", reponse)
+					if kbAnswer, ok := buildKnowledgeAnswer(question, mots); ok {
+						fmt.Printf("\n[REPONSE]\n%s\n", kbAnswer)
+					} else if isFactualQuestion(question) {
+						fmt.Println("\n[REPONSE]\nJe n'ai pas de fait fiable pour cette question.")
+						fmt.Println("Astuce: utilisez /learn avec un texte pertinent pour enrichir la base.")
+						conf = 0
+					} else {
+						reponse := database.GenererReponseAvancee(cat, mots, question)
+						fmt.Printf("\n[REPONSE]\n%s\n", reponse)
+					}
 					if len(mots) > 0 {
 						maxMots := 3
 						if len(mots) < 3 {

@@ -11,10 +11,13 @@ import (
 // COMMANDES D'APPRENTISSAGE AUTOMATIQUE
 // ============================================================================
 
-// GlobalKnowledgeBase - Instance globale de la base de connaissances
+// GlobalKnowledgeBase - Instance globale de la base de connaissances (ancienne structure)
 var GlobalKnowledgeBase *KnowledgeBase
 
-// initKnowledgeBase initialise la base de connaissances globale
+// GlobalHierarchicalKB - Instance globale de la nouvelle KB hiérarchisée
+var GlobalHierarchicalKB *HierarchicalKB
+
+// initKnowledgeBase initialise les bases de connaissances globales
 func initKnowledgeBase() {
 	if GlobalKnowledgeBase == nil {
 		GlobalKnowledgeBase = NewKnowledgeBase()
@@ -26,6 +29,20 @@ func initKnowledgeBase() {
 				fmt.Printf("⚠️ Impossible de charger knowledge_base.json: %v\n", err)
 			} else {
 				fmt.Println("📚 Base de connaissances chargée (knowledge_base.json)")
+			}
+		}
+	}
+
+	if GlobalHierarchicalKB == nil {
+		GlobalHierarchicalKB = NewHierarchicalKB()
+
+		// Charger la KB hiérarchisée si elle existe
+		if _, err := os.Stat("knowledge_base_hierarchical.json"); err == nil {
+			err := GlobalHierarchicalKB.LoadFromFile("knowledge_base_hierarchical.json")
+			if err != nil {
+				fmt.Printf("⚠️ Impossible de charger knowledge_base_hierarchical.json: %v\n", err)
+			} else {
+				fmt.Println("📚 KB hiérarchisée chargée (knowledge_base_hierarchical.json)")
 			}
 		}
 	}
@@ -62,12 +79,22 @@ func LearnCommand(args []string) {
 	// Afficher statistiques
 	GlobalKnowledgeBase.PrintStats()
 
-	// Sauvegarder automatiquement
+	// Sauvegarder automatiquement (ancienne KB)
 	err = GlobalKnowledgeBase.SaveToFile("knowledge_base.json")
 	if err != nil {
 		fmt.Printf("⚠️ Erreur sauvegarde: %v\n", err)
 	} else {
 		fmt.Println("💾 Base de connaissances sauvegardée dans knowledge_base.json")
+	}
+
+	// Sauvegarder KB hiérarchisée
+	if GlobalHierarchicalKB != nil {
+		err = GlobalHierarchicalKB.SaveToFile("knowledge_base_hierarchical.json")
+		if err != nil {
+			fmt.Printf("⚠️ Erreur sauvegarde KB hiérarchisée: %v\n", err)
+		} else {
+			fmt.Println("💾 KB hiérarchisée sauvegardée dans knowledge_base_hierarchical.json")
+		}
 	}
 }
 

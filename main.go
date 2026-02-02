@@ -601,7 +601,16 @@ func main() {
 		return
 	}
 
-	// Commandes de défloutage ultra-rapide
+	// Commande ask - poser une question à la base de connaissances
+	if commande == "ask" {
+		if len(os.Args) > 2 {
+			question := strings.Join(os.Args[2:], " ")
+			commands.AskCommand([]string{question})
+		} else {
+			fmt.Println("[ERREUR] Syntaxe: ask <question>")
+		}
+		return
+	}
 	if commande == "deblur" && len(os.Args) > 2 {
 		mode := os.Args[2]
 		switch mode {
