@@ -1,14 +1,15 @@
 package main
 
 import (
-	"github.com/nosserb/IA-ATOMIQUE-/database"
-	"github.com/nosserb/IA-ATOMIQUE-/internal/commands"
-	"github.com/nosserb/IA-ATOMIQUE-/internal/tests"
 	"fmt"
 	"math/rand"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/nosserb/IA-ATOMIQUE-/database"
+	"github.com/nosserb/IA-ATOMIQUE-/internal/commands"
+	"github.com/nosserb/IA-ATOMIQUE-/internal/tests"
 )
 
 var stopTrain = false
