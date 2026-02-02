@@ -1,9 +1,9 @@
 package main
 
 import (
-	"IA-ATOMIQUE/database"
-	"IA-ATOMIQUE/internal/commands"
-	"IA-ATOMIQUE/internal/tests"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
+	"github.com/nosserb/IA-ATOMIQUE-/internal/commands"
+	"github.com/nosserb/IA-ATOMIQUE-/internal/tests"
 	"fmt"
 	"math/rand"
 	"os"

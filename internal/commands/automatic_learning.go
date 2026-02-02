@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // ============================================================================

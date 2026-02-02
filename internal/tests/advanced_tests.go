@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 	"fmt"
 	"os"
 	"strings"

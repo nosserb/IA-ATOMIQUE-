@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // ============================================================================

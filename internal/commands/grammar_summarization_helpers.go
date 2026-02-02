@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // validateSummaryAgainstDomain - NE PAS filtrer, juste retourner le résumé

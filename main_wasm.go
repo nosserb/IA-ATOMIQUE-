@@ -4,7 +4,7 @@
 package main
 
 import (
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 	"syscall/js"
 	"time"
 )

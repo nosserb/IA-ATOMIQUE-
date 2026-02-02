@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"IA-ATOMIQUE/database"
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // ============================================================================
