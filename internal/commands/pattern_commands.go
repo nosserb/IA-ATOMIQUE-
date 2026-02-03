@@ -68,7 +68,7 @@ func HandlePatternCreate(args []string) {
 		return
 	}
 
-	fmt.Printf("\n🎨 Creating Pattern Emergence Engine\n")
+	fmt.Printf("\n  Creating Pattern Emergence Engine\n")
 	fmt.Printf("═══════════════════════════════════════\n")
 	fmt.Printf("Dimensions: %dx%d\n", width, height)
 
@@ -88,17 +88,17 @@ func HandlePatternCreate(args []string) {
 			sampleDensity, _ = strconv.ParseFloat(args[3], 64)
 		}
 
-		fmt.Printf("\n📌 Loading seed image: %s\n", seedPath)
+		fmt.Printf("\n Loading seed image: %s\n", seedPath)
 		file, err := os.Open(seedPath)
 		if err != nil {
-			fmt.Printf("❌ Failed to load image: %v\n", err)
+			fmt.Printf(" Failed to load image: %v\n", err)
 			return
 		}
 		defer file.Close()
 
 		img, _, err := image.Decode(file)
 		if err != nil {
-			fmt.Printf("❌ Failed to decode image: %v\n", err)
+			fmt.Printf("  Failed to decode image: %v\n", err)
 			return
 		}
 
@@ -108,10 +108,10 @@ func HandlePatternCreate(args []string) {
 	// Save initial state
 	outFile := "output/pattern_initial.png"
 	engine.SaveImage(outFile)
-	fmt.Printf("✅ Initial state saved: %s\n", outFile)
+	fmt.Printf(" Initial state saved: %s\n", outFile)
 
 	fmt.Printf("═══════════════════════════════════════\n")
-	fmt.Printf("✅ Engine ready for pattern emergence\n\n")
+	fmt.Printf(" Engine ready for pattern emergence\n\n")
 
 	// Store engine globally for next commands
 	// (In real app, use session management)
@@ -133,7 +133,7 @@ func HandlePatternDiffuse(args []string) {
 		vizInterval, _ = strconv.Atoi(args[1])
 	}
 
-	fmt.Printf("\n🌊 Pixel Diffusion - P_ij(t+1) = P_ij(t) + α·Σ W·(P_kl - P_ij)\n")
+	fmt.Printf("\n Pixel Diffusion - P_ij(t+1) = P_ij(t) + α·Σ W·(P_kl - P_ij)\n")
 	fmt.Printf("═══════════════════════════════════════\n")
 	fmt.Printf("Running %d diffusion steps\n", iterations)
 	fmt.Printf("Visualization interval: %d steps\n\n", vizInterval)
@@ -146,7 +146,7 @@ func HandlePatternDiffuse(args []string) {
 	engine.AddSeedPoint(200, 200, 0, 255, 0) // Green seed
 	engine.AddSeedPoint(100, 150, 0, 0, 255) // Blue seed
 
-	fmt.Printf("📌 Added 3 seed points to anchor waves\n\n")
+	fmt.Printf(" Added 3 seed points to anchor waves\n\n")
 
 	for iter := 0; iter < iterations; iter++ {
 		engine.DiffuseStep()
@@ -159,7 +159,7 @@ func HandlePatternDiffuse(args []string) {
 		}
 	}
 
-	fmt.Printf("\n✅ Diffusion complete\n")
+	fmt.Printf("\n Diffusion complete\n")
 	engine.PrintStatistics()
 }
 
@@ -174,7 +174,7 @@ func HandlePatternReinforce(args []string) {
 
 	iterations, _ := strconv.Atoi(args[0])
 
-	fmt.Printf("\n💪 Connection Reinforcement - W_ij;kl(t+1) = W_ij;kl + γ·exp(-||ΔP||²)\n")
+	fmt.Printf("\n Connection Reinforcement - W_ij;kl(t+1) = W_ij;kl + γ·exp(-||ΔP||²)\n")
 	fmt.Printf("═══════════════════════════════════════\n")
 	fmt.Printf("Strengthening connections between similar pixels\n")
 	fmt.Printf("Iterations: %d\n\n", iterations)
@@ -758,17 +758,17 @@ func HandlePatternInfo(args []string) {
 	indexer := database.NewPatternIndexer("input", dbPath)
 	err := indexer.LoadDatabase()
 	if err != nil {
-		fmt.Printf("❌ Cannot load pattern database: %v\n", err)
+		fmt.Printf("Cannot load pattern database: %v\n", err)
 		return
 	}
 
 	pattern, exists := indexer.FindPatternByID(patternID)
 	if !exists {
-		fmt.Printf("❌ Pattern not found: %s\n", patternID)
+		fmt.Printf(" Pattern not found: %s\n", patternID)
 		return
 	}
 
-	fmt.Println("\n📌 PATTERN DETAILS")
+	fmt.Println("\n PATTERN DETAILS")
 	fmt.Println("═══════════════════════════════════════════════════")
 	fmt.Printf("ID: %s\n", pattern.ID)
 	fmt.Printf("File: %s\n", pattern.Filename)

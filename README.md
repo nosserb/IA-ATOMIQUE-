@@ -1,14 +1,16 @@
-# IA-ATOMIQUE
-
 <p align="center">
-<a href="https://ibb.co/5QTzvfj"><img src="https://i.ibb.co/kLKr0WD/NEUROPULSE-2.png" alt="NEUROPULSE-2" border="0" /></a>
+<a href="https://ibb.co/N63bbpLH"><img src="https://i.ibb.co/4Zf33Mj5/CUEBRIDGESENSOR-1.png" alt="CUEBRIDGESENSOR-1" border="0" /></a>
 </p>
 
-Advanced neural network system with Atomic Resonance Technology (T.R.A.)
+***Advanced neural network system with Atomic Resonance Technology (T.R.A.)****
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18385460.svg)](https://doi.org/10.5281/zenodo.18385460)
+
 
 [![Go 1.22+](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go)](https://golang.org/)
 [![License MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 [![Latest Release](https://img.shields.io/badge/release-v5.2-blue?style=flat-square)](https://github.com/nosserb/IA-ATOMIQUE/releases)
+
+*A.R.T Atomic Resonance Technologie
 
 ---
 

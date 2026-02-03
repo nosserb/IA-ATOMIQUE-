@@ -1,11 +1,12 @@
 package commands
 
 import (
-	"github.com/nosserb/IA-ATOMIQUE-/database"
 	"fmt"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/nosserb/IA-ATOMIQUE-/database"
 )
 
 // GenererAvecAtomesCommand génère un résumé via résonance atomique autonome
@@ -20,9 +21,9 @@ func GenererAvecAtomesCommand(fichier string, compression float64) {
 	fmt.Printf("\n╔════════════════════════════════════════╗\n")
 	fmt.Printf("║  GÉNÉRATION ATOMIQUE AUTONOME        ║\n")
 	fmt.Printf("╚════════════════════════════════════════╝\n\n")
-	fmt.Printf("📄 Fichier: %s\n", fichier)
-	fmt.Printf("📊 Compression cible: %.0f%%\n", compression*100)
-	fmt.Printf("📝 Taille originale: %d mots\n\n", len(strings.Fields(texte)))
+	fmt.Printf(" Fichier: %s\n", fichier)
+	fmt.Printf(" Compression cible: %.0f%%\n", compression*100)
+	fmt.Printf(" Taille originale: %d mots\n\n", len(strings.Fields(texte)))
 
 	debut := time.Now()
 
@@ -153,7 +154,7 @@ func GenererComparatifCommand(fichier string, compression float64) {
 	fmt.Printf("╚════════════════════════════════════════╝\n\n")
 
 	// Méthode vectorielle
-	fmt.Printf("1️⃣  MÉTHODE VECTORIELLE (argmax)\n")
+	fmt.Printf("1️  MÉTHODE VECTORIELLE (argmax)\n")
 	fmt.Printf("─────────────────────────────────\n")
 	tDebut := time.Now()
 	params := database.ParamsParDefaut()
@@ -166,13 +167,13 @@ func GenererComparatifCommand(fichier string, compression float64) {
 	scoringVect := database.EvaluerQualite(state)
 
 	fmt.Printf("Texte: %s\n\n", wrapText(textVectoriel, 80))
-	fmt.Printf("⏱️  Temps: %v\n", tVectoriel)
-	fmt.Printf("🎯 Cohérence: %.2f%%\n", coherenceVect*100)
-	fmt.Printf("🔀 Diversité: %.2f%%\n", scoringVect.DiversiteVocab*100)
-	fmt.Printf("✨ Qualité: %.2f%%\n\n", scoringVect.QualiteGlobale*100)
+	fmt.Printf(" Temps: %v\n", tVectoriel)
+	fmt.Printf(" Cohérence: %.2f%%\n", coherenceVect*100)
+	fmt.Printf(" Diversité: %.2f%%\n", scoringVect.DiversiteVocab*100)
+	fmt.Printf(" Qualité: %.2f%%\n\n", scoringVect.QualiteGlobale*100)
 
 	// Méthode atomique
-	fmt.Printf("2️⃣  MÉTHODE ATOMIQUE (résonance)\n")
+	fmt.Printf("  MÉTHODE ATOMIQUE (résonance)\n")
 	fmt.Printf("───────────────────────────────\n")
 	tDebut = time.Now()
 	textAtomique := database.GenererAvecReseauAtomique(phrases, 200, compression)
@@ -196,13 +197,13 @@ func GenererComparatifCommand(fichier string, compression float64) {
 	diversiteAtom := float64(len(uniqueWords)) / float64(len(words))
 
 	fmt.Printf("Texte: %s\n\n", wrapText(textAtomique, 80))
-	fmt.Printf("⏱️  Temps: %v\n", tAtomique)
-	fmt.Printf("🎯 Cohérence: %.2f%%\n", coherenceAtom*100)
-	fmt.Printf("🔀 Diversité: %.2f%%\n", diversiteAtom*100)
-	fmt.Printf("✨ Qualité: %.2f%%\n\n", (coherenceAtom+diversiteAtom)/2*100)
+	fmt.Printf("  Temps: %v\n", tAtomique)
+	fmt.Printf(" Cohérence: %.2f%%\n", coherenceAtom*100)
+	fmt.Printf(" Diversité: %.2f%%\n", diversiteAtom*100)
+	fmt.Printf(" Qualité: %.2f%%\n\n", (coherenceAtom+diversiteAtom)/2*100)
 
 	// Comparaison
-	fmt.Printf("📊 COMPARAISON\n")
+	fmt.Printf(" COMPARAISON\n")
 	fmt.Printf("──────────────\n")
 	speedup := float64(tVectoriel) / float64(tAtomique)
 	fmt.Printf("Speedup: %.1fx (Atomique %s Vectoriel)\n",
