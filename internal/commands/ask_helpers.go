@@ -33,6 +33,10 @@ func AskCommand(args []string) {
 	} else if isFactualQuestion(question) {
 		fmt.Println("\n[REPONSE]\nJe n'ai pas de fait fiable pour cette question.")
 		fmt.Println("Astuce: utilisez /learn avec un texte pertinent pour enrichir la base.")
+
+		if suggestions := suggestEntities(keywords, 3); len(suggestions) > 0 {
+			fmt.Printf("\nPeut-être vouliez-vous: %s\n", strings.Join(suggestions, ", "))
+		}
 	} else {
 		fmt.Println("\n[REPONSE]\nCette question ne semble pas être une question factuelle.")
 		fmt.Println("Essayez: qui est..., quand..., où..., quoi..., qu'est-ce que...")
@@ -49,7 +53,7 @@ func AskCommand(args []string) {
 
 // extractQuestionKeywords extrait les mots-clés importants d'une question
 func extractQuestionKeywords(question string) []string {
-	words := strings.Fields(strings.ToLower(question))
+	words := strings.Fields(question)
 
 	// Mots à ignorer
 	stopwords := map[string]bool{
@@ -61,11 +65,12 @@ func extractQuestionKeywords(question string) []string {
 		"sans": true, "en": true, "au": true, "aux": true, "donc": true, "car": true,
 		"mais": true, "cependant": true, "ainsi": true, "c'est": true, "il": true,
 		"elle": true, "on": true, "nous": true, "vous": true, "elles": true, "ils": true,
+		"que": true, "quelque": true,
 	}
 
 	var keywords []string
 	for _, word := range words {
-		word = strings.Trim(word, "?!.,;:")
+		word = normalizeQuestionToken(word)
 		if word != "" && !stopwords[word] && len(word) > 2 {
 			keywords = append(keywords, word)
 		}
@@ -213,6 +218,19 @@ func isFactualQuestion(question string) bool {
 		strings.Contains(qLower, "definition")
 }
 
+func normalizeQuestionToken(word string) string {
+	if word == "" {
+		return ""
+	}
+	word = strings.ToLower(word)
+	word = strings.ReplaceAll(word, "’", "'")
+	word = strings.Trim(word, "?!.,;:()[]{}\"“”«»")
+	if idx := strings.Index(word, "'"); idx == 1 {
+		word = word[idx+1:]
+	}
+	return strings.TrimSpace(word)
+}
+
 func extractKnowledgeTerms(question string, keywords []string) []string {
 	seen := make(map[string]bool)
 	add := func(term string) {
@@ -308,13 +326,7 @@ func buildHierarchicalAnswer(question string, keywords []string) (string, bool) 
 	isWho := strings.Contains(qLower, "qui")
 
 	// Chercher l'entité dans la KB hiérarchisée
-	for _, candidate := range candidates {
-		entity := GlobalHierarchicalKB.GetEntity(candidate)
-		if entity == nil {
-			continue
-		}
-
-		// Générer une réponse avec des phrases naturelles
+	if entity := findBestEntityMatch(question, candidates, keywords); entity != nil {
 		answer := formatEntityAsNaturalText(entity, isWho, isWhen, isWhere)
 		if answer != "" {
 			return answer, true
@@ -368,6 +380,9 @@ func formatEntityAsNaturalText(entity *Entity, isWho, isWhen, isWhere bool) stri
 
 	// Si pas de question spécifique, générer un résumé général
 	if len(sentences) == 0 {
+		if entity.Type != "" {
+			sentences = append(sentences, fmt.Sprintf("%s est une entité de type %s.", entityName, entity.Type))
+		}
 		// Ajouter la fonction si disponible
 		if fonction, ok := entity.Properties["fonction"]; ok {
 			if fonctions, isList := fonction.([]string); isList && len(fonctions) > 0 {
@@ -383,6 +398,20 @@ func formatEntityAsNaturalText(entity *Entity, isWho, isWhen, isWhere bool) stri
 		// Ajouter autres propriétés intéressantes
 		if localisation, ok := entity.Properties["lieu"]; ok {
 			sentences = append(sentences, fmt.Sprintf("On le/la retrouve à %v.", localisation))
+		}
+
+		if definition, ok := entity.Properties["definition"]; ok {
+			sentences = append(sentences, fmt.Sprintf("Définition: %v.", definition))
+		}
+
+		// Ajouter autres propriétés intéressantes
+		for key, value := range entity.Properties {
+			if key == "fonction" || key == "naissance" || key == "mort" || key == "lieu" || key == "definition" {
+				continue
+			}
+			if pretty := formatPropertyValue(value); pretty != "" {
+				sentences = append(sentences, fmt.Sprintf("%s: %s.", strings.Title(key), pretty))
+			}
 		}
 	}
 
@@ -412,4 +441,145 @@ func formatEntityAsNaturalText(entity *Entity, isWho, isWhen, isWhere bool) stri
 	}
 
 	return result
+}
+
+func findBestEntityMatch(question string, candidates []string, keywords []string) *Entity {
+	if GlobalHierarchicalKB == nil {
+		return nil
+	}
+
+	for _, candidate := range candidates {
+		if entity := GlobalHierarchicalKB.GetEntity(candidate); entity != nil {
+			return entity
+		}
+	}
+
+	qNorm := NormalizeID(question)
+	bestScore := 0
+	var best *Entity
+
+	GlobalHierarchicalKB.mutex.RLock()
+	defer GlobalHierarchicalKB.mutex.RUnlock()
+	for _, entity := range GlobalHierarchicalKB.Entities {
+		score := scoreEntityMatch(entity, qNorm, candidates, keywords)
+		if score > bestScore {
+			bestScore = score
+			best = entity
+		}
+	}
+
+	if bestScore >= 4 {
+		return best
+	}
+
+	return nil
+}
+
+func scoreEntityMatch(entity *Entity, question string, candidates []string, keywords []string) int {
+	if entity == nil {
+		return 0
+	}
+
+	score := 0
+	entityID := NormalizeID(entity.ID)
+	if entityID != "" && strings.Contains(question, entityID) {
+		score += 4
+	}
+
+	for _, candidate := range candidates {
+		cand := NormalizeID(candidate)
+		if cand == "" {
+			continue
+		}
+		if strings.Contains(entityID, cand) || strings.Contains(cand, entityID) {
+			score += 3
+		}
+		for _, alias := range entity.Aliases {
+			aliasNorm := NormalizeID(alias)
+			if aliasNorm != "" && strings.Contains(aliasNorm, cand) {
+				score += 2
+			}
+		}
+	}
+
+	for _, keyword := range keywords {
+		kw := NormalizeID(keyword)
+		if kw != "" && strings.Contains(entityID, kw) {
+			score++
+		}
+		for _, alias := range entity.Aliases {
+			aliasNorm := NormalizeID(alias)
+			if kw != "" && strings.Contains(aliasNorm, kw) {
+				score++
+			}
+		}
+	}
+
+	return score
+}
+
+func suggestEntities(keywords []string, limit int) []string {
+	if GlobalHierarchicalKB == nil || limit <= 0 {
+		return nil
+	}
+
+	type scored struct {
+		name  string
+		score int
+	}
+
+	var scoredList []scored
+	GlobalHierarchicalKB.mutex.RLock()
+	for _, entity := range GlobalHierarchicalKB.Entities {
+		s := scoreEntityMatch(entity, "", nil, keywords)
+		if s > 0 {
+			name := entity.ID
+			if len(entity.Aliases) > 0 {
+				name = entity.Aliases[0]
+			}
+			scoredList = append(scoredList, scored{name: name, score: s})
+		}
+	}
+	GlobalHierarchicalKB.mutex.RUnlock()
+
+	sort.Slice(scoredList, func(i, j int) bool {
+		return scoredList[i].score > scoredList[j].score
+	})
+
+	if len(scoredList) > limit {
+		scoredList = scoredList[:limit]
+	}
+
+	results := make([]string, 0, len(scoredList))
+	for _, item := range scoredList {
+		results = append(results, item.name)
+	}
+
+	return results
+}
+
+func formatPropertyValue(value interface{}) string {
+	switch v := value.(type) {
+	case string:
+		return v
+	case []string:
+		if len(v) == 0 {
+			return ""
+		}
+		if len(v) > 3 {
+			v = v[:3]
+		}
+		return strings.Join(v, ", ")
+	case []interface{}:
+		parts := make([]string, 0, len(v))
+		for _, item := range v {
+			parts = append(parts, fmt.Sprintf("%v", item))
+		}
+		if len(parts) > 3 {
+			parts = parts[:3]
+		}
+		return strings.Join(parts, ", ")
+	default:
+		return fmt.Sprintf("%v", v)
+	}
 }

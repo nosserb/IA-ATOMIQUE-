@@ -1,2 +1,0 @@
-[BLACKLIST] ✓ 1 mots interdits chargés (intégrité vérifiée)
-[ERREUR] Impossible de lire le fichier: open benchmark: no such file or directory

@@ -962,11 +962,11 @@ func main() {
 
 		// Verify image exists
 		if _, err := os.Stat(imagePath); err != nil {
-			fmt.Printf("❌ Image not found: %s\n", imagePath)
+			fmt.Printf(" Image not found: %s\n", imagePath)
 			return
 		}
 
-		fmt.Printf("\n⚛️ ULTRA PURE ATOMIC DEBLURRING (5000 ITERATIONS, 10px patches)\n")
+		fmt.Printf("\n ULTRA PURE ATOMIC DEBLURRING (5000 ITERATIONS, 10px patches)\n")
 		fmt.Printf("═══════════════════════════════════════════════════════\n")
 		fmt.Printf("Processing: %s\n", imagePath)
 		fmt.Printf("Expected time: ~120-150 seconds\n\n")
@@ -975,9 +975,9 @@ func main() {
 		// Use 10px patch size (2x coarser) for more aggressive deblurring
 		commands.RunUltraDeblurPipeline4K(imagePath, 4, 4, 5000, finalOutput)
 
-		fmt.Printf("\n✅ ULTRA PURE COMPLETE!\n")
-		fmt.Printf("💾 Saved: %s\n", finalOutput)
-		fmt.Printf("✨ Maximum quality atomic deblurring applied!\n")
+		fmt.Printf("\n ULTRA PURE COMPLETE!\n")
+		fmt.Printf(" Saved: %s\n", finalOutput)
+		fmt.Printf(" Maximum quality atomic deblurring applied!\n")
 
 	default:
 		// Mode hérité - traiter comme phrase simple
